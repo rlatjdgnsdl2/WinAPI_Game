@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{56369f81-6526-4ecb-a641-6adf7515943c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{71d9ea38-c6d1-484f-aed5-a8a5ee57c204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{9f88902e-3e2b-4122-8e35-3ee635294654}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AActor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MainEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AActor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MainEngine.h" />
+  </ItemGroup>
+</Project>
