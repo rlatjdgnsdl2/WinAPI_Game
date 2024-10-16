@@ -7,12 +7,13 @@ private:
 	static MainEngine* mainEngine;
 	std::vector<class AAcotr*> actorVec;
 
+	static void StartGame(class App* _game);
+
 	void BeginPlay();
 	void Tick();
-	/*void InputProcess();
-	void PhysicsProcess();
-	void RenderProcess();
-	void SoundProcess();*/
-
+	/*void InputHandling();
+	void WorldUpdate();
+	void PhysicsUpdate();
+	void RenderUpdate();*/
 };
 
