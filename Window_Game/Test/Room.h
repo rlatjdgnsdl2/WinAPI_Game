@@ -1,9 +1,7 @@
 #pragma once
 
 class Room
-{
-private:
-	
+{	
 public:
 	int startX, startY;
 	int width, height;
