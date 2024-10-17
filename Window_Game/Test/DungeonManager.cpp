@@ -1,5 +1,6 @@
 #include "DungeonManager.h"
 #include "Dungeon_Gen_Algo.h"
+#include "Dungeon_Gen_Algo_Small.h"
 #include <iostream>
 
 const int DungeonManager::HEIGHT = 48;
@@ -12,6 +13,7 @@ const int DungeonManager::PATH = 0;
 DungeonManager::DungeonManager() :dungeon_Gen_Algos{ nullptr }
 {
 	InitDungeon();
+	dungeon_Gen_Algos.push_back(new Dungeon_Gen_Algo_Small(dungeon, rooms));
 }
 
 DungeonManager::~DungeonManager()
@@ -20,10 +22,7 @@ DungeonManager::~DungeonManager()
 		delete algo;
 	}
 	dungeon_Gen_Algos.clear();
-	for (auto room : rooms) {
-		delete room;
-	}
-	rooms.clear();
+
 }
 
 void DungeonManager::InitDungeon()
@@ -42,7 +41,7 @@ void DungeonManager::InitDungeon()
 void DungeonManager::GenerateDungeon(int _index)
 {
 	if (dungeon_Gen_Algos[_index]!=nullptr) {
-		dungeon_Gen_Algos[_index]->GenerateDungeon(dungeon);
+		dungeon_Gen_Algos[_index]->GenerateDungeon();
 		
 	}
 }

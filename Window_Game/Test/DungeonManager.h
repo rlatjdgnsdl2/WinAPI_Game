@@ -1,10 +1,11 @@
 #pragma once
+#include "Room.h"
 #include <vector>
 class DungeonManager
 {
 private:
 	std::vector<std::vector<int>> dungeon;
-	std::vector<class Room*> rooms;
+	std::vector<Room> rooms;
 	std::vector<class Dungeon_Gen_Algo*> dungeon_Gen_Algos;
 public:
 	static const int WIDTH;
