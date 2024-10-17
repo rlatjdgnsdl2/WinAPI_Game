@@ -3,10 +3,10 @@
 class Dungeon_Gen_Algo_Small :public Dungeon_Gen_Algo
 {
 private:
-	int sliceCount;
+	void SliceDungeon() override;
+	
 public:
 	void GenerateDungeon(std::vector<std::vector<int>>& dungeon) override;
-	void SliceDungeon(int _sliceCount) override;
 
 };
 

@@ -12,8 +12,8 @@ public:
 	static const int WALL;
 	static const int PATH;
 
-	DungeonManager();
 	~DungeonManager();
+	DungeonManager();
 
 	void InitDungeon();
 	void GenerateDungeon(int _index);

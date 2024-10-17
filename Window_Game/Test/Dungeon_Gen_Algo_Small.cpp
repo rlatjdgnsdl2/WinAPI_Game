@@ -2,9 +2,9 @@
 
 void Dungeon_Gen_Algo_Small::GenerateDungeon(std::vector<std::vector<int>>& dungeon)
 {
-	SliceDungeon(sliceCount);
+	SliceDungeon();
 }
 
-void Dungeon_Gen_Algo_Small::SliceDungeon(int _sliceCount)
+void Dungeon_Gen_Algo_Small::SliceDungeon()
 {
 }
