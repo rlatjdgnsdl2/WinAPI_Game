@@ -42,7 +42,8 @@ void DungeonManager::InitDungeon()
 void DungeonManager::GenerateDungeon(int _index)
 {
 	if (dungeon_Gen_Algos[_index]!=nullptr) {
-		dungeon_Gen_Algos[_index]->generate(dungeon,rooms);
+		dungeon_Gen_Algos[_index]->GenerateDungeon(dungeon);
+		
 	}
 }
 

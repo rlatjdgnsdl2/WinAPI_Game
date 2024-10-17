@@ -8,8 +8,12 @@
     <ClCompile Include="Dungeon_Gen_Algo.cpp">
       <Filter>DungeonAlgo</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp" />
-    <ClCompile Include="Dungeon_Gen_Algo_Small.cpp" />
+    <ClCompile Include="Dungeon_Gen_Algo_Small.cpp">
+      <Filter>DungeonAlgo</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DungeonManager.h">
@@ -18,8 +22,12 @@
     <ClInclude Include="Dungeon_Gen_Algo.h">
       <Filter>DungeonAlgo</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h" />
-    <ClInclude Include="Dungeon_Gen_Algo_Small.h" />
+    <ClInclude Include="Dungeon_Gen_Algo_Small.h">
+      <Filter>DungeonAlgo</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DungeonManager">
@@ -27,6 +35,9 @@
     </Filter>
     <Filter Include="DungeonAlgo">
       <UniqueIdentifier>{7ba65648-5b5c-4415-ae68-9fcffe5e4c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{d6624278-4009-4b32-b866-b39e023793a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
