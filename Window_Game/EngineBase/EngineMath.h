@@ -1,17 +1,20 @@
 #pragma once
-#include <type_traits>  // std::enable_if, std::is_arithmetic
-typedef int T;
-//template<typename T, typename = std::enable_if_t<std::is_arithmetic<T>::value>>
+
 class FIntPoint {
 public:
-    T xPos;
-    T yPos;
+    int xPos;
+    int yPos;
+
+    static const FIntPoint LEFT;
+    static const FIntPoint RIGHT;
+    static const FIntPoint UP;
+    static const FIntPoint DOWN;
 
     // 기본 생성자
     FIntPoint() : xPos{ 0 }, yPos{ 0 } {}
 
     // 매개변수 생성자
-    FIntPoint(T _xValue, T _yValue) : xPos{ _xValue }, yPos{ _yValue } {}
+    FIntPoint(int _xValue, int _yValue) : xPos{ _xValue }, yPos{ _yValue } {}
 
     // 산술 연산자 오버로딩
     FIntPoint operator+(const FIntPoint& _other) const {
@@ -22,11 +25,11 @@ public:
         return FIntPoint(xPos - _other.xPos, yPos - _other.yPos);
     }
 
-    FIntPoint operator*(const T& scalar) const {
+    FIntPoint operator*(const int& scalar) const {
         return FIntPoint(xPos * scalar, yPos * scalar);
     }
 
-    FIntPoint operator/(const T& scalar) const {
+    FIntPoint operator/(const int& scalar) const {
         return FIntPoint(xPos / scalar, yPos / scalar);
     }
 
@@ -51,15 +54,15 @@ public:
         return *this;
     }
 
-    FIntPoint& operator*=(const T& _other) {
-        xPos *= _other;
-        yPos *= _other;
+    FIntPoint& operator*=(const int& scalar) {
+        xPos *= scalar;
+        yPos *= scalar;
         return *this;
     }
 
-    FIntPoint& operator/=(const T& _other) {
-        xPos /= _other;
-        yPos /= _other;
+    FIntPoint& operator/=(const int& scalar) {
+        xPos /= scalar;
+        yPos /= scalar;
         return *this;
     }
     

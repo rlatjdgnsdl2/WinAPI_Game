@@ -18,10 +18,12 @@
     <ClCompile Include="AActor.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AActor.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngine.h" />
   </ItemGroup>
 </Project>
