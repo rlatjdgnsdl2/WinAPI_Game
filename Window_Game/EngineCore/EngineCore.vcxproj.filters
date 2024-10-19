@@ -10,17 +10,18 @@
     <Filter Include="Core">
       <UniqueIdentifier>{9f88902e-3e2b-4122-8e35-3ee635294654}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2b87bf99-3222-4199-9918-fc89e77eb1ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AActor.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="MainEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AActor.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="MainEngine.h" />
   </ItemGroup>
 </Project>

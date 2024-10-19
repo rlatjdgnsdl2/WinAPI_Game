@@ -43,11 +43,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	MSG msg;
 
 	// 기본 메시지 루프입니다:
-	//while (GetMessage(&msg, nullptr, 0, 0))
 	while (true)
 	{
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
 
+			if (WM_QUIT == msg.message) {
+				break;
+			}
 			if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 			{
 				TranslateMessage(&msg);
@@ -55,6 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			}
 		}
 		else {
+			//게임코드실행
 
 		}
 	}

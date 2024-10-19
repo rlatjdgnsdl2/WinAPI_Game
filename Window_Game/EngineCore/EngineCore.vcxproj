@@ -129,11 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AActor.h" />
-    <ClInclude Include="MainEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AActor.cpp" />
-    <ClCompile Include="MainEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
