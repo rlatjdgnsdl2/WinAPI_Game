@@ -13,6 +13,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2b87bf99-3222-4199-9918-fc89e77eb1ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\Window">
+      <UniqueIdentifier>{10663690-49df-46d2-a1de-0945afbbfc76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AActor.cpp">
