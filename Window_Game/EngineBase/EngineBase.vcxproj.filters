@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Math">
-      <UniqueIdentifier>{839f4d68-bd4a-40b3-a331-99748e09a28e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IO">
-      <UniqueIdentifier>{54270a98-75e4-402e-9707-2f93d284898f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{2877c4e4-6e5e-4d23-95ed-5e2f0593da40}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="EngineMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineDebug.cpp">
-      <Filter>Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="EngineMath.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="EngineDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="EngineFile.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineFile.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{78b6108e-3fc1-4750-8641-f8bd572d937d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{61834f60-1002-4071-9e28-34087dfb4d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{ea7ef493-e79b-4081-9ac6-502c8d1eb677}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

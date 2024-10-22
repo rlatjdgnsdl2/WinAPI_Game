@@ -14,7 +14,7 @@ const int MAXPATH = 256;
 
 class UEngineFile
 {
-	// 하드코딩 
+// 하드코딩 
 public:
 	UEngineFile();
 	~UEngineFile();
@@ -26,7 +26,7 @@ public:
 
 	// 그런거야 Is 
 	// Path 경로에 파일이 존재해? 이파일이 존재하는 거야?
-
+	
 	// 복잡한 함수같은 경우에는 분리구현
 	// 함수 하나만 썼는데?
 	// 선언과 구현을 분리하면 inline은 붙이지 못한다.
@@ -43,11 +43,11 @@ public:
 	bool IsExits();
 	void Close();
 
-	// 기능 클래스 랩핑
+// 기능 클래스 랩핑
 private:
 	// 상수
 	// _MAX_DIR 윈도우에 의존적인 프로그램
-
+	
 
 	char Path[MAXPATH] = "";
 	FILE* File = nullptr;
