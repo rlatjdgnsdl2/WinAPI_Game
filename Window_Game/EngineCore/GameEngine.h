@@ -4,12 +4,13 @@
 class GameEngine
 {
 public:
-	virtual ~GameEngine();	
-	
+	virtual ~GameEngine() = default;
+	static  GameEngine* GetEngine();
+
 
 protected:
 	GameEngine();
-	static GameEngine* MainEngine;
+	static  GameEngine* MainEngine;
 
 private:
 	virtual void BeginPlay();
@@ -17,9 +18,6 @@ private:
 	virtual void Render();
 
 	virtual void Release();
-
-
-	
 
 };
 
