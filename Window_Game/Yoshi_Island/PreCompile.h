@@ -10,4 +10,3 @@
 #include <string>
 #include <iostream>
 #include <functional>
-#include <assert.h>

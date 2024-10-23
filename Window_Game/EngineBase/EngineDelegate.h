@@ -1,22 +1,18 @@
 #pragma once
-#include <functional>
 
-// 설명 :
+// 설명 : 델리게이트 구현
 class EngineDelegate
 {
 public:
-	EngineDelegate();
+	//생성자, 소멸자
+	EngineDelegate() = default;
 	EngineDelegate(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
-	~EngineDelegate();
+	~EngineDelegate() = default;
 
-	bool IsBind()
-	{
-		return false == Functions.empty();
-	}
-
+	//연산자 오버로딩
 	void operator=(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
@@ -26,21 +22,23 @@ public:
 	{
 		std::list<std::function<void()>>::iterator StartIter = Functions.begin();
 		std::list<std::function<void()>>::iterator EndIter = Functions.end();
-
 		for (; StartIter != EndIter; ++StartIter)
 		{
 			std::function<void()>& Function = *StartIter;
 			Function();
 		}
 	}
-
+	
+	// 멤버함수
 	void Clear()
 	{
 		Functions.clear();
 	}
-
-protected:
-
+	bool IsBind()
+	{
+		return false == Functions.empty();
+	}
+	
 private:
 	std::list<std::function<void()>> Functions;
 };

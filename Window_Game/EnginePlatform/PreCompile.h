@@ -11,4 +11,3 @@
 #include <iostream>
 #include <functional>
 
-#include <assert.h>
