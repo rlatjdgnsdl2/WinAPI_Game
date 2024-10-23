@@ -1,9 +1,13 @@
+#include "PreCompile.h"
 #include "EngineWindow.h"
+#include <EngineCore/EngineAPICore.h>
 #include <EngineBase/EngineDebug.h>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
+int WindowCount = 0;
+
 
 UEngineWindow::UEngineWindow()
 {
@@ -15,7 +19,7 @@ UEngineWindow::~UEngineWindow()
 
 }
 
-void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
+void UEngineWindow::EngineWindowInit(HINSTANCE _Instance, std::string_view _ClassName)
 {
 	WNDCLASSEXA wcex;
 
@@ -29,7 +33,7 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = nullptr;
-	wcex.lpszClassName = "Default";
+	wcex.lpszClassName = _ClassName.data();
 	wcex.hIconSm = nullptr;
 
 	CreateWindowClass(wcex);
@@ -42,7 +46,7 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 	std::map<std::string, WNDCLASSEXA>::iterator EndIter = WindowClasses.end();
 	std::map<std::string, WNDCLASSEXA>::iterator FindIter = WindowClasses.find(std::string(_Class.lpszClassName));
 	if (EndIter != FindIter)
-	{	
+	{
 		MSGASSERT("같은 이름의 윈도우 클래스를 2번 등록했습니다" + std::string(_Class.lpszClassName));
 		return;
 	}
@@ -50,36 +54,44 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 	WindowClasses.insert(std::pair{ _Class.lpszClassName, _Class });
 }
 
-bool UEngineWindow::IsWindowClass(const std::string_view _Text)
-{
-	return false;
-}
 
 
-int UEngineWindow::WindowMessageLoop()
+
+int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 {
 	MSG msg;
 
-	// 기본 메시지 루프입니다:
-	while (GetMessage(&msg, nullptr, 0, 0))
+	while (WindowCount)
 	{
-		if (!TranslateAccelerator(msg.hwnd, nullptr, &msg))
+		// if (!TranslateAccelerator(msg.hwnd, nullptr, &msg))  => 윈도우 단축키 자체를 사용하지
+		// 않을 것이므로 그냥 무시
+
+		// PM_REMOVE == 내가 처리할때 지금까지 쌓인 메세지 다지워.
+		if (0 != PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+
+		if (true == _FrameFunction.IsBind())
+		{
+			_FrameFunction();
+		}
+		// 메세지가 없는 시간에 내 게임을 돌리는거야.
+		// 메세지 처리하고 나서 내 게임엔진을 돌린다.
 	}
 	return (int)msg.wParam;
 }
 
-void UEngineWindow::Open(std::string_view _TitleName)
+void UEngineWindow::Open(std::string_view _TitleName, std::string_view _ClassName)
 {
 	if (nullptr == WindowHandle)
 	{
-		Create();
+		Create(_TitleName, _ClassName);
 	}
 	ShowWindow(WindowHandle, SW_SHOW);
 	UpdateWindow(WindowHandle);
+	++WindowCount;
 }
 
 void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
@@ -100,10 +112,7 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 	}
 }
 
-void UEngineWindow::Create(std::string_view _ClassName)
-{
-	Create("Window", _ClassName);
-}
+
 
 
 
@@ -120,7 +129,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	break;
 	case WM_DESTROY:
-		PostQuitMessage(0);
+		--WindowCount;
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

@@ -1,21 +1,18 @@
 #pragma once
-#include <Windows.h>
-#include <string>
-#include <map>
+#include <EngineBase/EngineDelegate.h>
 
 //	윈도우관련 클래스
 class UEngineWindow
 {
 public:
 	//	static 함수
-	static void EngineWindowInit(HINSTANCE _Instance);			//	기본 윈도우클래스생성
-	static bool IsWindowClass(const std::string_view _Text);
-	static int  WindowMessageLoop();		
+	static void EngineWindowInit(HINSTANCE _Instance, std::string_view _ClassName = "Default");			//	기본 윈도우클래스생성
 	static void CreateWindowClass(const WNDCLASSEXA& _Class);
+	static int  WindowMessageLoop(EngineDelegate _FrameFuntion);		
 	
 	// 멤버 함수
-	void Open(std::string_view _TitleName = "Window");
-	void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
+	void Open(std::string_view _TitleName = "Window", std::string_view _ClassName = "Default");
+	void Create(std::string_view _TitleName="Window", std::string_view _ClassName = "Default");
 
 	// constrcuter destructer
 	UEngineWindow();
@@ -36,7 +33,7 @@ private:
 	HWND WindowHandle = nullptr;
 
 	// 일반 멤버함수
-	void Create(std::string_view _ClassName = "Default");
+	
 
 };
 

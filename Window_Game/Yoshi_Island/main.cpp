@@ -1,17 +1,12 @@
-#include <Windows.h>
-#include <EnginePlatform/EngineWindow.h>
+#include "PreCompile.h"
+#include <EngineCore/EngineAPICore.h>
 
-
-#pragma comment (lib, "EnginePlatform.lib")
+#pragma comment (lib, "EngineCore.lib")
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	UEngineWindow::EngineWindowInit(hInstance);				// Defalut class µî·Ï
-	UEngineWindow NewWindow;
-	NewWindow.Create("Yoshi's Island","YoshiIsland");		
-	NewWindow.Open("Yoshi's Island");
-	return UEngineWindow::WindowMessageLoop();
+	return UEngineAPICore::EngineStart(hInstance);
 }
