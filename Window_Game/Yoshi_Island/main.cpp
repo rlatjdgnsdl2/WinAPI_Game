@@ -9,8 +9,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	UEngineWindow::EngineWindowInit(hInstance);
+	UEngineWindow::EngineWindowInit(hInstance);				// Defalut class µî·Ï
 	UEngineWindow NewWindow;
-	NewWindow.Open();
+	NewWindow.Create("Yoshi's Island","YoshiIsland");		
+	NewWindow.Open("Yoshi's Island");
 	return UEngineWindow::WindowMessageLoop();
 }
