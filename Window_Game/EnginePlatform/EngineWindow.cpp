@@ -8,10 +8,10 @@ HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
 int WindowCount = 0;
 
-UEngineWindow::UEngineWindow(){}
-UEngineWindow::~UEngineWindow(){}
+UEngineWindow::UEngineWindow() {}
+UEngineWindow::~UEngineWindow() {}
 
-void UEngineWindow::EngineWindowInit(HINSTANCE _Instance, std::string_view _ClassName)
+void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 {
 	hInstance = _Instance;
 
@@ -25,9 +25,9 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance, std::string_view _Clas
 	wcex.hInstance = hInstance;
 	wcex.hIcon = nullptr;
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
 	wcex.lpszMenuName = nullptr;
-	wcex.lpszClassName = _ClassName.data();
+	wcex.lpszClassName = "Default";
 	wcex.hIconSm = nullptr;
 
 	CreateWindowClass(wcex);
@@ -40,7 +40,7 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 	std::map<std::string, WNDCLASSEXA>::iterator FindIter = WindowClasses.find(std::string(_Class.lpszClassName));
 	if (EndIter != FindIter)
 	{
-		MSGASSERT("같은 이름의 윈도우 클래스를 2번 등록했습니다" + std::string(_Class.lpszClassName));
+		MSGASSERT(std::string(_Class.lpszClassName) + "같은 이름의 윈도우 클래스를 2번 등록했습니다");
 		return;
 	}
 	RegisterClassExA(&_Class);
@@ -54,9 +54,9 @@ int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 {
 	MSG msg;
 
-	while (WindowCount)
+	while (0 != WindowCount)
 	{
-		
+
 		if (0 != PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -67,16 +67,16 @@ int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 		{
 			_FrameFunction();
 		}
-		
+
 	}
 	return (int)msg.wParam;
 }
 
-void UEngineWindow::Open(std::string_view _TitleName, std::string_view _ClassName)
+void UEngineWindow::Open(std::string_view _TitleName)
 {
 	if (nullptr == WindowHandle)
 	{
-		Create(_TitleName, _ClassName);
+		Create(_TitleName);
 	}
 	ShowWindow(WindowHandle, SW_SHOW);
 	UpdateWindow(WindowHandle);
@@ -87,7 +87,7 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 {
 	if (false == WindowClasses.contains(_ClassName.data()))
 	{
-		MSGASSERT("등록하지 않은 클래스로 윈도우창을 만들려고 했습니다" + std::string(_ClassName));
+		MSGASSERT(std::string(_ClassName) + "등록하지 않은 클래스로 윈도우창을 만들려고 했습니다");
 		return;
 	}
 
@@ -96,7 +96,7 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 
 	if (!WindowHandle)
 	{
-		MSGASSERT("윈도우 생성에 실패했습니다." + std::string(_TitleName));
+		MSGASSERT(std::string(_TitleName) + "윈도우 생성에 실패했습니다.");
 		return;
 	}
 }

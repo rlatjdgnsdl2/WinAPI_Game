@@ -1,19 +1,10 @@
 #pragma once
 #include <EngineBase/EngineDelegate.h>
 
-//	윈도우관련 클래스
+//	설명: 윈도우관련 클래스
 class UEngineWindow
 {
 public:
-	//	static 함수
-	static void EngineWindowInit(HINSTANCE _Instance, std::string_view _ClassName = "Default");			//	기본 윈도우클래스생성
-	static void CreateWindowClass(const WNDCLASSEXA& _Class);
-	static int  WindowMessageLoop(EngineDelegate _FrameFuntion);		
-	
-	// 멤버 함수
-	void Open(std::string_view _TitleName = "Window", std::string_view _ClassName = "Default");
-	void Create(std::string_view _TitleName="Window", std::string_view _ClassName = "Default");
-
 	// constrcuter destructer
 	UEngineWindow();
 	~UEngineWindow();
@@ -22,17 +13,26 @@ public:
 	UEngineWindow(UEngineWindow&& _Other) noexcept = delete;
 	UEngineWindow& operator=(const UEngineWindow& _Other) = delete;
 	UEngineWindow& operator=(UEngineWindow&& _Other) noexcept = delete;
+
+	//	static 함수
+	static void EngineWindowInit(HINSTANCE _Instance);				//	기본 윈도우클래스생성
+	static void CreateWindowClass(const WNDCLASSEXA& _Class);		//	윈도우 생성 클래스 등록 함수
+	static int  WindowMessageLoop(EngineDelegate _FrameFuntion);	//	윈도우 게임 메시지 루프 함수
+	
+	// 멤버 함수
+	void Create(std::string_view _TitleName="Window", std::string_view _ClassName = "Default");
+	void Open(std::string_view _TitleName = "Window");
+
 protected:
 
 private:
-	// static 멤버변수
+	// static 변수
 	static HINSTANCE hInstance;
 	static std::map<std::string, WNDCLASSEXA> WindowClasses;
 
 	// 일반 멤버변수
-	HWND WindowHandle = nullptr;
+	HWND WindowHandle = nullptr;	//	윈도우 다루는 핸들
 
-	// 일반 멤버함수
 	
 
 };

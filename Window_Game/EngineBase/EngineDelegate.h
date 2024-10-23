@@ -4,7 +4,7 @@
 class EngineDelegate
 {
 public:
-	//생성자, 소멸자
+	//	constrcuter, destructer
 	EngineDelegate() = default;
 	EngineDelegate(std::function<void()> _Function)
 	{
@@ -12,13 +12,13 @@ public:
 	}
 	~EngineDelegate() = default;
 
-	//연산자 오버로딩
+	//	operator overloading
 	void operator=(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
 
-	void operator()()
+	void operator()()	//	벡터안에 있는 모든 함수 실행
 	{
 		std::list<std::function<void()>>::iterator StartIter = Functions.begin();
 		std::list<std::function<void()>>::iterator EndIter = Functions.end();
@@ -29,17 +29,17 @@ public:
 		}
 	}
 	
-	// 멤버함수
-	void Clear()
+	//	public method
+	void Clear()	
 	{
 		Functions.clear();
 	}
-	bool IsBind()
+	bool IsBind()	//	비었으면 false 리턴
 	{
 		return false == Functions.empty();
 	}
 	
 private:
-	std::list<std::function<void()>> Functions;
+	std::list<std::function<void()>> Functions;		//	펑션벡터
 };
 

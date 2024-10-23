@@ -19,9 +19,9 @@ UEngineAPICore::~UEngineAPICore()
 
 int UEngineAPICore::EngineStart(HINSTANCE _Inst)
 {
-	UEngineWindow::EngineWindowInit(_Inst);
+	UEngineWindow::EngineWindowInit(_Inst);		//	Default 등록
 
-	UEngineAPICore Core;
+	UEngineAPICore Core;						//	엔진코어 생성
 	
 	Core.EngineMainWindow.Open();
 
