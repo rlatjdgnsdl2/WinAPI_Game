@@ -21,8 +21,8 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst)
 {
 	UEngineWindow::EngineWindowInit(_Inst);
 
-	// 객체 안만들면 객체지향이 아닌거 같아서 객체로 하자.
 	UEngineAPICore Core;
+	
 	Core.EngineMainWindow.Open();
 
 	EngineDelegate NewDel;

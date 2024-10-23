@@ -8,19 +8,13 @@ HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
 int WindowCount = 0;
 
-
-UEngineWindow::UEngineWindow()
-{
-
-}
-
-UEngineWindow::~UEngineWindow()
-{
-
-}
+UEngineWindow::UEngineWindow(){}
+UEngineWindow::~UEngineWindow(){}
 
 void UEngineWindow::EngineWindowInit(HINSTANCE _Instance, std::string_view _ClassName)
 {
+	hInstance = _Instance;
+
 	WNDCLASSEXA wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -38,7 +32,6 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance, std::string_view _Clas
 
 	CreateWindowClass(wcex);
 
-	hInstance = _Instance;
 }
 
 void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
@@ -63,10 +56,7 @@ int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 
 	while (WindowCount)
 	{
-		// if (!TranslateAccelerator(msg.hwnd, nullptr, &msg))  => 윈도우 단축키 자체를 사용하지
-		// 않을 것이므로 그냥 무시
-
-		// PM_REMOVE == 내가 처리할때 지금까지 쌓인 메세지 다지워.
+		
 		if (0 != PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -77,8 +67,7 @@ int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 		{
 			_FrameFunction();
 		}
-		// 메세지가 없는 시간에 내 게임을 돌리는거야.
-		// 메세지 처리하고 나서 내 게임엔진을 돌린다.
+		
 	}
 	return (int)msg.wParam;
 }

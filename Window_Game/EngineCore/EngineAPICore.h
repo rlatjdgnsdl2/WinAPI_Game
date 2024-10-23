@@ -18,7 +18,6 @@ public:
 	// constrcuter destructer
 	UEngineAPICore();
 	~UEngineAPICore();
-
 	// delete Function
 	UEngineAPICore(const UEngineAPICore& _Other) = delete;
 	UEngineAPICore(UEngineAPICore&& _Other) noexcept = delete;
@@ -27,7 +26,7 @@ public:
 
 	static int EngineStart(HINSTANCE _Inst);
 
-	class UEngineAPICore* GetCore()
+	UEngineAPICore* GetCore()
 	{
 		return MainCore;
 	}
@@ -45,7 +44,7 @@ private:
 
 	UEngineWindow EngineMainWindow; // 엔진 메인 윈도우
 
-	// 이녀석들이 돌아가야 게임이 돌아간다.
+	
 	void Tick();
 	void Render();
 
