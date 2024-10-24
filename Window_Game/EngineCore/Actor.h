@@ -1,4 +1,6 @@
 #pragma once
+#include "Level.h"
+
 
 //	Ό³Έν:
 class AActor
@@ -6,8 +8,8 @@ class AActor
 public:
 	friend class ULevel;
 	//	constrcuter, destructer
-	AActor() = default;
-	~AActor() = default;
+	AActor();
+	virtual ~AActor();
 
 	//	delete Function
 	AActor(const AActor& _Other) = delete;

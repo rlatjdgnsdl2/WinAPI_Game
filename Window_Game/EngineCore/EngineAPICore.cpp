@@ -67,10 +67,11 @@ void UEngineAPICore::Tick()
 	}
 
 	CurLevel->Tick();
+	CurLevel->Render();
 }
 
 
-ULevel* UEngineAPICore::OpenLevel(std::string_view _LevelName)
+void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 {
 	std::string ChangeName = _LevelName.data();
 

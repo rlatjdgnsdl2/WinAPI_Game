@@ -5,8 +5,8 @@ class APlayGameMode:public AGameMode
 {
 public:
 	//	constrcuter, destructer
-	APlayGameMode() = default;
-	~APlayGameMode() = default;
+	APlayGameMode();
+	~APlayGameMode();
 
 	//	delete Function
 	APlayGameMode(const APlayGameMode& _Other) = delete;

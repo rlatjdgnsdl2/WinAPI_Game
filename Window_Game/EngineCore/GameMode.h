@@ -6,8 +6,8 @@ class AGameMode :public AActor
 {
 public:
 	//	constrcuter, destructer
-	AGameMode() = default;
-	~AGameMode() = default;
+	AGameMode() ;
+	virtual ~AGameMode() ;
 
 	//	delete Function
 	AGameMode(const AGameMode& _Other) = delete;

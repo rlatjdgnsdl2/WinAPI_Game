@@ -39,15 +39,15 @@ public:
 	{
 		return EngineMainWindow;
 	}
-
+	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)
 	{
 		ULevel* NewLevel = new ULevel();
-
+		NewLevel->CreateGameMode<GameModeType, MainPawnType>();
 		Levels.insert({ _LevelName.data() , NewLevel });
 		return NewLevel;
 	}
-	ULevel* OpenLevel(std::string_view _LevelName);
+	void OpenLevel(std::string_view _LevelName);
 
 protected:
 
