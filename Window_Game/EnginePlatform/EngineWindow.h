@@ -5,8 +5,8 @@ class UEngineWindow
 {
 public:
 	// constrcuter destructer
-	UEngineWindow() = default;
-	~UEngineWindow() = default;
+	UEngineWindow();
+	~UEngineWindow();
 	// delete Function
 	UEngineWindow(const UEngineWindow& _Other) = delete;
 	UEngineWindow(UEngineWindow&& _Other) noexcept = delete;
@@ -21,6 +21,7 @@ public:
 	// ¸â¹ö ÇÔ¼ö
 	void Create(std::string_view _TitleName="Window", std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
+	
 	inline HDC GetBackBuffer()
 	{
 		return BackBuffer;

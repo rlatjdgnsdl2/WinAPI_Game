@@ -6,8 +6,8 @@ class YoshiContentsCore : public UContentsCore
 {
 public:
 	//	constrcuter, destructer
-	YoshiContentsCore() = default;
-	~YoshiContentsCore() = default;
+	YoshiContentsCore();
+	~YoshiContentsCore();
 
 	//	delete Function
 	YoshiContentsCore(const YoshiContentsCore& _Other) = delete;

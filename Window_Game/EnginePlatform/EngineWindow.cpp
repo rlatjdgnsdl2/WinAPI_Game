@@ -9,6 +9,14 @@ HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
 int WindowCount = 0;
 
+UEngineWindow::UEngineWindow()
+{
+}
+
+UEngineWindow::~UEngineWindow()
+{
+}
+
 void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 {
 	hInstance = _Instance;

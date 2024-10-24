@@ -1,8 +1,16 @@
 #include "PreCompile.h"
 #include "YoshiContentsCore.h"
-
+#include <EngineCore/EngineAPICore.h>
 #include "PlayGameMode.h"
 #include "Player.h"
+
+YoshiContentsCore::YoshiContentsCore()
+{
+}
+
+YoshiContentsCore::~YoshiContentsCore()
+{
+}
 
 void YoshiContentsCore::BeginPlay()
 {
