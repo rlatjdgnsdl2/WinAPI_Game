@@ -7,6 +7,8 @@
     <ClInclude Include="YoshiContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayGameMode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -15,6 +17,8 @@
     <ClCompile Include="YoshiContentsCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayGameMode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">

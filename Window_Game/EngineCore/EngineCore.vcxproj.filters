@@ -10,8 +10,12 @@
     <ClInclude Include="Actor.h">
       <Filter>Objects\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="GameMode.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="GameMode.h">
+      <Filter>Objects\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -23,8 +27,12 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Objects\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="GameMode.cpp" />
-    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Objects\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">

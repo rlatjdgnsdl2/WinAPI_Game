@@ -4,6 +4,7 @@
 class AActor
 {
 public:
+	friend class ULevel;
 	//	constrcuter, destructer
 	AActor() = default;
 	~AActor() = default;
@@ -14,9 +15,18 @@ public:
 	AActor& operator=(const AActor& _Other) = delete;
 	AActor& operator=(AActor&& _Other) noexcept = delete;
 
+	virtual void BeginPlay() {}
+	virtual void Tick() {}
+	virtual void Render() {}
+
+	ULevel* GetWorld()
+	{
+		return World;
+	}
+
 protected:
 
 private:
-
+	ULevel* World = nullptr;
 };
 

@@ -40,12 +40,14 @@ public:
 		return EngineMainWindow;
 	}
 
-	void CreateLevel(std::string_view _LevelName)
+	ULevel* CreateLevel(std::string_view _LevelName)
 	{
 		ULevel* NewLevel = new ULevel();
 
 		Levels.insert({ _LevelName.data() , NewLevel });
+		return NewLevel;
 	}
+	ULevel* OpenLevel(std::string_view _LevelName);
 
 protected:
 
@@ -63,7 +65,7 @@ private:
 	// 
 	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우
 	std::map<std::string, class ULevel*> Levels;
-	
+	class ULevel* CurLevel = nullptr;
 
 };
 

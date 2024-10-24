@@ -51,8 +51,10 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction)
 {
 	MSG msg = MSG();
+	if (nullptr != _StartFunction) {
 
-	_StartFunction();
+		_StartFunction();
+	}
 
 	while (0 != WindowCount)
 	{
