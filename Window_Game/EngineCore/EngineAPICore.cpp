@@ -4,6 +4,7 @@
 #include <EngineBase/EngineDelegate.h>
 
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
+UContentsCore* UEngineAPICore::UserCore = nullptr;
 
 
 UEngineAPICore::UEngineAPICore()
@@ -17,23 +18,33 @@ UEngineAPICore::~UEngineAPICore()
 }
 
 
-int UEngineAPICore::EngineStart(HINSTANCE _Inst)
+int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 {
-	UEngineWindow::EngineWindowInit(_Inst);		//	Default 등록
 
-	UEngineAPICore Core;						//	엔진코어 생성
-	
+	UserCore = _UserCore;
+	UEngineWindow::EngineWindowInit(_Inst);
+
+	UEngineAPICore Core;
+
 	Core.EngineMainWindow.Open();
 
-	EngineDelegate NewDel;
-	NewDel = EngineLoop;
-	return UEngineWindow::WindowMessageLoop(NewDel);
+	//auto frameFunction = std::bind(&UEngineAPICore::EngineLoop, &Core);
+	return UEngineWindow::WindowMessageLoop(EngineBeginPlay, EngineTick);
 }
 
-void UEngineAPICore::EngineLoop()
+void UEngineAPICore::EngineBeginPlay()
+{
+	MainCore->BeginPlay();
+}
+
+void UEngineAPICore::EngineTick()
 {
 	MainCore->Tick();
 	MainCore->Render();
+}
+
+void UEngineAPICore::BeginPlay()
+{
 }
 
 void UEngineAPICore::Tick()

@@ -50,9 +50,11 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 
 
 
-int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
+int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction)
 {
 	MSG msg;
+
+	_StartFunction();
 
 	while (0 != WindowCount)
 	{
@@ -63,7 +65,7 @@ int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 			DispatchMessage(&msg);
 		}
 
-		if (true == _FrameFunction.IsBind())
+		if (nullptr != _FrameFunction)
 		{
 			_FrameFunction();
 		}
