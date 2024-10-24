@@ -1,5 +1,5 @@
 #pragma once
-#include "Level.h"
+#include <EngineBase/EngineMath.h>
 
 
 //	Ό³Έν:
@@ -7,9 +7,10 @@ class AActor
 {
 public:
 	friend class ULevel;
+	
 	//	constrcuter, destructer
 	AActor();
-	virtual ~AActor();
+	~AActor();
 
 	//	delete Function
 	AActor(const AActor& _Other) = delete;
@@ -19,16 +20,33 @@ public:
 
 	virtual void BeginPlay() {}
 	virtual void Tick() {}
-	virtual void Render() {}
+	virtual void Render();
 
-	ULevel* GetWorld()
+	class ULevel* GetWorld()
 	{
 		return World;
+	}
+	void SetActorLoaction(FVector2D _Location)
+	{
+		Location = _Location;
+	}
+
+	void AddActorLoaction(FVector2D _Direction)
+	{
+		Location += _Direction;
+	}
+
+	void SetActorScale(FVector2D _Scale)
+	{
+		Scale = _Scale;
 	}
 
 protected:
 
 private:
-	ULevel* World = nullptr;
+	class ULevel* World = nullptr;
+
+	FVector2D Location = FVector2D::ZERO;
+	FVector2D Scale = FVector2D::ZERO;
 };
 

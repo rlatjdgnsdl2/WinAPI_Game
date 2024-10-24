@@ -7,15 +7,13 @@
     <ClInclude Include="EngineAPICore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Objects\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="GameMode.h">
       <Filter>Objects\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -24,15 +22,13 @@
     <ClCompile Include="EngineAPICore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Objects\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="GameMode.cpp">
       <Filter>Objects\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">

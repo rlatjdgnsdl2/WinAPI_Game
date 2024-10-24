@@ -21,6 +21,11 @@ public:
 	// 멤버 함수
 	void Create(std::string_view _TitleName="Window", std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
+	inline HDC GetBackBuffer()
+	{
+		return BackBuffer;
+	}
+
 
 protected:
 
@@ -31,6 +36,7 @@ private:
 
 	// 일반 멤버변수
 	HWND WindowHandle = nullptr;	//	윈도우 다루는 핸들
+	HDC BackBuffer = nullptr;
 
 	
 

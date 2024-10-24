@@ -104,6 +104,7 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 		MSGASSERT(std::string(_TitleName) + "윈도우 생성에 실패했습니다.");
 		return;
 	}
+	BackBuffer = GetDC(WindowHandle);
 }
 
 
