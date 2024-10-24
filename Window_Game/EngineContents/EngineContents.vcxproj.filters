@@ -7,8 +7,12 @@
     <ClInclude Include="YoshiContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayGameMode.h" />
+    <ClInclude Include="PlayGameMode.h">
+      <Filter>ContentsObjects\GameModes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ContentsObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -17,8 +21,12 @@
     <ClCompile Include="YoshiContentsCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayGameMode.cpp" />
+    <ClCompile Include="PlayGameMode.cpp">
+      <Filter>ContentsObjects\GameModes</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ContentsObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -27,5 +35,14 @@
     <Filter Include="Core">
       <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ContentsObjects">
+      <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\GameModes">
+      <UniqueIdentifier>{aba2481d-c11f-4e19-9d2b-ebc1d092bdbc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
