@@ -1,5 +1,6 @@
 #pragma once
 //	user header
+#include "Level.h"
 #include <EnginePlatform/EngineWindow.h>
 
 //	lib
@@ -28,19 +29,26 @@ public:
 
 	//	static
 	static int EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore);	//	엔진시작함수
-
-	//	Get
-	UEngineAPICore* GetCore()
+	static UEngineAPICore* GetCore()
 	{
 		return MainCore;
 	}
 
+	//
 	UEngineWindow& GetMainWindow()
 	{
 		return EngineMainWindow;
 	}
 
+	void CreateLevel(std::string_view _LevelName)
+	{
+		ULevel* NewLevel = new ULevel();
+
+		Levels.insert({ _LevelName.data() , NewLevel });
+	}
+
 protected:
+
 
 private:
 	//	static
@@ -49,10 +57,13 @@ private:
 	static void EngineBeginPlay();
 	static void EngineTick();
 
-	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우
-	void BeginPlay();
+	//
 	void Tick();
-	void Render();
+	
+	// 
+	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우
+	std::map<std::string, class ULevel*> Levels;
+	
 
 };
 

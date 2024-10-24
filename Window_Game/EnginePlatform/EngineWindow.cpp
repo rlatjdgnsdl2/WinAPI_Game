@@ -4,12 +4,10 @@
 #include <EngineBase/EngineDebug.h>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
 int WindowCount = 0;
-
-UEngineWindow::UEngineWindow() {}
-UEngineWindow::~UEngineWindow() {}
 
 void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 {
@@ -52,7 +50,7 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 
 int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction)
 {
-	MSG msg;
+	MSG msg = MSG();
 
 	_StartFunction();
 
@@ -76,9 +74,13 @@ int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::
 
 void UEngineWindow::Open(std::string_view _TitleName)
 {
-	if (nullptr == WindowHandle)
+	if (0 == WindowHandle)
 	{
 		Create(_TitleName);
+	}
+	if (0 == WindowHandle)
+	{
+		return;
 	}
 	ShowWindow(WindowHandle, SW_SHOW);
 	UpdateWindow(WindowHandle);
@@ -93,8 +95,7 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 		return;
 	}
 
-	WindowHandle = CreateWindowA(_ClassName.data(), _TitleName.data(), WS_OVERLAPPEDWINDOW,
-		0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+	WindowHandle = CreateWindowA(_ClassName.data(), _TitleName.data(), WS_OVERLAPPEDWINDOW, 0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
 	if (!WindowHandle)
 	{

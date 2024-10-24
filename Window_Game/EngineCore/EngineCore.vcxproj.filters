@@ -7,6 +7,11 @@
     <ClInclude Include="EngineAPICore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Objects\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h" />
+    <ClInclude Include="Level.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -15,6 +20,11 @@
     <ClCompile Include="EngineAPICore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Objects\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp" />
+    <ClCompile Include="Level.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -22,6 +32,15 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{8106fa0d-d100-4231-9498-4a0f2042e7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{40f89db6-e502-4d96-8816-51ddb3ca8830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Actor">
+      <UniqueIdentifier>{cf926eb2-fe6b-471a-9a56-ca7e0eaf6317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{d94fc40d-0964-4128-b8fe-c2780026f514}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
