@@ -5,8 +5,8 @@ class $safeitemname$
 {
 public:
 	//	constrcuter, destructer
-	$safeitemname$() = default;
-	~$safeitemname$() = default;
+	$safeitemname$();
+	~$safeitemname$();
 
 	//	delete Function
 	$safeitemname$(const $safeitemname$& _Other) = delete;

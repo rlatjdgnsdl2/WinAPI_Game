@@ -2,3 +2,5 @@
 
 
 
+$safeitemname$::$safeitemname$() {};
+$safeitemname$::~$safeitemname$() {};
