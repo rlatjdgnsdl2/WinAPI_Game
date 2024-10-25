@@ -17,7 +17,7 @@ public:
 	ULevel& operator=(ULevel&& _Other) noexcept = delete;
 
 	//	¿œπ›
-	void Tick();
+	void Tick(float _DeltaTime);
 	void Render();
 
 	//	≈€«√∏¥

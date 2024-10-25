@@ -16,6 +16,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="EngineTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -49,6 +55,9 @@
     </Filter>
     <Filter Include="Function">
       <UniqueIdentifier>{777a1388-8b1a-4742-8463-71d9015572dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{2c23ff64-9ce0-4f4c-b2b0-725dd5b50bcd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
