@@ -11,5 +11,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ int       nCmdShow)
 {
 	YoshiContentsCore User;
-	return UEngineAPICore::EngineStart(hInstance,&User);
+	return UEngineAPICore::EngineStart(hInstance,&User); //	클라이언트 담당이 작성한 컨텐츠 엔진에 전달
 }

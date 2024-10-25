@@ -39,7 +39,7 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 
 	UEngineAPICore Core;
 
-	Core.EngineMainWindow.Open("Yoshi's Island");
+	Core.EngineMainWindow.Open("Yoshi's Island");	//	임시제목
 	MainCore = &Core;
 	
 	return UEngineWindow::WindowMessageLoop(EngineBeginPlay, EngineTick);
@@ -52,7 +52,9 @@ void UEngineAPICore::EngineBeginPlay()
 
 void UEngineAPICore::EngineTick()
 {
+	//	의미x
 	UserCore->Tick();
+	//	중요
 	MainCore->Tick();
 }
 
@@ -74,16 +76,6 @@ void UEngineAPICore::Tick()
 void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 {
 	std::string ChangeName = _LevelName.data();
-
-	//if (true == Levels.contains(ChangeName))
-	//{
-	//	MSGASSERT(ChangeName + "라는 이름의 레벨은 존재하지 않습니다.");
-	//	return;
-	//}
-
-	//// 최신 방식
-	// CurLevel = Levels[ChangeName];
-
 	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
 	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
 
@@ -92,7 +84,5 @@ void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 		MSGASSERT(ChangeName + "라는 이름의 레벨은 존재하지 않습니다.");
 		return;
 	}
-
-	// 최신 방식
 	CurLevel = FindIter->second;
 }

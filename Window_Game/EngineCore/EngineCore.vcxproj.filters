@@ -13,7 +13,9 @@
     <ClInclude Include="Level.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Actor.h">
+      <Filter>Objects\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -28,7 +30,9 @@
     <ClCompile Include="Level.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Actor.cpp">
+      <Filter>Objects\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -46,8 +50,5 @@
     <Filter Include="Level">
       <UniqueIdentifier>{d94fc40d-0964-4128-b8fe-c2780026f514}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

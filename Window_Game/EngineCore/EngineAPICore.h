@@ -20,7 +20,7 @@ class UEngineAPICore
 public:
 	//	constrcuter, destructer
 	UEngineAPICore();
-	~UEngineAPICore();
+	~UEngineAPICore();													// delete
 	//	delete Function
 	UEngineAPICore(const UEngineAPICore& _Other) = delete;
 	UEngineAPICore(UEngineAPICore&& _Other) noexcept = delete;
@@ -29,43 +29,38 @@ public:
 
 	//	static
 	static int EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore);	//	엔진시작함수
-	static UEngineAPICore* GetCore()
-	{
-		return MainCore;
-	}
+	static UEngineAPICore* GetCore() { return MainCore; }				//	*MainCore 리턴
 
-	//
-	UEngineWindow& GetMainWindow()
-	{
-		return EngineMainWindow;
-	}
+	//	일반
+	UEngineWindow& GetMainWindow() { return EngineMainWindow; }			//	*EngineMainwindow 리턴
+	void OpenLevel(std::string_view _LevelName);
+
+	// 템플릿 함수
 	template<typename GameModeType, typename MainPawnType>
-	ULevel* CreateLevel(std::string_view _LevelName)
+	ULevel* CreateLevel(std::string_view _LevelName)					//	Level의 생성(메모리관리)은 EngineAPICore가 담당
 	{
 		ULevel* NewLevel = new ULevel();
 		NewLevel->CreateGameMode<GameModeType, MainPawnType>();
 		Levels.insert({ _LevelName.data() , NewLevel });
 		return NewLevel;
 	}
-	void OpenLevel(std::string_view _LevelName);
-
 protected:
 
 
 private:
 	//	static
-	static UEngineAPICore* MainCore;	//	어디서든 엔진코어에 접근하기 위해 static설정?
+	static UEngineAPICore* MainCore;	//	어디서든 엔진코어에 접근하기 위해 static설정
 	static UContentsCore* UserCore;
 	static void EngineBeginPlay();
 	static void EngineTick();
 
-	//
+	//	일반
 	void Tick();
-	
-	// 
-	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우
-	std::map<std::string, class ULevel*> Levels;
-	class ULevel* CurLevel = nullptr;
+
+	// 멤버변수
+	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우 - has a 관계? // 엔진코어( base_2 )는 엔진플랫폼( base_1 )을 가지고있음
+	std::map<std::string, class ULevel*> Levels;	//	Level map
+	class ULevel* CurLevel = nullptr;	//	현재레벨
 
 };
 
