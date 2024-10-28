@@ -155,6 +155,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineContentsCore.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -177,6 +178,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineContentsCore.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>
