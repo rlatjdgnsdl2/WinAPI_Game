@@ -34,6 +34,10 @@ public:
 	//	일반
 	UEngineWindow& GetMainWindow() { return EngineMainWindow; }			//	*EngineMainwindow 리턴
 	void OpenLevel(std::string_view _LevelName);
+	float GetDeltaTime()
+	{
+		return DeltaTimer.GetDeltaTime();
+	}
 
 	// 템플릿 함수
 	template<typename GameModeType, typename MainPawnType>
@@ -44,6 +48,8 @@ public:
 		Levels.insert({ _LevelName.data() , NewLevel });
 		return NewLevel;
 	}
+
+
 protected:
 
 
