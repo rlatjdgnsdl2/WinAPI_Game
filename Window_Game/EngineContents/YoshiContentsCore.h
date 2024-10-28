@@ -21,7 +21,7 @@ protected:
 
 
 private:
-	ULevel* TitleLevel;
+	ULevel* TitleLevel = nullptr;
 
 
 };

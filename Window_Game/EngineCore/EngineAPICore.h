@@ -20,7 +20,6 @@ class UEngineAPICore
 {
 public:
 	//	constrcuter, destructer
-	UEngineAPICore();
 	~UEngineAPICore();													// delete
 	//	delete Function
 	UEngineAPICore(const UEngineAPICore& _Other) = delete;
@@ -56,6 +55,7 @@ private:
 	static void EngineTick();
 
 	//	일반
+	UEngineAPICore();
 	void Tick();
 
 	// 멤버변수

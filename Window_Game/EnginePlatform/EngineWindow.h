@@ -24,11 +24,15 @@ public:
 
 	inline HDC GetBackBuffer() { return BackBuffer; }
 
+	inline void SetWindowTitle(std::string_view Text) {
+		SetWindowTextA(WindowHandle, Text.data());
+	}
+
 
 private:
 	// static 변수
-	static HINSTANCE hInstance;
-	static std::map<std::string, WNDCLASSEXA> WindowClasses;
+	static inline HINSTANCE hInstance = nullptr;
+	static inline std::map<std::string, WNDCLASSEXA> WindowClasses;
 
 	// 일반 멤버변수
 	HWND WindowHandle = nullptr;	//	윈도우 다루는 핸들

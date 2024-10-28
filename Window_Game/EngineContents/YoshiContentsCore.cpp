@@ -14,6 +14,7 @@ YoshiContentsCore::~YoshiContentsCore()
 
 void YoshiContentsCore::BeginPlay()
 {
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Yoshi's lsland");
 	//UEngineAPICore::GetCore()->CreateLevel("Title");
 	UEngineAPICore::GetCore()->CreateLevel<APlayGameMode, APlayer>("Play");
 	//UEngineAPICore::GetCore()->CreateLevel("End");

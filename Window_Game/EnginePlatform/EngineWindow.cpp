@@ -4,9 +4,6 @@
 #include <EngineBase/EngineDebug.h>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-HINSTANCE UEngineWindow::hInstance = nullptr;
-std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasses;
 int WindowCount = 0;
 
 UEngineWindow::UEngineWindow()
