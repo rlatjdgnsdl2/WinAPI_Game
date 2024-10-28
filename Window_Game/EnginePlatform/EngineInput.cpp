@@ -1,19 +1,13 @@
 #include "PreCompile.h"
 #include "EngineInput.h"
 
-// UEngineInput UEngineInput::Inst = UEngineInput();
-// UEngineInput* UEngineInput::Inst = nullptr;
 
-// Input 내부에 Key 내부의 keyCheck 함수
 void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 {
-	// if (true == GetAsyncKeyState('B'))
+
 	if (0 != GetAsyncKeyState(Key))
 	{
-		// 게임엔진에서 시간재는법
-		// 특정 float을 만들어 놓고 그 float 계속 델타타임을 더해주면
 		PressTime += _DeltaTime;
-		// 이전전까지 안눌려있어다면
 		if (true == IsFree)
 		{
 			IsDown = true;
@@ -28,8 +22,6 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsFree = false;
 			IsUp = false;
 		}
-
-		// B키가 눌렸다면
 	}
 	else
 	{
@@ -49,7 +41,6 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsFree = true;
 			IsUp = false;
 		}
-
 	}
 }
 
@@ -62,7 +53,6 @@ void UEngineInput::UEngineKey::EventCheck()
 			DownEvents[i]();
 		}
 	}
-
 	if (true == IsPress)
 	{
 		for (size_t i = 0; i < PressEvents.size(); i++)
@@ -70,7 +60,6 @@ void UEngineInput::UEngineKey::EventCheck()
 			PressEvents[i]();
 		}
 	}
-
 	if (true == IsFree)
 	{
 		for (size_t i = 0; i < FreeEvents.size(); i++)
@@ -78,7 +67,6 @@ void UEngineInput::UEngineKey::EventCheck()
 			FreeEvents[i]();
 		}
 	}
-
 	if (true == IsUp)
 	{
 		for (size_t i = 0; i < UpEvents.size(); i++)
