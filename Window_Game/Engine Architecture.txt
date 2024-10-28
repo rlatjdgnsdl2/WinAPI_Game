@@ -1,0 +1,66 @@
+WINAPI_엔진구조
+
+Level_0 EngineBase
+Level_1 EnginePlatform
+Level_2 EngineCore				엔진프로그래머
+-------------------------------------
+Level_3 EngineContents			콘텐츠프로그래머
+Level_4 App
+
+----------------------------------------------------------------------------------------------------------------------------------------
+0. EngineBase
+	Debug
+	Math
+	Timer
+
+1. EnginePlatform
+	
+
+2. EngineCore
+	Core
+		EngineAPICore
+		ContentsCore
+	Level
+		Level - friend EngineAPICore
+	Object
+		Actor - friend Level
+		GameMode : Actor
+
+3. EngineContents
+		Yoshi_Island_ContentsCore : ContentsCore
+
+
+4. App
+	WinMain
+
+----------------------------------------------------------------------------------------------------------------------------------------
+static
+	1. EnginePlatform
+		1. EngineWindow
+			Public:
+				void EngineWindowInit(HINSTANCE _Instance)
+				void CreateWindowClass(const WNDCLASSEXA& _Class)
+				int  WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction)
+			private:
+				HINSTANCE hInstance
+				std::map<std::string, WNDCLASSEXA> WindowClasses
+	
+	2. EngineCore
+		1. EngineAPICore
+			public:
+				int EngineStart(HINSTANCE _Inst, class UEngineContentsCore* _UserCore)
+				UEngineAPICore* GetCore() { return MainCore; }	
+			private:
+				UEngineAPICore*		MainCore;
+				UEngineContentsCore* UserCore;
+				void EngineBeginPlay();
+				void EngineTick();
+----------------------------------------------------------------------------------------------------------------------------------------
+stack
+winMain(hInstance)
+	Yoshi_Island_ContentsCore ContentsCore;
+	EngineAPICore::EngineStart( hInstance, &ContentsCore )
+		
+		
+		
+		
