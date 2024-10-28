@@ -1,15 +1,15 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-//	설명:
+// 설명 :
 class APlayer : public AActor
 {
 public:
-	//	constrcuter, destructer
+	// constrcuter destructer
 	APlayer();
 	~APlayer();
 
-	//	delete Function
+	// delete Function
 	APlayer(const APlayer& _Other) = delete;
 	APlayer(APlayer&& _Other) noexcept = delete;
 	APlayer& operator=(const APlayer& _Other) = delete;
@@ -17,6 +17,11 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void LeftMove(float _DeltaTime);
+	void RightMove(float _DeltaTime);
+	void UpMove(float _DeltaTime);
+	void DownMove(float _DeltaTime);
 
 protected:
 

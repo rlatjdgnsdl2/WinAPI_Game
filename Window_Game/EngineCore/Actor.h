@@ -25,9 +25,21 @@ public:
 
 	//	¿œπ›
 	class ULevel* GetWorld() { return World; }
-	void SetActorLoaction(FVector2D _Location) { Location = _Location; }
-	void AddActorLoaction(FVector2D _Direction) { Location += _Direction; }
+	void SetActorLocation(FVector2D _Location)
+	{
+		Location = _Location;
+	}
+
+	void AddActorLocation(FVector2D _Direction)
+	{
+		Location += _Direction;
+	}
 	void SetActorScale(FVector2D _Scale) { Scale = _Scale; }
+	FVector2D GetActorLocation()
+	{
+		return Location;
+	}
+
 
 protected:
 

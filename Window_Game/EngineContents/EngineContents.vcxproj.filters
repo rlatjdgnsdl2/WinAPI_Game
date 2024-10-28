@@ -13,6 +13,9 @@
     <ClInclude Include="Player.h">
       <Filter>ContentsObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ContentsObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -25,6 +28,9 @@
       <Filter>ContentsObjects\GameModes</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>ContentsObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
       <Filter>ContentsObjects</Filter>
     </ClCompile>
   </ItemGroup>
