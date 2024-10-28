@@ -94,6 +94,13 @@ void UEngineWindow::Open(std::string_view _TitleName)
 	++WindowCount;
 }
 
+void UEngineWindow::SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale)
+{
+	RECT Rc = { 0, 0, _Scale.iX(), _Scale.iY() };
+	AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
+	::SetWindowPos(WindowHandle, nullptr, _Pos.iX(), _Pos.iY(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
+}
+
 void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
 {
 	if (false == WindowClasses.contains(_ClassName.data()))
@@ -109,7 +116,15 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 		MSGASSERT(std::string(_TitleName) + "윈도우 생성에 실패했습니다.");
 		return;
 	}
-	BackBuffer = GetDC(WindowHandle);
+	// 윈도우가 만들어지면 hdc를 여기서 얻어올 겁니다.
+	HDC WindowMainDC = GetDC(WindowHandle);
+
+	// BackBufferImage.Copy({ 100,100 }, {50, 50}, PlayerImage);
+
+	WindowImage = new UEngineWinImage();
+
+	// 이건 만든다는 개념이 아니다.
+	WindowImage->Create(WindowMainDC);
 }
 
 

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "EngineWinImage.h"
+
+
 //	설명: 윈도우관련 클래스
 class UEngineWindow
 {
@@ -14,19 +17,23 @@ public:
 	UEngineWindow& operator=(UEngineWindow&& _Other) noexcept = delete;
 
 	//	static 함수
-	static void EngineWindowInit(HINSTANCE _Instance);																//	기본 윈도우클래스생성
-	static void CreateWindowClass(const WNDCLASSEXA& _Class);														//	윈도우 생성 클래스 등록 함수
-	static int  WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction);		//	윈도우 게임 메시지 루프 함수
+	static void EngineWindowInit(HINSTANCE _Instance);															
+	static void CreateWindowClass(const WNDCLASSEXA& _Class);													
+	static int  WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction);	
 
 	// 멤버 함수
 	void Create(std::string_view _TitleName = "Window", std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
 
-	inline HDC GetBackBuffer() { return BackBuffer; }
+	inline HDC GetWindowMainDC()
+	{
+		return WindowImage->GetDC();
+	}
 
 	inline void SetWindowTitle(std::string_view Text) {
 		SetWindowTextA(WindowHandle, Text.data());
 	}
+	void SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale);
 
 
 private:
@@ -34,10 +41,12 @@ private:
 	static inline HINSTANCE hInstance = nullptr;
 	static inline std::map<std::string, WNDCLASSEXA> WindowClasses;
 
-	// 일반 멤버변수
-	HWND WindowHandle = nullptr;	//	윈도우 다루는 핸들
-	HDC BackBuffer = nullptr;
+	UEngineWinImage* BackBufferImage = nullptr;
 
+	// 윈도우 이미지로 랩핑되었다.
+	UEngineWinImage* WindowImage = nullptr;
+
+	HWND WindowHandle = nullptr;
 
 
 };
