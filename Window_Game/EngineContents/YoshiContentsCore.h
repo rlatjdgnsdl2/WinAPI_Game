@@ -1,8 +1,9 @@
 #pragma once
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/EngineContentsCore.h>
 
 //	Ό³Έν:
-class YoshiContentsCore : public UContentsCore
+class YoshiContentsCore : public UEngineContentsCore
 {
 public:
 	//	constrcuter, destructer
