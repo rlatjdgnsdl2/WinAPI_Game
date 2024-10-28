@@ -19,15 +19,10 @@ public:
 	double GetDoubleDeltaTime() { return dDeltaTime; }
 
 	void TimeCheck();
-	void TimeStart();
-	double DEnd();
-	float End();
+	void TimeStart();	//	타이머 시작
+	double DEnd();		//	타이머 끝
+	float End();		//	타이머 끝
 
-
-
-
-
-protected:
 
 private:
 	LARGE_INTEGER Count = LARGE_INTEGER();		//	1초에 셀수있는 count
