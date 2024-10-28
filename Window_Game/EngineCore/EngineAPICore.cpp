@@ -1,12 +1,11 @@
 #include "PreCompile.h"
 #include "EngineAPICore.h"
-#include "EngineContentsCore.h"
 #include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineDelegate.h>
 #include <EngineBase/EngineDebug.h>
 
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
-UEngineContentsCore* UEngineAPICore::UserCore = nullptr;
+UContentsCore* UEngineAPICore::UserCore = nullptr;
 
 
 UEngineAPICore::UEngineAPICore()
@@ -32,7 +31,7 @@ UEngineAPICore::~UEngineAPICore()
 }
 
 
-int UEngineAPICore::EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore)
+int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	UserCore = _UserCore;
