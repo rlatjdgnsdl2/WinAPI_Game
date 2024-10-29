@@ -1,5 +1,4 @@
 #pragma once
-
 #include "EngineWinImage.h"
 
 
@@ -35,6 +34,21 @@ public:
 	}
 	void SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale);
 
+	inline FVector2D GetWindowSize() const
+	{
+		return WindowSize;
+	}
+
+	inline UEngineWinImage* GetWindowImage() const
+	{
+		return WindowImage;
+	}
+
+	inline UEngineWinImage* GetBackBuffer() const
+	{
+		return BackBufferImage;
+	}
+
 
 private:
 	// static º¯¼ö
@@ -47,6 +61,7 @@ private:
 	UEngineWinImage* WindowImage = nullptr;
 
 	HWND WindowHandle = nullptr;
+	FVector2D WindowSize;
 
 
 };

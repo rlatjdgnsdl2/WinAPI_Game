@@ -16,7 +16,7 @@ public:
 	ATempPlayer& operator=(ATempPlayer&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime) override;
-	void Render() override;
+	
 protected:
 
 private:

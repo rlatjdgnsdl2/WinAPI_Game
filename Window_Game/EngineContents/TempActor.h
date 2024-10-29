@@ -16,7 +16,7 @@ public:
 	ATempActor& operator=(ATempActor&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime) override;
-	void Render() override;
+
 protected:
 
 private:

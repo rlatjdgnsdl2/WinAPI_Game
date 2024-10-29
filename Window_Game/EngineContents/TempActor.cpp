@@ -10,6 +10,4 @@ void ATempActor::Tick(float _DeltaTime)
 {
 }
 
-void ATempActor::Render()
-{
-}
+

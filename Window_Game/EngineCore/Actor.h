@@ -1,16 +1,16 @@
 #pragma once
-#include <EngineBase/EngineMath.h>
 
 
 //	설명:
 class AActor
 {
 public:
+	//	Level은 Actor에 접근가능
 	friend class ULevel;
 
 	//	constrcuter, destructer
 	AActor();
-	~AActor();
+	virtual ~AActor();
 
 	//	delete Function
 	AActor(const AActor& _Other) = delete;
@@ -21,32 +21,34 @@ public:
 	//	virtual 
 	virtual void BeginPlay() {}
 	virtual void Tick(float _DeltaTime) {}
-	virtual void Render();
 
 	//	일반
 	class ULevel* GetWorld() { return World; }
 	void SetActorLocation(FVector2D _Location)
 	{
-		Location = _Location;
+		Transform.Location = _Location;
 	}
 
 	void AddActorLocation(FVector2D _Direction)
 	{
-		Location += _Direction;
-	}
-	void SetActorScale(FVector2D _Scale) { Scale = _Scale; }
-	FVector2D GetActorLocation()
-	{
-		return Location;
+		Transform.Location += _Direction;
 	}
 
+	void SetActorScale(FVector2D _Scale)
+	{
+		Transform.Scale = _Scale;
+	}
+
+	FVector2D GetActorLocation()
+	{
+		return Transform.Location;
+	}
 
 protected:
 
 private:
 	//	일반
 	class ULevel* World = nullptr;
-	FVector2D Location = FVector2D::ZERO;
-	FVector2D Scale = FVector2D::ZERO;
+	FTransform Transform;
 };
 

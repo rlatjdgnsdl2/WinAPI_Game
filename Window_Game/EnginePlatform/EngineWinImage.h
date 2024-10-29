@@ -25,16 +25,16 @@ public:
 	// 이미 만들어진 DC를 통해서 이미지를 만드는 타입
 	void Create(HDC _DC) { ImageDC = _DC; }
 
-	void Create(FVector2D _Scale);
-
+	
+	void Create(UEngineWinImage* _TargetImage, FVector2D _Scale);
+	void CopyToBit(UEngineWinImage* _TargetImage, const FTransform& _Trans);
 
 protected:
 
 private:
-	// BMP 이미지 파일 그 자체에요
-	// FVector2D Size;
 	HDC ImageDC = nullptr;
-	HBITMAP BitMap = nullptr;
+	HBITMAP hBitMap = nullptr;
+	BITMAP Info;
 
 };
 

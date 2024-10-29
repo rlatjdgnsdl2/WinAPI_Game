@@ -12,6 +12,18 @@ UEngineWindow::UEngineWindow()
 
 UEngineWindow::~UEngineWindow()
 {
+
+	if (nullptr != WindowImage)
+	{
+		delete WindowImage;
+		WindowImage = nullptr;
+	}
+
+	if (nullptr != BackBufferImage)
+	{
+		delete BackBufferImage;
+		BackBufferImage = nullptr;
+	}
 }
 
 void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
@@ -96,8 +108,36 @@ void UEngineWindow::Open(std::string_view _TitleName)
 
 void UEngineWindow::SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale)
 {
+	// 이전의 크기와 달라졌을때만 백버퍼를 새로 만든 것이다.
+	if (false == WindowSize.EqualToInt(_Scale))
+	{
+		// 화면의 크기와 전히 동일한 크기여야 한다.
+		// 여러번 호출하면 기존에 만들었던 녀석이 Leck이 되므로
+		// 화면크기를 조정할 때마다 삭제해줘야 한다.
+		if (nullptr != BackBufferImage)
+		{
+			// 기존 백버퍼는 지워버리고
+			delete BackBufferImage;
+			BackBufferImage = nullptr;
+		}
+
+		BackBufferImage = new UEngineWinImage();
+		BackBufferImage->Create(WindowImage, _Scale);
+	}
+
+	WindowSize = _Scale;
+
 	RECT Rc = { 0, 0, _Scale.iX(), _Scale.iY() };
+
+	// 이게 그 계산해주는 함수이다.
+	// 타이틀바 크기까지 합쳐진 크기로 준다.
+	// 윈도우 입장
+	// 현재 윈도우의 스타일을 넣어줘야 한다.
+
+	// 그러면 또 이녀석은 
+	// 윈도우에서 가져야할 위치를 포함한 크기를 주게 된다.
 	AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
+
 	::SetWindowPos(WindowHandle, nullptr, _Pos.iX(), _Pos.iY(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
 }
 
