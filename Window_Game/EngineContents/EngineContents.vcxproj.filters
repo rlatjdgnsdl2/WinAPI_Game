@@ -4,15 +4,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ContentsObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>ContentsObjects</Filter>
-    </ClInclude>
     <ClInclude Include="PMDContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -20,15 +11,6 @@
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ContentsObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>ContentsObjects</Filter>
     </ClCompile>
     <ClCompile Include="PMDContentsCore.cpp">
       <Filter>Core</Filter>
