@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DungeonGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TempPlayer.h">
       <SubType>
       </SubType>
@@ -173,6 +177,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TempPlayer.cpp">
       <SubType>
       </SubType>

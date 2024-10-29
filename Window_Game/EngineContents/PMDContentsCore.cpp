@@ -25,6 +25,8 @@ void PMDContentsCore::BeginPlay()
 	//	처음 레벨 입장
 	UEngineAPICore::GetCore()->OpenLevel("TempLevel");
 
+	
+
 }
 void PMDContentsCore::Tick()
 {

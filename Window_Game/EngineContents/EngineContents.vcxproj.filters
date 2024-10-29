@@ -16,6 +16,9 @@
     <ClInclude Include="TempPlayer.h">
       <Filter>ContentsObjects\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>ContentsObjects\GameModes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="TempPlayer.cpp">
       <Filter>ContentsObjects\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>ContentsObjects\GameModes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

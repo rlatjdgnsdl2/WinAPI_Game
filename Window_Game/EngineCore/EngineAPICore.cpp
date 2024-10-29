@@ -35,11 +35,11 @@ UEngineAPICore::~UEngineAPICore()
 int UEngineAPICore::EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	UEngineAPICore Core;
+	MainCore = &Core;
 	UserCore = _UserCore;
 	UEngineWindow::EngineWindowInit(_Inst);
 
-	UEngineAPICore Core;
-	MainCore = &Core;
 
 	Core.EngineMainWindow.Open();	
 	
@@ -87,4 +87,5 @@ void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 		return;
 	}
 	CurLevel = FindIter->second;
+	
 }

@@ -27,39 +27,43 @@ Level_4 App
 		GameMode : Actor
 
 3. EngineContents
-		Yoshi_Island_ContentsCore : ContentsCore
+		_ContentsCore : ContentsCore
 
 
 4. App
 	WinMain
 
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------
-static
-	1. EnginePlatform
-		1. EngineWindow
-			Public:
-				void EngineWindowInit(HINSTANCE _Instance)
-				void CreateWindowClass(const WNDCLASSEXA& _Class)
-				int  WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction)
-			private:
-				HINSTANCE hInstance
-				std::map<std::string, WNDCLASSEXA> WindowClasses
-	
-	2. EngineCore
-		1. EngineAPICore
-			public:
-				int EngineStart(HINSTANCE _Inst, class UEngineContentsCore* _UserCore)
-				UEngineAPICore* GetCore() { return MainCore; }	
-			private:
-				UEngineAPICore*		MainCore;
-				UEngineContentsCore* UserCore;
-				void EngineBeginPlay();
-				void EngineTick();
-----------------------------------------------------------------------------------------------------------------------------------------
-stack
-winMain(hInstance)
-	Yoshi_Island_ContentsCore ContentsCore;
-	EngineAPICore::EngineStart( hInstance, &ContentsCore )
+Data
+	UEngineAPICore
+		UEngineAPICore* MainCore
+		UEngineContentsCore* UserCore
+		UEngineAPICore* GetCore() - return MainCore
+		int EngineStart( HINSTANCE, UEngineContentsCore* )
+		void EngineBeginPlay()
+		void EngineTick()
+
+	UEngineWindow
+		HINSTANCE hInstance
+		std::map<std::string, WNDCLASSEXA> WindowClasses
+		void EngineWindowInit( HINSTANCE )
+		void CreateWindowClass( const WNDCLASSEXA& )
+		int WindowMessageLoop( std::function<void()>, std::function<void()> )
+
+
+
+WinMain( _hInstance )
+	PMD - 牧刨明内绢 按眉 积己
+	EngineStart( _hInstance, &PMD ) 牢磊: _hInstance客 PMD按眉 林家 
+			UEngineAPICore core - 浚柳内绢按眉 积己
+			MainCore俊 浚柳内绢 按眉 林家 傈崔
+			UserCore俊 牧刨明内绢 按眉 林家 傈崔 (诀某胶泼)
+			EngineWindowInit( HINSTANCE )
+				
+
+
 		
 		
 		

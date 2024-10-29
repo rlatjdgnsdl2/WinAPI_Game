@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 //	Ό³Έν:
 class AActor
 {
