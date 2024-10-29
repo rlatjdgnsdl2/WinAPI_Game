@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineCore/EngineContentsCore.h>
 //	Ό³Έν:
-class PMDContentsCore:public UEngineContentsCore
+class PMDContentsCore :public UEngineContentsCore
 {
 public:
 	//	constrcuter, destructer
@@ -19,9 +19,9 @@ protected:
 	void BeginPlay() override;
 	void Tick() override;
 private:
-	ULevel* TitleLevel;
-
 	
+
+
 
 };
 

@@ -20,16 +20,10 @@ public:
 	UEngineWinImage& operator=(UEngineWinImage&& _Other) noexcept = delete;
 
 	// void Load(std::string_view _Path);
-	HDC GetDC()
-	{
-		return ImageDC;
-	}
+	HDC GetDC() const { return ImageDC; }
 
 	// 이미 만들어진 DC를 통해서 이미지를 만드는 타입
-	void Create(HDC _DC)
-	{
-		ImageDC = _DC;
-	}
+	void Create(HDC _DC) { ImageDC = _DC; }
 
 	void Create(FVector2D _Scale);
 

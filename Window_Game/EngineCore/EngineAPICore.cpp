@@ -40,7 +40,7 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore)
 
 	UEngineAPICore Core;
 
-	Core.EngineMainWindow.Open("Yoshi's Island");	//	임시제목
+	Core.EngineMainWindow.Open();	
 	MainCore = &Core;
 	
 	return UEngineWindow::WindowMessageLoop(EngineBeginPlay, EngineTick);
