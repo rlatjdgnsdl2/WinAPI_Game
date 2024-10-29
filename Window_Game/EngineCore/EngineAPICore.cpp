@@ -39,9 +39,9 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore)
 	UEngineWindow::EngineWindowInit(_Inst);
 
 	UEngineAPICore Core;
+	MainCore = &Core;
 
 	Core.EngineMainWindow.Open();	
-	MainCore = &Core;
 	
 	return UEngineWindow::WindowMessageLoop(EngineBeginPlay, EngineTick);
 }

@@ -8,6 +8,7 @@ ATempActor::~ATempActor() {}
 
 void ATempActor::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
 }
 
 

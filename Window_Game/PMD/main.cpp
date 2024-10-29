@@ -15,6 +15,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	PMDContentsCore User;
-	return UEngineAPICore::EngineStart(hInstance, &User);
+	PMDContentsCore PMD;
+	return UEngineAPICore::EngineStart(hInstance, &PMD);
 }

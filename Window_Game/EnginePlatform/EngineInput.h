@@ -9,7 +9,7 @@ enum class KeyEvent
 	Up,
 };
 
-// 설명 : 엔진인풋클래스
+// 설명 : Input
 class UEngineInput
 {
 public:
@@ -21,7 +21,7 @@ public:
 	UEngineInput& operator=(const UEngineInput& _Other) = delete;
 	UEngineInput& operator=(UEngineInput&& _Other) noexcept = delete;
 	
-	//	싱글톤적용
+	//	Singleton
 	static UEngineInput& GetInst()
 	{
 		static UEngineInput Inst = UEngineInput();
@@ -30,8 +30,6 @@ public:
 
 	void KeyCheck(float _DeltaTime);
 	void EventCheck(float _DeltaTime);
-
-
 
 	bool IsDown(int _KeyIndex)
 	{
@@ -50,7 +48,6 @@ public:
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-
 		return Keys[_KeyIndex].IsUp;
 	}
 
@@ -61,7 +58,6 @@ public:
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-
 		return Keys[_KeyIndex].IsPress;
 	}
 
@@ -72,7 +68,6 @@ public:
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-
 		return Keys[_KeyIndex].PressTime;
 	}
 
@@ -83,9 +78,9 @@ public:
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-
 		return Keys[_KeyIndex].IsFree;
 	}
+
 
 	void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
 

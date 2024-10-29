@@ -14,13 +14,15 @@ PMDContentsCore::~PMDContentsCore() {}
 void PMDContentsCore::BeginPlay()
 {
 	//	게임타이틀 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon: explorers of sky");
-
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256, 192*2 });
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
 	//	모든 Level생성
 	UEngineAPICore::GetCore()->CreateLevel<ATempGameMode, ATempPlayer>("TempLevel");
 
+
+
+	//	처음 레벨 입장
 	UEngineAPICore::GetCore()->OpenLevel("TempLevel");
 
 }

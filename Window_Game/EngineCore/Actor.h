@@ -1,10 +1,13 @@
 #pragma once
 
 
+
 //	설명:
 class AActor
 {
 public:
+	typedef AActor Super;
+
 	//	Level은 Actor에 접근가능
 	friend class ULevel;
 
@@ -23,31 +26,16 @@ public:
 	virtual void Tick(float _DeltaTime) {}
 
 	//	일반
-	class ULevel* GetWorld() { return World; }
-	void SetActorLocation(FVector2D _Location)
-	{
-		Transform.Location = _Location;
-	}
-
-	void AddActorLocation(FVector2D _Direction)
-	{
-		Transform.Location += _Direction;
-	}
-
-	void SetActorScale(FVector2D _Scale)
-	{
-		Transform.Scale = _Scale;
-	}
-
-	FVector2D GetActorLocation()
-	{
-		return Transform.Location;
-	}
+	class ULevel* GetWorld()					{ return World; }
+	void SetActorLocation(FVector2D _Location)	{ Transform.Location = _Location; }
+	void AddActorLocation(FVector2D _Direction) { Transform.Location += _Direction; }
+	void SetActorScale(FVector2D _Scale)		{ Transform.Scale = _Scale; }
+	FVector2D GetActorLocation()				{ return Transform.Location; }
 
 protected:
 
 private:
-	//	일반
+	//	Actor가 속해있는 level
 	class ULevel* World = nullptr;
 	FTransform Transform;
 };

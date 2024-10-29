@@ -5,8 +5,6 @@
 
 UEngineInput::UEngineInput()
 {
-	// 여기에 
-	// 기본 알파뱃
 	Keys.insert({ 'Q', UEngineKey('Q') });
 	Keys.insert({ 'W', UEngineKey('W') });
 	Keys.insert({ 'E', UEngineKey('E') });
@@ -64,7 +62,6 @@ UEngineInput::UEngineInput()
 	Keys.insert({ VK_INSERT		,UEngineKey(VK_INSERT) });
 	Keys.insert({ VK_DELETE		,UEngineKey(VK_DELETE) });
 	Keys.insert({ VK_HELP		,UEngineKey(VK_HELP) });
-
 
 	Keys.insert({ VK_NUMPAD0	,UEngineKey(VK_NUMPAD0) });
 	Keys.insert({ VK_NUMPAD1	,UEngineKey(VK_NUMPAD1) });

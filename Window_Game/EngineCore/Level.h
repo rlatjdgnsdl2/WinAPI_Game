@@ -52,6 +52,7 @@ private:
 		AllActors.push_back(MainPawn);
 	}
 
+	
 	void DoubleBuffering();
 	void ScreenClear();
 

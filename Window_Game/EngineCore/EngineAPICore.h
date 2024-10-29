@@ -62,9 +62,9 @@ private:
 	void Tick();
 
 	// 멤버변수
-	UEngineWindow EngineMainWindow;		//	엔진 메인 윈도우 - has a 관계? // 엔진코어( base_2 )는 엔진플랫폼( base_1 )을 가지고있음
-	std::map<std::string, class ULevel*> Levels;	//	Level map
-	class ULevel* CurLevel = nullptr;	//	현재레벨
+	UEngineWindow EngineMainWindow;		
+	std::map<std::string, class ULevel*> Levels;	
+	class ULevel* CurLevel = nullptr;	
 	UEngineTimer DeltaTimer = UEngineTimer();
 
 };
