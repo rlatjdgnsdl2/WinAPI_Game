@@ -12,9 +12,7 @@
 #include <functional>
 #include <filesystem>
 
-//	user
-#include "EngineMath.h"
-#include "EngineDebug.h" 
+
 
 
 

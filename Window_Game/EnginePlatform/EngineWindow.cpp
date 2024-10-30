@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "EngineWindow.h"
+#include <EngineBase/EngineDebug.h>
 #include <EngineCore/EngineAPICore.h>
 
 HINSTANCE UEngineWindow::hInstance = nullptr;
@@ -93,9 +94,9 @@ int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::
 
 void UEngineWindow::Open(std::string_view _TitleName)
 {
-	if (0 == WindowHandle) 
-	{ 
-		Create(_TitleName); 
+	if (0 == WindowHandle)
+	{
+		Create(_TitleName);
 		//	예외처리	
 		if (0 == WindowHandle) { return; }
 	}

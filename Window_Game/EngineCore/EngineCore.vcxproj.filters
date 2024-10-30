@@ -19,8 +19,12 @@
     <ClInclude Include="EngineContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="ImageManager.h" />
-    <ClInclude Include="EngineSprite.h" />
+    <ClInclude Include="EngineSprite.h">
+      <Filter>Resources\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>Resources\Image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -41,8 +45,12 @@
     <ClCompile Include="EngineContentsCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ImageManager.cpp" />
-    <ClCompile Include="EngineSprite.cpp" />
+    <ClCompile Include="EngineSprite.cpp">
+      <Filter>Resources\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>Resources\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -62,6 +70,9 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{3afca02f-b2b0-45dc-b864-50b260027a51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Image">
+      <UniqueIdentifier>{e8dfbc77-bd7f-4784-9c7e-74825d94ec7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

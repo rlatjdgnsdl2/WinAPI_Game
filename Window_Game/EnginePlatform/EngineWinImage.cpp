@@ -4,18 +4,16 @@
 #include <EngineBase/EnginePath.h>
 #include <EngineBase/EngineString.h>
 
-// GDI Plus 용 헤더
+// GDI Plus 용 헤더 $(WindowsSDK_LibraryPath_x64)
 #include <objidl.h>
 #include <gdiplus.h>
 
-// $(WindowsSDK_LibraryPath_x64) <= 여기 경로안에 들어있는 라이브러리 입니다.
-
-// 이미지용 window기본 라이브러리가 2가지가 있습니다.
+// 이미지용 window기본 라이브러리 2가지
 // BMP 확장용 라이브러리
 #pragma comment(lib, "Msimg32.lib")
-
 // PNG 를 통한 window 네이티브 그래픽 확장용 라이브러리
 #pragma comment(lib, "Gdiplus.lib")
+
 
 UEngineWinImage::UEngineWinImage()
 {

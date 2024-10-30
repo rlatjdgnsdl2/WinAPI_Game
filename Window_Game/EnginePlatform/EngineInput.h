@@ -1,5 +1,5 @@
 #pragma once
-
+#include <EngineBase/EngineDebug.h>
 
 enum class KeyEvent
 {
