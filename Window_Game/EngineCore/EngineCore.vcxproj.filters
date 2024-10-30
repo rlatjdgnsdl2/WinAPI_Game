@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="EngineAPICore.h">
       <Filter>Core</Filter>
@@ -19,10 +19,12 @@
     <ClInclude Include="EngineContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="EngineSprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="EngineAPICore.cpp">
       <Filter>Core</Filter>
@@ -39,11 +41,10 @@
     <ClCompile Include="EngineContentsCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="EngineSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="PreCompile">
-      <UniqueIdentifier>{b5e1722b-9f96-4867-a4c6-a21342878244}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{8106fa0d-d100-4231-9498-4a0f2042e7f1}</UniqueIdentifier>
     </Filter>
@@ -55,6 +56,12 @@
     </Filter>
     <Filter Include="Level">
       <UniqueIdentifier>{d94fc40d-0964-4128-b8fe-c2780026f514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_PreCompile">
+      <UniqueIdentifier>{b5e1722b-9f96-4867-a4c6-a21342878244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{3afca02f-b2b0-45dc-b864-50b260027a51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

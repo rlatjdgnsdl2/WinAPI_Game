@@ -3,17 +3,17 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="PreCompile">
+    <Filter Include="_PreCompile">
       <UniqueIdentifier>{d1caa81e-7a10-4c0c-9fa1-5dc0c48d6e4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

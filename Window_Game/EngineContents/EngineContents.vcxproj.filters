@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="PMDContentsCore.h">
       <Filter>ContenesCore</Filter>
@@ -22,7 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="PMDContentsCore.cpp">
       <Filter>ContenesCore</Filter>
@@ -41,9 +41,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="PreCompile">
-      <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ContentsObjects">
       <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
     </Filter>
@@ -55,6 +52,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Actors">
       <UniqueIdentifier>{3095f0e9-5155-4fe9-b358-8ce8d6e1838c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_PreCompile">
+      <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

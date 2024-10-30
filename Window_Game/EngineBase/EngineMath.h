@@ -28,6 +28,14 @@ public:
 	{
 
 	}
+	FVector2D(long _X, long _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y))
+	{
+
+	}
+	void Normalize()
+	{
+
+	}
 
 	int iX() const
 	{
@@ -50,6 +58,11 @@ public:
 		Result.X = X * _Value;
 		Result.Y = Y * _Value;
 		return Result;
+	}
+	// X든 Y든 0이있으면 터트리는 함수.
+	bool IsZeroed() const
+	{
+		return X == 0.0f || Y == 0.0f;
 	}
 
 
@@ -165,6 +178,28 @@ public:
 		X += _Other.X;
 		Y += _Other.Y;
 		return *this;
+	}
+};
+
+class UColor
+{
+public:
+	union
+	{
+		int Color;
+		struct
+		{
+			unsigned char R;
+			unsigned char G;
+			unsigned char B;
+			unsigned char A;
+		};
+	};
+
+	UColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
+		:R(_R), G(_G), B(_B), A(_A)
+	{
+
 	}
 };
 

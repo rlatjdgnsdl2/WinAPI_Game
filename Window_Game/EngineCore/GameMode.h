@@ -1,21 +1,25 @@
 #pragma once
 #include "Actor.h"
 
-//	설명:
-class AGameMode :public AActor
+// 설명 :
+class AGameMode : public AActor
 {
 public:
-	//	constrcuter, destructer
-	AGameMode() ;
-	virtual ~AGameMode() ;
+	// constrcuter destructer
+	AGameMode();
+	~AGameMode();
 
-	//	delete Function
+	// delete Function
 	AGameMode(const AGameMode& _Other) = delete;
 	AGameMode(AGameMode&& _Other) noexcept = delete;
 	AGameMode& operator=(const AGameMode& _Other) = delete;
 	AGameMode& operator=(AGameMode&& _Other) noexcept = delete;
 
 protected:
+	void Render() override
+	{
+
+	}
 
 private:
 

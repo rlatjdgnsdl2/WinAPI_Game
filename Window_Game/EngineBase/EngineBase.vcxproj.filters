@@ -14,7 +14,7 @@
       <Filter>Function</Filter>
     </ClInclude>
     <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="EngineTimer.h">
       <Filter>Timer</Filter>
@@ -25,6 +25,8 @@
     <ClInclude Include="EnginePath.h">
       <Filter>IO</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="EngineString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -40,7 +42,7 @@
       <Filter>Function</Filter>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
+      <Filter>_PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="EngineTimer.cpp">
       <Filter>Timer</Filter>
@@ -51,25 +53,27 @@
     <ClCompile Include="EnginePath.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="EngineString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
       <UniqueIdentifier>{78b6108e-3fc1-4750-8641-f8bd572d937d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IO">
-      <UniqueIdentifier>{61834f60-1002-4071-9e28-34087dfb4d09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{ea7ef493-e79b-4081-9ac6-502c8d1eb677}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PreCompile">
-      <UniqueIdentifier>{2eb92178-2bf2-417f-b1b1-46e50c5b7797}</UniqueIdentifier>
     </Filter>
     <Filter Include="Function">
       <UniqueIdentifier>{777a1388-8b1a-4742-8463-71d9015572dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Timer">
       <UniqueIdentifier>{2c23ff64-9ce0-4f4c-b2b0-725dd5b50bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_PreCompile">
+      <UniqueIdentifier>{2eb92178-2bf2-417f-b1b1-46e50c5b7797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{61834f60-1002-4071-9e28-34087dfb4d09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
