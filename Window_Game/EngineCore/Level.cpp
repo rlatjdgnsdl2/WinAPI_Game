@@ -39,6 +39,16 @@ void ULevel::Tick(float _DeltaTime)
 void ULevel::Render()
 {
 	ScreenClear();
+	// 액터를 기반으로 랜더링을 돌리는건 곧 지워질 겁니다.
+	std::list<AActor*>::iterator StartIter = AllActors.begin();
+	std::list<AActor*>::iterator EndIter = AllActors.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		AActor* CurActor = *StartIter;
+
+		CurActor->Render();
+	}
 	DoubleBuffering();
 }
 

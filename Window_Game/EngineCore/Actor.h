@@ -35,7 +35,7 @@ public:
 
 
 	class UEngineSprite* Sprite = nullptr;
-	void SetSprite(std::string_view _Name);
+	void SetSprite(std::string_view _Name, int _CurIndex = 0);
 
 protected:
 

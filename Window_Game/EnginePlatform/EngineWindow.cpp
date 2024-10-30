@@ -84,7 +84,7 @@ int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else if (nullptr != _FrameFunction)
+		if (nullptr != _FrameFunction)
 		{
 			_FrameFunction();
 		}

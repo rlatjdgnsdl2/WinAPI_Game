@@ -7,8 +7,12 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/ImageManager.h>
 
-#include <EngineContents/TitleActor.h>
-#include <EngineContents/TitleGameMode.h>
+#include "TitleActor.h"
+#include "TitleGameMode.h"
+
+#include "TempActor.h"
+#include "TempGameMode.h"
+
 
 
 
@@ -17,11 +21,12 @@ int PMDContentsCore::ScaleRate = 3;
 FVector2D PMDContentsCore::GameViewSize{ 256 * ScaleRate, 192 * ScaleRate };
 
 
-
 PMDContentsCore::PMDContentsCore() {};
 PMDContentsCore::~PMDContentsCore() {}
+
 void PMDContentsCore::BeginPlay()
 {
+	//	府家胶 肺靛
 	UEngineDirectory Dir;
 	if (false == Dir.MoveParentToDirectory("Resources"))
 	{
@@ -44,6 +49,7 @@ void PMDContentsCore::BeginPlay()
 	
 	//	葛电 Level积己
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATitleActor>("TitleLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ATempGameMode, ATempActor>("TempLevel");
 
 
 

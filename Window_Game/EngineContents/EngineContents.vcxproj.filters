@@ -7,23 +7,20 @@
     <ClInclude Include="PMDContentsCore.h">
       <Filter>ContenesCore</Filter>
     </ClInclude>
-    <ClInclude Include="TempActor.h">
-      <Filter>ContentsObjects\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="TempGameMode.h">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClInclude>
-    <ClInclude Include="TempPlayer.h">
-      <Filter>ContentsObjects\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonGameMode.h">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClInclude>
     <ClInclude Include="TitleActor.h">
-      <Filter>Title</Filter>
+      <Filter>LevelObjects\Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleGameMode.h">
-      <Filter>Title</Filter>
+      <Filter>LevelObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TempGameMode.h">
+      <Filter>LevelObjects\Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="TempPlayer.h">
+      <Filter>LevelObjects\Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="TempActor.h">
+      <Filter>LevelObjects\Temp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -33,42 +30,36 @@
     <ClCompile Include="PMDContentsCore.cpp">
       <Filter>ContenesCore</Filter>
     </ClCompile>
-    <ClCompile Include="TempActor.cpp">
-      <Filter>ContentsObjects\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="TempGameMode.cpp">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClCompile>
-    <ClCompile Include="TempPlayer.cpp">
-      <Filter>ContentsObjects\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonGameMode.cpp">
-      <Filter>ContentsObjects\GameModes</Filter>
-    </ClCompile>
     <ClCompile Include="TitleActor.cpp">
-      <Filter>Title</Filter>
+      <Filter>LevelObjects\Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
-      <Filter>Title</Filter>
+      <Filter>LevelObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TempGameMode.cpp">
+      <Filter>LevelObjects\Temp</Filter>
+    </ClCompile>
+    <ClCompile Include="TempPlayer.cpp">
+      <Filter>LevelObjects\Temp</Filter>
+    </ClCompile>
+    <ClCompile Include="TempActor.cpp">
+      <Filter>LevelObjects\Temp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="ContentsObjects">
-      <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ContentsObjects\GameModes">
-      <UniqueIdentifier>{aba2481d-c11f-4e19-9d2b-ebc1d092bdbc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ContenesCore">
       <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ContentsObjects\Actors">
-      <UniqueIdentifier>{3095f0e9-5155-4fe9-b358-8ce8d6e1838c}</UniqueIdentifier>
     </Filter>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Title">
+    <Filter Include="LevelObjects">
+      <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\Temp">
+      <UniqueIdentifier>{76fc212b-f490-4417-9f85-46b2d46df347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\Title">
       <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
