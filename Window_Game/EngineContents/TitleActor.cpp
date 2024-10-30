@@ -2,14 +2,15 @@
 #include "TitleActor.h"
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
-#include "PMDContentsCore.h"
 
 
-ATitleActor::ATitleActor() 
+
+ATitleActor::ATitleActor()
 {
-	SetActorLocation({ 0, 0 });
-	SetActorScale(PMDContentsCore::GameViewSize);
-	SetSprite("Intro_bg.png");
+	FVector2D winSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	SetActorLocation({ winSize.Half() });
+	SetActorScale(winSize);
+	SetSprite("Menu_bg.png");
 }
 
 ATitleActor::~ATitleActor() {}
@@ -26,7 +27,5 @@ void ATitleActor::Tick(float _DeltaTime)
 		int a = 0;
 		UEngineAPICore::GetCore()->OpenLevel("TempLevel");
 
-		
-		
 	}
 }

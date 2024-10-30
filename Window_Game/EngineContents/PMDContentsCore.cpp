@@ -17,8 +17,7 @@
 
 
 
-int PMDContentsCore::ScaleRate = 3;
-FVector2D PMDContentsCore::GameViewSize{ 256 * ScaleRate, 192 * ScaleRate };
+
 
 
 PMDContentsCore::PMDContentsCore() {};
@@ -40,13 +39,16 @@ void PMDContentsCore::BeginPlay()
 		std::string FilePath = ImageFiles[i].GetPathToString();
 		UImageManager::GetInst().Load(FilePath);
 	}
-	
+
+	//	이미지 커팅
+	UImageManager::GetInst().CuttingSprite("English_Font.png", { 11, 12 });
+
 
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, GameViewSize);
-	
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate,192 * ScaleRate });
+
 	//	모든 Level생성
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATitleActor>("TitleLevel");
 	UEngineAPICore::GetCore()->CreateLevel<ATempGameMode, ATempActor>("TempLevel");

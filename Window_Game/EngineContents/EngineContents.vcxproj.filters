@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
-      <Filter>_PreCompile</Filter>
+      <Filter>_Header\PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="PMDContentsCore.h">
-      <Filter>ContenesCore</Filter>
+      <Filter>ContentsCore</Filter>
     </ClInclude>
     <ClInclude Include="TitleActor.h">
       <Filter>LevelObjects\Title</Filter>
@@ -22,13 +22,27 @@
     <ClInclude Include="TempActor.h">
       <Filter>LevelObjects\Temp</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsDefine.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonManager.h">
+      <Filter>Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon.h">
+      <Filter>Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGenAlgorithm.h">
+      <Filter>Dungeon\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicGenAlgo.h" />
+    <ClInclude Include="DungeonGameMode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
-      <Filter>_PreCompile</Filter>
+      <Filter>_Header\PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="PMDContentsCore.cpp">
-      <Filter>ContenesCore</Filter>
+      <Filter>ContentsCore</Filter>
     </ClCompile>
     <ClCompile Include="TitleActor.cpp">
       <Filter>LevelObjects\Title</Filter>
@@ -45,14 +59,19 @@
     <ClCompile Include="TempActor.cpp">
       <Filter>LevelObjects\Temp</Filter>
     </ClCompile>
+    <ClCompile Include="DungeonManager.cpp">
+      <Filter>Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon.cpp">
+      <Filter>Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGenAlgorithm.cpp">
+      <Filter>Dungeon\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicGenAlgo.cpp" />
+    <ClCompile Include="DungeonGameMode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="ContenesCore">
-      <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_PreCompile">
-      <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LevelObjects">
       <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
     </Filter>
@@ -61,6 +80,24 @@
     </Filter>
     <Filter Include="LevelObjects\Title">
       <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Header">
+      <UniqueIdentifier>{14f4fc85-8b77-44fc-9d53-93a43e9a8698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Header\PreCompile">
+      <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsCore">
+      <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithms">
+      <UniqueIdentifier>{82e71eca-1fac-4a23-a0ff-48fd4ac9b427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon">
+      <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dungeon\Algorithms">
+      <UniqueIdentifier>{afe3211c-aeca-4fd6-a74d-fc5f3640836e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

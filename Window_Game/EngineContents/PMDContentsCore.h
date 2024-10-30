@@ -13,8 +13,8 @@ public:
 	PMDContentsCore& operator=(const PMDContentsCore& _Other) = delete;
 	PMDContentsCore& operator=(PMDContentsCore&& _Other) noexcept = delete;
 
-	static FVector2D GameViewSize;
-	static int ScaleRate;
+	
+	
 
 protected:
 	void BeginPlay() override;
