@@ -91,19 +91,13 @@ public:
 		Y += _Other.Y;
 		return *this;
 	}
-	// float은 비교가 굉장히 위험
-	// const가 붙은 함수에서는 const가 붙은 함수 호출할수 없다.
+
 	bool EqualToInt(FVector2D _Other) const
 	{
-		// const FVector* const Ptr;
-		// this = nullptr;
+		
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
-	//bool Compare(FVector2D _Other, float _limite = 0.0f) const
-	//{
-	//	return X == _Other.X && Y == _Other.Y;
-	//}
 };
 
 class FTransform
@@ -172,8 +166,6 @@ public:
 		Y += _Other.Y;
 		return *this;
 	}
-
-
 };
 
 class EngineMath

@@ -13,7 +13,6 @@ UEngineWindow::UEngineWindow()
 
 UEngineWindow::~UEngineWindow()
 {
-
 	if (nullptr != WindowImage)
 	{
 		delete WindowImage;
@@ -46,11 +45,11 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 	wcex.hIconSm = nullptr;
 
 	CreateWindowClass(wcex);
-
 }
 
 void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 {
+	//	예외처리
 	std::map<std::string, WNDCLASSEXA>::iterator EndIter = WindowClasses.end();
 	std::map<std::string, WNDCLASSEXA>::iterator FindIter = WindowClasses.find(std::string(_Class.lpszClassName));
 	if (EndIter != FindIter)
@@ -58,6 +57,7 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 		MSGASSERT(std::string(_Class.lpszClassName) + "같은 이름의 윈도우 클래스를 2번 등록했습니다");
 		return;
 	}
+	//	윈도우클래스 등록
 	RegisterClassExA(&_Class);
 	WindowClasses.insert(std::pair{ _Class.lpszClassName, _Class });
 }
@@ -77,7 +77,7 @@ int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		if (nullptr != _FrameFunction)
+		else if (nullptr != _FrameFunction)
 		{
 			_FrameFunction();
 		}
@@ -87,57 +87,63 @@ int UEngineWindow::WindowMessageLoop(std::function<void()> _StartFunction, std::
 
 void UEngineWindow::Open(std::string_view _TitleName)
 {
-	if (0 == WindowHandle)
-	{
-		Create(_TitleName);
+	if (0 == WindowHandle) 
+	{ 
+		Create(_TitleName); 
+		//	예외처리	
+		if (0 == WindowHandle) { return; }
 	}
-	if (0 == WindowHandle)
-	{
-		return;
-	}
+	//	윈도우창 오픈
 	ShowWindow(WindowHandle, SW_SHOW);
 	UpdateWindow(WindowHandle);
 	++WindowCount;
 }
+void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
+{
+	//	예외처리
+	if (false == WindowClasses.contains(_ClassName.data()))
+	{
+		MSGASSERT(std::string(_ClassName) + "등록하지 않은 클래스로 윈도우창을 만들려고 했습니다");
+		return;
+	}
+	//	등록된 윈도우 클래스로 윈도우핸들 생성
+	WindowHandle = CreateWindowA(_ClassName.data(), _TitleName.data(), WS_OVERLAPPEDWINDOW, 0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+	//	예외처리
+	if (!WindowHandle)
+	{
+		MSGASSERT(std::string(_TitleName) + "윈도우 생성에 실패했습니다.");
+		return;
+	}
+	//	현재윈도우핸들로부터 DC얻어오기
+	HDC WindowMainDC = GetDC(WindowHandle);
+	//	UEngineWinImage객체 생성 
+	WindowImage = new UEngineWinImage();
+	//	얻어온 DC로 WindowImage의 HDC생성
+	WindowImage->Create(WindowMainDC);
+}
 
 void UEngineWindow::SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale)
 {
-	
+	//	백버퍼를 생성하려면 무조건 윈도우의 크기를 설정해야함
 	if (false == WindowSize.EqualToInt(_Scale))
 	{
+		// 기존 백버퍼 delete
 		if (nullptr != BackBufferImage)
 		{
-			// 기존 백버퍼 delete
 			delete BackBufferImage;
 			BackBufferImage = nullptr;
 		}
-
+		//	새로운 BackBuffer
 		BackBufferImage = new UEngineWinImage();
 		BackBufferImage->Create(WindowImage, _Scale);
 	}
+	//	새로운 (조정된)윈도우사이즈
 	WindowSize = _Scale;
 	RECT Rc = { 0, 0, _Scale.iX(), _Scale.iY() };
 	AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
 	::SetWindowPos(WindowHandle, nullptr, _Pos.iX(), _Pos.iY(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
 }
 
-void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
-{
-	if (false == WindowClasses.contains(_ClassName.data()))
-	{
-		MSGASSERT(std::string(_ClassName) + "등록하지 않은 클래스로 윈도우창을 만들려고 했습니다");
-		return;
-	}
-	WindowHandle = CreateWindowA(_ClassName.data(), _TitleName.data(), WS_OVERLAPPEDWINDOW, 0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-	if (!WindowHandle)
-	{
-		MSGASSERT(std::string(_TitleName) + "윈도우 생성에 실패했습니다.");
-		return;
-	}
-	HDC WindowMainDC = GetDC(WindowHandle);
-	WindowImage = new UEngineWinImage();
-	WindowImage->Create(WindowMainDC);
-}
 
 
 
