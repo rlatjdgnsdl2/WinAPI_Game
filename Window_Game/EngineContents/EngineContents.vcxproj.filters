@@ -19,6 +19,12 @@
     <ClInclude Include="DungeonGameMode.h">
       <Filter>ContentsObjects\GameModes</Filter>
     </ClInclude>
+    <ClInclude Include="TitleActor.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -39,6 +45,12 @@
     <ClCompile Include="DungeonGameMode.cpp">
       <Filter>ContentsObjects\GameModes</Filter>
     </ClCompile>
+    <ClCompile Include="TitleActor.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ContentsObjects">
@@ -55,6 +67,9 @@
     </Filter>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

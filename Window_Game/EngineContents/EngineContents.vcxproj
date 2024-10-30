@@ -175,6 +175,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DungeonGameMode.cpp">
@@ -200,6 +208,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TempGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
