@@ -4,6 +4,8 @@
 #include <EngineBase/EnginePath.h>
 #include <EngineBase/EngineDebug.h>
 #include <EngineBase/EngineString.h>
+#include <EngineBase/EngineFile.h>
+#include <EngineBase/EngineDirectory.h>
 #include <EngineCore/EngineAPICore.h>
 
 UImageManager::UImageManager()
@@ -53,6 +55,15 @@ void UImageManager::Load(std::string_view Path)
 	Load(FileName, Path);
 }
 
+void UImageManager::LoadFolder(std::string_view Path)
+{
+	UEnginePath EnginePath = UEnginePath(Path);
+
+	std::string DirName = EnginePath.GetDirectoryName();
+
+	LoadFolder(DirName, Path);
+}
+
 
 void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 {
@@ -73,6 +84,19 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	UEngineWinImage* WindowImage = UEngineAPICore::GetCore()->GetMainWindow().GetWindowImage();
 
 	std::string UpperName = UEngineString::ToUpper(_KeyName);
+
+	if (true == Images.contains(UpperName))
+	{
+		MSGASSERT("로드된 이미지를 또 로드할 수 없습니다." + UpperName);
+		return;
+	}
+
+	if (true == Sprites.contains(UpperName))
+	{
+		MSGASSERT("로드된 이미지를 또 로드할 수 없습니다." + UpperName);
+		return;
+	}
+
 	// 만들었다고 끝이 아닙니다.
 	UEngineWinImage* NewImage = new UEngineWinImage();
 	NewImage->Load(WindowImage, Path);
@@ -89,6 +113,55 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	NewSprite->PushData(NewImage, Trans);
 
 	Sprites.insert({ UpperName , NewSprite });
+}
+
+void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path)
+{
+	UEnginePath EnginePath = UEnginePath(_Path);
+
+	if (false == EnginePath.IsExists())
+	{
+		MSGASSERT("유효하지 않은 파일 경로 입니다." + std::string(_Path));
+		return;
+	}
+
+	std::string UpperName = UEngineString::ToUpper(_KeyName);
+
+	if (true == Sprites.contains(UpperName))
+	{
+		MSGASSERT("로드된 이미지를 또 로드할 수 없습니다." + UpperName);
+		return;
+	}
+
+
+	UEngineSprite* NewSprite = new UEngineSprite();
+	Sprites.insert({ UpperName , NewSprite });
+
+	// 로드하기 위해서 필요한 Window Main HDC
+	UEngineWinImage* WindowImage = UEngineAPICore::GetCore()->GetMainWindow().GetWindowImage();
+
+	UEngineDirectory Dir = _Path;
+	std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+	for (size_t i = 0; i < ImageFiles.size(); i++)
+	{
+		std::string FilePath = ImageFiles[i].GetPathToString();
+		std::string FileName = UEngineString::ToUpper(ImageFiles[i].GetFileName());
+		if (true == Images.contains(FileName))
+		{
+			MSGASSERT("폴더 로드중 이미 로드된 이미지를 한번더 로드하려고 했습니다." + FileName);
+			return;
+		}
+		// 이미지 로딩은 끝났으니
+		UEngineWinImage* NewImage = new UEngineWinImage();
+		NewImage->Load(WindowImage, FilePath);
+		Images.insert({ FileName,  NewImage });
+
+		FTransform Transform;
+		Transform.Location = { 0, 0 };
+		Transform.Scale = NewImage->GetImageScale();
+
+		NewSprite->PushData(NewImage, Transform);
+	}
 }
 
 void UImageManager::CuttingSprite(std::string_view _KeyName, FVector2D _CuttingSize)
@@ -167,6 +240,14 @@ UEngineSprite* UImageManager::FindSprite(std::string_view _KeyName)
 	// 이걸로 
 	return Sprites[UpperName];
 }
+
+// 기존의 이미지를 찾아 잘라낸 후 새로운 스프라이트 이미지를 만듭니다.
+// _NewSpriteKeyName : 새로운 키 값
+// _StartPos : 기존 이미지에서 잘라낼 좌상단 값
+// _CuttingSize : 이미지 사이즈
+// _XYOffSet : 이미지 사이의 빈공간 간격, XY
+// _Xcount : 가로 이미지 갯수
+// _ImageCount : 총 이미지 갯수
 void UImageManager::CreateCutSprite(std::string_view _SearchKeyName, std::string_view _NewSpriteKeyName, FVector2D _StartPos, FVector2D _CuttingSize, FVector2D _XYOffSet, UINT _Xcount, UINT _ImageCount)
 {
 	std::string SearchName = UEngineString::ToUpper(_SearchKeyName);
@@ -175,26 +256,32 @@ void UImageManager::CreateCutSprite(std::string_view _SearchKeyName, std::string
 	if (_Xcount <= 0)
 	{
 		MSGASSERT("이미지의 가로 갯수가 0 이하입니다.");
+		return;
 	}
 	if (_ImageCount <= 0)
 	{
 		MSGASSERT("총 이미지 갯수가 0 이하입니다.");
+		return;
 	}
 	if (Sprites.contains(SearchName) == false)
 	{
 		MSGASSERT(std::string(_SearchKeyName) + "라는 이름의 Sprite는 로드할 수 없습니다.");
+		return;
 	}
 	if (Images.contains(SearchName) == false)
 	{
 		MSGASSERT(std::string(_SearchKeyName) + "라는 이름의 Sprite는 로드할 수 없습니다.");
+		return;
 	}
 	if (Sprites.contains(NewSpriteName) == true)
 	{
 		MSGASSERT(std::string(_NewSpriteKeyName) + "라는 이름의 Sprite가 이미 존재합니다.");
+		return;
 	}
 	if (Images.contains(NewSpriteName) == true)
 	{
 		MSGASSERT(std::string(_NewSpriteKeyName) + "라는 이름의 Image가 이미 존재합니다.");
+		return;
 	}
 
 
@@ -213,10 +300,12 @@ void UImageManager::CreateCutSprite(std::string_view _SearchKeyName, std::string
 	if (TotalSizeX > Image->GetImageScale().X)
 	{
 		MSGASSERT("필요한 이미지 가로 사이즈가 원본 이미지 사이즈보다 큽니다.");
+		return;
 	}
 	if (TotalSizeY > Image->GetImageScale().Y)
 	{
 		MSGASSERT("필요한 이미지 세로 사이즈가 원본 이미지 사이즈보다 큽니다.");
+		return;
 	}
 
 	FVector2D TotalSize = FVector2D(static_cast<int>(TotalSizeX), static_cast<int>(TotalSizeY));
