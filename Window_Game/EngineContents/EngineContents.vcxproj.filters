@@ -26,16 +26,26 @@
       <Filter>_Header</Filter>
     </ClInclude>
     <ClInclude Include="DungeonManager.h">
-      <Filter>Dungeon</Filter>
+      <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="Dungeon.h">
-      <Filter>Dungeon</Filter>
+      <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="DungeonGenAlgorithm.h">
-      <Filter>Dungeon\Algorithms</Filter>
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="BasicGenAlgo.h" />
-    <ClInclude Include="DungeonGameMode.h" />
+    <ClInclude Include="BasicGenAlgo.h">
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>LevelObjects\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>LevelObjects\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Partner.h">
+      <Filter>LevelObjects\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -60,16 +70,26 @@
       <Filter>LevelObjects\Temp</Filter>
     </ClCompile>
     <ClCompile Include="DungeonManager.cpp">
-      <Filter>Dungeon</Filter>
+      <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon.cpp">
-      <Filter>Dungeon</Filter>
+      <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="DungeonGenAlgorithm.cpp">
-      <Filter>Dungeon\Algorithms</Filter>
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClCompile>
-    <ClCompile Include="BasicGenAlgo.cpp" />
-    <ClCompile Include="DungeonGameMode.cpp" />
+    <ClCompile Include="BasicGenAlgo.cpp">
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>LevelObjects\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>LevelObjects\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
+      <Filter>LevelObjects\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -90,14 +110,14 @@
     <Filter Include="ContentsCore">
       <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Algorithms">
-      <UniqueIdentifier>{82e71eca-1fac-4a23-a0ff-48fd4ac9b427}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Dungeon">
+    <Filter Include="LevelObjects\Dungeon">
       <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Dungeon\Algorithms">
+    <Filter Include="LevelObjects\Dungeon\Algorithms">
       <UniqueIdentifier>{afe3211c-aeca-4fd6-a74d-fc5f3640836e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\Global">
+      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

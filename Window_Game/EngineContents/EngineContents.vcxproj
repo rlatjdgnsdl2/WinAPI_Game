@@ -172,6 +172,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Partner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TempPlayer.h">
       <SubType>
       </SubType>
@@ -219,6 +227,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DungeonManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
     </ClCompile>

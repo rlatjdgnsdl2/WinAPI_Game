@@ -12,13 +12,13 @@ public:
 	}
 	~EngineDelegate() = default;
 
-	//	operator overloading
 	void operator=(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
 
-	void operator()()	//	벡터안에 있는 모든 함수 실행
+	//	벡터안에 있는 모든 함수 실행
+	void operator()()	
 	{
 		std::list<std::function<void()>>::iterator StartIter = Functions.begin();
 		std::list<std::function<void()>>::iterator EndIter = Functions.end();
@@ -29,17 +29,17 @@ public:
 		}
 	}
 	
-	//	public method
 	void Clear()	
 	{
 		Functions.clear();
 	}
-	bool IsBind()	//	비었으면 false 리턴
+	//	비었으면 false 리턴
+	bool IsBind()	
 	{
 		return false == Functions.empty();
 	}
 	
 private:
-	std::list<std::function<void()>> Functions;		//	펑션벡터
+	std::list<std::function<void()>> Functions;	
 };
 

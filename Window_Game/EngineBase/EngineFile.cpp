@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineFile.h"
 #include "EngineDebug.h"
+#include <io.h>
 
 UEngineFile::UEngineFile()
 {
@@ -8,7 +9,7 @@ UEngineFile::UEngineFile()
 
 }
 
-// 자식에서 부모 생성자를 명시적으로 호출해주면 된다.
+
 UEngineFile::UEngineFile(std::string_view _Path)
 	: UEnginePath(_Path)
 {
@@ -23,7 +24,6 @@ UEngineFile::UEngineFile(std::filesystem::path _Path)
 
 UEngineFile::~UEngineFile()
 {
-	// 소멸자를 이용해서 자연스럽게 파괴되도록 만드는게 좋다.
 	Close();
 }
 
@@ -31,14 +31,9 @@ void UEngineFile::FileOpen(const char* _Mode)
 {
 	fopen_s(&File, Path, _Mode);
 
-	// 방어코드
-	// 파일을 열지 못했다.
+	
 	if (nullptr == File)
 	{
-		// char [] Arr0
-		// char [] Arr1
-		// Arr0 + Arr1
-
 		MSGASSERT(Path /*+ "파일 오픈에 실패했습니다"*/);
 	}
 }
@@ -87,25 +82,16 @@ void UEngineFile::Read(void* _Ptr, size_t _Size)
 	fread(_Ptr, _Size, 1, File);
 }
 
-// 인라인은 구현과 선언을분리하면 인라인을 하기 힘듭니다.
 bool UEngineFile::IsExits()
 {
 	// Window제공함수
 	int Result = _access(Path, 00);
-
-	// 0이면 있는것 0 이외의 값이면 없는 것
 	return 0 == Result;
 }
 
-
-
-// 보통 파일 혹은 플랫폼 기능들은 언제나 한쌍이다.
-// 시작한다.
-// 사용한다.
-// 끝낸다
 void UEngineFile::Close()
 {
-	// 방어코드
+
 	if (nullptr != File)
 	{
 		fclose(File);

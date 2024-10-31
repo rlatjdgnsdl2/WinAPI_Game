@@ -1,8 +1,9 @@
 #pragma once
 
 const int ScaleRate = 3;
-const int DungeonMaxSizeX = 60;
-const int DungeonMaxSizeY = 36;
+const FTransform DungeonTrans = FTransform({ 0,0 }, { 60, 40 });
+const FTransform GenableDungeonTrans = FTransform({ 3,3 }, { 54, 34 });
+
 
 
 

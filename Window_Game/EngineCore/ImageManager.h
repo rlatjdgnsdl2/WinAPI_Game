@@ -1,8 +1,4 @@
 #pragma once
-#include <list>
-#include <vector>
-#include <map>
-#include <string>
 
 #include <EnginePlatform/EngineWinImage.h>
 #include "EngineSprite.h"
@@ -35,6 +31,7 @@ public:
 	void Load(std::string_view _KeyName, std::string_view Path);
 
 	void CuttingSprite(std::string_view _KeyName, FVector2D _CuttingSize);
+	void CreateCutSprite(std::string_view _SearchKeyName, std::string_view _NewSpriteKeyName, FVector2D _StartPos, FVector2D _CuttingSize, FVector2D _XYOffSet, UINT _Xcount, UINT _ImageCount);
 
 
 	bool IsLoadSprite(std::string_view _KeyName);

@@ -22,24 +22,16 @@ public:
 
 	std::string GetPathToString();
 
-	// 파일명 + 확장자 포함
+	//	파일명 + 확장자 포함
 	std::string GetFileName();
 
-	// 확장자
+	//	확장자
 	std::string GetExtension();
 
-
-	// "C:\\AAAA\\BBBB\\";
-	// "C:\\AAAA\\BBBB\\Resources";
-	// "C:\\AAAA\\"
-	// "C:\\AAAA\\Resources"
-	// "C:\\"
-	// "C:\\Resources"
-	// 특정 디렉토리가 나올때까지 MoveParent를 반복하는 함수.
+	//	특정 디렉토리가 나올때까지 MoveParent를 반복하는 함수.
 	bool MoveParentToDirectory(std::string_view _Path);
 
 	bool IsDirectory();
-
 	bool IsFile();
 
 

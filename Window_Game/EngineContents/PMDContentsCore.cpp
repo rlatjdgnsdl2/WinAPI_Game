@@ -20,7 +20,7 @@
 
 
 
-PMDContentsCore::PMDContentsCore() {};
+PMDContentsCore::PMDContentsCore() {}
 PMDContentsCore::~PMDContentsCore() {}
 
 void PMDContentsCore::BeginPlay()
@@ -40,10 +40,10 @@ void PMDContentsCore::BeginPlay()
 		UImageManager::GetInst().Load(FilePath);
 	}
 
+	
+
 	//	이미지 커팅
 	UImageManager::GetInst().CuttingSprite("English_Font.png", { 11, 12 });
-
-
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
@@ -64,4 +64,3 @@ void PMDContentsCore::BeginPlay()
 void PMDContentsCore::Tick()
 {
 }
-;

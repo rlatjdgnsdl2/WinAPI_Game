@@ -18,10 +18,12 @@ public:
 
 	virtual void GenerateDungeon(class ADungeon& _Dungeon) override;
 protected:
-	virtual void SliceProcess() override;
-	virtual void RoomGenProcess() override;
+	
 
 private:
+	// UDungeonGenAlgorithm을(를) 통해 상속됨
+	void SliceProcess(ADungeon& _Dungeon) override;
+	void RoomGenProcess(ADungeon& _Dungeon) override;
 
 };
 

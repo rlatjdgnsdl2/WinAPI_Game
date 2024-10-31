@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineBase/Object.h>
+#include "Dungeon.h"
 
 
 //	설명: 던전생성기

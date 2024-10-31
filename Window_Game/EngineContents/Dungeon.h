@@ -8,7 +8,7 @@
 class ADungeon : AActor
 {
 public:
-	
+
 	//	constrcuter, destructer
 	ADungeon();
 	~ADungeon();
@@ -18,6 +18,13 @@ public:
 	ADungeon(ADungeon&& _Other) noexcept = delete;
 	ADungeon& operator=(const ADungeon& _Other) = delete;
 	ADungeon& operator=(ADungeon&& _Other) noexcept = delete;
+	
+	class Room 
+	{
+	public:
+		FTransform Trans;
+	};
+
 
 	void SetDungeonData(int _x, int _y, int _value);
 
@@ -25,7 +32,6 @@ protected:
 
 private:
 	std::vector<std::vector<int>> DungeonData;
-	
-
+	std::vector<Room> RoomData;
 };
 

@@ -167,3 +167,85 @@ UEngineSprite* UImageManager::FindSprite(std::string_view _KeyName)
 	// 이걸로 
 	return Sprites[UpperName];
 }
+void UImageManager::CreateCutSprite(std::string_view _SearchKeyName, std::string_view _NewSpriteKeyName, FVector2D _StartPos, FVector2D _CuttingSize, FVector2D _XYOffSet, UINT _Xcount, UINT _ImageCount)
+{
+	std::string SearchName = UEngineString::ToUpper(_SearchKeyName);
+	std::string NewSpriteName = UEngineString::ToUpper(_NewSpriteKeyName);
+
+	if (_Xcount <= 0)
+	{
+		MSGASSERT("이미지의 가로 갯수가 0 이하입니다.");
+	}
+	if (_ImageCount <= 0)
+	{
+		MSGASSERT("총 이미지 갯수가 0 이하입니다.");
+	}
+	if (Sprites.contains(SearchName) == false)
+	{
+		MSGASSERT(std::string(_SearchKeyName) + "라는 이름의 Sprite는 로드할 수 없습니다.");
+	}
+	if (Images.contains(SearchName) == false)
+	{
+		MSGASSERT(std::string(_SearchKeyName) + "라는 이름의 Sprite는 로드할 수 없습니다.");
+	}
+	if (Sprites.contains(NewSpriteName) == true)
+	{
+		MSGASSERT(std::string(_NewSpriteKeyName) + "라는 이름의 Sprite가 이미 존재합니다.");
+	}
+	if (Images.contains(NewSpriteName) == true)
+	{
+		MSGASSERT(std::string(_NewSpriteKeyName) + "라는 이름의 Image가 이미 존재합니다.");
+	}
+
+
+	UEngineSprite* Sprite = Sprites[SearchName];
+	UEngineWinImage* Image = Images[SearchName];
+
+	Sprite->ClearSpriteData();
+
+	UINT YCount = _ImageCount / _Xcount;
+	if (_ImageCount % _Xcount > 0)
+		++YCount;
+
+	float TotalSizeX = _StartPos.X + (_CuttingSize.X * _Xcount) + (_XYOffSet.X * (_Xcount - 1));
+	float TotalSizeY = _StartPos.Y + (_CuttingSize.Y * YCount) + (_XYOffSet.Y * (YCount - 1));
+
+	if (TotalSizeX > Image->GetImageScale().X)
+	{
+		MSGASSERT("필요한 이미지 가로 사이즈가 원본 이미지 사이즈보다 큽니다.");
+	}
+	if (TotalSizeY > Image->GetImageScale().Y)
+	{
+		MSGASSERT("필요한 이미지 세로 사이즈가 원본 이미지 사이즈보다 큽니다.");
+	}
+
+	FVector2D TotalSize = FVector2D(static_cast<int>(TotalSizeX), static_cast<int>(TotalSizeY));
+
+
+	UEngineWinImage* NewImage = new UEngineWinImage();
+	UEngineSprite* NewSprite = new UEngineSprite();
+	NewImage->Create(UEngineAPICore::GetCore()->GetMainWindow().GetWindowImage(), TotalSize);
+
+	BitBlt(NewImage->GetDC(), 0, 0, static_cast<int>(TotalSizeX), static_cast<int>(TotalSizeY), Image->GetDC(), static_cast<int>(_StartPos.X), static_cast<int>(_StartPos.Y), SRCCOPY);
+
+	Images.insert(make_pair(NewSpriteName, NewImage));
+	Sprites.insert(make_pair(NewSpriteName, NewSprite));
+
+	FVector2D CuttingPos = {};
+
+	for (UINT y = 0; y < YCount; ++y)
+	{
+		CuttingPos.Y = _CuttingSize.Y * y + _XYOffSet.Y * y;
+
+		for (UINT x = 0; x < _Xcount; ++x)
+		{
+			CuttingPos.X = _CuttingSize.X * x + _XYOffSet.X * x;
+			FTransform insertInst = {};
+			insertInst.Scale = _CuttingSize;
+			insertInst.Location = CuttingPos;
+			NewSprite->PushData(NewImage, insertInst);
+		}
+		CuttingPos.X = 0.f;
+	}
+}
+
