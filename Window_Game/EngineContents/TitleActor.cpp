@@ -10,7 +10,7 @@ ATitleActor::ATitleActor()
 	FVector2D winSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation({ winSize.Half() });
 	SetActorScale(winSize);
-	SetSprite("Menu_bg.png");
+	SetSprite("3.Menu_bg.png");
 }
 
 ATitleActor::~ATitleActor() {}

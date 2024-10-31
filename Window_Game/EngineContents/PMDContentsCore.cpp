@@ -43,7 +43,7 @@ void PMDContentsCore::BeginPlay()
 	
 
 	//	이미지 커팅
-	UImageManager::GetInst().CuttingSprite("English_Font.png", { 11, 12 });
+	UImageManager::GetInst().CuttingSprite("English_Font.png", { 33, 36 });
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
