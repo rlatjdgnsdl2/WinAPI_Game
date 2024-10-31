@@ -11,6 +11,11 @@
 
 ATitleGameMode::ATitleGameMode()
 {
+	UEngineDirectory TItle;
+	TItle.MoveParentToDirectory("Resources");
+	TItle.Append("Title");
+	UImageManager::GetInst().LoadFolder(TItle.GetPathToString());
+
 	
 }
 
@@ -19,10 +24,6 @@ ATitleGameMode::~ATitleGameMode()
 
 }
 
-void ATitleGameMode::BeginPlay()
-{
-	
-	
 
 
-}
+

@@ -36,23 +36,21 @@ void ATitleActor::Tick(float _DeltaTime)
 	{
 		return;
 	}
-	else if (test > 2.0f) 
+
+	else if (test > 2.0f)
 	{
 		AddActorLocation(FVector2D::UP * _DeltaTime * 500.f);
 	}
 
-	if (test > 3.0f) 
+	if (test > 3.0f)
 	{
 		if (!IsPlayAnim) {
 
-		ATitleAnimActor* NewActor = GetWorld()->SpawnActor<ATitleAnimActor>();
-		IsPlayAnim = true;
+			ATitleAnimActor* NewActor = GetWorld()->SpawnActor<ATitleAnimActor>();
+			IsPlayAnim = true;
 		}
 	}
 
 }
 
-void ATitleActor::ChangeBg()
-{
-	SpriteRenderer->SetSprite("2.Title_Text.png");
-}
+

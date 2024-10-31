@@ -39,12 +39,7 @@ void PMDContentsCore::BeginPlay()
 		std::string FilePath = ImageFiles[i].GetPathToString();
 		UImageManager::GetInst().Load(FilePath);
 	}
-	UEngineDirectory TItle;
-	TItle.MoveParentToDirectory("Resources");
-	TItle.Append("Title");
-	UImageManager::GetInst().LoadFolder(TItle.GetPathToString());
-
-	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
+	
 
 
 	

@@ -15,6 +15,7 @@ public:
 	ATitleAnimActor& operator=(const ATitleAnimActor& _Other) = delete;
 	ATitleAnimActor& operator=(ATitleAnimActor&& _Other) noexcept = delete;
 
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 protected:

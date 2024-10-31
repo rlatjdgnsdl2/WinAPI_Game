@@ -2,6 +2,7 @@
 #include "TitleAnimActor.h"
 #include "TitleActor.h"
 
+
 #include <EngineCore/EngineSprite.h>
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -12,6 +13,7 @@ ATitleAnimActor::ATitleAnimActor()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
 	SpriteRenderer->SetSprite("1.Intro_anim.png");
 	SpriteRenderer->SetComponentScale(SpriteRenderer->GetComponentScale());
 	SpriteRenderer->CreateAnimation("IntroAnim", "1.Intro_Anim.png", 0, 14, 0.1f, false);
@@ -25,6 +27,7 @@ ATitleAnimActor::~ATitleAnimActor()
 
 void ATitleAnimActor::BeginPlay()
 {
+
 	SetActorLocation({ 300,300 });
 }
 
