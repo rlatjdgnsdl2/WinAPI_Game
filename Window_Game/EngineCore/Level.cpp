@@ -14,12 +14,6 @@ ULevel::ULevel()
 
 ULevel::~ULevel()
 {
-	//if (nullptr != GameMode)
-	//{
-	//	delete GameMode;
-	//	GameMode = nullptr;
-	//}
-
 	std::list<AActor*>::iterator StartIter = AllActors.begin();
 	std::list<AActor*>::iterator EndIter = AllActors.end();
 
@@ -46,10 +40,7 @@ void ULevel::Tick(float _DeltaTime)
 			CurActor->BeginPlay();
 			AllActors.push_back(CurActor);
 		}
-
 		BeginPlayList.clear();
-
-		// todtjdtl 
 		AActor::ComponentBeginPlay();
 	}
 

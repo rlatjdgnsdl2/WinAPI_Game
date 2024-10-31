@@ -2,3 +2,4 @@
 
 #include <EngineCore/PreCompile.h>
 #include "ContentsDefine.h"
+#include "ContentsEnum.h"

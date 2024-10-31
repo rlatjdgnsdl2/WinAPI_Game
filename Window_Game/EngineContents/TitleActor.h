@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <EngineCore/Actor.h>
 
 //	Ό³Έν:
@@ -18,11 +19,14 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void ChangeBg();
+
 protected:
 
-
 private:
-	
+	class USpriteRenderer* SpriteRenderer;
+	float test = 0.0f;
+	bool IsPlayAnim = false;
 
 };
 

@@ -3,6 +3,7 @@
 
 enum class ERenderOrder
 {
-	BACKGROUND = -1000,
+	BACKGROUND = -10,
+
 	PLAYER = 0,
 };

@@ -22,9 +22,6 @@
     <ClInclude Include="TempActor.h">
       <Filter>LevelObjects\Temp</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsDefine.h">
-      <Filter>_Header</Filter>
-    </ClInclude>
     <ClInclude Include="DungeonManager.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
@@ -46,7 +43,15 @@
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\Global</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="ContentsDefine.h">
+      <Filter>_Header\PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAnimActor.h">
+      <Filter>LevelObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>_Header\PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -91,7 +96,12 @@
     <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\Global</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsEnum.cpp" />
+    <ClCompile Include="TitleAnimActor.cpp">
+      <Filter>LevelObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsEnum.cpp">
+      <Filter>_Header\PreCompile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
