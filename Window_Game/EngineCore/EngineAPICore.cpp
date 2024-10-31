@@ -72,7 +72,7 @@ void UEngineAPICore::Tick()
 		return;
 	}
 	CurLevel->Tick(DeltaTime);
-	CurLevel->Render();
+	CurLevel->Render(DeltaTime);
 }
 
 

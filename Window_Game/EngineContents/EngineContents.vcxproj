@@ -156,6 +156,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsDefine.h" />
+    <ClInclude Include="ContentsEnum.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Dungeon.h">
       <SubType>
       </SubType>
@@ -211,6 +215,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicGenAlgo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ContentsEnum.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -40,6 +40,8 @@ public:
 
 
 
+	void CuttingSprite(std::string_view _KeyName, int _X, int _Y);
+
 	void CuttingSprite(std::string_view _KeyName, FVector2D _CuttingSize);
 
 	// ½Åµ¿¹Î ÇÔ¼ö
@@ -48,6 +50,7 @@ public:
 
 	bool IsLoadSprite(std::string_view _KeyName);
 	UEngineSprite* FindSprite(std::string_view _KeyName);
+	UEngineWinImage* FindImage(std::string_view _KeyName);
 
 	// void LoadDirectory(std::string_view _KeyName, std::string_view Path);
 

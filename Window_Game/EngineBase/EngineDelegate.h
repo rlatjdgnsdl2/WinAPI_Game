@@ -1,45 +1,55 @@
 #pragma once
+#include <functional>
 
-// 설명 : 델리게이트 구현
+// 설명 :
 class EngineDelegate
 {
 public:
-	//	constrcuter, destructer
-	EngineDelegate() = default;
+	// constrcuter destructer
+	EngineDelegate();
 	EngineDelegate(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
-	~EngineDelegate() = default;
 
-	void operator=(std::function<void()> _Function)
+	~EngineDelegate();
+
+	// delete Function
+	//EngineDelegate(const EngineDelegate& _Other) = delete;
+	//EngineDelegate(EngineDelegate&& _Other) noexcept = delete;
+	//EngineDelegate& operator=(const EngineDelegate& _Other) = delete;
+	//EngineDelegate& operator=(EngineDelegate&& _Other) noexcept = delete;
+
+	bool IsBind()
+	{
+		return false == Functions.empty();
+	}
+
+	void operator+=(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
 
-	//	벡터안에 있는 모든 함수 실행
-	void operator()()	
+	void operator()()
 	{
 		std::list<std::function<void()>>::iterator StartIter = Functions.begin();
 		std::list<std::function<void()>>::iterator EndIter = Functions.end();
+
 		for (; StartIter != EndIter; ++StartIter)
 		{
 			std::function<void()>& Function = *StartIter;
 			Function();
 		}
 	}
-	
-	void Clear()	
+
+	void Clear()
 	{
 		Functions.clear();
 	}
-	//	비었으면 false 리턴
-	bool IsBind()	
-	{
-		return false == Functions.empty();
-	}
-	
+
+protected:
+
 private:
-	std::list<std::function<void()>> Functions;	
+	std::list<std::function<void()>> Functions;
 };
 

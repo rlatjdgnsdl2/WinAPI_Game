@@ -46,6 +46,7 @@
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\Global</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsEnum.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -90,6 +91,7 @@
     <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\Global</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsEnum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">

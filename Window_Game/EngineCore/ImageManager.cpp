@@ -101,6 +101,7 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	UEngineWinImage* NewImage = new UEngineWinImage();
 	NewImage->Load(WindowImage, Path);
 
+	NewImage->SetName(UpperName);
 	Images.insert({ UpperName , NewImage });
 
 	UEngineSprite* NewSprite = new UEngineSprite();
@@ -109,9 +110,9 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	FTransform Trans;
 	Trans.Location = { 0,0 };
 	Trans.Scale = NewImage->GetImageScale();
-
 	NewSprite->PushData(NewImage, Trans);
 
+	NewSprite->SetName(UpperName);
 	Sprites.insert({ UpperName , NewSprite });
 }
 
@@ -135,6 +136,7 @@ void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path
 
 
 	UEngineSprite* NewSprite = new UEngineSprite();
+	NewSprite->SetName(UpperName);
 	Sprites.insert({ UpperName , NewSprite });
 
 	// 로드하기 위해서 필요한 Window Main HDC
@@ -145,16 +147,17 @@ void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path
 	for (size_t i = 0; i < ImageFiles.size(); i++)
 	{
 		std::string FilePath = ImageFiles[i].GetPathToString();
-		std::string FileName = UEngineString::ToUpper(ImageFiles[i].GetFileName());
-		if (true == Images.contains(FileName))
+		std::string UpperFileName = UEngineString::ToUpper(ImageFiles[i].GetFileName());
+
+		UEngineWinImage* NewImage = FindImage(UpperFileName);
+		if (nullptr == NewImage)
 		{
-			MSGASSERT("폴더 로드중 이미 로드된 이미지를 한번더 로드하려고 했습니다." + FileName);
-			return;
+			NewImage = new UEngineWinImage();
+			NewImage->SetName(UpperFileName);
+			NewImage->Load(WindowImage, FilePath);
 		}
+		Images.insert({ UpperFileName,  NewImage });
 		// 이미지 로딩은 끝났으니
-		UEngineWinImage* NewImage = new UEngineWinImage();
-		NewImage->Load(WindowImage, FilePath);
-		Images.insert({ FileName,  NewImage });
 
 		FTransform Transform;
 		Transform.Location = { 0, 0 };
@@ -162,6 +165,35 @@ void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path
 
 		NewSprite->PushData(NewImage, Transform);
 	}
+}
+
+void UImageManager::CuttingSprite(std::string_view _KeyName, int _X, int _Y)
+{
+	std::string UpperName = UEngineString::ToUpper(_KeyName);
+
+	if (false == Sprites.contains(UpperName))
+	{
+		MSGASSERT("존재하지 않은 스프라이트를 자르려고 했습니다" + std::string(_KeyName));
+		return;
+	}
+
+	if (false == Images.contains(UpperName))
+	{
+		MSGASSERT("존재하지 않은 이미지를 기반으로 스프라이트를 자르려고 했습니다" + std::string(_KeyName));
+		return;
+	}
+
+	UEngineSprite* Sprite = Sprites[UpperName];
+	UEngineWinImage* Image = Images[UpperName];
+
+	Sprite->ClearSpriteData();
+
+	FVector2D Scale = Image->GetImageScale();
+
+	Scale.X /= _X;
+	Scale.Y /= _Y;
+
+	CuttingSprite(_KeyName, Scale);
 }
 
 void UImageManager::CuttingSprite(std::string_view _KeyName, FVector2D _CuttingSize)
@@ -239,6 +271,20 @@ UEngineSprite* UImageManager::FindSprite(std::string_view _KeyName)
 
 	// 이걸로 
 	return Sprites[UpperName];
+}
+
+UEngineWinImage* UImageManager::FindImage(std::string_view _KeyName)
+{
+	std::string UpperName = UEngineString::ToUpper(_KeyName);
+
+	if (false == Images.contains(UpperName))
+	{
+		MSGASSERT("로드하지 않은 스프라이트를 사용하려고 했습니다" + std::string(_KeyName));
+		return nullptr;
+	}
+
+	// 이걸로 
+	return Images[UpperName];
 }
 
 // 기존의 이미지를 찾아 잘라낸 후 새로운 스프라이트 이미지를 만듭니다.
