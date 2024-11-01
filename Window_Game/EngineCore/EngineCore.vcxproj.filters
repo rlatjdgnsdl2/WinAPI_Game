@@ -25,11 +25,21 @@
     <ClInclude Include="ImageManager.h">
       <Filter>Resources\Image</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteRenderer.h" />
-    <ClInclude Include="SceneComponent.h" />
-    <ClInclude Include="ActorComponent.h" />
-    <ClInclude Include="2DCollision.h" />
-    <ClInclude Include="EngineCoreDebug.h" />
+    <ClInclude Include="2DCollision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCoreDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -56,11 +66,21 @@
     <ClCompile Include="ImageManager.cpp">
       <Filter>Resources\Image</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp" />
-    <ClCompile Include="SceneComponent.cpp" />
-    <ClCompile Include="ActorComponent.cpp" />
-    <ClCompile Include="2DCollision.cpp" />
-    <ClCompile Include="EngineCoreDebug.cpp" />
+    <ClCompile Include="2DCollision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCoreDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -83,6 +103,15 @@
     </Filter>
     <Filter Include="Resources\Image">
       <UniqueIdentifier>{e8dfbc77-bd7f-4784-9c7e-74825d94ec7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{72f78593-5131-4299-a109-85088149c447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{c358d60a-f269-4dbf-87a9-18af4a67b613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{9ab96713-59b3-4b68-8ebf-938b52f4ffc4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
