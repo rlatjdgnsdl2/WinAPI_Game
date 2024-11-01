@@ -1,15 +1,16 @@
 #include "PreCompile.h"
-#include "TitleActor.h"
-#include "ContentsEnum.h"
-#include "TitleAnimActor.h"
+#include "TitleBackground.h"
+
 
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
 
+#include "ContentsEnum.h"
+#include "TitleGameMode.h"
 
 
-ATitleActor::ATitleActor()
+ATitleBackground::ATitleBackground()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
@@ -18,39 +19,27 @@ ATitleActor::ATitleActor()
 	SpriteRenderer->SetComponentLocation(TitleScale.Half());
 }
 
-ATitleActor::~ATitleActor() {}
+ATitleBackground::~ATitleBackground() {}
 
-void ATitleActor::BeginPlay()
+void ATitleBackground::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->SetCameraToMainPawn(false);
 
 }
 
-void ATitleActor::Tick(float _DeltaTime)
+void ATitleBackground::Tick(float _DeltaTime)
 {
-	test += _DeltaTime;
 	Super::Tick(_DeltaTime);
-
-	if (test > 4.3f)
-	{
-		return;
-	}
-
-	else if (test > 2.0f)
+	float TitlePlayTime = ATitleGameMode::GetTitlePlayTime();
+	
+	if (TitlePlayTime > 2.0f && TitlePlayTime <4.3f)
 	{
 		AddActorLocation(FVector2D::UP * _DeltaTime * 500.f);
 	}
 
-	if (test > 3.0f)
-	{
-		if (!IsPlayAnim) {
-
-			ATitleAnimActor* NewActor = GetWorld()->SpawnActor<ATitleAnimActor>();
-			IsPlayAnim = true;
-		}
-	}
 
 }
+
+
 
 

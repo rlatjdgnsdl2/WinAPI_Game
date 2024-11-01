@@ -73,6 +73,10 @@ private:
 		//AllActors.push_back(GameMode);
 		//AllActors.push_back(MainPawn);
 	}
+	void LevelChangeStart();
+
+	// 나 이제 새로운 레벨로 바뀔거야.
+	void LevelChangeEnd();
 
 
 	// 아무나 함부로 호출하지 못하게 하기 위해서 private 이어야 한다.

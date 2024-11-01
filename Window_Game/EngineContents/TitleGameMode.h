@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+
 //	Ό³Έν:
 class ATitleGameMode:public AGameMode
 {
@@ -14,12 +15,17 @@ public:
 	ATitleGameMode& operator=(const ATitleGameMode& _Other) = delete;
 	ATitleGameMode& operator=(ATitleGameMode&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	static float GetTitlePlayTime();
+	static void ResetTitlePlayTime();
 
 
+	
 protected:
 
 private:
-	
-
+	static float TitlePlayTime;
 };
 

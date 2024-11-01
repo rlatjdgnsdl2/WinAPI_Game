@@ -7,8 +7,6 @@
 // 설명 :
 class USpriteRenderer : public USceneComponent
 {
-	// 애가 다 담당한다.
-	// 클래스를 심화분류해서
 public:
 	class FrameAnimation
 	{
@@ -31,8 +29,6 @@ public:
 		}
 	};
 
-
-public:
 	// constrcuter destructer
 	USpriteRenderer();
 	~USpriteRenderer();
@@ -64,20 +60,9 @@ public:
 	}
 
 	FVector2D SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
-
-
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
-
-	// _AnimationName 이름의 애니메이션을 만들어라.
-	// _SpriteName 이 이름의 스프라이트로
-	// _Indexs 프레임은 이녀석들을 사용해서   0     1      2     3     4     5 
-	// _Frame 이 시간을 드려서                 0.1    0.1    0.1   0.1  0.1   0.1
-	// _Loop = true면 반복 false면 마지막 프레임에서 정지
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop = true);
-
-	// 내가 Idle인데 Idle 바꾸라고 했다. 
 	void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
-
 	void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 
 protected:

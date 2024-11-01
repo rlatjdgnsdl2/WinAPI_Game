@@ -29,6 +29,7 @@
     <ClInclude Include="SceneComponent.h" />
     <ClInclude Include="ActorComponent.h" />
     <ClInclude Include="2DCollision.h" />
+    <ClInclude Include="EngineCoreDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -59,6 +60,7 @@
     <ClCompile Include="SceneComponent.cpp" />
     <ClCompile Include="ActorComponent.cpp" />
     <ClCompile Include="2DCollision.cpp" />
+    <ClCompile Include="EngineCoreDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

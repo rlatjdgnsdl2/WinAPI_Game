@@ -7,9 +7,6 @@
     <ClInclude Include="PMDContentsCore.h">
       <Filter>ContentsCore</Filter>
     </ClInclude>
-    <ClInclude Include="TitleActor.h">
-      <Filter>LevelObjects\Title</Filter>
-    </ClInclude>
     <ClInclude Include="TitleGameMode.h">
       <Filter>LevelObjects\Title</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>_Header\PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="TitleBackground.h">
+      <Filter>LevelObjects\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -59,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="PMDContentsCore.cpp">
       <Filter>ContentsCore</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleActor.cpp">
-      <Filter>LevelObjects\Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>LevelObjects\Title</Filter>
@@ -101,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>_Header\PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackground.cpp">
+      <Filter>LevelObjects\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

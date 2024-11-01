@@ -7,16 +7,8 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/ImageManager.h>
 
-#include "TitleActor.h"
 #include "TitleGameMode.h"
-
 #include "TempActor.h"
-#include "TempGameMode.h"
-
-
-
-
-
 
 
 
@@ -41,22 +33,13 @@ void PMDContentsCore::BeginPlay()
 	}
 	
 
-
-	
-
-	
-
-	
-
-	
-
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
 	//	모든 Level생성
-	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATitleActor>("TitleLevel");
-	UEngineAPICore::GetCore()->CreateLevel<ATempGameMode, ATempActor>("TempLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempActor>("TitleLevel");
+	
 
 
 

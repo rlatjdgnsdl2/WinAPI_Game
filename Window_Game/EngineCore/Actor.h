@@ -27,6 +27,8 @@ public:
 
 	// 델타타임이란 무엇인가?
 	virtual void Tick(float _DeltaTime) {}
+	virtual void LevelChangeStart() {}
+	virtual void LevelChangeEnd() {}
 
 	class ULevel* GetWorld()
 	{

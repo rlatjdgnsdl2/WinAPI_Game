@@ -63,6 +63,17 @@ public:
 		}
 		return;
 	}
+	std::string ToString()
+	{
+		std::string Stream;
+
+		Stream += "X : [";
+		Stream += std::to_string(X);
+		Stream += "] Y : [";
+		Stream += std::to_string(Y);
+		Stream += "]";
+		return Stream;
+	}
 
 	FVector2D operator*(float _Value) const
 	{
