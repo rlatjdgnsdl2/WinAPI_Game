@@ -37,6 +37,8 @@ void ATitleBackground::Tick(float _DeltaTime)
 		AddActorLocation(FVector2D::UP * _DeltaTime * 500.f);
 	}
 
+	
+
 
 }
 

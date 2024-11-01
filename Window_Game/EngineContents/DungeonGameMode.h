@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
-#include "Dungeon.h"
+
 
 //	Ό³Έν:
 class ADungeonGameMode :public AGameMode
@@ -15,16 +15,16 @@ public:
 	ADungeonGameMode(ADungeonGameMode&& _Other) noexcept = delete;
 	ADungeonGameMode& operator=(const ADungeonGameMode& _Other) = delete;
 	ADungeonGameMode& operator=(ADungeonGameMode&& _Other) noexcept = delete;
-
+	
 	void BeginPlay() override;
+	
 
-	void GenerateDungeon(class UDungeonGenAlgorithm* _SelectAlgo);
+	void GenerateDungeon(std::string_view _SelectAlgo, Dungeon& _Dungeon );
 
 protected:
 	
-
 private:
-	ADungeon Dungeon;
+	Dungeon Dungeon;
 	std::map<std::string, class UDungeonGenAlgorithm*> AlgoMaps;
 
 };

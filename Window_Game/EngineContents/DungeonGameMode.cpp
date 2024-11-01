@@ -17,7 +17,7 @@ void ADungeonGameMode::BeginPlay()
 {
 	
 }
-void ADungeonGameMode::GenerateDungeon(UDungeonGenAlgorithm* _SelectAlgo)
+void ADungeonGameMode::GenerateDungeon(std::string_view _SelectAlgo,Dungeon& _Dungeon);
 {
-	_SelectAlgo->GenerateDungeon(Dungeon);
+	AlgoMaps[ _SelectAlgo.data()]->GenerateDungeon(_Dungeon);
 }
