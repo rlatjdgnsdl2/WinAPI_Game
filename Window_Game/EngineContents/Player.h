@@ -18,6 +18,7 @@ public:
 protected:
 
 private:
+	class ASpriteRenderer* SpriteRenderer;
 
 };
 
