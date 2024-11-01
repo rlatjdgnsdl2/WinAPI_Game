@@ -15,6 +15,7 @@ public:
 	ATileMap& operator=(const ATileMap& _Other) = delete;
 	ATileMap& operator=(ATileMap&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void SetTile(int _row, int _col);
 
@@ -22,6 +23,7 @@ protected:
 
 private:
 	std::vector <std::vector<class USpriteRenderer*>> TileMap;
-
+	std::map<int,std::string TileMapName> 
+	
 };
 
