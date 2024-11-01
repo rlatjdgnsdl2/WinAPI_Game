@@ -18,7 +18,7 @@ void UDungeonGenAlgorithm::GenerateDungeon(Dungeon& _Dungeon)
 
 void UDungeonGenAlgorithm::InitProcess(Dungeon& _Dungeon)
 {
-	_Dungeon.DungeonData.resize(60, std::vector<int>(40,1));
+	_Dungeon.DungeonData.resize(40, std::vector<int>(60,1));
 }
 
 
