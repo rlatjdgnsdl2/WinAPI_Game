@@ -21,9 +21,8 @@ public:
 	//UEngineDirectory& operator=(const UEngineDirectory& _Other) = delete;
 	//UEngineDirectory& operator=(UEngineDirectory&& _Other) noexcept = delete;
 
-	// 시간이 너무 없다고 안만듬. 나중에 만들어야지.
+	
 	std::vector<class UEngineFile> GetAllFile(bool _IsRecursive = true);
-
 	std::vector<class UEngineDirectory> GetAllDirectory();
 
 protected:

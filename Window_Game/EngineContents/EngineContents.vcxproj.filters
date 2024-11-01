@@ -19,15 +19,6 @@
     <ClInclude Include="TempActor.h">
       <Filter>LevelObjects\Temp</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonGenAlgorithm.h">
-      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicAlgo.h">
-      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonGameMode.h">
-      <Filter>LevelObjects\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>LevelObjects\Global</Filter>
     </ClInclude>
@@ -68,15 +59,6 @@
     </ClCompile>
     <ClCompile Include="TempActor.cpp">
       <Filter>LevelObjects\Temp</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonGenAlgorithm.cpp">
-      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicAlgo.cpp">
-      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonGameMode.cpp">
-      <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>LevelObjects\Global</Filter>

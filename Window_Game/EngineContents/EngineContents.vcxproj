@@ -151,24 +151,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BasicAlgo.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsStruct.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="DungeonGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="DungeonGenAlgorithm.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -211,23 +199,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BasicAlgo.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsStruct.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DungeonGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DungeonGenAlgorithm.cpp">
       <SubType>
       </SubType>
     </ClCompile>
