@@ -40,6 +40,12 @@
     <ClInclude Include="ContentsDefine.h">
       <Filter>_Header</Filter>
     </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>LevelObjects\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>LevelObjects\Dungeon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -77,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>_Header</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>LevelObjects\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

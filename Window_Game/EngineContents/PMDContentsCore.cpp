@@ -7,6 +7,8 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/ImageManager.h>
 
+#include "DungeonGameMode.h"
+#include "Player.h"
 #include "TitleGameMode.h"
 #include "TempActor.h"
 
@@ -39,6 +41,7 @@ void PMDContentsCore::BeginPlay()
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
 	//	모든 Level생성
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempActor>("TitleLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
 	
 
 

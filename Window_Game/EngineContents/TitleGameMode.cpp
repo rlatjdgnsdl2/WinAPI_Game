@@ -4,6 +4,7 @@
 #include "TitleAnimActor.h"
 #include "TitleBackground.h"
 
+#include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineDirectory.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/ImageManager.h>
@@ -34,6 +35,11 @@ void ATitleGameMode::BeginPlay()
 void ATitleGameMode::Tick(float _DeltaTime)
 {
 	TitlePlayTime += _DeltaTime;
+	if (true == UEngineInput::GetInst().IsPress('D'))
+	{
+		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	}
+	
 }
 
 float ATitleGameMode::GetTitlePlayTime()
