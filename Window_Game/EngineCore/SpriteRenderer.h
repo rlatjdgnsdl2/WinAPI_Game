@@ -43,9 +43,6 @@ public:
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
 
-	// int를 주는 함수들은 일반적으로 Enum으로 대체해서 넣고 싶을때가 많다.
-	// 그런데 그건 커텐츠 만드는 사람이 만드는 자신만의 enum일 것이기 때문에 
-	// 템플릿을 사용하여 어떤 enum이건 받게 만드는 방식을 선호한다.
 	template<typename EnumType>
 	void SetOrder(EnumType _Order)
 	{
@@ -58,10 +55,12 @@ public:
 	{
 		return Order;
 	}
-
+	// 현재 인덱스 Sprite원본이미지크기 x 배율
 	FVector2D SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
+
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop = true);
+
 	void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
 	void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 

@@ -28,29 +28,27 @@ public:
 	static int EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore);	
 	static UEngineAPICore* GetCore() { return MainCore; }				
 
-	UEngineWindow& GetMainWindow() { return EngineMainWindow; }			
-	void OpenLevel(std::string_view _LevelName);
+
+	UEngineWindow& GetMainWindow() { return EngineMainWindow; }	
 	float GetDeltaTime()
 	{
 		return DeltaTimer.GetDeltaTime();
 	}
 
-	// 템플릿 함수
-
-	//	Level의 생성함수 : (메모리관리)은 EngineAPICore가 담당
+	// Level
+	//	Level의 생성함수 : Level(메모리관리)은 EngineAPICore가 담당
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)					
 	{
-
 		ULevel* NewLevel = new ULevel();
 		NewLevel->CreateGameMode<GameModeType, MainPawnType>();
 		Levels.insert({ _LevelName.data() , NewLevel });
 		return NewLevel;
 	}
+	void OpenLevel(std::string_view _LevelName);
 
 
 protected:
-
 
 private:
 	//	static
@@ -63,10 +61,12 @@ private:
 	void Tick();
 
 	UEngineWindow EngineMainWindow;		
+	UEngineTimer DeltaTimer = UEngineTimer();
+
+	//	Level
 	std::map<std::string, class ULevel*> Levels;	
 	class ULevel* CurLevel = nullptr;
 	class ULevel* NextLevel = nullptr;
-	UEngineTimer DeltaTimer = UEngineTimer();
 
 };
 

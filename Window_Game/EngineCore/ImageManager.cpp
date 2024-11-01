@@ -157,7 +157,6 @@ void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path
 			NewImage->Load(WindowImage, FilePath);
 		}
 		Images.insert({ UpperFileName,  NewImage });
-		// 이미지 로딩은 끝났으니
 
 		FTransform Transform;
 		Transform.Location = { 0, 0 };

@@ -12,10 +12,10 @@ float ATitleGameMode::TitlePlayTime = 0.0f;
 
 ATitleGameMode::ATitleGameMode()
 {
-	UEngineDirectory TItle;
-	TItle.MoveParentToDirectory("Resources");
-	TItle.Append("Title");
-	UImageManager::GetInst().LoadFolder(TItle.GetPathToString());
+	UEngineDirectory Title;
+	Title.MoveParentToDirectory("Resources");
+	Title.Append("Title");
+	UImageManager::GetInst().LoadFolder(Title.GetPathToString());
 }
 
 ATitleGameMode::~ATitleGameMode()

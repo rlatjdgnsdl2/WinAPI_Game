@@ -22,7 +22,7 @@
     <ClInclude Include="DungeonGenAlgorithm.h">
       <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="BasicGenAlgo.h">
+    <ClInclude Include="BasicAlgo.h">
       <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
@@ -34,17 +34,20 @@
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\Global</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsDefine.h">
-      <Filter>_Header\PreCompile</Filter>
-    </ClInclude>
     <ClInclude Include="TitleAnimActor.h">
       <Filter>LevelObjects\Title</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsEnum.h">
-      <Filter>_Header\PreCompile</Filter>
-    </ClInclude>
     <ClInclude Include="TitleBackground.h">
       <Filter>LevelObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsStruct.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsDefine.h">
+      <Filter>_Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +72,7 @@
     <ClCompile Include="DungeonGenAlgorithm.cpp">
       <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClCompile>
-    <ClCompile Include="BasicGenAlgo.cpp">
+    <ClCompile Include="BasicAlgo.cpp">
       <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClCompile>
     <ClCompile Include="DungeonGameMode.cpp">
@@ -84,11 +87,14 @@
     <ClCompile Include="TitleAnimActor.cpp">
       <Filter>LevelObjects\Title</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsEnum.cpp">
-      <Filter>_Header\PreCompile</Filter>
-    </ClCompile>
     <ClCompile Include="TitleBackground.cpp">
       <Filter>LevelObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsStruct.cpp">
+      <Filter>_Header</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsEnum.cpp">
+      <Filter>_Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

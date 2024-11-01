@@ -1,7 +1,7 @@
 #pragma once
 #include "ActorComponent.h"
 
-// 설명 :
+// 설명 : 위치가 있는 트랜스폼?
 class USceneComponent : public UActorComponent
 {
 public:
@@ -34,7 +34,7 @@ public:
 	}
 
 
-	// 액터 위치 기반으로 랜더링 할것이다.
+	// 액터 위치 기반으로 랜더링
 	void SetComponentLocation(FVector2D _Location)
 	{
 		Transform.Location = _Location;
