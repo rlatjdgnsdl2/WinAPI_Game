@@ -1,7 +1,6 @@
 #include "PreCompile.h"
 #include "PMDContentsCore.h"
 #include <EngineCore/EngineAPICore.h>
-
 #include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineDebug.h>
 #include <EngineBase/EngineFile.h>
@@ -19,6 +18,34 @@ PMDContentsCore::PMDContentsCore() {}
 PMDContentsCore::~PMDContentsCore() {}
 
 void PMDContentsCore::BeginPlay()
+{
+	//	리소스로드
+	RoadResources();
+	InitKeySet();
+	//	게임타이틀 설정
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
+	//	윈도우 크기 설정
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
+	//	Level생성
+	CreateLevel();
+
+	//	처음 레벨 입장
+	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+}
+void PMDContentsCore::Tick()
+{
+}
+
+
+int PMDContentsCore::GetTileIndex(std::string_view _key)
+{
+	auto it = PMDContentsCore::TileIndexForKey.find(_key.data());
+	if (it != PMDContentsCore::TileIndexForKey.end())
+	{
+		return it->second;
+	}
+}
+void PMDContentsCore::RoadResources()
 {
 	//	리소스 로드
 	UEngineDirectory Dir;
@@ -44,34 +71,33 @@ void PMDContentsCore::BeginPlay()
 	Global.Append("Global");
 	UImageManager::GetInst().LoadFolder(Global.GetPathToString());
 
+	UEngineDirectory Dungeon;
+	Dungeon.MoveParentToDirectory("Resources");
+	Dungeon.Append("Dungeon");
+	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
+
 	//	player
-	UImageManager::GetInst().CuttingSprite("MulJangIee_Idle.png", 7, 8);
+	UImageManager::GetInst().CuttingSprite("MulZZangIee_Idle.png", 7, 8);
+	UImageManager::GetInst().CuttingSprite("MulZZangIee_Walk.png", 6, 8);
+	UImageManager::GetInst().CuttingSprite("MulZZangIee_Attack.png", 10, 8);
+	UImageManager::GetInst().CuttingSprite("MulZZangIee_Hurt.png", 2, 8);
+
 	//	partner
-	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
-
-	// 타일맵 키 설정
-	InitKeySet();
-
-	//	게임타이틀 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
-	//	윈도우 크기 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
-	//	모든 Level생성
-	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempActor>("TitleLevel");
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
-
-
-
-
-	//	처음 레벨 입장
-	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
-
-
-
+	//UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
+	
+	//	Dungeon
+	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
+	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
+	UImageManager::GetInst().CuttingSprite("BeachCave_Water.png", 5, 10);
 }
-void PMDContentsCore::Tick()
+
+void PMDContentsCore::CreateLevel()
 {
+	//	타이틀레벨
+	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempActor>("TitleLevel");
+	//	던전레벨
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
+	//	마을레벨
 }
 void PMDContentsCore::InitKeySet()
 {
@@ -88,7 +114,7 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "001111111",1 });
 	TileIndexForKey.insert({ "100111111",1 });
 	TileIndexForKey.insert({ "101111111",1 });
-	
+
 	TileIndexForKey.insert({ "000110110",2 });
 	TileIndexForKey.insert({ "100110110",2 });
 	TileIndexForKey.insert({ "001110110",2 });
@@ -102,7 +128,7 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "011011111",3 });
 	TileIndexForKey.insert({ "111011011",3 });
 	TileIndexForKey.insert({ "111011111",3 });
-	
+
 	TileIndexForKey.insert({ "111111111",4 });
 
 	TileIndexForKey.insert({ "110110110",5 });
@@ -142,49 +168,49 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "001011110",9 });
 	TileIndexForKey.insert({ "101011110",9 });
 
-	TileIndexForKey.insert({ "000111000",10});
-	TileIndexForKey.insert({ "100111000",10});
-	TileIndexForKey.insert({ "001111000",10});
-	TileIndexForKey.insert({ "000111100",10});
-	TileIndexForKey.insert({ "000111001",10});
-	TileIndexForKey.insert({ "101111000",10});
-	TileIndexForKey.insert({ "100111100",10});
-	TileIndexForKey.insert({ "100111001",10});
-	TileIndexForKey.insert({ "001111100",10});
-	TileIndexForKey.insert({ "001111001",10});
-	TileIndexForKey.insert({ "000111101",10});
-	TileIndexForKey.insert({ "101111100",10});
-	TileIndexForKey.insert({ "101111001",10});
-	TileIndexForKey.insert({ "100111101",10});
-	TileIndexForKey.insert({ "001111101",10});
-	TileIndexForKey.insert({ "101111101",10});
+	TileIndexForKey.insert({ "000111000",10 });
+	TileIndexForKey.insert({ "100111000",10 });
+	TileIndexForKey.insert({ "001111000",10 });
+	TileIndexForKey.insert({ "000111100",10 });
+	TileIndexForKey.insert({ "000111001",10 });
+	TileIndexForKey.insert({ "101111000",10 });
+	TileIndexForKey.insert({ "100111100",10 });
+	TileIndexForKey.insert({ "100111001",10 });
+	TileIndexForKey.insert({ "001111100",10 });
+	TileIndexForKey.insert({ "001111001",10 });
+	TileIndexForKey.insert({ "000111101",10 });
+	TileIndexForKey.insert({ "101111100",10 });
+	TileIndexForKey.insert({ "101111001",10 });
+	TileIndexForKey.insert({ "100111101",10 });
+	TileIndexForKey.insert({ "001111101",10 });
+	TileIndexForKey.insert({ "101111101",10 });
 
 
-	TileIndexForKey.insert({ "000110010",11});
-	TileIndexForKey.insert({ "100110010",11});
-	TileIndexForKey.insert({ "001110010",11});
-	TileIndexForKey.insert({ "000110011",11});
-	TileIndexForKey.insert({ "101110010",11});
-	TileIndexForKey.insert({ "100110011",11});
-	TileIndexForKey.insert({ "001110011",11});
-	TileIndexForKey.insert({ "101110011",11});
+	TileIndexForKey.insert({ "000110010",11 });
+	TileIndexForKey.insert({ "100110010",11 });
+	TileIndexForKey.insert({ "001110010",11 });
+	TileIndexForKey.insert({ "000110011",11 });
+	TileIndexForKey.insert({ "101110010",11 });
+	TileIndexForKey.insert({ "100110011",11 });
+	TileIndexForKey.insert({ "001110011",11 });
+	TileIndexForKey.insert({ "101110011",11 });
 
-	TileIndexForKey.insert({ "010010010",12});
-	TileIndexForKey.insert({ "110010010",12});
-	TileIndexForKey.insert({ "011010010",12});
-	TileIndexForKey.insert({ "010010110",12});
-	TileIndexForKey.insert({ "010010011",12});
-	TileIndexForKey.insert({ "111010010",12});
-	TileIndexForKey.insert({ "110010110",12});
-	TileIndexForKey.insert({ "110010011",12});
-	TileIndexForKey.insert({ "011010110",12});
-	TileIndexForKey.insert({ "011010011",12});
-	TileIndexForKey.insert({ "010010111",12});
-	TileIndexForKey.insert({ "111010110",12});
-	TileIndexForKey.insert({ "110010111",12});
-	TileIndexForKey.insert({ "111010011",12});
-	TileIndexForKey.insert({ "011010111",12});
-	TileIndexForKey.insert({ "111010111",12});
+	TileIndexForKey.insert({ "010010010",12 });
+	TileIndexForKey.insert({ "110010010",12 });
+	TileIndexForKey.insert({ "011010010",12 });
+	TileIndexForKey.insert({ "010010110",12 });
+	TileIndexForKey.insert({ "010010011",12 });
+	TileIndexForKey.insert({ "111010010",12 });
+	TileIndexForKey.insert({ "110010110",12 });
+	TileIndexForKey.insert({ "110010011",12 });
+	TileIndexForKey.insert({ "011010110",12 });
+	TileIndexForKey.insert({ "011010011",12 });
+	TileIndexForKey.insert({ "010010111",12 });
+	TileIndexForKey.insert({ "111010110",12 });
+	TileIndexForKey.insert({ "110010111",12 });
+	TileIndexForKey.insert({ "111010011",12 });
+	TileIndexForKey.insert({ "011010111",12 });
+	TileIndexForKey.insert({ "111010111",12 });
 
 
 
@@ -222,7 +248,7 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "011110001",15 });
 	TileIndexForKey.insert({ "010110101",15 });
 	TileIndexForKey.insert({ "011110101",15 });
-	
+
 	TileIndexForKey.insert({ "000010010",16 });
 	TileIndexForKey.insert({ "100010010",16 });
 	TileIndexForKey.insert({ "001010010",16 });
@@ -240,69 +266,69 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "001010111",16 });
 	TileIndexForKey.insert({ "101010111",16 });
 
-	TileIndexForKey.insert({ "000011000",17});
-	TileIndexForKey.insert({ "100011000",17});
-	TileIndexForKey.insert({ "001011000",17});
-	TileIndexForKey.insert({ "000011100",17});
-	TileIndexForKey.insert({ "000011001",17});
-	TileIndexForKey.insert({ "101011000",17});
-	TileIndexForKey.insert({ "100011100",17});
-	TileIndexForKey.insert({ "100011001",17});
-	TileIndexForKey.insert({ "001011100",17});
-	TileIndexForKey.insert({ "001011001",17});
-	TileIndexForKey.insert({ "000011101",17});
-	TileIndexForKey.insert({ "101011100",17});
-	TileIndexForKey.insert({ "100011101",17});
-	TileIndexForKey.insert({ "101011001",17});
-	TileIndexForKey.insert({ "001011101",17});
-	TileIndexForKey.insert({ "101011101",17});
+	TileIndexForKey.insert({ "000011000",17 });
+	TileIndexForKey.insert({ "100011000",17 });
+	TileIndexForKey.insert({ "001011000",17 });
+	TileIndexForKey.insert({ "000011100",17 });
+	TileIndexForKey.insert({ "000011001",17 });
+	TileIndexForKey.insert({ "101011000",17 });
+	TileIndexForKey.insert({ "100011100",17 });
+	TileIndexForKey.insert({ "100011001",17 });
+	TileIndexForKey.insert({ "001011100",17 });
+	TileIndexForKey.insert({ "001011001",17 });
+	TileIndexForKey.insert({ "000011101",17 });
+	TileIndexForKey.insert({ "101011100",17 });
+	TileIndexForKey.insert({ "100011101",17 });
+	TileIndexForKey.insert({ "101011001",17 });
+	TileIndexForKey.insert({ "001011101",17 });
+	TileIndexForKey.insert({ "101011101",17 });
 
 	TileIndexForKey.insert({ "010111010",18 });
 
-	TileIndexForKey.insert({ "100110000",19});
-	TileIndexForKey.insert({ "001110000",19});
-	TileIndexForKey.insert({ "000110100",19});
-	TileIndexForKey.insert({ "000110001",19});
-	TileIndexForKey.insert({ "101110000",19});
-	TileIndexForKey.insert({ "100110100",19});
-	TileIndexForKey.insert({ "100110001",19});
-	TileIndexForKey.insert({ "001110100",19});
-	TileIndexForKey.insert({ "001110001",19});
-	TileIndexForKey.insert({ "000110101",19});
-	TileIndexForKey.insert({ "101110100",19});
-	TileIndexForKey.insert({ "101110001",19});
-	TileIndexForKey.insert({ "100110101",19});
-	TileIndexForKey.insert({ "001110101",19});
-	TileIndexForKey.insert({ "101110101",19});
-	TileIndexForKey.insert({ "000110000",19});
+	TileIndexForKey.insert({ "100110000",19 });
+	TileIndexForKey.insert({ "001110000",19 });
+	TileIndexForKey.insert({ "000110100",19 });
+	TileIndexForKey.insert({ "000110001",19 });
+	TileIndexForKey.insert({ "101110000",19 });
+	TileIndexForKey.insert({ "100110100",19 });
+	TileIndexForKey.insert({ "100110001",19 });
+	TileIndexForKey.insert({ "001110100",19 });
+	TileIndexForKey.insert({ "001110001",19 });
+	TileIndexForKey.insert({ "000110101",19 });
+	TileIndexForKey.insert({ "101110100",19 });
+	TileIndexForKey.insert({ "101110001",19 });
+	TileIndexForKey.insert({ "100110101",19 });
+	TileIndexForKey.insert({ "001110101",19 });
+	TileIndexForKey.insert({ "101110101",19 });
+	TileIndexForKey.insert({ "000110000",19 });
 
-	TileIndexForKey.insert({ "110010000",20});
-	TileIndexForKey.insert({ "011010000",20});
-	TileIndexForKey.insert({ "010010100",20});
-	TileIndexForKey.insert({ "010010001",20});
-	TileIndexForKey.insert({ "111010000",20});
-	TileIndexForKey.insert({ "110010100",20});
-	TileIndexForKey.insert({ "110010001",20});
-	TileIndexForKey.insert({ "011010100",20});
-	TileIndexForKey.insert({ "011010001",20});
-	TileIndexForKey.insert({ "010010101",20});
-	TileIndexForKey.insert({ "111010100",20});
-	TileIndexForKey.insert({ "111010001",20});
-	TileIndexForKey.insert({ "011010101",20});
-	TileIndexForKey.insert({ "111010101",20});
-	TileIndexForKey.insert({ "110010101",20});
-	TileIndexForKey.insert({ "010010000",20});
+	TileIndexForKey.insert({ "110010000",20 });
+	TileIndexForKey.insert({ "011010000",20 });
+	TileIndexForKey.insert({ "010010100",20 });
+	TileIndexForKey.insert({ "010010001",20 });
+	TileIndexForKey.insert({ "111010000",20 });
+	TileIndexForKey.insert({ "110010100",20 });
+	TileIndexForKey.insert({ "110010001",20 });
+	TileIndexForKey.insert({ "011010100",20 });
+	TileIndexForKey.insert({ "011010001",20 });
+	TileIndexForKey.insert({ "010010101",20 });
+	TileIndexForKey.insert({ "111010100",20 });
+	TileIndexForKey.insert({ "111010001",20 });
+	TileIndexForKey.insert({ "011010101",20 });
+	TileIndexForKey.insert({ "111010101",20 });
+	TileIndexForKey.insert({ "110010101",20 });
+	TileIndexForKey.insert({ "010010000",20 });
 
 	TileIndexForKey.insert({ "000111010",21 });
 	TileIndexForKey.insert({ "100111010",21 });
 	TileIndexForKey.insert({ "001111010",21 });
 	TileIndexForKey.insert({ "101111010",21 });
-	
+
 	TileIndexForKey.insert({ "110011010",22 });
 	TileIndexForKey.insert({ "010011110",22 });
 	TileIndexForKey.insert({ "110011110",22 });
 	TileIndexForKey.insert({ "010011010",22 });
-	
+
 	TileIndexForKey.insert({ "011110010",23 });
 	TileIndexForKey.insert({ "010110011",23 });
 	TileIndexForKey.insert({ "011110011",23 });
@@ -337,12 +363,12 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "010011111",35 });
 	TileIndexForKey.insert({ "110011111",35 });
 	TileIndexForKey.insert({ "010011011",35 });
-	
+
 	TileIndexForKey.insert({ "011110110",36 });
 	TileIndexForKey.insert({ "010110111",36 });
 	TileIndexForKey.insert({ "011110111",36 });
 	TileIndexForKey.insert({ "010110110",36 });
-	
+
 	TileIndexForKey.insert({ "100111110",37 });
 	TileIndexForKey.insert({ "001111110",37 });
 	TileIndexForKey.insert({ "101111110",37 });
@@ -373,10 +399,10 @@ void PMDContentsCore::InitKeySet()
 
 
 
-	
-	
-	
-	
+
+
+
+
 
 
 
@@ -385,3 +411,5 @@ void PMDContentsCore::InitKeySet()
 
 
 }
+
+

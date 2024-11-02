@@ -37,8 +37,8 @@ void ATitleAnimActor::Tick(float _DeltaTime)
 	{
 		if (!IsAnimPlay)
 		{
-			FVector2D TitleScale = SpriteRenderer->SetSpriteScale();
-			SpriteRenderer->SetComponentLocation(TitleScale.Half());
+			FVector2D ActorScale = SpriteRenderer->SetSpriteScale();
+			SpriteRenderer->SetComponentLocation(ActorScale.Half());
 			IsAnimPlay = true;
 		}
 		SpriteRenderer->ChangeAnimation("IntroAnim");

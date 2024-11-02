@@ -16,9 +16,6 @@ ULevel::ULevel()
 ULevel::~ULevel()
 {
 	{
-		// BeginPlayList 한번도 체인지 안한 액터는 
-		// 액터들이 다 비긴 플레이 리스트에 들어가 있다.
-
 		std::list<AActor*>::iterator StartIter = BeginPlayList.begin();
 		std::list<AActor*>::iterator EndIter = BeginPlayList.end();
 
@@ -29,7 +26,7 @@ ULevel::~ULevel()
 		}
 	}
 }
-// 내가 CurLevel 됐을대
+
 void ULevel::LevelChangeStart()
 {
 	{
@@ -46,7 +43,7 @@ void ULevel::LevelChangeStart()
 
 }
 
-// 나 이제 새로운 레벨로 바뀔거야.
+
 void ULevel::LevelChangeEnd()
 {
 	{
@@ -101,7 +98,6 @@ void ULevel::Render(float _DeltaTime)
 
 	if (true == IsCameraToMainPawn)
 	{
-		// CameraPivot = FVector2D(-1280, -720) * 0.5f;
 		CameraPos = MainPawn->GetTransform().Location + CameraPivot;
 	}
 
@@ -147,7 +143,6 @@ void ULevel::DoubleBuffering()
 	Trans.Scale = MainWindow.GetWindowSize();
 
 	BackBufferImage->CopyToBit(WindowImage, Trans);
-
 }
 
 void ULevel::PushRenderer(class USpriteRenderer* _Renderer)
@@ -159,8 +154,6 @@ void ULevel::PushRenderer(class USpriteRenderer* _Renderer)
 
 void ULevel::ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder)
 {
-	
 	Renderers[_PrevOrder].remove(_Renderer);
 	Renderers[_Renderer->GetOrder()].push_back(_Renderer);
-
 }

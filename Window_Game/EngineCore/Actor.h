@@ -1,7 +1,5 @@
 #pragma once
 #include <EngineBase/Object.h>
-#include <EngineBase/EngineMath.h>
-
 #include "EngineSprite.h"
 
 // 설명 :
@@ -22,10 +20,7 @@ public:
 	AActor& operator=(const AActor& _Other) = delete;
 	AActor& operator=(AActor&& _Other) noexcept = delete;
 
-	// 이 객체가 레벨에서 처음 Tick을 돌리기 직전에 실행된다.
 	virtual void BeginPlay() {}
-
-	// 델타타임이란 무엇인가?
 	virtual void Tick(float _DeltaTime) {}
 	virtual void LevelChangeStart() {}
 	virtual void LevelChangeEnd() {}

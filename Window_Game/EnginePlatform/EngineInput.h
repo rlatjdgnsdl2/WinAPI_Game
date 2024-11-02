@@ -35,7 +35,7 @@ public:
 	{
 		if (false == Keys.contains(_KeyIndex))
 		{
-			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			MSGASSERT("등록되지 않은 키입니다.");
 			return false;
 		}
 		return Keys[_KeyIndex].IsDown;
@@ -45,7 +45,7 @@ public:
 	{
 		if (false == Keys.contains(_KeyIndex))
 		{
-			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			MSGASSERT("등록되지 않은 키입니다.");
 			return false;
 		}
 		return Keys[_KeyIndex].IsUp;
@@ -55,7 +55,7 @@ public:
 	{
 		if (false == Keys.contains(_KeyIndex))
 		{
-			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			MSGASSERT("등록되지 않은 키입니다.");
 			return false;
 		}
 		return Keys[_KeyIndex].IsPress;
@@ -65,7 +65,7 @@ public:
 	{
 		if (false == Keys.contains(_KeyIndex))
 		{
-			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			MSGASSERT("등록되지 않은 키입니다.");
 			return false;
 		}
 		return Keys[_KeyIndex].PressTime;
@@ -75,7 +75,7 @@ public:
 	{
 		if (false == Keys.contains(_KeyIndex))
 		{
-			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			MSGASSERT("등록되지 않은 키입니다.");
 			return false;
 		}
 		return Keys[_KeyIndex].IsFree;
@@ -87,6 +87,7 @@ public:
 private:
 	//	싱긑톤패턴적용을 위해 생성자 private
 	UEngineInput();
+	void RegistKey();
 
 	//	inner class
 	class UEngineKey
@@ -113,9 +114,10 @@ private:
 
 		void EventCheck();
 		void KeyCheck(float _DeltaTime);
-
 	};
+
 	std::map<int, UEngineKey> Keys;
 
 };
+
 

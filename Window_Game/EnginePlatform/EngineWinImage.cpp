@@ -119,8 +119,6 @@ void UEngineWinImage::Load(UEngineWinImage* _TargetImage, std::string_view _Path
 		// GDI plus를 사용하기 위한 인풋
 		Gdiplus::GdiplusStartupInput StartupInput;
 		Gdiplus::GdiplusStartup(&gidplustoken, &StartupInput, nullptr);
-
-
 		std::wstring WidePath = UEngineString::AnsiToUnicode(_Path);
 		// 경로 넣어주면 이미지 로딩해주는 함수
 		Gdiplus::Image* pImage = Gdiplus::Image::FromFile(WidePath.c_str());

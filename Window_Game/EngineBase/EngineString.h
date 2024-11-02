@@ -16,6 +16,7 @@ public:
 
 	//	문자열 대문자변환함수
 	static std::string ToUpper(std::string_view);
+
 	//	ANSI -> 유니코드 변환 함수
 	static std::wstring AnsiToUnicode(std::string_view _Name);
 

@@ -14,18 +14,18 @@ public:
 	UEngineTimer& operator=(const UEngineTimer& _Other) = delete;
 	UEngineTimer& operator=(UEngineTimer&& _Other) noexcept = delete;
 
-	//	inline
+	
 	inline float GetDeltaTime() const { return DeltaTime; }
 	inline double GetDoubleDeltaTime() const { return dDeltaTime; }
 
-	//	일반
-	void TimeCheck();		//	DeltaTime 구하는 함수
-	void TimeStart();		//	타이머 시작
-	float End();			//	타이머 끝 (float반환)	
-	double DEnd();			//	타이머 끝 (double반환)
+	
+	void TimeCheck();		
+	void TimeStart();		
+	float End();			
+	double DEnd();			
 
 private:
-	LARGE_INTEGER Count;	//	1초에 셀수있는 count
+	LARGE_INTEGER Count;	
 	LARGE_INTEGER PrevTime;
 	LARGE_INTEGER CurTime;
 

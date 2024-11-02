@@ -1,6 +1,6 @@
 #pragma once
+
 #include <EnginePlatform/EngineWinImage.h>
-#include <vector>
 #include <EngineBase/EngineDebug.h>
 
 // 설명 :
@@ -10,11 +10,11 @@ public:
 	class USpriteData
 	{
 	public:
-		// 이 이미지의
+		// 사용하고자 하는 이미지
 		UEngineWinImage* Image;
-		// 여기서부터 xx 크기까지
+		// 그 이미지의 트랜스폼
 		FTransform Transform;
-		// 잘라서 쓰겠다.
+
 	};
 
 	// constrcuter destructer
@@ -28,14 +28,12 @@ public:
 	UEngineSprite& operator=(UEngineSprite&& _Other) noexcept = delete;
 
 	void PushData(UEngineWinImage* Image, const FTransform& _Trans);
-
 	USpriteData GetSpriteData(int _Index = 0)
 	{
 		if (_Index >= Data.size())
 		{
-			MSGASSERT("스프라이트의 인덱스를 오버하여 사용하려고 했습니다." + GetName());
+			MSGASSERT(GetName() + " Sprite의 Index를 오버하여 사용하려고 했습니다.");
 		}
-
 		return Data[_Index];
 	}
 

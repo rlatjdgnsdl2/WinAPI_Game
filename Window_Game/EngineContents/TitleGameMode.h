@@ -17,11 +17,10 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
+	virtual void LevelChangeEnd() override;
+	
 	static float GetTitlePlayTime();
 	static void ResetTitlePlayTime();
-
-
 	
 protected:
 

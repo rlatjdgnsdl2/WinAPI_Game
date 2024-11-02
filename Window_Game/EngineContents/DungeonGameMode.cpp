@@ -9,10 +9,6 @@
 #include "TileMap.h"
 ADungeonGameMode::ADungeonGameMode() 
 {
-	UEngineDirectory Tile;
-	Tile.MoveParentToDirectory("Resources");
-	Tile.Append("Dungeon");
-	UImageManager::GetInst().LoadFolder(Tile.GetPathToString());
 
 }
 
@@ -22,5 +18,11 @@ ADungeonGameMode::~ADungeonGameMode()
 }
 void ADungeonGameMode::BeginPlay() 
 {
+	Super::BeginPlay();
 	GetWorld()->SpawnActor<ATileMap>();
+}
+
+void ADungeonGameMode::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
 }

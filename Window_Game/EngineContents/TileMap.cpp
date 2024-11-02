@@ -10,10 +10,6 @@
 ATileMap::ATileMap()
 {
 	TileMap.resize(40, std::vector<USpriteRenderer*>(60, nullptr));
-	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
-
-
 }
 
 ATileMap::~ATileMap()
@@ -114,16 +110,7 @@ void ATileMap::CheckTile(std::string_view _SpriteName)
 							}
 						}
 					}
-					int SpriteIndex = 0;
-					auto it = PMDContentsCore::TileIndexForKey.find(FindKey);
-					if (it != PMDContentsCore::TileIndexForKey.end()) 
-					{
-						SpriteIndex = it->second;
-					}
-					else 
-					{
-						SpriteIndex = 4;
-					}
+					int SpriteIndex = PMDContentsCore::GetTileIndex(FindKey);
 					TileMap[_y][_x]->SetSprite(SpriteName, SpriteIndex);
 
 				}
