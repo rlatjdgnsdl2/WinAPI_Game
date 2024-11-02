@@ -13,10 +13,7 @@ float ATitleGameMode::TitlePlayTime = 0.0f;
 
 ATitleGameMode::ATitleGameMode()
 {
-	UEngineDirectory Title;
-	Title.MoveParentToDirectory("Resources");
-	Title.Append("Title");
-	UImageManager::GetInst().LoadFolder(Title.GetPathToString());
+	
 }
 
 ATitleGameMode::~ATitleGameMode()
@@ -37,7 +34,7 @@ void ATitleGameMode::BeginPlay()
 void ATitleGameMode::Tick(float _DeltaTime)
 {
 	TitlePlayTime += _DeltaTime;
-	if (true == UEngineInput::GetInst().IsDown('D'))
+	if (true == UEngineInput::GetInst().IsDown('G'))
 	{
 		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	}

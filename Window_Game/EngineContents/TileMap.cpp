@@ -59,7 +59,7 @@ void ATileMap::Tick(float _DeltaTime)
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
-		CheckTile();
+		CheckTile("BeachCave_Ground.png");
 	}
 }
 
@@ -78,7 +78,7 @@ void ATileMap::SetTile(int _col, int _row, std::string_view _SpriteName)
 	TileMap[_row][_col]->SetSprite(_SpriteName, 0);
 }
 
-void ATileMap::CheckTile(/*std::string_view _SpriteName*/)
+void ATileMap::CheckTile(std::string_view _SpriteName)
 {
 
 	for (int _y = 0; _y < 40; _y++)
@@ -128,8 +128,6 @@ void ATileMap::CheckTile(/*std::string_view _SpriteName*/)
 
 				}
 			}
-
-
 
 
 

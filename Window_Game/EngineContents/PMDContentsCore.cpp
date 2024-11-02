@@ -34,6 +34,20 @@ void PMDContentsCore::BeginPlay()
 		std::string FilePath = ImageFiles[i].GetPathToString();
 		UImageManager::GetInst().Load(FilePath);
 	}
+	UEngineDirectory Title;
+	Title.MoveParentToDirectory("Resources");
+	Title.Append("Title");
+	UImageManager::GetInst().LoadFolder(Title.GetPathToString());
+
+	UEngineDirectory Global;
+	Global.MoveParentToDirectory("Resources");
+	Global.Append("Global");
+	UImageManager::GetInst().LoadFolder(Global.GetPathToString());
+
+	//	player
+	UImageManager::GetInst().CuttingSprite("MulJangIee_Idle.png", 7, 8);
+	//	partner
+	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
 
 	// 타일맵 키 설정
 	InitKeySet();

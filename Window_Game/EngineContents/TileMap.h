@@ -15,13 +15,12 @@ public:
 	ATileMap& operator=(const ATileMap& _Other) = delete;
 	ATileMap& operator=(ATileMap&& _Other) noexcept = delete;
 
-
 	void BeginPlay() override;
-
 	void Tick(float _DeltaTime) override;
+
 	class USpriteRenderer* CreateTile(int _col, int _row, std::string_view _SpriteName);
 	void SetTile(int _col, int _row, std::string_view _SpriteName);
-	void CheckTile(/*std::string_view _SpriteName*/);
+	void CheckTile(std::string_view _SpriteName);
 
 
 protected:

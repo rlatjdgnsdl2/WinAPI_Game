@@ -1,4 +1,5 @@
 #pragma once
+#include "TileMap.h"
 #include <EngineCore/GameMode.h>
 //	Ό³Έν:
 class ADungeonGameMode : public AGameMode
@@ -19,6 +20,6 @@ public:
 protected:
 
 private:
-
+	
 };
 

@@ -32,7 +32,8 @@ public:
 	{
 
 	}
-	
+
+
 
 	int iX() const
 	{
@@ -51,6 +52,10 @@ public:
 	float Length() const
 	{
 		return sqrtf(X * X + Y * Y);
+	}
+
+	float lerp(float a, float b, float t) {
+		return a + t * (b - a);
 	}
 
 	void Normalize()
@@ -130,7 +135,7 @@ public:
 
 	bool EqualToInt(FVector2D _Other) const
 	{
-		
+
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
