@@ -23,7 +23,7 @@ protected:
 
 private:
 	std::vector <std::vector<class USpriteRenderer*>> TileMap;
-	std::map<int,std::string TileMapName> 
+	std::map<std::string, int >a;
 	
 };
 
