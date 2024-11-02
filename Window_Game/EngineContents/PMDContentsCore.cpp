@@ -51,7 +51,7 @@ void PMDContentsCore::BeginPlay()
 
 	//	처음 레벨 입장
 	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 
 
 
@@ -90,7 +90,6 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "111011111",3 });
 	
 	TileIndexForKey.insert({ "111111111",4 });
-	
 
 	TileIndexForKey.insert({ "110110110",5 });
 	TileIndexForKey.insert({ "111110110",5 });
@@ -172,6 +171,8 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "111010011",12});
 	TileIndexForKey.insert({ "011010111",12});
 	TileIndexForKey.insert({ "111010111",12});
+
+
 
 	TileIndexForKey.insert({ "000010000",13 });
 	TileIndexForKey.insert({ "100010000",13 });

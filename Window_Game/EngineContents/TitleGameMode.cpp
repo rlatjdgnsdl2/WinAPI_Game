@@ -22,6 +22,8 @@ ATitleGameMode::ATitleGameMode()
 ATitleGameMode::~ATitleGameMode()
 {
 
+
+
 }
 
 void ATitleGameMode::BeginPlay()
@@ -35,7 +37,7 @@ void ATitleGameMode::BeginPlay()
 void ATitleGameMode::Tick(float _DeltaTime)
 {
 	TitlePlayTime += _DeltaTime;
-	if (true == UEngineInput::GetInst().IsPress('D'))
+	if (true == UEngineInput::GetInst().IsDown('D'))
 	{
 		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	}

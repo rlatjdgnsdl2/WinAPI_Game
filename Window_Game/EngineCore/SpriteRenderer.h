@@ -84,10 +84,10 @@ public:
 
 	void SetSprite(std::string_view _Name, int _CurIndex = 0);
 
-	std::string GetSpriteName() 
+	std::string GetCurSpriteName()
 	{
-		return CurSpriteName;
-	};
+		return Sprite->GetName();
+	}
 protected:
 
 private:
@@ -98,7 +98,7 @@ private:
 
 	class UEngineSprite* Sprite = nullptr;
 
-	std::string CurSpriteName;
+	
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;

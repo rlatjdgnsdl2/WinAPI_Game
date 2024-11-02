@@ -94,16 +94,18 @@ void ATileMap::CheckTile(/*std::string_view _SpriteName*/)
 				}
 				else
 				{
+					
 					//	타일체크
 					//	현재타일이름
-					std::string SpriteName = TileMap[_y][_x]->GetSpriteName();
+					//std::string SpriteName = TileMap[_y][_x]->GetSpriteName();
+					std::string SpriteName = TileMap[_y][_x]->GetCurSpriteName();
 					std::string FindKey = "";
 					for (int i = -1; i <= 1; i++)
 					{
 						for (int j = -1; j <= 1; j++)
 						{
 
-							std::string CompareName = TileMap[_y + i][_x + j]->GetSpriteName();
+							std::string CompareName = TileMap[_y + i][_x + j]->GetCurSpriteName();
 							if (SpriteName == CompareName) {
 								FindKey += "1";
 							}

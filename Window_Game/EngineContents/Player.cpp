@@ -6,8 +6,8 @@
 
 APlayer::APlayer() 
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("PangDori_Idel.png");
+	/*SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite("PangDori_Idel.png");*/
 }
 
 APlayer::~APlayer() 

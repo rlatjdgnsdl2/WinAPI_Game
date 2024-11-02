@@ -125,7 +125,7 @@ void USpriteRenderer::SetSprite(std::string_view _Name, int _CurIndex /*= 0*/)
 	}
 
 	CurIndex = _CurIndex;
-	CurSpriteName = _Name.data();
+	
 }
 
 void USpriteRenderer::SetOrder(int _Order)
@@ -256,6 +256,7 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 	{
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
+	Sprite = CurAnimation->Sprite;
 }
 
 
