@@ -31,8 +31,6 @@ public:
 		}
 	};
 
-
-public:
 	// constrcuter destructer
 	USpriteRenderer();
 	~USpriteRenderer();
@@ -63,6 +61,8 @@ public:
 		return Order;
 	}
 
+	
+
 	FVector2D SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
 
 
@@ -82,14 +82,23 @@ public:
 
 	void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 
+	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+
+	std::string GetSpriteName() 
+	{
+		return CurSpriteName;
+	};
 protected:
 
-public:
+private:
 	int Order = 0;
 	int CurIndex = 0;
 
+	
+
 	class UEngineSprite* Sprite = nullptr;
-	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+
+	std::string CurSpriteName;
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;

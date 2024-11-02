@@ -13,14 +13,16 @@ public:
 	PMDContentsCore& operator=(const PMDContentsCore& _Other) = delete;
 	PMDContentsCore& operator=(PMDContentsCore&& _Other) noexcept = delete;
 
+	static std::map<std::string, int > TileIndexForKey;
 	
 	
-
-protected:
 	void BeginPlay() override;
 	void Tick() override;
-private:
 
+
+protected:
+private:
+	void InitKeySet();
 
 
 };

@@ -83,6 +83,7 @@ void USpriteRenderer::Render(float _DeltaTime)
 	ULevel* Level = GetActor()->GetWorld();
 
 	Trans.Location = Trans.Location - Level->CameraPos;
+	
 
 	// Trans.Location -= 카메라포스
 
@@ -124,6 +125,7 @@ void USpriteRenderer::SetSprite(std::string_view _Name, int _CurIndex /*= 0*/)
 	}
 
 	CurIndex = _CurIndex;
+	CurSpriteName = _Name.data();
 }
 
 void USpriteRenderer::SetOrder(int _Order)

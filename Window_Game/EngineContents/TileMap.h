@@ -2,7 +2,7 @@
 #include <EngineCore/Actor.h>
 
 //	Ό³Έν:
-class ATileMap :public AActor
+class ATileMap : public AActor
 {
 public:
 	//	constrcuter, destructer
@@ -15,15 +15,22 @@ public:
 	ATileMap& operator=(const ATileMap& _Other) = delete;
 	ATileMap& operator=(ATileMap&& _Other) noexcept = delete;
 
+
 	void BeginPlay() override;
+
 	void Tick(float _DeltaTime) override;
-	void SetTile(int _row, int _col);
+	class USpriteRenderer* CreateTile(int _col, int _row, std::string_view _SpriteName);
+	void SetTile(int _col, int _row, std::string_view _SpriteName);
+	void CheckTile(/*std::string_view _SpriteName*/);
+
 
 protected:
 
 private:
 	std::vector <std::vector<class USpriteRenderer*>> TileMap;
-	std::map<std::string, int >a;
-	
+	int testNumX=0;
+	int	testNumY=0;
+
+
 };
 
