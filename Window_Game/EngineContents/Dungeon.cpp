@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "TileMap.h"
+#include "Dungeon.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/ImageManager.h>
 #include <EnginePlatform/EngineInput.h>
@@ -7,22 +7,39 @@
 
 #include "PMDContentsCore.h"
 
-ATileMap::ATileMap()
+ADungeon::ADungeon()
 {
 	TileMap.resize(40, std::vector<USpriteRenderer*>(60, nullptr));
+
 }
 
-ATileMap::~ATileMap()
+ADungeon::~ADungeon()
 {
 
 }
-
-void ATileMap::BeginPlay()
+void ADungeon::BeginPlay()
 {
-	
+	for (int y = 0; y < 40; y++)
+	{
+		for (int x = 0; x < 60; x++)
+		{
+			TileMap[y][x] = CreateTile(x, y, CurDungeonName + "_Ground.png");
+		}
+	}
 }
 
-void ATileMap::Tick(float _DeltaTime)
+USpriteRenderer* ADungeon::CreateTile(int _col, int _row, std::string_view _SpriteName)
+{
+	USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
+	SpriteRenderer->SetSprite(_SpriteName, 4);
+	SpriteRenderer->SetSpriteScale(1.0f);
+	SpriteRenderer->SetComponentLocation({ _col * 72,_row * 72 });
+	return SpriteRenderer;
+}
+
+
+void ADungeon::Tick(float _DeltaTime)
 {
 	UEngineDebug::CoreOutPutString("x : " + std::to_string(testNumX));
 	UEngineDebug::CoreOutPutString("Y : " + std::to_string(testNumY));
@@ -45,30 +62,22 @@ void ATileMap::Tick(float _DeltaTime)
 	}
 	if (UEngineInput::GetInst().IsDown('F'))
 	{
-		SetTile(testNumX, testNumY, "BeachCave_Ground.png");
+		SetTile(testNumX, testNumY, "_Ground.png");
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
-		CheckTile("BeachCave_Ground.png");
+		//CheckTile("BeachCave_Ground.png");
+		SetAllWall();
 	}
 }
 
-USpriteRenderer* ATileMap::CreateTile(int _col, int _row, std::string_view _SpriteName)
+
+void ADungeon::SetTile(int _col, int _row, std::string_view _TileType)
 {
-	USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
-	SpriteRenderer->SetSprite(_SpriteName, 0);
-	SpriteRenderer->SetSpriteScale(1.0f);
-	SpriteRenderer->SetComponentLocation({ _col * 72,_row * 72 });
-	return SpriteRenderer;
+	TileMap[_row][_col]->SetSprite(CurDungeonName + _TileType.data(), 0);
 }
 
-void ATileMap::SetTile(int _col, int _row, std::string_view _SpriteName)
-{
-	TileMap[_row][_col]->SetSprite(_SpriteName, 0);
-}
-
-void ATileMap::CheckTile(std::string_view _SpriteName)
+void ADungeon::CheckTile(std::string_view _SpriteName)
 {
 
 	for (int _y = 0; _y < 40; _y++)
@@ -80,14 +89,12 @@ void ATileMap::CheckTile(std::string_view _SpriteName)
 				if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
 				{
 					//	가장자리는 벽으로
-					TileMap[_y][_x]->SetSprite("BeachCave_Wall.png", 4);
+					TileMap[_y][_x]->SetSprite(_SpriteName, 4);
 				}
 				else
 				{
-					
 					//	타일체크
 					//	현재타일이름
-					//std::string SpriteName = TileMap[_y][_x]->GetSpriteName();
 					std::string SpriteName = TileMap[_y][_x]->GetCurSpriteName();
 					std::string FindKey = "";
 					for (int i = -1; i <= 1; i++)
@@ -106,23 +113,31 @@ void ATileMap::CheckTile(std::string_view _SpriteName)
 					}
 					int SpriteIndex = PMDContentsCore::GetTileIndex(FindKey);
 					TileMap[_y][_x]->SetSprite(SpriteName, SpriteIndex);
-
 				}
 			}
 		}
 	}
 }
 
-void ATileMap::SetAllWall()
+void ADungeon::SetAllWall()
 {
-
 	for (int y = 0; y < 40; y++)
 	{
 		for (int x = 0; x < 60; x++)
 		{
-			TileMap[y][x] = CreateTile(x, y, "BeachCave_Wall.png");
+			TileMap[y][x]->SetSprite((CurDungeonName + "_Wall.png"), 4);
 		}
 	}
+}
+
+void ADungeon::SetRandomSizeRoom()
+{
+
+}
+
+void ADungeon::SetRandomHallWay()
+{
+
 }
 
 

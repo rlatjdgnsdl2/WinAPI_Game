@@ -1,5 +1,7 @@
 #pragma once
-#include "TileMap.h"
+#include <string>
+#include "Dungeon.h"
+
 #include <EngineCore/GameMode.h>
 //	Ό³Έν:
 class ADungeonGameMode : public AGameMode
@@ -18,11 +20,14 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
+	void GenerateDungeon(std::string_view _DungeonName, std::string_view _GeneratorName);
 
 protected:
 
 private:
-	ATileMap* Dungeon_Background;
-	
+	std::string CurGeneratorName;
+	std::string CurDungeonName;
+	ADungeon* Dungeon;
+	std::map<std::string, class UDungeonGenerator* >  GeneratorMaps;
 };
 

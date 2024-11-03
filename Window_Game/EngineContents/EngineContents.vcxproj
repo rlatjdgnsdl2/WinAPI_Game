@@ -196,7 +196,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="Dungeon.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -257,7 +257,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
+    <ClCompile Include="Dungeon.cpp">
       <SubType>
       </SubType>
     </ClCompile>

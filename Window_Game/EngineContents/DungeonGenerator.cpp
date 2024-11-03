@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "DungeonGenerator.h"
 
-#include "TileMap.h"
+#include "Dungeon.h"
 
 
 
@@ -14,13 +14,13 @@ UDungeonGenerator::~UDungeonGenerator()
 	Dungeon = nullptr;
 }
 
-void UDungeonGenerator::GenerateDungeon(class ATileMap* _Dungeon)
+void UDungeonGenerator::GenerateDungeon(class ADungeon* _Dungeon)
 {
 	Dungeon = _Dungeon;
-	AllSetWall();
+	SetAllWall();
 }
 
-void UDungeonGenerator::AllSetWall()
+void UDungeonGenerator::SetAllWall()
 {
-	Dungeon->
+	Dungeon->SetAllWall();
 }

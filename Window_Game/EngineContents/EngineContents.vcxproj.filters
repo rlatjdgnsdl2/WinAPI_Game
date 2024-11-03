@@ -43,7 +43,7 @@
     <ClInclude Include="DungeonGameMode.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="Dungeon.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
     <ClInclude Include="DungeonGenerator.h">
@@ -90,7 +90,7 @@
     <ClCompile Include="DungeonGameMode.cpp">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
+    <ClCompile Include="Dungeon.cpp">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
     <ClCompile Include="DungeonGenerator.cpp">

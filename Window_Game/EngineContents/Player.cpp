@@ -88,7 +88,7 @@ void APlayer::AnimationSetting()
 void APlayer::KeySetting(float _DeltaTime)
 {
 
-	if (true == UEngineInput::GetInst().IsDown('W'))
+	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
 		SpriteRenderer->ChangeAnimation("WalkAnim_8");
 		FVector2D CurLocation = GetActorLocation();
