@@ -24,10 +24,13 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
-
 	void InitSetting();
 	void AnimationSetting();
 	void KeySetting(float _DeltaTime);
-	float Speed = 100.0f;
+	
+	float CurTime = 0.0f;
+
+	
+
 };
 

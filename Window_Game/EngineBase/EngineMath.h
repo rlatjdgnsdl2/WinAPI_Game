@@ -102,8 +102,8 @@ public:
 	FVector2D Lerp(FVector2D _TargetLocation, float _t)
     {
       
-        float NewX = _t * (_TargetLocation.X - X);
-        float NewY = _t * (_TargetLocation.Y - Y);
+        float NewX = X + _t * (_TargetLocation.X - X);
+        float NewY = Y + _t * (_TargetLocation.Y - Y);
         return FVector2D{NewX, NewY};
     }
 

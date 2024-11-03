@@ -18,6 +18,8 @@ void UDungeonGenerator::GenerateDungeon(class ADungeon* _Dungeon)
 {
 	Dungeon = _Dungeon;
 	SetAllWall();
+	SetRandomSizeRoom();
+	SetRandomHallWay();
 }
 
 void UDungeonGenerator::SetAllWall()

@@ -1,11 +1,12 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+
 //	Ό³Έν:
 class ADungeon : public AActor
 {
-public:
 
+public:
 	//	constrcuter, destructer
 	ADungeon();
 	virtual ~ADungeon();
@@ -27,13 +28,16 @@ public:
 	void SetRandomSizeRoom();
 	void SetRandomHallWay();
 
+	
+	
+	
+
 
 protected:
 
 private:
-	std::string CurDungeonName = "BeachCave";
 	std::vector <std::vector<class USpriteRenderer*>> TileMap;
-	FTransform DungeonSize = FTransform(FVector2D({ 54,34 }), FVector2D({ 3,3 }));
+	std::string CurDungeonName = "BeachCave";
 	int testNumX=0;
 	int	testNumY=0;
 

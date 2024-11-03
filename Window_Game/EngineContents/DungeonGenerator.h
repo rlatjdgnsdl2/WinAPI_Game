@@ -18,15 +18,16 @@ public:
 	virtual void GenerateDungeon(class ADungeon* _Dungeon);
 	
 	virtual void SetAllWall();
-	virtual void SetRandomSizeRoom();
-	virtual void SetRandomHallWay();
+	virtual void SetRandomSizeRoom()=0;
+	virtual void SetRandomHallWay()=0;
 	
 
 
 protected:
+	class ADungeon* Dungeon = nullptr;
 
 private:
-	class ADungeon* Dungeon = nullptr;
+	
 
 };
 

@@ -10,7 +10,6 @@
 ADungeon::ADungeon()
 {
 	TileMap.resize(40, std::vector<USpriteRenderer*>(60, nullptr));
-
 }
 
 ADungeon::~ADungeon()
@@ -23,7 +22,7 @@ void ADungeon::BeginPlay()
 	{
 		for (int x = 0; x < 60; x++)
 		{
-			TileMap[y][x] = CreateTile(x, y, CurDungeonName + "_Ground.png");
+			TileMap[y][x] = CreateTile(x, y, CurDungeonName + "_Wall.png");
 		}
 	}
 }
@@ -66,8 +65,8 @@ void ADungeon::Tick(float _DeltaTime)
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
-		//CheckTile("BeachCave_Ground.png");
-		SetAllWall();
+		CheckTile("BeachCave_Wall.png");
+		//SetAllWall();
 	}
 }
 
@@ -118,6 +117,7 @@ void ADungeon::CheckTile(std::string_view _SpriteName)
 		}
 	}
 }
+
 
 void ADungeon::SetAllWall()
 {
