@@ -46,6 +46,9 @@
     <ClInclude Include="TileMap.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="DungeonGenerator.h">
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>LevelObjects\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGenerator.cpp">
+      <Filter>LevelObjects\Dungeon\Algorithms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -19,13 +19,7 @@ ATileMap::~ATileMap()
 
 void ATileMap::BeginPlay()
 {
-	for (int y = 0; y < 40; y++)
-	{
-		for (int x = 0; x < 60; x++)
-		{
-			TileMap[y][x] = CreateTile(x, y, "BeachCave_Wall.png");
-		}
-	}
+	
 }
 
 void ATileMap::Tick(float _DeltaTime)
@@ -115,10 +109,18 @@ void ATileMap::CheckTile(std::string_view _SpriteName)
 
 				}
 			}
+		}
+	}
+}
 
+void ATileMap::SetAllWall()
+{
 
-
-
+	for (int y = 0; y < 40; y++)
+	{
+		for (int x = 0; x < 60; x++)
+		{
+			TileMap[y][x] = CreateTile(x, y, "BeachCave_Wall.png");
 		}
 	}
 }

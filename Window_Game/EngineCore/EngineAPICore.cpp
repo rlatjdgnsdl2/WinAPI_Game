@@ -1,9 +1,9 @@
 #include "PreCompile.h"
 #include "EngineAPICore.h"
+
+#include <EngineBase/EngineDebug.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EnginePlatform/EngineWindow.h>
-#include <EngineBase/EngineDelegate.h>
-#include <EngineBase/EngineDebug.h>
 
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
 UEngineContentsCore* UEngineAPICore::UserCore = nullptr;
@@ -34,12 +34,13 @@ UEngineAPICore::~UEngineAPICore()
 
 int UEngineAPICore::EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore)
 {
+	//	leak monitering
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	UEngineAPICore Core;
 	MainCore = &Core;
 	UserCore = _UserCore;
 	UEngineWindow::EngineWindowInit(_Inst);
-
 
 	Core.EngineMainWindow.Open();	
 	
@@ -53,9 +54,6 @@ void UEngineAPICore::EngineBeginPlay()
 
 void UEngineAPICore::EngineTick()
 {
-	//	아직의미x
-	UserCore->Tick();
-	//	중요
 	MainCore->Tick();
 }
 
@@ -63,19 +61,23 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	//	다음레벨에 입장할때
 	if (nullptr != NextLevel)
 	{
-
 		if (nullptr != CurLevel)
 		{
+			//	현재레벨은 정리
 			CurLevel->LevelChangeEnd();
 		}
 		CurLevel = NextLevel;
+		// 다음레벨은 Init설정
 		NextLevel->LevelChangeStart();
 		NextLevel = nullptr;
+
 		// 델타타임이 지연될수 있으므로 델타타임을 초기화
 		DeltaTimer.TimeStart();
 	}
+	//	level roops
 	DeltaTimer.TimeCheck();
 	float DeltaTime = DeltaTimer.GetDeltaTime();
 	UEngineInput::GetInst().KeyCheck(DeltaTime);

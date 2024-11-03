@@ -17,7 +17,7 @@ class UEngineAPICore
 {
 public:
 	//	constrcuter, destructer
-	~UEngineAPICore();													
+	~UEngineAPICore();
 	//	delete Function
 	UEngineAPICore(const UEngineAPICore& _Other) = delete;
 	UEngineAPICore(UEngineAPICore&& _Other) noexcept = delete;
@@ -25,20 +25,16 @@ public:
 	UEngineAPICore& operator=(UEngineAPICore&& _Other) noexcept = delete;
 
 	//	static
-	static int EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore);	
-	static UEngineAPICore* GetCore() { return MainCore; }				
+	static int EngineStart(HINSTANCE _Inst, UEngineContentsCore* _UserCore);
+	static UEngineAPICore* GetCore() { return MainCore; }
 
-
-	UEngineWindow& GetMainWindow() { return EngineMainWindow; }	
-	float GetDeltaTime()
-	{
-		return DeltaTimer.GetDeltaTime();
-	}
+	UEngineWindow& GetMainWindow() { return EngineMainWindow; }
+	float GetDeltaTime() { return DeltaTimer.GetDeltaTime(); }
 
 	// Level
-	//	Level의 생성함수 : Level(메모리관리)은 EngineAPICore가 담당
+	//	Level의 생성함수 : Level은 EngineAPICore가 담당
 	template<typename GameModeType, typename MainPawnType>
-	ULevel* CreateLevel(std::string_view _LevelName)					
+	ULevel* CreateLevel(std::string_view _LevelName)
 	{
 		ULevel* NewLevel = new ULevel();
 		NewLevel->CreateGameMode<GameModeType, MainPawnType>();
@@ -52,7 +48,7 @@ protected:
 
 private:
 	//	static
-	static UEngineAPICore* MainCore;	
+	static UEngineAPICore* MainCore;
 	static UEngineContentsCore* UserCore;
 	static void EngineBeginPlay();
 	static void EngineTick();
@@ -60,11 +56,11 @@ private:
 	UEngineAPICore();
 	void Tick();
 
-	UEngineWindow EngineMainWindow;		
+	UEngineWindow EngineMainWindow;
 	UEngineTimer DeltaTimer = UEngineTimer();
 
 	//	Level
-	std::map<std::string, class ULevel*> Levels;	
+	std::map<std::string, class ULevel*> Levels;
 	class ULevel* CurLevel = nullptr;
 	class ULevel* NextLevel = nullptr;
 

@@ -93,6 +93,19 @@ public:
 		return X == 0.0f || Y == 0.0f;
 	}
 
+	float Dot(const FVector2D& other) const
+	{
+		return X * other.X + Y * other.Y;
+	}
+
+	//	юс╫ц
+	FVector2D Lerp(FVector2D _TargetLocation, float _t)
+    {
+      
+        float NewX = _t * (_TargetLocation.X - X);
+        float NewY = _t * (_TargetLocation.Y - Y);
+        return FVector2D{NewX, NewY};
+    }
 
 
 	FVector2D operator+(FVector2D _Other) const
