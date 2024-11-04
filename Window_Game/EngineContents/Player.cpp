@@ -101,11 +101,11 @@ void APlayer::AnimationSetting()
 	SpriteRenderer->CreateAnimation("AttackAnim_4", "MulZZangIee_Attack.png", 60, 69);
 	SpriteRenderer->CreateAnimation("AttackAnim_1", "MulZZangIee_Attack.png", 70, 79);
 	//	Hurt
+	SpriteRenderer->CreateAnimation("HurtAnim_2", "MulZZangIee_Hurt.png", 0, 1);
+	SpriteRenderer->CreateAnimation("HurtAnim_3", "MulZZangIee_Hurt.png", 2, 3);
 	SpriteRenderer->CreateAnimation("HurtAnim_6", "MulZZangIee_Hurt.png", 4, 5);
 	SpriteRenderer->CreateAnimation("HurtAnim_9", "MulZZangIee_Hurt.png", 6, 7);
 	SpriteRenderer->CreateAnimation("HurtAnim_8", "MulZZangIee_Hurt.png", 8, 9);
-	SpriteRenderer->CreateAnimation("HurtAnim_2", "MulZZangIee_Hurt.png", 0, 1);
-	SpriteRenderer->CreateAnimation("HurtAnim_3", "MulZZangIee_Hurt.png", 2, 3);
 	SpriteRenderer->CreateAnimation("HurtAnim_7", "MulZZangIee_Hurt.png", 10, 11);
 	SpriteRenderer->CreateAnimation("HurtAnim_4", "MulZZangIee_Hurt.png", 12, 13);
 	SpriteRenderer->CreateAnimation("HurtAnim_1", "MulZZangIee_Hurt.png", 14, 15);
