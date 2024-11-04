@@ -11,6 +11,7 @@ APlayer::APlayer()
 {
 	InitSetting();
 	AnimationSetting();
+
 }
 
 APlayer::~APlayer()
@@ -47,7 +48,7 @@ void APlayer::Tick(float _DeltaTime)
 	}
 
 
-	
+
 
 }
 
@@ -64,14 +65,23 @@ void APlayer::InitSetting()
 void APlayer::AnimationSetting()
 {
 	//	Idle
-	SpriteRenderer->CreateAnimation("IdleAnim_2", "MulZZangIee_Idle.png", 0, 6);
-	SpriteRenderer->CreateAnimation("IdleAnim_3", "MulZZangIee_Idle.png", 7, 13);
-	SpriteRenderer->CreateAnimation("IdleAnim_6", "MulZZangIee_Idle.png", 8, 20);
-	SpriteRenderer->CreateAnimation("IdleAnim_9", "MulZZangIee_Idle.png", 21, 27);
-	SpriteRenderer->CreateAnimation("IdleAnim_8", "MulZZangIee_Idle.png", 28, 34);
-	SpriteRenderer->CreateAnimation("IdleAnim_7", "MulZZangIee_Idle.png", 35, 41);
-	SpriteRenderer->CreateAnimation("IdleAnim_4", "MulZZangIee_Idle.png", 42, 48);
-	SpriteRenderer->CreateAnimation("IdleAnim_1", "MulZZangIee_Idle.png", 49, 55);
+	std::vector<int> IdleIndex_2 = { 0,1,2,3,4,5,6 };
+	std::vector<int> IdleIndex_3 = { 7,8,9,10,11,12,13 };
+	std::vector<int> IdleIndex_6 = { 14,15,16,17,18,19,20 };
+	std::vector<int> IdleIndex_9 = { 21,22,23,24,25,26,27 };
+	std::vector<int> IdleIndex_8 = { 28,29,30,31,32,33,34 };
+	std::vector<int> IdleIndex_7 = { 35,36,37,38,39,40,41 };
+	std::vector<int> IdleIndex_4 = { 42,43,44,45,46,47,48 };
+	std::vector<int> IdleIndex_1 = { 49,50,51,52,53,54,55 };
+	std::vector<float> IdleFrame = { 1.0f,0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
+	SpriteRenderer->CreateAnimation("IdleAnim_2", "MulZZangIee_Idle.png", IdleIndex_2, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_3", "MulZZangIee_Idle.png", IdleIndex_3, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_6", "MulZZangIee_Idle.png", IdleIndex_6, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_9", "MulZZangIee_Idle.png", IdleIndex_9, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_8", "MulZZangIee_Idle.png", IdleIndex_8, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_7", "MulZZangIee_Idle.png", IdleIndex_7, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_4", "MulZZangIee_Idle.png", IdleIndex_4, IdleFrame);
+	SpriteRenderer->CreateAnimation("IdleAnim_1", "MulZZangIee_Idle.png", IdleIndex_1, IdleFrame);
 	//	Walk
 	SpriteRenderer->CreateAnimation("WalkAnim_2", "MulZZangIee_Walk.png", 0, 5);
 	SpriteRenderer->CreateAnimation("WalkAnim_3", "MulZZangIee_Walk.png", 6, 11);
@@ -104,7 +114,8 @@ void APlayer::AnimationSetting()
 void APlayer::Idle(float _DeltaTime)
 {
 	CurDuration = 0.0f;
-
+	SpriteRenderer->ChangeAnimation("IdleAnim_" + std::to_string((int)CurDir));
+	SpriteRenderer->SetSpriteScale();
 	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
 		CurState = STATE::WAIK;
@@ -145,7 +156,7 @@ void APlayer::Walk(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * Speed);
 	SetActorLocation(NewLocation);
-	if (CurDuration > 1.0f/Speed) 
+	if (CurDuration > 1.0f / Speed)
 	{
 		CurState = STATE::IDLE;
 	}

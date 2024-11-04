@@ -227,9 +227,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 	NewAnimation.FrameTime = _Frame;
 	NewAnimation.Loop = _Loop;
 	NewAnimation.Reset();
-
 	FrameAnimations.insert({ UpperName ,NewAnimation });
-
 }
 
 void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _Force /*= false*/)
