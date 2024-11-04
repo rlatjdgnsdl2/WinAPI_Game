@@ -105,6 +105,16 @@ void UEngineWindow::Open(std::string_view _TitleName)
 	UpdateWindow(WindowHandle);
 	++WindowCount;
 }
+FVector2D UEngineWindow::GetMousePos()
+{
+	POINT MousePoint;
+
+	GetCursorPos(&MousePoint);
+	// 윈도우창 위치기준으로 마우스 포지션
+	ScreenToClient(WindowHandle, &MousePoint);
+
+	return FVector2D(MousePoint.x, MousePoint.y);
+}
 void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
 {
 	//	예외처리

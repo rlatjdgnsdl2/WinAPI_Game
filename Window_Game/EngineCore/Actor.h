@@ -80,7 +80,7 @@ protected:
 
 private:
 	static void ComponentBeginPlay();
-
+	void ReleaseCheck(float _DeltaTime) override;
 	static bool IsNewActorCreate;
 	static std::list<class UActorComponent*> ComponentList;
 

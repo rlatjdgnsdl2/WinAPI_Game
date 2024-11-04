@@ -52,6 +52,8 @@ public:
 	//	윈도우창 Show함수
 	void Open(std::string_view _TitleName = "Window");
 
+	FVector2D GetMousePos();
+
 
 private:
 	static HINSTANCE hInstance;

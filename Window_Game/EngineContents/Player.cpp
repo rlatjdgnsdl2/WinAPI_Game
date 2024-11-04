@@ -145,7 +145,7 @@ void APlayer::Walk(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * Speed);
 	SetActorLocation(NewLocation);
-	if (CurDuration > 0.5f) 
+	if (CurDuration > 1.0f/Speed) 
 	{
 		CurState = STATE::IDLE;
 	}
