@@ -43,7 +43,7 @@ void APlayer::InitSetting()
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
 	SetActorLocation({ 0,0 });
-	SpriteRenderer->SetComponentLocation(PlayerScale.Half());
+
 }
 void APlayer::AnimationSetting()
 {
