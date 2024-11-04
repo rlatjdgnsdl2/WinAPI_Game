@@ -30,9 +30,25 @@ void APlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	UEngineDebug::CoreOutPutString("PlayerPos : " + GetActorLocation().ToString());
 	UEngineDebug::CoreOutPutString("TargetPos : " + TargetLocation.ToString());
-	KeyCheck(_DeltaTime);
-	Move(_DeltaTime);
+	switch (CurState)
+	{
+	case STATE::IDLE:
+		Idle(_DeltaTime);
+		break;
+	case STATE::WAIK:
+		Walk(_DeltaTime);
+		break;
+	case STATE::ATTACK:
+		break;
+	case STATE::DAMAGE:
+		break;
+	default:
+		break;
+	}
+
+
 	
+
 }
 
 void APlayer::InitSetting()
@@ -85,56 +101,54 @@ void APlayer::AnimationSetting()
 	SpriteRenderer->CreateAnimation("HurtAnim_1", "MulZZangIee_Hurt.png", 14, 15);
 }
 
-void APlayer::KeyCheck(float _DeltaTime)
+void APlayer::Idle(float _DeltaTime)
 {
-	if (true == UEngineInput::GetInst().IsDown('W'))
+	CurDuration = 0.0f;
+
+	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
-		FVector2D ActorLaction = GetActorLocation();
-		TargetLocation = ActorLaction + (FVector2D::UP * 72);
-		SpriteRenderer->ChangeAnimation("WalkAnim_8");
-		SpriteRenderer->SetSpriteScale();
+		CurState = STATE::WAIK;
+		CurDir = DIR::UP;
+		StartLocation = GetActorLocation();
+		TargetLocation = StartLocation + (FVector2D::UP * 72);
 	}
 
-	if (true == UEngineInput::GetInst().IsDown('A'))
+	if (true == UEngineInput::GetInst().IsPress('A'))
 	{
-		FVector2D ActorLaction = GetActorLocation();
-		TargetLocation = ActorLaction + (FVector2D::LEFT * 72);
-		SpriteRenderer->ChangeAnimation("WalkAnim_4");
-		SpriteRenderer->SetSpriteScale();
+		CurState = STATE::WAIK;
+		CurDir = DIR::LEFT;
+		StartLocation = GetActorLocation();
+		TargetLocation = StartLocation + (FVector2D::LEFT * 72);
 	}
 
-	if (true == UEngineInput::GetInst().IsDown('S'))
+	if (true == UEngineInput::GetInst().IsPress('S'))
 	{
-		FVector2D ActorLaction = GetActorLocation();
-		TargetLocation = ActorLaction + (FVector2D::DOWN * 72);
-		SpriteRenderer->ChangeAnimation("WalkAnim_2");
-		SpriteRenderer->SetSpriteScale();
-
+		CurState = STATE::WAIK;
+		CurDir = DIR::DOWN;
+		StartLocation = GetActorLocation();
+		TargetLocation = StartLocation + (FVector2D::DOWN * 72);
 	}
 
-	if (true == UEngineInput::GetInst().IsDown('D'))
+	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
-		FVector2D ActorLaction = GetActorLocation();
-		TargetLocation = ActorLaction + (FVector2D::RIGHT * 72);
-		SpriteRenderer->ChangeAnimation("WalkAnim_6");
-		SpriteRenderer->SetSpriteScale();
-
+		CurState = STATE::WAIK;
+		CurDir = DIR::RIGHT;
+		StartLocation = GetActorLocation();
+		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
 	}
-
-	if (true == UEngineInput::GetInst().IsDown('R'))
-	{
-		SpriteRenderer->ChangeAnimation("AttackAnim_6");
-		SpriteRenderer->SetSpriteScale();
-
-	}
-
 }
 
-void APlayer::Move(float _DeltaTime)
+void APlayer::Walk(float _DeltaTime)
 {
-	FVector2D ActorLoction = GetActorLocation();
-	ActorLoction.Lerp(TargetLocation, _DeltaTime * Speed);
-	SetActorLocation(ActorLoction);
+	CurDuration += _DeltaTime;
+	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
+	SpriteRenderer->SetSpriteScale();
+	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * Speed);
+	SetActorLocation(NewLocation);
+	if (CurDuration > 0.5f) 
+	{
+		CurState = STATE::IDLE;
+	}
 }
 
 

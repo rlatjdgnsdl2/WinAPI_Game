@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+
+
 //	Ό³Έν:
 class APlayer :public AActor
 {
@@ -25,15 +27,21 @@ protected:
 private:
 	class USpriteRenderer* SpriteRenderer;
 
-	FVector2D NewLocation;
+	STATE CurState = STATE::IDLE;
+	DIR CurDir = DIR::DOWN;
+
+
+	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	float Speed = 5.0f;
+	float Speed = 2.0f;
+	float CurDuration = 0.0f;
+	
 
 
 	void InitSetting();
 	void AnimationSetting();
-	void KeyCheck(float _DeltaTime);
-	void Move(float _DeltaTime);
+	void Idle(float _DeltaTime);
+	void Walk(float _DeltaTime);
 	
 
 	

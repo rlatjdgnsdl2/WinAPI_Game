@@ -59,9 +59,13 @@ void ATileMap::Tick(float _DeltaTime)
 	{
 		testNumX++;
 	}
-	if (UEngineInput::GetInst().IsDown('F'))
+	if (UEngineInput::GetInst().IsDown('Q'))
 	{
 		SetTile(testNumX, testNumY, "_Ground.png");
+	}
+	if (UEngineInput::GetInst().IsDown('E'))
+	{
+		SetTile(testNumX, testNumY, "_Wall.png");
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
