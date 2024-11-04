@@ -15,7 +15,7 @@ public:
 	UDungeonGenerator& operator=(const UDungeonGenerator& _Other) = delete;
 	UDungeonGenerator& operator=(UDungeonGenerator&& _Other) noexcept = delete;
 
-	virtual void GenerateDungeon(class ADungeon* _Dungeon);
+	virtual void GenerateDungeon(class ATileMap* _Dungeon);
 	
 	virtual void SetAllWall();
 	virtual void SetRandomSizeRoom()=0;
@@ -24,7 +24,7 @@ public:
 
 
 protected:
-	class ADungeon* Dungeon = nullptr;
+	class ATileMap* Dungeon = nullptr;
 
 private:
 	

@@ -54,6 +54,7 @@ public:
 		return sqrtf(X * X + Y * Y);
 	}
 
+	// 임시
 	float lerp(float a, float b, float t) {
 		return a + t * (b - a);
 	}
@@ -99,13 +100,13 @@ public:
 	}
 
 	//	임시
-	FVector2D Lerp(FVector2D _TargetLocation, float _t)
-    {
-      
-        float NewX = X + _t * (_TargetLocation.X - X);
-        float NewY = Y + _t * (_TargetLocation.Y - Y);
-        return FVector2D{NewX, NewY};
-    }
+	void Lerp(FVector2D _TargetLocation, float _t)
+	{
+
+		X += _t * (_TargetLocation.X - X);
+		Y += _t * (_TargetLocation.Y - Y);
+
+	}
 
 
 	FVector2D operator+(FVector2D _Other) const

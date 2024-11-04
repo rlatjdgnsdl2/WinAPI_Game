@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Dungeon.h"
+#include "TileMap.h"
 
 #include <EngineCore/GameMode.h>
 //	Ό³Έν:
@@ -30,7 +30,7 @@ protected:
 private:
 	static std::string CurGeneratorName;
 	static std::string CurDungeonName;
-	ADungeon* Dungeon = nullptr;
+	ATileMap* Dungeon = nullptr;
 
 	std::map<std::string, class UDungeonGenerator* >  GeneratorMaps;
 };

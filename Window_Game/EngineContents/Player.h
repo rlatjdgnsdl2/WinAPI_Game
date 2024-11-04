@@ -24,11 +24,17 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
+
+	FVector2D NewLocation;
+	FVector2D TargetLocation;
+	float Speed = 5.0f;
+
+
 	void InitSetting();
 	void AnimationSetting();
-	void KeySetting(float _DeltaTime);
+	void KeyCheck(float _DeltaTime);
+	void Move(float _DeltaTime);
 	
-	float CurTime = 0.0f;
 
 	
 

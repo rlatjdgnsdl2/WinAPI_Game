@@ -5,7 +5,7 @@
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineAPICore.h>
 
-#include "Dungeon.h"
+#include "TileMap.h"
 #include "DungeonGenerator.h"
 #include "TutorialGenerator.h"
 
@@ -31,10 +31,11 @@ ADungeonGameMode::~ADungeonGameMode()
 		GeneratorMaps.clear();
 	}
 }
+
 void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	Dungeon = GetWorld()->SpawnActor<ADungeon>();
+	Dungeon = GetWorld()->SpawnActor<ATileMap>();
 
 }
 void ADungeonGameMode::Tick(float _DeltaTime)

@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "Dungeon.h"
+#include "TileMap.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/ImageManager.h>
 #include <EnginePlatform/EngineInput.h>
@@ -7,39 +7,39 @@
 
 #include "PMDContentsCore.h"
 
-ADungeon::ADungeon()
+ATileMap::ATileMap()
 {
-	TileMap.resize(40, std::vector<USpriteRenderer*>(60, nullptr));
+	Tiles.resize(40, std::vector<Tile>(60));
+}
+ATileMap::~ATileMap()
+{
+
+}
+void ATileMap::BeginPlay()
+{
+	Super::BeginPlay();
+	SetActorLocation({ 0,0 });
+	//	다 벽으로
+	InitTileMap();
 }
 
-ADungeon::~ADungeon()
-{
-
-}
-void ADungeon::BeginPlay()
-{
-	for (int y = 0; y < 40; y++)
-	{
-		for (int x = 0; x < 60; x++)
-		{
-			TileMap[y][x] = CreateTile(x, y, CurDungeonName + "_Wall.png");
-		}
-	}
-}
-
-USpriteRenderer* ADungeon::CreateTile(int _col, int _row, std::string_view _SpriteName)
+USpriteRenderer* ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName)
 {
 	USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 	SpriteRenderer->SetSprite(_SpriteName, 4);
+	SpriteRenderer->SetComponentLocation({ (_x ) * _Scale.X,(_y ) * _Scale.Y });
 	SpriteRenderer->SetSpriteScale(1.0f);
-	SpriteRenderer->SetComponentLocation({ _col * 72,_row * 72 });
+	FVector2D TileLocation = SpriteRenderer->GetComponentLocation();
+	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation - _Scale);
 	return SpriteRenderer;
 }
 
 
-void ADungeon::Tick(float _DeltaTime)
+void ATileMap::Tick(float _DeltaTime)
 {
+	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::CoreOutPutString("TileMapPos : " + GetActorLocation().ToString());
 	UEngineDebug::CoreOutPutString("x : " + std::to_string(testNumX));
 	UEngineDebug::CoreOutPutString("Y : " + std::to_string(testNumY));
 
@@ -65,43 +65,54 @@ void ADungeon::Tick(float _DeltaTime)
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
-		CheckTile("BeachCave_Wall.png");
-		//SetAllWall();
+		CheckTile();
 	}
 }
 
 
-void ADungeon::SetTile(int _col, int _row, std::string_view _TileType)
+void ATileMap::SetTile(int _col, int _row, std::string_view _TileType)
 {
-	TileMap[_row][_col]->SetSprite(CurDungeonName + _TileType.data(), 0);
+	Tiles[_row][_col].TileMapRenderer->SetSprite(CurDungeonName + _TileType.data(), 0);
 }
 
-void ADungeon::CheckTile(std::string_view _SpriteName)
+void ATileMap::InitTileMap()
 {
+	for (int y = 0; y < 40; y++)
+	{
+		for (int x = 0; x < 60; x++)
+		{
+			Tiles[y][x].TileMapRenderer = CreateTile(x, y, FVector2D(72, 72), CurDungeonName + "_Wall.png");
+		}
+	}
+}
 
+void ATileMap::CheckTile()
+{
 	for (int _y = 0; _y < 40; _y++)
 	{
 		for (int _x = 0; _x < 60; _x++)
 		{
-			if (nullptr != TileMap[_y][_x]) {
+			if (nullptr != Tiles[_y][_x].TileMapRenderer) {
 
 				if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
 				{
 					//	가장자리는 벽으로
-					TileMap[_y][_x]->SetSprite(_SpriteName, 4);
+					Tiles[_y][_x].TileMapRenderer->SetSprite(CurDungeonName + "_Wall.png", 4);
 				}
 				else
 				{
 					//	타일체크
 					//	현재타일이름
-					std::string SpriteName = TileMap[_y][_x]->GetCurSpriteName();
+					std::string SpriteName = Tiles[_y][_x].TileMapRenderer->GetCurSpriteName();
+
+
 					std::string FindKey = "";
 					for (int i = -1; i <= 1; i++)
 					{
 						for (int j = -1; j <= 1; j++)
 						{
-
-							std::string CompareName = TileMap[_y + i][_x + j]->GetCurSpriteName();
+							std::string CompareName = Tiles[_y + i][_x + j].TileMapRenderer->GetCurSpriteName();
+							//	주위타일과 타일이름을 비교해서 키값생성
 							if (SpriteName == CompareName) {
 								FindKey += "1";
 							}
@@ -111,33 +122,12 @@ void ADungeon::CheckTile(std::string_view _SpriteName)
 						}
 					}
 					int SpriteIndex = PMDContentsCore::GetTileIndex(FindKey);
-					TileMap[_y][_x]->SetSprite(SpriteName, SpriteIndex);
+					Tiles[_y][_x].TileMapRenderer->SetSprite(SpriteName, SpriteIndex);
 				}
 			}
 		}
 	}
 }
 
-
-void ADungeon::SetAllWall()
-{
-	for (int y = 0; y < 40; y++)
-	{
-		for (int x = 0; x < 60; x++)
-		{
-			TileMap[y][x]->SetSprite((CurDungeonName + "_Wall.png"), 4);
-		}
-	}
-}
-
-void ADungeon::SetRandomSizeRoom()
-{
-
-}
-
-void ADungeon::SetRandomHallWay()
-{
-
-}
 
 
