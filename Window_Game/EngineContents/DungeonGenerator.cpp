@@ -11,18 +11,21 @@ UDungeonGenerator::UDungeonGenerator()
 }
 UDungeonGenerator::~UDungeonGenerator() 
 {
-	Dungeon = nullptr;
+	
 }
 
-void UDungeonGenerator::GenerateDungeon(class ATileMap* _Dungeon)
+void UDungeonGenerator::GenerateDungeon(std::string_view _CurDungeonName, ATileMap* _Dungeon)
 {
-	Dungeon = _Dungeon;
-	SetAllWall();
-	SetRandomSizeRoom();
-	SetRandomHallWay();
+	
+	
 }
 
 void UDungeonGenerator::SetAllWall()
+{
+}
+	
+
+void UDungeonGenerator::CheckTile()
 {
 	
 }

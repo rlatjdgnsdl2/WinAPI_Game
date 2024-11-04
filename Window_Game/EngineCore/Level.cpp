@@ -57,7 +57,7 @@ void ULevel::LevelChangeStart()
 		{
 			AActor* CurActor = *StartIter;
 
-			// 이건 꺼진애도 호출됩니다.
+			
 			CurActor->LevelChangeStart();
 		}
 	}

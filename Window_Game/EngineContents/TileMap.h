@@ -35,6 +35,7 @@ public:
 
 	void SetTile(int _col, int _row, std::string_view _TileType);
 	void InitTileMap();
+	void SetAllWall();
 	void CheckTile();
 
 

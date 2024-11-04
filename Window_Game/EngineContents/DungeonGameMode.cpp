@@ -15,6 +15,7 @@ ADungeonGameMode::ADungeonGameMode()
 {
 	UTutorialGenerator* TutorialGenerator = new UTutorialGenerator();
 	GeneratorMaps.insert({"Tutorial",TutorialGenerator});
+	
 }
 
 ADungeonGameMode::~ADungeonGameMode() 
@@ -36,24 +37,27 @@ void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	Dungeon = GetWorld()->SpawnActor<ATileMap>();
+	GenerateDungeon("BeachCave", "Tutorial");
 
 }
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	//Dungeon->SetTile(0, 0, "_Ground.png");
 }
 
 void ADungeonGameMode::LevelChangeStart()
 {
-	Super::LevelChangeEnd();
-	GenerateDungeon(CurDungeonName,CurGeneratorName);
+	Super::LevelChangeStart();
+	GenerateDungeon("BeachCave", "Tutorial");
 	
 }
 
 void ADungeonGameMode::GenerateDungeon(std::string_view _DungeonName, std::string_view _GeneratorName)
 {
-	UDungeonGenerator* DungeonGenerator = GeneratorMaps[_GeneratorName.data()];
-	DungeonGenerator->GenerateDungeon(Dungeon);
+	GeneratorMaps[_GeneratorName.data()]->GenerateDungeon(_DungeonName, Dungeon);
+	
+	int a = 0;
 }
 
 void ADungeonGameMode::SetCurDungeonName(std::string_view _DungeonName)

@@ -15,8 +15,8 @@ public:
 	UTutorialGenerator& operator=(const UTutorialGenerator& _Other) = delete;
 	UTutorialGenerator& operator=(UTutorialGenerator&& _Other) noexcept = delete;
 
-	void SetRandomSizeRoom() override;
 	void SetRandomHallWay() override;
+	void SetRandomSizeRoom() override;
 
 protected:
 

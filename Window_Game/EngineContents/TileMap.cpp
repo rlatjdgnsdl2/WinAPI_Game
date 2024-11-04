@@ -10,6 +10,8 @@
 ATileMap::ATileMap()
 {
 	Tiles.resize(40, std::vector<Tile>(60));
+	SetActorLocation({ 0,0 });
+	InitTileMap();
 }
 ATileMap::~ATileMap()
 {
@@ -28,7 +30,7 @@ USpriteRenderer* ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::str
 	USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 	SpriteRenderer->SetSprite(_SpriteName, 4);
-	SpriteRenderer->SetComponentLocation({ (_x ) * _Scale.X,(_y ) * _Scale.Y });
+	SpriteRenderer->SetComponentLocation({ (_x)*_Scale.X,(_y)*_Scale.Y });
 	SpriteRenderer->SetSpriteScale(1.0f);
 	FVector2D TileLocation = SpriteRenderer->GetComponentLocation();
 	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation - _Scale);
@@ -71,12 +73,18 @@ void ATileMap::Tick(float _DeltaTime)
 	if (UEngineInput::GetInst().IsDown('Y')) {
 		CheckTile();
 	}
+	if (UEngineInput::GetInst().IsDown('T')) {
+		SetAllWall();
+	}
 }
 
 
 void ATileMap::SetTile(int _col, int _row, std::string_view _TileType)
 {
-	Tiles[_row][_col].TileMapRenderer->SetSprite(CurDungeonName + _TileType.data(), 0);
+	if (0 <= _col && 0 <= _row && 60>_col &&40>_row) {
+
+		Tiles[_row][_col].TileMapRenderer->SetSprite(CurDungeonName + _TileType.data(), 4);
+	}
 }
 
 void ATileMap::InitTileMap()
@@ -86,6 +94,17 @@ void ATileMap::InitTileMap()
 		for (int x = 0; x < 60; x++)
 		{
 			Tiles[y][x].TileMapRenderer = CreateTile(x, y, FVector2D(72, 72), CurDungeonName + "_Wall.png");
+		}
+	}
+}
+
+void ATileMap::SetAllWall()
+{
+	for (int y = 0; y < 40; y++)
+	{
+		for (int x = 0; x < 60; x++)
+		{
+			SetTile(x, y, "_Wall.png");
 		}
 	}
 }
@@ -115,6 +134,9 @@ void ATileMap::CheckTile()
 					{
 						for (int j = -1; j <= 1; j++)
 						{
+							if (0 <= _y+i && 0 <= _x+j && 60 > _x+j && 40 > _y+i) {
+
+							}
 							std::string CompareName = Tiles[_y + i][_x + j].TileMapRenderer->GetCurSpriteName();
 							//	주위타일과 타일이름을 비교해서 키값생성
 							if (SpriteName == CompareName) {

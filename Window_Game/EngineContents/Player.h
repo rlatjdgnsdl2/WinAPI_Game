@@ -30,6 +30,8 @@ private:
 	STATE CurState = STATE::IDLE;
 	DIR CurDir = DIR::DOWN;
 
+	
+
 
 	FVector2D StartLocation;
 	FVector2D TargetLocation;

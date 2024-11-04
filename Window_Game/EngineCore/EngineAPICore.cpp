@@ -103,5 +103,5 @@ void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 		MSGASSERT(ChangeName + "라는 이름의 레벨은 존재하지 않습니다.");
 		return;
 	}
-	CurLevel = FindIter->second;
+	NextLevel = FindIter->second;
 }
