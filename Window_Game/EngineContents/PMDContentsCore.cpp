@@ -30,7 +30,8 @@ void PMDContentsCore::BeginPlay()
 	CreateLevel();
 
 	//	처음 레벨 입장
-	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 }
 void PMDContentsCore::Tick()
 {
