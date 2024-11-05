@@ -36,25 +36,22 @@ public:
 	void InitTileMap();
 	void SetTile(int _col, int _row, std::string_view _TileType);
 
-	FIntPoint GetTileCount() {
-		return DungeonSize;
-	}
-	FVector2D GetTileLocation(int _x, int _y) {
-		FVector2D TileLocation = Tiles[_y][_x].TileTrans.Location;
-		return TileLocation;
-	}
-	class USpriteRenderer* GetSpriteRenderer(int _x, int _y) 
-	{
-		return Tiles[_y][_x].SpriteRenderer;
-	}
-	void CheckTile();
 	void SetAllWall();
+	void SetHallWay();
+	void SetRoom();
+	void SetBorderWall();
+	void CheckTile();
+
 
 protected:
 
 private:
 	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
 	std::vector <std::vector<Tile>> Tiles;
+	std::vector<FIntPoint>AllGrounds;
+
+
+
 	FIntPoint DungeonSize = { 60,40 };
 	FVector2D TileSize = { 72,72 };
 

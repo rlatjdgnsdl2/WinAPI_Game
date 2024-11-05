@@ -1,10 +1,12 @@
 #include "PreCompile.h"
 #include "TileMap.h"
+
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/ImageManager.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 
+#include <EngineBase/EngineRandom.h>
 #include "PMDContentsCore.h"
 #include "DungeonGameMode.h"
 
@@ -111,6 +113,79 @@ void ATileMap::Tick(float _DeltaTime)
 
 
 
+
+void ATileMap::SetHallWay()
+{
+	UEngineRandom random;
+	FIntPoint PreAnchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));;
+
+	for (int j = 0; j < 10; j++)
+	{
+		FIntPoint Anchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));
+		FIntPoint Distance = PreAnchor - Anchor;
+
+		while (std::abs(Distance.X) < 4 || std::abs(Distance.Y) < 4)
+		{
+			Anchor = FIntPoint(random.RandomInt(5, 53), random.RandomInt(5, 33));
+			Distance = PreAnchor - Anchor;
+		}
+
+		if (Distance.Y > 0) {
+			for (int i = 0; i < Distance.Y; i++)
+			{
+				SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+			}
+		}
+		//	pre가 위에 있다면
+		else if (Distance.Y < 0) {
+			for (int i = 0; i > Distance.Y; i--)
+			{
+				SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+			}
+		}
+		//	pre가 오른쪽에 있다면
+		if (Distance.X > 0) {
+			for (int i = 0; i < Distance.X; i++)
+			{
+				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+			}
+		}
+		//	pre가 왼쪽에 있다면
+		else if (Distance.X < 0) {
+			for (int i = 0; i > Distance.X; i--)
+			{
+				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+			}
+		}
+		PreAnchor = Anchor;
+	}
+
+
+
+
+
+}
+
+void ATileMap::SetRoom()
+{
+	
+}
+
+void ATileMap::SetBorderWall()
+{
+	
+	for (int _y = 0; _y < DungeonSize.Y; _y++)
+	{
+		for (int _x = 0; _x < DungeonSize.X; _x++)
+		{
+			if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
+			{
+				//	가장자리는 벽으로
+				SetTile(_x, _y, "_Wall.png");
+			}
+		}
+	}
+}
 
 void ATileMap::CheckTile()
 {

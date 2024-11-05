@@ -21,16 +21,8 @@ public:
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
 	
-
-
 	void GenerateDungeon();
-	void SetAllWall();
-	void SetRandomHallWay();
-	void SetRandomSizeRoom();
-	void SetborderWall();
-	void CheckTile();
-
-
+	
 	static void SetCurDungeonName(std::string_view _DungeonName);
 	
 	static std::string GetCurDungeonName() 
