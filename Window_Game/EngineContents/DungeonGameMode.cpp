@@ -9,12 +9,8 @@
 
 #include "TileMap.h"
 
-
-
-
 ADungeonGameMode::ADungeonGameMode()
 {
-
 
 }
 
@@ -26,8 +22,6 @@ ADungeonGameMode::~ADungeonGameMode()
 void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-
-
 }
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
@@ -48,8 +42,11 @@ void ADungeonGameMode::LevelChangeStart()
 void ADungeonGameMode::GenerateDungeon()
 {
 	Dungeon->SetAllWall();
+
 	Dungeon->SetHallWay();
 	Dungeon->SetRoom();
+
+
 	Dungeon->SetBorderWall();
 	Dungeon->SetNaturally();
 }

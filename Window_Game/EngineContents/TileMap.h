@@ -2,11 +2,7 @@
 #include <EngineCore/Actor.h>
 
 
-enum class TILETYPE {
-	GROUND = 0,
-	WALL,
-	SOFTWALL
-};
+
 
 //	Ό³Έν:
 class ATileMap : public AActor
@@ -56,6 +52,7 @@ private:
 	std::vector<FIntPoint>AllGround;
 	bool IsRoomOverlap(const FIntPoint& pos, const FIntPoint& size, const std::vector<FTransform>& rooms);
 
+	const int BoderSize = 5;
 	FIntPoint DungeonSize = { 60,40 };
 	FVector2D TileSize = { 72,72 };
 

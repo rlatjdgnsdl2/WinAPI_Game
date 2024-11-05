@@ -46,10 +46,6 @@ void APlayer::Tick(float _DeltaTime)
 	default:
 		break;
 	}
-
-
-
-
 }
 
 void APlayer::InitSetting()
@@ -148,6 +144,7 @@ void APlayer::Idle(float _DeltaTime)
 		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
 	}
 }
+
 
 void APlayer::Walk(float _DeltaTime)
 {

@@ -10,6 +10,13 @@ enum class ERenderOrder
 };
 
 
+enum class TILETYPE {
+	GROUND = 0,
+	WALL,
+	WATER
+};
+
+
 enum class STATE 
 {
 	IDLE,
