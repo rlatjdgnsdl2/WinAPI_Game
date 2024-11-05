@@ -21,6 +21,13 @@ public:
 
 	HDC GetDC() { return ImageDC; }
 	FVector2D GetImageScale() const { return { Info.bmWidth, Info.bmHeight }; }
+	UColor GetColor(FVector2D _Point, UColor _DefaultColor = UColor::WHITE)
+	{
+		return GetColor(_Point.ConvertToPoint(), _DefaultColor);
+	}
+
+	UColor GetColor(FIntPoint _Point, UColor _DefaultColor);
+
 
 	//	이미 만들어진 DC를 이미지의 HDC로 설정
 	void Create(HDC _DC) { ImageDC = _DC; }

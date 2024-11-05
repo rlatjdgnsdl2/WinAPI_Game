@@ -33,24 +33,30 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void SetTile(int _col, int _row, std::string_view _TileType);
 	void InitTileMap();
+	void SetTile(int _col, int _row, std::string_view _TileType);
+
+	FIntPoint GetTileCount() {
+		return DungeonSize;
+	}
+	FVector2D GetTileLocation(int _x, int _y) {
+		FVector2D TileLocation = Tiles[_y][_x].TileTrans.Location;
+		return TileLocation;
+	}
+	class USpriteRenderer* GetSpriteRenderer(int _x, int _y) 
+	{
+		return Tiles[_y][_x].SpriteRenderer;
+	}
 	void CheckTile();
-
-
+	void SetAllWall();
 
 protected:
 
 private:
-	void SetTileMapData(std::string_view _CurDungeonName, FIntPoint _Count, FVector2D _TileSize);
 	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
-
 	std::vector <std::vector<Tile>> Tiles;
-	std::string CurDungeonName = "BeachCave";
-	FIntPoint TileCount = { 60,40 };
+	FIntPoint DungeonSize = { 60,40 };
 	FVector2D TileSize = { 72,72 };
-
-
 
 	int testNumX = 0;
 	int	testNumY = 0;

@@ -20,19 +20,34 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
-	void GenerateDungeon(std::string_view _DungeonName, std::string_view _GeneratorName);
+	
+
+
+	void GenerateDungeon();
+	void SetAllWall();
+	void SetRandomHallWay();
+	void SetRandomSizeRoom();
+	void SetborderWall();
+	void CheckTile();
+
 
 	static void SetCurDungeonName(std::string_view _DungeonName);
-	static void SetCurGeneratorName(std::string_view _GeneratorName);
+	
+	static std::string GetCurDungeonName() 
+	{
+		return CurDungeonName;
+	};
+	
 
 protected:
 
 private:
-	static std::string CurGeneratorName;
-	static std::string CurDungeonName;
-
 	class ATileMap* Dungeon;
+	static inline std::string CurDungeonName = "BeachCave";
+	static std::vector<std::vector<FVector2D>> AllGrounds;
+	
+	
 
-	std::map<std::string, class UDungeonGenerator* > GeneratorMaps;
+
 };
 

@@ -73,6 +73,14 @@ public:
 		// ºÎ¸ðµµ        true            true
 		return UObject::IsDestroy() || GetActor()->IsDestroy();
 	}
+	void SetCameraEffect(bool _Value)
+	{
+		IsCameraEffect = _Value;
+	}
+
+	void SetCameraEffectScale(float _Effect);
+	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+
 
 	
 
@@ -106,7 +114,8 @@ protected:
 private:
 	int Order = 0;
 	int CurIndex = 0;
-
+	bool IsCameraEffect = true;
+	float CameraEffectScale = 1.0f;
 	
 
 	class UEngineSprite* Sprite = nullptr;

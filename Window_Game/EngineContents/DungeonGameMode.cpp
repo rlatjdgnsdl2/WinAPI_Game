@@ -4,68 +4,151 @@
 #include <EngineBase/EngineDirectory.h>
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineAPICore.h>
+#include <EngineBase/EngineRandom.h>
+#include <EngineCore/SpriteRenderer.h>
 
 #include "TileMap.h"
-#include "DungeonGenerator.h"
-#include "TutorialGenerator.h"
 
-std::string ADungeonGameMode::CurGeneratorName;
-std::string ADungeonGameMode::CurDungeonName;
+
+
+
+std::vector<std::vector<FVector2D>> ADungeonGameMode::AllGrounds;
 ADungeonGameMode::ADungeonGameMode() 
 {
-	UTutorialGenerator* TutorialGenerator = new UTutorialGenerator();
-	GeneratorMaps.insert({"Tutorial",TutorialGenerator});
+	Dungeon = GetWorld()->SpawnActor<ATileMap>();
+	
 	
 }
 
 ADungeonGameMode::~ADungeonGameMode() 
 {
-	std::map<std::string, UDungeonGenerator* > ::iterator StartIter = GeneratorMaps.begin();
-	std::map<std::string, UDungeonGenerator* > ::iterator EndIter = GeneratorMaps.end();
-	for (; StartIter != EndIter; StartIter++)
-	{
-		if (nullptr != StartIter->second)
-		{
-			delete StartIter->second;
-			StartIter->second = nullptr;
-		}
-		GeneratorMaps.clear();
-	}
+
 }
 
 void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	Dungeon = GetWorld()->SpawnActor<ATileMap>();
-	GenerateDungeon("BeachCave", "Tutorial");
+	GenerateDungeon();
 
 }
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//Dungeon->SetTile(0, 0, "_Ground.png");
 }
 
 void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	GenerateDungeon("BeachCave", "Tutorial");
+	GenerateDungeon();
 	
 }
 
-void ADungeonGameMode::GenerateDungeon(std::string_view _DungeonName, std::string_view _GeneratorName)
+
+void ADungeonGameMode::GenerateDungeon()
 {
-	GeneratorMaps[_GeneratorName.data()]->GenerateDungeon(_DungeonName, Dungeon);
+	SetAllWall();
+	SetRandomHallWay();
+	SetborderWall();
+	CheckTile();
+}
+
+void ADungeonGameMode::SetAllWall()
+{
+	Dungeon->SetAllWall();
+}
+
+void ADungeonGameMode::SetRandomHallWay()
+{
+	UEngineRandom random;
+	FIntPoint PreAnchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));;
+
+	for (int j = 0; j < 10; j++)
+	{
+		FIntPoint Anchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));
+		FIntPoint Distance = PreAnchor - Anchor;
+
+		while (std::abs(Distance.X) < 4 || std::abs(Distance.Y) < 4)
+		{
+			Anchor = FIntPoint(random.RandomInt(5, 53), random.RandomInt(5, 33));
+			Distance = PreAnchor - Anchor;
+		}
+
+		if (Distance.Y > 0) {
+			for (int i = 0; i < Distance.Y; i++)
+			{
+				Dungeon->SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+			}
+		}
+		//	pre가 위에 있다면
+		else if (Distance.Y < 0) {
+			for (int i = 0; i > Distance.Y; i--)
+			{
+				Dungeon->SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+			}
+		}
+		//	pre가 오른쪽에 있다면
+		if (Distance.X > 0) {
+			for (int i = 0; i < Distance.X; i++)
+			{
+				Dungeon->SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+			}
+		}
+		//	pre가 왼쪽에 있다면
+		else if (Distance.X < 0) {
+			for (int i = 0; i > Distance.X; i--)
+			{
+				Dungeon->SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+			}
+		}
+		PreAnchor = Anchor;
+	}
+	FIntPoint DungeonSize = Dungeon->GetTileCount();
+	for (int _y = 0; _y < DungeonSize.Y; _y++)
+	{
+		for (int _x = 0; _x < DungeonSize.X; _x++)
+		{
+			
+			std::string SpriteName = Dungeon->GetSpriteRenderer(_x, _y)->GetCurSpriteName();
+			int Index = SpriteName.find('_');
+			std::string FindName = SpriteName.substr(Index);
+			if ("_Ground.png" == FindName) {
+				FVector2D GroundLocation = Dungeon->GetTileLocation(_x,_y);
+				//AllGrounds.push_back(GroundLocation);
+			}
+
+		}
+	}
+}
+
+void ADungeonGameMode::SetRandomSizeRoom()
+{
 	
-	int a = 0;
 }
 
-void ADungeonGameMode::SetCurDungeonName(std::string_view _DungeonName)
+void ADungeonGameMode::SetborderWall()
 {
-	CurDungeonName = _DungeonName.data();
+	FIntPoint DungeonSize = Dungeon->GetTileCount();
+	for (int _y = 0; _y < DungeonSize.Y; _y++)
+	{
+		for (int _x = 0; _x < DungeonSize.X; _x++)
+		{
+			if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
+			{
+				//	가장자리는 벽으로
+				Dungeon->SetTile(_x, _y, "_Wall.png");
+			}
+		}
+	}
 }
 
-void ADungeonGameMode::SetCurGeneratorName(std::string_view _GeneratorName)
+void ADungeonGameMode::CheckTile()
 {
-	CurGeneratorName = _GeneratorName.data();
+	Dungeon->CheckTile();
 }
+
+
+
+
+
+
+

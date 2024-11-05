@@ -21,3 +21,11 @@ FVector2D FVector2D::LerpClimp(FVector2D _StartLocation, FVector2D _TargetLocati
 
 	return FVector2D(_StartLocation.X + _t * (_TargetLocation.X - _StartLocation.X), _StartLocation.Y + _t * (_TargetLocation.Y - _StartLocation.Y));
 }
+
+const UColor UColor::WHITE = { 255, 255, 255, 0 };
+const UColor UColor::BLACK = { 0, 0, 0, 0 };
+
+FIntPoint FVector2D::ConvertToPoint() const
+{
+	return { iX(), iY() };
+}

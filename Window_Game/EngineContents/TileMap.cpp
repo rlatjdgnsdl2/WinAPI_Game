@@ -6,10 +6,13 @@
 #include <EngineCore/EngineCoreDebug.h>
 
 #include "PMDContentsCore.h"
+#include "DungeonGameMode.h"
 
 ATileMap::ATileMap()
 {
-	Tiles.resize(TileCount.Y, std::vector<Tile>(TileCount.X));
+	Tiles.resize(DungeonSize.Y, std::vector<Tile>(DungeonSize.X));
+	InitTileMap();
+	SetActorLocation({ 0,0 });
 }
 ATileMap::~ATileMap()
 {
@@ -18,19 +21,7 @@ ATileMap::~ATileMap()
 void ATileMap::BeginPlay()
 {
 	Super::BeginPlay();
-	InitTileMap();
-	SetActorLocation({ 0,0 });
-}
 
-
-
-void ATileMap::SetTileMapData(std::string_view _CurDungeonName, FIntPoint _Count, FVector2D _TileSize)
-{
-	CurDungeonName = _CurDungeonName;
-	TileCount = _Count;
-	TileSize = _TileSize;
-	Tiles.resize(TileCount.Y, std::vector<Tile>(TileCount.X));
-	SetActorLocation({ 0,0 });	
 }
 
 void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName)
@@ -46,6 +37,37 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 	Tiles[_y][_x].SpriteRenderer->SetSpriteScale(1.0f);
 	FVector2D TileLocation = Tiles[_y][_x].SpriteRenderer->GetComponentLocation();
 	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation - _Scale);
+}
+
+void ATileMap::InitTileMap()
+{
+	for (int y = 0; y < 40; y++)
+	{
+		for (int x = 0; x < 60; x++)
+		{
+			CreateTile(x, y, FVector2D(72, 72), ADungeonGameMode::GetCurDungeonName() + "_Wall.png");
+		}
+	}
+}
+
+void ATileMap::SetTile(int _col, int _row, std::string_view _TileType)
+{
+	if (0 <= _col && 0 <= _row && 60 > _col && 40 > _row) {
+
+		Tiles[_row][_col].SpriteRenderer->SetSprite(ADungeonGameMode::GetCurDungeonName() + _TileType.data(), 4);
+	}
+}
+
+
+void ATileMap::SetAllWall()
+{
+	for (int _y = 0; _y < DungeonSize.Y; _y++)
+	{
+		for (int _x = 0; _x < DungeonSize.X; _x++)
+		{
+			SetTile(_x, _y, "_Wall.png");
+		}
+	}
 }
 
 
@@ -90,28 +112,6 @@ void ATileMap::Tick(float _DeltaTime)
 
 
 
-
-void ATileMap::InitTileMap()
-{
-	for (int y = 0; y < 40; y++)
-	{
-		for (int x = 0; x < 60; x++)
-		{
-			CreateTile(x, y, FVector2D(72, 72), CurDungeonName + "_Wall.png");
-		}
-	}
-}
-
-void ATileMap::SetTile(int _col, int _row, std::string_view _TileType)
-{
-	if (0 <= _col && 0 <= _row && 60 > _col && 40 > _row) {
-
-		Tiles[_row][_col].SpriteRenderer->SetSprite(CurDungeonName + _TileType.data(), 4);
-		Tiles[_row][_col].SpriteRenderer->SetSpriteScale();
-	}
-}
-
-
 void ATileMap::CheckTile()
 {
 	for (int _y = 0; _y < 40; _y++)
@@ -120,18 +120,11 @@ void ATileMap::CheckTile()
 		{
 			if (nullptr != Tiles[_y][_x].SpriteRenderer) {
 
-				if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
-				{
-					//	가장자리는 벽으로
-					Tiles[_y][_x].SpriteRenderer->SetSprite(CurDungeonName + "_Wall.png", 4);
-				}
-				else
+				if (_y > 1 && _x > 1 && _y < 38 && _x < 58)
 				{
 					//	타일체크
 					//	현재타일이름
 					std::string SpriteName = Tiles[_y][_x].SpriteRenderer->GetCurSpriteName();
-
-
 					std::string FindKey = "";
 					for (int i = -1; i <= 1; i++)
 					{

@@ -35,7 +35,7 @@ private:
 
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	float Speed = 2.0f;
+	float Speed = 10.0f;
 	float CurDuration = 0.0f;
 	
 
