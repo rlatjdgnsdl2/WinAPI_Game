@@ -36,7 +36,6 @@ protected:
 private:
 	class ATileMap* Dungeon;
 	static inline std::string CurDungeonName = "BeachCave";
-	static std::vector<std::vector<FVector2D>> AllGrounds;
 	
 	
 

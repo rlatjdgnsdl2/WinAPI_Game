@@ -10,9 +10,13 @@
 #include "PMDContentsCore.h"
 #include "DungeonGameMode.h"
 
+std::vector<std::vector<TILETYPE>> ATileMap::AllTileTypes;
+std::vector<FTransform>ATileMap::Rooms;
+
 ATileMap::ATileMap()
 {
 	Tiles.resize(DungeonSize.Y, std::vector<Tile>(DungeonSize.X));
+	AllTileTypes.resize(DungeonSize.Y, std::vector<TILETYPE>(DungeonSize.X));
 	InitTileMap();
 	SetActorLocation({ 0,0 });
 }
@@ -40,6 +44,8 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 	FVector2D TileLocation = Tiles[_y][_x].SpriteRenderer->GetComponentLocation();
 	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation - _Scale);
 }
+
+
 
 void ATileMap::InitTileMap()
 {
@@ -106,9 +112,9 @@ void ATileMap::Tick(float _DeltaTime)
 	}
 
 	if (UEngineInput::GetInst().IsDown('Y')) {
-		CheckTile();
+		SetNaturally();
 	}
-	
+
 }
 
 
@@ -118,22 +124,20 @@ void ATileMap::SetHallWay()
 {
 	UEngineRandom random;
 	FIntPoint PreAnchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));;
+	AllGround.push_back(PreAnchor);
 
 	for (int j = 0; j < 10; j++)
 	{
 		FIntPoint Anchor = FIntPoint(random.RandomInt(5, 54), random.RandomInt(5, 34));
+		AllGround.push_back(Anchor);
 		FIntPoint Distance = PreAnchor - Anchor;
-
-		while (std::abs(Distance.X) < 4 || std::abs(Distance.Y) < 4)
-		{
-			Anchor = FIntPoint(random.RandomInt(5, 53), random.RandomInt(5, 33));
-			Distance = PreAnchor - Anchor;
-		}
 
 		if (Distance.Y > 0) {
 			for (int i = 0; i < Distance.Y; i++)
 			{
 				SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+				
+				AllGround.push_back(FIntPoint(Anchor.X, Anchor.Y + i));
 			}
 		}
 		//	pre가 위에 있다면
@@ -141,6 +145,7 @@ void ATileMap::SetHallWay()
 			for (int i = 0; i > Distance.Y; i--)
 			{
 				SetTile(Anchor.X, Anchor.Y + i, "_Ground.png");
+				AllGround.push_back(FIntPoint(Anchor.X, Anchor.Y + i));
 			}
 		}
 		//	pre가 오른쪽에 있다면
@@ -148,6 +153,7 @@ void ATileMap::SetHallWay()
 			for (int i = 0; i < Distance.X; i++)
 			{
 				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+				AllGround.push_back(FIntPoint(Anchor.X + i, Anchor.Y ));
 			}
 		}
 		//	pre가 왼쪽에 있다면
@@ -155,30 +161,65 @@ void ATileMap::SetHallWay()
 			for (int i = 0; i > Distance.X; i--)
 			{
 				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, "_Ground.png");
+				AllGround.push_back(FIntPoint(Anchor.X + i, Anchor.Y ));
 			}
 		}
 		PreAnchor = Anchor;
 	}
 
+}
 
+bool ATileMap::IsRoomOverlap(const FIntPoint& pos, const FIntPoint& size, const std::vector<FTransform>& rooms) {
+	for (const auto& room : rooms) {
+		FIntPoint roomPos(room.Location.X, room.Location.Y);
+		FIntPoint roomSize(room.Scale.X, room.Scale.Y);
 
-
-
+		if (!(pos.X + size.X <= roomPos.X || pos.X >= roomPos.X + roomSize.X ||
+			pos.Y + size.Y <= roomPos.Y || pos.Y >= roomPos.Y + roomSize.Y)) {
+			return true; // 겹침
+		}
+	}
+	return false; // 겹치지 않음
 }
 
 void ATileMap::SetRoom()
 {
 	
+	UEngineRandom random;
+	for (int i = 0; i < 7; i++) {
+		FIntPoint RoomSize = FIntPoint(random.RandomInt(3, 10), random.RandomInt(3, 10));
+		int maxValue = AllGround.size() - 1;
+		int randomIndex = random.RandomInt(0, maxValue);
+		FIntPoint SelectPos = AllGround[randomIndex];
+
+		// 방이 맵 경계 내에 있고 겹치지 않는지 확인
+		if (SelectPos.X + RoomSize.X < 59 && SelectPos.Y + RoomSize.Y < 39 &&
+			!IsRoomOverlap(FIntPoint(SelectPos), RoomSize, Rooms)) {
+
+			// 방 타일 배치
+			for (int _y = 0; _y < RoomSize.Y; _y++) {
+				for (int _x = 0; _x < RoomSize.X; _x++) {
+					SetTile(_x + SelectPos.X, _y + SelectPos.Y, "_Ground.png");
+				}
+			}
+
+			// 방 위치와 크기를 Rooms에 추가
+			FTransform roomTransform;
+			roomTransform.Location = FVector2D(SelectPos.X, SelectPos.Y);
+			roomTransform.Scale = FVector2D(RoomSize.X, RoomSize.Y); // Scale을 방 크기로 저장
+			Rooms.push_back(roomTransform);
+		}
+	}
 }
 
 void ATileMap::SetBorderWall()
 {
-	
+
 	for (int _y = 0; _y < DungeonSize.Y; _y++)
 	{
 		for (int _x = 0; _x < DungeonSize.X; _x++)
 		{
-			if (_y < 2 || _x < 2 || _y > 37 || _x > 57)
+			if (_y <= 3 || _x <= 3 || _y >= 36 || _x >= 56)
 			{
 				//	가장자리는 벽으로
 				SetTile(_x, _y, "_Wall.png");
@@ -187,7 +228,7 @@ void ATileMap::SetBorderWall()
 	}
 }
 
-void ATileMap::CheckTile()
+void ATileMap::SetNaturally()
 {
 	for (int _y = 0; _y < 40; _y++)
 	{
@@ -195,11 +236,21 @@ void ATileMap::CheckTile()
 		{
 			if (nullptr != Tiles[_y][_x].SpriteRenderer) {
 
-				if (_y > 1 && _x > 1 && _y < 38 && _x < 58)
+				if (_y >= 1 && _x >= 1 && _y <= 38 && _x <= 58)
 				{
-					//	타일체크
 					//	현재타일이름
 					std::string SpriteName = Tiles[_y][_x].SpriteRenderer->GetCurSpriteName();
+					int FindIndex = SpriteName.find('_');
+					std::string TypeName = SpriteName.substr(FindIndex);
+					if ("_GROUND.PNG" == TypeName) 
+					{
+						AllTileTypes[_y][_x] = TILETYPE::GROUND;
+					}
+					else if ("_WALL.PNG" == TypeName)
+					{
+						AllTileTypes[_y][_x] = TILETYPE::WALL;
+					}
+
 					std::string FindKey = "";
 					for (int i = -1; i <= 1; i++)
 					{
@@ -224,6 +275,16 @@ void ATileMap::CheckTile()
 			}
 		}
 	}
+}
+
+void ATileMap::CheckTile()
+{
+
+}
+
+TILETYPE ATileMap::GetTileType(int _x, int _y)
+{
+	return AllTileTypes[_x][_y];
 }
 
 

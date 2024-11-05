@@ -2,7 +2,7 @@
 #include <EngineCore/Actor.h>
 
 
-enum class TileType {
+enum class TILETYPE {
 	GROUND = 0,
 	WALL,
 	SOFTWALL
@@ -17,7 +17,7 @@ public:
 	{
 	public:
 		class USpriteRenderer* SpriteRenderer = nullptr;
-		TileType TileType;
+		TILETYPE TileType;
 		FTransform TileTrans;
 	};
 
@@ -40,17 +40,21 @@ public:
 	void SetHallWay();
 	void SetRoom();
 	void SetBorderWall();
+	void SetNaturally();
 	void CheckTile();
+	
+	static TILETYPE GetTileType(int _x, int _y);
 
 
+	static std::vector<std::vector<TILETYPE>>AllTileTypes;
+	static std::vector<FTransform> Rooms;
 protected:
 
 private:
 	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
 	std::vector <std::vector<Tile>> Tiles;
-	std::vector<FIntPoint>AllGrounds;
-
-
+	std::vector<FIntPoint>AllGround;
+	bool IsRoomOverlap(const FIntPoint& pos, const FIntPoint& size, const std::vector<FTransform>& rooms);
 
 	FIntPoint DungeonSize = { 60,40 };
 	FVector2D TileSize = { 72,72 };

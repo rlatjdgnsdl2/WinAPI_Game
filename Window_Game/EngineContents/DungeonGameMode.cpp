@@ -12,7 +12,6 @@
 
 
 
-std::vector<std::vector<FVector2D>> ADungeonGameMode::AllGrounds;
 ADungeonGameMode::ADungeonGameMode()
 {
 
@@ -52,7 +51,7 @@ void ADungeonGameMode::GenerateDungeon()
 	Dungeon->SetHallWay();
 	Dungeon->SetRoom();
 	Dungeon->SetBorderWall();
-	Dungeon->CheckTile();
+	Dungeon->SetNaturally();
 }
 
 
