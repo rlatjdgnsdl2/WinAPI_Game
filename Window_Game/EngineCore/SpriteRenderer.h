@@ -103,7 +103,7 @@ public:
 
 	void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 
-	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+	
 
 	std::string GetCurSpriteName()
 	{

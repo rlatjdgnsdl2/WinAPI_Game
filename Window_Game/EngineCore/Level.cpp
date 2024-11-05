@@ -50,32 +50,61 @@ ULevel::~ULevel()
 void ULevel::LevelChangeStart()
 {
 	{
-		std::list<AActor*>::iterator StartIter = AllActors.begin();
-		std::list<AActor*>::iterator EndIter = AllActors.end();
-
-		for (; StartIter != EndIter; ++StartIter)
 		{
-			AActor* CurActor = *StartIter;
+			std::list<AActor*>::iterator StartIter = AllActors.begin();
+			std::list<AActor*>::iterator EndIter = AllActors.end();
 
-			
-			CurActor->LevelChangeStart();
+			for (; StartIter != EndIter; ++StartIter)
+			{
+				AActor* CurActor = *StartIter;
+
+				// 이건 꺼진애도 호출됩니다.
+				CurActor->LevelChangeStart();
+			}
+		}
+
+		{
+			std::list<AActor*>::iterator StartIter = BeginPlayList.begin();
+			std::list<AActor*>::iterator EndIter = BeginPlayList.end();
+
+			for (; StartIter != EndIter; ++StartIter)
+			{
+				AActor* CurActor = *StartIter;
+
+				// 이건 꺼진애도 호출됩니다.
+				CurActor->LevelChangeStart();
+			}
 		}
 	}
-
 }
 
 // 나 이제 새로운 레벨로 바뀔거야.
 void ULevel::LevelChangeEnd()
 {
 	{
-		std::list<AActor*>::iterator StartIter = AllActors.begin();
-		std::list<AActor*>::iterator EndIter = AllActors.end();
-
-		for (; StartIter != EndIter; ++StartIter)
 		{
-			AActor* CurActor = *StartIter;
+			std::list<AActor*>::iterator StartIter = AllActors.begin();
+			std::list<AActor*>::iterator EndIter = AllActors.end();
 
-			CurActor->LevelChangeEnd();
+			for (; StartIter != EndIter; ++StartIter)
+			{
+				AActor* CurActor = *StartIter;
+
+				CurActor->LevelChangeEnd();
+			}
+		}
+
+		{
+			std::list<AActor*>::iterator StartIter = BeginPlayList.begin();
+			std::list<AActor*>::iterator EndIter = BeginPlayList.end();
+
+			for (; StartIter != EndIter; ++StartIter)
+			{
+				AActor* CurActor = *StartIter;
+
+				// 이건 꺼진애도 호출됩니다.
+				CurActor->LevelChangeEnd();
+			}
 		}
 	}
 

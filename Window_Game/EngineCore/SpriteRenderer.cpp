@@ -290,3 +290,7 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 	ChangeAnimation->Events[_Frame] += _Function;
 
 }
+void USpriteRenderer::SetCameraEffectScale(float _Effect)
+{
+	CameraEffectScale = _Effect;
+}

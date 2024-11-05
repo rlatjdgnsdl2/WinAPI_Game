@@ -13,14 +13,13 @@
 
 
 std::vector<std::vector<FVector2D>> ADungeonGameMode::AllGrounds;
-ADungeonGameMode::ADungeonGameMode() 
+ADungeonGameMode::ADungeonGameMode()
 {
-	Dungeon = GetWorld()->SpawnActor<ATileMap>();
-	
-	
+
+
 }
 
-ADungeonGameMode::~ADungeonGameMode() 
+ADungeonGameMode::~ADungeonGameMode()
 {
 
 }
@@ -28,7 +27,7 @@ ADungeonGameMode::~ADungeonGameMode()
 void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	GenerateDungeon();
+
 
 }
 void ADungeonGameMode::Tick(float _DeltaTime)
@@ -39,8 +38,12 @@ void ADungeonGameMode::Tick(float _DeltaTime)
 void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+	if (nullptr == Dungeon) {
+
+		Dungeon = GetWorld()->SpawnActor<ATileMap>();
+	}
 	GenerateDungeon();
-	
+
 }
 
 
@@ -107,12 +110,12 @@ void ADungeonGameMode::SetRandomHallWay()
 	{
 		for (int _x = 0; _x < DungeonSize.X; _x++)
 		{
-			
+
 			std::string SpriteName = Dungeon->GetSpriteRenderer(_x, _y)->GetCurSpriteName();
 			int Index = SpriteName.find('_');
 			std::string FindName = SpriteName.substr(Index);
 			if ("_Ground.png" == FindName) {
-				FVector2D GroundLocation = Dungeon->GetTileLocation(_x,_y);
+				FVector2D GroundLocation = Dungeon->GetTileLocation(_x, _y);
 				//AllGrounds.push_back(GroundLocation);
 			}
 
@@ -122,7 +125,7 @@ void ADungeonGameMode::SetRandomHallWay()
 
 void ADungeonGameMode::SetRandomSizeRoom()
 {
-	
+
 }
 
 void ADungeonGameMode::SetborderWall()
@@ -144,6 +147,10 @@ void ADungeonGameMode::SetborderWall()
 void ADungeonGameMode::CheckTile()
 {
 	Dungeon->CheckTile();
+}
+
+void ADungeonGameMode::SetCurDungeonName(std::string_view _DungeonName)
+{
 }
 
 
