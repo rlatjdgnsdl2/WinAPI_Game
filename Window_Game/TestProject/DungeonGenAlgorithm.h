@@ -16,13 +16,13 @@ public:
 	UDungeonGenAlgorithm& operator=(const UDungeonGenAlgorithm& _Other) = delete;
 	UDungeonGenAlgorithm& operator=(UDungeonGenAlgorithm&& _Other) noexcept = delete;
 
-	virtual void GenerateDungeon(Dungeon& _Dungeon);
+	virtual void GenerateDungeon(ADungeon& _Dungeon);
 protected:
-	void InitProcess(Dungeon& _Dungeon);
-	virtual void SliceProcess(Dungeon& _Dungeon) =0;
-	virtual void RoomGenProcess(Dungeon& _Dungeon) =0;
+	void InitProcess(ADungeon& _Dungeon);
+	virtual void SliceProcess(ADungeon& _Dungeon) =0;
+	virtual void RoomGenProcess(ADungeon& _Dungeon) =0;
 
-	void PrintDungeonData(const Dungeon& _Dungeon);
+	void PrintDungeonData(const ADungeon& _Dungeon);
 	
 
 

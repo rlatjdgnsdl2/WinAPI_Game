@@ -8,7 +8,7 @@ UBasicAlgo::~UBasicAlgo() {};
 
 
 
-void UBasicAlgo::SliceProcess(Dungeon& _Dungeon)
+void UBasicAlgo::SliceProcess(ADungeon& _Dungeon)
 {
 	FTransform UseableTrans = FTransform(FVector2D(_Dungeon.DungeonSize.X / 2, _Dungeon.DungeonSize.Y), _Dungeon.DungeonPos);
 
@@ -31,7 +31,7 @@ void UBasicAlgo::SliceProcess(Dungeon& _Dungeon)
 
 }
 
-void UBasicAlgo::RoomGenProcess(Dungeon& _Dungeon)
+void UBasicAlgo::RoomGenProcess(ADungeon& _Dungeon)
 {
 	int GenableRoomCount = _Dungeon.SlicedRooms.size();
 

@@ -160,6 +160,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Dungeon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
       <SubType>
       </SubType>
@@ -212,6 +216,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsStruct.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Dungeon.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -15,7 +15,7 @@ public:
 	ATempPlayer& operator=(const ATempPlayer& _Other) = delete;
 	ATempPlayer& operator=(ATempPlayer&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime) override;
+
 	
 protected:
 

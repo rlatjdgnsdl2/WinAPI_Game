@@ -7,7 +7,7 @@
 UDungeonGenAlgorithm::UDungeonGenAlgorithm() {};
 UDungeonGenAlgorithm::~UDungeonGenAlgorithm() {};
 
-void UDungeonGenAlgorithm::GenerateDungeon(Dungeon& _Dungeon)
+void UDungeonGenAlgorithm::GenerateDungeon(ADungeon& _Dungeon)
 {
 	InitProcess(_Dungeon);
 	SliceProcess(_Dungeon);
@@ -20,14 +20,14 @@ void UDungeonGenAlgorithm::GenerateDungeon(Dungeon& _Dungeon)
 
 
 
-void UDungeonGenAlgorithm::InitProcess(Dungeon& _Dungeon)
+void UDungeonGenAlgorithm::InitProcess(ADungeon& _Dungeon)
 {
 	_Dungeon.DungeonData.resize(40, std::vector<int>(60, 1));
 }
 
 
 
-void UDungeonGenAlgorithm::PrintDungeonData(const Dungeon& _Dungeon) {
+void UDungeonGenAlgorithm::PrintDungeonData(const ADungeon& _Dungeon) {
 	std::vector<std::vector<int>> DungeonData = _Dungeon.DungeonData;
 
 	for (int y = 0; y < _Dungeon.DungeonSize.iY(); y++)

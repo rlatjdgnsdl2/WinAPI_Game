@@ -1,17 +1,16 @@
 #include "PreCompile.h"
 #include "TileMap.h"
 
+#include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/ImageManager.h>
-#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 
-#include <EngineBase/EngineRandom.h>
-#include "PMDContentsCore.h"
 #include "DungeonGameMode.h"
+#include "PMDContentsCore.h"
 
-std::vector<std::vector<TILETYPE>> ATileMap::AllTileTypes;
-std::vector<FTransform>ATileMap::Rooms;
+
 
 ATileMap::ATileMap()
 {
@@ -42,7 +41,7 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 	Tiles[_y][_x].SpriteRenderer->SetComponentLocation({ (_x)*_Scale.X,(_y)*_Scale.Y });
 	Tiles[_y][_x].SpriteRenderer->SetSpriteScale(1.0f);
 	FVector2D TileLocation = Tiles[_y][_x].SpriteRenderer->GetComponentLocation();
-	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation - _Scale);
+	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation);
 }
 
 
@@ -116,6 +115,12 @@ void ATileMap::Tick(float _DeltaTime)
 	}
 
 }
+
+void ATileMap::LevelChangeStart()
+{
+}
+
+
 
 
 
@@ -209,7 +214,7 @@ void ATileMap::SetRoom()
 			FTransform roomTransform;
 			roomTransform.Location = FVector2D(SelectPos.X, SelectPos.Y);
 			roomTransform.Scale = FVector2D(RoomSize.X, RoomSize.Y); // Scale을 방 크기로 저장
-			Rooms.push_back(roomTransform);
+			DungeonData.Rooms.push_back(roomTransform);
 		}
 	}
 }

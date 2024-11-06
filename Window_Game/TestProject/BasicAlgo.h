@@ -22,8 +22,8 @@ protected:
 
 private:
 	// UDungeonGenAlgorithm을(를) 통해 상속됨
-	void SliceProcess(Dungeon& _Dungeon) override;
-	void RoomGenProcess(Dungeon& _Dungeon) override;
+	void SliceProcess(ADungeon& _Dungeon) override;
+	void RoomGenProcess(ADungeon& _Dungeon) override;
 
 };
 

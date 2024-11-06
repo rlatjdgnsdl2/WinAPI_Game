@@ -78,6 +78,8 @@ void PMDContentsCore::RoadResources()
 	Dungeon.Append("Dungeon");
 	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
 
+	//	Title
+	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
 	//	player
 	UImageManager::GetInst().CuttingSprite("MulZZangIee_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("MulZZangIee_Walk.png", 6, 8);

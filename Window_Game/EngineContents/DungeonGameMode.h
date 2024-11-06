@@ -7,6 +7,7 @@
 class ADungeonGameMode : public AGameMode
 {
 public:
+	
 	//	constrcuter, destructer
 	ADungeonGameMode();
 	virtual ~ADungeonGameMode();
@@ -20,21 +21,28 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
-	
+	void LevelChangeEnd() override;
+
 	void GenerateDungeon();
-	
 	static void SetCurDungeonName(std::string_view _DungeonName);
+
+	static class ATileMap* GetDungeon() 
+	{
+		return Dungeon;
+	};
 	
 	static std::string GetCurDungeonName() 
 	{
 		return CurDungeonName;
 	};
-	
 
 protected:
 
 private:
-	class ATileMap* Dungeon;
+	
+	static ATileMap* Dungeon;
+
+
 	static inline std::string CurDungeonName = "BeachCave";
 	
 	

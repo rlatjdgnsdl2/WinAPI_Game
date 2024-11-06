@@ -1,17 +1,26 @@
 #include "PreCompile.h"
 #include "Player.h"
 
+#include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineAPICore.h>
-#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
+
+
+#include "DungeonGameMode.h"
+#include "TileMap.h"
 
 APlayer::APlayer()
 {
-	InitSetting();
+	SetName("Player");
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite("MulZZangIee_Idle.png");
+	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
+	
 	AnimationSetting();
-
 }
 
 APlayer::~APlayer()
@@ -22,8 +31,18 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
+	//
+	//UEngineRandom Random;
+	//FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	//GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
+	//int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
+	//int Index = Random.RandomInt(0, RoomCount - 1);
+	//FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Location;
+	//FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Scale;
+	//RoomLocation.ConvertToPoint();
+	//RoomScale.ConvertToPoint();
+	//FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X - 1), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y - 1));
+	//SetActorLocation(SpawnPos);
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -48,16 +67,29 @@ void APlayer::Tick(float _DeltaTime)
 	}
 }
 
-void APlayer::InitSetting()
+void APlayer::LevelChangeStart()
 {
-	SetName("Player");
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("MulZZangIee_Idle.png");
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
-	SetActorLocation({ 0,0 });
+	Super::LevelChangeStart();
+	//	Player SpawnPos
+	UEngineRandom Random;
+	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
+	int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
+	int Index = Random.RandomInt(0, RoomCount - 1);
+	FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Location;
+	FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Scale;
+	RoomLocation.ConvertToPoint();
+	RoomScale.ConvertToPoint();
+	FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X-1), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y-1));
+	SetActorLocation(SpawnPos*72);
+}
+
+void APlayer::LevelChangeEnd()
+{
 
 }
+
+
 void APlayer::AnimationSetting()
 {
 	//	Idle
@@ -144,7 +176,6 @@ void APlayer::Idle(float _DeltaTime)
 		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
 	}
 }
-
 
 void APlayer::Walk(float _DeltaTime)
 {

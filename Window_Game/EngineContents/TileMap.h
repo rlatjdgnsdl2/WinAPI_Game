@@ -17,10 +17,20 @@ public:
 		FTransform TileTrans;
 	};
 
+	class DungeonData
+	{
+	public:
+		std::string CurDungeonName;
+		//	all tile Type
+		std::vector<std::vector<TILETYPE>>AllTileTypes;
+		//	room transform
+		std::vector<FTransform> Rooms;
+	};
+
+
 	//	constrcuter, destructer
 	ATileMap();
 	virtual ~ATileMap();
-
 	//	delete Function
 	ATileMap(const 	ATileMap& _Other) = delete;
 	ATileMap(ATileMap&& _Other) noexcept = delete;
@@ -29,6 +39,9 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void LevelChangeStart() override;
+
+
 	void InitTileMap();
 	void SetTile(int _col, int _row, std::string_view _TileType);
 
@@ -39,18 +52,26 @@ public:
 	void SetNaturally();
 	void CheckTile();
 	
-	static TILETYPE GetTileType(int _x, int _y);
+	TILETYPE GetTileType(int _x, int _y);
 
+	DungeonData* GetDungeonData() 
+	{
+		return &DungeonData;
+	};
 
-	static std::vector<std::vector<TILETYPE>>AllTileTypes;
-	static std::vector<FTransform> Rooms;
 protected:
+	std::vector <std::vector<Tile>> Tiles;
+	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
 
 private:
-	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
-	std::vector <std::vector<Tile>> Tiles;
-	std::vector<FIntPoint>AllGround;
+	DungeonData DungeonData;
+	std::vector<std::vector<TILETYPE>>AllTileTypes;
+	std::vector<FTransform> Rooms;
+
+
 	bool IsRoomOverlap(const FIntPoint& pos, const FIntPoint& size, const std::vector<FTransform>& rooms);
+
+	std::vector<FIntPoint>AllGround;
 
 	const int BoderSize = 5;
 	FIntPoint DungeonSize = { 60,40 };
@@ -58,7 +79,6 @@ private:
 
 	int testNumX = 0;
 	int	testNumY = 0;
-
 
 };
 

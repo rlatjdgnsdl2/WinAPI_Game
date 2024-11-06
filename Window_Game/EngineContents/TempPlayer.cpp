@@ -6,8 +6,6 @@ ATempPlayer::ATempPlayer() {}
 
 ATempPlayer::~ATempPlayer() {}
 
-void ATempPlayer::Tick(float _DeltaTime)
-{
-}
+
 
 

@@ -9,10 +9,11 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/ImageManager.h>
 
-float ATitleGameMode::TitlePlayTime = 0.0f;
+
 
 ATitleGameMode::ATitleGameMode()
 {
+	
 }
 
 ATitleGameMode::~ATitleGameMode()
@@ -24,7 +25,6 @@ void ATitleGameMode::BeginPlay()
 	Super::BeginPlay();
 	ATitleBackground* Background = GetWorld()->SpawnActor<ATitleBackground>();
 	ATitleAnimActor* AnimCharacter = GetWorld()->SpawnActor<ATitleAnimActor>();
-	GetWorld()->SetCameraToMainPawn(false);
 }
 
 void ATitleGameMode::Tick(float _DeltaTime)
@@ -37,8 +37,15 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	}
 }
 
+void ATitleGameMode::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	GetWorld()->SetCameraToMainPawn(false);
+}
+
 void ATitleGameMode::LevelChangeEnd()
 {
+	Super::LevelChangeEnd();
 	ResetTitlePlayTime();
 }
 

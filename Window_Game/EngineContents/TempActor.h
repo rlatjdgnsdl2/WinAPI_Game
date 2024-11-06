@@ -15,12 +15,10 @@ public:
 	ATempActor& operator=(const ATempActor& _Other) = delete;
 	ATempActor& operator=(ATempActor&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
 
 protected:
 
 private:
-	int MySpriteIndex;
+
 };
 

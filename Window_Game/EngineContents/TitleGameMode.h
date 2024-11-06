@@ -17,6 +17,7 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	virtual void LevelChangeStart() override;
 	virtual void LevelChangeEnd() override;
 	
 	static float GetTitlePlayTime();
@@ -25,6 +26,6 @@ public:
 protected:
 
 private:
-	static float TitlePlayTime;
+	static inline float TitlePlayTime = 0.0f;
 };
 

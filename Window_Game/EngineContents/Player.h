@@ -19,6 +19,8 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 
 
@@ -27,20 +29,17 @@ protected:
 private:
 	class USpriteRenderer* SpriteRenderer;
 
+	
+
 	STATE CurState = STATE::IDLE;
 	DIR CurDir = DIR::DOWN;
 
 	
-
-
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
 	float Speed = 10.0f;
 	float CurDuration = 0.0f;
 	
-
-
-	void InitSetting();
 	void AnimationSetting();
 	void Idle(float _DeltaTime);
 	void Walk(float _DeltaTime);

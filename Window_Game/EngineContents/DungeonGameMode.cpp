@@ -1,13 +1,14 @@
 #include "PreCompile.h"
 #include "DungeonGameMode.h"
 
-#include <EngineBase/EngineDirectory.h>
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineAPICore.h>
-#include <EngineBase/EngineRandom.h>
-#include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Level.h>
 
 #include "TileMap.h"
+
+ATileMap* ADungeonGameMode::Dungeon;
 
 ADungeonGameMode::ADungeonGameMode()
 {
@@ -26,6 +27,10 @@ void ADungeonGameMode::BeginPlay()
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	if (true == UEngineInput::GetInst().IsDown('G'))
+	{
+		UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	}
 }
 
 void ADungeonGameMode::LevelChangeStart()
@@ -36,6 +41,14 @@ void ADungeonGameMode::LevelChangeStart()
 		Dungeon = GetWorld()->SpawnActor<ATileMap>();
 	}
 	GenerateDungeon();
+	AActor* CurPlayer = GetWorld()->GetPawn();
+	/*Player = dynamic_cast<APlayer>(CurPlayer);
+	DungeonData = Dungeon->GetDungeonData();*/
+}
+
+void ADungeonGameMode::LevelChangeEnd()
+{
+
 }
 
 
