@@ -90,9 +90,6 @@ void ADungeon::SetRoom()
 			FVector2D DungeonRoomPos = FVector2D(
 				Random.RandomInt(DungeonData.SlicedDungeons[i].Location.X, DungeonData.SlicedDungeons[i].Location.X + DungeonData.SlicedDungeons[i].Scale.X - DungeonRoomSize.X),
 				Random.RandomInt(DungeonData.SlicedDungeons[i].Location.Y, DungeonData.SlicedDungeons[i].Location.Y + DungeonData.SlicedDungeons[i].Scale.Y - DungeonRoomSize.Y));
-
-
-
 			if (DungeonRoomPos.X + DungeonRoomSize.X <= DungeonData.SlicedDungeons[i].Location.X + DungeonData.SlicedDungeons[i].Scale.X
 				&& DungeonRoomPos.Y + DungeonRoomSize.Y <= DungeonData.SlicedDungeons[i].Location.Y + DungeonData.SlicedDungeons[i].Scale.Y)
 			{
@@ -101,31 +98,20 @@ void ADungeon::SetRoom()
 						SetTile(x + DungeonRoomPos.X, y + DungeonRoomPos.Y, DungeonData.CurDungeonName + "_Ground.png");
 					}
 				}
-
 				NewRoom.RoomTrans = FTransform(DungeonRoomSize, DungeonRoomPos);
 				DungeonData.Rooms.push_back(NewRoom);
 				break;  // 경계를 넘지 않으면 방 생성 완료
 			}
 		}
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 void ADungeon::SetHallWay()
 {
 	UEngineRandom random;
+
+
+	
 
 	FIntPoint PreAnchor = FIntPoint(random.RandomInt(DungeonData.BoderSize, DungeonData.DungeonSize.X - DungeonData.BoderSize - 1), random.RandomInt(DungeonData.BoderSize, DungeonData.DungeonSize.Y - DungeonData.BoderSize - 1));;
 	AllGround.push_back(PreAnchor);

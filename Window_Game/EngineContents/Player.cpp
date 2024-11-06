@@ -20,7 +20,7 @@ APlayer::APlayer()
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
 	SetActorLocation({ 0, 0 });
-	
+
 	AnimationSetting();
 }
 
@@ -48,6 +48,7 @@ void APlayer::Tick(float _DeltaTime)
 		Walk(_DeltaTime);
 		break;
 	case STATE::ATTACK:
+		Attack(_DeltaTime);
 		break;
 	case STATE::DAMAGE:
 		break;
@@ -63,14 +64,14 @@ void APlayer::LevelChangeStart()
 	UEngineRandom Random;
 	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
-	int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size()-1;
-	int Index = Random.RandomInt(0, RoomCount );
+	int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
+	int Index = Random.RandomInt(0, RoomCount - 1);
 	FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Location;
 	FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Scale;
 	RoomLocation.ConvertToPoint();
 	RoomScale.ConvertToPoint();
-	FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X-1), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y-1));
-	SetActorLocation(SpawnPos*72);
+	FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X - 2), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y - 2));
+	SetActorLocation(SpawnPos * 72);
 }
 
 void APlayer::LevelChangeEnd()
@@ -135,12 +136,11 @@ void APlayer::Idle(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
-		
 		CurDir = DIR::UP;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::UP * 72);
 		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-		if (TILETYPE::GROUND != TargetLocationType) 
+		if (TILETYPE::GROUND != TargetLocationType)
 		{
 			TargetLocation = StartLocation;
 			return;
@@ -150,49 +150,57 @@ void APlayer::Idle(float _DeltaTime)
 		
 	}
 
-	if (true == UEngineInput::GetInst().IsPress('A'))
+	else if (true == UEngineInput::GetInst().IsPress('A'))
 	{
-		
+
 		CurDir = DIR::LEFT;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::LEFT * 72);
 		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-		/*if (TILETYPE::GROUND != TargetLocationType)
+		if (TILETYPE::GROUND != TargetLocationType)
 		{
 			TargetLocation = StartLocation;
 			return;
-		}*/
+		}
 		CurState = STATE::WAIK;
+	
 	}
 
-	if (true == UEngineInput::GetInst().IsPress('S'))
+	else if (true == UEngineInput::GetInst().IsPress('S'))
 	{
-		
+
 		CurDir = DIR::DOWN;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::DOWN * 72);
 		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-		/*if (TILETYPE::GROUND != TargetLocationType)
+		if (TILETYPE::GROUND != TargetLocationType)
 		{
 			TargetLocation = StartLocation;
 			return;
-		}*/
+		}
 		CurState = STATE::WAIK;
+	
 	}
 
-	if (true == UEngineInput::GetInst().IsPress('D'))
+	else if (true == UEngineInput::GetInst().IsPress('D'))
 	{
-		
+
 		CurDir = DIR::RIGHT;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
 		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-		/*if (TILETYPE::GROUND != TargetLocationType)
+		if (TILETYPE::GROUND != TargetLocationType)
 		{
 			TargetLocation = StartLocation;
 			return;
-		}*/
+		}
 		CurState = STATE::WAIK;
+	
+	}
+	else if (true == UEngineInput::GetInst().IsPress('R'))
+	{
+		CurState = STATE::ATTACK;
+		return;
 	}
 }
 
@@ -204,6 +212,17 @@ void APlayer::Walk(float _DeltaTime)
 	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * Speed);
 	SetActorLocation(NewLocation);
 	if (CurDuration > 1.0f / Speed)
+	{
+		CurState = STATE::IDLE;
+	}
+}
+
+void APlayer::Attack(float _DeltaTime)
+{
+	CurDuration += _DeltaTime;
+	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string((int)CurDir));
+	SpriteRenderer->SetSpriteScale();
+	if (CurDuration > 1.0f)
 	{
 		CurState = STATE::IDLE;
 	}

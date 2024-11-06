@@ -55,8 +55,8 @@ void ADungeonGameMode::GenerateDungeon()
 	Dungeon->SliceDungeon();
 	Dungeon->SetAllWall();
 
-	//Dungeon->SetHallWay();
 	Dungeon->SetRoom();
+	Dungeon->SetHallWay();
 
 
 	Dungeon->SetBorderWall();

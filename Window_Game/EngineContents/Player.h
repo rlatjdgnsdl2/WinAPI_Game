@@ -23,13 +23,14 @@ public:
 	void LevelChangeEnd() override;
 
 
+	void Idle(float _DeltaTime);
+	void Walk(float _DeltaTime);
+	void Attack(float _DeltaTime);
 
 protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
-
-	
 
 	STATE CurState = STATE::IDLE;
 	DIR CurDir = DIR::DOWN;
@@ -37,12 +38,10 @@ private:
 	
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	float Speed = 20.0f;
+	float Speed = 2.0f;
 	float CurDuration = 0.0f;
 	
 	void AnimationSetting();
-	void Idle(float _DeltaTime);
-	void Walk(float _DeltaTime);
 	
 
 	
