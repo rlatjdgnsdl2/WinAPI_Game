@@ -9,10 +9,11 @@ public:
 	{
 	public:
 		std::string CurDungeonName;
-		//	all tile Type
 		std::vector<std::vector<TILETYPE>>TileTypes;
-		//	room transform
 		std::vector<FTransform> DungeonRooms;
+		const int BoderSize = 5;
+		FIntPoint DungeonSize = { 60,40 };
+		FVector2D TileSize = { 72,72 };
 	};
 	//	constrcuter, destructer
 	ADungeon();
@@ -26,10 +27,11 @@ public:
 	void SetDungeonName(std::string_view _DungeonName) {
 		DungeonData.CurDungeonName = _DungeonName;
 	}
+	void SetAllWall();
 
 
-
-
+	void SetBorderWall();
+	void SetNaturally();
 
 protected:
 

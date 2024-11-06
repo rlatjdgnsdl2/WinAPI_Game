@@ -36,46 +36,22 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 		USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		Tiles[_y][_x].SpriteRenderer = NewSpriteRenderer;
 	}
-	Tiles[_y][_x].SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName, 4);
 	Tiles[_y][_x].SpriteRenderer->SetComponentLocation({ (_x)*_Scale.X,(_y)*_Scale.Y });
 	Tiles[_y][_x].SpriteRenderer->SetSpriteScale(1.0f);
+	Tiles[_y][_x].SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 	FVector2D TileLocation = Tiles[_y][_x].SpriteRenderer->GetComponentLocation();
 	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation);
 }
 
 
 
-void ATileMap::InitTileMap()
+void ATileMap::SetTile(int _col, int _row, std::string_view _SpriteName)
 {
-	for (int y = 0; y < DungeonSize.Y; y++)
-	{
-		for (int x = 0; x < DungeonSize.X; x++)
-		{
-			CreateTile(x, y, TileSize, ADungeonGameMode::GetCurDungeonName() + "_Wall.png");
-		}
-	}
-}
-
-void ATileMap::SetTile(int _col, int _row, std::string_view _TileType)
-{
-	if (0 <= _col && 0 <= _row && DungeonSize.X > _col && DungeonSize.Y > _row) {
-
-		Tiles[_row][_col].SpriteRenderer->SetSprite(ADungeonGameMode::GetCurDungeonName() + _TileType.data(), 4);
-	}
+	Tiles[_row][_col].SpriteRenderer->SetSprite(_SpriteName.data(), 4);
 }
 
 
-void ATileMap::SetAllWall()
-{
-	for (int _y = 0; _y < DungeonSize.Y; _y++)
-	{
-		for (int _x = 0; _x < DungeonSize.X; _x++)
-		{
-			SetTile(_x, _y, "_Wall.png");
-		}
-	}
-}
 
 
 void ATileMap::Tick(float _DeltaTime)
@@ -221,86 +197,9 @@ void ATileMap::SetRoom()
 
 
 
-void ATileMap::SetBorderWall()
-{
-	for (int y = 0; y < DungeonSize.Y; y++)
-	{
-		for (int x = 0; x < DungeonSize.X; x++)
-		{
-			if (y <= 2 || x <= 2 || y >= DungeonSize.Y - 3 || x >= DungeonSize.X - 3)
-			{
-				//	가장자리는 벽으로
-				SetTile(x, y, "_Wall.png");
-			}
-		}
-	}
-}
-
-void ATileMap::SetNaturally()
-{
-	for (int y = 0; y < DungeonSize.Y; y++)
-	{
-		for (int x = 0; x < DungeonSize.X; x++)
-		{
-			if (nullptr != Tiles[y][x].SpriteRenderer)
-			{
-				//	현재타일이름
-				std::string SpriteName = Tiles[y][x].SpriteRenderer->GetCurSpriteName();
-				int FindIndex = SpriteName.find('_');
-				std::string TypeName = SpriteName.substr(FindIndex);
-				if ("_GROUND.PNG" == TypeName)
-				{
-					AllTileTypes[y][x] = TILETYPE::GROUND;
-				}
-				else if ("_WALL.PNG" == TypeName)
-				{
-					AllTileTypes[y][x] = TILETYPE::WALL;
-				}
-				else if ("_WATER.PNG" == TypeName)
-				{
-					AllTileTypes[y][x] = TILETYPE::WATER;
-				}
-
-				if (y >= 1 && x >= 1 && y <= DungeonSize.Y - 2 && x <= DungeonSize.X - 2)
-				{
-					//	타일세팅
-					std::string FindKey = "";
-					for (int i = -1; i <= 1; i++)
-					{
-						for (int j = -1; j <= 1; j++)
-						{
-							if (0 <= y + i && 0 <= x + j && DungeonSize.X > x + j && DungeonSize.Y > y + i)
-							{
-								//	주위타일과 타일이름을 비교해서 키값생성
-								std::string CompareName = Tiles[y + i][x + j].SpriteRenderer->GetCurSpriteName();
-								if (SpriteName == CompareName) {
-									FindKey += "1";
-								}
-								else if (SpriteName != CompareName) {
-									FindKey += "0";
-								}
-							}
-						}
-					}
-					int SpriteIndex = PMDContentsCore::GetTileIndex(FindKey);
-					Tiles[y][x].SpriteRenderer->SetSprite(SpriteName, SpriteIndex);
-				}
-			}
-		}
-	}
 
 
-}
 
-void ATileMap::CheckTile()
-{
-
-}
-
-TILETYPE ATileMap::GetTileType(int _x, int _y)
-{
-	return AllTileTypes[_x][_y];
-}
 
 
 
