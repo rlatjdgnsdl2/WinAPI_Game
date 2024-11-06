@@ -26,13 +26,13 @@ enum class STATE
 };
 enum class DIR
 {
-	LEFT_DOWN = 1,
-	DOWN,
-	RIGHT_DOWN,
-	LEFT,
-	RIGHT=6,
-	LEFT_UP,
-	UP,
-	RIGHT_UP
+	Left_Down = 1,
+	Down,
+	Right_Down,
+	Left,
+	Right=6,
+	Left_Up,
+	Up,
+	Right_Up
 };
 

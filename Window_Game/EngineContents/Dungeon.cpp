@@ -6,9 +6,13 @@
 
 #include "PMDContentsCore.h"
 
+
+
+
 std::vector<FIntPoint>AllGround;
 ADungeon::ADungeon()
 {
+	
 	Tiles.resize(DungeonData.DungeonSize.Y, std::vector<Tile>(DungeonData.DungeonSize.X));
 	DungeonData.TileTypes.resize(DungeonData.DungeonSize.Y, std::vector<TILETYPE>(DungeonData.DungeonSize.X));
 	SetActorLocation({ 0,0 });

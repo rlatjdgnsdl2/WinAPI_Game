@@ -24,17 +24,13 @@ public:
 	void GenerateDungeon();
 	static void SetCurDungeonName(std::string_view _DungeonName);
 
-	static class ADungeon* GetDungeon()
-	{
-		return Dungeon;
-	};
 	
 
 protected:
 
 private:
-	
-	static class ADungeon* Dungeon;
+	class ATurnManager* TurnManager;
+	class ADungeon* Dungeon;
 
 	
 	

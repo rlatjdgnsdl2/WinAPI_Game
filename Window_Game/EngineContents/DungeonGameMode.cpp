@@ -7,8 +7,8 @@
 #include <EngineCore/Level.h>
 
 #include "Dungeon.h"
+#include "TurnManager.h"
 
-ADungeon* ADungeonGameMode::Dungeon;
 
 ADungeonGameMode::ADungeonGameMode()
 {
@@ -40,6 +40,10 @@ void ADungeonGameMode::LevelChangeStart()
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon>();
 	}
+	if (nullptr == TurnManager) {
+		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
+	}
+	TurnManager->SetDungeon(Dungeon);
 	Dungeon->SetDungeonName("BeachCave");
 	GenerateDungeon();
 }

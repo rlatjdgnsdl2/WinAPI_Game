@@ -8,7 +8,7 @@ public:
 	class DungeonData
 	{
 	public:
-		
+
 		std::string CurDungeonName = "BeachCave";
 		std::vector<std::vector<TILETYPE>>TileTypes;
 		std::vector<FTransform> SlicedDungeons;
@@ -32,10 +32,13 @@ public:
 	void SetDungeonName(std::string_view _DungeonName) {
 		DungeonData.CurDungeonName = _DungeonName;
 	}
-	DungeonData* GetDungeonData() 
+
+	DungeonData* GetDungeonData()
 	{
 		return &DungeonData;
 	};
+	
+
 
 	void SetAllWall();
 	void SliceDungeon();

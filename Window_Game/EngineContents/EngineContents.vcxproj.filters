@@ -49,6 +49,9 @@
     <ClInclude Include="Dungeon.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="TurnManager.h">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -96,6 +99,15 @@
     <ClCompile Include="Dungeon.cpp">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClCompile>
+    <ClCompile Include="TurnManager.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManger_PlayerIdle.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_PlayerMove.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -121,6 +133,9 @@
     </Filter>
     <Filter Include="LevelObjects\Global">
       <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\TurnManager">
+      <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
