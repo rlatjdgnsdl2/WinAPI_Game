@@ -17,16 +17,6 @@ public:
 		FTransform TileTrans;
 	};
 
-	//class DungeonData
-	//{
-	//public:
-	//	std::string CurDungeonName;
-	//	//	all tile Type
-	//	std::vector<std::vector<TILETYPE>>AllTileTypes;
-	//	//	room transform
-	//	std::vector<FTransform> Rooms;
-	//};
-
 
 	//	constrcuter, destructer
 	ATileMap();

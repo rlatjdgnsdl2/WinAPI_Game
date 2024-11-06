@@ -28,7 +28,10 @@ public:
 		DungeonData.CurDungeonName = _DungeonName;
 	}
 	void SetAllWall();
+	void SliceDungeon();
 
+	void SetRoom();
+	void SetHallWay();
 
 	void SetBorderWall();
 	void SetNaturally();

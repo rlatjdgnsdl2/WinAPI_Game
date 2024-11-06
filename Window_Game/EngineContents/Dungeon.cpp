@@ -28,6 +28,14 @@ void ADungeon::SetAllWall()
 	}
 }
 
+void ADungeon::SliceDungeon()
+{
+	for (size_t i = 0; i < length; i++)
+	{
+
+	}
+}
+
 void ADungeon::SetBorderWall()
 {
 	for (int y = 0; y < DungeonData.DungeonSize.Y; y++)
