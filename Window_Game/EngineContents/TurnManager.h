@@ -6,8 +6,8 @@ enum class TurnType
 	PlayerIdle,
 	PlayerMove,
 	PlayerAttack,
-	MonsterMove
 };
+
 
 //	Ό³Έν:
 class ATurnManager : public AGameMode
@@ -45,12 +45,24 @@ protected:
 private:
 	class APlayer* Player;
 	class APartner* Partner;
+
 	class ADungeon* Dungeon;
 
 	TurnType CurTurnType;
 
 	float CurDuration = 0.0f;
-	void PlayerIdle(); 
+
+	//	idle
+	void PlayerIdle();
+
+	//	move
+	void InitPlayerMove(DIR direction, FVector2D moveVector);
+	void SetPartnerDir();
 	void PlayerMove(float _DeltaTime);
+
+	//	attack
+	void InitPlayerAttack();
+	void PlayerAttack();
+
 
 };

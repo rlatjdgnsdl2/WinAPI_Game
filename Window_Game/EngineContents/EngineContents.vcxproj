@@ -285,6 +285,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TurnManager_PlayerAttackcpp.cpp" />
     <ClCompile Include="TurnManager_PlayerMove.cpp" />
     <ClCompile Include="TurnManger_PlayerIdle.cpp" />
   </ItemGroup>

@@ -107,6 +107,9 @@
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="TurnManager_PlayerAttackcpp.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">

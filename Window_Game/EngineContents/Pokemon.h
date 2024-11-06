@@ -19,6 +19,7 @@ public:
 
 	virtual void Idle();
 	virtual void Move();
+	virtual void Attack();
 
 
 

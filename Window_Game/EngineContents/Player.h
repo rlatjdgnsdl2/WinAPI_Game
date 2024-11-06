@@ -19,11 +19,6 @@ public:
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
 	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
-
-
-	
-	
 
 
 

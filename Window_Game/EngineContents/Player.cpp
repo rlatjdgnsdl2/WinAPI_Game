@@ -34,10 +34,7 @@ void APlayer::LevelChangeStart()
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
 }
 
-void APlayer::LevelChangeEnd()
-{
 
-}
 
 
 

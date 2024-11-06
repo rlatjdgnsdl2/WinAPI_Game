@@ -27,3 +27,9 @@ void APokemon::Move()
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
 	SpriteRenderer->SetSpriteScale();
 }
+
+void APokemon::Attack()
+{
+	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string((int)CurDir));
+	SpriteRenderer->SetSpriteScale();
+}

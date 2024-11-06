@@ -30,11 +30,6 @@ void ATurnManager::LevelChangeStart()
 
 }
 
-
-
-
-
-
 void ATurnManager::Tick(float _DeltaTime)
 {
 	switch (CurTurnType)
@@ -45,9 +40,11 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::PlayerMove:
 		PlayerMove(_DeltaTime);
 		break;
+	case TurnType::PlayerAttack:
+		PlayerAttack();
+		break;
 	}
 }
-
 
 void ATurnManager::SetSpawnPos()
 {
