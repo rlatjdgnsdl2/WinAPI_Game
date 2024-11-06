@@ -89,6 +89,9 @@ void PMDContentsCore::RoadResources()
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("SixTail_Walk.png", 5, 8);
+	/*UImageManager::GetInst().CuttingSprite("SixTail_Attack.png", 5, 8);
+	UImageManager::GetInst().CuttingSprite("SixTail_Hurt.png", 5, 8);*/
 	
 	//	Dungeon
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);

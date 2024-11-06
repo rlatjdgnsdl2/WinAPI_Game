@@ -44,4 +44,13 @@ void APartner::AnimationSetting()
 	SpriteRenderer->CreateAnimation("IdleAnim_7", "SixTail_Idle.png", IdleIndex_7, IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_4", "SixTail_Idle.png", IdleIndex_4, IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_1", "SixTail_Idle.png", IdleIndex_1, IdleFrame);
+	//	Walk
+	SpriteRenderer->CreateAnimation("WalkAnim_2", "SixTail_Walk.png", 0, 4);
+	SpriteRenderer->CreateAnimation("WalkAnim_3", "SixTail_Walk.png", 5, 9);
+	SpriteRenderer->CreateAnimation("WalkAnim_6", "SixTail_Walk.png", 10, 14);
+	SpriteRenderer->CreateAnimation("WalkAnim_9", "SixTail_Walk.png", 15, 19);
+	SpriteRenderer->CreateAnimation("WalkAnim_8", "SixTail_Walk.png", 20, 24);
+	SpriteRenderer->CreateAnimation("WalkAnim_7", "SixTail_Walk.png", 25, 29);
+	SpriteRenderer->CreateAnimation("WalkAnim_4", "SixTail_Walk.png", 30, 34);
+	SpriteRenderer->CreateAnimation("WalkAnim_1", "SixTail_Walk.png", 35, 39);
 }

@@ -19,8 +19,6 @@ APlayer::APlayer()
 	SpriteRenderer->SetSpriteScale();
 	AnimationSetting();
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-	
-
 }
 
 APlayer::~APlayer()
@@ -40,6 +38,8 @@ void APlayer::LevelChangeEnd()
 {
 
 }
+
+
 
 void APlayer::AnimationSetting()
 {

@@ -15,6 +15,11 @@ public:
 	APokemon& operator=(const APokemon& _Other) = delete;
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
+	virtual void Idle();
+	virtual void Move();
+
+
+
 	class USpriteRenderer* GetSpriteRenderer() const {
 		return SpriteRenderer;
 	}

@@ -34,7 +34,6 @@ void ATurnManager::LevelChangeStart()
 
 void ATurnManager::Tick(float _DeltaTime)
 {
-
 	switch (CurTurnType)
 	{
 	case TurnType::PlayerIdle:
@@ -45,6 +44,7 @@ void ATurnManager::Tick(float _DeltaTime)
 		break;
 	}
 }
+
 
 void ATurnManager::SetSpawnPos()
 {
