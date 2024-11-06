@@ -6,9 +6,9 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/Level.h>
 
-#include "TileMap.h"
+#include "Dungeon.h"
 
-ATileMap* ADungeonGameMode::Dungeon;
+ADungeon* ADungeonGameMode::Dungeon;
 
 ADungeonGameMode::ADungeonGameMode()
 {
@@ -38,12 +38,10 @@ void ADungeonGameMode::LevelChangeStart()
 	Super::LevelChangeStart();
 	if (nullptr == Dungeon) {
 
-		Dungeon = GetWorld()->SpawnActor<ATileMap>();
+		Dungeon = GetWorld()->SpawnActor<ADungeon>();
 	}
+	Dungeon->SetDungeonName("BeachCave");
 	GenerateDungeon();
-	AActor* CurPlayer = GetWorld()->GetPawn();
-	/*Player = dynamic_cast<APlayer>(CurPlayer);
-	DungeonData = Dungeon->GetDungeonData();*/
 }
 
 void ADungeonGameMode::LevelChangeEnd()
@@ -54,9 +52,10 @@ void ADungeonGameMode::LevelChangeEnd()
 
 void ADungeonGameMode::GenerateDungeon()
 {
+	Dungeon->SliceDungeon();
 	Dungeon->SetAllWall();
 
-	Dungeon->SetHallWay();
+	//Dungeon->SetHallWay();
 	Dungeon->SetRoom();
 
 
@@ -66,10 +65,7 @@ void ADungeonGameMode::GenerateDungeon()
 
 
 
-void ADungeonGameMode::SetCurDungeonName(std::string_view _DungeonName)
-{
-	CurDungeonName = _DungeonName;
-}
+
 
 
 

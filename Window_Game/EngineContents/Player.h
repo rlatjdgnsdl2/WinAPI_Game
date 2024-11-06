@@ -37,7 +37,7 @@ private:
 	
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	float Speed = 10.0f;
+	float Speed = 20.0f;
 	float CurDuration = 0.0f;
 	
 	void AnimationSetting();

@@ -2,7 +2,11 @@
 
 
 
-
+class Room {
+public:
+	FTransform RoomTrans;
+	bool IsConnet = false;
+};
 
 //struct ADungeon
 //{

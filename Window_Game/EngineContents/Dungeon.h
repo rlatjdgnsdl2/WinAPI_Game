@@ -8,13 +8,18 @@ public:
 	class DungeonData
 	{
 	public:
-		std::string CurDungeonName;
+		
+		std::string CurDungeonName = "BeachCave";
 		std::vector<std::vector<TILETYPE>>TileTypes;
+		std::vector<FTransform> SlicedDungeons;
 		std::vector<FTransform> DungeonRooms;
+		std::vector<Room>Rooms;
 		const int BoderSize = 5;
 		FIntPoint DungeonSize = { 60,40 };
+		FIntPoint GenableDungeonSize = { 50,30 };
 		FVector2D TileSize = { 72,72 };
 	};
+
 	//	constrcuter, destructer
 	ADungeon();
 	virtual ~ADungeon();
@@ -27,6 +32,11 @@ public:
 	void SetDungeonName(std::string_view _DungeonName) {
 		DungeonData.CurDungeonName = _DungeonName;
 	}
+	DungeonData* GetDungeonData() 
+	{
+		return &DungeonData;
+	};
+
 	void SetAllWall();
 	void SliceDungeon();
 
@@ -35,6 +45,8 @@ public:
 
 	void SetBorderWall();
 	void SetNaturally();
+
+	bool IsRoomOverlap(const FIntPoint& pos, const FIntPoint& size, const std::vector<FTransform>& rooms);
 
 protected:
 

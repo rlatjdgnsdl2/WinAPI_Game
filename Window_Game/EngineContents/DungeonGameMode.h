@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-
 
 #include <EngineCore/GameMode.h>
 //	Ό³Έν:
@@ -26,24 +24,18 @@ public:
 	void GenerateDungeon();
 	static void SetCurDungeonName(std::string_view _DungeonName);
 
-	static class ATileMap* GetDungeon() 
+	static class ADungeon* GetDungeon()
 	{
 		return Dungeon;
 	};
 	
-	static std::string GetCurDungeonName() 
-	{
-		return CurDungeonName;
-	};
 
 protected:
 
 private:
 	
-	static ATileMap* Dungeon;
+	static class ADungeon* Dungeon;
 
-
-	static inline std::string CurDungeonName = "BeachCave";
 	
 	
 

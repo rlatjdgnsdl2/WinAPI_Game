@@ -10,7 +10,7 @@
 
 
 #include "DungeonGameMode.h"
-#include "TileMap.h"
+#include "Dungeon.h"
 
 APlayer::APlayer()
 {
@@ -19,6 +19,7 @@ APlayer::APlayer()
 	SpriteRenderer->SetSprite("MulZZangIee_Idle.png");
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
+	SetActorLocation({ 0, 0 });
 	
 	AnimationSetting();
 }
@@ -33,8 +34,8 @@ void APlayer::BeginPlay()
 	Super::BeginPlay();
 	//
 	//UEngineRandom Random;
-	//FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	//GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
+	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
 	//int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
 	//int Index = Random.RandomInt(0, RoomCount - 1);
 	//FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Location;
@@ -71,17 +72,18 @@ void APlayer::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	//	Player SpawnPos
-	UEngineRandom Random;
+	/*UEngineRandom Random;
 	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
-	int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
-	int Index = Random.RandomInt(0, RoomCount - 1);
-	FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Location;
-	FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].Scale;
+	int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size()-1;
+
+	int Index = Random.RandomInt(0, RoomCount );
+	FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Location;
+	FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Scale;
 	RoomLocation.ConvertToPoint();
 	RoomScale.ConvertToPoint();
 	FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X-1), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y-1));
-	SetActorLocation(SpawnPos*72);
+	SetActorLocation(SpawnPos*72);*/
 }
 
 void APlayer::LevelChangeEnd()
@@ -146,34 +148,64 @@ void APlayer::Idle(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
-		CurState = STATE::WAIK;
+		
 		CurDir = DIR::UP;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::UP * 72);
+		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+		/*if (TILETYPE::GROUND != TargetLocationType) 
+		{
+			TargetLocation = StartLocation;
+			return;
+
+		}*/
+		CurState = STATE::WAIK;
+		
 	}
 
 	if (true == UEngineInput::GetInst().IsPress('A'))
 	{
-		CurState = STATE::WAIK;
+		
 		CurDir = DIR::LEFT;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::LEFT * 72);
+		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+		/*if (TILETYPE::GROUND != TargetLocationType)
+		{
+			TargetLocation = StartLocation;
+			return;
+		}*/
+		CurState = STATE::WAIK;
 	}
 
 	if (true == UEngineInput::GetInst().IsPress('S'))
 	{
-		CurState = STATE::WAIK;
+		
 		CurDir = DIR::DOWN;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::DOWN * 72);
+		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+		/*if (TILETYPE::GROUND != TargetLocationType)
+		{
+			TargetLocation = StartLocation;
+			return;
+		}*/
+		CurState = STATE::WAIK;
 	}
 
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
-		CurState = STATE::WAIK;
+		
 		CurDir = DIR::RIGHT;
 		StartLocation = GetActorLocation();
 		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
+		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+		/*if (TILETYPE::GROUND != TargetLocationType)
+		{
+			TargetLocation = StartLocation;
+			return;
+		}*/
+		CurState = STATE::WAIK;
 	}
 }
 
