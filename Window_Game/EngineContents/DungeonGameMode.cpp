@@ -7,6 +7,7 @@
 #include <EngineCore/Level.h>
 
 #include "Dungeon.h"
+#include "Partner.h"
 #include "TurnManager.h"
 
 
@@ -40,12 +41,15 @@ void ADungeonGameMode::LevelChangeStart()
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon>();
 	}
+	Dungeon->SetDungeonName("BeachCave");
+	GenerateDungeon();
+
 	if (nullptr == TurnManager) {
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
 	}
 	TurnManager->SetDungeon(Dungeon);
-	Dungeon->SetDungeonName("BeachCave");
-	GenerateDungeon();
+	Partner = GetWorld()->SpawnActor<APartner>();
+	TurnManager->SetPatner(Partner);
 }
 
 void ADungeonGameMode::LevelChangeEnd()

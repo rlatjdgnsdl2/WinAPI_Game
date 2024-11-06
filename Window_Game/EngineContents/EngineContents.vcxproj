@@ -151,7 +151,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h">
       <SubType>
       </SubType>
@@ -173,6 +172,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -236,6 +239,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
       <SubType>
       </SubType>
     </ClCompile>

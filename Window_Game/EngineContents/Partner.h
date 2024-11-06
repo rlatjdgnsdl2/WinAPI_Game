@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "Pokemon.h"
 
 //	Ό³Έν:
-class APartner : public AActor
+class APartner : public APokemon
 {
 public:
 	//	constrcuter, destructer
@@ -15,9 +15,14 @@ public:
 	APartner& operator=(const APartner& _Other) = delete;
 	APartner& operator=(APartner&& _Other) noexcept = delete;
 
+
+
 protected:
 
 private:
+
+
+	virtual void AnimationSetting() override;
 
 };
 

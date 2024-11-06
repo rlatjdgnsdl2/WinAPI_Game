@@ -8,6 +8,7 @@
 #include "TitleGameMode.h"
 
 
+
 ATitleAnimActor::ATitleAnimActor()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();

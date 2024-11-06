@@ -17,7 +17,6 @@ public:
 		FTransform TileTrans;
 	};
 
-
 	//	constrcuter, destructer
 	ATileMap();
 	virtual ~ATileMap();

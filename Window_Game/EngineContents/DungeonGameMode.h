@@ -31,6 +31,7 @@ protected:
 private:
 	class ATurnManager* TurnManager;
 	class ADungeon* Dungeon;
+	class APartner* Partner;
 
 	
 	

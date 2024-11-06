@@ -37,9 +37,6 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>_Header</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsDefine.h">
-      <Filter>_Header</Filter>
-    </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
       <Filter>LevelObjects\Dungeon</Filter>
     </ClInclude>
@@ -52,6 +49,7 @@
     <ClInclude Include="TurnManager.h">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClInclude>
+    <ClInclude Include="Pokemon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -108,6 +106,7 @@
     <ClCompile Include="TurnManager_PlayerMove.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
+    <ClCompile Include="Pokemon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">

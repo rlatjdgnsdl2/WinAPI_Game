@@ -7,6 +7,7 @@
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineCoreDebug.h>
 
+#include "ContentsEnum.h"
 #include "DungeonGameMode.h"
 #include "PMDContentsCore.h"
 

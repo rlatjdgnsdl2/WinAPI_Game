@@ -25,20 +25,26 @@ public:
 
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
+
+	void SetSpawnPos();
+
 	void Update();
 
 	void SetDungeon(class ADungeon* _Dungeon) 
 	{
 		Dungeon = _Dungeon;
-		int a = 0;
 	}
-
+	void SetPatner(class APartner* _Partner)
+	{
+		Partner = _Partner;
+	}
 
 
 protected:
 
 private:
 	class APlayer* Player;
+	class APartner* Partner;
 	class ADungeon* Dungeon;
 
 	TurnType CurTurnType;

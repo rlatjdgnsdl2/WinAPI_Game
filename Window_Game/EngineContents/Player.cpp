@@ -8,7 +8,6 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
 
-
 #include "DungeonGameMode.h"
 #include "Dungeon.h"
 
@@ -17,11 +16,11 @@ APlayer::APlayer()
 	SetName("Player");
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("MulZZangIee_Idle.png");
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-	FVector2D PlayerScale = SpriteRenderer->SetSpriteScale();
-	SetActorLocation({ 0, 0 });
-
+	SpriteRenderer->SetSpriteScale();
 	AnimationSetting();
+	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	
+
 }
 
 APlayer::~APlayer()
@@ -29,52 +28,12 @@ APlayer::~APlayer()
 
 }
 
-//void APlayer::BeginPlay()
-//{
-//	Super::BeginPlay();
-//}
-
-//void APlayer::Tick(float _DeltaTime)
-//{
-//	Super::Tick(_DeltaTime);
-//
-//
-//	/*UEngineDebug::CoreOutPutString("PlayerPos : " + GetActorLocation().ToString());
-//	UEngineDebug::CoreOutPutString("TargetPos : " + TargetLocation.ToString());
-//	switch (CurState)
-//	{
-//	case STATE::IDLE:
-//		Idle(_DeltaTime);
-//		break;
-//	case STATE::WAIK:
-//		Walk(_DeltaTime);
-//		break;
-//	case STATE::ATTACK:
-//		Attack(_DeltaTime);
-//		break;
-//	case STATE::DAMAGE:
-//		break;
-//	default:
-//		break;
-//	}*/
-//}
 
 void APlayer::LevelChangeStart()
 {
-	//Super::LevelChangeStart();
-	////	Player SpawnPos
-	//UEngineRandom Random;
+	Super::LevelChangeStart();
 	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
-	//int RoomCount = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms.size();
-	//int Index = Random.RandomInt(0, RoomCount - 1);
-	//FVector2D RoomLocation = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Location;
-	//FVector2D RoomScale = ADungeonGameMode::GetDungeon()->GetDungeonData()->Rooms[Index].RoomTrans.Scale;
-	//RoomLocation.ConvertToPoint();
-	//RoomScale.ConvertToPoint();
-	//FVector2D SpawnPos = FVector2D(Random.RandomInt(RoomLocation.X, RoomLocation.X + RoomScale.X - 2), Random.RandomInt(RoomLocation.Y, RoomLocation.Y + RoomScale.Y - 2));
-	//SetActorLocation(SpawnPos * 72);
-	SetActorLocation({300,300});
 }
 
 void APlayer::LevelChangeEnd()
@@ -131,103 +90,7 @@ void APlayer::AnimationSetting()
 	SpriteRenderer->CreateAnimation("HurtAnim_1", "MulZZangIee_Hurt.png", 14, 15);
 }
 
-//void APlayer::Idle(float _DeltaTime)
-//{
-//	CurDuration = 0.0f;
-//	SpriteRenderer->ChangeAnimation("IdleAnim_" + std::to_string((int)CurDir));
-//	SpriteRenderer->SetSpriteScale();
-//	if (true == UEngineInput::GetInst().IsPress('W'))
-//	{
-//		CurDir = DIR::Up;
-//		StartLocation = GetActorLocation();
-//		TargetLocation = StartLocation + (FVector2D::UP * 72);
-//		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-//		if (TILETYPE::GROUND != TargetLocationType)
-//		{
-//			TargetLocation = StartLocation;
-//			return;
-//
-//		}
-//		CurState = STATE::WAIK;
-//		
-//	}
-//
-//	else if (true == UEngineInput::GetInst().IsPress('A'))
-//	{
-//
-//		CurDir = DIR::Left;
-//		StartLocation = GetActorLocation();
-//		TargetLocation = StartLocation + (FVector2D::LEFT * 72);
-//		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-//		if (TILETYPE::GROUND != TargetLocationType)
-//		{
-//			TargetLocation = StartLocation;
-//			return;
-//		}
-//		CurState = STATE::WAIK;
-//	
-//	}
-//
-//	else if (true == UEngineInput::GetInst().IsPress('S'))
-//	{
-//
-//		CurDir = DIR::Down;
-//		StartLocation = GetActorLocation();
-//		TargetLocation = StartLocation + (FVector2D::DOWN * 72);
-//		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-//		if (TILETYPE::GROUND != TargetLocationType)
-//		{
-//			TargetLocation = StartLocation;
-//			return;
-//		}
-//		CurState = STATE::WAIK;
-//	
-//	}
-//
-//	else if (true == UEngineInput::GetInst().IsPress('D'))
-//	{
-//
-//		CurDir = DIR::Right;
-//		StartLocation = GetActorLocation();
-//		TargetLocation = StartLocation + (FVector2D::RIGHT * 72);
-//		TILETYPE TargetLocationType = ADungeonGameMode::GetDungeon()->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
-//		if (TILETYPE::GROUND != TargetLocationType)
-//		{
-//			TargetLocation = StartLocation;
-//			return;
-//		}
-//		CurState = STATE::WAIK;
-//	
-//	}
-//	else if (true == UEngineInput::GetInst().IsPress('R'))
-//	{
-//		CurState = STATE::ATTACK;
-//		return;
-//	}
-//}
-//
-//void APlayer::Walk(float _DeltaTime)
-//{
-//	CurDuration += _DeltaTime;
-//	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
-//	SpriteRenderer->SetSpriteScale();
-//	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * Speed);
-//	SetActorLocation(NewLocation);
-//	if (CurDuration > 1.0f / Speed)
-//	{
-//		CurState = STATE::IDLE;
-//	}
-//}
 
-void APlayer::Attack(float _DeltaTime)
-{
-	CurDuration += _DeltaTime;
-	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string((int)CurDir));
-	SpriteRenderer->SetSpriteScale();
-	if (CurDuration > 1.0f)
-	{
-		CurState = STATE::IDLE;
-	}
-}
+
 
 

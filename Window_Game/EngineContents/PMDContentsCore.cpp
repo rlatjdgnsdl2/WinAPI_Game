@@ -13,6 +13,7 @@
 
 
 std::map<std::string, int > PMDContentsCore::TileIndexForKey;
+int ScaleRate = 3;
 
 PMDContentsCore::PMDContentsCore() {}
 PMDContentsCore::~PMDContentsCore() {}
@@ -87,7 +88,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("MulZZangIee_Hurt.png", 2, 8);
 
 	//	partner
-	//UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
 	
 	//	Dungeon
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
