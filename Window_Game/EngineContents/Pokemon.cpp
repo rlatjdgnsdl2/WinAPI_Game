@@ -13,6 +13,9 @@ APokemon::~APokemon()
 
 }
 
+
+
+
 void APokemon::Idle()
 {
 	SpriteRenderer->ChangeAnimation("IdleAnim_" + std::to_string((int)CurDir));

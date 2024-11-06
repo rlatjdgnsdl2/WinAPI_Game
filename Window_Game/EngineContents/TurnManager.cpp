@@ -25,6 +25,9 @@ void ATurnManager::LevelChangeStart()
 	AActor* PlayerActor = GetWorld()->GetPawn();
 	Player = dynamic_cast<APlayer*>(PlayerActor);
 	SetSpawnPos();
+	Player->SetStartLocation(Player->GetActorLocation());
+	Player->SetTargetLocation(Player->GetActorLocation());
+
 }
 
 
