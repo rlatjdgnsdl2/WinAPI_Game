@@ -64,6 +64,10 @@ public:
 	{
 		return dynamic_cast<ConvertType*>(MainPawn);
 	}
+	void AddCameraPos(FVector2D _Value)
+	{
+		CameraPos += _Value;
+	}
 
 protected:
 
