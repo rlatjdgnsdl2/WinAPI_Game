@@ -49,7 +49,9 @@
     <ClInclude Include="TurnManager.h">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClInclude>
-    <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="Pokemon.h">
+      <Filter>LevelObjects\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -100,14 +102,28 @@
     <ClCompile Include="TurnManager.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManger_PlayerIdle.cpp">
+    <ClCompile Include="TurnManger_PlayerSelect.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_PlayerMove.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="TurnManager_PlayerAttackcpp.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_SelectMove.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>LevelObjects\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_AIMove.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_AISkill.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_AISelect.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
   </ItemGroup>

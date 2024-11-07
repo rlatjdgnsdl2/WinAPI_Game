@@ -9,8 +9,8 @@ void ATurnManager::InitPlayerAttack()
 
 }
 
-void ATurnManager::PlayerAttack()
+void ATurnManager::PlayerSkill()
 {
 	Player->Attack();
-	//Partner->Move();
+	
 }

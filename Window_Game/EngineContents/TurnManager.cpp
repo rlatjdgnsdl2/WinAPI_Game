@@ -32,16 +32,33 @@ void ATurnManager::LevelChangeStart()
 
 void ATurnManager::Tick(float _DeltaTime)
 {
+
+	
 	switch (CurTurnType)
 	{
-	case TurnType::PlayerIdle:
-		PlayerIdle();
+	case TurnType::Player_Select:
+		PlayerSelect();
 		break;
-	case TurnType::PlayerMove:
+	case TurnType::Select_Move:
+		SelectMove(PlayerInput);
+		break;
+	case TurnType::Select_Skill:
+		
+		break;
+	case TurnType::Player_Move:
 		PlayerMove(_DeltaTime);
 		break;
-	case TurnType::PlayerAttack:
-		PlayerAttack();
+	case TurnType::Player_Skill:
+		PlayerSkill();
+		break;
+	case TurnType::AI_Select:
+		AISelect();
+		break;
+	case TurnType::AI_Move:
+
+		break;
+	case TurnType::AI_Skill:
+
 		break;
 	}
 }

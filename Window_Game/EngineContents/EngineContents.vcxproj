@@ -285,9 +285,13 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TurnManager_AIMove.cpp" />
+    <ClCompile Include="TurnManager_AISelect.cpp" />
+    <ClCompile Include="TurnManager_AISkill.cpp" />
     <ClCompile Include="TurnManager_PlayerAttackcpp.cpp" />
     <ClCompile Include="TurnManager_PlayerMove.cpp" />
-    <ClCompile Include="TurnManger_PlayerIdle.cpp" />
+    <ClCompile Include="TurnManager_SelectMove.cpp" />
+    <ClCompile Include="TurnManger_PlayerSelect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

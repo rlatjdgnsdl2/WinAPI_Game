@@ -6,6 +6,7 @@ class APokemon :public AActor
 {
 public:
 	//	constrcuter, destructer
+
 	APokemon();
 	virtual ~APokemon();
 
@@ -34,6 +35,9 @@ public:
 	void SetDir(DIR _dir) {
 		CurDir = _dir;
 	}
+	void SetCurDuration(float _CurDuration) {
+		CurDuration = _CurDuration;
+	}
 	FVector2D GetStartLocation() const
 	{
 		return StartLocation;
@@ -42,6 +46,7 @@ public:
 	{
 		return TargetLocation;
 	}
+
 	FVector2D SetStartLocation(FVector2D _StartLocation)
 	{
 		StartLocation = _StartLocation;
@@ -53,11 +58,14 @@ public:
 		return TargetLocation;
 	}
 
+
 protected:
 	class USpriteRenderer* SpriteRenderer;
 	DIR CurDir = DIR::Down;
+	float CurDuration;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
+
 	virtual void AnimationSetting()=0;
 
 private:

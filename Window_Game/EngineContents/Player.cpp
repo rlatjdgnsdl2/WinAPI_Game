@@ -8,8 +8,6 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
 
-#include "DungeonGameMode.h"
-#include "Dungeon.h"
 
 APlayer::APlayer()
 {
@@ -25,7 +23,6 @@ APlayer::~APlayer()
 {
 
 }
-
 
 void APlayer::LevelChangeStart()
 {

@@ -24,6 +24,8 @@ void APokemon::Idle()
 
 void APokemon::Move()
 {
+	FVector2D NewLocation = FVector2D::LerpClimp(StartLocation, TargetLocation, CurDuration * 2.0f);
+	SetActorLocation(NewLocation);
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
 	SpriteRenderer->SetSpriteScale();
 }

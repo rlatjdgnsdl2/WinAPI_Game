@@ -8,7 +8,7 @@
 #include "Partner.h"
 
 
-void ATurnManager::PlayerIdle()
+void ATurnManager::PlayerSelect()
 {
 	CurDuration = 0.0f;
 	Player->Idle();
@@ -16,34 +16,41 @@ void ATurnManager::PlayerIdle()
 
 	// 각 방향에 대해 이동을 처리
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
-		InitPlayerMove(DIR::Up, FVector2D::UP * 72);
+		PlayerInput = VK_NUMPAD8;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
-		InitPlayerMove(DIR::Left_Up, FVector2D::UP * 72 + FVector2D::LEFT * 72);
+		PlayerInput = VK_NUMPAD7;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
-		InitPlayerMove(DIR::Left, FVector2D::LEFT * 72);
+		PlayerInput = VK_NUMPAD4;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
-		InitPlayerMove(DIR::Left_Down, FVector2D::DOWN * 72 + FVector2D::LEFT * 72);
+		PlayerInput = VK_NUMPAD1;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
-		InitPlayerMove(DIR::Down, FVector2D::DOWN * 72);
+		PlayerInput = VK_NUMPAD2;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
-		InitPlayerMove(DIR::Right_Down, FVector2D::DOWN * 72 + FVector2D::RIGHT * 72);
+		PlayerInput = VK_NUMPAD3;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
-		InitPlayerMove(DIR::Right, FVector2D::RIGHT * 72);
+		PlayerInput = VK_NUMPAD6;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
-		InitPlayerMove(DIR::Right_Up, FVector2D::UP * 72 + FVector2D::RIGHT * 72);
+		PlayerInput = VK_NUMPAD9;
+		CurTurnType = TurnType::Select_Move;
 	}
 	else if (UEngineInput::GetInst().IsPress('A')) {
-		CurTurnType = TurnType::PlayerAttack;
+		PlayerInput = 'A';
+		CurTurnType = TurnType::Select_Skill;
 	}
-	// 파트너의 목표 위치 설정 및 방향 설정
-	SetPartnerDir();
 }
 
 
