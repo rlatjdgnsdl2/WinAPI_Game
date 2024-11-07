@@ -159,11 +159,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Dungeon.h">
-      <SubType>
-      </SubType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
       <SubType>
       </SubType>
@@ -238,11 +233,6 @@
     <ClCompile Include="ContentsStruct.cpp">
       <SubType>
       </SubType>
-    </ClCompile>
-    <ClCompile Include="Dungeon.cpp">
-      <SubType>
-      </SubType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="DungeonGameMode.cpp">
       <SubType>

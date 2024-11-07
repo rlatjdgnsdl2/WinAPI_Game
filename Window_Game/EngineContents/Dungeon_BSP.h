@@ -34,6 +34,10 @@ public:
 	{
 		CurDungeonName = _CurDungeonName;
 	}
+	std::vector<Node*> GetRoomData() 
+	{
+		return RoomData;
+	}
 
 
 
@@ -44,12 +48,15 @@ private:
 	const int MIN_SIZE = 10;
 	const int MAX_SIZE = 20;
 	Node* root;
+	std::vector<Node*> RoomData;
 	int width, height;
 
 	void InitDungeon();
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
 	bool split(Node* node);
+	void CollectLeafNodes(Node* node, std::vector<Node*>& leafNodes);
+
 
 
 };

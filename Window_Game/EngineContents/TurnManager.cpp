@@ -5,7 +5,7 @@
 
 
 #include "Player.h"
-#include "Dungeon.h"
+#include "Dungeon_BSP.h"
 #include "Partner.h"
 #include "Enemy_01.h"
 
@@ -89,7 +89,7 @@ void ATurnManager::SetSpawnPos()
 {
 	UEngineRandom Random;
 	// player pos
-	int RoomCount = Dungeon->GetDungeonData()->Rooms.size();
+	Dungeon->GetRoomData()->Rooms.size();
 	int Index = Random.RandomInt(0, RoomCount - 1);
 	FVector2D RoomLocation = Dungeon->GetDungeonData()->Rooms[Index].RoomTrans.Location;
 	FVector2D RoomScale = Dungeon->GetDungeonData()->Rooms[Index].RoomTrans.Scale;

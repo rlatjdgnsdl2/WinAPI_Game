@@ -43,9 +43,6 @@
     <ClInclude Include="TileMap.h">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
-    <ClInclude Include="Dungeon.h">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClInclude>
     <ClInclude Include="TurnManager.h">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClInclude>
@@ -103,9 +100,6 @@
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="Dungeon.cpp">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager.cpp">

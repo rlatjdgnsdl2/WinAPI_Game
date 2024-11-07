@@ -29,6 +29,7 @@ void ADungeon_BSP::Generate()
 	split(root);
 	CreateRooms(root);
 	ConnectRooms(root);
+	CollectLeafNodes(root,RoomData);
 }
 
 bool ADungeon_BSP::split(Node* node)
@@ -65,6 +66,20 @@ bool ADungeon_BSP::split(Node* node)
 	split(node->right);
 	return true;
 }
+
+
+void ADungeon_BSP::CollectLeafNodes(Node* node, std::vector<Node*>& leafNodes) {
+	if (node->isLeaf()) {
+		leafNodes.push_back(node); // 리프 노드를 벡터에 추가
+	}
+	else {
+		if (node->left) CollectLeafNodes(node->left, leafNodes);
+		if (node->right) CollectLeafNodes(node->right, leafNodes);
+	}
+}
+
+
+
 
 void ADungeon_BSP::InitDungeon()
 {

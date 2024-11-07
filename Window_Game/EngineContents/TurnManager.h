@@ -23,6 +23,11 @@ public:
 	void SetSpawnPos();
 
 
+
+
+
+
+
 	void SetDungeon(class  ADungeon_BSP* _Dungeon)
 	{
 		Dungeon = _Dungeon;
@@ -38,8 +43,6 @@ public:
 	void SetTestEnemy(class AEnemy_01* _Enemy) {
 		TestEnemy = _Enemy;
 	}
-
-
 protected:
 
 private:
