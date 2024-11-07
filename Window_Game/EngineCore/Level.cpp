@@ -7,8 +7,8 @@
 #include <EnginePlatform/EngineWinImage.h>
 
 #include "SpriteRenderer.h"
-
 #include "EngineCoreDebug.h"
+#include "2DCollision.h"
 
 ULevel::ULevel()
 {
@@ -186,7 +186,7 @@ void ULevel::Render(float _DeltaTime)
 
 	}
 
-	UEngineDebug::PrintEngineDebugText();
+	UEngineDebug::PrintEngineDebugRender();
 
 	DoubleBuffering();
 }

@@ -38,6 +38,7 @@ public:
 	void CuttingSprite(std::string_view _KeyName, int _X, int _Y);
 	//	사용자 정의 컷팅
 	void CuttingSprite(std::string_view _KeyName, FVector2D _CuttingSize);
+	void CuttingSprite(std::string_view _NewSpriteName, std::string_view _Image, FVector2D _CuttingSize);
 
 	bool IsLoadSprite(std::string_view _KeyName);
 
