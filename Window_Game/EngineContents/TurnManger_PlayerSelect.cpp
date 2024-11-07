@@ -8,19 +8,20 @@
 #include "Pokemon.h"
 #include "Partner.h"
 
-
+//	Player_Select단계
 void ATurnManager::PlayerSelect()
 {
+	//	플레이어는 입력을 대기받는다
 	Player->Idle();
-	std::unordered_map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
-	std::unordered_map<float, APokemon*>::iterator EndIter = IdleMaps.end();
+	std::vector<class APokemon*> ::iterator StartIter = IdleVec.begin();
+	std::vector<class APokemon*> ::iterator EndIter = IdleVec.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{
-		APokemon* CurPokemon = StartIter->second;
+		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Idle();
 	}
-	// 각 방향에 대해 이동을 처리
+	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
 		PlayerInput = VK_NUMPAD8;
 		CurTurnType = TurnType::Player_Select_Move;
@@ -53,6 +54,8 @@ void ATurnManager::PlayerSelect()
 		PlayerInput = VK_NUMPAD9;
 		CurTurnType = TurnType::Player_Select_Move;
 	}
+
+	// Player_Select_Skill 단계로 가는 키
 	else if (UEngineInput::GetInst().IsPress('A')) {
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;

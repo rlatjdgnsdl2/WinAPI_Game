@@ -30,7 +30,7 @@ void APlayer::LevelChangeStart()
 	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
 	CurCamp = CampType::Player;
-	Speed = 1.0f;
+
 }
 
 

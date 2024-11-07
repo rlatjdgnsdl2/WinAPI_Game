@@ -84,9 +84,19 @@ public:
 		Speed = _Speed;
 	};
 
+	class APokemon* GetTargetPokemon() const
+	{
+		return TargetPokemon;
+	};
+
+	void SetTargetPokemon(class APokemon* _TargetPokemon) {
+		TargetPokemon = _TargetPokemon;
+	}
+
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
+	class APokemon* TargetPokemon;
 
 	DIR CurDir = DIR::Down;
 	float CurDuration;

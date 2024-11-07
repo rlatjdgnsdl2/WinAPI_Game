@@ -129,10 +129,10 @@
     <ClCompile Include="TurnManager_AISkill.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_PlayerMove_AISelect.cpp">
+    <ClCompile Include="TurnManager_Move_AISelect.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_PlayerSkill_AISelect.cpp">
+    <ClCompile Include="TurnManager_Skill_AISelect.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_SelectSkill.cpp">

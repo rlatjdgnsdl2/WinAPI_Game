@@ -32,7 +32,7 @@ void ATurnManager::LevelChangeStart()
 	PlayerCamp.push_back(Player);
 	PlayerCamp.push_back(Partner);
 
-	IdleMaps.insert({Partner->GetSpeed(),Partner});
+	IdleVec.push_back(Partner);
 
 	CurTurnType = TurnType::Player_Select;
 
@@ -60,10 +60,10 @@ void ATurnManager::Tick(float _DeltaTime)
 		PlayerSkill(_DeltaTime);
 		break;
 	case TurnType::Move_AI_Select:
-		PlayerMove_AISelect(_DeltaTime);
+		Move_AISelect(_DeltaTime);
 		break;
 	case TurnType::Skill_AI_Select:
-		PlayerSkill_AISelect(_DeltaTime);
+		Skill_AISelect(_DeltaTime);
 		break;
 	case TurnType::AI_Move:
 		AIMove(_DeltaTime);

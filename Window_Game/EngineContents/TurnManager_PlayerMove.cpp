@@ -12,22 +12,33 @@
 
 void ATurnManager::PlayerMove(float _DeltaTime)
 {
+	CurDuration += _DeltaTime;
 	//	Player move
 	Player->Move(_DeltaTime);
 
-	std::unordered_map<float, APokemon*>::iterator StartIter = MoveMaps.begin();
-	std::unordered_map<float, APokemon*>::iterator EndIter = MoveMaps.end();
+	std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
+	std::vector<APokemon*>::iterator EndIter = MoveVec.end();
 
+	// 플레이어가 이동할때 MoveVec에 있는 포켓몬 모두 이동함
 	for (; StartIter != EndIter; StartIter++)
 	{
-		APokemon* CurPokemon = StartIter->second;
+		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Move(_DeltaTime);
 	}
 
-	if (Player->GetCurDuration() > 0.5f)	//도착했으면
+	if (CurDuration > 0.5f)	//도착했으면
 	{
-
-		MoveMaps.clear();
-		CurTurnType = TurnType::AI_Move;
+		std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
+		std::vector<APokemon*>::iterator EndIter = MoveVec.end();
+		for (; StartIter != EndIter; StartIter++)
+		{
+			APokemon* CurPokemon = *StartIter;
+			CurPokemon->SetCurDuration(0.0f);
+		}
+		//	이동한 몬스터들 다 Vec에서 제거
+		MoveVec.clear();
+		CurDuration = 0.0f;
+		//	다음단계
+		CurTurnType = TurnType::AI_Skill;
 	}
 }

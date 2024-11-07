@@ -47,15 +47,13 @@ private:
 	SkillType PlayerSkillType;
 	int PlayerInput;
 	
-	//	스피드가 빠른순으로 정렬해야댐 역정렬
-	std::unordered_map<float, class APokemon*> MoveMaps;
-	std::unordered_map<float, class APokemon*> SkillMaps;
-	std::unordered_map<float, class APokemon*> IdleMaps;
+
+	std::vector<class APokemon*> MoveVec;
+	std::vector<class APokemon*> SkillVec;
+	std::vector<class APokemon*> IdleVec;
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;
-
-
 
 
 	//	idle
@@ -64,8 +62,8 @@ private:
 	void SelectMove(int _PlayerInput);
 	void SelectSkill(int _PlayerInput);
 	//	AI Check
-	void PlayerMove_AISelect(float _DeltaTime);
-	void PlayerSkill_AISelect(float _DeltaTime);
+	void Move_AISelect(float _DeltaTime);
+	void Skill_AISelect(float _DeltaTime);
 	//	Select Play
 	void PlayerMove(float _DeltaTime);
 	void PlayerSkill(float _DeltaTime);
@@ -73,9 +71,6 @@ private:
 	void AIMove(float _DeltaTime);
 	void AISkill(float _DeltaTime);
 	
-
-
-
 
 	//	move
 	void InitPlayerMove(DIR direction, FVector2D moveVector);

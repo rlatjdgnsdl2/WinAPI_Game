@@ -302,11 +302,11 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TurnManager_AIMove.cpp" />
-    <ClCompile Include="TurnManager_PlayerMove_AISelect.cpp" />
+    <ClCompile Include="TurnManager_Move_AISelect.cpp" />
     <ClCompile Include="TurnManager_AISkill.cpp" />
     <ClCompile Include="TurnManager_PlayerSkill.cpp" />
     <ClCompile Include="TurnManager_PlayerMove.cpp" />
-    <ClCompile Include="TurnManager_PlayerSkill_AISelect.cpp" />
+    <ClCompile Include="TurnManager_Skill_AISelect.cpp" />
     <ClCompile Include="TurnManager_SelectMove.cpp" />
     <ClCompile Include="TurnManager_SelectSkill.cpp" />
     <ClCompile Include="TurnManger_PlayerSelect.cpp" />

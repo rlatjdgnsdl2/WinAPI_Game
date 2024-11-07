@@ -4,12 +4,12 @@
 
 void ATurnManager::AIMove(float _DeltaTime) 
 {
-	std::unordered_map<float, APokemon*>::iterator StartIter = MoveMaps.begin();
-	std::unordered_map<float, APokemon*>::iterator EndIter = MoveMaps.end();
+	std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
+	std::vector<APokemon*>::iterator EndIter = MoveVec.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{
-		APokemon* CurPokemon = StartIter->second;
+		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Move(_DeltaTime);
 	}
 	CurTurnType = TurnType::AI_Skill;

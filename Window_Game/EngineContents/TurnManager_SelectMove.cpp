@@ -3,8 +3,10 @@
 #include "Player.h"
 #include "Dungeon.h"
 
+//	Select_Move단계
 void ATurnManager::SelectMove(int _PlayerInput)
 {
+	// Player 이동방향 결정
 	int PlayerInput = _PlayerInput;
 	switch (_PlayerInput)
 	{
@@ -35,6 +37,7 @@ void ATurnManager::SelectMove(int _PlayerInput)
 	default:
 		break;
 	}
+	//	다음단계
 	CurTurnType = TurnType::Move_AI_Select;
 };
 
