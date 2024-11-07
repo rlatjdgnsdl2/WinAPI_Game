@@ -4,6 +4,13 @@
 #include <EngineBase/EngineDelegate.h>
 #include <map>
 
+enum class PivotType
+{
+	Center,
+	Bot,
+	Top,
+};
+
 // 설명 :
 class USpriteRenderer : public USceneComponent
 {
@@ -31,6 +38,8 @@ public:
 		}
 	};
 
+
+public:
 	// constrcuter destructer
 	USpriteRenderer();
 	~USpriteRenderer();
@@ -60,29 +69,6 @@ public:
 	{
 		return Order;
 	}
-	bool IsActive() override
-	{
-		// 랜더러는 자신을 가진 액터에게 종속된다.
-		// 부모도        true            true
-		return UObject::IsActive() && GetActor()->IsActive();
-	}
-
-
-	bool IsDestroy() override
-	{
-		// 부모도        true            true
-		return UObject::IsDestroy() || GetActor()->IsDestroy();
-	}
-	void SetCameraEffect(bool _Value)
-	{
-		IsCameraEffect = _Value;
-	}
-
-	void SetCameraEffectScale(float _Effect);
-	void SetSprite(std::string_view _Name, int _CurIndex = 0);
-
-
-	
 
 	FVector2D SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
 
@@ -103,12 +89,40 @@ public:
 
 	void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
 
-	
-
 	std::string GetCurSpriteName()
 	{
 		return Sprite->GetName();
 	}
+
+	bool IsActive() override
+	{
+		// 랜더러는 자신을 가진 액터에게 종속된다.
+		// 부모도        true            true
+		return UObject::IsActive() && GetActor()->IsActive();
+	}
+
+
+	bool IsDestroy() override
+	{
+		// 부모도        true            true
+		return UObject::IsDestroy() || GetActor()->IsDestroy();
+	}
+
+	void SetCameraEffect(bool _Value)
+	{
+		IsCameraEffect = _Value;
+	}
+
+	void SetPivot(FVector2D _Pivot)
+	{
+		Pivot = _Pivot;
+	}
+
+	void SetPivotType(PivotType _Type);
+
+	void SetCameraEffectScale(float _Effect);
+	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+
 protected:
 
 private:
@@ -116,11 +130,9 @@ private:
 	int CurIndex = 0;
 	bool IsCameraEffect = true;
 	float CameraEffectScale = 1.0f;
-	
+	FVector2D Pivot = FVector2D::ZERO;
 
 	class UEngineSprite* Sprite = nullptr;
-
-	
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;

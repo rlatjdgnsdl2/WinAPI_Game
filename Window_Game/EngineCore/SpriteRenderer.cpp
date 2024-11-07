@@ -82,8 +82,12 @@ void USpriteRenderer::Render(float _DeltaTime)
 
 	ULevel* Level = GetActor()->GetWorld();
 
-	Trans.Location = Trans.Location - Level->CameraPos;
-	
+	if (true == IsCameraEffect)
+	{
+		Trans.Location = Trans.Location - (Level->CameraPos * CameraEffectScale);
+	}
+
+	Trans.Location += Pivot;
 
 	// Trans.Location -= 카메라포스
 
@@ -125,7 +129,6 @@ void USpriteRenderer::SetSprite(std::string_view _Name, int _CurIndex /*= 0*/)
 	}
 
 	CurIndex = _CurIndex;
-	
 }
 
 void USpriteRenderer::SetOrder(int _Order)
@@ -186,7 +189,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 }
 
 
-void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop )
+void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
 {
 	std::vector<float> Times;
 
@@ -227,7 +230,9 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 	NewAnimation.FrameTime = _Frame;
 	NewAnimation.Loop = _Loop;
 	NewAnimation.Reset();
+
 	FrameAnimations.insert({ UpperName ,NewAnimation });
+
 }
 
 void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _Force /*= false*/)
@@ -254,6 +259,7 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 	{
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
+
 	Sprite = CurAnimation->Sprite;
 }
 
@@ -290,7 +296,40 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 	ChangeAnimation->Events[_Frame] += _Function;
 
 }
+
 void USpriteRenderer::SetCameraEffectScale(float _Effect)
 {
 	CameraEffectScale = _Effect;
+}
+
+// 여러분들이 애니메이션을 하거나
+void USpriteRenderer::SetPivotType(PivotType _Type)
+{
+	if (PivotType::Center == _Type)
+	{
+		Pivot = FVector2D::ZERO;
+		return;
+	}
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("이미지를 기반으로한 피봇설정은 스프라이트가 세팅되지 않은 상태에서는 호출할수 없습니다");
+		return;
+	}
+
+	UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(CurIndex);
+
+	switch (_Type)
+	{
+	case PivotType::Bot:
+		Pivot.X = 0.0f;
+		Pivot.Y -= CurData.Transform.Scale.Y * 0.5f;
+		break;
+	case PivotType::Top:
+		Pivot.X = 0.0f;
+		Pivot.Y += CurData.Transform.Scale.Y * 0.5f;
+		break;
+	default:
+		break;
+	}
 }
