@@ -24,6 +24,12 @@ APartner::~APartner()
 
 }
 
+void APartner::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	CampType = CampType::Player;
+}
+
 void APartner::AnimationSetting()
 {
 	//Idle

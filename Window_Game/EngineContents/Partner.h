@@ -14,14 +14,13 @@ public:
 	APartner(APartner&& _Other) noexcept = delete;
 	APartner& operator=(const APartner& _Other) = delete;
 	APartner& operator=(APartner&& _Other) noexcept = delete;
-
+	
+	virtual void LevelChangeStart();
 
 
 protected:
 
 private:
-
-
 	virtual void AnimationSetting() override;
 
 };

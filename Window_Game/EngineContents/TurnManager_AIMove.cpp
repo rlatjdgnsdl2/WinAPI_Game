@@ -10,6 +10,7 @@ void ATurnManager::AIMove(float _DeltaTime)
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = StartIter->second;
-		CurPokemon->Move();
+		CurPokemon->Move(_DeltaTime);
 	}
+	CurTurnType = TurnType::AI_Skill;
 }

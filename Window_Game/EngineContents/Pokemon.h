@@ -1,6 +1,10 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+
+
+
+
 //	Ό³Έν:
 class APokemon :public AActor
 {
@@ -19,8 +23,8 @@ public:
 	
 
 	virtual void Idle();
-	virtual void Move();
-	virtual void Attack();
+	virtual void Move(float _DeltaTime);
+	virtual void Skill(SkillType _SkillType);
 
 
 
@@ -37,6 +41,10 @@ public:
 	}
 	void SetCurDuration(float _CurDuration) {
 		CurDuration = _CurDuration;
+	}
+	float GetCurDuration() const
+	{
+		return CurDuration;
 	}
 	FVector2D GetStartLocation() const
 	{
@@ -57,15 +65,25 @@ public:
 		TargetLocation = _TargetLocation;
 		return TargetLocation;
 	}
+	SkillType GetCurSkillType() const {
+		return CurSkillType;
+	}
+	void SetCurSKillType(SkillType _SkillType) {
+		CurSkillType = _SkillType;
+	}
 
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
+
 	DIR CurDir = DIR::Down;
 	float CurDuration;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
 
+	SkillType CurSkillType;
+
+	CampType CampType;
 	virtual void AnimationSetting()=0;
 
 private:

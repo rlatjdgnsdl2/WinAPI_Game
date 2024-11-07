@@ -1,24 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 
-enum class TurnType
-{
-	Player_Select,
-	Select_Move,
-	Select_Skill,
-	Player_Move,
-	Player_Skill,
-	AI_Select,
-	AI_Move,
-	AI_Skill,
-};
 
-enum class SkillType
-{
-	NormalAttack,
-	SpecialAttack,
-	UseItem
-};
 
 //	설명:
 class ATurnManager : public AGameMode
@@ -59,48 +42,37 @@ private:
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
 
+	SkillType PlayerSkillType;
 	int PlayerInput;
 	
 	//	스피드가 빠른순으로 정렬해야댐 역정렬
 	std::map<float, class APokemon*> MoveMaps;
 	std::map<float, class APokemon*> SkillMaps;
+	std::map<float, class APokemon*> IdleMaps;
 
 	//	idle
 	void PlayerSelect();
 	//	Select Type
 	void SelectMove(int _PlayerInput);
+	void SelectSkill(int _PlayerInput);
 	//	AI Check
-	void AISelect();
+	void PlayerMove_AISelect(float _DeltaTime);
+	void PlayerSkill_AISelect(float _DeltaTime);
 	//	Select Play
 	void PlayerMove(float _DeltaTime);
-
+	void PlayerSkill(float _DeltaTime);
 	// AI Select Play
 	void AIMove(float _DeltaTime);
-	void AISkill();
+	void AISkill(float _DeltaTime);
 	
-
-
-
-	void SelectSkill()
-	{
-		CurTurnType = TurnType::Select_Skill;
-	}
-
-	void Select_Skill();
-	
-	void PlayerSkill();
-	
-
 
 
 
 
 	//	move
 	void InitPlayerMove(DIR direction, FVector2D moveVector);
-	void SetPartnerDir();
 
-	//	attack
-	void InitPlayerAttack();
+
 
 
 };

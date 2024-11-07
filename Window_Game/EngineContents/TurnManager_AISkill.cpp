@@ -4,7 +4,7 @@
 
 
 
-void ATurnManager::AISkill() 
+void ATurnManager::AISkill(float _DeltaTime)
 {
 	std::map<float, APokemon*>::iterator StartIter = SkillMaps.begin();
 	std::map<float, APokemon*>::iterator EndIter = SkillMaps.end();
@@ -12,6 +12,7 @@ void ATurnManager::AISkill()
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = StartIter->second;
-		//CurPokemon->Skill();
+
 	}
+	CurTurnType = TurnType::Player_Select;
 }

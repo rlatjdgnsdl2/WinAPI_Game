@@ -12,9 +12,8 @@
 
 void ATurnManager::PlayerMove(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
 	//	Player move
-	Player->Move();
+	Player->Move(_DeltaTime);
 
 	std::map<float, APokemon*>::iterator StartIter = MoveMaps.begin();
 	std::map<float, APokemon*>::iterator EndIter = MoveMaps.end();
@@ -22,11 +21,12 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = StartIter->second;
-		CurPokemon->Move();
+		CurPokemon->Move(_DeltaTime);
 	}
 
-	if (CurDuration > 1.0f / 2.0f)	//도착했으면
+	if (Player->GetCurDuration() > 0.5f)	//도착했으면
 	{
+
 		MoveMaps.clear();
 		CurTurnType = TurnType::AI_Move;
 	}

@@ -35,7 +35,7 @@ void ATurnManager::SelectMove(int _PlayerInput)
 	default:
 		break;
 	}
-	CurTurnType = TurnType::AI_Select;
+	CurTurnType = TurnType::Move_AI_Select;
 };
 
 void ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
@@ -44,6 +44,7 @@ void ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 	FVector2D StartLocation = Player->SetStartLocation(Player->GetActorLocation());
 	FVector2D TargetLocation = Player->SetTargetLocation(StartLocation + moveVector);
 	TILETYPE TargetTileType = Dungeon->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+	Player->SetCurDuration(0.0f);
 	if (TILETYPE::GROUND != TargetTileType) {
 		Player->SetTargetLocation(StartLocation); // 이동 불가시 원래 위치로
 		return;

@@ -16,14 +16,31 @@ enum class TILETYPE {
 	WATER
 };
 
-
-enum class STATE 
+enum class CampType
 {
-	IDLE,
-	WAIK,
-	ATTACK,
-	DAMAGE
+	Player,
+	Enemy
 };
+enum class TurnType
+{
+	Player_Select,
+	Player_Select_Move,
+	Player_Select_Skill,
+	Player_Move,
+	Player_Skill,
+	Move_AI_Select,
+	Skill_AI_Select,
+	AI_Move,
+	AI_Skill,
+};
+
+enum class SkillType
+{
+	NormalAttack,
+	SpecialAttack,
+	UseItem
+};
+
 enum class DIR
 {
 	Left_Down = 1,

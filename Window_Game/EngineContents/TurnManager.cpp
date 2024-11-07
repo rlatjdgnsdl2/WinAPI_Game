@@ -27,6 +27,9 @@ void ATurnManager::LevelChangeStart()
 	SetSpawnPos();
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
+	IdleMaps.insert({1.0f,Partner});
+
+	CurTurnType = TurnType::Player_Select;
 
 }
 
@@ -39,26 +42,29 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::Player_Select:
 		PlayerSelect();
 		break;
-	case TurnType::Select_Move:
+	case TurnType::Player_Select_Move:
 		SelectMove(PlayerInput);
 		break;
-	case TurnType::Select_Skill:
-		
+	case TurnType::Player_Select_Skill:
+		SelectSkill(PlayerInput);
 		break;
 	case TurnType::Player_Move:
 		PlayerMove(_DeltaTime);
 		break;
 	case TurnType::Player_Skill:
-		PlayerSkill();
+		PlayerSkill(_DeltaTime);
 		break;
-	case TurnType::AI_Select:
-		AISelect();
+	case TurnType::Move_AI_Select:
+		PlayerMove_AISelect(_DeltaTime);
+		break;
+	case TurnType::Skill_AI_Select:
+		PlayerSkill_AISelect(_DeltaTime);
 		break;
 	case TurnType::AI_Move:
-
+		AIMove(_DeltaTime);
 		break;
 	case TurnType::AI_Skill:
-
+		AISkill(_DeltaTime);
 		break;
 	}
 }

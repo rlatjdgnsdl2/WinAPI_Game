@@ -167,6 +167,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Partner.h">
       <SubType>
       </SubType>
@@ -234,6 +238,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Partner.cpp">
       <SubType>
       </SubType>
@@ -286,11 +294,13 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TurnManager_AIMove.cpp" />
-    <ClCompile Include="TurnManager_AISelect.cpp" />
+    <ClCompile Include="TurnManager_PlayerMove_AISelect.cpp" />
     <ClCompile Include="TurnManager_AISkill.cpp" />
-    <ClCompile Include="TurnManager_PlayerAttackcpp.cpp" />
+    <ClCompile Include="TurnManager_PlayerSkill.cpp" />
     <ClCompile Include="TurnManager_PlayerMove.cpp" />
+    <ClCompile Include="TurnManager_PlayerSkill_AISelect.cpp" />
     <ClCompile Include="TurnManager_SelectMove.cpp" />
+    <ClCompile Include="TurnManager_SelectSkill.cpp" />
     <ClCompile Include="TurnManger_PlayerSelect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

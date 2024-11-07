@@ -52,6 +52,9 @@
     <ClInclude Include="Pokemon.h">
       <Filter>LevelObjects\Global</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>LevelObjects\Dungeon\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -108,7 +111,7 @@
     <ClCompile Include="TurnManager_PlayerMove.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_PlayerAttackcpp.cpp">
+    <ClCompile Include="TurnManager_PlayerSkill.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_SelectMove.cpp">
@@ -123,8 +126,17 @@
     <ClCompile Include="TurnManager_AISkill.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_AISelect.cpp">
+    <ClCompile Include="TurnManager_PlayerMove_AISelect.cpp">
       <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_PlayerSkill_AISelect.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_SelectSkill.cpp">
+      <Filter>LevelObjects\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>LevelObjects\Dungeon\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +166,9 @@
     </Filter>
     <Filter Include="LevelObjects\TurnManager">
       <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\Dungeon\Enemy">
+      <UniqueIdentifier>{29b87975-00fb-43c1-9962-051f60b6ed21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
