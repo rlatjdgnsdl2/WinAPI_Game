@@ -29,7 +29,7 @@ public:
 	}
 
 
-	FIntPoint operator+(const FIntPoint& _Other) const
+	FIntPoint operator+(FIntPoint _Other) const
 	{
 		FIntPoint Result;
 		Result.X = X + _Other.X;
@@ -37,7 +37,7 @@ public:
 		return Result;
 	}
 
-	FIntPoint operator-(const FIntPoint& _Other) const
+	FIntPoint operator-(FIntPoint _Other) const
 	{
 		FIntPoint Result;
 		Result.X = X - _Other.X;
@@ -45,7 +45,7 @@ public:
 		return Result;
 	}
 
-	FIntPoint operator/(const int& _Value) const
+	FIntPoint operator/(int _Value) const
 	{
 		FIntPoint Result;
 		Result.X = X / _Value;
@@ -53,13 +53,12 @@ public:
 		return Result;
 	}
 
-
-	bool operator==(const FIntPoint& _Other) const
+	bool operator==(FIntPoint _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
 	}
 
-	FIntPoint& operator+=(const FIntPoint& _Other)
+	FIntPoint& operator+=(FIntPoint _Other)
 	{
 		X += _Other.X;
 		Y += _Other.Y;
@@ -86,7 +85,7 @@ public:
 	static const FVector2D DOWN;
 
 	//	선형보간
-	static FVector2D LerpClamp(const FVector2D& _StartLocation, const FVector2D& _TargetLocation, float _t);
+	static FVector2D LerpClamp(FVector2D _StartLocation, FVector2D _TargetLocation, float _t);
 
 	//	벡터길이
 	float Length() const { return UEngineMath::Sqrt(X * X + Y * Y); }
@@ -107,14 +106,14 @@ public:
 	FIntPoint ConvertToPoint() const { return { iX(), iY() }; }
 
 	//	내적
-	float Dot(const FVector2D& other) const { return X * other.X + Y * other.Y; }
+	float Dot(FVector2D _Other) const { return X * _Other.X + Y * _Other.Y; }
 
 	//	0이 있으면 true;
 	bool IsZeroed() const { return X == 0.0f || Y == 0.0f; }
 
 	//	연산자들
 
-	FVector2D operator+(const FVector2D& _Other) const
+	FVector2D operator+(FVector2D _Other) const
 	{
 		FVector2D Result;
 		Result.X = X + _Other.X;
@@ -122,7 +121,7 @@ public:
 		return Result;
 	}
 
-	FVector2D operator-(const FVector2D& _Other) const
+	FVector2D operator-(FVector2D _Other) const
 	{
 		FVector2D Result;
 		Result.X = X - _Other.X;
@@ -130,7 +129,7 @@ public:
 		return Result;
 	}
 
-	FVector2D operator/(const int& _Value) const
+	FVector2D operator/(int _Value) const
 	{
 		FVector2D Result;
 		Result.X = X / _Value;
@@ -138,21 +137,21 @@ public:
 		return Result;
 	}
 
-	FVector2D operator*(const float& _Value) const
+	FVector2D operator*(float _Value) const
 	{
 		FVector2D Result;
 		Result.X = X * _Value;
 		Result.Y = Y * _Value;
 		return Result;
 	}
-	FVector2D& operator+=(const FVector2D& _Other)
+	FVector2D& operator+=(FVector2D _Other)
 	{
 		X += _Other.X;
 		Y += _Other.Y;
 		return *this;
 	}
 
-	FVector2D& operator-=(const FVector2D& _Other)
+	FVector2D& operator-=(FVector2D _Other)
 	{
 		X -= _Other.X;
 		Y -= _Other.Y;
@@ -167,7 +166,6 @@ public:
 		return Result;
 	}
 
-
 	//	출력용
 	std::string ToString()
 	{
@@ -181,48 +179,17 @@ public:
 		return Stream;
 	}
 
-
 	//	쓰지말자... 대소비교로 대신
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
 	}
 
-
 	bool EqualToInt(FVector2D _Other) const
 	{
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
-
-	//	임시
-	bool operator!=(const FVector2D& Other) const
-	{
-		return !(*this == Other);
-	}
-	// Less than operator (compares by X first, then Y)
-	bool operator<(const FVector2D& Other) const
-	{
-		return (X < Other.X) || (X == Other.X && Y < Other.Y);
-	}
-
-	// Greater than operator
-	bool operator>(const FVector2D& Other) const
-	{
-		return (X > Other.X) || (X == Other.X && Y > Other.Y);
-	}
-
-	// Less than or equal to operator
-	bool operator<=(const FVector2D& Other) const
-	{
-		return !(*this > Other);
-	}
-
-	// Greater than or equal to operator
-	bool operator>=(const FVector2D& Other) const
-	{
-		return !(*this < Other);
-	}
 };
 
 class FTransform
