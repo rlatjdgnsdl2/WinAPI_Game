@@ -48,9 +48,9 @@ private:
 	int PlayerInput;
 	
 	//	스피드가 빠른순으로 정렬해야댐 역정렬
-	std::map<float, class APokemon*> MoveMaps;
-	std::map<float, class APokemon*> SkillMaps;
-	std::map<float, class APokemon*> IdleMaps;
+	std::unordered_map<float, class APokemon*> MoveMaps;
+	std::unordered_map<float, class APokemon*> SkillMaps;
+	std::unordered_map<float, class APokemon*> IdleMaps;
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;

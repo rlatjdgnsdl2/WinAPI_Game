@@ -5,15 +5,16 @@
 
 void ATurnManager::PlayerMove_AISelect(float _DeltaTime)
 {
-	std::map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
-	std::map<float, APokemon*>::iterator EndIter = IdleMaps.end();
-	for (; StartIter!=EndIter; StartIter++) 
+	std::unordered_map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
+	std::unordered_map<float, APokemon*>::iterator EndIter = IdleMaps.end();
+	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = StartIter->second;
 		FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
 		CampType CurCamp = CurPokemon->GetCurCamp();
-		if (CampType::Player == CurCamp) 
+		if (CampType::Player == CurCamp)
 		{
+			bool IsFindTarget = false;
 			std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
 			std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
 			for (; StartIter != EndIter; StartIter++)
@@ -21,18 +22,22 @@ void ATurnManager::PlayerMove_AISelect(float _DeltaTime)
 				APokemon* ComparePokemon = *StartIter;
 				FVector2D CompreLocation = ComparePokemon->GetActorLocation();
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
-				if (Distance <= FVector2D(72, 72)) 
+				if (Distance <= FVector2D(72, 72))
 				{
-					SkillMaps.insert({ 1.0f,CurPokemon });
+					SkillMaps.insert({ CurPokemon->GetSpeed(),CurPokemon });
+					IsFindTarget = true;
+					return;
 				}
-
+				
+			}
+			if (!IsFindTarget) 
+			{
+				MoveMaps.insert({ CurPokemon->GetSpeed(),CurPokemon });
 			}
 		}
-		
-		
 	}
 
-	
+
 
 	CurTurnType = TurnType::Player_Move;
 }

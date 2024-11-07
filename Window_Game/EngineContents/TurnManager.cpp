@@ -32,7 +32,7 @@ void ATurnManager::LevelChangeStart()
 	PlayerCamp.push_back(Player);
 	PlayerCamp.push_back(Partner);
 
-	IdleMaps.insert({1.0f,Partner});
+	IdleMaps.insert({Partner->GetSpeed(),Partner});
 
 	CurTurnType = TurnType::Player_Select;
 

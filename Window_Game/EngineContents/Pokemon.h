@@ -97,7 +97,7 @@ protected:
 
 	CampType CurCamp;
 
-	float Speed;
+	float Speed = 1.0f;
 
 	virtual void AnimationSetting()=0;
 
