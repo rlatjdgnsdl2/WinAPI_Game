@@ -6,8 +6,8 @@
 
 void ATurnManager::AISkill(float _DeltaTime)
 {
-	std::map<float, APokemon*>::iterator StartIter = SkillMaps.begin();
-	std::map<float, APokemon*>::iterator EndIter = SkillMaps.end();
+	std::unordered_map<float, APokemon*>::iterator StartIter = SkillMaps.begin();
+	std::unordered_map<float, APokemon*>::iterator EndIter = SkillMaps.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{

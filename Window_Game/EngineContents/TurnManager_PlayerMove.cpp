@@ -15,8 +15,8 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	//	Player move
 	Player->Move(_DeltaTime);
 
-	std::map<float, APokemon*>::iterator StartIter = MoveMaps.begin();
-	std::map<float, APokemon*>::iterator EndIter = MoveMaps.end();
+	std::unordered_map<float, APokemon*>::iterator StartIter = MoveMaps.begin();
+	std::unordered_map<float, APokemon*>::iterator EndIter = MoveMaps.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{

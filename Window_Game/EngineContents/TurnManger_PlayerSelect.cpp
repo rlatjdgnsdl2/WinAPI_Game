@@ -12,8 +12,8 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
-	std::map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
-	std::map<float, APokemon*>::iterator EndIter = IdleMaps.end();
+	std::unordered_map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
+	std::unordered_map<float, APokemon*>::iterator EndIter = IdleMaps.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{
