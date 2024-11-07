@@ -104,8 +104,8 @@ void ATurnManager::SetSpawnPos()
 	{
 		for (int x = -1; x <= 1; x++)
 		{
-			TILETYPE TileType = Dungeon->GetDungeonData()->TileTypes[PosIndex.iY() + y][PosIndex.iX()+x];
-			if (TILETYPE::GROUND == TileType && x != 0 && y != 0)
+			TileType TileType = Dungeon->GetDungeonData()->TileTypes[PosIndex.iY() + y][PosIndex.iX()+x];
+			if (TileType::GROUND == TileType && x != 0 && y != 0)
 			{
 				FVector2D PartnerPos = FVector2D(PlayerPos.X + x * 72, PlayerPos.Y + y * 72);
 				Partner->SetActorLocation(PartnerPos);

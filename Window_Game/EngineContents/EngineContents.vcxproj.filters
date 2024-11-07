@@ -58,6 +58,9 @@
     <ClInclude Include="Enemy_01.h">
       <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Dungeon_BSP.h">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="Enemy_01.cpp">
       <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_BSP.cpp">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,14 +24,14 @@ ATileMap::~ATileMap()
 }
 
 
-void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName)
+void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName, int _Index)
 {
 	if (nullptr == Tiles[_y][_x].SpriteRenderer)
 	{
 		USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		Tiles[_y][_x].SpriteRenderer = NewSpriteRenderer;
 	}
-	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName, 4);
+	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName, _Index);
 	Tiles[_y][_x].SpriteRenderer->SetComponentLocation({ (_x)*_Scale.X,(_y)*_Scale.Y });
 	Tiles[_y][_x].SpriteRenderer->SetSpriteScale(1.0f);
 	Tiles[_y][_x].SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
@@ -41,9 +41,9 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 
 
 
-void ATileMap::SetTile(int _col, int _row, std::string_view _SpriteName)
+void ATileMap::SetTile(int _x, int _y, std::string_view _SpriteName, int _Index)
 {
-	Tiles[_row][_col].SpriteRenderer->SetSprite(_SpriteName.data(), 4);
+	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName.data(), _Index);
 }
 
 

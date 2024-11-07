@@ -13,7 +13,7 @@ public:
 	{
 	public:
 		class USpriteRenderer* SpriteRenderer = nullptr;
-		TILETYPE TileType;
+		TileType TileType;
 		FTransform TileTrans;
 	};
 
@@ -26,8 +26,8 @@ public:
 	ATileMap& operator=(const 	ATileMap& _Other) = delete;
 	ATileMap& operator=(ATileMap&& _Other) noexcept = delete;
 
-	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName);
-	void SetTile(int _col, int _row, std::string_view _SpriteName);
+	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName, int _Index);
+	void SetTile(int _x, int _y, std::string_view _SpriteName, int _Index);
 
 protected:
 	std::vector <std::vector<Tile>> Tiles;

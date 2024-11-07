@@ -10,7 +10,7 @@ enum class ERenderOrder
 };
 
 
-enum class TILETYPE {
+enum class TileType {
 	GROUND = 0,
 	WALL,
 	WATER
@@ -47,7 +47,7 @@ enum class DIR
 	Down,
 	Right_Down,
 	Left,
-	Right=6,
+	Right = 6,
 	Left_Up,
 	Up,
 	Right_Up

@@ -46,9 +46,9 @@ void ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 	Player->SetDir(direction);
 	FVector2D StartLocation = Player->SetStartLocation(Player->GetActorLocation());
 	FVector2D TargetLocation = Player->SetTargetLocation(StartLocation + moveVector);
-	TILETYPE TargetTileType = Dungeon->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+	TileType TargetTileType = Dungeon->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
 	Player->SetCurDuration(0.0f);
-	if (TILETYPE::GROUND != TargetTileType) {
+	if (TileType::GROUND != TargetTileType) {
 		Player->SetTargetLocation(StartLocation); // 이동 불가시 원래 위치로
 		return;
 	}

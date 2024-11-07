@@ -15,7 +15,7 @@ ADungeon::ADungeon()
 {
 	
 	Tiles.resize(DungeonData.DungeonSize.Y, std::vector<Tile>(DungeonData.DungeonSize.X));
-	DungeonData.TileTypes.resize(DungeonData.DungeonSize.Y, std::vector<TILETYPE>(DungeonData.DungeonSize.X));
+	DungeonData.TileTypes.resize(DungeonData.DungeonSize.Y, std::vector<TileType>(DungeonData.DungeonSize.X));
 	SetActorLocation({ 0,0 });
 }
 
@@ -192,15 +192,15 @@ void ADungeon::SetNaturally()
 				std::string TypeName = SpriteName.substr(FindIndex);
 				if ("_GROUND.PNG" == TypeName)
 				{
-					DungeonData.TileTypes[y][x] = TILETYPE::GROUND;
+					DungeonData.TileTypes[y][x] = TileType::GROUND;
 				}
 				else if ("_WALL.PNG" == TypeName)
 				{
-					DungeonData.TileTypes[y][x] = TILETYPE::WALL;
+					DungeonData.TileTypes[y][x] = TileType::WALL;
 				}
 				else if ("_WATER.PNG" == TypeName)
 				{
-					DungeonData.TileTypes[y][x] = TILETYPE::WATER;
+					DungeonData.TileTypes[y][x] = TileType::WATER;
 				}
 
 				if (y >= 1 && x >= 1 && y <= DungeonData.DungeonSize.Y - 2 && x <= DungeonData.DungeonSize.X - 2)

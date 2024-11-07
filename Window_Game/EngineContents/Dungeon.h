@@ -8,9 +8,8 @@ public:
 	class DungeonData
 	{
 	public:
-
 		std::string CurDungeonName = "BeachCave";
-		std::vector<std::vector<TILETYPE>>TileTypes;
+		std::vector<std::vector<TileType>>TileTypes;
 		std::vector<FTransform> SlicedDungeons;
 		std::vector<FTransform> DungeonRooms;
 		std::vector<Room>Rooms;
@@ -28,6 +27,11 @@ public:
 	ADungeon(ADungeon&& _Other) noexcept = delete;
 	ADungeon& operator=(const ADungeon& _Other) = delete;
 	ADungeon& operator=(ADungeon&& _Other) noexcept = delete;
+
+	const int MIN_SIZE = 10;
+	const int MAX_SIZE = 20;
+
+
 
 	void SetDungeonName(std::string_view _DungeonName) {
 		DungeonData.CurDungeonName = _DungeonName;
