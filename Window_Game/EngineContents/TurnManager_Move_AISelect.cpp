@@ -72,7 +72,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				//타겟로케이션 정해줘야함(플레이어 위치 기준)
 				//	파트너만 위치 정해주는 임시코드 (길찾기 알고리즘 없으면 못함)
 				FVector2D StartLocation = CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
-				FVector2D TargetLocation = CurPokemon->SetTargetLocation(Player->GetStartLocation());
+				FVector2D TargetLocation = CurPokemon->SetTargetLocation(StartLocation+FVector2D::UP*72);
 				CurPokemon->SetCurDuration(0.0f);
 
 				MoveVec.push_back(CurPokemon);

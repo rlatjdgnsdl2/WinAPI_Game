@@ -103,7 +103,7 @@ protected:
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
 
-	SkillType CurSkillType;
+	SkillType CurSkillType = SkillType::NormalAttack;
 
 	CampType CurCamp;
 

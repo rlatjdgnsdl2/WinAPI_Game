@@ -21,7 +21,7 @@ public:
 	AActor& operator=(AActor&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() {}
-	virtual void Tick(float _DeltaTime) {}
+	virtual void Tick(float _DeltaTime);
 	virtual void LevelChangeStart() {}
 	virtual void LevelChangeEnd() {}
 
@@ -54,6 +54,20 @@ public:
 	{
 		return Transform.Location;
 	}
+	void DebugOn()
+	{
+		IsDebug = true;
+	}
+
+	void DebugOff()
+	{
+		IsDebug = false;
+	}
+
+	void DebugSwitch()
+	{
+		IsDebug = !IsDebug;
+	}
 
 	// 컴포넌트의 소유자는 액터 삭제도 액터가 해야한다.
 	// 다른 클래스는 절대로 삭제하면 안된다.
@@ -84,6 +98,7 @@ private:
 	static bool IsNewActorCreate;
 	static std::list<class UActorComponent*> ComponentList;
 
+	bool IsDebug = false;
 	class ULevel* World = nullptr;
 	FTransform Transform;
 

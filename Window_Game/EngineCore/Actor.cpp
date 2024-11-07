@@ -1,19 +1,20 @@
 #include "PreCompile.h"
 #include "Actor.h"
 
-#include <EngineCore/EngineAPICore.h>
+#include <EngineBase/EngineDebug.h>
 #include <EngineBase/EngineMath.h>
 #include <EngineBase/EngineDebug.h>
 #include <EnginePlatform/EngineWindow.h>
 #include <EnginePlatform/EngineWinImage.h>
+#include <EngineCore/EngineAPICore.h>
+
 
 #include "EngineSprite.h"
-#include <EngineBase/EngineDebug.h>
-
 #include "ImageManager.h"
-
-
 #include "ActorComponent.h"
+#include "EngineCoreDebug.h"
+
+
 
 std::list<UActorComponent*> AActor::ComponentList;
 
@@ -48,6 +49,16 @@ AActor::~AActor()
 		}
 	}
 	Components.clear();
+}
+
+void AActor::Tick(float _DeltaTime)
+{
+	if (true == IsDebug)
+	{
+		FVector2D Pos = GetActorLocation();
+		FVector2D CameraPos = GetWorld()->GetCameraPos();
+		UEngineDebug::CoreDebugPos(Pos - CameraPos, UEngineDebug::EDebugPosType::Circle);
+	}
 }
 
 void AActor::ReleaseCheck(float _DeltaTime)

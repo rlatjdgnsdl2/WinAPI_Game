@@ -6,13 +6,19 @@
 
 void ATurnManager::AISkill(float _DeltaTime)
 {
+	CurDuration += _DeltaTime;
 	std::vector<APokemon*>::iterator StartIter = SkillVec.begin();
 	std::vector<APokemon*>::iterator EndIter = SkillVec.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
+		CurPokemon->Skill(CurPokemon->GetCurSkillType());
 
 	}
-	CurTurnType = TurnType::Player_Select;
+	if (CurDuration > 0.5f) {
+
+		CurTurnType = TurnType::Player_Select;
+		CurDuration = 0.0f;
+	}
 }
