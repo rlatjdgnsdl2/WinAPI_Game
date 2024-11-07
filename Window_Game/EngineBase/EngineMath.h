@@ -32,6 +32,34 @@ public:
 	{
 
 	}
+	bool operator!=(const FVector2D& Other) const
+	{
+		return !(*this == Other);
+	}
+
+	// Less than operator (compares by X first, then Y)
+	bool operator<(const FVector2D& Other) const
+	{
+		return (X < Other.X) || (X == Other.X && Y < Other.Y);
+	}
+
+	// Greater than operator
+	bool operator>(const FVector2D& Other) const
+	{
+		return (X > Other.X) || (X == Other.X && Y > Other.Y);
+	}
+
+	// Less than or equal to operator
+	bool operator<=(const FVector2D& Other) const
+	{
+		return !(*this > Other);
+	}
+
+	// Greater than or equal to operator
+	bool operator>=(const FVector2D& Other) const
+	{
+		return !(*this < Other);
+	}
 
 
 

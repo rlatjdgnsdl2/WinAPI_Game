@@ -75,6 +75,14 @@ public:
 	{
 		return CurCamp;
 	}
+	float GetSpeed() 
+	{
+		return Speed;
+	};
+	void SetSpeed(float _Speed)
+	{
+		Speed = _Speed;
+	};
 
 
 protected:
@@ -88,6 +96,8 @@ protected:
 	SkillType CurSkillType;
 
 	CampType CurCamp;
+
+	float Speed;
 
 	virtual void AnimationSetting()=0;
 
