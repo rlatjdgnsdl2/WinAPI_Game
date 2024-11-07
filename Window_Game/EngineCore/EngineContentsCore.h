@@ -6,7 +6,7 @@ class UEngineContentsCore
 public:
 	//	constrcuter, destructer
 	UEngineContentsCore();
-	~UEngineContentsCore();
+	virtual ~UEngineContentsCore();
 
 	//	delete Function
 	UEngineContentsCore(const UEngineContentsCore& _Other) = delete;

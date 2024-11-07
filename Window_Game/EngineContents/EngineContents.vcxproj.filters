@@ -8,28 +8,28 @@
       <Filter>ContentsCore</Filter>
     </ClInclude>
     <ClInclude Include="TitleGameMode.h">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClInclude>
     <ClInclude Include="TempGameMode.h">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClInclude>
     <ClInclude Include="TempPlayer.h">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClInclude>
     <ClInclude Include="TempActor.h">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
     <ClInclude Include="Partner.h">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
     <ClInclude Include="TitleAnimActor.h">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackground.h">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClInclude>
     <ClInclude Include="ContentsStruct.h">
       <Filter>_Header</Filter>
@@ -38,25 +38,25 @@
       <Filter>_Header</Filter>
     </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
     <ClInclude Include="TileMap.h">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
     <ClInclude Include="Dungeon.h">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
     <ClInclude Include="TurnManager.h">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClInclude>
     <ClInclude Include="Pokemon.h">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>LevelObjects\DungeonLevel\Enemy</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_01.h">
-      <Filter>LevelObjects\DungeonLevel\Enemy</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,28 +67,28 @@
       <Filter>ContentsCore</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
     <ClCompile Include="TempGameMode.cpp">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClCompile>
     <ClCompile Include="TempPlayer.cpp">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClCompile>
     <ClCompile Include="TempActor.cpp">
-      <Filter>LevelObjects\TempLevel</Filter>
+      <Filter>LevelObjects\10.TempLevel</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
     <ClCompile Include="Partner.cpp">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
     <ClCompile Include="TitleAnimActor.cpp">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackground.cpp">
-      <Filter>LevelObjects\TitleLevel</Filter>
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
     <ClCompile Include="ContentsStruct.cpp">
       <Filter>_Header</Filter>
@@ -97,52 +97,52 @@
       <Filter>_Header</Filter>
     </ClCompile>
     <ClCompile Include="DungeonGameMode.cpp">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon.cpp">
-      <Filter>LevelObjects\DungeonLevel</Filter>
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManger_PlayerSelect.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_PlayerMove.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_PlayerSkill.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_SelectMove.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
-      <Filter>LevelObjects\Global</Filter>
+      <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_AIMove.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_AISkill.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_Move_AISelect.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_Skill_AISelect.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_SelectSkill.cpp">
-      <Filter>LevelObjects\DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>LevelObjects\DungeonLevel\Enemy</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_01.cpp">
-      <Filter>LevelObjects\DungeonLevel\Enemy</Filter>
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,22 +158,22 @@
     <Filter Include="ContentsCore">
       <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\Global">
-      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LevelObjects\TitleLevel">
+    <Filter Include="LevelObjects\01.TitleLevel">
       <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\DungeonLevel">
+    <Filter Include="LevelObjects\02.DungeonLevel">
       <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\DungeonLevel\Enemy">
+    <Filter Include="LevelObjects\02.DungeonLevel\Enemy">
       <UniqueIdentifier>{29b87975-00fb-43c1-9962-051f60b6ed21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\DungeonLevel\TurnManager">
+    <Filter Include="LevelObjects\02.DungeonLevel\TurnManager">
       <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\TempLevel">
+    <Filter Include="LevelObjects\00.Global">
+      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\10.TempLevel">
       <UniqueIdentifier>{76fc212b-f490-4417-9f85-46b2d46df347}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
