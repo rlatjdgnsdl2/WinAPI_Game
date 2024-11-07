@@ -23,7 +23,7 @@ public:
 	void SetSpawnPos();
 
 
-	void SetDungeon(class ADungeon* _Dungeon) 
+	void SetDungeon(class  ADungeon_BSP* _Dungeon)
 	{
 		Dungeon = _Dungeon;
 	}
@@ -45,7 +45,7 @@ protected:
 private:
 	class APlayer* Player;
 	class APartner* Partner;
-	class ADungeon* Dungeon;
+	class ADungeon_BSP* Dungeon;
 	class AEnemy_01* TestEnemy;
 
 

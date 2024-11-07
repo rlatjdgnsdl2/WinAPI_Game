@@ -31,9 +31,9 @@ void ADungeon::SetAllWall()
 		for (int x = 0; x < DungeonData.DungeonSize.X; x++)
 		{
 			if (Tiles[y][x].SpriteRenderer == nullptr) {
-				CreateTile(x, y, { 72,72 }, DungeonData.CurDungeonName + "_Wall.png");
+				CreateTile(x, y, { 72,72 }, DungeonData.CurDungeonName + "_Wall.png",4);
 			}
-			SetTile(x, y, DungeonData.CurDungeonName + "_Wall.png");
+			SetTile(x, y, DungeonData.CurDungeonName + "_Wall.png",4);
 		}
 	}
 }
@@ -100,7 +100,7 @@ void ADungeon::SetRoom()
 			{
 				for (int y = 0; y < DungeonRoomSize.Y; y++) {
 					for (int x = 0; x < DungeonRoomSize.X; x++) {
-						SetTile(x + DungeonRoomPos.X, y + DungeonRoomPos.Y, DungeonData.CurDungeonName + "_Ground.png");
+						SetTile(x + DungeonRoomPos.X, y + DungeonRoomPos.Y, DungeonData.CurDungeonName + "_Ground.png",4);
 					}
 				}
 				NewRoom.RoomTrans = FTransform(DungeonRoomSize, DungeonRoomPos);
@@ -130,7 +130,7 @@ void ADungeon::SetHallWay()
 		if (Distance.Y > 0) {
 			for (int i = 0; i < Distance.Y; i++)
 			{
-				SetTile(Anchor.X, Anchor.Y + i, DungeonData.CurDungeonName + "_Ground.png");
+				SetTile(Anchor.X, Anchor.Y + i, DungeonData.CurDungeonName + "_Ground.png",4);
 
 				AllGround.push_back(FIntPoint(Anchor.X, Anchor.Y + i));
 			}
@@ -139,7 +139,7 @@ void ADungeon::SetHallWay()
 		else if (Distance.Y < 0) {
 			for (int i = 0; i > Distance.Y; i--)
 			{
-				SetTile(Anchor.X, Anchor.Y + i, DungeonData.CurDungeonName + "_Ground.png");
+				SetTile(Anchor.X, Anchor.Y + i, DungeonData.CurDungeonName + "_Ground.png", 4);
 				AllGround.push_back(FIntPoint(Anchor.X, Anchor.Y + i));
 			}
 		}
@@ -147,7 +147,7 @@ void ADungeon::SetHallWay()
 		if (Distance.X > 0) {
 			for (int i = 0; i < Distance.X; i++)
 			{
-				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, DungeonData.CurDungeonName + "_Ground.png");
+				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, DungeonData.CurDungeonName + "_Ground.png", 4);
 				AllGround.push_back(FIntPoint(Anchor.X + i, Anchor.Y));
 			}
 		}
@@ -155,7 +155,7 @@ void ADungeon::SetHallWay()
 		else if (Distance.X < 0) {
 			for (int i = 0; i > Distance.X; i--)
 			{
-				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, DungeonData.CurDungeonName + "_Ground.png");
+				SetTile(Anchor.X + i, Anchor.Y + Distance.Y, DungeonData.CurDungeonName + "_Ground.png", 4);
 				AllGround.push_back(FIntPoint(Anchor.X + i, Anchor.Y));
 			}
 		}
@@ -172,7 +172,7 @@ void ADungeon::SetBorderWall()
 			if (y <= 2 || x <= 2 || y >= DungeonData.DungeonSize.Y - 3 || x >= DungeonData.DungeonSize.X - 3)
 			{
 				//	가장자리는 벽으로
-				SetTile(x, y, DungeonData.CurDungeonName + "_Wall.png");
+				SetTile(x, y, DungeonData.CurDungeonName + "_Wall.png", 4);
 			}
 		}
 	}

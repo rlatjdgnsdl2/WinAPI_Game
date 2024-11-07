@@ -14,6 +14,11 @@ struct Node {
     Node* right = nullptr;
 
     bool isLeaf() const { return left == nullptr && right == nullptr; }
+
+    ~Node() {
+        delete left;
+        delete right;
+    }
 };
 
 

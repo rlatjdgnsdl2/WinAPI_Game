@@ -21,16 +21,11 @@ public:
 	void LevelChangeStart() override;
 	void LevelChangeEnd() override;
 
-	void GenerateDungeon();
-	static void SetCurDungeonName(std::string_view _DungeonName);
-
-	
-
 protected:
 
 private:
 	class ATurnManager* TurnManager;
-	class ADungeon* Dungeon;
+	class ADungeon_BSP* Dungeon;
 	class APartner* Partner;
 
 	

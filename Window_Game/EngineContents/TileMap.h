@@ -28,6 +28,7 @@ public:
 
 	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName, int _Index);
 	void SetTile(int _x, int _y, std::string_view _SpriteName, int _Index);
+	void SetTileType(int _x, int _y, TileType _TileType);
 
 protected:
 	std::vector <std::vector<Tile>> Tiles;

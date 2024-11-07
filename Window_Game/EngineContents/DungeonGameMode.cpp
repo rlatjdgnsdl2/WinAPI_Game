@@ -6,7 +6,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/Level.h>
 
-#include "Dungeon.h"
+#include "Dungeon_BSP.h"
 #include "Partner.h"
 #include "TurnManager.h"
 #include "Enemy_01.h"
@@ -38,13 +38,15 @@ void ADungeonGameMode::Tick(float _DeltaTime)
 void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+	//	带傈积己
 	if (nullptr == Dungeon) {
 
-		Dungeon = GetWorld()->SpawnActor<ADungeon>();
+		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
 	}
-	Dungeon->SetDungeonName("BeachCave");
-	GenerateDungeon();
-
+	Dungeon->Generate();
+	Dungeon->SetCurDungeonName("BeachCave");
+	
+	//	畔概聪历 积己
 	if (nullptr == TurnManager) {
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
 	}
@@ -64,18 +66,7 @@ void ADungeonGameMode::LevelChangeEnd()
 }
 
 
-void ADungeonGameMode::GenerateDungeon()
-{
-	Dungeon->SliceDungeon();
-	Dungeon->SetAllWall();
 
-	Dungeon->SetRoom();
-	Dungeon->SetHallWay();
-
-
-	Dungeon->SetBorderWall();
-	Dungeon->SetNaturally();
-}
 
 
 
