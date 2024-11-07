@@ -15,6 +15,6 @@ Enemy::~Enemy()
 void Enemy::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	CampType = CampType::Enemy;
+	CurCampType = CampType::Enemy;
 }
 

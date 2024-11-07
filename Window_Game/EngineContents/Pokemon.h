@@ -71,6 +71,10 @@ public:
 	void SetCurSKillType(SkillType _SkillType) {
 		CurSkillType = _SkillType;
 	}
+	CampType GetCurCamp() 
+	{
+		return CurCamp;
+	}
 
 
 protected:
@@ -83,7 +87,8 @@ protected:
 
 	SkillType CurSkillType;
 
-	CampType CampType;
+	CampType CurCamp;
+
 	virtual void AnimationSetting()=0;
 
 private:

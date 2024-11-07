@@ -39,6 +39,8 @@ private:
 	class APlayer* Player;
 	class APartner* Partner;
 	class ADungeon* Dungeon;
+
+
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
 
@@ -49,6 +51,12 @@ private:
 	std::map<float, class APokemon*> MoveMaps;
 	std::map<float, class APokemon*> SkillMaps;
 	std::map<float, class APokemon*> IdleMaps;
+
+	std::vector<class APokemon*> PlayerCamp;
+	std::vector<class APokemon*> EnemyCamp;
+
+
+
 
 	//	idle
 	void PlayerSelect();

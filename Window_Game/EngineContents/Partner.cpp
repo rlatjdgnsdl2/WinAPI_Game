@@ -27,7 +27,7 @@ APartner::~APartner()
 void APartner::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	CampType = CampType::Player;
+	CurCampType = CampType::Player;
 }
 
 void APartner::AnimationSetting()

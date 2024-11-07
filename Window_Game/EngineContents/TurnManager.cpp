@@ -27,6 +27,11 @@ void ATurnManager::LevelChangeStart()
 	SetSpawnPos();
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
+	
+
+	PlayerCamp.push_back(Player);
+	PlayerCamp.push_back(Partner);
+
 	IdleMaps.insert({1.0f,Partner});
 
 	CurTurnType = TurnType::Player_Select;

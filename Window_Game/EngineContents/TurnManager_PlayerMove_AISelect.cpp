@@ -6,6 +6,11 @@ void ATurnManager::PlayerMove_AISelect(float _DeltaTime)
 {
 	std::map<float, APokemon*>::iterator StartIter = IdleMaps.begin();
 	std::map<float, APokemon*>::iterator EndIter = IdleMaps.end();
+	for (; StartIter!=EndIter; StartIter++) 
+	{
+		APokemon* CurPokemon = StartIter->second;
+		CampType CurCamp = CurPokemon->GetCurCamp();
+	}
 
 	
 
