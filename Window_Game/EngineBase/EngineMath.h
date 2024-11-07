@@ -4,16 +4,80 @@
 class UEngineMath
 {
 public:
-	static float Sqrt(float _Value)
+	static float Sqrt(float _Value) { return ::sqrtf(_Value); }
+};
+
+class FIntPoint
+{
+public:
+	int X = 0;
+	int Y = 0;
+
+	static const FIntPoint LEFT;
+	static const FIntPoint RIGHT;
+	static const FIntPoint UP;
+	static const FIntPoint DOWN;
+
+	FIntPoint()
 	{
-		return ::sqrtf(_Value);
+
+	}
+
+	FIntPoint(int _X, int _Y) : X(_X), Y(_Y)
+	{
+
+	}
+
+
+	FIntPoint operator+(const FIntPoint& _Other) const
+	{
+		FIntPoint Result;
+		Result.X = X + _Other.X;
+		Result.Y = Y + _Other.Y;
+		return Result;
+	}
+
+	FIntPoint operator-(const FIntPoint& _Other) const
+	{
+		FIntPoint Result;
+		Result.X = X - _Other.X;
+		Result.Y = Y - _Other.Y;
+		return Result;
+	}
+
+	FIntPoint operator/(const int& _Value) const
+	{
+		FIntPoint Result;
+		Result.X = X / _Value;
+		Result.Y = Y / _Value;
+		return Result;
+	}
+
+
+	bool operator==(const FIntPoint& _Other) const
+	{
+		return X == _Other.X && Y == _Other.Y;
+	}
+
+	FIntPoint& operator+=(const FIntPoint& _Other)
+	{
+		X += _Other.X;
+		Y += _Other.Y;
+		return *this;
 	}
 };
+
+
 class FVector2D
 {
 public:
 	float X = 0.0f;
 	float Y = 0.0f;
+
+	FVector2D() {}
+	FVector2D(float _X, float _Y) : X(_X), Y(_Y) {}
+	FVector2D(int _X, int _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y)) {}
+	FVector2D(long _X, long _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y)) {}
 
 	static const FVector2D ZERO;
 	static const FVector2D LEFT;
@@ -21,29 +85,121 @@ public:
 	static const FVector2D UP;
 	static const FVector2D DOWN;
 
-	FVector2D()
-	{
+	//	선형보간
+	static FVector2D LerpClamp(const FVector2D& _StartLocation, const FVector2D& _TargetLocation, float _t);
 
+	//	벡터길이
+	float Length() const { return UEngineMath::Sqrt(X * X + Y * Y); }
+
+	//	정규화
+	static FVector2D Normalize(FVector2D _Value);
+
+	//	정규화
+	void Normalize();
+
+	int iX() const { return static_cast<int>(X); }
+	int iY() const { return static_cast<int>(Y); }
+
+	//	중앙값
+	FVector2D Half() const { return { X * 0.5f, Y * 0.5f }; }
+
+	//	IntPoint로 변환
+	FIntPoint ConvertToPoint() const { return { iX(), iY() }; }
+
+	//	내적
+	float Dot(const FVector2D& other) const { return X * other.X + Y * other.Y; }
+
+	//	0이 있으면 true;
+	bool IsZeroed() const { return X == 0.0f || Y == 0.0f; }
+
+	//	연산자들
+
+	FVector2D operator+(const FVector2D& _Other) const
+	{
+		FVector2D Result;
+		Result.X = X + _Other.X;
+		Result.Y = Y + _Other.Y;
+		return Result;
 	}
 
-	FVector2D(float _X, float _Y) : X(_X), Y(_Y)
+	FVector2D operator-(const FVector2D& _Other) const
 	{
-
+		FVector2D Result;
+		Result.X = X - _Other.X;
+		Result.Y = Y - _Other.Y;
+		return Result;
 	}
 
-	FVector2D(int _X, int _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y))
+	FVector2D operator/(const int& _Value) const
 	{
-
+		FVector2D Result;
+		Result.X = X / _Value;
+		Result.Y = Y / _Value;
+		return Result;
 	}
-	FVector2D(long _X, long _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y))
+
+	FVector2D operator*(const float& _Value) const
 	{
-
+		FVector2D Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
 	}
+	FVector2D& operator+=(const FVector2D& _Other)
+	{
+		X += _Other.X;
+		Y += _Other.Y;
+		return *this;
+	}
+
+	FVector2D& operator-=(const FVector2D& _Other)
+	{
+		X -= _Other.X;
+		Y -= _Other.Y;
+		return *this;
+	}
+
+	FVector2D operator-() const
+	{
+		FVector2D Result;
+		Result.X = -X;
+		Result.Y = -Y;
+		return Result;
+	}
+
+
+	//	출력용
+	std::string ToString()
+	{
+		std::string Stream;
+
+		Stream += "X : [";
+		Stream += std::to_string(X);
+		Stream += "] Y : [";
+		Stream += std::to_string(Y);
+		Stream += "]";
+		return Stream;
+	}
+
+
+	//	쓰지말자... 대소비교로 대신
+	bool operator==(FVector2D _Other) const
+	{
+		return X == _Other.X && Y == _Other.Y;
+	}
+
+
+	bool EqualToInt(FVector2D _Other) const
+	{
+		return iX() == _Other.iX() && iY() == _Other.iY();
+	}
+
+
+	//	임시
 	bool operator!=(const FVector2D& Other) const
 	{
 		return !(*this == Other);
 	}
-
 	// Less than operator (compares by X first, then Y)
 	bool operator<(const FVector2D& Other) const
 	{
@@ -67,136 +223,6 @@ public:
 	{
 		return !(*this < Other);
 	}
-
-
-
-	int iX() const
-	{
-		return static_cast<int>(X);
-	}
-
-	int iY() const
-	{
-		return static_cast<int>(Y);
-	}
-	FVector2D& operator-=(FVector2D _Other)
-	{
-		X -= _Other.X;
-		Y -= _Other.Y;
-		return *this;
-	}
-	FVector2D operator-() const
-	{
-		FVector2D Result;
-		Result.X = -X;
-		Result.Y = -Y;
-		return Result;
-	}
-	FVector2D Half() const
-	{
-		return { X * 0.5f, Y * 0.5f };
-	}
-	void Normalize()
-	{
-		float Len = Length();
-		if (0.0f < Len && false == isnan(Len))
-		{
-			X = X / Len;
-			Y = Y / Len;
-		}
-		return;
-	}
-	float Length() const
-	{
-		return UEngineMath::Sqrt(X * X + Y * Y);
-	}
-
-	static FVector2D Normalize(FVector2D _Value)
-	{
-		_Value.Normalize();
-		return _Value;
-	}
-
-	std::string ToString()
-	{
-		std::string Stream;
-
-		Stream += "X : [";
-		Stream += std::to_string(X);
-		Stream += "] Y : [";
-		Stream += std::to_string(Y);
-		Stream += "]";
-		return Stream;
-	}
-
-	FVector2D operator*(float _Value) const
-	{
-		FVector2D Result;
-		Result.X = X * _Value;
-		Result.Y = Y * _Value;
-		return Result;
-	}
-	// X든 Y든 0이있으면 터트리는 함수.
-	bool IsZeroed() const
-	{
-		return X == 0.0f || Y == 0.0f;
-	}
-
-	float Dot(const FVector2D& other) const
-	{
-		return X * other.X + Y * other.Y;
-	}
-
-	
-	static FVector2D LerpClimp(FVector2D _StartLocation, FVector2D _TargetLocation, float _t);
-	
-	
-
-
-	FVector2D operator+(FVector2D _Other) const
-	{
-		FVector2D Result;
-		Result.X = X + _Other.X;
-		Result.Y = Y + _Other.Y;
-		return Result;
-	}
-
-	FVector2D operator-(FVector2D _Other) const
-	{
-		FVector2D Result;
-		Result.X = X - _Other.X;
-		Result.Y = Y - _Other.Y;
-		return Result;
-	}
-	class FIntPoint ConvertToPoint() const;
-
-	FVector2D operator/(int _Value) const
-	{
-		FVector2D Result;
-		Result.X = X / _Value;
-		Result.Y = Y / _Value;
-		return Result;
-	}
-
-
-	bool operator==(FVector2D _Other) const
-	{
-		return X == _Other.X && Y == _Other.Y;
-	}
-
-	FVector2D& operator+=(FVector2D _Other)
-	{
-		X += _Other.X;
-		Y += _Other.Y;
-		return *this;
-	}
-
-	bool EqualToInt(FVector2D _Other) const
-	{
-
-		return iX() == _Other.iX() && iY() == _Other.iY();
-	}
-
 };
 
 class FTransform
@@ -209,72 +235,12 @@ public:
 	{
 		return Location - Scale.Half();
 	}
-
 	FVector2D CenterRightBottom() const
 	{
 		return Location + Scale.Half();
 	}
 };
 
-class FIntPoint
-{
-public:
-	int X = 0;
-	int Y = 0;
-
-	static const FIntPoint LEFT;
-	static const FIntPoint RIGHT;
-	static const FIntPoint UP;
-	static const FIntPoint DOWN;
-
-	FIntPoint()
-	{
-
-	}
-
-	FIntPoint(int _X, int _Y) : X(_X), Y(_Y)
-	{
-
-	}
-	
-
-	FIntPoint operator+(FIntPoint _Other) const
-	{
-		FIntPoint Result;
-		Result.X = X + _Other.X;
-		Result.Y = Y + _Other.Y;
-		return Result;
-	}
-
-	FIntPoint operator-(FIntPoint _Other) const
-	{
-		FIntPoint Result;
-		Result.X = X - _Other.X;
-		Result.Y = Y - _Other.Y;
-		return Result;
-	}
-
-	FIntPoint operator/(int _Value) const
-	{
-		FIntPoint Result;
-		Result.X = X / _Value;
-		Result.Y = Y / _Value;
-		return Result;
-	}
-
-
-	bool operator==(FIntPoint _Other) const
-	{
-		return X == _Other.X && Y == _Other.Y;
-	}
-
-	FIntPoint& operator+=(FIntPoint _Other)
-	{
-		X += _Other.X;
-		Y += _Other.Y;
-		return *this;
-	}
-};
 
 class UColor
 {

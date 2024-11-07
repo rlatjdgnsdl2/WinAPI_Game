@@ -1,5 +1,4 @@
 #pragma once
-#include <filesystem>
 
 // 설명 :
 class UEnginePath
@@ -7,38 +6,31 @@ class UEnginePath
 public:
 	// constrcuter destructer
 	UEnginePath();
+	//	String , path 둘다 지원
 	UEnginePath(std::string_view _Path);
 	UEnginePath(std::filesystem::path _Path);
-	~UEnginePath();
 
-	//// delete Function
-	//UEnginePath(const UEnginePath& _Other) = delete;
-	//UEnginePath(UEnginePath&& _Other) noexcept = delete;
-	//UEnginePath& operator=(const UEnginePath& _Other) = delete;
-	//UEnginePath& operator=(UEnginePath&& _Other) noexcept = delete;
+	virtual ~UEnginePath();
 
+
+	//	경로가 존재하면 true
 	bool IsExists();
+	//	부모폴더로 이동
 	void MoveParent();
 
+	//	현재 path를 string으로 Get
 	std::string GetPathToString();
 
-	// 파일명 + 확장자 포함
+	// 파일명 + 확장자 포함 Get
 	std::string GetFileName();
 
-	// 파일명 + 확장자 포함
+	// 폴더명 Get
 	std::string GetDirectoryName();
 
 	// 확장자
 	std::string GetExtension();
 
-
-	// "C:\\AAAA\\BBBB\\";
-	// "C:\\AAAA\\BBBB\\Resources";
-	// "C:\\AAAA\\"
-	// "C:\\AAAA\\Resources"
-	// "C:\\"
-	// "C:\\Resources"
-	// 특정 디렉토리가 나올때까지 MoveParent를 반복하는 함수.
+	//	현재 path부터 특정 디렉토리가 나올때까지 반복하는 함수
 	bool MoveParentToDirectory(std::string_view _Path);
 
 	bool IsDirectory();

@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 
-// 설명 :
+// 설명 : 델리게이트
 class EngineDelegate
 {
 public:
@@ -13,12 +13,12 @@ public:
 	{
 		Functions.push_back(_Function);
 	}
+
 	~EngineDelegate();
 
 	//	비어있지 않다면 true
 	bool IsBind()
 	{
-		
 		return false == Functions.empty();
 	}
 

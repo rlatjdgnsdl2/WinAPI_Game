@@ -35,9 +35,9 @@ std::string UEnginePath::GetFileName()
 		MSGASSERT("파일 경로 일때만 GetFileName을 호출할수 있습니다." + Path.string());
 		return "";
 	}
-
 	return Path.filename().string();
 }
+
 
 std::string UEnginePath::GetDirectoryName()
 {
@@ -58,8 +58,6 @@ std::string UEnginePath::GetExtension()
 
 bool UEnginePath::IsExists()
 {
-	// C++이 빌드되는곳에서는 모두다 동일하게 돌아간다.
-	// std::filesystem::create_directory()
 	return std::filesystem::exists(Path);
 }
 
@@ -85,9 +83,7 @@ void UEnginePath::Append(std::string_view _AppendName)
 
 bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 {
-	// 이런 경우에는 더미를 만드는게 좋다.
-
-	// Path = L"D:\\Project\\GM2\\API\\App\\AAA.png"
+	
 	UEnginePath DummyPath = UEnginePath(Path);
 
 	if (false == DummyPath.IsDirectory())
@@ -96,10 +92,9 @@ bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 		return false;
 	}
 
-	// 이게 무한 루프 걸리는 코드 입니다.
+	// 현재 path가 디렉토리면
 	bool Result = false;
 	std::filesystem::path CurPath = DummyPath.Path;
-
 	std::filesystem::path Root = CurPath.root_path();
 	while (true)
 	{
@@ -109,7 +104,6 @@ bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 		{
 			break;
 		}
-
 		CurPath.append(_Path);
 		if (true == std::filesystem::exists(CurPath))
 		{
@@ -119,11 +113,7 @@ bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 		}
 		DummyPath.MoveParent();
 	}
-
-
 	return Result;
-
-	// Path = DummyPath;
 }
 
 
