@@ -31,6 +31,13 @@ public:
 	{
 		Partner = _Partner;
 	}
+	void PushEnemy(class APokemon* _Enemy) {
+		EnemyCamp.push_back(_Enemy);
+	}
+
+	void SetTestEnemy(class AEnemy_01* _Enemy) {
+		TestEnemy = _Enemy;
+	}
 
 
 protected:
@@ -39,6 +46,7 @@ private:
 	class APlayer* Player;
 	class APartner* Partner;
 	class ADungeon* Dungeon;
+	class AEnemy_01* TestEnemy;
 
 
 	TurnType CurTurnType;
@@ -48,9 +56,9 @@ private:
 	int PlayerInput;
 	
 
+	std::vector<class APokemon*> IdleVec;
 	std::vector<class APokemon*> MoveVec;
 	std::vector<class APokemon*> SkillVec;
-	std::vector<class APokemon*> IdleVec;
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;

@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Dungeon.h"
 #include "Partner.h"
+#include "Enemy_01.h"
 
 
 ATurnManager::ATurnManager()
@@ -22,18 +23,28 @@ ATurnManager::~ATurnManager()
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+	//	MainPawn 연결
 	AActor* PlayerActor = GetWorld()->GetPawn();
 	Player = dynamic_cast<APlayer*>(PlayerActor);
+
+	//	Spawn위치 설정
 	SetSpawnPos();
+	//	초기화
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
-	
 
+	//	캠프설정
 	PlayerCamp.push_back(Player);
 	PlayerCamp.push_back(Partner);
 
-	IdleVec.push_back(Partner);
+	//	캠프설정
+	EnemyCamp.push_back(TestEnemy);
 
+	//	IdleVec에 추가
+	IdleVec.push_back(Partner);
+	IdleVec.push_back(TestEnemy);
+
+	
 	CurTurnType = TurnType::Player_Select;
 
 }
@@ -106,6 +117,10 @@ void ATurnManager::SetSpawnPos()
 			break;
 		}
 	}
+
+	// TestSpawn monster
+	TestEnemy->SetActorLocation(PlayerPos+FVector2D(144,144));
+
 
 }
 

@@ -27,15 +27,14 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				FVector2D CompreLocation = ComparePokemon->GetActorLocation();
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
 				//	한칸내에 있으면
-				if (Distance <= FVector2D(72, 72))
+				if (Distance <= FVector2D(72, 72) && Distance >= FVector2D(-72, -72))
 				{
 					//	SkillVec에 넣어줌
 					SkillVec.push_back(CurPokemon);
 					//	타겟을 찾음
 					IsFindTarget = true;
-					return;
-				}
-				
+					
+				}	
 			}
 			// 타겟못찾으면
 			if (!IsFindTarget) 
@@ -44,9 +43,9 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				//	파트너만 위치 정해주는 임시코드 (길찾기 알고리즘 없으면 못함)
 				FVector2D StartLocation = CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
 				FVector2D TargetLocation = CurPokemon->SetTargetLocation(Player->GetStartLocation());
-
+				CurPokemon->SetCurDuration(0.0f);
 				//MoveVec에 넣어줌
-				MoveVec.push_back(CurPokemon );
+				MoveVec.push_back(CurPokemon);
 			}
 		}
 		//	위와동일
@@ -60,16 +59,22 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				APokemon* ComparePokemon = *StartIter;
 				FVector2D CompreLocation = ComparePokemon->GetActorLocation();
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
-				if (Distance <= FVector2D(72, 72))
+				if (Distance <= FVector2D(72, 72) && Distance >= FVector2D(-72, -72))
 				{
 					SkillVec.push_back(CurPokemon);
 					IsFindTarget = true;
-					return;
+					
 				}
 
 			}
 			if (!IsFindTarget)
 			{
+				//타겟로케이션 정해줘야함(플레이어 위치 기준)
+				//	파트너만 위치 정해주는 임시코드 (길찾기 알고리즘 없으면 못함)
+				FVector2D StartLocation = CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
+				FVector2D TargetLocation = CurPokemon->SetTargetLocation(Player->GetStartLocation());
+				CurPokemon->SetCurDuration(0.0f);
+
 				MoveVec.push_back(CurPokemon);
 			}
 		}

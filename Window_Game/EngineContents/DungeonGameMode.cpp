@@ -9,6 +9,7 @@
 #include "Dungeon.h"
 #include "Partner.h"
 #include "TurnManager.h"
+#include "Enemy_01.h"
 
 
 ADungeonGameMode::ADungeonGameMode()
@@ -50,6 +51,11 @@ void ADungeonGameMode::LevelChangeStart()
 	TurnManager->SetDungeon(Dungeon);
 	Partner = GetWorld()->SpawnActor<APartner>();
 	TurnManager->SetPatner(Partner);
+
+	//	Test
+	AEnemy_01* NewEnemy = GetWorld()->SpawnActor<AEnemy_01>();
+	TurnManager->SetTestEnemy(NewEnemy);
+
 }
 
 void ADungeonGameMode::LevelChangeEnd()
