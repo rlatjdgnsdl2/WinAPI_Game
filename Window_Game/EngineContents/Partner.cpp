@@ -59,4 +59,22 @@ void APartner::AnimationSetting()
 	SpriteRenderer->CreateAnimation("WalkAnim_7", "SixTail_Walk.png", 25, 29);
 	SpriteRenderer->CreateAnimation("WalkAnim_4", "SixTail_Walk.png", 30, 34);
 	SpriteRenderer->CreateAnimation("WalkAnim_1", "SixTail_Walk.png", 35, 39);
+	//	Walk
+	SpriteRenderer->CreateAnimation("AttackAnim_2", "SixTail_Attack.png", 0, 10);
+	SpriteRenderer->CreateAnimation("AttackAnim_3", "SixTail_Attack.png", 11, 21);
+	SpriteRenderer->CreateAnimation("AttackAnim_6", "SixTail_Attack.png", 22, 32);
+	SpriteRenderer->CreateAnimation("AttackAnim_9", "SixTail_Attack.png", 33, 43);
+	SpriteRenderer->CreateAnimation("AttackAnim_8", "SixTail_Attack.png", 44, 54);
+	SpriteRenderer->CreateAnimation("AttackAnim_7", "SixTail_Attack.png", 55, 65);
+	SpriteRenderer->CreateAnimation("AttackAnim_4", "SixTail_Attack.png", 66, 76);
+	SpriteRenderer->CreateAnimation("AttackAnim_1", "SixTail_Attack.png", 77, 87);
+	//	Walk
+	SpriteRenderer->CreateAnimation("HurtAnim_2", "SixTail_Hurt.png", 0, 1);
+	SpriteRenderer->CreateAnimation("HurtAnim_3", "SixTail_Hurt.png", 2, 3);
+	SpriteRenderer->CreateAnimation("HurtAnim_6", "SixTail_Hurt.png", 4, 5);
+	SpriteRenderer->CreateAnimation("HurtAnim_9", "SixTail_Hurt.png", 6, 7);
+	SpriteRenderer->CreateAnimation("HurtAnim_8", "SixTail_Hurt.png", 8, 9);
+	SpriteRenderer->CreateAnimation("HurtAnim_7", "SixTail_Hurt.png", 10, 11);
+	SpriteRenderer->CreateAnimation("HurtAnim_4", "SixTail_Hurt.png", 12, 13);
+	SpriteRenderer->CreateAnimation("HurtAnim_1", "SixTail_Hurt.png", 14, 15);
 }

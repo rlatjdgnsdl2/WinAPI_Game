@@ -79,6 +79,11 @@ void PMDContentsCore::RoadResources()
 	Dungeon.Append("Dungeon");
 	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
 
+	UEngineDirectory Enemy;
+	Enemy.MoveParentToDirectory("Resources");
+	Enemy.Append("Enemy");
+	UImageManager::GetInst().LoadFolder(Enemy.GetPathToString());
+
 	//	Title
 	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
 	//	player
@@ -90,8 +95,14 @@ void PMDContentsCore::RoadResources()
 	//	partner
 	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("SixTail_Walk.png", 5, 8);
-	/*UImageManager::GetInst().CuttingSprite("SixTail_Attack.png", 5, 8);
-	UImageManager::GetInst().CuttingSprite("SixTail_Hurt.png", 5, 8);*/
+	UImageManager::GetInst().CuttingSprite("SixTail_Attack.png", 11, 8);
+	UImageManager::GetInst().CuttingSprite("SixTail_Hurt.png", 2, 8);
+
+	//	Enemy
+	UImageManager::GetInst().CuttingSprite("Picacu_Idle.png", 6, 8);
+	UImageManager::GetInst().CuttingSprite("Picacu_Walk.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("Picacu_Attack.png", 10, 8);
+	UImageManager::GetInst().CuttingSprite("Picacu_Hurt.png", 2, 8);
 	
 	//	Dungeon
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);

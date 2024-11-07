@@ -2,18 +2,18 @@
 #include "Pokemon.h"
 
 //	Ό³Έν:
-class Enemy : public APokemon
+class AEnemy : public APokemon
 {
 public:
 	//	constrcuter, destructer
-	Enemy();
-	virtual ~Enemy();
+	AEnemy();
+	virtual ~AEnemy();
 
 	//	delete Function
-	Enemy(const Enemy& _Other) = delete;
-	Enemy(Enemy&& _Other) noexcept = delete;
-	Enemy& operator=(const Enemy& _Other) = delete;
-	Enemy& operator=(Enemy&& _Other) noexcept = delete;
+	AEnemy(const AEnemy& _Other) = delete;
+	AEnemy(AEnemy&& _Other) noexcept = delete;
+	AEnemy& operator=(const AEnemy& _Other) = delete;
+	AEnemy& operator=(AEnemy&& _Other) noexcept = delete;
 
 	virtual void LevelChangeStart();
 

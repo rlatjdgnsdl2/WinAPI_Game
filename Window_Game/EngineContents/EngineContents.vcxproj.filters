@@ -55,6 +55,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>LevelObjects\Dungeon\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy_01.h">
+      <Filter>LevelObjects\Dungeon\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -136,6 +139,9 @@
       <Filter>LevelObjects\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
+      <Filter>LevelObjects\Dungeon\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_01.cpp">
       <Filter>LevelObjects\Dungeon\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

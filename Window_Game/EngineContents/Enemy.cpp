@@ -2,17 +2,17 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy() 
+AEnemy::AEnemy() 
 {
 
 }
 
-Enemy::~Enemy() 
+AEnemy::~AEnemy() 
 {
 
 }
 
-void Enemy::LevelChangeStart()
+void AEnemy::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	CurCamp = CampType::Enemy;
