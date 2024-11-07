@@ -30,11 +30,51 @@ public:
 		return CollisionGroup;
 	}
 
+	// 충돌체에게 충돌그룹을 지정안해주는건 의미가 없다.
+	// 중간에 충돌 그룹이 바뀌어야 되면 이야기 부탁.
+	template<typename EnumType>
+	void SetCollisionGroup(EnumType _CollisionGroup)
+	{
+		SetCollisionGroup(static_cast<int>(_CollisionGroup));
+	}
+
+	void SetCollisionGroup(int _CollisionGroup)
+	{
+		CollisionGroup = _CollisionGroup;
+	}
+
+	template<typename EnumType>
+	bool IsCollision(EnumType _OtherCollisionGroup)
+	{
+		return IsCollision(static_cast<int>(_OtherCollisionGroup));
+	}
+
+	template<typename EnumType>
+	U2DCollision* CollisionOnce(EnumType _OtherCollisionGroup)
+	{
+		return CollisionOnce(static_cast<int>(_OtherCollisionGroup));
+	}
+
+	template<typename EnumType>
+	bool Collision(EnumType _OtherCollisionGroup, std::vector<U2DCollision*>* _Result = nullptr)
+	{
+		return Collision(static_cast<int>(_OtherCollisionGroup), _Result);
+	}
+
+	bool IsCollision(int _OtherCollisionGroup);
+	U2DCollision* Collision(int _OtherCollisionGroup);
+	// 이거쓰면 다되죠.
+	bool Collision(int _OtherCollisionGroup, std::vector<U2DCollision*>* _Result = nullptr);
+
+
 protected:
 
 private:
 	// 충돌체의 오더는 약간 의미가 다르다.
-	int CollisionGroup = 0;
+	// -1 충돌 그룹을 지정해주지 않았다
+	// -1 은 사용하면 안된다.
+	// 양수만 된다.
+	int CollisionGroup = -1;
 };
 
 // 여러분들이 만들어야 하는 기능

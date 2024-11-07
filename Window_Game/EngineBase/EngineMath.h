@@ -79,7 +79,19 @@ public:
 	{
 		return static_cast<int>(Y);
 	}
-
+	FVector2D& operator-=(FVector2D _Other)
+	{
+		X -= _Other.X;
+		Y -= _Other.Y;
+		return *this;
+	}
+	FVector2D operator-() const
+	{
+		FVector2D Result;
+		Result.X = -X;
+		Result.Y = -Y;
+		return Result;
+	}
 	FVector2D Half() const
 	{
 		return { X * 0.5f, Y * 0.5f };

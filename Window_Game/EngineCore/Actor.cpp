@@ -53,12 +53,18 @@ AActor::~AActor()
 
 void AActor::Tick(float _DeltaTime)
 {
-	if (true == IsDebug)
+	if (true == IsDebug())
 	{
 		FVector2D Pos = GetActorLocation();
 		FVector2D CameraPos = GetWorld()->GetCameraPos();
-		UEngineDebug::CoreDebugPos(Pos - CameraPos, UEngineDebug::EDebugPosType::Circle);
+
+		FTransform Trans;
+		Trans.Location = Pos - CameraPos;
+		Trans.Scale = { 6, 6 };
+
+		UEngineDebug::CoreDebugRender(Trans, UEngineDebug::EDebugPosType::Circle);
 	}
+
 	std::list<class UActorComponent*>::iterator StartIter = Components.begin();
 	std::list<class UActorComponent*>::iterator EndIter = Components.end();
 

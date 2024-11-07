@@ -2,7 +2,7 @@
 
 namespace UEngineDebug
 {
-	enum EDebugPosType
+	enum class EDebugPosType
 	{
 		Rect,
 		Circle,
@@ -18,7 +18,7 @@ namespace UEngineDebug
 
 	void CoreOutPutString(std::string_view _Text, FVector2D _Pos);
 
-	void CoreDebugPos(FVector2D _Pos, EDebugPosType _Type);
+	void CoreDebugRender(FTransform _Trans, EDebugPosType _Type);
 
 	// 분리해야 하겠네요
 
