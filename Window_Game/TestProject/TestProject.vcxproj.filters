@@ -2,15 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="BasicAlgo.cpp" />
-    <ClCompile Include="DungeonGameMode.cpp" />
-    <ClCompile Include="DungeonGenAlgorithm.cpp" />
     <ClCompile Include="PreCompile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasicAlgo.h" />
-    <ClInclude Include="DungeonGameMode.h" />
-    <ClInclude Include="DungeonGenAlgorithm.h" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
 </Project>

@@ -1,137 +1,134 @@
 #include <iostream>
 #include <vector>
+#
 #include <cstdlib>
 #include <ctime>
 #include "PreCompile.h"
 
-const int DUNGEON_WIDTH = 60;
-const int DUNGEON_HEIGHT = 40;
-const int MAX_ROOMS = 4;
-const int MAX_ROOM_SIZE = 10;
-const int MIN_ROOM_SIZE = 3;
-
-enum TileType {
-    WALL = 1,
-    FLOOR = 0
-};
-
 struct Room {
     int x, y, width, height;
+};
 
-    bool intersects(const Room& other) const {
-        return (x < other.x + other.width && x + width > other.x &&
-            y < other.y + other.height && y + height > other.y);
+struct Node {
+    int x, y, width, height;
+    Room room;
+    Node* left = nullptr;
+    Node* right = nullptr;
+
+    bool isLeaf() const { return left == nullptr && right == nullptr; }
+};
+
+// 노드가 나눠지기 위한 최소 크기
+const int MIN_SIZE = 10;
+const int MAX_SIZE = 20;
+
+class Dungeon {
+public:
+    Dungeon(int width, int height) : width(width), height(height) {
+        map = std::vector<std::vector<int>>(height, std::vector<int>(width, 1));
+        srand(time(0));
     }
 
-    bool isWithinBounds() const {
-        return (x >= 1 && y >= 1 && x + width < DUNGEON_WIDTH - 1 && y + height < DUNGEON_HEIGHT - 1);
+    void generate() {
+        Node* root = new Node{ 0, 0, width, height };
+        split(root);
+        createRooms(root);
+        connectRooms(root);
     }
 
-    std::pair<int, int> center() const {
-        return { x + width / 2, y + height / 2 };
+    void print() {
+        for (const auto& row : map) {
+            for (int cell : row) {
+                std::cout << (cell == 0 ? "." : "#");
+            }
+            std::cout << "\n";
+        }
+    }
+
+private:
+    int width, height;
+    std::vector<std::vector<int>> map;
+
+    bool split(Node* node) {
+        if (node->width < MIN_SIZE || node->height < MIN_SIZE)
+            return false;
+
+        bool splitHorizontally = (node->width < node->height) || (rand() % 2);
+        int max = (splitHorizontally ? node->height : node->width) - MIN_SIZE;
+
+        if (max <= MIN_SIZE)
+            return false;
+
+        int splitPos = MIN_SIZE + rand() % (max - MIN_SIZE);
+        if (splitHorizontally) {
+            node->left = new Node{ node->x, node->y, node->width, splitPos };
+            node->right = new Node{ node->x, node->y + splitPos, node->width, node->height - splitPos };
+        }
+        else {
+            node->left = new Node{ node->x, node->y, splitPos, node->height };
+            node->right = new Node{ node->x + splitPos, node->y, node->width - splitPos, node->height };
+        }
+
+        split(node->left);
+        split(node->right);
+        return true;
+    }
+
+    void createRooms(Node* node) {
+        if (node->isLeaf()) {
+            int roomWidth = MIN_SIZE + rand() % (node->width - MIN_SIZE);
+            int roomHeight = MIN_SIZE + rand() % (node->height - MIN_SIZE);
+            int roomX = node->x + rand() % (node->width - roomWidth);
+            int roomY = node->y + rand() % (node->height - roomHeight);
+
+            node->room = { roomX, roomY, roomWidth, roomHeight };
+            for (int i = roomY; i < roomY + roomHeight; ++i) {
+                for (int j = roomX; j < roomX + roomWidth; ++j) {
+                    map[i][j] = 0;
+                }
+            }
+        }
+        else {
+            if (node->left) createRooms(node->left);
+            if (node->right) createRooms(node->right);
+        }
+    }
+
+    void connectRooms(Node* node) {
+        if (!node->left || !node->right) return;
+
+        Room room1 = getRoom(node->left);
+        Room room2 = getRoom(node->right);
+
+        int startX = room1.x + room1.width / 2;
+        int startY = room1.y + room1.height / 2;
+        int endX = room2.x + room2.width / 2;
+        int endY = room2.y + room2.height / 2;
+
+        while (startX != endX) {
+            map[startY][startX] = 0;
+            startX += (startX < endX) ? 1 : -1;
+        }
+        while (startY != endY) {
+            map[startY][startX] = 0;
+            startY += (startY < endY) ? 1 : -1;
+        }
+
+        connectRooms(node->left);
+        connectRooms(node->right);
+    }
+
+    Room getRoom(Node* node) {
+        if (node->isLeaf()) return node->room;
+        if (node->left) return getRoom(node->left);
+        if (node->right) return getRoom(node->right);
+        return node->room;
     }
 };
 
-void initializeDungeon(std::vector<std::vector<int>>& dungeon) {
-    for (auto& row : dungeon) {
-        std::fill(row.begin(), row.end(), WALL);
-    }
-}
-
-void createRoom(std::vector<std::vector<int>>& dungeon, const Room& room) {
-    for (int i = room.y; i < room.y + room.height; ++i) {
-        for (int j = room.x; j < room.x + room.width; ++j) {
-            dungeon[i][j] = FLOOR;
-        }
-    }
-}
-
-Room generateRandomRoom() {
-    int width = MIN_ROOM_SIZE + rand() % (MAX_ROOM_SIZE - MIN_ROOM_SIZE + 1);
-    int height = MIN_ROOM_SIZE + rand() % (MAX_ROOM_SIZE - MIN_ROOM_SIZE + 1);
-    int x = rand() % (DUNGEON_WIDTH - width - 1) + 1;
-    int y = rand() % (DUNGEON_HEIGHT - height - 1) + 1;
-    return { x, y, width, height };
-}
-
-std::vector<Room> placeRooms(std::vector<std::vector<int>>& dungeon) {
-    std::vector<Room> rooms;
-    int roomCount = 0;
-
-    while (roomCount < MAX_ROOMS) {
-        Room newRoom = generateRandomRoom();
-
-        if (newRoom.isWithinBounds()) {
-            bool overlaps = false;
-            for (const auto& room : rooms) {
-                if (newRoom.intersects(room)) {
-                    overlaps = true;
-                    break;
-                }
-            }
-
-            if (!overlaps) {
-                createRoom(dungeon, newRoom);
-                rooms.push_back(newRoom);
-                ++roomCount;
-            }
-        }
-    }
-
-    return rooms;
-}
-
-// 시작과 끝 점을 무작위 경로로 연결
-void createRandomPathCorridor(std::vector<std::vector<int>>& dungeon, std::pair<int, int> start, std::pair<int, int> end) {
-    int x = start.first;
-    int y = start.second;
-
-    while (x != end.first || y != end.second) {
-        dungeon[y][x] = FLOOR;
-
-        // X 또는 Y 방향으로 무작위로 이동
-        if (rand() % 2 == 0) {
-            // X 방향 이동
-            if (x < end.first) x++;
-            else if (x > end.first) x--;
-        }
-        else {
-            // Y 방향 이동
-            if (y < end.second) y++;
-            else if (y > end.second) y--;
-        }
-    }
-
-    // 마지막 도착점 표시
-    dungeon[end.second][end.first] = FLOOR;
-}
-
-void connectRooms(std::vector<std::vector<int>>& dungeon, const std::vector<Room>& rooms) {
-    for (size_t i = 1; i < rooms.size(); ++i) {
-        auto center1 = rooms[i - 1].center();
-        auto center2 = rooms[i].center();
-        createRandomPathCorridor(dungeon, center1, center2);
-    }
-}
-
 int main() {
-    srand(static_cast<unsigned>(time(0)));
-
-    std::vector<std::vector<int>> dungeon(DUNGEON_HEIGHT, std::vector<int>(DUNGEON_WIDTH, WALL));
-    initializeDungeon(dungeon);
-
-    std::vector<Room> rooms = placeRooms(dungeon);
-
-    // 방들을 통로로 연결
-    connectRooms(dungeon, rooms);
-
-    // 던전 출력 (디버그용)
-    for (const auto& row : dungeon) {
-        for (int tile : row) {
-            std::cout << (tile == WALL ? '#' : '.');
-        }
-        std::cout << '\n';
-    }
-
+    Dungeon dungeon(60, 40);
+    dungeon.generate();
+    dungeon.print();
     return 0;
 }
