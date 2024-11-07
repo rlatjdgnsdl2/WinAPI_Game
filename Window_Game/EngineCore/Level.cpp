@@ -7,8 +7,9 @@
 #include <EnginePlatform/EngineWinImage.h>
 
 #include "SpriteRenderer.h"
-#include "EngineCoreDebug.h"
 #include "2DCollision.h"
+
+#include "EngineCoreDebug.h"
 
 ULevel::ULevel()
 {
@@ -76,6 +77,7 @@ void ULevel::LevelChangeStart()
 			}
 		}
 	}
+
 }
 
 // 나 이제 새로운 레벨로 바뀔거야.
@@ -275,6 +277,12 @@ void ULevel::PushRenderer(class USpriteRenderer* _Renderer)
 	int Order = _Renderer->GetOrder();
 
 	Renderers[Order].push_back(_Renderer);
+}
+
+void ULevel::PushCollision(U2DCollision* _Collision)
+{
+	int Order = _Collision->GetGroup();
+	Collisions[Order].push_back(_Collision);
 }
 
 void ULevel::ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder)

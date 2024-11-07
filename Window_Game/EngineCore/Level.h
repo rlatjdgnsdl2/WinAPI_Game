@@ -5,6 +5,7 @@
 class ULevel
 {
 public:
+	friend class U2DCollision;
 	friend class USpriteRenderer;
 	friend class UEngineAPICore;
 	// constrcuter destructer
@@ -89,6 +90,7 @@ private:
 	void LevelChangeEnd();
 	void PushRenderer(class USpriteRenderer* _Renderer);
 	void ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder);
+	void PushCollision(class U2DCollision* _Collision);
 
 	
 	class AGameMode* GameMode = nullptr;
@@ -105,5 +107,6 @@ private:
 
 	// ·»´õ ¿À´õ
 	std::map<int, std::list<class USpriteRenderer*>> Renderers;
+	std::map<int, std::list<class U2DCollision*>> Collisions;
 };
 

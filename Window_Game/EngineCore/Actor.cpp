@@ -59,6 +59,13 @@ void AActor::Tick(float _DeltaTime)
 		FVector2D CameraPos = GetWorld()->GetCameraPos();
 		UEngineDebug::CoreDebugPos(Pos - CameraPos, UEngineDebug::EDebugPosType::Circle);
 	}
+	std::list<class UActorComponent*>::iterator StartIter = Components.begin();
+	std::list<class UActorComponent*>::iterator EndIter = Components.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		(*StartIter)->ComponentTick(_DeltaTime);
+	}
 }
 
 void AActor::ReleaseCheck(float _DeltaTime)
