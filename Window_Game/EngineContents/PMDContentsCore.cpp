@@ -108,6 +108,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("BeachCave_Water.png", 5, 10);
+	UImageManager::GetInst().CuttingSprite("FootBoard.png", 5, 5);
 }
 
 void PMDContentsCore::CreateLevel()

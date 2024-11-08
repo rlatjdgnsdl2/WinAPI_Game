@@ -252,6 +252,7 @@ void ULevel::Release(float _DeltaTime)
 			}
 		}
 	}
+}
 
 void ULevel::ScreenClear()
 {
