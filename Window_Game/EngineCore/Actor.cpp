@@ -43,11 +43,13 @@ AActor::~AActor()
 	for (; StartIter != EndIter; ++StartIter)
 	{
 		UActorComponent* Component = *StartIter;
+
 		if (nullptr != Component)
 		{
 			delete Component;
 		}
 	}
+
 	Components.clear();
 }
 
