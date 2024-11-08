@@ -4,9 +4,10 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
+
 #include "Pokemon.h"
 #include "Player.h"
-#include "Dungeon.h"
+
 
 
 
@@ -26,7 +27,7 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		CurPokemon->Move(_DeltaTime);
 	}
 
-	if (CurDuration > 0.5f)	//도착했으면
+	if (CurDuration > 0.1f)	//도착했으면
 	{
 		std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
 		std::vector<APokemon*>::iterator EndIter = MoveVec.end();

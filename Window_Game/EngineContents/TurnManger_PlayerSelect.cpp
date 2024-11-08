@@ -3,10 +3,8 @@
 
 #include <EnginePlatform/EngineInput.h>
 
-#include "Dungeon.h"
 #include "Player.h"
 #include "Pokemon.h"
-#include "Partner.h"
 
 //	Player_Select´Ü°è
 void ATurnManager::PlayerSelect()
@@ -61,6 +59,7 @@ void ATurnManager::PlayerSelect()
 		CurTurnType = TurnType::Player_Select_Skill;
 		return;
 	}
+
 	// AI Idle
 	else
 	{

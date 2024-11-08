@@ -16,9 +16,9 @@ void ATurnManager::AISkill(float _DeltaTime)
 		CurPokemon->Skill(CurPokemon->GetCurSkillType());
 
 	}
-	if (CurDuration > 0.5f) {
+	/*if (CurDuration > 0.5f) {
 
-		CurTurnType = TurnType::Player_Select;
 		CurDuration = 0.0f;
-	}
+	}*/
+	CurTurnType = TurnType::Player_Select;
 }

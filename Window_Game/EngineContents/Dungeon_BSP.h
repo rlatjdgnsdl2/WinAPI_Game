@@ -24,38 +24,31 @@ public:
 
 	void Generate();
 
-	Room getRoom(Node* node) {
-		if (node->isLeaf()) return node->room;
-		if (node->left) return getRoom(node->left);
-		if (node->right) return getRoom(node->right);
-		return node->room;
-	}
+	Room getRoom(Node* node) const;
 	void SetCurDungeonName(std::string_view _CurDungeonName)
 	{
 		CurDungeonName = _CurDungeonName;
 	}
-	std::vector<Node*> GetRoomData() 
-	{
-		return RoomData;
+	std::vector<FVector2D> GetRoomLocations() const {
+		return RoomLocations;
 	}
-
 
 
 protected:
 
 private:
-	std::string CurDungeonName;
-	const int MIN_SIZE = 10;
-	const int MAX_SIZE = 20;
+	std::string CurDungeonName ="BeachCave";
 	Node* root;
-	std::vector<Node*> RoomData;
 	int width, height;
+	std::vector<FVector2D> RoomLocations;
+
+
 
 	void InitDungeon();
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
-	bool split(Node* node);
-	void CollectLeafNodes(Node* node, std::vector<Node*>& leafNodes);
+	void split(Node& node);
+	void SetNaturally();
 
 
 

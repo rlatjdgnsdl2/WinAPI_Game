@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
 #include "Player.h"
-#include "Dungeon.h"
+#include "Dungeon_BSP.h"
 
 //	Select_Move단계
 void ATurnManager::SelectMove(int _PlayerInput)
@@ -46,10 +46,10 @@ void ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 	Player->SetDir(direction);
 	FVector2D StartLocation = Player->SetStartLocation(Player->GetActorLocation());
 	FVector2D TargetLocation = Player->SetTargetLocation(StartLocation + moveVector);
-	TileType TargetTileType = Dungeon->GetDungeonData()->TileTypes[TargetLocation.iY() / 72][TargetLocation.iX() / 72];
+	TileType TargetTileType = Dungeon->GetTileType(TargetLocation.iX() / 72, TargetLocation.iY() / 72);
 	Player->SetCurDuration(0.0f);
-	if (TileType::GROUND != TargetTileType) {
-		Player->SetTargetLocation(StartLocation); // 이동 불가시 원래 위치로
-		return;
-	}
+	//if (TileType::GROUND != TargetTileType) {
+	//	Player->SetTargetLocation(StartLocation); // 이동 불가시 원래 위치로
+	//	return;
+	//}
 }

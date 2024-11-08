@@ -27,7 +27,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				FVector2D CompreLocation = ComparePokemon->GetActorLocation();
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
 				//	한칸내에 있으면
-				if (Distance <= FVector2D(72, 72) && Distance >= FVector2D(-72, -72))
+				if (Distance.X <= 72 && Distance.Y <= 72&& Distance.Y >= -72&&Distance.Y >= -72)
 				{
 					//	SkillVec에 넣어줌
 					SkillVec.push_back(CurPokemon);
@@ -59,7 +59,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				APokemon* ComparePokemon = *StartIter;
 				FVector2D CompreLocation = ComparePokemon->GetActorLocation();
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
-				if (Distance <= FVector2D(72, 72) && Distance >= FVector2D(-72, -72))
+				if (Distance.X <= 72 && Distance.Y <= 72 && Distance.Y >= -72 && Distance.Y >= -72)
 				{
 					SkillVec.push_back(CurPokemon);
 					IsFindTarget = true;
