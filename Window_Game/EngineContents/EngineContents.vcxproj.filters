@@ -16,16 +16,13 @@
     <ClInclude Include="TempPlayer.h">
       <Filter>LevelObjects\10.TempLevel</Filter>
     </ClInclude>
-    <ClInclude Include="TempActor.h">
-      <Filter>LevelObjects\10.TempLevel</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
-    <ClInclude Include="TitleAnimActor.h">
+    <ClInclude Include="TitleAnim.h">
       <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClInclude>
     <ClInclude Include="TitleBackground.h">
@@ -75,16 +72,13 @@
     <ClCompile Include="TempPlayer.cpp">
       <Filter>LevelObjects\10.TempLevel</Filter>
     </ClCompile>
-    <ClCompile Include="TempActor.cpp">
-      <Filter>LevelObjects\10.TempLevel</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
     <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
-    <ClCompile Include="TitleAnimActor.cpp">
+    <ClCompile Include="TitleAnim.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackground.cpp">
@@ -105,34 +99,34 @@
     <ClCompile Include="TurnManager.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManger_PlayerSelect.cpp">
+    <ClCompile Include="TurnManager_1.PlayerSelect.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_PlayerMove.cpp">
+    <ClCompile Include="TurnManager_6.PlayerMove.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_PlayerSkill.cpp">
+    <ClCompile Include="TurnManager_7.PlayerSkill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_SelectMove.cpp">
+    <ClCompile Include="TurnManager_2.SelectMove.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_AIMove.cpp">
+    <ClCompile Include="TurnManager_8.AIMove.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_AISkill.cpp">
+    <ClCompile Include="TurnManager_9.AISkill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_Move_AISelect.cpp">
+    <ClCompile Include="TurnManager_4.Move_AISelect.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_Skill_AISelect.cpp">
+    <ClCompile Include="TurnManager_5.Skill_AISelect.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_SelectSkill.cpp">
+    <ClCompile Include="TurnManager_3.SelectSkill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">

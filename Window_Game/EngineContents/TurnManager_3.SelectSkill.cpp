@@ -7,7 +7,7 @@ void ATurnManager::SelectSkill(int _PlayerInput)
 	switch (_PlayerInput)
 	{
 	case'A':
-		Player->SetCurSKillType(SkillType::NormalAttack);
+		Player->SetCurSkillType(SkillType::NormalAttack);
 		break;
 
 	default:

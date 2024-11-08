@@ -15,8 +15,6 @@ public:
 	ATempGameMode& operator=(const ATempGameMode& _Other) = delete;
 	ATempGameMode& operator=(ATempGameMode&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
-
 protected:
 
 private:

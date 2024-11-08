@@ -7,7 +7,7 @@ class ATitleGameMode:public AGameMode
 public:
 	//	constrcuter, destructer
 	ATitleGameMode();
-	~ATitleGameMode();
+	virtual ~ATitleGameMode();
 
 	//	delete Function
 	ATitleGameMode(const ATitleGameMode& _Other) = delete;
@@ -15,17 +15,18 @@ public:
 	ATitleGameMode& operator=(const ATitleGameMode& _Other) = delete;
 	ATitleGameMode& operator=(ATitleGameMode&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	virtual void LevelChangeStart() override;
 	virtual void LevelChangeEnd() override;
 	
-	static float GetTitlePlayTime();
-	static void ResetTitlePlayTime();
+	float GetTitlePlayTime();
+	void ResetTitlePlayTime();
 	
 protected:
 
 private:
-	static inline float TitlePlayTime = 0.0f;
+	float TitlePlayTime = 0.0f;
+	class ATitleBackground* TitleBackGround;
+	class ATitleAnim* TitleAnim;
 };
 

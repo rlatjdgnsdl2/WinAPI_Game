@@ -9,7 +9,7 @@
 #include "DungeonGameMode.h"
 #include "Player.h"
 #include "TitleGameMode.h"
-#include "TempActor.h"
+#include "TempPlayer.h"
 
 
 std::map<std::string, int > PMDContentsCore::TileIndexForKey;
@@ -113,7 +113,7 @@ void PMDContentsCore::RoadResources()
 void PMDContentsCore::CreateLevel()
 {
 	//	타이틀레벨
-	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempActor>("TitleLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
 	//	던전레벨
 	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
 	//	마을레벨

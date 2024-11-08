@@ -12,7 +12,7 @@ class ADungeon_BSP : public ATileMap
 {
 public:
 	//	constrcuter, destructer
-	ADungeon_BSP(int _width = 60, int _height = 40);
+	ADungeon_BSP();
 	virtual ~ADungeon_BSP();
 
 	//	delete Function
@@ -26,26 +26,8 @@ public:
 	void Generate();
 
 	Room getRoom(Node* node) const;
-	void SetCurDungeonName(std::string_view _CurDungeonName)
-	{
-		CurDungeonName = _CurDungeonName;
-	}
-	std::vector<FVector2D> GetRoomLocations() const {
-		return RoomLocations;
-	}
-
-	void CreateNaturalFeatures();
-
-	FVector2D GetMapSize() 
-	{
-		return FVector2D(Width * 72, Height * 72);
-	}
-
-
-
-
-
-
+	void SetCurDungeonName(std::string_view _CurDungeonName) { CurDungeonName = _CurDungeonName; }
+	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
 
 protected:
 
@@ -53,18 +35,17 @@ private:
 
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
-	std::string CurDungeonName ="BeachCave";
+
+	std::string CurDungeonName = "BeachCave";
 	Node* root;
 	int Width, Height;
 	std::vector<FVector2D> RoomLocations;
-	
-
-
 
 	void InitDungeon();
+	void CreateNaturalFeatures();
+	void split(Node* node);
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
-	void split(Node* node);
 	void SetNaturally();
 
 

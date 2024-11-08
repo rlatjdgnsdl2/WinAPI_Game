@@ -21,17 +21,11 @@ public:
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
 
-
-
 protected:
 
 private:
 	
 	virtual void AnimationSetting() override;
-
 	
-
-
-
 };
 

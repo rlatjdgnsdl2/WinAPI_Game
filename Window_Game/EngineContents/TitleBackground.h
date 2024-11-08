@@ -17,8 +17,8 @@ public:
 	ATitleBackground& operator=(ATitleBackground&& _Other) noexcept = delete;
 
 	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
 	void LevelChangeStart() override;
+	void PlayAnimation(float _DeltaTime);
 		
 	
 protected:

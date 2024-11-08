@@ -19,7 +19,9 @@ ADungeonGameMode::ADungeonGameMode()
 
 ADungeonGameMode::~ADungeonGameMode()
 {
-
+	Partner = nullptr;
+	Dungeon = nullptr;
+	TurnManager = nullptr;
 }
 
 void ADungeonGameMode::BeginPlay()
@@ -51,6 +53,8 @@ void ADungeonGameMode::LevelChangeStart()
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
 	}
 	TurnManager->SetDungeon(Dungeon);
+
+	//	파트너 생성
 	Partner = GetWorld()->SpawnActor<APartner>();
 	TurnManager->SetPatner(Partner);
 

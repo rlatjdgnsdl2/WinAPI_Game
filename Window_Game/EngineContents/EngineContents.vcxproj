@@ -199,10 +199,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TempActor.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TempGameMode.h">
       <SubType>
       </SubType>
@@ -211,7 +207,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleAnimActor.h">
+    <ClInclude Include="TitleAnim.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -276,10 +272,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TempActor.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TempGameMode.cpp">
       <SubType>
       </SubType>
@@ -288,7 +280,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleAnimActor.cpp">
+    <ClCompile Include="TitleAnim.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -301,15 +293,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TurnManager_AIMove.cpp" />
-    <ClCompile Include="TurnManager_Move_AISelect.cpp" />
-    <ClCompile Include="TurnManager_AISkill.cpp" />
-    <ClCompile Include="TurnManager_PlayerSkill.cpp" />
-    <ClCompile Include="TurnManager_PlayerMove.cpp" />
-    <ClCompile Include="TurnManager_Skill_AISelect.cpp" />
-    <ClCompile Include="TurnManager_SelectMove.cpp" />
-    <ClCompile Include="TurnManager_SelectSkill.cpp" />
-    <ClCompile Include="TurnManger_PlayerSelect.cpp" />
+    <ClCompile Include="TurnManager_8.AIMove.cpp" />
+    <ClCompile Include="TurnManager_4.Move_AISelect.cpp" />
+    <ClCompile Include="TurnManager_9.AISkill.cpp" />
+    <ClCompile Include="TurnManager_7.PlayerSkill.cpp" />
+    <ClCompile Include="TurnManager_6.PlayerMove.cpp" />
+    <ClCompile Include="TurnManager_5.Skill_AISelect.cpp" />
+    <ClCompile Include="TurnManager_2.SelectMove.cpp" />
+    <ClCompile Include="TurnManager_3.SelectSkill.cpp" />
+    <ClCompile Include="TurnManager_1.PlayerSelect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

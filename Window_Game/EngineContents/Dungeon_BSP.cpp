@@ -8,7 +8,7 @@
 
 
 
-ADungeon_BSP::ADungeon_BSP(int _width, int _height) : Width(_width), Height(_height)
+ADungeon_BSP::ADungeon_BSP()
 {
 	Tiles.resize(Height, std::vector<Tile>(Width));
 	SetActorLocation({ 0,0 });
@@ -37,9 +37,7 @@ void ADungeon_BSP::Generate()
 
 Room ADungeon_BSP::getRoom(Node* node) const
 {
-
 	if (node->isLeaf() && node->room.isValid()) return node->room;
-
 	Room room;
 	if (node->left) {
 		room = getRoom(node->left);
@@ -49,25 +47,21 @@ Room ADungeon_BSP::getRoom(Node* node) const
 		room = getRoom(node->right);
 		if (room.isValid()) return room;  // 방을 찾은 경우 반환
 	}
-
 	// 방이 없을 경우 기본값 반환
 	return Room();  // 또는 Room의 기본값, 혹은 예외 처리
-
 }
 
 
 
 void ADungeon_BSP::split(Node* node)
 {
-
-
 	// 노드의 크기가 최소 크기보다 작으면 분할을 중지
 	if (node->width < MIN_SIZE || node->height < MIN_SIZE) {
 		return;
 	}
 
 	// 가로로 자를지 세로로 자를지 결정
-	bool SplitHorizon = (node->width < node->height) || (Random.RandomInt(0, 2) == 1);
+	bool SplitHorizon = (node->width < node->height) || (Random.RandomInt(0, 1) == 1);
 
 	// 분할 가능한 최대 위치 설정 (최소 크기를 고려하여 설정)
 	int CurMax = (SplitHorizon ? node->height : node->width) - MIN_SIZE;
@@ -84,14 +78,11 @@ void ADungeon_BSP::split(Node* node)
 	if (SplitHorizon) {
 		node->left = new Node{ node->x, node->y, node->width, SplitPos };
 		node->right = new Node{ node->x, node->y + SplitPos, node->width, node->height - SplitPos };
-		int a = 0;
 	}
 	// 세로로 분할
 	else {
 		node->left = new Node{ node->x, node->y, SplitPos, node->height };
 		node->right = new Node{ node->x + SplitPos, node->y, node->width - SplitPos, node->height };
-
-		int a = 0;
 	}
 	Node* NewNodeLeft = node->left;
 	Node* NewNodeRight = node->right;
@@ -103,7 +94,6 @@ void ADungeon_BSP::split(Node* node)
 	if (nullptr != NewNodeRight) {
 		split(NewNodeRight);
 	}
-
 	return;
 }
 
@@ -133,18 +123,17 @@ void ADungeon_BSP::CreateNaturalFeatures()
 
 		for (int attempt = 0; attempt < maxAttempts; ++attempt) {
 			// 자연환경 크기 설정 (3x3 ~ 6x6 범위 내)
-			FeatureWidth = Random.RandomInt(3, 10);
-			FeatureHeight = Random.RandomInt(3, 10);
+			FeatureWidth = Random.RandomInt(3, 8);
+			FeatureHeight = Random.RandomInt(3, 8);
 
 			// 자연환경의 위치를 맵 크기 내에서 랜덤하게 설정
-			FeatureX = Random.RandomInt(0, Width - FeatureWidth);
-			FeatureY = Random.RandomInt(0, Height - FeatureHeight);
+			FeatureX = Random.RandomInt(0, max(3,Width - FeatureWidth-1));
+			FeatureY = Random.RandomInt(0, max(3,Height - FeatureHeight-1));
 		}
-
 		// 자연환경 타일 배치
 		for (int y = FeatureY; y < FeatureY + FeatureHeight; ++y) {
 			for (int x = FeatureX; x < FeatureX + FeatureWidth; ++x) {
-				SetTile(x, y, CurDungeonName + "_Water.png", 5); // 예: 물 타일
+				SetTile(x, y, CurDungeonName + "_Water.png", 4); // 예: 물 타일
 				SetTileType(x, y, TileType::WATER); // 물 타일 타입 설정
 			}
 		}
@@ -169,8 +158,8 @@ void ADungeon_BSP::CreateRooms(Node* node)
 		int RoomHeight = Random.RandomInt(4, max(4, node->height - 4));
 
 		// 방의 위치를 노드 내부에서 랜덤하게 설정
-		int RoomLocation_X = Random.RandomInt(node->x + 2, node->x + 2 + node->width - RoomWidth - 2);
-		int RoomLocation_Y = Random.RandomInt(node->y + 2, node->y + 2 + node->height - RoomHeight - 2);
+		int RoomLocation_X = Random.RandomInt(node->x + 2, node->x + 2 + node->width - RoomWidth );
+		int RoomLocation_Y = Random.RandomInt(node->y + 2, node->y + 2 + node->height - RoomHeight);
 
 		// 생성된 방 정보를 노드에 저장
 		node->room = { RoomLocation_X, RoomLocation_Y, RoomWidth, RoomHeight };
@@ -236,7 +225,6 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 		SetTileType(startX, startY, TileType::GROUND);
 		startY += (startY < endY) ? 1 : -1;
 	}
-
 	// 자식 노드 연결
 	ConnectRooms(node->left);
 	ConnectRooms(node->right);
@@ -246,52 +234,27 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 
 void ADungeon_BSP::SetNaturally()
 {
-	for (int y = 0; y < Height; y++)
-	{
-		for (int x = 0; x < Width; x++)
-		{
-			if (nullptr != Tiles[y][x].SpriteRenderer)
-			{
-				//	현재타일이름
-				std::string SpriteName = Tiles[y][x].SpriteRenderer->GetCurSpriteName();
-				int FindIndex = SpriteName.find('_');
-				std::string TypeName = SpriteName.substr(FindIndex);
-				if ("_GROUND.PNG" == TypeName)
-				{
-					Tiles[y][x].TileType = TileType::GROUND;
-				}
-				else if ("_WALL.PNG" == TypeName)
-				{
-					Tiles[y][x].TileType = TileType::WALL;
-				}
-				else if ("_WATER.PNG" == TypeName)
-				{
-					Tiles[y][x].TileType = TileType::WATER;
-				}
+	for (int y = 0; y < Height; y++) {
+		for (int x = 0; x < Width; x++) {
+			auto& tile = Tiles[y][x];
+			if (tile.SpriteRenderer) {
+				// 타일 종류 설정
+				std::string SpriteName = tile.SpriteRenderer->GetCurSpriteName();
+				std::string TypeName = SpriteName.substr(SpriteName.find('_'));
 
-				if (y >= 1 && x >= 1 && y <= Height - 2 && x <= Width - 2)
-				{
-					//	타일세팅
-					std::string FindKey = "";
-					for (int i = -1; i <= 1; i++)
-					{
-						for (int j = -1; j <= 1; j++)
-						{
-							if (0 <= y + i && 0 <= x + j && Width > x + j && Height > y + i)
-							{
-								//	주위타일과 타일이름을 비교해서 키값생성
-								std::string CompareName = Tiles[y + i][x + j].SpriteRenderer->GetCurSpriteName();
-								if (SpriteName == CompareName) {
-									FindKey += "1";
-								}
-								else if (SpriteName != CompareName) {
-									FindKey += "0";
-								}
-							}
+				if (TypeName == "_GROUND.PNG")      tile.TileType = TileType::GROUND;
+				else if (TypeName == "_WALL.PNG")    tile.TileType = TileType::WALL;
+				else if (TypeName == "_WATER.PNG")   tile.TileType = TileType::WATER;
+
+				// 경계 검사 후 타일 패턴 설정
+				if (y > 0 && x > 0 && y < Height - 1 && x < Width - 1) {
+					std::string FindKey;
+					for (int i = -1; i <= 1; ++i) {
+						for (int j = -1; j <= 1; ++j) {
+							FindKey += (SpriteName == Tiles[y + i][x + j].SpriteRenderer->GetCurSpriteName()) ? "1" : "0";
 						}
 					}
-					int SpriteIndex = PMDContentsCore::GetTileIndex(FindKey);
-					Tiles[y][x].SpriteRenderer->SetSprite(SpriteName, SpriteIndex);
+					tile.SpriteRenderer->SetSprite(SpriteName, PMDContentsCore::GetTileIndex(FindKey));
 				}
 			}
 		}

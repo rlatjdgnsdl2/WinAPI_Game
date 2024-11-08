@@ -53,7 +53,7 @@ void APlayer::AnimationSetting()
 	std::vector<int> IdleIndex_7 = { 35,36,37,38,39,40,41 };
 	std::vector<int> IdleIndex_4 = { 42,43,44,45,46,47,48 };
 	std::vector<int> IdleIndex_1 = { 49,50,51,52,53,54,55 };
-	std::vector<float> IdleFrame = { 1.0f,0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
+	std::vector<float> IdleFrame = { 0.5f,0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
 	SpriteRenderer->CreateAnimation("IdleAnim_2", "MulZZangIee_Idle.png", IdleIndex_2, IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_3", "MulZZangIee_Idle.png", IdleIndex_3, IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_6", "MulZZangIee_Idle.png", IdleIndex_6, IdleFrame);
@@ -72,7 +72,7 @@ void APlayer::AnimationSetting()
 	SpriteRenderer->CreateAnimation("WalkAnim_4", "MulZZangIee_Walk.png", 36, 41);
 	SpriteRenderer->CreateAnimation("WalkAnim_1", "MulZZangIee_Walk.png", 42, 47);
 	//	Attack
-	SpriteRenderer->CreateAnimation("AttackAnim_2", "MulZZangIee_Attack.png", 0, 9);
+	SpriteRenderer->CreateAnimation("AttackAnim_2", "MulZZangIee_Attack.png", 0, 9,0.1f,false);
 	SpriteRenderer->CreateAnimation("AttackAnim_3", "MulZZangIee_Attack.png", 10, 19);
 	SpriteRenderer->CreateAnimation("AttackAnim_6", "MulZZangIee_Attack.png", 20, 29);
 	SpriteRenderer->CreateAnimation("AttackAnim_9", "MulZZangIee_Attack.png", 30, 39);
@@ -89,6 +89,9 @@ void APlayer::AnimationSetting()
 	SpriteRenderer->CreateAnimation("HurtAnim_7", "MulZZangIee_Hurt.png", 10, 11);
 	SpriteRenderer->CreateAnimation("HurtAnim_4", "MulZZangIee_Hurt.png", 12, 13);
 	SpriteRenderer->CreateAnimation("HurtAnim_1", "MulZZangIee_Hurt.png", 14, 15);
+
+	
+	
 }
 
 
