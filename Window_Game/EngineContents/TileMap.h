@@ -28,10 +28,14 @@ public:
 
 	void CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName, int _Index);
 	void SetTile(int _x, int _y, std::string_view _SpriteName, int _Index);
-	void SetTileType(int _x, int _y, TileType _TileType);
+
 	TileType GetTileType(int _x, int _y)const 
 	{
-		return Tiles[_x][_y].TileType;
+		return Tiles[_y][_x].TileType;
+	}
+	void SetTileType(int _x, int _y, TileType _TileType)
+	{
+		Tiles[_y][_x].TileType = _TileType;
 	}
 
 protected:

@@ -17,13 +17,14 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
+	
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
 	void SetSpawnPos();
 
 
-
+	void CheckCamera();
 
 
 
@@ -46,11 +47,12 @@ public:
 protected:
 
 private:
+	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
 	class APartner* Partner;
-	class ADungeon_BSP* Dungeon;
 	class AEnemy_01* TestEnemy;
 
+	
 
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
@@ -84,7 +86,7 @@ private:
 	
 
 	//	move
-	void InitPlayerMove(DIR direction, FVector2D moveVector);
+	bool InitPlayerMove(DIR direction, FVector2D moveVector);
 
 
 

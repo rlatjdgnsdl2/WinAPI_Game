@@ -1,5 +1,6 @@
 #pragma once
 #include "TileMap.h"
+#include <EngineBase/EngineRandom.h>
 
 
 
@@ -33,21 +34,37 @@ public:
 		return RoomLocations;
 	}
 
+	void CreateNaturalFeatures();
+
+	FVector2D GetMapSize() 
+	{
+		return FVector2D(Width * 72, Height * 72);
+	}
+
+
+
+
+
+
 
 protected:
 
 private:
+
+	const int MIN_SIZE = 8;
+	UEngineRandom Random;
 	std::string CurDungeonName ="BeachCave";
 	Node* root;
-	int width, height;
+	int Width, Height;
 	std::vector<FVector2D> RoomLocations;
+	
 
 
 
 	void InitDungeon();
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
-	void split(Node& node);
+	void split(Node* node);
 	void SetNaturally();
 
 

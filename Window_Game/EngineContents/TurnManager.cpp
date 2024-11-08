@@ -2,6 +2,7 @@
 #include "TurnManager.h"
 #include <EngineCore/EngineAPICore.h>
 #include <EngineBase/EngineRandom.h>
+#include <EngineCore/EngineCoreDebug.h>
 
 
 #include "Player.h"
@@ -27,8 +28,13 @@ void ATurnManager::LevelChangeStart()
 	AActor* PlayerActor = GetWorld()->GetPawn();
 	Player = dynamic_cast<APlayer*>(PlayerActor);
 
+	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
+	GetWorld()->SetCameraToMainPawn(true);
+
+
 	//	Spawn위치 설정
-	//SetSpawnPos();
+	SetSpawnPos();
 	//	초기화
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
@@ -44,7 +50,7 @@ void ATurnManager::LevelChangeStart()
 	//IdleVec.push_back(Partner);
 	//IdleVec.push_back(TestEnemy);
 
-	
+
 	CurTurnType = TurnType::Player_Select;
 
 }
@@ -52,7 +58,12 @@ void ATurnManager::LevelChangeStart()
 void ATurnManager::Tick(float _DeltaTime)
 {
 
-	
+
+	Super::Tick(_DeltaTime);
+
+
+
+	UEngineDebug::CoreOutPutString("camera : " + (GetWorld()->GetCameraPos().ToString()));
 	switch (CurTurnType)
 	{
 	case TurnType::Player_Select:
@@ -85,14 +96,14 @@ void ATurnManager::Tick(float _DeltaTime)
 	}
 }
 
+
+
 void ATurnManager::SetSpawnPos()
 {
 	UEngineRandom Random;
 	// player pos
 	int MaxSize = Dungeon->GetRoomLocations().size();
 	int RandomInex = Random.RandomInt(0, MaxSize);
-	
-	
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[RandomInex];
 	Player->SetActorLocation(RoomLocation);
 
@@ -123,6 +134,8 @@ void ATurnManager::SetSpawnPos()
 
 
 }
+
+
 
 
 

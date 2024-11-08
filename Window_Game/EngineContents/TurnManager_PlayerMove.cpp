@@ -27,13 +27,14 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		CurPokemon->Move(_DeltaTime);
 	}
 
-	if (CurDuration > 0.1f)	//도착했으면
+	if (Player->GetActorLocation() == Player->GetTargetLocation())	//도착했으면
 	{
 		std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
 		std::vector<APokemon*>::iterator EndIter = MoveVec.end();
 		for (; StartIter != EndIter; StartIter++)
 		{
 			APokemon* CurPokemon = *StartIter;
+			CurPokemon->Move(1.0f);
 			CurPokemon->SetCurDuration(0.0f);
 		}
 		//	이동한 몬스터들 다 Vec에서 제거
