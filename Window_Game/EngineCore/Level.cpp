@@ -197,54 +197,61 @@ void ULevel::Release(float _DeltaTime)
 {
 	// 릴리즈 순서는 말단부터 돌려야 합니다.
 
-	std::map<int, std::list<class USpriteRenderer*>>::iterator StartOrderIter = Renderers.begin();
-	std::map<int, std::list<class USpriteRenderer*>>::iterator EndOrderIter = Renderers.end();
-
-	for (; StartOrderIter != EndOrderIter; ++StartOrderIter)
 	{
-		std::list<class USpriteRenderer*>& RendererList = StartOrderIter->second;
+		std::map<int, std::list<class U2DCollision*>>::iterator StartOrderIter = Collisions.begin();
+		std::map<int, std::list<class U2DCollision*>>::iterator EndOrderIter = Collisions.end();
 
-		std::list<class USpriteRenderer*>::iterator RenderStartIter = RendererList.begin();
-		std::list<class USpriteRenderer*>::iterator RenderEndIter = RendererList.end();
-
-		// 언리얼은 중간에 삭제할수 없어.
-		for (; RenderStartIter != RenderEndIter; )
+		for (; StartOrderIter != EndOrderIter; ++StartOrderIter)
 		{
-			if (false == (*RenderStartIter)->IsDestroy())
-			{
-				++RenderStartIter;
-				continue;
-			}
+			std::list<class U2DCollision*>& CollisionList = StartOrderIter->second;
 
-			// 랜더러는 지울 필요가 없습니다.
-			// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
-			// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
-			RenderStartIter = RendererList.erase(RenderStartIter);
+			std::list<class U2DCollision*>::iterator CollisionStartIter = CollisionList.begin();
+			std::list<class U2DCollision*>::iterator CollisionEndIter = CollisionList.end();
+
+			// 언리얼은 중간에 삭제할수 없어.
+			for (; CollisionStartIter != CollisionEndIter; )
+			{
+				if (false == (*CollisionStartIter)->IsDestroy())
+				{
+					++CollisionStartIter;
+					continue;
+				}
+
+				// 랜더러는 지울 필요가 없습니다.
+				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
+				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
+				CollisionStartIter = CollisionList.erase(CollisionStartIter);
+			}
 		}
 	}
 
 	{
-		std::list<AActor*>::iterator StartIter = AllActors.begin();
-		std::list<AActor*>::iterator EndIter = AllActors.end();
+		std::map<int, std::list<class USpriteRenderer*>>::iterator StartOrderIter = Renderers.begin();
+		std::map<int, std::list<class USpriteRenderer*>>::iterator EndOrderIter = Renderers.end();
 
-		for (; StartIter != EndIter; )
+		for (; StartOrderIter != EndOrderIter; ++StartOrderIter)
 		{
-			AActor* CurActor = *StartIter;
+			std::list<class USpriteRenderer*>& RendererList = StartOrderIter->second;
 
+			std::list<class USpriteRenderer*>::iterator RenderStartIter = RendererList.begin();
+			std::list<class USpriteRenderer*>::iterator RenderEndIter = RendererList.end();
 
-			if (false == CurActor->IsDestroy())
+			// 언리얼은 중간에 삭제할수 없어.
+			for (; RenderStartIter != RenderEndIter; )
 			{
-				CurActor->ReleaseCheck(_DeltaTime);
-				++StartIter;
-				continue;
-			}
+				if (false == (*RenderStartIter)->IsDestroy())
+				{
+					++RenderStartIter;
+					continue;
+				}
 
-			// 레벨은 액터의 삭제권한을 가지고 있으니 액터는 진짜 지워 준다.
-			delete CurActor;
-			StartIter = AllActors.erase(StartIter);
+				// 랜더러는 지울 필요가 없습니다.
+				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
+				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
+				RenderStartIter = RendererList.erase(RenderStartIter);
+			}
 		}
 	}
-}
 
 void ULevel::ScreenClear()
 {

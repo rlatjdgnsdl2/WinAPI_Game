@@ -173,17 +173,33 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 		return;
 	}
 
-	int Inter = (_End - _Start) + 1;
+	int Inter = 0;
 
 	std::vector<int> Indexs;
 	std::vector<float> Times;
 
-	for (size_t i = 0; i < Inter; i++)
+	if (_Start < _End)
 	{
-		Indexs.push_back(_Start);
-		Times.push_back(Time);
-		++_Start;
+		Inter = (_End - _Start) + 1;
+		for (size_t i = 0; i < Inter; i++)
+		{
+			Indexs.push_back(_Start);
+			Times.push_back(Time);
+			++_Start;
+		}
+
 	}
+	else
+	{
+		Inter = (_Start - _End) + 1;
+		for (size_t i = 0; i < Inter; i++)
+		{
+			Indexs.push_back(_End);
+			Times.push_back(Time);
+			++_End;
+		}
+	}
+
 
 	CreateAnimation(_AnimationName, _SpriteName, Indexs, Times, _Loop);
 }
@@ -244,6 +260,7 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 		MSGASSERT("존재하지 않은 애니메이션으로 변경하려고 했습니다. = " + UpperName);
 		return;
 	}
+
 
 	FrameAnimation* ChangeAnimation = &FrameAnimations[UpperName];
 

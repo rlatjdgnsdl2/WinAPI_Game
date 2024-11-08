@@ -1,6 +1,9 @@
 #pragma once
 #include "SceneComponent.h"
 
+// 매쉬 충돌. 
+
+
 // 설명 :
 class U2DCollision : public USceneComponent
 {
@@ -44,28 +47,36 @@ public:
 	}
 
 	template<typename EnumType>
-	bool IsCollision(EnumType _OtherCollisionGroup)
+	AActor* CollisionOnce(EnumType _OtherCollisionGroup, FVector2D _NextPos = FVector2D::ZERO)
 	{
-		return IsCollision(static_cast<int>(_OtherCollisionGroup));
+		// 상대가 100개이다. 100개 
+		std::vector<AActor*> Result;
+		Collision(static_cast<int>(_OtherCollisionGroup), Result, _NextPos, 1);
+
+		if (true == Result.empty())
+		{
+			return nullptr;
+		}
+
+		return Result[0];
 	}
 
 	template<typename EnumType>
-	U2DCollision* CollisionOnce(EnumType _OtherCollisionGroup)
+	std::vector<AActor*> CollisionAll(EnumType _OtherCollisionGroup)
 	{
-		return CollisionOnce(static_cast<int>(_OtherCollisionGroup));
+		// 상대가 100개이다. 100개 
+		std::vector<AActor*> Result;
+		Collision(static_cast<int>(_OtherCollisionGroup), Result, -1);
+
+		return Result;
 	}
 
-	template<typename EnumType>
-	bool Collision(EnumType _OtherCollisionGroup, std::vector<U2DCollision*>* _Result = nullptr)
+	bool Collision(int _OtherCollisionGroup, std::vector<AActor*>& _Result, FVector2D _NextDir, unsigned int  _Limite);
+
+	void SetCollisionType(ECollisionType _CollisionType)
 	{
-		return Collision(static_cast<int>(_OtherCollisionGroup), _Result);
+		CollisionType = _CollisionType;
 	}
-
-	bool IsCollision(int _OtherCollisionGroup);
-	U2DCollision* Collision(int _OtherCollisionGroup);
-	// 이거쓰면 다되죠.
-	bool Collision(int _OtherCollisionGroup, std::vector<U2DCollision*>* _Result = nullptr);
-
 
 protected:
 
@@ -74,6 +85,7 @@ private:
 	// -1 충돌 그룹을 지정해주지 않았다
 	// -1 은 사용하면 안된다.
 	// 양수만 된다.
+	ECollisionType CollisionType = ECollisionType::CirCle;
 	int CollisionGroup = -1;
 };
 

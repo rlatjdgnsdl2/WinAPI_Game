@@ -101,6 +101,9 @@ public:
 
 	//	중앙값
 	FVector2D Half() const { return { X * 0.5f, Y * 0.5f }; }
+	float hX() const { return X * 0.5f; }
+	float hY() const { return Y * 0.5f; }
+
 
 	//	IntPoint로 변환
 	FIntPoint ConvertToPoint() const { return { iX(), iY() }; }
@@ -191,20 +194,66 @@ public:
 	}
 
 };
+enum class ECollisionType
+{
+	Point,
+	Rect,
+	CirCle,
+	Max
+
+	//AABB,
+	//OBB,
+};
 
 class FTransform
 {
+private:
+	friend class CollisionFunctionInit;
+
+	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
+
 public:
+	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
+
+	// 완전히 같은 형의 함수죠?
+	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
+	// static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+
+	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
+	// static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+
 	FVector2D Scale;
 	FVector2D Location;
+
 
 	FVector2D CenterLeftTop() const
 	{
 		return Location - Scale.Half();
 	}
+
+	float CenterLeft() const
+	{
+		return Location.X - Scale.hX();
+	}
+
+	float CenterTop() const
+	{
+		return Location.Y - Scale.hY();
+	}
+
 	FVector2D CenterRightBottom() const
 	{
 		return Location + Scale.Half();
+	}
+
+	float CenterRight() const
+	{
+		return Location.X + Scale.hX();
+	}
+
+	float CenterBottom() const
+	{
+		return Location.Y + Scale.hY();
 	}
 };
 

@@ -38,7 +38,8 @@ private:
 
 	std::string CurDungeonName = "BeachCave";
 	Node* root;
-	int Width, Height;
+	int Width = 60; 
+	int Height = 40;
 	std::vector<FVector2D> RoomLocations;
 
 	void InitDungeon();

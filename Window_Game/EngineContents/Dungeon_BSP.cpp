@@ -127,8 +127,8 @@ void ADungeon_BSP::CreateNaturalFeatures()
 			FeatureHeight = Random.RandomInt(3, 8);
 
 			// 자연환경의 위치를 맵 크기 내에서 랜덤하게 설정
-			FeatureX = Random.RandomInt(0, max(3,Width - FeatureWidth-1));
-			FeatureY = Random.RandomInt(0, max(3,Height - FeatureHeight-1));
+			FeatureX = Random.RandomInt(0, max(3,Width - FeatureWidth));
+			FeatureY = Random.RandomInt(0, max(3,Height - FeatureHeight));
 		}
 		// 자연환경 타일 배치
 		for (int y = FeatureY; y < FeatureY + FeatureHeight; ++y) {
