@@ -34,6 +34,12 @@ enum class TurnType
 	AI_Skill,
 };
 
+enum class Pokemon_Type 
+{
+	Fire,
+	Water
+};
+
 enum class SkillType
 {
 	NormalAttack,
