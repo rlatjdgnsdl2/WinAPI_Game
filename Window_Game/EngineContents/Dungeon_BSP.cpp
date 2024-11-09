@@ -117,7 +117,7 @@ void ADungeon_BSP::InitDungeon()
 
 void ADungeon_BSP::CreateNaturalFeatures()
 {
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 15; ++i) {
 		int maxAttempts = 10; // 유효한 위치를 찾기 위한 최대 시도 횟수
 		int FeatureWidth = 0, FeatureHeight = 0, FeatureX = 0, FeatureY = 0;
 
@@ -139,6 +139,7 @@ void ADungeon_BSP::CreateNaturalFeatures()
 		}
 	}
 }
+
 
 
 void ADungeon_BSP::CreateRooms(Node* node)
