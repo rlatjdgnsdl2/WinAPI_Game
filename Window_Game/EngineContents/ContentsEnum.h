@@ -44,11 +44,10 @@ enum class TurnType
 	AI_Move,
 	AI_Skill,
 };
-
-enum class Pokemon_Type 
+enum class CampType
 {
-	Fire,
-	Water
+	Player,
+	Enemy
 };
 
 enum class SkillType
@@ -57,7 +56,6 @@ enum class SkillType
 	SpecialAttack,
 	UseItem
 };
-
 
 enum class ECollisionGroup
 {
