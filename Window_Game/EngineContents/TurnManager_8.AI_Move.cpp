@@ -12,5 +12,7 @@ void ATurnManager::AIMove(float _DeltaTime)
 		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Move(_DeltaTime);
 	}
+
+	
 	CurTurnType = TurnType::AI_Skill;
 }

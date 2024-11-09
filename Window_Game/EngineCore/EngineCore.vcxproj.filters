@@ -11,7 +11,7 @@
       <Filter>Objects\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Level</Filter>
+      <Filter>Objects\Level</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Objects\Actor</Filter>
@@ -26,19 +26,19 @@
       <Filter>Resources\Image</Filter>
     </ClInclude>
     <ClInclude Include="2DCollision.h">
-      <Filter>Objects\Components\Collision</Filter>
+      <Filter>Objects\Actor\Components\Collision</Filter>
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
-      <Filter>Objects\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>Objects\Components</Filter>
+      <Filter>Objects\Actor\Components</Filter>
     </ClInclude>
     <ClInclude Include="ActorComponent.h">
-      <Filter>Objects\Components</Filter>
+      <Filter>Objects\Actor\Components</Filter>
     </ClInclude>
     <ClInclude Include="EngineCoreDebug.h">
       <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Objects\Actor\Components\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +52,7 @@
       <Filter>Objects\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Level</Filter>
+      <Filter>Objects\Level</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
       <Filter>Objects\Actor</Filter>
@@ -67,19 +67,19 @@
       <Filter>Resources\Image</Filter>
     </ClCompile>
     <ClCompile Include="2DCollision.cpp">
-      <Filter>Objects\Components\Collision</Filter>
+      <Filter>Objects\Actor\Components\Collision</Filter>
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
-      <Filter>Objects\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Objects\Components</Filter>
+      <Filter>Objects\Actor\Components</Filter>
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
-      <Filter>Objects\Components</Filter>
+      <Filter>Objects\Actor\Components</Filter>
     </ClCompile>
     <ClCompile Include="EngineCoreDebug.cpp">
       <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Objects\Actor\Components\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,12 +88,6 @@
     </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{40f89db6-e502-4d96-8816-51ddb3ca8830}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Actor">
-      <UniqueIdentifier>{cf926eb2-fe6b-471a-9a56-ca7e0eaf6317}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{d94fc40d-0964-4128-b8fe-c2780026f514}</UniqueIdentifier>
     </Filter>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{b5e1722b-9f96-4867-a4c6-a21342878244}</UniqueIdentifier>
@@ -107,11 +101,20 @@
     <Filter Include="Debug">
       <UniqueIdentifier>{9ab96713-59b3-4b68-8ebf-938b52f4ffc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Components">
+    <Filter Include="Objects\Level">
+      <UniqueIdentifier>{d94fc40d-0964-4128-b8fe-c2780026f514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Actor">
+      <UniqueIdentifier>{cf926eb2-fe6b-471a-9a56-ca7e0eaf6317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Actor\Components">
       <UniqueIdentifier>{c358d60a-f269-4dbf-87a9-18af4a67b613}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Objects\Components\Collision">
+    <Filter Include="Objects\Actor\Components\Collision">
       <UniqueIdentifier>{72f78593-5131-4299-a109-85088149c447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Actor\Components\Renderer">
+      <UniqueIdentifier>{c0c57d98-0540-48c5-9f24-6e1d35396c0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

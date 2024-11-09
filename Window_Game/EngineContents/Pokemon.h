@@ -24,7 +24,7 @@ public:
 
 	virtual void Idle();
 	virtual void Move(float _DeltaTime);
-	virtual void Skill(SkillType _SkillType);
+	virtual void Skill();
 
 
 	//GetSet
