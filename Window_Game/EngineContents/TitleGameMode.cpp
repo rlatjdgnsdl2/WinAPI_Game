@@ -43,7 +43,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	}
 	if (2.5f<TitlePlayTime && TitlePlayTime< 6.3f) {
-		TitleBackGround->PlayAnimation(_DeltaTime);
+		TitleBackGround->AddActorLocation(FVector2D::UP * _DeltaTime * 300.f);
 	}
 	if (TitlePlayTime > 4.0f) {
 		TitleAnim->PlayAnimation(_DeltaTime);

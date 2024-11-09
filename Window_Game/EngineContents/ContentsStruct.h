@@ -10,6 +10,16 @@ struct Room {
     }
 };
 
+struct PokemonAbility
+{
+    Pokemon_Type PokemonType;
+    float Hp;
+    float Attack;
+    float Defense;
+    float Special_Attack;
+    float Special_Defense;
+    float Speed;
+};
 
 struct Node {
     int x, y, width, height;

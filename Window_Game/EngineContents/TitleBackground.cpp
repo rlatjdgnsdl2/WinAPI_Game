@@ -33,10 +33,7 @@ void ATitleBackground::LevelChangeStart()
 	SpriteRenderer->SetComponentLocation(TitleScale.Half());
 }
 
-void ATitleBackground::PlayAnimation(float _DeltaTime)
-{
-	AddActorLocation(FVector2D::UP * _DeltaTime * 300.f);
-}
+
 
 
 
