@@ -87,8 +87,8 @@ void ATurnManager::SetSpawnPos()
 	UEngineRandom Random;
 	// player pos
 	int MaxSize = Dungeon->GetRoomLocations().size();
-	int RandomInex = Random.RandomInt(0, MaxSize-1);
-	FVector2D RoomLocation = Dungeon->GetRoomLocations()[RandomInex];
+	int Index = Random.RandomInt(0, MaxSize-1);
+	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 	Player->SetActorLocation(RoomLocation);
 
 	//// partner pos

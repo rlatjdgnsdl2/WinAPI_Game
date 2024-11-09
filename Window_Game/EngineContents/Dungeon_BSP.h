@@ -26,13 +26,13 @@ public:
 	void Generate();
 
 	Room getRoom(Node* node) const;
-	void SetCurDungeonName(std::string_view _CurDungeonName) { CurDungeonName = _CurDungeonName; }
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
+	
+	void SetDungeonData(std::string_view _DungeonName, int _Width, int _Height, int TrapCount);
 
 protected:
 
 private:
-
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
 
@@ -41,13 +41,17 @@ private:
 	int Width = 60; 
 	int Height = 40;
 	std::vector<FVector2D> RoomLocations;
+	std::vector<FVector2D> FootBoardLocations;
 
+	//	던전생성과정
 	void InitDungeon();
 	void CreateNaturalFeatures();
 	void split(Node* node);
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
 	void SetNaturally();
+	
+	void SetNextPotal();
 
 
 

@@ -33,6 +33,7 @@ void ADungeon_BSP::Generate()
 	CreateRooms(root);
 	ConnectRooms(root);
 	SetNaturally();
+	SetNextPotal();
 }
 
 Room ADungeon_BSP::getRoom(Node* node) const
@@ -127,8 +128,8 @@ void ADungeon_BSP::CreateNaturalFeatures()
 			FeatureHeight = Random.RandomInt(3, 8);
 
 			// 자연환경의 위치를 맵 크기 내에서 랜덤하게 설정
-			FeatureX = Random.RandomInt(0, max(3,Width - FeatureWidth));
-			FeatureY = Random.RandomInt(0, max(3,Height - FeatureHeight));
+			FeatureX = Random.RandomInt(0, max(3, Width - FeatureWidth));
+			FeatureY = Random.RandomInt(0, max(3, Height - FeatureHeight));
 		}
 		// 자연환경 타일 배치
 		for (int y = FeatureY; y < FeatureY + FeatureHeight; ++y) {
@@ -159,7 +160,7 @@ void ADungeon_BSP::CreateRooms(Node* node)
 		int RoomHeight = Random.RandomInt(4, max(4, node->height - 4));
 
 		// 방의 위치를 노드 내부에서 랜덤하게 설정
-		int RoomLocation_X = Random.RandomInt(node->x + 2, node->x + 2 + node->width - RoomWidth );
+		int RoomLocation_X = Random.RandomInt(node->x + 2, node->x + 2 + node->width - RoomWidth);
 		int RoomLocation_Y = Random.RandomInt(node->y + 2, node->y + 2 + node->height - RoomHeight);
 
 		// 생성된 방 정보를 노드에 저장
@@ -260,6 +261,16 @@ void ADungeon_BSP::SetNaturally()
 			}
 		}
 	}
+}
+
+void ADungeon_BSP::SetNextPotal()
+{
+	int MaxSize = RoomLocations.size() - 1;
+	int Index = Random.RandomInt(0, MaxSize);
+	FVector2D RoomLocation = RoomLocations[Index];
+	SetTile(RoomLocation.iX() / 72, RoomLocation.iY() / 72, "NextPotal.png", 0);
+	Tiles[RoomLocation.iY() / 72][RoomLocation.iX() / 72].SpriteRenderer->SetSpriteScale();
+
 }
 
 

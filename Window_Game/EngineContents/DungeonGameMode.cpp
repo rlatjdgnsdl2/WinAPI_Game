@@ -46,7 +46,7 @@ void ADungeonGameMode::LevelChangeStart()
 		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
 	}
 	Dungeon->Generate();
-	Dungeon->SetCurDungeonName("BeachCave");
+	//Dungeon->SetCurDungeonName("BeachCave");
 	// 턴매니저 생성
 	if (nullptr == TurnManager) {
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();

@@ -17,44 +17,44 @@ void ATurnManager::PlayerSelect()
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
 		PlayerInput = VK_NUMPAD7;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
 		PlayerInput = VK_NUMPAD4;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
 		PlayerInput = VK_NUMPAD1;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
 		PlayerInput = VK_NUMPAD2;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
 		PlayerInput = VK_NUMPAD3;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
 		PlayerInput = VK_NUMPAD6;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
-	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
+	if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
 		PlayerInput = VK_NUMPAD9;
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 
 	// Player_Select_Skill 단계로 가는 키
-	else if (UEngineInput::GetInst().IsPress('A')) {
+	if (UEngineInput::GetInst().IsPress('A')) {
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;
 		return;
