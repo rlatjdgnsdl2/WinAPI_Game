@@ -31,9 +31,9 @@ void APokemon::Move(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::Skill(SkillType _SkillType)
+void APokemon::Skill()
 {
-	switch (_SkillType)
+	switch (CurSkillType)
 	{
 	case SkillType::NormalAttack:
 		SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string((int)CurDir));

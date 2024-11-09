@@ -13,7 +13,6 @@
 
 void ATurnManager::PlayerMove(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
 	//	Player move
 	Player->Move(_DeltaTime);
 
@@ -34,12 +33,12 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		for (; StartIter != EndIter; StartIter++)
 		{
 			APokemon* CurPokemon = *StartIter;
+			//	강제로 목적지에 이동하게
 			CurPokemon->Move(1.0f);
 			CurPokemon->SetCurDuration(0.0f);
 		}
 		//	이동한 몬스터들 다 Vec에서 제거
 		MoveVec.clear();
-		CurDuration = 0.0f;
 		//	다음단계
 		CurTurnType = TurnType::AI_Skill;
 	}

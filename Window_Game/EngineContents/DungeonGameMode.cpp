@@ -19,15 +19,10 @@ ADungeonGameMode::ADungeonGameMode()
 
 ADungeonGameMode::~ADungeonGameMode()
 {
-	Partner = nullptr;
-	Dungeon = nullptr;
-	TurnManager = nullptr;
+
 }
 
-void ADungeonGameMode::BeginPlay()
-{
-	Super::BeginPlay();
-}
+
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);

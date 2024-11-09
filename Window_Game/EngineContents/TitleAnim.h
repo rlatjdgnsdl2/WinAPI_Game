@@ -23,5 +23,7 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
+	FVector2D MoveVec = FVector2D({ -1,1 });
+	FVector2D UpPower = FVector2D::UP;
 };
 

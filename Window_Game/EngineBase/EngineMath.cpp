@@ -25,7 +25,6 @@ FVector2D FVector2D::LerpClamp(FVector2D _StartLocation, FVector2D _TargetLocati
 }
 
 
-
 FVector2D FVector2D::Normalize(FVector2D _Value)
 {
 	_Value.Normalize();
@@ -50,16 +49,11 @@ class CollisionFunctionInit
 public:
 	CollisionFunctionInit()
 	{
-		// 데이터 영역이 초기화 될때 초기화하는 일을 자동으로 수행할수 있다.
-		// 데이터 영역이 만들어질때 이 작업은 자동으로 실행된다.
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::Rect)] = FTransform::RectToRect;
-
-		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::CirCleToCirCle;
-
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::CircleToCircle;
 	}
 };
-
-// 데이터 영역
+//	데이터영역
 CollisionFunctionInit Inst = CollisionFunctionInit();
 
 
@@ -69,13 +63,9 @@ bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, EC
 }
 
 
-bool FTransform::CirCleToCirCle(const FTransform& _Left, const FTransform& _Right)
+bool FTransform::CircleToCircle(const FTransform& _Left, const FTransform& _Right)
 {
 	FVector2D Len = _Left.Location - _Right.Location;
-
-	// 트랜스폼을 원으로 봤을때 반지름은 x의 절반크기를 반지름으로 보겠습니다.
-
-	// 두원의 반지름의 합이 벡터의 길이보다 크다면 
 	if (Len.Length() < _Left.Scale.hX() + _Right.Scale.hX())
 	{
 		return true;

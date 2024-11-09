@@ -55,6 +55,9 @@
     <ClInclude Include="Dungeon_BSP.h">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>ContentsCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -99,34 +102,34 @@
     <ClCompile Include="TurnManager.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_1.PlayerSelect.cpp">
+    <ClCompile Include="TurnManager_1.Player_Select.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_6.PlayerMove.cpp">
+    <ClCompile Include="TurnManager_6.Player_Move.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_7.PlayerSkill.cpp">
+    <ClCompile Include="TurnManager_7.Player_Skill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_2.SelectMove.cpp">
+    <ClCompile Include="TurnManager_2.Select_Move.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_8.AIMove.cpp">
+    <ClCompile Include="TurnManager_8.AI_Move.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_9.AISkill.cpp">
+    <ClCompile Include="TurnManager_9.AI_Skill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_4.Move_AISelect.cpp">
+    <ClCompile Include="TurnManager_4.Move_AI_Select.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_5.Skill_AISelect.cpp">
+    <ClCompile Include="TurnManager_5.Skill_AI_Select.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager_3.SelectSkill.cpp">
+    <ClCompile Include="TurnManager_3.Select_Skill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="Dungeon_BSP.cpp">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>ContentsCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

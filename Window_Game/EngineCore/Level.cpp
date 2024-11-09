@@ -252,28 +252,6 @@ void ULevel::Release(float _DeltaTime)
 			}
 		}
 	}
-
-	{
-		std::list<AActor*>::iterator StartIter = AllActors.begin();
-		std::list<AActor*>::iterator EndIter = AllActors.end();
-
-		for (; StartIter != EndIter; )
-		{
-			AActor* CurActor = *StartIter;
-
-
-			if (false == CurActor->IsDestroy())
-			{
-				CurActor->ReleaseCheck(_DeltaTime);
-				++StartIter;
-				continue;
-			}
-
-			// 레벨은 액터의 삭제권한을 가지고 있으니 액터는 진짜 지워 준다.
-			delete CurActor;
-			StartIter = AllActors.erase(StartIter);
-		}
-	}
 }
 
 void ULevel::ScreenClear()
