@@ -17,16 +17,12 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
-	
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
+
+
 	void SetSpawnPos();
-
-
-	void CheckCamera();
-
-
 
 
 	void SetDungeon(class  ADungeon_BSP* _Dungeon)
@@ -41,18 +37,12 @@ public:
 		EnemyCamp.push_back(_Enemy);
 	}
 
-	void SetTestEnemy(class AEnemy_01* _Enemy) {
-		TestEnemy = _Enemy;
-	}
 protected:
 
 private:
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
 	class APartner* Partner;
-	class AEnemy_01* TestEnemy;
-
-	
 
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
@@ -60,7 +50,6 @@ private:
 	SkillType PlayerSkillType;
 	int PlayerInput;
 	
-
 	std::vector<class APokemon*> IdleVec;
 	std::vector<class APokemon*> MoveVec;
 	std::vector<class APokemon*> SkillVec;

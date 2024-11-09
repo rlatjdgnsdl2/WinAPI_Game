@@ -8,6 +8,8 @@
 class APlayer :public APokemon
 {
 public:
+	friend class ATurnManager;
+
 	//	constrcuter, destructer
 	APlayer();
 	virtual ~APlayer();
@@ -19,7 +21,6 @@ public:
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime)override;
-	//
 	void LevelChangeStart() override;
 
 protected:

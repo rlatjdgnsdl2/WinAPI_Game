@@ -68,7 +68,7 @@ void ADungeon_BSP::split(Node* node)
 	int CurMax = (SplitHorizon ? node->height : node->width) - MIN_SIZE;
 
 	// 분할 가능한 크기인지 확인
-	if (CurMax < MIN_SIZE) {
+	if (CurMax <= MIN_SIZE) {
 		return;
 	}
 
@@ -107,9 +107,12 @@ void ADungeon_BSP::InitDungeon()
 		{
 			if (Tiles[y][x].SpriteRenderer == nullptr) {
 				CreateTile(x, y, { 72,72 }, CurDungeonName + "_Wall.png", 4);
+				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::WALL);
+				
 			}
 			SetTile(x, y, CurDungeonName + "_Wall.png", 4);
+			Tiles[y][x].SpriteRenderer->SetSpriteScale();
 			SetTileType(x, y, TileType::WALL);
 		}
 	}
@@ -135,6 +138,7 @@ void ADungeon_BSP::CreateNaturalFeatures()
 		for (int y = FeatureY; y < FeatureY + FeatureHeight; ++y) {
 			for (int x = FeatureX; x < FeatureX + FeatureWidth; ++x) {
 				SetTile(x, y, CurDungeonName + "_Water.png", 4); // 예: 물 타일
+				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::WATER); // 물 타일 타입 설정
 			}
 		}
@@ -170,6 +174,7 @@ void ADungeon_BSP::CreateRooms(Node* node)
 		for (int y = RoomLocation_Y; y < RoomLocation_Y + RoomHeight; ++y) {
 			for (int x = RoomLocation_X; x < RoomLocation_X + RoomWidth; ++x) {
 				SetTile(x, y, CurDungeonName + "_Ground.png", 4);
+				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::GROUND);
 				RoomLocations.push_back(FVector2D(x * 72, y * 72));
 			}
@@ -207,11 +212,13 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 	// 첫 번째 구간: 시작점에서 중간점까지
 	while (startX != midX) {
 		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startX += (startX < midX) ? 1 : -1;
 	}
 	while (startY != midY) {
 		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startY += (startY < midY) ? 1 : -1;
 	}
@@ -219,11 +226,13 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 	// 두 번째 구간: 중간점에서 끝점까지
 	while (startX != endX) {
 		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startX += (startX < endX) ? 1 : -1;
 	}
 	while (startY != endY) {
 		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startY += (startY < endY) ? 1 : -1;
 	}
@@ -238,15 +247,15 @@ void ADungeon_BSP::SetNaturally()
 {
 	for (int y = 0; y < Height; y++) {
 		for (int x = 0; x < Width; x++) {
-			auto& tile = Tiles[y][x];
-			if (tile.SpriteRenderer) {
+			Tile& tile = Tiles[y][x];
+			if (nullptr!=tile.SpriteRenderer) {
 				// 타일 종류 설정
 				std::string SpriteName = tile.SpriteRenderer->GetCurSpriteName();
 				std::string TypeName = SpriteName.substr(SpriteName.find('_'));
 
-				if (TypeName == "_GROUND.PNG")      tile.TileType = TileType::GROUND;
-				else if (TypeName == "_WALL.PNG")    tile.TileType = TileType::WALL;
-				else if (TypeName == "_WATER.PNG")   tile.TileType = TileType::WATER;
+				if (TypeName == "_GROUND.PNG") { tile.TileType = TileType::GROUND; }
+				else if (TypeName == "_WALL.PNG") { tile.TileType = TileType::WALL; }
+				else if (TypeName == "_WATER.PNG") { tile.TileType = TileType::WATER; }
 
 				// 경계 검사 후 타일 패턴 설정
 				if (y > 0 && x > 0 && y < Height - 1 && x < Width - 1) {

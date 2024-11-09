@@ -90,6 +90,7 @@ void ATurnManager::SetSpawnPos()
 	int Index = Random.RandomInt(0, MaxSize-1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 	Player->SetActorLocation(RoomLocation);
+	
 
 	//// partner pos
 	///*FVector2D PlayerPos = Player->GetActorLocation();

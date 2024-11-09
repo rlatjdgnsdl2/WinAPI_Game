@@ -34,7 +34,6 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	
 	CurCamp = CampType::Player;
 }
 

@@ -9,7 +9,6 @@
 //	Player_Select단계
 void ATurnManager::PlayerSelect()
 {
-	//	플레이어는 입력을 대기받는다
 	Player->Idle();
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
@@ -59,7 +58,6 @@ void ATurnManager::PlayerSelect()
 		CurTurnType = TurnType::Player_Select_Skill;
 		return;
 	}
-
 	// AI Idle
 	else
 	{

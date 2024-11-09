@@ -27,7 +27,7 @@ public:
 	virtual void Skill(SkillType _SkillType);
 
 
-	//GetSet
+	//GetSet	friend class Áú¹®
 
 	DIR GetDir() const { return CurDir; }
 	void SetDir(DIR _dir) { CurDir = _dir; }
@@ -62,7 +62,6 @@ protected:
 	FVector2D TargetLocation;
 	SkillType CurSkillType = SkillType::NormalAttack;
 	
-
 	virtual void AnimationSetting() = 0;
 
 private:
