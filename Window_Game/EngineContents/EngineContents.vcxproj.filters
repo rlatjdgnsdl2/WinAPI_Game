@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PreCompile.h">
+      <Filter>_Header\PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="PMDContentsCore.h">
+      <Filter>ContentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TempGameMode.h">
+      <Filter>LevelObjects\10.TempLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TempPlayer.h">
+      <Filter>LevelObjects\10.TempLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Partner.h">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAnim.h">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBackground.h">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsStruct.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TurnManager.h">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Pokemon.h">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_01.h">
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_BSP.h">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>_Header\PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="PMDContentsCore.cpp">
+      <Filter>ContentsCore</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TempGameMode.cpp">
+      <Filter>LevelObjects\10.TempLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TempPlayer.cpp">
+      <Filter>LevelObjects\10.TempLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAnim.cpp">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackground.cpp">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsStruct.cpp">
+      <Filter>_Header</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsEnum.cpp">
+      <Filter>_Header</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_1.PlayerSelect.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_6.PlayerMove.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_7.PlayerSkill.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_2.SelectMove.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon.cpp">
+      <Filter>LevelObjects\00.Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_8.AIMove.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_9.AISkill.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_4.Move_AISelect.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_5.Skill_AISelect.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_3.SelectSkill.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_01.cpp">
+      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_BSP.cpp">
+      <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="LevelObjects">
+      <UniqueIdentifier>{e9f09cd3-9428-41ca-a8f6-53016a4e1753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Header">
+      <UniqueIdentifier>{14f4fc85-8b77-44fc-9d53-93a43e9a8698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Header\PreCompile">
+      <UniqueIdentifier>{df5645df-98c0-4afc-ad35-47dbd848d248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsCore">
+      <UniqueIdentifier>{e2b8de65-dce1-4b85-9319-9ae2ea911d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\01.TitleLevel">
+      <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\02.DungeonLevel">
+      <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\02.DungeonLevel\Enemy">
+      <UniqueIdentifier>{29b87975-00fb-43c1-9962-051f60b6ed21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\02.DungeonLevel\TurnManager">
+      <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\00.Global">
+      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\10.TempLevel">
+      <UniqueIdentifier>{76fc212b-f490-4417-9f85-46b2d46df347}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
