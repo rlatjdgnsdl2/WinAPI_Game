@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+//	렌더순서
 enum class ERenderOrder
 {
 	BACKGROUND = -1000,
@@ -8,19 +10,28 @@ enum class ERenderOrder
 	PLAYER = 0,
 	UI = 10000,
 };
-
-
+//---------------------------------------------------
+//	타일맵
 enum class TileType {
 	GROUND = 0,
 	WALL,
 	WATER
 };
-
-enum class CampType
+//---------------------------------------------------
+//	방향
+enum class DIR
 {
-	Player,
-	Enemy
+	Left_Down = 1,
+	Down,
+	Right_Down,
+	Left,
+	Right = 6,
+	Left_Up,
+	Up,
+	Right_Up
 };
+//---------------------------------------------------
+//	던전관련
 enum class TurnType
 {
 	Player_Select,
@@ -33,6 +44,11 @@ enum class TurnType
 	AI_Move,
 	AI_Skill,
 };
+enum class CampType
+{
+	Player,
+	Enemy
+};
 
 enum class SkillType
 {
@@ -41,15 +57,12 @@ enum class SkillType
 	UseItem
 };
 
-enum class DIR
+enum class ECollisionGroup
 {
-	Left_Down = 1,
-	Down,
-	Right_Down,
-	Left,
-	Right = 6,
-	Left_Up,
-	Up,
-	Right_Up
+	PlayerBody,
+	MonsterBody,
+	PlayerAttack,
+	MonsterAttack
 };
+//---------------------------------------------------
 

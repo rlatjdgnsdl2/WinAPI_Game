@@ -182,7 +182,6 @@ public:
 		return Stream;
 	}
 
-	//	쓰지말자... 대소비교로 대신
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
@@ -201,27 +200,19 @@ enum class ECollisionType
 	CirCle,
 	Max
 
-	//AABB,
-	//OBB,
 };
 
 class FTransform
 {
 private:
 	friend class CollisionFunctionInit;
-
 	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
 
 public:
 	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
-
-	// 완전히 같은 형의 함수죠?
 	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
-	// static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
-
-	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
-	// static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
-
+	static bool CircleToCircle(const FTransform& _Left, const FTransform& _Right);
+	
 	FVector2D Scale;
 	FVector2D Location;
 

@@ -26,7 +26,7 @@ ATitleAnim::~ATitleAnim()
 void ATitleAnim::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetActorLocation({ 500,300 });
+	SetActorLocation({ 600,300 });
 	FVector2D AnimCharactor = SpriteRenderer->SetSpriteScale(1.0f);
 	SpriteRenderer->SetComponentLocation(AnimCharactor.Half());
 }
@@ -35,7 +35,6 @@ void ATitleAnim::LevelChangeStart()
 
 void ATitleAnim::PlayAnimation(float _DeltaTime)
 {
-	SpriteRenderer->ChangeAnimation("IntroAnim");
 	
 }
 

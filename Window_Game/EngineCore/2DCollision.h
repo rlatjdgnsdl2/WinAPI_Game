@@ -1,10 +1,10 @@
 #pragma once
 #include "SceneComponent.h"
 
-// 매쉬 충돌. 
 
 
-// 설명 :
+
+// 설명 : 충돌체크컴포넌트
 class U2DCollision : public USceneComponent
 {
 public:
@@ -22,6 +22,7 @@ public:
 
 	void ComponentTick(float _DeltaTime) override;
 
+
 	template<typename EnumType>
 	EnumType GetGroup()
 	{
@@ -33,8 +34,7 @@ public:
 		return CollisionGroup;
 	}
 
-	// 충돌체에게 충돌그룹을 지정안해주는건 의미가 없다.
-	// 중간에 충돌 그룹이 바뀌어야 되면 이야기 부탁.
+	
 	template<typename EnumType>
 	void SetCollisionGroup(EnumType _CollisionGroup)
 	{
@@ -49,7 +49,6 @@ public:
 	template<typename EnumType>
 	AActor* CollisionOnce(EnumType _OtherCollisionGroup, FVector2D _NextPos = FVector2D::ZERO)
 	{
-		// 상대가 100개이다. 100개 
 		std::vector<AActor*> Result;
 		Collision(static_cast<int>(_OtherCollisionGroup), Result, _NextPos, 1);
 
@@ -64,7 +63,6 @@ public:
 	template<typename EnumType>
 	std::vector<AActor*> CollisionAll(EnumType _OtherCollisionGroup)
 	{
-		// 상대가 100개이다. 100개 
 		std::vector<AActor*> Result;
 		Collision(static_cast<int>(_OtherCollisionGroup), Result, -1);
 
@@ -81,24 +79,8 @@ public:
 protected:
 
 private:
-	// 충돌체의 오더는 약간 의미가 다르다.
-	// -1 충돌 그룹을 지정해주지 않았다
-	// -1 은 사용하면 안된다.
-	// 양수만 된다.
 	ECollisionType CollisionType = ECollisionType::CirCle;
 	int CollisionGroup = -1;
 };
 
-// 여러분들이 만들어야 하는 기능
-// enum class ContentsCollision
-// {
-//     PlayerBody,
-//     PlayerAttack,
-//	   MonsterBody,
-//     MonsterAttack,
-// }
-
-// 대부분의 충돌 함수들이 이와 같은 엮어주는 함수를 지원하거나 
-// 엔진수준의 GUI로 지원해 줘야 합니다.
-// void SetCollisionGroupCheck(ContentsCollision::PlayerBody, ContentsCollision::MonsterAttack);
 

@@ -24,6 +24,7 @@ ATurnManager::~ATurnManager()
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+
 	//	MainPawn 연결
 	AActor* PlayerActor = GetWorld()->GetPawn();
 	Player = dynamic_cast<APlayer*>(PlayerActor);
@@ -39,7 +40,6 @@ void ATurnManager::LevelChangeStart()
 	//	캠프설정
 	PlayerCamp.push_back(Player);
 	PlayerCamp.push_back(Partner);
-
 	CurTurnType = TurnType::Player_Select;
 
 }
@@ -86,36 +86,35 @@ void ATurnManager::SetSpawnPos()
 {
 	UEngineRandom Random;
 	// player pos
-	int MaxSize = Dungeon->GetRoomLocations().size();
-	int RandomInex = Random.RandomInt(0, MaxSize-1);
+	int MaxSize = Dungeon->GetRoomLocations().size()-1;
+	int RandomInex = Random.RandomInt(0, MaxSize);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[RandomInex];
 	Player->SetActorLocation(RoomLocation);
 
-	//// partner pos
-	///*FVector2D PlayerPos = Player->GetActorLocation();
-	//FVector2D PosIndex = PlayerPos / 72;
-	//bool isSpawnPartner = false;
-	//for (int y = -1; y <= 1; y++)
-	//{
-	//	for (int x = -1; x <= 1; x++)
-	//	{
-	//		TileType TileType = Dungeon->GetDungeonData()->TileTypes[PosIndex.iY() + y][PosIndex.iX()+x];
-	//		if (TileType::GROUND == TileType && x != 0 && y != 0)
-	//		{
-	//			FVector2D PartnerPos = FVector2D(PlayerPos.X + x * 72, PlayerPos.Y + y * 72);
-	//			Partner->SetActorLocation(PartnerPos);
-	//			isSpawnPartner = true;
-	//		}
-	//	}
-	//	if (isSpawnPartner)
-	//	{
-	//		break;
-	//	}
-	//*/}
+	//partner pos
+	FVector2D PlayerPos = Player->GetActorLocation();
+	FVector2D PosIndex = PlayerPos / 72;
+	bool IsSpawnPartner = false;
+	for (int y = -1; y <= 1; y++)
+	{
+		for (int x = -1; x <= 1; x++)
+		{
+			if (IsSpawnPartner)
+			{
+				break;
+			}
+			TileType TargetTileType = Dungeon->GetTileType(PosIndex.iX()+x, PosIndex.iY()+y);
+			if (TileType::GROUND == TargetTileType && x != 0 && y != 0)
+			{
+				FVector2D PartnerPos = FVector2D(PlayerPos.X + x * 72, PlayerPos.Y + y * 72);
+				Partner->SetActorLocation(PartnerPos);
+				IsSpawnPartner = true;
+			}
+		}
+	}
 
 	//// TestSpawn monster
 	////TestEnemy->SetActorLocation(PlayerPos+FVector2D(144,144));
-
 
 }
 

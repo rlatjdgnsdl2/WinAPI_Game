@@ -17,18 +17,9 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
-	
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
-
 	void SetSpawnPos();
-
-
-	void CheckCamera();
-
-
-
-
 	void SetDungeon(class  ADungeon_BSP* _Dungeon)
 	{
 		Dungeon = _Dungeon;
@@ -58,6 +49,7 @@ private:
 	float CurDuration = 0.0f;
 
 	SkillType PlayerSkillType;
+
 	int PlayerInput;
 	
 
@@ -67,7 +59,6 @@ private:
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;
-
 
 	//	idle
 	void PlayerSelect();
