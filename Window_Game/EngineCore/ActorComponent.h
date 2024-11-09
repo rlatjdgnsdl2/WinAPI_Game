@@ -12,9 +12,7 @@ public:
 
 	// constrcuter destructer
 	UActorComponent();
-
-	// 객체화 못시키게 하는법
-	virtual ~UActorComponent() =0;
+	virtual ~UActorComponent();
 
 	// delete Function
 	UActorComponent(const UActorComponent& _Other) = delete;

@@ -26,7 +26,7 @@ void ADungeon_BSP::LevelChangeStart()
 
 void ADungeon_BSP::Generate()
 {
-	Node* root = new Node{ 5, 5, Width - 10, Height - 10 };
+	root = new Node{ 5, 5, Width - 10, Height - 10 };
 	InitDungeon();
 	split(root);
 	CreateNaturalFeatures();

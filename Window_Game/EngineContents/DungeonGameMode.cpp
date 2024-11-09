@@ -19,14 +19,13 @@ ADungeonGameMode::ADungeonGameMode()
 
 ADungeonGameMode::~ADungeonGameMode()
 {
-	Partner = nullptr;
-	Dungeon = nullptr;
-	TurnManager = nullptr;
 }
 
 void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
+
 }
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
@@ -41,26 +40,29 @@ void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	//	带傈积己
+	
 	if (nullptr == Dungeon) {
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
 	}
 	Dungeon->Generate();
 	Dungeon->SetCurDungeonName("BeachCave");
-	
-	//	畔概聪历 积己
+	// 畔概聪历 积己
 	if (nullptr == TurnManager) {
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
 	}
 	TurnManager->SetDungeon(Dungeon);
-
+	
 	//	颇飘呈 积己
-	Partner = GetWorld()->SpawnActor<APartner>();
+	if (nullptr == Partner) {
+		Partner = GetWorld()->SpawnActor<APartner>();
+
+	}
 	TurnManager->SetPatner(Partner);
 
-	//	Test
-	AEnemy_01* NewEnemy = GetWorld()->SpawnActor<AEnemy_01>();
-	TurnManager->SetTestEnemy(NewEnemy);
+	//Test
+	//AEnemy_01* NewEnemy = GetWorld()->SpawnActor<AEnemy_01>();
+	//TurnManager->SetTestEnemy(NewEnemy);
 
 }
 

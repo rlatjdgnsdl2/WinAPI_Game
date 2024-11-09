@@ -42,7 +42,7 @@ public:
 public:
 	// constrcuter destructer
 	USpriteRenderer();
-	~USpriteRenderer();
+	virtual ~USpriteRenderer();
 
 	// delete Function
 	USpriteRenderer(const USpriteRenderer& _Other) = delete;
