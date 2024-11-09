@@ -45,10 +45,10 @@ enum class TurnType
 	AI_Skill,
 };
 
-enum class CampType
+enum class Pokemon_Type 
 {
-	Player,
-	Enemy
+	Fire,
+	Water
 };
 
 enum class SkillType
