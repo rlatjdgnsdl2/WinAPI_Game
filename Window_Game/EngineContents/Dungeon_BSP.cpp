@@ -268,8 +268,10 @@ void ADungeon_BSP::SetNextPotal()
 	int MaxSize = RoomLocations.size() - 1;
 	int Index = Random.RandomInt(0, MaxSize);
 	FVector2D RoomLocation = RoomLocations[Index];
-	SetTile(RoomLocation.iX() / 72, RoomLocation.iY() / 72, "NextPotal.png", 0);
-	Tiles[RoomLocation.iY() / 72][RoomLocation.iX() / 72].SpriteRenderer->SetSpriteScale();
+	FIntPoint RoomIndex = FIntPoint(RoomLocation.iX() / 72, RoomLocation.iY() / 72);
+	SetTile(RoomIndex.X, RoomIndex.Y, "NextPotal.png", 0);
+	Tiles[RoomIndex.Y][RoomIndex.X].SpriteRenderer->SetSpriteScale();
+	PotalLocation = RoomLocation;
 
 }
 

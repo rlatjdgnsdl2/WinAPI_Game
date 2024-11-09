@@ -11,6 +11,7 @@ class ADungeon_BSP : public ATileMap
 
 {
 public:
+	friend class ATurnManager;
 	//	constrcuter, destructer
 	ADungeon_BSP();
 	virtual ~ADungeon_BSP();
@@ -30,6 +31,8 @@ public:
 	
 	void SetDungeonData(std::string_view _DungeonName, int _Width, int _Height, int TrapCount);
 
+
+
 protected:
 
 private:
@@ -41,7 +44,8 @@ private:
 	int Width = 60; 
 	int Height = 40;
 	std::vector<FVector2D> RoomLocations;
-	std::vector<FVector2D> FootBoardLocations;
+	FVector2D PotalLocation;
+	
 
 	//	던전생성과정
 	void InitDungeon();
