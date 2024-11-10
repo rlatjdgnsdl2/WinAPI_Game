@@ -88,16 +88,16 @@ void PMDContentsCore::RoadResources()
 	//	Title
 	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
 	//	player
-	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
-	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
 
 	//	partner
-	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
 	
 	//	Dungeon
 	//	BeachCave
@@ -105,15 +105,25 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("BeachCave_Water.png", 5, 10);
 
-	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
-	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Attack.png", 11, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
+	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
 
-	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
-	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
+	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
+
+	UImageManager::GetInst().CuttingSprite("Shellder_Attack.png", 10, 8);
+	UImageManager::GetInst().CuttingSprite("Shellder_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Shellder_Idle.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("Shellder_Walk.png", 6, 8);
+
+	UImageManager::GetInst().CuttingSprite("Corsola_Attack.png", 10, 8);
+	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
+	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
 
 	//	AmpPlains
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
