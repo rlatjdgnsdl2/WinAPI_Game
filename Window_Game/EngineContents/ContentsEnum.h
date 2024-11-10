@@ -8,14 +8,11 @@ enum class ERenderOrder
 	PLAYER = 0,
 	UI = 10000,
 };
-
-
 enum class TileType {
 	GROUND = 0,
 	WALL,
 	WATER
 };
-
 enum class CampType
 {
 	Player,
@@ -40,7 +37,6 @@ enum class SkillType
 	SpecialAttack,
 	UseItem
 };
-
 enum class DIR
 {
 	Left_Down = 1,

@@ -58,6 +58,9 @@
     <ClInclude Include="ContentsDefine.h">
       <Filter>_Header</Filter>
     </ClInclude>
+    <ClInclude Include="GameDataManager.h">
+      <Filter>ContentsCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Dungeon_BSP.cpp">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDataManager.cpp">
+      <Filter>ContentsCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

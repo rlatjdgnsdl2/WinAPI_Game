@@ -10,21 +10,30 @@ struct Room {
     }
 };
 
-
 struct Node {
     int x, y, width, height;
     Room room;
     Node* left = nullptr;
     Node* right = nullptr;
-
     bool isLeaf() const { return left == nullptr && right == nullptr; }
-
     ~Node() {
         delete left;
         delete right;
-    }
+    } 
+};
+
+
+
+struct Pokemon_Ability {
+    unsigned int Hp;
+    unsigned int Attack;
+    unsigned int Defense;
+    unsigned int Special_Attack;
+    unsigned int Special_Defense;
     
 };
+
+
 
 
 
