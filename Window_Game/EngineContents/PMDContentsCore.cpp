@@ -130,7 +130,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Corsola", { "Vulpix",10,2,3,4 });
+	UGameDataManager::GetInst().InsertPokemonInfo("Corsola", { "Corsola",10,2,3,4 });
 
 	//	AmpPlains
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
@@ -145,7 +145,7 @@ void PMDContentsCore::CreateLevel()
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
 	//	던전레벨
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Mudkip");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Corsola");
 	//	마을레벨
 }
 void PMDContentsCore::InitKeySet()

@@ -12,7 +12,9 @@ ADungeon_BSP::ADungeon_BSP()
 {
 	Tiles.resize(Height, std::vector<Tile>(Width));
 	SetActorLocation({ 0,0 });
+	
 }
+
 ADungeon_BSP::~ADungeon_BSP()
 {
 	delete root;
@@ -32,8 +34,9 @@ void ADungeon_BSP::LevelChangeEnd()
 	RoomLocations.clear();
 }
 
-void ADungeon_BSP::Generate()
+void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
 {
+	CurDungeonName = _CurDungeonName.data();
 	root = new Node{ 5, 5, Width - 10, Height - 10 };
 	InitDungeon();
 	split(root);

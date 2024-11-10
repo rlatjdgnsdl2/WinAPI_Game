@@ -24,6 +24,15 @@ public:
 	PokemonInfo& GetPokemonInfo(std::string_view _PokemonName) {
 		return PokemonInfos.find(_PokemonName.data())->second;
 	}
+	std::string GetSelectDungeon() const
+	{
+		return SelectDungeon;
+	}
+	void SetSelectDungeon(std::string_view _SelectDungeon)
+	{
+		 SelectDungeon = _SelectDungeon;
+	}
+
 	
 
 protected:
@@ -31,6 +40,7 @@ protected:
 private:
 	UGameDataManager();
 	std::map<std::string, PokemonInfo > PokemonInfos;
+	std::string SelectDungeon;
 
 };
 

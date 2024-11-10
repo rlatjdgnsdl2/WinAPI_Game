@@ -25,19 +25,20 @@ public:
 	void LevelChangeStart() override;
 	void LevelChangeEnd() override;
 
-	void Generate();
+	void Generate(std::string_view _CurDungeonName);
 
 	Room getRoom(Node* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
-	
-	void SetDungeonData(std::string_view _DungeonName, int _Width, int _Height, int TrapCount);
+	void SetCurDungoenName(std::string_view _CurDungeonName) {
+		CurDungeonName = _CurDungeonName;
+	}
 
 protected:
 
 private:
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
-	std::string CurDungeonName = "BeachCave";
+	std::string CurDungeonName;
 	Node* root;
 	int Width = 60; 
 	int Height = 40;

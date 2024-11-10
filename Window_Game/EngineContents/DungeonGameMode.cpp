@@ -6,6 +6,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/Level.h>
 
+#include "GameDataManager.h"
 #include "Dungeon_BSP.h"
 #include "Partner.h"
 #include "TurnManager.h"
@@ -44,7 +45,8 @@ void ADungeonGameMode::LevelChangeStart()
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
 	}
-	Dungeon->Generate();
+	UGameDataManager::GetInst().SetSelectDungeon("AmpPlains");
+	Dungeon->Generate(UGameDataManager::GetInst().GetSelectDungeon());
 
 	// 턴매니저 생성
 	if (nullptr == TurnManager) {
