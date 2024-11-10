@@ -16,9 +16,7 @@ public:
 	ATitleBackground& operator=(const ATitleBackground& _Other) = delete;
 	ATitleBackground& operator=(ATitleBackground&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
 	void LevelChangeStart() override;
-	void PlayAnimation(float _DeltaTime);
 		
 	
 protected:

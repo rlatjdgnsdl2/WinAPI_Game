@@ -13,7 +13,7 @@
 
 ATitleGameMode::ATitleGameMode()
 {
-	
+
 }
 
 ATitleGameMode::~ATitleGameMode()
@@ -30,7 +30,6 @@ void ATitleGameMode::LevelChangeStart()
 	if (TitleAnim == nullptr) {
 		TitleAnim = GetWorld()->SpawnActor<ATitleAnim>();
 	}
-
 	GetWorld()->SetCameraToMainPawn(false);
 }
 
@@ -42,19 +41,20 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	{
 		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	}
-	if (2.5f<TitlePlayTime && TitlePlayTime< 6.3f) {
-		TitleBackGround->PlayAnimation(_DeltaTime);
+	if (2.5f < TitlePlayTime && TitlePlayTime < 8.2f) {
+		TitleBackGround->AddActorLocation(FVector2D::UP * _DeltaTime * 200.f);
 	}
-	if (TitlePlayTime > 4.0f) {
+	if (TitlePlayTime > 5.0f && TitlePlayTime < 7.0f) {
 		TitleAnim->PlayAnimation(_DeltaTime);
+		TitleAnim->AddActorLocation((FVector2D({ -1.5f, 1.0f }) + LeftAcceleration + UpAcceleration) * _DeltaTime * 100.0f);
 	}
-
-
-
+	if (TitlePlayTime > 7.0f) {
+		TitleAnim->PlayAnimation(_DeltaTime);
+		TitleAnim->AddActorLocation((FVector2D({ -2.5f, -1.5f }) + LeftAcceleration + UpAcceleration) * _DeltaTime * 100.0f);
+	}
 
 
 }
-
 
 void ATitleGameMode::LevelChangeEnd()
 {

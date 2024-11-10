@@ -23,5 +23,6 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
+	
 };
 

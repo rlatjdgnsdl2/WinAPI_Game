@@ -13,8 +13,9 @@ ATitleAnim::ATitleAnim()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	SpriteRenderer->SetSprite("1.Intro_anim.png");
-	SpriteRenderer->CreateAnimation("IntroAnim", "1.Intro_Anim.png", 0, 14);
-	
+	float frame = 2.0f / 15;
+	SpriteRenderer->CreateAnimation("IntroAnim", "1.Intro_Anim.png", 0, 14, frame, false);
+
 }
 ATitleAnim::~ATitleAnim()
 {
@@ -26,7 +27,7 @@ ATitleAnim::~ATitleAnim()
 void ATitleAnim::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetActorLocation({ 500,300 });
+	SetActorLocation({ 500,200 });
 	FVector2D AnimCharactor = SpriteRenderer->SetSpriteScale(1.0f);
 	SpriteRenderer->SetComponentLocation(AnimCharactor.Half());
 }
@@ -35,8 +36,12 @@ void ATitleAnim::LevelChangeStart()
 
 void ATitleAnim::PlayAnimation(float _DeltaTime)
 {
-	SpriteRenderer->ChangeAnimation("IntroAnim");
+	SpriteRenderer->ChangeAnimation("IntroAnim",true);
 	
+	
+
+
+
 }
 
 

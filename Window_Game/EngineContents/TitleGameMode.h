@@ -19,8 +19,6 @@ public:
 	virtual void LevelChangeStart() override;
 	virtual void LevelChangeEnd() override;
 	
-	float GetTitlePlayTime();
-	void ResetTitlePlayTime();
 	
 protected:
 
@@ -28,5 +26,8 @@ private:
 	float TitlePlayTime = 0.0f;
 	class ATitleBackground* TitleBackGround;
 	class ATitleAnim* TitleAnim;
+
+	FVector2D LeftAcceleration = FVector2D::LEFT;
+	FVector2D UpAcceleration = FVector2D::UP;
 };
 
