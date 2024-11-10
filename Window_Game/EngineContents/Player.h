@@ -28,7 +28,5 @@ protected:
 
 private:
 	
-	virtual void AnimationSetting() override;
-	
 };
 

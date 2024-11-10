@@ -33,15 +33,13 @@ void APlayer::Tick(float _DeltaTime)
 
 void APlayer::LevelChangeStart()
 {
-	Super::LevelChangeStart();
+	APokemon::LevelChangeStart();
 	CurCamp = CampType::Player;
 }
 
 
 
-void APlayer::AnimationSetting()
-{
-}
+
 
 
 

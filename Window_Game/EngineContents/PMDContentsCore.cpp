@@ -145,7 +145,7 @@ void PMDContentsCore::CreateLevel()
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
 	//	던전레벨
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Corsola");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Shellder");
 	//	마을레벨
 }
 void PMDContentsCore::InitKeySet()

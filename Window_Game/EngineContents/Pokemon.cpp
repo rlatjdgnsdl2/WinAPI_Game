@@ -14,14 +14,20 @@ APokemon::APokemon(std::string_view _CurPokemonName)
 {
 	CurPokemonInfo = UGameDataManager::GetInst().GetPokemonInfo(_CurPokemonName);
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite(CurPokemonInfo.PokemonName + "_Idle.png");
-	SpriteRenderer->SetSpriteScale();
-	AnimationSetting();
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	
 }
 APokemon::~APokemon()
 {
 
+}
+
+void APokemon::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	SpriteRenderer->SetSprite(CurPokemonInfo.PokemonName + "_Idle.png");
+	SpriteRenderer->SetSpriteScale();
+	AnimationSetting();
+	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 }
 
 void APokemon::Idle()
@@ -33,7 +39,7 @@ void APokemon::Idle()
 void APokemon::Move(float _DeltaTime)
 {
 	CurDuration += _DeltaTime;
-	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration *10.0f);	//나중에 스피드 설정
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration *2.0f);	//나중에 스피드 설정
 	SetActorLocation(NewLocation);
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
 	SpriteRenderer->SetSpriteScale();
@@ -76,8 +82,8 @@ void APokemon::AnimationSetting()
 			IdleIndex[y][x] = x + y * CurPokemonInfo.IdleAnimCount;
 		}
 	}
-	std::vector<float> IdleFrame(CurPokemonInfo.IdleAnimCount, 0.1f);
-	IdleFrame[0] = 0.1f * (11 - CurPokemonInfo.IdleAnimCount);
+	std::vector<float> IdleFrame(CurPokemonInfo.IdleAnimCount, 0.2f);
+	IdleFrame[0] = 0.2f * (11 - CurPokemonInfo.IdleAnimCount);
 	SpriteRenderer->CreateAnimation("IdleAnim_2", CurPokemonInfo.PokemonName + "_Idle.png", IdleIndex[0], IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_3", CurPokemonInfo.PokemonName + "_Idle.png", IdleIndex[1], IdleFrame);
 	SpriteRenderer->CreateAnimation("IdleAnim_6", CurPokemonInfo.PokemonName + "_Idle.png", IdleIndex[2], IdleFrame);

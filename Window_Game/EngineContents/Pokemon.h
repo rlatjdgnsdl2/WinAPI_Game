@@ -20,6 +20,7 @@ public:
 	APokemon& operator=(const APokemon& _Other) = delete;
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
+	virtual void LevelChangeStart()override;
 
 	virtual void Idle();
 	virtual void Move(float _DeltaTime);
@@ -47,6 +48,9 @@ public:
 	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
 	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
 
+	void SetPokemonInfo(const PokemonInfo& _PokemonInfo) {
+		CurPokemonInfo = _PokemonInfo;
+	}
 	
 
 
