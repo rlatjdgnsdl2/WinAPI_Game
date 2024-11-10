@@ -1,7 +1,6 @@
 #pragma once
-#include <functional>
 
-// 설명 : 델리게이트
+// 설명 : Delegate 클래스
 class EngineDelegate
 {
 public:

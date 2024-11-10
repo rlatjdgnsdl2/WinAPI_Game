@@ -1,12 +1,14 @@
 #pragma once
 
-
+// 수학 연산을 위한 유틸리티 클래스
 class UEngineMath
 {
 public:
+	//	제곱근
 	static float Sqrt(float _Value) { return ::sqrtf(_Value); }
 };
 
+// 정수 좌표를 나타내는 클래스
 class FIntPoint
 {
 public:
@@ -18,16 +20,9 @@ public:
 	static const FIntPoint UP;
 	static const FIntPoint DOWN;
 
-	FIntPoint()
-	{
-
-	}
-
-	FIntPoint(int _X, int _Y) : X(_X), Y(_Y)
-	{
-
-	}
-
+	FIntPoint() {}
+	FIntPoint(int _X, int _Y) : X(_X), Y(_Y) {}
+	FIntPoint(float _X, float _Y) :X(static_cast<int>(_X)), Y(static_cast<int>(_Y)) {}
 
 	FIntPoint operator+(FIntPoint _Other) const
 	{
@@ -64,6 +59,7 @@ public:
 		Y += _Other.Y;
 		return *this;
 	}
+	//	필요하면 추가예정
 };
 
 
@@ -84,7 +80,7 @@ public:
 	static const FVector2D UP;
 	static const FVector2D DOWN;
 
-	//	선형보간
+	//	선형보간 (시작 위치와 목표 위치 사이의 값)
 	static FVector2D LerpClamp(FVector2D _StartLocation, FVector2D _TargetLocation, float _t);
 
 	//	벡터길이
@@ -92,7 +88,6 @@ public:
 
 	//	정규화
 	static FVector2D Normalize(FVector2D _Value);
-
 	//	정규화
 	void Normalize();
 
@@ -105,7 +100,7 @@ public:
 	float hY() const { return Y * 0.5f; }
 
 
-	//	IntPoint로 변환
+	//	FIntPoint로 변환
 	FIntPoint ConvertToPoint() const { return { iX(), iY() }; }
 
 	//	내적
@@ -160,7 +155,7 @@ public:
 		Y -= _Other.Y;
 		return *this;
 	}
-
+	// 벡터의 반대 방향을 반환하는 연산자
 	FVector2D operator-() const
 	{
 		FVector2D Result;
@@ -182,79 +177,53 @@ public:
 		return Stream;
 	}
 
-	//	쓰지말자... 대소비교로 대신
+	// 비교 연산자 오버로드
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
 	}
-
+	// 정수로 변환 후 비교
 	bool EqualToInt(FVector2D _Other) const
 	{
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
 };
+
+// 충돌 타입을 정의하는 열거형
 enum class ECollisionType
 {
 	Point,
 	Rect,
 	CirCle,
 	Max
-
-	//AABB,
-	//OBB,
 };
 
 class FTransform
 {
 private:
 	friend class CollisionFunctionInit;
-
+	// 충돌 함수 배열
 	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
 
 public:
-	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
-
-	// 완전히 같은 형의 함수죠?
-	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
-	// static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
-
-	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
-	// static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+	// 두 객체 간 충돌을 검사하는 함수
+	static bool IsCollision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
+	// 사각형 간 충돌 검사 함수
+	static bool IsRectToRect(const FTransform& _Left, const FTransform& _Right);
+	// 원 간 충돌 검사 함수
+	static bool IsCircleToCircle(const FTransform& _Left, const FTransform& _Right);
 
 	FVector2D Scale;
 	FVector2D Location;
 
 
-	FVector2D CenterLeftTop() const
-	{
-		return Location - Scale.Half();
-	}
-
-	float CenterLeft() const
-	{
-		return Location.X - Scale.hX();
-	}
-
-	float CenterTop() const
-	{
-		return Location.Y - Scale.hY();
-	}
-
-	FVector2D CenterRightBottom() const
-	{
-		return Location + Scale.Half();
-	}
-
-	float CenterRight() const
-	{
-		return Location.X + Scale.hX();
-	}
-
-	float CenterBottom() const
-	{
-		return Location.Y + Scale.hY();
-	}
+	FVector2D CenterLeftTop() const { return Location - Scale.Half(); }
+	FVector2D CenterRightBottom() const { return Location + Scale.Half(); }
+	float CenterTop() const { return Location.Y - Scale.hY(); }
+	float CenterBottom() const { return Location.Y + Scale.hY(); }
+	float CenterLeft() const { return Location.X - Scale.hX(); }
+	float CenterRight() const { return Location.X + Scale.hX(); }
 };
 
 

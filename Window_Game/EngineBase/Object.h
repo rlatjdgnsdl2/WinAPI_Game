@@ -1,16 +1,12 @@
 #pragma once
-#include <string>
 
-// 설명 :
+// 설명 : 기본적인 객체의 이름, 생명주기와 상태를 관리하는 베이스 클래스
 class UObject
 {
 public:
 	// constrcuter destructer
 	UObject();
-
-	// 혹여나 자식들의 소멸자가 호출 안되는 경우를 막기위에서
-	// 가상함수 테이블을 만들 것이므로 왠만하면 자식쪽의 소멸자가 호출안되는 경우는 없을 것이다.
-	virtual ~UObject();
+	virtual ~UObject() = 0;
 
 	// delete Function
 	UObject(const UObject& _Other) = delete;
@@ -18,106 +14,64 @@ public:
 	UObject& operator=(const UObject& _Other) = delete;
 	UObject& operator=(UObject&& _Other) noexcept = delete;
 
-	std::string GetName() const
-	{
-		return Name;
-	}
+	std::string GetName() const { return Name; }
+	std::string_view GetNameView() const { return Name.c_str(); }
+	// 필요시 오버라이드 가능
+	virtual void SetName(std::string_view _Name) { Name = _Name.data(); }
 
-	std::string_view GetNameView() const
-	{
-		return Name.c_str();
-	}
+	virtual bool IsActive() const { return IsActiveValue && false == IsDestroyValue; }
+	virtual bool IsDestroy() const { return IsDestroyValue; }
 
-	// 이름 지정할때 뭔가 하고 싶으면 오버라이드해.
-	virtual void SetName(std::string_view _Name)
-	{
-		Name = _Name.data();
-	}
-
-	// bool IsActive()
-	virtual bool IsActive()
-	{
-		return IsActiveValue && false == IsDestroyValue;
-	}
-
-	virtual bool IsDestroy()
-	{
-		return IsDestroyValue;
-	}
-
-	// 바로 죽겠죠?
-	// _Time 시간후에 죽어라.
+	// 객체를 파괴하는 함수, _Time 후에 파괴 (기본값 0)
 	void Destroy(float _Time = 0.0f)
 	{
 		DeathTime = _Time;
-
 		if (0.0f < _Time)
 		{
 			IsDeathTimeCheck = true;
 			return;
 		}
-
 		IsDestroyValue = true;
 	}
 
+	// 파괴될 시간이 되었는지 확인하는 함수 (매 프레임마다 호출하여 시간 경과 체크)
 	virtual void ReleaseCheck(float _DeltaTime)
 	{
 		if (false == IsDeathTimeCheck)
 		{
 			return;
 		}
-
 		CurDeathTime += _DeltaTime;
-
+		// 누적 시간이 설정된 파괴 시간 이상이면 파괴
 		if (DeathTime <= CurDeathTime)
 		{
 			IsDestroyValue = true;
 		}
 	}
-
-	// 모든 기능 정지.
-	// 얼음 외부에서 다른 객체가 풀어줘야 한다.
-	void SetActive(bool _IsActive)
+	virtual void SetDeathTime(float _DeathTime)
 	{
-		IsActiveValue = _IsActive;
+		DeathTime = _DeathTime;
 	}
 
-	void SetActiveSwitch()
-	{
-		IsActiveValue = !IsActiveValue;
-	}
+	void SetActive(bool _IsActive) { IsActiveValue = _IsActive; }
+	void SetActiveSwitch() { IsActiveValue = !IsActiveValue; }
 
-	bool IsDebug()
-	{
-		return IsDebugValue;
-	}
-
-	void DebugOn()
-	{
-		IsDebugValue = true;
-	}
-
-	void DebugOff()
-	{
-		IsDebugValue = false;
-	}
-
-	void DebugSwitch()
-	{
-		IsDebugValue = !IsDebugValue;
-	}
+	// 객체의 디버그 모드 함수
+	bool IsDebug() const { return IsDebugValue; }
+	void DebugOn() { IsDebugValue = true; }
+	void DebugOff() { IsDebugValue = false; }
+	void DebugSwitch() { IsDebugValue = !IsDebugValue; }
 
 protected:
 
 private:
-	bool IsDestroyValue = false;
+	std::string Name;
 	bool IsActiveValue = true;
-
+	bool IsDestroyValue = false;
 	bool IsDeathTimeCheck = false;
+
 	float DeathTime = 0.0f;
 	float CurDeathTime = 0.0f;
-
-	std::string Name;
 
 	bool IsDebugValue = false;
 

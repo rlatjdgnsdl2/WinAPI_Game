@@ -80,7 +80,7 @@ bool U2DCollision::Collision(int _OtherCollisionGroup, std::vector<AActor*>& _Re
 		ECollisionType ThisType = ThisCollision->CollisionType;
 		ECollisionType DestType = DestCollision->CollisionType;
 
-		bool Result = FTransform::Collision(ThisType, ThisTrans, DestType, DestTrans);
+		bool Result = FTransform::IsCollision(ThisType, ThisTrans, DestType, DestTrans);
 
 		// Ãæµ¹ true
 		if (true == Result)

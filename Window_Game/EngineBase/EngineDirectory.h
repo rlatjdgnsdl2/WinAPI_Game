@@ -3,7 +3,7 @@
 
 
 
-// 설명 : 
+// 설명 : Directory 클래스
 class UEngineDirectory : public UEnginePath
 {
 public:
@@ -13,13 +13,6 @@ public:
 	UEngineDirectory(std::filesystem::path _Path);
 	~UEngineDirectory();
 
-	//// delete Function
-	//UEngineDirectory(const UEngineDirectory& _Other) = delete;
-	//UEngineDirectory(UEngineDirectory&& _Other) noexcept = delete;
-	//UEngineDirectory& operator=(const UEngineDirectory& _Other) = delete;
-	//UEngineDirectory& operator=(UEngineDirectory&& _Other) noexcept = delete;
-
-	// 시간이 너무 없다고 안만듬. 나중에 만들어야지.
 	std::vector<class UEngineFile> GetAllFile(bool _IsRecursive = true);
 
 	std::vector<class UEngineDirectory> GetAllDirectory();

@@ -9,7 +9,7 @@ enum class KeyEvent
 	Up,
 };
 
-// 설명 : Input
+// 설명 : Input 담당 클래스 (Singleton)
 class UEngineInput
 {
 public:
@@ -81,7 +81,7 @@ public:
 		return Keys[_KeyIndex].IsFree;
 	}
 
-
+	// 키 이벤트에 함수를 바인딩하는 함수
 	void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
 
 private:

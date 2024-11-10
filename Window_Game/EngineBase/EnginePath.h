@@ -1,6 +1,6 @@
 #pragma once
 
-// 설명 :
+// 설명 : Path 클래스
 class UEnginePath
 {
 public:
@@ -11,7 +11,6 @@ public:
 	UEnginePath(std::filesystem::path _Path);
 
 	virtual ~UEnginePath();
-
 
 	//	경로가 존재하면 true
 	bool IsExists();
