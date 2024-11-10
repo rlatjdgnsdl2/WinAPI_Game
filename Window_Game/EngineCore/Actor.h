@@ -73,7 +73,7 @@ public:
 		Components.push_back(NewComponent);
 
 		// BeginPlay가 실행안된 컴포넌트들을 다 자료구조에 담는다.
-		ComponentList.push_back(NewComponent);
+		ComponentBeginPlayList.push_back(NewComponent);
 		return NewComponent;
 	}
 
@@ -83,7 +83,7 @@ private:
 	static void ComponentBeginPlay();
 	void ReleaseCheck(float _DeltaTime) override;
 	static bool IsNewActorCreate;
-	static std::list<class UActorComponent*> ComponentList;
+	static std::list<class UActorComponent*> ComponentBeginPlayList;
 
 	
 	class ULevel* World = nullptr;

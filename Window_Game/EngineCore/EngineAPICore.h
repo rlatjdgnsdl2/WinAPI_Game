@@ -1,8 +1,8 @@
 #pragma once
 //	user header
-#include "Level.h"
-#include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineTimer.h>
+#include <EnginePlatform/EngineWindow.h>
+#include "Level.h"
 #include "EngineContentsCore.h"
 
 //	lib
@@ -31,7 +31,8 @@ public:
 	UEngineWindow& GetMainWindow() { return EngineMainWindow; }
 	float GetDeltaTime() { return DeltaTimer.GetDeltaTime(); }
 
-	// Level
+
+
 	//	Level의 생성함수 : Level은 EngineAPICore가 담당
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)
@@ -47,17 +48,17 @@ public:
 protected:
 
 private:
+	UEngineAPICore();
 	//	static
 	static UEngineAPICore* MainCore;
 	static UEngineContentsCore* UserCore;
 	static void EngineBeginPlay();
 	static void EngineTick();
 
-	UEngineAPICore();
 	void Tick();
 
 	UEngineWindow EngineMainWindow;
-	UEngineTimer DeltaTimer = UEngineTimer();
+	UEngineTimer DeltaTimer;
 
 	//	Level
 	std::map<std::string, class ULevel*> Levels;

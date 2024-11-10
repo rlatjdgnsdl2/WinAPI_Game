@@ -22,7 +22,8 @@ public:
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
 
-	void LevelChangeStart()override;
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 	void Generate();
 
@@ -31,14 +32,11 @@ public:
 	
 	void SetDungeonData(std::string_view _DungeonName, int _Width, int _Height, int TrapCount);
 
-
-
 protected:
 
 private:
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
-
 	std::string CurDungeonName = "BeachCave";
 	Node* root;
 	int Width = 60; 

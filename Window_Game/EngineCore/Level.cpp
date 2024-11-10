@@ -124,10 +124,7 @@ void ULevel::Tick(float _DeltaTime)
 			CurActor->BeginPlay();
 			AllActors.push_back(CurActor);
 		}
-
 		BeginPlayList.clear();
-
-		// todtjdtl 
 		AActor::ComponentBeginPlay();
 	}
 

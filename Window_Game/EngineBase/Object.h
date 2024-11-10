@@ -19,8 +19,8 @@ public:
 	// 필요시 오버라이드 가능
 	virtual void SetName(std::string_view _Name) { Name = _Name.data(); }
 
-	virtual bool IsActive() const { return IsActiveValue && false == IsDestroyValue; }
-	virtual bool IsDestroy() const { return IsDestroyValue; }
+	virtual bool IsActive() { return IsActiveValue && false == IsDestroyValue; }
+	virtual bool IsDestroy() { return IsDestroyValue; }
 
 	// 객체를 파괴하는 함수, _Time 후에 파괴 (기본값 0)
 	void Destroy(float _Time = 0.0f)

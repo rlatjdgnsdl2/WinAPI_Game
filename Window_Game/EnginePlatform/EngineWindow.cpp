@@ -19,14 +19,11 @@ UEngineWindow::~UEngineWindow()
 		delete WindowImage;
 		WindowImage = nullptr;
 	}
-
 	if (nullptr != BackBufferImage)
 	{
 		delete BackBufferImage;
 		BackBufferImage = nullptr;
 	}
-
-	// 릴리즈하는 순서는 왠만하면 만들어진 순서의 역순이 좋다.
 	if (nullptr != WindowHandle)
 	{
 		DestroyWindow(WindowHandle);
@@ -41,7 +38,7 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 	WNDCLASSEXA wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.style = CS_HREDRAW | CS_VREDRAW; // 윈도우 스타일 설정
 	wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
@@ -58,7 +55,7 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 
 void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 {
-	//	예외처리
+	// 이미 등록된 클래스인지 확인
 	std::map<std::string, WNDCLASSEXA>::iterator EndIter = WindowClasses.end();
 	std::map<std::string, WNDCLASSEXA>::iterator FindIter = WindowClasses.find(std::string(_Class.lpszClassName));
 	if (EndIter != FindIter)
@@ -102,7 +99,7 @@ void UEngineWindow::Open(std::string_view _TitleName)
 		//	예외처리	
 		if (0 == WindowHandle) { return; }
 	}
-	//	윈도우창 오픈
+	// 윈도우 창 표시
 	ShowWindow(WindowHandle, SW_SHOW);
 	UpdateWindow(WindowHandle);
 	++WindowCount;
@@ -110,11 +107,9 @@ void UEngineWindow::Open(std::string_view _TitleName)
 FVector2D UEngineWindow::GetMousePos()
 {
 	POINT MousePoint;
-
 	GetCursorPos(&MousePoint);
 	// 윈도우창 위치기준으로 마우스 포지션
 	ScreenToClient(WindowHandle, &MousePoint);
-
 	return FVector2D(MousePoint.x, MousePoint.y);
 }
 void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)

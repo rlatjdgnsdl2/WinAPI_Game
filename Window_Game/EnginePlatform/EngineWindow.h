@@ -15,41 +15,24 @@ public:
 	UEngineWindow& operator=(const UEngineWindow& _Other) = delete;
 	UEngineWindow& operator=(UEngineWindow&& _Other) noexcept = delete;
 
-	//	Default 윈도우 클래스구조체 생성및 등록
+	// 기본 윈도우 클래스 구조체 생성 및 등록 함수
 	static void EngineWindowInit(HINSTANCE _Instance);
-	//	Custom 윈도우 클래스 등록
+	// 사용자 지정 윈도우 클래스 등록 함수
 	static void CreateWindowClass(const WNDCLASSEXA& _Class);
-	//	Game Roop함수 
+	// 게임 루프 함수 (윈도우 메시지 루프와 프레임 함수 실행)
 	static int WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction);
 
 	//	Get, Set
-	inline HDC GetWindowMainDC() const 
-	{ 
-		return WindowImage->GetDC(); 
-	}
-	inline FVector2D GetWindowSize() const 
-	{
-		return WindowSize; 
-	}
-	inline UEngineWinImage* GetWindowImage() const 
-	{
-		return WindowImage; 
-	}
-	inline UEngineWinImage* GetBackBuffer() const 
-	{ 
-		return BackBufferImage; 
-	}
-	inline void SetWindowTitle(std::string_view Text) 
-	{ 
-		SetWindowTextA(WindowHandle, Text.data()); 
-	}
-
-	//	윈도우창크기 설정함수
+	HDC GetWindowMainDC() const { return WindowImage->GetDC(); }
+	FVector2D GetWindowSize() const {return WindowSize; }
+	UEngineWinImage* GetWindowImage() const {return WindowImage; }
+	UEngineWinImage* GetBackBuffer() const { return BackBufferImage; }
+	void SetWindowTitle(std::string_view Text) { SetWindowTextA(WindowHandle, Text.data()); }
 	void SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale);
 
 	//	윈도우핸들 생성및 WindowImage HDC설정함수
 	void Create(std::string_view _TitleName = "Window", std::string_view _ClassName = "Default");
-	//	윈도우창 Show함수
+	// 윈도우 창을 표시하는 함수
 	void Open(std::string_view _TitleName = "Window");
 
 	FVector2D GetMousePos();
@@ -61,11 +44,11 @@ private:
 
 	FVector2D WindowSize;
 
-	//	등록된 WindowClass map
+	//	등록된 WindowClass map 
 	static std::map<std::string, WNDCLASSEXA> WindowClasses;
-	//	FrontBuffer
+	//	FrontBuffer (화면 출력용 버퍼)
 	UEngineWinImage* WindowImage = nullptr;
-	//	BackBuffer
+	//	BackBuffer (화면 준비용 버퍼)
 	UEngineWinImage* BackBufferImage = nullptr;
 
 };
