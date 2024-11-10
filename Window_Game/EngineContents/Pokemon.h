@@ -9,6 +9,8 @@
 class APokemon :public AActor
 {
 public:
+
+	friend class TurnManager;
 	//	constrcuter, destructer
 	APokemon();
 	APokemon(std::string_view _CurPokemonName);
@@ -27,7 +29,6 @@ public:
 	virtual void Skill(SkillType _SkillType);
 
 
-	//	GetSet	friend class Áú¹®
 
 	DIR GetDir() const { return CurDir; }
 	void SetDir(DIR _dir) { CurDir = _dir; }
@@ -48,28 +49,27 @@ public:
 	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
 	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
 
-	void SetPokemonInfo(const PokemonInfo& _PokemonInfo) {
-		CurPokemonInfo = _PokemonInfo;
-	}
+	virtual void AnimationSetting();
 	
+
 
 
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
 	class APokemon* TargetPokemon;
-
 	CampType CurCamp;
 	float CurDuration;
 	DIR CurDir = DIR::Down;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-
 	SkillType CurSkillType = SkillType::NormalAttack;
 
-	virtual void AnimationSetting();
-private:
 	PokemonInfo CurPokemonInfo;
+	PokemonData CurPokemonData;
+
+private:
+
 
 };
 

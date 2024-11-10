@@ -26,17 +26,12 @@ struct Node {
 
 struct PokemonData 
 {
-	CampType CurCamp;
-	float CurDuration;
-	DIR CurDir;
-	FVector2D StartLocation;
-	FVector2D TargetLocation;
-	SkillType CurSkillType;
 	unsigned int Hp;
 	unsigned int Attack;
 	unsigned int Defense;
 	unsigned int Special_Attack;
 	unsigned int Special_Defense;
+	unsigned int Speed;
 };
 
 struct PokemonInfo

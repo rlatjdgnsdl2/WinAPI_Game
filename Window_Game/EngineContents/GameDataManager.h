@@ -21,9 +21,15 @@ public:
 	void InsertPokemonInfo(std::string_view _PokemonName, PokemonInfo _PokemonInfo) {
 		PokemonInfos.insert({ _PokemonName.data(),_PokemonInfo });
 	}
-	PokemonInfo& GetPokemonInfo(std::string_view _PokemonName) {
+	PokemonInfo GetPokemonInfo(std::string_view _PokemonName) {
 		return PokemonInfos.find(_PokemonName.data())->second;
 	}
+
+	PokemonData GetPokemonData(std::string_view _PokemonName) {
+		return PokemonDatas.find(_PokemonName.data())->second;
+	}
+
+
 	std::string GetSelectDungeon() const
 	{
 		return SelectDungeon;
@@ -40,7 +46,10 @@ protected:
 private:
 	UGameDataManager();
 	std::map<std::string, PokemonInfo > PokemonInfos;
+	std::map<std::string, PokemonData > PokemonDatas;
 	std::string SelectDungeon;
+
+	
 
 };
 

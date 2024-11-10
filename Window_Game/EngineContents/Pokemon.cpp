@@ -13,7 +13,12 @@ APokemon::APokemon()
 APokemon::APokemon(std::string_view _CurPokemonName)
 {
 	CurPokemonInfo = UGameDataManager::GetInst().GetPokemonInfo(_CurPokemonName);
+	//CurPokemonData = UGameDataManager::GetInst().GetPokemonData(_CurPokemonName);
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite(CurPokemonInfo.PokemonName + "_Idle.png");
+	SpriteRenderer->SetSpriteScale();
+	AnimationSetting();
+	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	
 }
 APokemon::~APokemon()
@@ -24,10 +29,6 @@ APokemon::~APokemon()
 void APokemon::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SpriteRenderer->SetSprite(CurPokemonInfo.PokemonName + "_Idle.png");
-	SpriteRenderer->SetSpriteScale();
-	AnimationSetting();
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 }
 
 void APokemon::Idle()
@@ -126,3 +127,4 @@ void APokemon::AnimationSetting()
 	SpriteRenderer->CreateAnimation("HurtAnim_1", CurPokemonInfo.PokemonName + "_Hurt.png", CurPokemonInfo.HurtAnimCount * 7, CurPokemonInfo.HurtAnimCount * 8 - 1, HurtFrame);
 
 }
+

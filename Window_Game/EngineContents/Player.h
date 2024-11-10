@@ -8,7 +8,6 @@
 class APlayer :public APokemon
 {
 public:
-	friend class ATurnManager;
 
 	//	constrcuter, destructer
 	APlayer();
