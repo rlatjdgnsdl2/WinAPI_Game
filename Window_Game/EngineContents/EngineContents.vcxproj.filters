@@ -46,12 +46,6 @@
     <ClInclude Include="Pokemon.h">
       <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_01.h">
-      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Dungeon_BSP.h">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
@@ -135,12 +129,6 @@
     <ClCompile Include="TurnManager_3.SelectSkill.cpp">
       <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_01.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Dungeon_BSP.cpp">
       <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClCompile>
@@ -166,9 +154,6 @@
     </Filter>
     <Filter Include="LevelObjects\02.DungeonLevel">
       <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LevelObjects\02.DungeonLevel\Enemy">
-      <UniqueIdentifier>{29b87975-00fb-43c1-9962-051f60b6ed21}</UniqueIdentifier>
     </Filter>
     <Filter Include="LevelObjects\02.DungeonLevel\TurnManager">
       <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>

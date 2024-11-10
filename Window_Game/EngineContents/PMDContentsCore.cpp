@@ -74,40 +74,53 @@ void PMDContentsCore::RoadResources()
 	Global.Append("Global");
 	UImageManager::GetInst().LoadFolder(Global.GetPathToString());
 
-	UEngineDirectory Dungeon;
-	Dungeon.MoveParentToDirectory("Resources");
-	Dungeon.Append("Dungeon");
-	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
+	UEngineDirectory Dungeon_BeachCave;
+	Dungeon_BeachCave.MoveParentToDirectory("Resources");
+	Dungeon_BeachCave.Append("Dungeon_BeachCave");
+	UImageManager::GetInst().LoadFolder(Dungeon_BeachCave.GetPathToString());
 
-	UEngineDirectory Enemy;
-	Enemy.MoveParentToDirectory("Resources");
-	Enemy.Append("Enemy");
-	UImageManager::GetInst().LoadFolder(Enemy.GetPathToString());
+	UEngineDirectory Dungeon_AmpPlains;
+	Dungeon_AmpPlains.MoveParentToDirectory("Resources");
+	Dungeon_AmpPlains.Append("Dungeon_AmpPlains");
+	UImageManager::GetInst().LoadFolder(Dungeon_AmpPlains.GetPathToString());
+
 
 	//	Title
 	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
 	//	player
-	UImageManager::GetInst().CuttingSprite("MulZZangIee_Idle.png", 7, 8);
-	UImageManager::GetInst().CuttingSprite("MulZZangIee_Walk.png", 6, 8);
-	UImageManager::GetInst().CuttingSprite("MulZZangIee_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("MulZZangIee_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Attack.png", 10, 8);
+	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
 
 	//	partner
-	UImageManager::GetInst().CuttingSprite("SixTail_Idle.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("SixTail_Walk.png", 5, 8);
-	UImageManager::GetInst().CuttingSprite("SixTail_Attack.png", 11, 8);
-	UImageManager::GetInst().CuttingSprite("SixTail_Hurt.png", 2, 8);
-
-	//	Enemy
-	UImageManager::GetInst().CuttingSprite("Picacu_Idle.png", 6, 8);
-	UImageManager::GetInst().CuttingSprite("Picacu_Walk.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Picacu_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Picacu_Hurt.png", 2, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
+	UImageManager::GetInst().CuttingSprite("Vulpix_Hurt.png", 2, 8);
 	
 	//	Dungeon
+	//	BeachCave
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("BeachCave_Water.png", 5, 10);
+
+	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
+	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
+	UImageManager::GetInst().CuttingSprite("Kabuto_Attack.png", 11, 8);
+	UImageManager::GetInst().CuttingSprite("Kabuto_Hurt.png", 2, 8);
+
+	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
+	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
+	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
+	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
+
+	//	AmpPlains
+	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
+	UImageManager::GetInst().CuttingSprite("AmpPlains_Wall.png", 5, 10);
+	UImageManager::GetInst().CuttingSprite("AmpPlains_Water.png", 5, 10);
+
+
 }
 
 void PMDContentsCore::CreateLevel()

@@ -168,14 +168,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Enemy_01.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="GameDataManager.h">
       <SubType>
       </SubType>
@@ -240,14 +232,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Dungeon_BSP.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Enemy_01.cpp">
       <SubType>
       </SubType>
     </ClCompile>
