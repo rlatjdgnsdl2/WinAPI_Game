@@ -55,9 +55,9 @@ bool ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 	FVector2D TargetLocation = Player->GetTargetLocation();
 	TileType TargetTileType = Dungeon->GetTileType(TargetLocation.iX() / 72, TargetLocation.iY() / 72);
 	Player->SetCurDuration(0.0f);
-	if (TileType::GROUND != TargetTileType) {
-		Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
-		return false;
-	}
+	//if (TileType::GROUND != TargetTileType) {
+	//	Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
+	//	return false;
+	//}
 	return true;
 }

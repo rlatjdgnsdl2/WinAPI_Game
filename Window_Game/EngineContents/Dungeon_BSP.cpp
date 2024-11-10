@@ -37,9 +37,9 @@ void ADungeon_BSP::LevelChangeEnd()
 void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
 {
 	CurDungeonName = _CurDungeonName.data();
-	root = new Node{ 5, 5, Width - 10, Height - 10 };
+	root = new Node{ 5, 5, Width - 11, Height - 11 };
 	InitDungeon();
-	split(root);
+	Split(root);
 	CreateNaturalFeatures();
 	CreateRooms(root);
 	ConnectRooms(root);
@@ -65,7 +65,7 @@ Room ADungeon_BSP::getRoom(Node* node) const
 
 
 
-void ADungeon_BSP::split(Node* node)
+void ADungeon_BSP::Split(Node* node)
 {
 	// 노드의 크기가 최소 크기보다 작으면 분할을 중지
 	if (node->width < MIN_SIZE || node->height < MIN_SIZE) {
@@ -101,10 +101,10 @@ void ADungeon_BSP::split(Node* node)
 
 	// 재귀적으로 분할을 계속 진행
 	if (nullptr != NewNodeLeft) {
-		split(NewNodeLeft);
+		Split(NewNodeLeft);
 	}
 	if (nullptr != NewNodeRight) {
-		split(NewNodeRight);
+		Split(NewNodeRight);
 	}
 	return;
 }

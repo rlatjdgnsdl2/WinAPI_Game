@@ -49,7 +49,7 @@ private:
 	//	던전생성과정
 	void InitDungeon();
 	void CreateNaturalFeatures();
-	void split(Node* node);
+	void Split(Node* node);
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
 	void SetNaturally();

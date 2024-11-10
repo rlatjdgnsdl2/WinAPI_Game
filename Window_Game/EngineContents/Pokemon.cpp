@@ -33,7 +33,7 @@ void APokemon::Idle()
 void APokemon::Move(float _DeltaTime)
 {
 	CurDuration += _DeltaTime;
-	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration / 0.5f);	//나중에 스피드 설정
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration *10.0f);	//나중에 스피드 설정
 	SetActorLocation(NewLocation);
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
 	SpriteRenderer->SetSpriteScale();
