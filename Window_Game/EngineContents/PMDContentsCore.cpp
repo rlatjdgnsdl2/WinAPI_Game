@@ -6,10 +6,11 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/ImageManager.h>
 
-#include "DungeonGameMode.h"
-#include "Player.h"
+#include "GameDataManager.h"
 #include "TitleGameMode.h"
 #include "TempPlayer.h"
+#include "DungeonGameMode.h"
+#include "Player.h"
 
 
 std::map<std::string, int > PMDContentsCore::TileIndexForKey;
@@ -92,12 +93,14 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Mudkip", {"Mudkip",10,2,7,6});
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Vulpix", { "Vulpix",11,2,4,5 });
 	
 	//	Dungeon
 	//	BeachCave
@@ -109,21 +112,25 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Kabuto_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Kabuto", { "Kabuto",11,2,3,4 });
 
 	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Shellos", { "Shellos",13,2,3,6 });
 
 	UImageManager::GetInst().CuttingSprite("Shellder_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Walk.png", 6, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Shellder", { "Shellder",10,2,4,6 });
 
 	UImageManager::GetInst().CuttingSprite("Corsola_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
+	UGameDataManager::GetInst().InsertPokemonInfo("Corsola", { "Vulpix",10,2,3,4 });
 
 	//	AmpPlains
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
@@ -138,7 +145,7 @@ void PMDContentsCore::CreateLevel()
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
 	//	던전레벨
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Mudkip");
 	//	마을레벨
 }
 void PMDContentsCore::InitKeySet()

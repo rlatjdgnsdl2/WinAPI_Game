@@ -9,8 +9,12 @@
 class APokemon :public AActor
 {
 public:
+	//	constrcuter, destructer
 	APokemon();
+	APokemon(std::string_view _CurPokemonName);
 	virtual ~APokemon();
+
+	//	delete Function
 	APokemon(const APokemon& _Other) = delete;
 	APokemon(APokemon&& _Other) noexcept = delete;
 	APokemon& operator=(const APokemon& _Other) = delete;
@@ -42,13 +46,13 @@ public:
 	
 	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
 	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
+
 	
 
 
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
-	class U2DCollision* CollisionComponent;
 	class APokemon* TargetPokemon;
 
 	CampType CurCamp;
@@ -56,11 +60,12 @@ protected:
 	DIR CurDir = DIR::Down;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	SkillType CurSkillType = SkillType::NormalAttack;
-	
-	virtual void AnimationSetting() = 0;
 
+	SkillType CurSkillType = SkillType::NormalAttack;
+
+	virtual void AnimationSetting();
 private:
+	PokemonInfo CurPokemonInfo;
 
 };
 

@@ -1,32 +1,36 @@
 #pragma once
 
 // Ό³Έν :
-class GameDataManager
+class UGameDataManager
 {
 public:
 	// constrcuter destructer
-	virtual ~GameDataManager();
+	virtual ~UGameDataManager();
 
 	// delete Function
-	GameDataManager(const GameDataManager& _Other) = delete;
-	GameDataManager(GameDataManager&& _Other) noexcept = delete;
-	GameDataManager& operator=(const GameDataManager& _Other) = delete;
-	GameDataManager& operator=(GameDataManager&& _Other) noexcept = delete;
+	UGameDataManager(const UGameDataManager& _Other) = delete;
+	UGameDataManager(UGameDataManager&& _Other) noexcept = delete;
+	UGameDataManager& operator=(const UGameDataManager& _Other) = delete;
+	UGameDataManager& operator=(UGameDataManager&& _Other) noexcept = delete;
 
-	static GameDataManager& GetInst()
+	static UGameDataManager& GetInst()
 	{
-		static GameDataManager Inst = GameDataManager();
+		static UGameDataManager Inst = UGameDataManager();
 		return Inst;
 	}
-	Pokemon_Ability& GetPokemonAbility() {
-		return PlayerAbility;
+	void InsertPokemonInfo(std::string_view _PokemonName, PokemonInfo _PokemonInfo) {
+		PokemonInfos.insert({ _PokemonName.data(),_PokemonInfo });
 	}
+	PokemonInfo& GetPokemonInfo(std::string_view _PokemonName) {
+		return PokemonInfos.find(_PokemonName.data())->second;
+	}
+	
 
 protected:
 
 private:
-	GameDataManager();
-	Pokemon_Ability PlayerAbility = {50,};
+	UGameDataManager();
+	std::map<std::string, PokemonInfo > PokemonInfos;
 
 };
 

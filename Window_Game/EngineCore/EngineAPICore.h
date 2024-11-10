@@ -42,6 +42,22 @@ public:
 		Levels.insert({ _LevelName.data() , NewLevel });
 		return NewLevel;
 	}
+
+
+
+	template<typename GameModeType, typename MainPawnType>
+	ULevel* CreateLevel(std::string_view _LevelName, std::string_view _MainPawnName)
+	{
+		ULevel* NewLevel = new ULevel();
+		NewLevel->CreateGameMode<GameModeType, MainPawnType>(_MainPawnName);
+		Levels.insert({ _LevelName.data() , NewLevel });
+		return NewLevel;
+	}
+
+
+
+
+
 	void OpenLevel(std::string_view _LevelName);
 
 

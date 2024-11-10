@@ -1,13 +1,13 @@
 #include "PreCompile.h"
 #include "GameDataManager.h"
 
-GameDataManager::GameDataManager()
+UGameDataManager::UGameDataManager()
 {
 
 }
 
 
-GameDataManager::~GameDataManager()
+UGameDataManager::~UGameDataManager()
 {
 }
 

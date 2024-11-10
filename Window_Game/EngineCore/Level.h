@@ -32,6 +32,20 @@ public:
 		return NewActor;
 	}
 
+	template<typename ActorType>
+	ActorType* SpawnActor(std::string_view _ActorName)
+	{
+		ActorType* NewActor = new ActorType(_ActorName);
+		AActor* ActorPtr = dynamic_cast<AActor*>(NewActor);
+		ActorPtr->World = this;
+		BeginPlayList.push_back(ActorPtr);
+		return NewActor;
+	}
+
+
+
+
+
 	void SetCameraToMainPawn(bool _IsCameraToMainPawn)
 	{
 		IsCameraToMainPawn = _IsCameraToMainPawn;
@@ -88,8 +102,23 @@ private:
 
 		BeginPlayList.push_back(GameMode);
 		BeginPlayList.push_back(MainPawn);
-
 	}
+
+	template<typename GameModeType, typename MainPawnType>
+	void CreateGameMode(std::string_view _MainPawnName)
+	{
+		GameMode = new GameModeType();
+		MainPawn = new MainPawnType(_MainPawnName);
+
+		MainPawn->World = this;
+		GameMode->World = this;
+
+		BeginPlayList.push_back(GameMode);
+		BeginPlayList.push_back(MainPawn);
+	}
+
+
+
 	void LevelChangeStart();
 	void LevelChangeEnd();
 	void PushRenderer(class USpriteRenderer* _Renderer);
