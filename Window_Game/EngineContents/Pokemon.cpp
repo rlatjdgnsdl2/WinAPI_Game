@@ -1,18 +1,20 @@
 #include "PreCompile.h"
 #include "Pokemon.h"
+
 #include <EngineCore/SpriteRenderer.h>
+
 
 
 
 APokemon::APokemon() 
 {
 
+
 }
 APokemon::~APokemon() 
 {
 
 }
-
 
 
 

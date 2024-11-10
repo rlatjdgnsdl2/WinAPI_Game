@@ -9,17 +9,12 @@
 class APokemon :public AActor
 {
 public:
-	//	constrcuter, destructer
-
 	APokemon();
 	virtual ~APokemon();
-
-	//	delete Function
 	APokemon(const APokemon& _Other) = delete;
 	APokemon(APokemon&& _Other) noexcept = delete;
 	APokemon& operator=(const APokemon& _Other) = delete;
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
-
 
 
 	virtual void Idle();
@@ -27,7 +22,7 @@ public:
 	virtual void Skill(SkillType _SkillType);
 
 
-	//GetSet	friend class 질문
+	//	GetSet	friend class 질문
 
 	DIR GetDir() const { return CurDir; }
 	void SetDir(DIR _dir) { CurDir = _dir; }
@@ -53,6 +48,7 @@ public:
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
+	class U2DCollision* CollisionComponent;
 	class APokemon* TargetPokemon;
 
 	CampType CurCamp;

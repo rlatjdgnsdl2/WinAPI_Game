@@ -52,4 +52,10 @@ enum class DIR
 	Up,
 	Right_Up
 };
+enum class ECollisionGroup
+{
+	PlayerBody,
+	MonsterBody,
+};
+
 
