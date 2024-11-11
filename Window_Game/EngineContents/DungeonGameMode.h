@@ -16,10 +16,8 @@ public:
 	ADungeonGameMode& operator=(const ADungeonGameMode& _Other) = delete;
 	ADungeonGameMode& operator=(ADungeonGameMode&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
 
 protected:
 
@@ -27,10 +25,6 @@ private:
 	class ATurnManager* TurnManager;
 	class ADungeon_BSP* Dungeon;
 	class APartner* Partner;
-
-	
-	
-
 
 };
 

@@ -30,8 +30,8 @@ public:
 
 
 
-	DIR GetDir() const { return CurDir; }
-	void SetDir(DIR _dir) { CurDir = _dir; }
+	DIR GetCurDir() const { return CurDir; }
+	void SetCurDir(DIR _dir) { CurDir = _dir; }
 
 	void SetCurDuration(float _CurDuration) { CurDuration = _CurDuration; }
 
@@ -45,6 +45,7 @@ public:
 	void SetCurSkillType(SkillType _SkillType) { CurSkillType = _SkillType; }
 
 	CampType GetCurCamp() const { return CurCamp; }
+	void SetCurCamp(CampType _CampType) { CurCamp = _CampType; }
 	
 	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
 	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
@@ -58,8 +59,9 @@ public:
 protected:
 	class USpriteRenderer* SpriteRenderer;
 	class APokemon* TargetPokemon;
-	CampType CurCamp;
+
 	float CurDuration;
+	CampType CurCamp;
 	DIR CurDir = DIR::Down;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;

@@ -32,8 +32,9 @@ void PMDContentsCore::BeginPlay()
 	CreateLevel();
 
 	//	처음 레벨 입장
-	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	
 }
 void PMDContentsCore::Tick()
 {
@@ -144,7 +145,7 @@ void PMDContentsCore::CreateLevel()
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
 	//	던전레벨
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel","Shellder");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel", "Mudkip");
 	//	마을레벨
 }
 void PMDContentsCore::InitKeySet()

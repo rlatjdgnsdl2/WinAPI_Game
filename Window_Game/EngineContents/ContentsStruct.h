@@ -23,6 +23,14 @@ struct Node {
 };
 
 
+struct PokemonInfo
+{
+	std::string PokemonName;
+	int AttackAnimCount;
+	int HurtAnimCount;
+	int IdleAnimCount;
+	int WalkAnimCount;
+};
 
 struct PokemonData 
 {
@@ -34,14 +42,6 @@ struct PokemonData
 	unsigned int Speed;
 };
 
-struct PokemonInfo
-{
-	std::string PokemonName;
-	int AttackAnimCount;
-	int HurtAnimCount;
-	int IdleAnimCount;
-	int WalkAnimCount;
-};
 
 
 

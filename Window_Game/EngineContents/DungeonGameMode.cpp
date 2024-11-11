@@ -21,12 +21,7 @@ ADungeonGameMode::~ADungeonGameMode()
 {
 }
 
-void ADungeonGameMode::BeginPlay()
-{
-	Super::BeginPlay();
 
-
-}
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
@@ -61,16 +56,9 @@ void ADungeonGameMode::LevelChangeStart()
 	}
 	TurnManager->SetPatner(Partner);
 
-	//Test
-	//AEnemy_01* NewEnemy = GetWorld()->SpawnActor<AEnemy_01>();
-	//TurnManager->SetTestEnemy(NewEnemy);
-
 }
 
-void ADungeonGameMode::LevelChangeEnd()
-{
 
-}
 
 
 

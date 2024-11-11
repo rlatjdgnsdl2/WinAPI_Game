@@ -27,9 +27,7 @@ APlayer::~APlayer()
 void APlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::CoreOutPutString("X : " + std::to_string(GetActorLocation().X));
-	UEngineDebug::CoreOutPutString("Y : " + std::to_string(GetActorLocation().Y));
+	
 }
 
 void APlayer::LevelChangeStart()

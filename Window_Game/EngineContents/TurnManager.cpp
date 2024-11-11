@@ -3,6 +3,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/EngineCoreDebug.h>
+#include <EnginePlatform/EngineInput.h>
 
 
 #include "Player.h"
@@ -48,6 +49,34 @@ void ATurnManager::Tick(float _DeltaTime)
 {
 
 	Super::Tick(_DeltaTime);
+	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::CoreOutPutString("X : " + std::to_string(Player->GetActorLocation().X));
+	UEngineDebug::CoreOutPutString("Y : " + std::to_string(Player->GetActorLocation().Y));
+	UEngineDebug::CoreOutPutString("DebugMode : " + std::to_string(IsDebugMode));
+
+
+	if (IsDebugMode == true) {
+		if (true == UEngineInput::GetInst().IsPress('W'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::UP * 72;
+			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
+		}
+		if (true == UEngineInput::GetInst().IsPress('A'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::LEFT * 72;
+			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
+		}
+		if (true == UEngineInput::GetInst().IsPress('S'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::DOWN * 72;
+			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
+		}
+		if (true == UEngineInput::GetInst().IsPress('D'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::RIGHT * 72;
+			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
+		}
+	}
 	switch (CurTurnType)
 	{
 	case TurnType::Player_Select:
@@ -77,6 +106,7 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::AI_Skill:
 		AISkill(_DeltaTime);
 		break;
+
 	}
 }
 
@@ -87,10 +117,10 @@ void ATurnManager::SetSpawnPos()
 	UEngineRandom Random;
 	// player pos
 	int MaxSize = Dungeon->GetRoomLocations().size();
-	int Index = Random.RandomInt(0, MaxSize-1);
+	int Index = Random.RandomInt(0, MaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 	Player->SetActorLocation(RoomLocation);
-	
+
 
 	//// partner pos
 	///*FVector2D PlayerPos = Player->GetActorLocation();

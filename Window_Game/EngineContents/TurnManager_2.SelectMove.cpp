@@ -8,40 +8,13 @@ void ATurnManager::SelectMove(int _PlayerInput)
 {
 	// Player 이동방향 결정
 	int PlayerInput = _PlayerInput;
-	bool IsMoveAble = false;
-	switch (_PlayerInput)
-	{
-	case VK_NUMPAD8:
-		IsMoveAble = InitPlayerMove(DIR::Up, FVector2D::UP * 72);
-		break;
-	case VK_NUMPAD7:
-		IsMoveAble = InitPlayerMove(DIR::Left_Up, FVector2D::UP * 72 + FVector2D::LEFT * 72);
-		break;
-	case VK_NUMPAD4:
-		IsMoveAble = InitPlayerMove(DIR::Left, FVector2D::LEFT * 72);
-		break;
-	case VK_NUMPAD1:
-		IsMoveAble = InitPlayerMove(DIR::Left_Down, FVector2D::DOWN * 72 + FVector2D::LEFT * 72);
-		break;
-	case VK_NUMPAD2:
-		IsMoveAble = InitPlayerMove(DIR::Down, FVector2D::DOWN * 72);
-		break;
-	case VK_NUMPAD3:
-		IsMoveAble = InitPlayerMove(DIR::Right_Down, FVector2D::DOWN * 72 + FVector2D::RIGHT * 72);
-		break;
-	case VK_NUMPAD6:
-		IsMoveAble = InitPlayerMove(DIR::Right, FVector2D::RIGHT * 72);
-		break;
-	case VK_NUMPAD9:
-		IsMoveAble = InitPlayerMove(DIR::Right_Up, FVector2D::UP * 72 + FVector2D::RIGHT * 72);
-		break;
-	default:
-		break;
-	}
-	if (IsMoveAble) {
+	bool IsMoveable = false;
+	IsMoveable = InitPlayerMove(PlayerDir, MoveDir);
+
+	if (IsMoveable) {
 		CurTurnType = TurnType::Move_AI_Select;
 	}
-	else if (!IsMoveAble) {
+	else if (!IsMoveable) {
 		CurTurnType = TurnType::Player_Select;
 	}
 	//	다음단계
@@ -49,15 +22,15 @@ void ATurnManager::SelectMove(int _PlayerInput)
 
 bool ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 {
-	Player->SetDir(direction);
+	Player->SetCurDir(direction);
 	Player->SetStartLocation(Player->GetActorLocation());
-	Player->SetTargetLocation(Player->GetStartLocation() + moveVector);
+	Player->SetTargetLocation(Player->GetStartLocation() + moveVector*72);
 	FVector2D TargetLocation = Player->GetTargetLocation();
 	TileType TargetTileType = Dungeon->GetTileType(TargetLocation.iX() / 72, TargetLocation.iY() / 72);
 	Player->SetCurDuration(0.0f);
-	//if (TileType::GROUND != TargetTileType) {
-	//	Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
-	//	return false;
-	//}
+	if (TileType::GROUND != TargetTileType) {
+		Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
+		return false;
+	}
 	return true;
 }

@@ -10,53 +10,59 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
+	MoveDir = FVector2D::ZERO;
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
-		PlayerInput = VK_NUMPAD8;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+		MoveDir += FVector2D::UP;
+		PlayerDir = DIR::Up;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
-		PlayerInput = VK_NUMPAD7;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
+		MoveDir += FVector2D::UP + FVector2D::LEFT;
+		PlayerDir = DIR::Left_Up;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
-		PlayerInput = VK_NUMPAD4;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
+		MoveDir += FVector2D::LEFT;
+		PlayerDir = DIR::Left;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
-		PlayerInput = VK_NUMPAD1;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
+		MoveDir += FVector2D::DOWN + FVector2D::LEFT;
+		PlayerDir = DIR::Left_Down;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
-		PlayerInput = VK_NUMPAD2;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
+		MoveDir += FVector2D::DOWN;
+		PlayerDir = DIR::Down;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
-		PlayerInput = VK_NUMPAD3;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
+		MoveDir += FVector2D::DOWN + FVector2D::RIGHT;
+		PlayerDir = DIR::Right_Down;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
-		PlayerInput = VK_NUMPAD6;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
+		MoveDir += FVector2D::RIGHT;
+		PlayerDir = DIR::Right;
 	}
-	if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
-		PlayerInput = VK_NUMPAD9;
-		CurTurnType = TurnType::Player_Select_Move;
-		return;
+	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
+		MoveDir += FVector2D::UP + FVector2D::RIGHT;
+		PlayerDir = DIR::Right_Up;
 	}
-
 	// Player_Select_Skill 단계로 가는 키
-	if (UEngineInput::GetInst().IsPress('A')) {
+	/*else if (UEngineInput::GetInst().IsPress('A')) {
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;
-		return;
+	}*/
+
+	else if (UEngineInput::GetInst().IsPress('U')) {
+		PlayerInput = 'U';
+		SwithcDebugMode();
+		if (IsDebugMode == true) {
+			GetWorld()->SetCameraToMainPawn(false);
+		}
+		else {
+			GetWorld()->SetCameraToMainPawn(true);
+		}
+	}
+
+	if (MoveDir != FVector2D::ZERO) {
+		CurTurnType = TurnType::Player_Select_Move;
 	}
 	// AI Idle
 	else

@@ -20,7 +20,7 @@ public:
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
-
+	
 
 	void SetSpawnPos();
 
@@ -44,6 +44,11 @@ private:
 	class APlayer* Player;
 	class APartner* Partner;
 
+	bool IsDebugMode = false;
+
+	FVector2D MoveDir;
+	DIR PlayerDir;
+	
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
 
@@ -72,6 +77,11 @@ private:
 	// AI Select Play
 	void AIMove(float _DeltaTime);
 	void AISkill(float _DeltaTime);
+
+	void SwithcDebugMode() 
+	{
+		IsDebugMode = !IsDebugMode;
+	};
 	
 
 	//	move
