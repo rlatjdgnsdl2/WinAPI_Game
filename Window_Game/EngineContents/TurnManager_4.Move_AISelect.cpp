@@ -6,8 +6,8 @@
 void ATurnManager::Move_AISelect(float _DeltaTime)
 {
 	//	모든 AI포켓몬들
-	std::vector<class APokemon*> ::iterator StartIter = IdleVec.begin();
-	std::vector<class APokemon*> ::iterator EndIter = IdleVec.end();
+	std::vector<class APokemon*> ::iterator StartIter = AllPokemon.begin();
+	std::vector<class APokemon*> ::iterator EndIter = AllPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
@@ -30,7 +30,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				if (Distance.X <= 72 && Distance.Y <= 72&& Distance.Y >= -72&&Distance.Y >= -72)
 				{
 					//	SkillVec에 넣어줌
-					SkillVec.push_back(CurPokemon);
+					SkillPokemon.push_back(CurPokemon);
 					//	타겟을 찾음
 					IsFindTarget = true;
 					
@@ -45,7 +45,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				CurPokemon->SetTargetLocation(Player->GetStartLocation());
 				CurPokemon->SetCurDuration(0.0f);
 				//MoveVec에 넣어줌
-				MoveVec.push_back(CurPokemon);
+				MovePokemon.push_back(CurPokemon);
 			}
 		}
 		//	위와동일
@@ -61,7 +61,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				FVector2D Distance = CompreLocation - CurPokemonLocation;
 				if (Distance.X <= 72 && Distance.Y <= 72 && Distance.Y >= -72 && Distance.Y >= -72)
 				{
-					SkillVec.push_back(CurPokemon);
+					SkillPokemon.push_back(CurPokemon);
 					IsFindTarget = true;
 					
 				}
@@ -75,7 +75,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation() + FVector2D::UP * 72);
 				CurPokemon->SetCurDuration(0.0f);
 
-				MoveVec.push_back(CurPokemon);
+				MovePokemon.push_back(CurPokemon);
 			}
 		}
 		

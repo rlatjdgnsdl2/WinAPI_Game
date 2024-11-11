@@ -55,28 +55,7 @@ void ATurnManager::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString("DebugMode : " + std::to_string(IsDebugMode));
 
 
-	if (IsDebugMode == true) {
-		if (true == UEngineInput::GetInst().IsPress('W'))
-		{
-			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::UP * 72;
-			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
-		}
-		if (true == UEngineInput::GetInst().IsPress('A'))
-		{
-			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::LEFT * 72;
-			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
-		}
-		if (true == UEngineInput::GetInst().IsPress('S'))
-		{
-			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::DOWN * 72;
-			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
-		}
-		if (true == UEngineInput::GetInst().IsPress('D'))
-		{
-			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::RIGHT * 72;
-			GetWorld()->SetCameraPos(NewCameraPos * _DeltaTime);
-		}
-	}
+
 	switch (CurTurnType)
 	{
 	case TurnType::Player_Select:
@@ -120,6 +99,25 @@ void ATurnManager::SetSpawnPos()
 	int Index = Random.RandomInt(0, MaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 	Player->SetActorLocation(RoomLocation);
+
+
+	std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
+	std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
+	for (; StartIter != EndIter; StartIter++)
+	{
+		APokemon* CurPokemon = *StartIter;
+		bool IsSpawnable = false;
+		while (!IsSpawnable) {
+			int Index = Random.RandomInt(0, MaxSize - 1);
+			FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
+			if (RoomLocation != Player->GetActorLocation()) {
+				CurPokemon->SetActorLocation(RoomLocation);
+				IsSpawnable = true;
+			}
+		}
+	}
+
+
 
 
 	//// partner pos

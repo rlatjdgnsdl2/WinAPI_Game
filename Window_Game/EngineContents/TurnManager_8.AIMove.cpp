@@ -4,8 +4,8 @@
 
 void ATurnManager::AIMove(float _DeltaTime) 
 {
-	std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
-	std::vector<APokemon*>::iterator EndIter = MoveVec.end();
+	std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
+	std::vector<APokemon*>::iterator EndIter = MovePokemon.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{

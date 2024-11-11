@@ -68,7 +68,6 @@ protected:
 	SkillType CurSkillType = SkillType::NormalAttack;
 
 	PokemonInfo CurPokemonInfo;
-	PokemonData CurPokemonData;
 
 private:
 

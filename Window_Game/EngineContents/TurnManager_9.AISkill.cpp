@@ -7,8 +7,8 @@
 void ATurnManager::AISkill(float _DeltaTime)
 {
 	CurDuration += _DeltaTime;
-	std::vector<APokemon*>::iterator StartIter = SkillVec.begin();
-	std::vector<APokemon*>::iterator EndIter = SkillVec.end();
+	std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
+	std::vector<APokemon*>::iterator EndIter = SkillPokemon.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{

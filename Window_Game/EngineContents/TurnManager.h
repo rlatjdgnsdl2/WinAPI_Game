@@ -36,6 +36,10 @@ public:
 	void PushEnemy(class APokemon* _Enemy) {
 		EnemyCamp.push_back(_Enemy);
 	}
+	void PushAllPokemon(class APokemon* _Pokemon) {
+		AllPokemon.push_back(_Pokemon);
+	}
+
 
 protected:
 
@@ -55,9 +59,9 @@ private:
 	SkillType PlayerSkillType;
 	int PlayerInput;
 	
-	std::vector<class APokemon*> IdleVec;
-	std::vector<class APokemon*> MoveVec;
-	std::vector<class APokemon*> SkillVec;
+	std::vector<class APokemon*> AllPokemon;
+	std::vector<class APokemon*> MovePokemon;
+	std::vector<class APokemon*> SkillPokemon;
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;

@@ -24,7 +24,7 @@ protected:
 private:
 	class ATurnManager* TurnManager;
 	class ADungeon_BSP* Dungeon;
-	class APartner* Partner;
-
+	class APokemon* Enemy01;
+	class APokemon* Enemy02;
 };
 

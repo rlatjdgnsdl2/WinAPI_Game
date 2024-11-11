@@ -10,6 +10,32 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
+
+	//	타일맵실험
+	if (IsDebugMode == true) {
+		if (true == UEngineInput::GetInst().IsPress('I'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::UP * 72;
+			GetWorld()->SetCameraPos(NewCameraPos);
+		}
+		if (true == UEngineInput::GetInst().IsPress('J'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::LEFT * 72;
+			GetWorld()->SetCameraPos(NewCameraPos);
+		}
+		if (true == UEngineInput::GetInst().IsPress('K'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::DOWN * 72;
+			GetWorld()->SetCameraPos(NewCameraPos);
+		}
+		if (true == UEngineInput::GetInst().IsPress('L'))
+		{
+			FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::RIGHT * 72;
+			GetWorld()->SetCameraPos(NewCameraPos);
+		}
+	}
+
+
 	MoveDir = FVector2D::ZERO;
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
@@ -45,12 +71,12 @@ void ATurnManager::PlayerSelect()
 		PlayerDir = DIR::Right_Up;
 	}
 	// Player_Select_Skill 단계로 가는 키
-	/*else if (UEngineInput::GetInst().IsPress('A')) {
+	else if (UEngineInput::GetInst().IsPress('A')) {
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;
-	}*/
+	}
 
-	else if (UEngineInput::GetInst().IsPress('U')) {
+	else if (UEngineInput::GetInst().IsDown('U')) {
 		PlayerInput = 'U';
 		SwithcDebugMode();
 		if (IsDebugMode == true) {
@@ -67,8 +93,8 @@ void ATurnManager::PlayerSelect()
 	// AI Idle
 	else
 	{
-		std::vector<class APokemon*> ::iterator StartIter = IdleVec.begin();
-		std::vector<class APokemon*> ::iterator EndIter = IdleVec.end();
+		std::vector<class APokemon*> ::iterator StartIter = AllPokemon.begin();
+		std::vector<class APokemon*> ::iterator EndIter = AllPokemon.end();
 		for (; StartIter != EndIter; StartIter++)
 		{
 			APokemon* CurPokemon = *StartIter;

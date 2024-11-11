@@ -40,7 +40,7 @@ void ADungeonGameMode::LevelChangeStart()
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
 	}
-	UGameDataManager::GetInst().SetSelectDungeon("AmpPlains");
+	UGameDataManager::GetInst().SetSelectDungeon("BeachCave");
 	Dungeon->Generate(UGameDataManager::GetInst().GetSelectDungeon());
 
 	// 畔概聪历 积己
@@ -49,12 +49,21 @@ void ADungeonGameMode::LevelChangeStart()
 	}
 	TurnManager->SetDungeon(Dungeon);
 	
-	//	颇飘呈 积己
-	if (nullptr == Partner) {
-		Partner = GetWorld()->SpawnActor<APartner>();
+
+	//	利 积己
+	if (nullptr == Enemy01) {
+		Enemy01 = GetWorld()->SpawnActor<APokemon>("Kabuto");
+		TurnManager->PushAllPokemon(Enemy01);
+		TurnManager->PushEnemy(Enemy01);
 
 	}
-	TurnManager->SetPatner(Partner);
+	if (nullptr == Enemy02) {
+		Enemy02 = GetWorld()->SpawnActor<APokemon>("Corsola");
+		TurnManager->PushAllPokemon(Enemy02);
+		TurnManager->PushEnemy(Enemy02);
+	}
+	
+
 
 }
 

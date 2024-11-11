@@ -17,8 +17,8 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	//	Player move
 	Player->Move(_DeltaTime);
 
-	std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
-	std::vector<APokemon*>::iterator EndIter = MoveVec.end();
+	std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
+	std::vector<APokemon*>::iterator EndIter = MovePokemon.end();
 
 	// 플레이어가 이동할때 MoveVec에 있는 포켓몬 모두 이동함
 	for (; StartIter != EndIter; StartIter++)
@@ -29,8 +29,8 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 
 	if (Player->GetActorLocation() == Player->GetTargetLocation())	//도착했으면
 	{
-		std::vector<APokemon*>::iterator StartIter = MoveVec.begin();
-		std::vector<APokemon*>::iterator EndIter = MoveVec.end();
+		std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
+		std::vector<APokemon*>::iterator EndIter = MovePokemon.end();
 		for (; StartIter != EndIter; StartIter++)
 		{
 			APokemon* CurPokemon = *StartIter;
@@ -38,7 +38,7 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 			CurPokemon->SetCurDuration(0.0f);
 		}
 		//	이동한 몬스터들 다 Vec에서 제거
-		MoveVec.clear();
+		MovePokemon.clear();
 		CurDuration = 0.0f;
 		//	다음단계
 		CurTurnType = TurnType::AI_Skill;

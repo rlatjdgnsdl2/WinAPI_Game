@@ -13,7 +13,6 @@ APokemon::APokemon()
 APokemon::APokemon(std::string_view _CurPokemonName)
 {
 	CurPokemonInfo = UGameDataManager::GetInst().GetPokemonInfo(_CurPokemonName);
-	//CurPokemonData = UGameDataManager::GetInst().GetPokemonData(_CurPokemonName);
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite(CurPokemonInfo.PokemonName + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
@@ -29,6 +28,7 @@ APokemon::~APokemon()
 void APokemon::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+
 }
 
 void APokemon::Idle()
