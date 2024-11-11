@@ -23,16 +23,15 @@ struct Node {
 };
 
 
-struct PokemonInfo
+struct PokemonAnimaionInfo
 {
-
 	int AttackAnimCount;
 	int HurtAnimCount;
 	int IdleAnimCount;
 	int WalkAnimCount;
 };
 
-struct PokemonData 
+struct PokemonStat 
 {
 	unsigned int Hp;
 	unsigned int Attack;

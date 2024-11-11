@@ -56,9 +56,6 @@ public:
 	}
 
 
-
-
-
 	void SetCameraToMainPawn(bool _IsCameraToMainPawn)
 	{
 		IsCameraToMainPawn = _IsCameraToMainPawn;

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <EngineCore/GameMode.h>
 
 //	설명: 던전관련 생성 담당
@@ -18,6 +17,7 @@ public:
 	ADungeonGameMode& operator=(ADungeonGameMode&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime)override;
+
 	void LevelChangeStart() override;
 	void LevelChangeEnd()override;
 

@@ -30,15 +30,15 @@ void PMDContentsCore::BeginPlay()
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
-	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
+	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
 	//	Level생성
 	CreateLevel();
 
 	//	처음 레벨 입장
 	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
+	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 
 }
 void PMDContentsCore::Tick()

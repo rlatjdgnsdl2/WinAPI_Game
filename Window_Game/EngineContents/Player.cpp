@@ -28,6 +28,7 @@ void APlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::CoreOutPutString("디버그 모드 U, 카메라 I,J,K,L");
 }
 
 void APlayer::LevelChangeStart()

@@ -21,12 +21,12 @@ public:
 	APokemon(APokemon&& _Other) noexcept = delete;
 	APokemon& operator=(const APokemon& _Other) = delete;
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
-
-	virtual void LevelChangeStart()override;
-
+	
+	virtual void SetPokemon(std::string_view _PokemonName);
 	virtual void Idle();
 	virtual void Move(float _DeltaTime);
 	virtual void Skill(SkillType _SkillType);
+	virtual void Hurt();
 
 
 
@@ -54,21 +54,19 @@ public:
 	
 
 
-
-
 protected:
 	std::string CurPokemonName;
 	class USpriteRenderer* SpriteRenderer;
-	class APokemon* TargetPokemon;
+	PokemonAnimaionInfo CurPokemonAnimationInfo;
 
+	class APokemon* TargetPokemon;
 	float CurDuration;
 	CampType CurCamp;
-	DIR CurDir = DIR::Down;
+	DIR CurDir;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-	SkillType CurSkillType = SkillType::NormalAttack;
+	SkillType CurSkillType;
 
-	PokemonInfo CurPokemonInfo;
 
 private:
 
