@@ -34,26 +34,32 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>_Header</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonGameMode.h">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClInclude>
     <ClInclude Include="TurnManager.h">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClInclude>
     <ClInclude Include="Pokemon.h">
       <Filter>LevelObjects\00.Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Dungeon_BSP.h">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
     </ClInclude>
     <ClInclude Include="ContentsDefine.h">
       <Filter>_Header</Filter>
     </ClInclude>
     <ClInclude Include="GameDataManager.h">
       <Filter>ContentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonSelectGameMode.h">
+      <Filter>LevelObjects\02.DungeonSelectLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonSelectActor.h">
+      <Filter>LevelObjects\02.DungeonSelectLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_BSP.h">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>LevelObjects\03.DungeonLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -90,50 +96,59 @@
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>_Header</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonGameMode.cpp">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
-    </ClCompile>
     <ClCompile Include="TurnManager.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_1.PlayerSelect.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_6.PlayerMove.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_7.PlayerSkill.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_2.SelectMove.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_8.AIMove.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_9.AISkill.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_4.Move_AISelect.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_5.Skill_AISelect.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_3.SelectSkill.cpp">
-      <Filter>LevelObjects\02.DungeonLevel\TurnManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Dungeon_BSP.cpp">
-      <Filter>LevelObjects\02.DungeonLevel</Filter>
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="GameDataManager.cpp">
       <Filter>ContentsCore</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonSelectGameMode.cpp">
+      <Filter>LevelObjects\02.DungeonSelectLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonSelectActor.cpp">
+      <Filter>LevelObjects\02.DungeonSelectLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_0.DebugMode.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_BSP.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>LevelObjects\03.DungeonLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,17 +167,23 @@
     <Filter Include="LevelObjects\01.TitleLevel">
       <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\02.DungeonLevel">
-      <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LevelObjects\02.DungeonLevel\TurnManager">
-      <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LevelObjects\00.Global">
       <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
     </Filter>
     <Filter Include="LevelObjects\10.TempLevel">
       <UniqueIdentifier>{76fc212b-f490-4417-9f85-46b2d46df347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\03.DungeonLevel">
+      <UniqueIdentifier>{fe0b1aed-9e65-49b1-a179-81009782176a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\03.DungeonLevel\TurnManager">
+      <UniqueIdentifier>{7020a168-f2cd-4bd0-b416-27ce48604427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\02.DungeonSelectLevel">
+      <UniqueIdentifier>{88338ba5-7e52-4deb-856e-463f65b44d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\03.DungeonLevel\Dungeon">
+      <UniqueIdentifier>{d1c5e3ed-0339-4ec6-89fa-4f650865c177}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

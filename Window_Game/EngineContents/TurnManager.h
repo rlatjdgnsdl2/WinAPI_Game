@@ -29,10 +29,7 @@ public:
 	{
 		Dungeon = _Dungeon;
 	}
-	void SetPatner(class APartner* _Partner)
-	{
-		//Partner = _Partner;
-	}
+
 	void PushEnemy(class APokemon* _Enemy) {
 		EnemyCamp.push_back(_Enemy);
 	}
@@ -46,10 +43,12 @@ protected:
 private:
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
-//	class APartner* Partner;
 
 	bool IsDebugMode = false;
 
+	std::vector<class APokemon*> AllPokemon;
+	std::vector<class APokemon*> MovePokemon;
+	std::vector<class APokemon*> SkillPokemon;
 	FVector2D PlayerMoveVec;
 	DIR PlayerDir;
 	
@@ -59,15 +58,11 @@ private:
 	SkillType PlayerSkillType;
 	int PlayerInput;
 	
-	std::vector<class APokemon*> AllPokemon;
-	std::vector<class APokemon*> MovePokemon;
-	std::vector<class APokemon*> SkillPokemon;
 
 	std::vector<class APokemon*> PlayerCamp;
 	std::vector<class APokemon*> EnemyCamp;
 
-
-	//	idle
+	//	Idle
 	void PlayerSelect();
 	//	Select Type
 	void SelectMove(int _PlayerInput);
@@ -82,10 +77,8 @@ private:
 	void AIMove(float _DeltaTime);
 	void AISkill(float _DeltaTime);
 
-	void SwithcDebugMode() 
-	{
-		IsDebugMode = !IsDebugMode;
-	};
+	void DebugMode(float _DeltaTime);
+
 	
 
 	//	move

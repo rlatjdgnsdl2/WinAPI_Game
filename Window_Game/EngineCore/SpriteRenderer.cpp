@@ -164,6 +164,18 @@ FVector2D USpriteRenderer::SetSpriteScale(float _Ratio /*= 1.0f*/, int _CurIndex
 	return Scale;
 }
 
+FVector2D USpriteRenderer::GetSpriteScale(int _CurIndex)
+{
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("스프라이트를 세팅하지 않고 스프라이트 크기로 랜더러 크기를 조정할수 없습니다.");
+		return FVector2D::ZERO;
+	}
+	UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(_CurIndex);
+	FVector2D Scale = CurData.Transform.Scale;
+	return Scale;
+}
+
 
 void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
 {

@@ -164,6 +164,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DungeonSelectActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Dungeon_BSP.h">
       <SubType>
       </SubType>
@@ -181,6 +185,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Pokemon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DungeonSelectGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -227,7 +235,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TurnManager_0.DebugMode.cpp" />
     <ClCompile Include="DungeonGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DungeonSelectActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -248,6 +261,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DungeonSelectGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -39,12 +39,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 			// 타겟못찾으면
 			if (!IsFindTarget) 
 			{
-				//타겟로케이션 정해줘야함(플레이어 위치 기준)
-				//	파트너만 위치 정해주는 임시코드 (길찾기 알고리즘 없으면 못함)
-				CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
-				CurPokemon->SetTargetLocation(Player->GetStartLocation());
-				CurPokemon->SetCurDuration(0.0f);
-				//MoveVec에 넣어줌
+				
 				MovePokemon.push_back(CurPokemon);
 			}
 		}
@@ -69,11 +64,11 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 			}
 			if (!IsFindTarget)
 			{
-				//타겟로케이션 정해줘야함(플레이어 위치 기준)
+				//	타겟로케이션 정해줘야함(플레이어 위치 기준)
+			
+				
 				//	파트너만 위치 정해주는 임시코드 (길찾기 알고리즘 없으면 못함)
-				CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
-				CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation() + FVector2D::UP * 72);
-				CurPokemon->SetCurDuration(0.0f);
+				
 
 				MovePokemon.push_back(CurPokemon);
 			}

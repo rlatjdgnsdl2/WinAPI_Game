@@ -47,26 +47,7 @@ void ATurnManager::LevelChangeStart()
 
 void ATurnManager::Tick(float _DeltaTime)
 {
-
 	Super::Tick(_DeltaTime);
-	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::CoreOutPutString("플레이어 이동방법 : NumPad 각 숫자가 가르키는 방향");
-	UEngineDebug::CoreOutPutString("PlayerX : " + std::to_string(Player->GetActorLocation().X));
-	UEngineDebug::CoreOutPutString("PlayerY : " + std::to_string(Player->GetActorLocation().Y));
-	std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
-	std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
-	for (; StartIter != EndIter; StartIter++)
-	{
-		APokemon* CurPokemon = *StartIter;
-		UEngineDebug::CoreOutPutString("MonsterX : " + std::to_string(CurPokemon->GetActorLocation().X));
-		UEngineDebug::CoreOutPutString("MonsterY : " + std::to_string(CurPokemon->GetActorLocation().Y));
-	}
-
-	UEngineDebug::CoreOutPutString("DebugMode U를 누르세요 : " + std::to_string(IsDebugMode));
-	UEngineDebug::CoreOutPutString("DebugMode면 카메라를 I,J,K,L로 움직이세요");
-
-
-
 	switch (CurTurnType)
 	{
 	case TurnType::Player_Select:
@@ -96,10 +77,12 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::AI_Skill:
 		AISkill(_DeltaTime);
 		break;
+	case TurnType::DebugMode:
+		DebugMode(_DeltaTime);
+		break;
 
 	}
 }
-
 
 
 void ATurnManager::SetSpawnPos()
@@ -127,35 +110,6 @@ void ATurnManager::SetSpawnPos()
 			}
 		}
 	}
-
-
-
-
-	//// partner pos
-	///*FVector2D PlayerPos = Player->GetActorLocation();
-	//FVector2D PosIndex = PlayerPos / 72;
-	//bool isSpawnPartner = false;
-	//for (int y = -1; y <= 1; y++)
-	//{
-	//	for (int x = -1; x <= 1; x++)
-	//	{
-	//		TileType TileType = Dungeon->GetDungeonData()->TileTypes[PosIndex.iY() + y][PosIndex.iX()+x];
-	//		if (TileType::GROUND == TileType && x != 0 && y != 0)
-	//		{
-	//			FVector2D PartnerPos = FVector2D(PlayerPos.X + x * 72, PlayerPos.Y + y * 72);
-	//			Partner->SetActorLocation(PartnerPos);
-	//			isSpawnPartner = true;
-	//		}
-	//	}
-	//	if (isSpawnPartner)
-	//	{
-	//		break;
-	//	}
-	//*/}
-
-	//// TestSpawn monster
-	////TestEnemy->SetActorLocation(PlayerPos+FVector2D(144,144));
-
 
 }
 

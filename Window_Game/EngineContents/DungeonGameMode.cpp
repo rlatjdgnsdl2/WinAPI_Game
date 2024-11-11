@@ -35,7 +35,6 @@ void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	//	带傈积己
-	
 	if (nullptr == Dungeon) {
 
 		Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
@@ -49,7 +48,6 @@ void ADungeonGameMode::LevelChangeStart()
 	}
 	TurnManager->SetDungeon(Dungeon);
 	
-
 	//	利 积己
 	if (nullptr == Enemy01) {
 		Enemy01 = GetWorld()->SpawnActor<APokemon>("Kabuto");

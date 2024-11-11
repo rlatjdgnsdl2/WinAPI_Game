@@ -9,7 +9,10 @@
 #include "GameDataManager.h"
 #include "TitleGameMode.h"
 #include "TempPlayer.h"
+
 #include "DungeonGameMode.h"
+#include "DungeonSelectGameMode.h"
+#include "DungeonSelectActor.h"
 #include "Player.h"
 
 
@@ -34,6 +37,7 @@ void PMDContentsCore::BeginPlay()
 
 	//	처음 레벨 입장
 	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	
 }
@@ -86,6 +90,14 @@ void PMDContentsCore::RoadResources()
 	Dungeon_AmpPlains.Append("Dungeon_AmpPlains");
 	UImageManager::GetInst().LoadFolder(Dungeon_AmpPlains.GetPathToString());
 
+	UEngineDirectory DungeonSelect;
+	DungeonSelect.MoveParentToDirectory("Resources");
+	DungeonSelect.Append("DungeonSelect");
+	UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
+
+
+	//	Font
+	UImageManager::GetInst().CuttingSprite("English_Font.png", 78, 1);
 
 	//	Title
 	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
@@ -145,6 +157,7 @@ void PMDContentsCore::CreateLevel()
 {
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonSelectGameMode, ADungeonSelectActor>("DungeonSelectLevel");
 	//	던전레벨
 	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel", "Mudkip");
 	//	마을레벨
