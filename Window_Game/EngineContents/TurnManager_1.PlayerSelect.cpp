@@ -76,6 +76,7 @@ void ATurnManager::PlayerSelect()
 		CurTurnType = TurnType::Player_Select_Skill;
 	}
 
+	// 디버그모드
 	else if (UEngineInput::GetInst().IsDown('U')) {
 		PlayerInput = 'U';
 		SwithcDebugMode();

@@ -51,8 +51,17 @@ void ATurnManager::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::CoreOutPutString("플레이어 이동방법 : NumPad 각 숫자가 가르키는 방향");
-	UEngineDebug::CoreOutPutString("X : " + std::to_string(Player->GetActorLocation().X));
-	UEngineDebug::CoreOutPutString("Y : " + std::to_string(Player->GetActorLocation().Y));
+	UEngineDebug::CoreOutPutString("PlayerX : " + std::to_string(Player->GetActorLocation().X));
+	UEngineDebug::CoreOutPutString("PlayerY : " + std::to_string(Player->GetActorLocation().Y));
+	std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
+	std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
+	for (; StartIter != EndIter; StartIter++)
+	{
+		APokemon* CurPokemon = *StartIter;
+		UEngineDebug::CoreOutPutString("MonsterX : " + std::to_string(CurPokemon->GetActorLocation().X));
+		UEngineDebug::CoreOutPutString("MonsterY : " + std::to_string(CurPokemon->GetActorLocation().Y));
+	}
+
 	UEngineDebug::CoreOutPutString("DebugMode U를 누르세요 : " + std::to_string(IsDebugMode));
 	UEngineDebug::CoreOutPutString("DebugMode면 카메라를 I,J,K,L로 움직이세요");
 
