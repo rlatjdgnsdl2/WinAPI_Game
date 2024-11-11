@@ -124,7 +124,10 @@ void ULevel::Tick(float _DeltaTime)
 			CurActor->BeginPlay();
 			AllActors.push_back(CurActor);
 		}
+
 		BeginPlayList.clear();
+
+		// todtjdtl 
 		AActor::ComponentBeginPlay();
 	}
 
@@ -190,10 +193,67 @@ void ULevel::Render(float _DeltaTime)
 	DoubleBuffering();
 }
 
+void ULevel::Collision(float _DeltaTime)
+{
+	for (size_t i = 0; i < CollisionLink.size(); i++)
+	{
+		CollisionLinkData Data = CollisionLink[i];
+
+		int Left = Data.Left;
+		int Right = Data.Right;
+
+		// 이벤트로 충돌체크하는 그룹
+		std::list<class U2DCollision*>& LeftList = CheckCollisions[Left];
+
+		// 그 대상은 이벤트 그룹이 아니어도 되므로 그냥 콜리전 모음에서 가져온다.
+		std::list<class U2DCollision*>& RightList = Collisions[Right];
+
+		std::list<class U2DCollision*>::iterator StartLeftIter = LeftList.begin();
+		std::list<class U2DCollision*>::iterator EndLeftIter = LeftList.end();
+
+		std::list<class U2DCollision*>::iterator StartRightIter = RightList.begin();
+		std::list<class U2DCollision*>::iterator EndRightIter = RightList.end();
+
+		for (; StartLeftIter != EndLeftIter; ++StartLeftIter)
+		{
+			U2DCollision* LeftCollision = *StartLeftIter;
+
+			if (false == LeftCollision->IsActive())
+			{
+				continue;
+			}
+
+			for (; StartRightIter != EndRightIter; ++StartRightIter)
+			{
+				U2DCollision* RightCollision = *StartRightIter;
+				if (false == RightCollision->IsActive())
+				{
+					continue;
+				}
+
+				LeftCollision->CollisionEventCheck(RightCollision);
+			}
+		}
+	}
+}
+
+// 엔진 이벤트코드니까 이상한 곳에서 할필요가 없다.
+// 컨텐츠에서는 존재하는지도 몰라야 한다.
+
+
 void ULevel::Release(float _DeltaTime)
 {
 	// 릴리즈 순서는 말단부터 돌려야 합니다.
+	std::list<AActor*>::iterator StartIter = AllActors.begin();
+	std::list<AActor*>::iterator EndIter = AllActors.end();
 
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		AActor* CurActor = *StartIter;
+		CurActor->ReleaseTimeCheck(_DeltaTime);
+	}
+
+	// 충돌체 제거
 	{
 		std::map<int, std::list<class U2DCollision*>>::iterator StartOrderIter = Collisions.begin();
 		std::map<int, std::list<class U2DCollision*>>::iterator EndOrderIter = Collisions.end();
@@ -222,6 +282,36 @@ void ULevel::Release(float _DeltaTime)
 		}
 	}
 
+	// 이벤트 충돌체 제거
+	{
+		std::map<int, std::list<class U2DCollision*>>::iterator StartOrderIter = CheckCollisions.begin();
+		std::map<int, std::list<class U2DCollision*>>::iterator EndOrderIter = CheckCollisions.end();
+
+		for (; StartOrderIter != EndOrderIter; ++StartOrderIter)
+		{
+			std::list<class U2DCollision*>& CollisionList = StartOrderIter->second;
+
+			std::list<class U2DCollision*>::iterator CollisionStartIter = CollisionList.begin();
+			std::list<class U2DCollision*>::iterator CollisionEndIter = CollisionList.end();
+
+			// 언리얼은 중간에 삭제할수 없어.
+			for (; CollisionStartIter != CollisionEndIter; )
+			{
+				if (false == (*CollisionStartIter)->IsDestroy())
+				{
+					++CollisionStartIter;
+					continue;
+				}
+
+				// 랜더러는 지울 필요가 없습니다.
+				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
+				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
+				CollisionStartIter = CollisionList.erase(CollisionStartIter);
+			}
+		}
+	}
+
+	// 랜더러 제거
 	{
 		std::map<int, std::list<class USpriteRenderer*>>::iterator StartOrderIter = Renderers.begin();
 		std::map<int, std::list<class USpriteRenderer*>>::iterator EndOrderIter = Renderers.end();
@@ -250,6 +340,7 @@ void ULevel::Release(float _DeltaTime)
 		}
 	}
 
+	// 액터 제거
 	{
 		std::list<AActor*>::iterator StartIter = AllActors.begin();
 		std::list<AActor*>::iterator EndIter = AllActors.end();
@@ -310,6 +401,14 @@ void ULevel::PushCollision(U2DCollision* _Collision)
 {
 	int Order = _Collision->GetGroup();
 	Collisions[Order].push_back(_Collision);
+}
+
+std::vector<CollisionLinkData> ULevel::CollisionLink;
+
+void ULevel::PushCheckCollision(class U2DCollision* _Collision)
+{
+	int Order = _Collision->GetGroup();
+	CheckCollisions[Order].push_back(_Collision);
 }
 
 void ULevel::ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder)

@@ -8,6 +8,8 @@
 class U2DCollision : public USceneComponent
 {
 public:
+	friend class ULevel;
+
 	// constrcuter destructer
 	U2DCollision();
 	~U2DCollision();
@@ -45,6 +47,10 @@ public:
 	{
 		CollisionGroup = _CollisionGroup;
 	}
+	ECollisionType GetCollisionType()
+	{
+		return CollisionType;
+	}
 
 	template<typename EnumType>
 	AActor* CollisionOnce(EnumType _OtherCollisionGroup, FVector2D _NextPos = FVector2D::ZERO)
@@ -78,15 +84,26 @@ public:
 		CollisionType = _CollisionType;
 	}
 
+	void SetCollisionEnter(std::function<void(AActor*)> _Function);
+	void SetCollisionStay(std::function<void(AActor*)> _Function);
+	void SetCollisionEnd(std::function<void(AActor*)> _Function);
+
 protected:
 
 private:
+	void CollisionEventCheck(class U2DCollision* _Other);
 	// 충돌체의 오더는 약간 의미가 다르다.
 	// -1 충돌 그룹을 지정해주지 않았다
 	// -1 은 사용하면 안된다.
 	// 양수만 된다.
 	ECollisionType CollisionType = ECollisionType::CirCle;
 	int CollisionGroup = -1;
+	// value없는 맵입니다.
+	std::set<U2DCollision*> CollisionCheckSet;
+
+	std::function<void(AActor*)> Enter;
+	std::function<void(AActor*)> Stay;
+	std::function<void(AActor*)> End;
 };
 
 // 여러분들이 만들어야 하는 기능

@@ -35,18 +35,24 @@ public:
 	}
 
 	// 파괴될 시간이 되었는지 확인하는 함수 (매 프레임마다 호출하여 시간 경과 체크)
-	virtual void ReleaseCheck(float _DeltaTime)
+	virtual void ReleaseTimeCheck(float _DeltaTime)
 	{
 		if (false == IsDeathTimeCheck)
 		{
 			return;
 		}
+
 		CurDeathTime += _DeltaTime;
-		// 누적 시간이 설정된 파괴 시간 이상이면 파괴
+
 		if (DeathTime <= CurDeathTime)
 		{
 			IsDestroyValue = true;
 		}
+	}
+
+	virtual void ReleaseCheck(float _DeltaTime)
+	{
+
 	}
 	virtual void SetDeathTime(float _DeathTime)
 	{

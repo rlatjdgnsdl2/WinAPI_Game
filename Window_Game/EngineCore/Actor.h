@@ -84,6 +84,7 @@ private:
 	void ReleaseCheck(float _DeltaTime) override;
 	static bool IsNewActorCreate;
 	static std::list<class UActorComponent*> ComponentBeginPlayList;
+	void ReleaseTimeCheck(float _DeltaTime) override;
 
 	
 	class ULevel* World = nullptr;
