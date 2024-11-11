@@ -36,38 +36,38 @@ void ATurnManager::PlayerSelect()
 	}
 
 
-	MoveDir = FVector2D::ZERO;
+	PlayerMoveVec = FVector2D::ZERO;
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
-		MoveDir += FVector2D::UP;
+		PlayerMoveVec += FVector2D::UP;
 		PlayerDir = DIR::Up;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
-		MoveDir += FVector2D::UP + FVector2D::LEFT;
+		PlayerMoveVec += FVector2D::UP + FVector2D::LEFT;
 		PlayerDir = DIR::Left_Up;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
-		MoveDir += FVector2D::LEFT;
+		PlayerMoveVec += FVector2D::LEFT;
 		PlayerDir = DIR::Left;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
-		MoveDir += FVector2D::DOWN + FVector2D::LEFT;
+		PlayerMoveVec += FVector2D::DOWN + FVector2D::LEFT;
 		PlayerDir = DIR::Left_Down;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
-		MoveDir += FVector2D::DOWN;
+		PlayerMoveVec += FVector2D::DOWN;
 		PlayerDir = DIR::Down;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
-		MoveDir += FVector2D::DOWN + FVector2D::RIGHT;
+		PlayerMoveVec += FVector2D::DOWN + FVector2D::RIGHT;
 		PlayerDir = DIR::Right_Down;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
-		MoveDir += FVector2D::RIGHT;
+		PlayerMoveVec += FVector2D::RIGHT;
 		PlayerDir = DIR::Right;
 	}
 	else if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
-		MoveDir += FVector2D::UP + FVector2D::RIGHT;
+		PlayerMoveVec += FVector2D::UP + FVector2D::RIGHT;
 		PlayerDir = DIR::Right_Up;
 	}
 	// Player_Select_Skill 단계로 가는 키
@@ -87,7 +87,7 @@ void ATurnManager::PlayerSelect()
 		}
 	}
 
-	if (MoveDir != FVector2D::ZERO) {
+	if (PlayerMoveVec != FVector2D::ZERO) {
 		CurTurnType = TurnType::Player_Select_Move;
 	}
 	// AI Idle

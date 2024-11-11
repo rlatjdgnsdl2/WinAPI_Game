@@ -9,7 +9,7 @@ void ATurnManager::SelectMove(int _PlayerInput)
 	// Player 이동방향 결정
 	int PlayerInput = _PlayerInput;
 	bool IsMoveable = false;
-	IsMoveable = InitPlayerMove(PlayerDir, MoveDir);
+	IsMoveable = InitPlayerMove(PlayerDir, PlayerMoveVec);
 
 	if (IsMoveable) {
 		CurTurnType = TurnType::Move_AI_Select;

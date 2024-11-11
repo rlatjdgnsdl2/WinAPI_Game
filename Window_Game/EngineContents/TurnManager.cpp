@@ -39,7 +39,7 @@ void ATurnManager::LevelChangeStart()
 	Player->SetTargetLocation(Player->GetActorLocation());
 	//	캠프설정
 	PlayerCamp.push_back(Player);
-	PlayerCamp.push_back(Partner);
+	//PlayerCamp.push_back(Partner);
 
 	CurTurnType = TurnType::Player_Select;
 
@@ -50,9 +50,11 @@ void ATurnManager::Tick(float _DeltaTime)
 
 	Super::Tick(_DeltaTime);
 	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::CoreOutPutString("플레이어 이동방법 : NumPad 각 숫자가 가르키는 방향");
 	UEngineDebug::CoreOutPutString("X : " + std::to_string(Player->GetActorLocation().X));
 	UEngineDebug::CoreOutPutString("Y : " + std::to_string(Player->GetActorLocation().Y));
-	UEngineDebug::CoreOutPutString("DebugMode : " + std::to_string(IsDebugMode));
+	UEngineDebug::CoreOutPutString("DebugMode U를 누르세요 : " + std::to_string(IsDebugMode));
+	UEngineDebug::CoreOutPutString("DebugMode면 카메라를 I,J,K,L로 움직이세요");
 
 
 

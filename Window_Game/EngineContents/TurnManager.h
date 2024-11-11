@@ -31,7 +31,7 @@ public:
 	}
 	void SetPatner(class APartner* _Partner)
 	{
-		Partner = _Partner;
+		//Partner = _Partner;
 	}
 	void PushEnemy(class APokemon* _Enemy) {
 		EnemyCamp.push_back(_Enemy);
@@ -46,11 +46,11 @@ protected:
 private:
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
-	class APartner* Partner;
+//	class APartner* Partner;
 
 	bool IsDebugMode = false;
 
-	FVector2D MoveDir;
+	FVector2D PlayerMoveVec;
 	DIR PlayerDir;
 	
 	TurnType CurTurnType;
