@@ -3,10 +3,11 @@
 
 
 
-//	설명:
+//	설명: 던전내 모든것을 관리
 class ATurnManager : public AGameMode
 {
 public:
+	friend class ADungeonGameMode;
 	//	constrcuter, destructer
 	ATurnManager();
 	virtual ~ATurnManager();
@@ -20,13 +21,9 @@ public:
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
-	
 
-	void SetSpawnPos();
-
-
-	void SetDungeon(class  ADungeon_BSP* _Dungeon)
-	{
+	void SetPlayer();
+	void SetDungeon(class  ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
 
@@ -36,31 +33,39 @@ public:
 	void PushAllPokemon(class APokemon* _Pokemon) {
 		AllPokemon.push_back(_Pokemon);
 	}
+	void SetSpawnPos();
+
+	void AllClear() {
+		AllPokemon.clear();
+		MovePokemon.clear();
+		SkillPokemon.clear();
+		PlayerCamp.clear();
+		EnemyCamp.clear();
+	}
 
 
 protected:
 
 private:
-	class ADungeon_BSP* Dungeon;
-	class APlayer* Player;
-
-	bool IsDebugMode = false;
+	class APlayer* Player = nullptr;
+	class ADungeon_BSP* Dungeon = nullptr;
 
 	std::vector<class APokemon*> AllPokemon;
+	std::vector<class APokemon*> PlayerCamp;
+	std::vector<class APokemon*> EnemyCamp;
+
 	std::vector<class APokemon*> MovePokemon;
 	std::vector<class APokemon*> SkillPokemon;
+
 	FVector2D PlayerMoveVec;
 	DIR PlayerDir;
-	
 	TurnType CurTurnType;
 	float CurDuration = 0.0f;
 
 	SkillType PlayerSkillType;
-	int PlayerInput;
-	
+	int PlayerInput = 0;
 
-	std::vector<class APokemon*> PlayerCamp;
-	std::vector<class APokemon*> EnemyCamp;
+
 
 	//	Idle
 	void PlayerSelect();
@@ -79,7 +84,6 @@ private:
 
 	void DebugMode(float _DeltaTime);
 
-	
 
 	//	move
 	bool InitPlayerMove(DIR direction, FVector2D moveVector);

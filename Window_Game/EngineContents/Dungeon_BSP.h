@@ -22,9 +22,7 @@ public:
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
 
-	void LevelChangeStart() override;
-	void LevelChangeEnd() override;
-
+	void RoomLocationClear();
 	void Generate(std::string_view _CurDungeonName);
 
 	Room getRoom(Node* node) const;

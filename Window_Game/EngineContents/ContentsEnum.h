@@ -8,18 +8,23 @@ enum class ERenderOrder
 	PLAYER = 0,
 	UI = 10000,
 };
-enum class TileType {
+enum class TileType
+{
 	GROUND = 0,
 	WALL,
 	WATER
 };
+
 enum class CampType
 {
+	None = -1,
 	Player,
 	Enemy
 };
+
 enum class TurnType
 {
+
 	Player_Select,
 	Player_Select_Move,
 	Player_Select_Skill,
@@ -34,6 +39,7 @@ enum class TurnType
 
 enum class SkillType
 {
+	None = -1,
 	NormalAttack,
 	SpecialAttack,
 	UseItem

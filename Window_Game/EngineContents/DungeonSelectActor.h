@@ -24,7 +24,7 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
-	std::vector<class USpriteRenderer*> TextRenderers;
+	
 
 };
 

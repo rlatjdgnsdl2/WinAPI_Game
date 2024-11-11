@@ -12,7 +12,7 @@
 
 
 
-ATurnManager::ATurnManager()
+ATurnManager::ATurnManager() :CurTurnType{ TurnType::Player_Select }, PlayerDir{ DIR::Down }, PlayerInput{0}
 {
 
 }
@@ -26,23 +26,15 @@ void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	//	MainPawn 연결
-	AActor* PlayerActor = GetWorld()->GetPawn();
-	Player = dynamic_cast<APlayer*>(PlayerActor);
-	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
-	GetWorld()->SetCameraToMainPawn(true);
-
-	//	Spawn위치 설정
-	SetSpawnPos();
-	//	초기화
+	SetPlayer();
+	PlayerCamp.push_back(Player);
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
-	//	캠프설정
-	PlayerCamp.push_back(Player);
-	//PlayerCamp.push_back(Partner);
 
+	SetSpawnPos();
+	
+	
 	CurTurnType = TurnType::Player_Select;
-
 }
 
 void ATurnManager::Tick(float _DeltaTime)
@@ -84,15 +76,21 @@ void ATurnManager::Tick(float _DeltaTime)
 	}
 }
 
+void ATurnManager::SetPlayer()
+{
+	AActor* PlayerActor = GetWorld()->GetPawn();
+	Player = dynamic_cast<APlayer*>(PlayerActor);
+}
+
 
 void ATurnManager::SetSpawnPos()
 {
 	UEngineRandom Random;
 	// player pos
-	int MaxSize = Dungeon->GetRoomLocations().size();
+	int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
 	int Index = Random.RandomInt(0, MaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
-	Player->SetActorLocation(RoomLocation);
+	GetWorld()->GetPawn()->SetActorLocation(RoomLocation);
 
 
 	std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
@@ -112,6 +110,8 @@ void ATurnManager::SetSpawnPos()
 	}
 
 }
+
+
 
 
 

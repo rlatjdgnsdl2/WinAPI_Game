@@ -57,6 +57,7 @@ public:
 
 
 protected:
+	std::string CurPokemonName;
 	class USpriteRenderer* SpriteRenderer;
 	class APokemon* TargetPokemon;
 

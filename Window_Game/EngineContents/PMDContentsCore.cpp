@@ -30,16 +30,16 @@ void PMDContentsCore::BeginPlay()
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
-	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
+	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
 	//	Level생성
 	CreateLevel();
 
 	//	처음 레벨 입장
 	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
-	
+	UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+
 }
 void PMDContentsCore::Tick()
 {
@@ -106,15 +106,15 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Mudkip", {"Mudkip",10,2,7,6});
+	UGameDataManager::GetInst().InsertPokemonInfo("Mudkip", { 10,2,7,6 });
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Vulpix", { "Vulpix",11,2,4,5 });
-	
+	UGameDataManager::GetInst().InsertPokemonInfo("Vulpix", { 11,2,4,5 });
+
 	//	Dungeon
 	//	BeachCave
 	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
@@ -125,30 +125,35 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Kabuto_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Kabuto", { "Kabuto",11,2,3,4 });
+	UGameDataManager::GetInst().InsertPokemonInfo("Kabuto", { 11,2,3,4 });
 
 	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Shellos", { "Shellos",13,2,3,6 });
+	UGameDataManager::GetInst().InsertPokemonInfo("Shellos", { 13,2,3,6 });
 
 	UImageManager::GetInst().CuttingSprite("Shellder_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Shellder", { "Shellder",10,2,4,6 });
+	UGameDataManager::GetInst().InsertPokemonInfo("Shellder", { 10,2,4,6 });
 
 	UImageManager::GetInst().CuttingSprite("Corsola_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertPokemonInfo("Corsola", { "Corsola",10,2,3,4 });
+	UGameDataManager::GetInst().InsertPokemonInfo("Corsola", { 10,2,3,4 });
+	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", {{"Kabuto","Shellos","Shellder","Corsola"} });
+
+
+
 
 	//	AmpPlains
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Wall.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Water.png", 5, 10);
+	UGameDataManager::GetInst().InsertDungeonInfo("AmpPlains", { {"Kabuto","Shellos","Shellder","Corsola"} });
 
 
 }

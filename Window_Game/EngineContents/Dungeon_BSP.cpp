@@ -21,16 +21,8 @@ ADungeon_BSP::~ADungeon_BSP()
 }
 
 
-void ADungeon_BSP::LevelChangeStart()
+void ADungeon_BSP::RoomLocationClear()
 {
-	Super::LevelChangeStart();
-	ATileMap::LevelChangeStart();
-}
-
-void ADungeon_BSP::LevelChangeEnd()
-{
-	Super::LevelChangeEnd();
-	ATileMap::LevelChangeEnd();
 	RoomLocations.clear();
 }
 

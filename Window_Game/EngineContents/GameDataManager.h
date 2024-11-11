@@ -18,21 +18,32 @@ public:
 		static UGameDataManager Inst = UGameDataManager();
 		return Inst;
 	}
+
+	//	PokemonInfo
 	void InsertPokemonInfo(std::string_view _PokemonName, PokemonInfo _PokemonInfo) {
 		PokemonInfos.insert({ _PokemonName.data(),_PokemonInfo });
 	}
-
-	PokemonInfo GetPokemonInfo(std::string_view _PokemonName) {
+	const PokemonInfo GetPokemonInfo(std::string_view _PokemonName) const {
 		return PokemonInfos.find(_PokemonName.data())->second;
 	}
-
-	void InsertPokemonData(std::string_view _PokemonName, PokemonInfo _PokemonData) {
-		PokemonInfos.insert({ _PokemonName.data(),_PokemonData });
+	//	PokemonData
+	void InsertPokemonData(std::string_view _PokemonName, PokemonData _PokemonData) {
+		PokemonDatas.insert({ _PokemonName.data(),_PokemonData });
 	}
-
-	PokemonData GetPokemonData(std::string_view _PokemonName) {
+	const PokemonData GetPokemonData(std::string_view _PokemonName) const {
 		return PokemonDatas.find(_PokemonName.data())->second;
 	}
+	//	DungeonInfo
+	void InsertDungeonInfo(std::string_view _DungeonName, DungeonInfo _DungeonInfo) {
+		DungeonInfos.insert({ _DungeonName.data(),_DungeonInfo });
+	}
+	DungeonInfo GetDungeonInfo(std::string_view _DungeonName) const {
+		return DungeonInfos.find(_DungeonName.data())->second;
+	}
+
+
+
+
 
 
 	std::string GetSelectDungeon() const
@@ -52,7 +63,7 @@ private:
 	UGameDataManager();
 	std::map<std::string, PokemonInfo > PokemonInfos;
 	std::map<std::string, PokemonData > PokemonDatas;
-	//std::map<std::string, DungeonInfo> DungeonInfos;
+	std::map<std::string, DungeonInfo> DungeonInfos;
 	std::string SelectDungeon;
 
 	

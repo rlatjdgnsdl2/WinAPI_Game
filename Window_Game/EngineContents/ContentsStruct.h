@@ -25,7 +25,7 @@ struct Node {
 
 struct PokemonInfo
 {
-	std::string PokemonName;
+
 	int AttackAnimCount;
 	int HurtAnimCount;
 	int IdleAnimCount;
@@ -40,6 +40,11 @@ struct PokemonData
 	unsigned int Special_Attack;
 	unsigned int Special_Defense;
 	unsigned int Speed;
+};
+
+
+struct DungeonInfo {
+	std::vector<std::string> Pokemons_In_Dongeon;
 };
 
 

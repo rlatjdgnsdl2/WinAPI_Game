@@ -1,7 +1,8 @@
 #pragma once
 
 #include <EngineCore/GameMode.h>
-//	설명:
+
+//	설명: 던전관련 생성 담당
 class ADungeonGameMode : public AGameMode
 {
 public:
@@ -18,13 +19,17 @@ public:
 
 	void Tick(float _DeltaTime)override;
 	void LevelChangeStart() override;
+	void LevelChangeEnd()override;
+
+	
 
 protected:
 
 private:
+	// GameDataManger에서 받아옴
+	std::string CurDungeonName;
 	class ATurnManager* TurnManager;
-	class ADungeon_BSP* Dungeon;
-	class APokemon* Enemy01;
-	class APokemon* Enemy02;
+
+
 };
 
