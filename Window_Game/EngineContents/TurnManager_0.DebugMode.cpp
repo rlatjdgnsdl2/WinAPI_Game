@@ -9,24 +9,24 @@ void ATurnManager::DebugMode(float _DeltaTime)
 	{
 		FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::UP * 72;
 		GetWorld()->SetCameraPos(NewCameraPos);
-		return;
+		
 	}
 	if (true == UEngineInput::GetInst().IsPress('J'))
 	{
 		FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::LEFT * 72;
 		GetWorld()->SetCameraPos(NewCameraPos);
-		return;
+	
 	}
 	if (true == UEngineInput::GetInst().IsPress('K'))
 	{
 		FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::DOWN * 72;
 		GetWorld()->SetCameraPos(NewCameraPos);
-		return;
+		
 	}
 	if (true == UEngineInput::GetInst().IsPress('L'))
 	{
 		FVector2D NewCameraPos = GetWorld()->GetCameraPos() + FVector2D::RIGHT * 72;
 		GetWorld()->SetCameraPos(NewCameraPos);
-		return;
+		
 	}
 }
