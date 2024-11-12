@@ -4,8 +4,8 @@
 
 
 
-//	설명: 던전내 모든것을 관리
-class ATurnManager : public AGameMode, public IPathFindData
+//	설명: 던전내 규칙을 관리
+class ATurnManager : public AGameMode
 {
 public:
 	//	constrcuter, destructer
@@ -47,16 +47,14 @@ private:
 	class ADungeon_BSP* Dungeon = nullptr;
 
 	std::list<class APokemon*> AllAIPokemon;
-	std::vector<class APokemon*> MovePokemon;
-	std::vector<class APokemon*> SkillPokemon;
-
 	std::list<class APokemon*> PlayerCamp;
 	std::list<class APokemon*> EnemyCamp;
 
+	std::vector<class APokemon*> MovePokemon;
+	std::vector<class APokemon*> SkillPokemon;
+
+
 	
-
-
-
 	FVector2D PlayerMoveVec;
 	DIR PlayerDir;
 	TurnType CurTurnType;
@@ -83,6 +81,5 @@ private:
 
 	//	move
 	bool InitPlayerMove(DIR direction, FVector2D moveVector);
-	bool IsMove(const FIntPoint& _Point) override;
 
 };

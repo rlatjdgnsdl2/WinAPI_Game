@@ -8,7 +8,7 @@ public:
 	static float Sqrt(float _Value) { return ::sqrtf(_Value); }
 };
 
-
+class FVector2D;
 // 정수 좌표를 나타내는 클래스
 class FIntPoint
 {
@@ -57,8 +57,13 @@ public:
 		return Result;
 	}
 
-
-
+	FVector2D operator*(float _Value) const
+	{
+		FVector2D Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
+	}
 
 
 
@@ -75,7 +80,6 @@ public:
 	}
 	//	필요하면 추가예정
 };
-
 
 class FVector2D
 {
@@ -276,7 +280,7 @@ public:
 	{
 
 	}
-};
+}
 
 
 

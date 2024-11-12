@@ -29,101 +29,24 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
-		bool IsFindTarget = false;
-		// 나의위치
-		FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
 		//	나의 진영
-		CampType CurCamp = CurPokemon->GetCurCamp();
-
-		// 비교할포켓몬들
-		std::list<class APokemon*> ::iterator CompareStartIter = AllAIPokemon.begin();
-		std::list<class APokemon*> ::iterator CompareEndIter = AllAIPokemon.end();
-		for (; CompareStartIter != CompareEndIter; CompareStartIter++)
+		CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+		std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
+		std::list<class APokemon*> ::iterator CompareStartIter = CompareCamp.begin();
+		std::list<class APokemon*> ::iterator CompareEndIter = CompareCamp.end();
+		// 타켓로케이션 확인
+		for (; StartIter != EndIter; StartIter++)
 		{
-			//	나 자신이면 건너뜀
-			if (StartIter == CompareStartIter) {
-				continue;
-			}
-			//	비교할 포켓몬 
-			APokemon* ComparePokemon = *CompareStartIter;
-			//	비교할 포켓몬 진영
-			CampType CompareCamp = ComparePokemon->GetCurCamp();
-			//	나랑 다른진영이면
-			if (CurCamp != CompareCamp)
-			{
-				//	비교할 포켓몬 위치
-				FVector2D CompareLocation = ComparePokemon->GetTargetLocation();
-				//	거리차이
-				FVector2D Distance = CompareLocation - CurPokemonLocation;
-				//	만약에 바로 앞이거나 앞에 올 예정이면
-				if (Distance.X <= 72 && Distance.Y <= 72 && Distance.Y >= -72 && Distance.Y >= -72)
-				{
-					//	SkillVec에 넣어줌
-					IsFindTarget = true;
-					//	타겟설정
-					CurPokemon->SetTargetPokemon(ComparePokemon);
-					SkillPokemon.push_back(CurPokemon);
-					//	타겟을 찾음
-					if (true == IsFindTarget) {
-						break;
-					}
-
-				}
-
-			}
-
-
+			APokemon* CurComparePokemon = *CompareStartIter;
+			FVector2D CompareTargetLocaton = CurComparePokemon->GetTargetLocation();
+			
+			
 		}
 
-		if (false == IsFindTarget) {
-			FIntPoint StartIndex = CurPokemon->GetActorLocation().ConvertToPoint() / 72;
-			FIntPoint TargetIndex = Player->GetTargetLocation().ConvertToPoint() / 72;
-			std::list<FIntPoint> PathIndexList = PathFinder.PathFind(StartIndex, TargetIndex);
-			std::list<FIntPoint>::iterator StartIter = PathIndexList.begin();
-			if (PathIndexList.size() == 0) {
-
-				CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
-				CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
-			}
-			else {
-				StartIndex = *StartIter;
-				StartIter++;
-				TargetIndex = *StartIter;
-				CurPokemon->SetStartLocation(FVector2D(StartIndex.X * 72.0f, StartIndex.Y * 72.0f));
-				CurPokemon->SetTargetLocation(FVector2D(TargetIndex.X * 72.0f, TargetIndex.Y * 72.0f));
-
-			}
-			MovePokemon.push_back(CurPokemon);
-		}
+		
 	}
 
 	// 다음단계
 	CurTurnType = TurnType::Player_Move;
 }
 
-bool ATurnManager::IsMove(const FIntPoint& _Point)
-{
-	FIntPoint CheckPoint = _Point;
-	// 던전밖으로 나가면 false
-	if (true == Dungeon->IsOver(CheckPoint)) {
-		return false;
-	}
-	// 땅이 아니면 ture
-	TileType CheckTileType = Dungeon->Tiles[CheckPoint.Y][CheckPoint.X].TileType;
-	if (TileType::GROUND != CheckTileType) {
-		return false;
-	}
-
-	//다른포켓몬이 이동할 곳이면
-	std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
-	std::vector<APokemon*>::iterator EndIter = MovePokemon.end();
-	for (; StartIter != EndIter; StartIter++)
-	{
-		APokemon* CurPokemon = *StartIter;
-		FVector2D CurPokemonTargetLocation = CurPokemon->GetTargetLocation();
-		if (CurPokemonTargetLocation.ConvertToPoint() / 72 == CheckPoint) {
-			return false;
-		}
-	}
-	return true;
-}

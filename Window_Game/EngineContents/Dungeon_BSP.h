@@ -8,8 +8,7 @@
 
 
 //	설명:
-class ADungeon_BSP : public ATileMap
-
+class ADungeon_BSP : public ATileMap, public IPathFindData
 {
 public:
 	friend class ATurnManager;
@@ -54,6 +53,10 @@ private:
 	void SetNextPotal();
 
 
+
+
+	// IPathFindData을(를) 통해 상속됨
+	bool IsMove(const FIntPoint& _Point) override;
 
 };
 

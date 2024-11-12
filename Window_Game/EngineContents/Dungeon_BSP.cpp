@@ -292,6 +292,22 @@ void ADungeon_BSP::SetNextPotal()
 
 }
 
+bool ADungeon_BSP::IsMove(const FIntPoint& _Point)
+{
+	FIntPoint CheckPoint = _Point;
+	// 던전밖으로 나가면 false
+	if (true == IsOver(CheckPoint)) {
+		return false;
+	}
+	// 땅이 아니면 ture
+	TileType CheckTileType = Tiles[CheckPoint.Y][CheckPoint.X].TileType;
+	if (TileType::GROUND != CheckTileType) {
+		return false;
+	}
+
+	return true;
+}
+
 
 
 

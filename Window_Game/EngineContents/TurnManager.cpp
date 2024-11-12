@@ -32,11 +32,13 @@ void ATurnManager::LevelChangeStart()
 	//	카메라 피봇설정
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(WindowSize.Half()*-1.0f);
+
+	// 처음 스폰위치
 	SetSpawn();
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
-	PathFinder.SetData(this);
-	PushPlayerCamp(Player);
+	PathFinder.SetData(Dungeon);
+	
 	CurTurnType = TurnType::Player_Select;
 }
 
@@ -82,15 +84,16 @@ void ATurnManager::Tick(float _DeltaTime)
 void ATurnManager::SetSpawn()
 {
 	UEngineRandom Random;
-
-	// Player Spawn
+	// Player Spawn 생성된 방중에 랜덤한 위치에 
 	int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
 	int Index = Random.RandomInt(0, MaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
-	GetWorld()->GetPawn()->SetActorLocation(RoomLocation);
+	Player->SetActorLocation(RoomLocation);
+	PushPlayerCamp(Player);
+	//	동료들은 플레이어 옆에 소환되기
 
 
-	//	몬스터 Spawn
+	//	몬스터 Spawn 임시용 
 	std::list<APokemon*>::iterator StartIter = AllAIPokemon.begin();
 	std::list<APokemon*>::iterator EndIter = AllAIPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
@@ -100,12 +103,12 @@ void ATurnManager::SetSpawn()
 		while (!IsSpawnable) {
 			int Index = Random.RandomInt(0, MaxSize - 1);
 			FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
+			//	이미 그 위치에 포켓몬이 있으면
 			if (RoomLocation != Player->GetActorLocation()) {
 				CurPokemon->SetActorLocation(RoomLocation);
 				FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
 				CurPokemon->SetStartLocation(CurPokemonLocation);
 				CurPokemon->SetStartLocation(CurPokemonLocation);
-				
 				IsSpawnable = true;
 			}
 		}

@@ -29,12 +29,21 @@ bool ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 	Player->SetTargetLocation(Player->GetStartLocation() + moveVector * 72);
 	FVector2D TargetLocation = Player->GetTargetLocation();
 	TileType TargetTileType = Dungeon->GetTileType(TargetLocation.iX() / 72, TargetLocation.iY() / 72);
-	if (TileType::GROUND == TargetTileType) {
-		Player->SetCurDuration(0.0f);
-		return true;
+	
+
+	//앞이 벽이면
+	if (TileType::WALL == TargetTileType) {
+		Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
+		return false;
 	}
-	Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
-	return false;
+	else if (TileType::WATER == TargetTileType) {
+
+	}
+	//앞에 몬스터가 있으면 코드 추가해야댐
+	
+
+	Player->SetCurDuration(0.0f);
+	return true;
 }
 
 
