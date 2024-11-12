@@ -17,7 +17,7 @@
       <Filter>LevelObjects\10.TempLevel</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>LevelObjects\00.Global</Filter>
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="TitleAnim.h">
       <Filter>LevelObjects\01.TitleLevel</Filter>
@@ -35,7 +35,7 @@
       <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClInclude>
     <ClInclude Include="Pokemon.h">
-      <Filter>LevelObjects\00.Global</Filter>
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
     <ClInclude Include="ContentsDefine.h">
       <Filter>_Header</Filter>
@@ -58,6 +58,12 @@
     <ClInclude Include="DungeonGameMode.h">
       <Filter>LevelObjects\03.DungeonLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="Partner.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -76,7 +82,7 @@
       <Filter>LevelObjects\10.TempLevel</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>LevelObjects\00.Global</Filter>
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="TitleAnim.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
@@ -106,7 +112,7 @@
       <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="Pokemon.cpp">
-      <Filter>LevelObjects\00.Global</Filter>
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="TurnManager_8.AIMove.cpp">
       <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
@@ -141,6 +147,12 @@
     <ClCompile Include="DungeonGameMode.cpp">
       <Filter>LevelObjects\03.DungeonLevel</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -158,9 +170,6 @@
     <Filter Include="LevelObjects\01.TitleLevel">
       <UniqueIdentifier>{a2fa0a97-a22b-4dcc-9d0f-237be539cc4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LevelObjects\00.Global">
-      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LevelObjects\10.TempLevel">
       <UniqueIdentifier>{76fc212b-f490-4417-9f85-46b2d46df347}</UniqueIdentifier>
     </Filter>
@@ -175,6 +184,9 @@
     </Filter>
     <Filter Include="LevelObjects\03.DungeonLevel\Dungeon">
       <UniqueIdentifier>{d1c5e3ed-0339-4ec6-89fa-4f650865c177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\00.Pokemon">
+      <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

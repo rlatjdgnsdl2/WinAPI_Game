@@ -7,8 +7,9 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/Level.h>
 
-#include "Player.h"
 #include "GameDataManager.h"
+#include "Player.h"
+#include "Partner.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
 
@@ -53,6 +54,21 @@ void ADungeonGameMode::LevelChangeStart()
 	Dungeon->Generate(CurDungeonName);
 	//	턴매니저에게 던전전달
 	TurnManager->SetDungeon(Dungeon);
+	//	플레이어 연결
+	if (nullptr == Player) {
+		AActor* PlayerActor = GetWorld()->GetPawn();
+		Player = dynamic_cast<APlayer*>(PlayerActor);
+	}
+	TurnManager->SetPlayer(Player);
+	TurnManager->PushPlayerCamp(Player);
+	//	파트너 생성
+	if (nullptr == Partner) {
+		Partner = GetWorld()->SpawnActor<APartner>();
+	}
+	TurnManager->PushPlayerCamp(Partner);
+
+
+
 }
 
 void ADungeonGameMode::LevelChangeEnd()

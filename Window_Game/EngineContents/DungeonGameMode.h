@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include "Partner.h"
 
 //	설명: 턴매니저 생성 담당
 class ADungeonGameMode : public AGameMode
@@ -29,6 +30,8 @@ private:
 	std::string CurDungeonName;
 	class ATurnManager* TurnManager;
 	class ADungeon_BSP* Dungeon;
+	class APlayer* Player;
+	class APartner* Partner;
 
 
 };

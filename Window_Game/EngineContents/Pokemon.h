@@ -73,10 +73,6 @@ public:
 	}
 
 
-
-
-
-
 	SkillType GetCurSkillType() const { return CurSkillType; }
 	void SetCurSkillType(SkillType _SkillType) { CurSkillType = _SkillType; }
 
@@ -93,17 +89,11 @@ public:
 
 
 
-
-
-
-
 	virtual void AnimationSetting();
 
 
 protected:
-	std::string CurPokemonName;
 	class USpriteRenderer* SpriteRenderer;
-	PokemonAnimaionInfo CurPokemonAnimationInfo;
 
 	//	±âº»
 	CampType CurCamp;
@@ -118,9 +108,11 @@ protected:
 	class APokemon* TargetPokemon;
 	SkillType CurSkillType;
 
+
+
+	std::string CurPokemonName;
+	PokemonAnimaionInfo CurPokemonAnimationInfo;
 	PokemonAbility CurPokemonAbility;
-
-
 private:
 
 

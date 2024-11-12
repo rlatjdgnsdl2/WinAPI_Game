@@ -15,6 +15,14 @@ const FIntPoint FIntPoint::DOWN = { 0, 1 };
 const UColor UColor::WHITE = { 255, 255, 255, 0 };
 const UColor UColor::BLACK = { 0, 0, 0, 0 };
 
+
+FIntPoint FVector2D::ConvertToPoint() const
+{
+	return { iX(), iY() };
+}
+
+
+
 FVector2D FVector2D::LerpClamp(FVector2D _StartLocation, FVector2D _TargetLocation, float _t)
 {
 	if (0.0f > _t) { _t = 0.0f; }

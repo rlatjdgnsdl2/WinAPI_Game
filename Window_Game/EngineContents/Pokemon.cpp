@@ -16,25 +16,25 @@ APokemon::~APokemon()
 
 }
 
-
 void APokemon::SetPokemon(std::string_view _PokemonName)
 {
 	if (SpriteRenderer == nullptr) {
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	}
 	CurPokemonName = _PokemonName;
+	//	스프라이트 세팅
 	SpriteRenderer->SetSprite(CurPokemonName + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
+	//	애니메이션 세팅
 	CurPokemonAnimationInfo = UGameDataManager::GetInst().GetPokemonAnimationInfo(CurPokemonName);
 	AnimationSetting();
+	//	랜더링오더
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-
+	//	기본
 	TargetPokemon = nullptr;
 	CurDuration = 0.0f;
 	CurDir = DIR::Down;
-	CurCamp = CampType::Enemy;
 	SkillType CurSkillType = SkillType::NormalAttack;
-	CurPokemonAbility = UGameDataManager::GetInst().GetPokemonAbility(CurPokemonName);
 }
 
 void APokemon::Idle()
@@ -137,6 +137,5 @@ void APokemon::AnimationSetting()
 	SpriteRenderer->CreateAnimation("HurtAnim_7", CurPokemonName + "_Hurt.png", CurPokemonAnimationInfo.HurtAnimCount * 5, CurPokemonAnimationInfo.HurtAnimCount * 6 - 1, HurtFrame);
 	SpriteRenderer->CreateAnimation("HurtAnim_4", CurPokemonName + "_Hurt.png", CurPokemonAnimationInfo.HurtAnimCount * 6, CurPokemonAnimationInfo.HurtAnimCount * 7 - 1, HurtFrame);
 	SpriteRenderer->CreateAnimation("HurtAnim_1", CurPokemonName + "_Hurt.png", CurPokemonAnimationInfo.HurtAnimCount * 7, CurPokemonAnimationInfo.HurtAnimCount * 8 - 1, HurtFrame);
-
 }
 

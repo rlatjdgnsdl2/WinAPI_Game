@@ -1,36 +1,22 @@
 #include "PreCompile.h"
-#include "Player.h"
+#include "Partner.h"
+
 #include "GameDataManager.h"
 
 
 
-
-
-APlayer::APlayer()
+APartner::APartner() 
 {
-	
+
 }
-
-
-
-APlayer::~APlayer()
+APartner::~APartner() 
 {
 
 }
 
-
-void APlayer::SetPokemon(std::string_view _PokemonName)
+void APartner::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	CurCamp = CampType::Player;
 	CurPokemonAbility = UGameDataManager::GetInst().GetPlayerAbility(CurPokemonName);
 }
-
-
-
-
-
-
-
-
-

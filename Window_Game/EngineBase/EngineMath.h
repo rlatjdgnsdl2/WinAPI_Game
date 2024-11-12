@@ -8,79 +8,6 @@ public:
 	static float Sqrt(float _Value) { return ::sqrtf(_Value); }
 };
 
-class FVector2D;
-// 정수 좌표를 나타내는 클래스
-class FIntPoint
-{
-public:
-	int X = 0;
-	int Y = 0;
-
-	static const FIntPoint LEFT;
-	static const FIntPoint RIGHT;
-	static const FIntPoint UP;
-	static const FIntPoint DOWN;
-
-	FIntPoint() {}
-	FIntPoint(int _X, int _Y) : X(_X), Y(_Y) {}
-	FIntPoint(float _X, float _Y) :X(static_cast<int>(_X)), Y(static_cast<int>(_Y)) {}
-
-	FIntPoint operator+(FIntPoint _Other) const
-	{
-		FIntPoint Result;
-		Result.X = X + _Other.X;
-		Result.Y = Y + _Other.Y;
-		return Result;
-	}
-
-	FIntPoint operator-(FIntPoint _Other) const
-	{
-		FIntPoint Result;
-		Result.X = X - _Other.X;
-		Result.Y = Y - _Other.Y;
-		return Result;
-	}
-
-	FIntPoint operator/(int _Value) const
-	{
-		FIntPoint Result;
-		Result.X = X / _Value;
-		Result.Y = Y / _Value;
-		return Result;
-	}
-
-	FIntPoint operator*(int _Value) const
-	{
-		FIntPoint Result;
-		Result.X = X * _Value;
-		Result.Y = Y * _Value;
-		return Result;
-	}
-
-	FVector2D operator*(float _Value) const
-	{
-		FVector2D Result;
-		Result.X = X * _Value;
-		Result.Y = Y * _Value;
-		return Result;
-	}
-
-
-
-	bool operator==(FIntPoint _Other) const
-	{
-		return X == _Other.X && Y == _Other.Y;
-	}
-
-	FIntPoint& operator+=(FIntPoint _Other)
-	{
-		X += _Other.X;
-		Y += _Other.Y;
-		return *this;
-	}
-	//	필요하면 추가예정
-};
-
 class FVector2D
 {
 public:
@@ -119,7 +46,7 @@ public:
 
 
 	//	FIntPoint로 변환
-	FIntPoint ConvertToPoint() const { return { iX(), iY() }; }
+	class FIntPoint ConvertToPoint() const;
 
 	//	내적
 	float Dot(FVector2D _Other) const { return X * _Other.X + Y * _Other.Y; }
@@ -245,6 +172,85 @@ public:
 };
 
 
+
+// 정수 좌표를 나타내는 클래스
+class FIntPoint
+{
+public:
+	int X = 0;
+	int Y = 0;
+
+	static const FIntPoint LEFT;
+	static const FIntPoint RIGHT;
+	static const FIntPoint UP;
+	static const FIntPoint DOWN;
+
+	FIntPoint() {}
+	FIntPoint(int _X, int _Y) : X(_X), Y(_Y) {}
+	FIntPoint(float _X, float _Y) :X(static_cast<int>(_X)), Y(static_cast<int>(_Y)) {}
+
+	FIntPoint operator+(FIntPoint _Other) const
+	{
+		FIntPoint Result;
+		Result.X = X + _Other.X;
+		Result.Y = Y + _Other.Y;
+		return Result;
+	}
+
+	FIntPoint operator-(FIntPoint _Other) const
+	{
+		FIntPoint Result;
+		Result.X = X - _Other.X;
+		Result.Y = Y - _Other.Y;
+		return Result;
+	}
+
+	FIntPoint operator/(int _Value) const
+	{
+		FIntPoint Result;
+		Result.X = X / _Value;
+		Result.Y = Y / _Value;
+		return Result;
+	}
+
+	FIntPoint operator*(int _Value) const
+	{
+		FIntPoint Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
+	}
+
+	FVector2D operator*(float _Value) const
+	{
+		FVector2D Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
+	}
+
+
+
+	bool operator==(FIntPoint _Other) const
+	{
+		return X == _Other.X && Y == _Other.Y;
+	}
+
+	FIntPoint& operator+=(FIntPoint _Other)
+	{
+		X += _Other.X;
+		Y += _Other.Y;
+		return *this;
+	}
+	//	필요하면 추가예정
+};
+
+
+
+
+
+
+
 class UColor
 {
 public:
@@ -280,7 +286,7 @@ public:
 	{
 
 	}
-}
+};
 
 
 

@@ -10,59 +10,59 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
-	PlayerMoveVec = FVector2D::ZERO;
+	PlayerMoveDir = FVector2D::ZERO;
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
-		PlayerMoveVec += FVector2D::UP;
-		PlayerDir = DIR::Up;
+		PlayerMoveDir += FVector2D::UP;
+		Player->SetCurDir(DIR::Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
-		PlayerMoveVec += FVector2D::UP + FVector2D::LEFT;
-		PlayerDir = DIR::Left_Up;
+		PlayerMoveDir += FVector2D::UP + FVector2D::LEFT;
+		Player->SetCurDir(DIR::Left_Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
-		PlayerMoveVec += FVector2D::LEFT;
-		PlayerDir = DIR::Left;
+		PlayerMoveDir += FVector2D::LEFT;
+		Player->SetCurDir(DIR::Left);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
-		PlayerMoveVec += FVector2D::DOWN + FVector2D::LEFT;
-		PlayerDir = DIR::Left_Down;
+		PlayerMoveDir += FVector2D::DOWN + FVector2D::LEFT;
+		Player->SetCurDir(DIR::Left_Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
-		PlayerMoveVec += FVector2D::DOWN;
-		PlayerDir = DIR::Down;
+		PlayerMoveDir += FVector2D::DOWN;
+		Player->SetCurDir(DIR::Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
-		PlayerMoveVec += FVector2D::DOWN + FVector2D::RIGHT;
-		PlayerDir = DIR::Right_Down;
+		PlayerMoveDir += FVector2D::DOWN + FVector2D::RIGHT;
+		Player->SetCurDir(DIR::Right_Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
-		PlayerMoveVec += FVector2D::RIGHT;
-		PlayerDir = DIR::Right;
+		PlayerMoveDir += FVector2D::RIGHT;
+		Player->SetCurDir(DIR::Right);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
-		PlayerMoveVec += FVector2D::UP + FVector2D::RIGHT;
-		PlayerDir = DIR::Right_Up;
+		PlayerMoveDir += FVector2D::UP + FVector2D::RIGHT;
+		Player->SetCurDir(DIR::Right_Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	// Player_Select_Skill 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress('A')) {
-		PlayerInput = 'A';
+		Player->SetCurSkillType(SkillType::NormalAttack);
 		CurTurnType = TurnType::Player_Select_Skill;
 		return;
 	}

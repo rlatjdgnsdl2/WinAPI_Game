@@ -18,15 +18,16 @@ public:
 	APlayer(APlayer&& _Other) noexcept = delete;
 	APlayer& operator=(const APlayer& _Other) = delete;
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
-	virtual void Tick(float _DeltaTime)override;
+	
 
 
-	void LevelChangeStart() override;
-	virtual void SetPokemon(std::string_view _PokemonName)override;
+	virtual void SetPokemon(std::string_view _PokemonName) override;
+
+
 
 protected:
 
 private:
-	
+
 };
 

@@ -21,23 +21,27 @@ public:
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
+	void InitSpawn();
 
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	void SetAllPokemon(std::vector<class APokemon*>& _PokemonPool) {
-		std::copy(_PokemonPool.begin(), _PokemonPool.end(), std::back_inserter(AllAIPokemon));
+	void SetPlayer(class APlayer* _Player) {
+		Player = _Player;
 	}
 
 	void PushPlayerCamp(class APokemon* _PlayerCampPokemon) {
 		PlayerCamp.push_back(_PlayerCampPokemon);
 	}
+
 	void PushEnemyCamp(class APokemon* _EnemyCampPokemon) {
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
 
+	void SpawnEnemyPokemon();
+	
 
-	void SetSpawn();
+
 
 	UPathFindAStar PathFinder;
 protected:
@@ -54,21 +58,16 @@ private:
 	std::vector<class APokemon*> SkillPokemon;
 
 
-	
-	FVector2D PlayerMoveVec;
-	DIR PlayerDir;
 	TurnType CurTurnType;
+	FVector2D PlayerMoveDir;
 	float CurDuration = 0.0f;
-
-	SkillType PlayerSkillType;
-	int PlayerInput = 0;
 
 
 	//	Idle
 	void PlayerSelect();
 	//	Select Type
-	void SelectMove(int _PlayerInput);
-	void SelectSkill(int _PlayerInput);
+	void SelectMove();
+	void SelectSkill();
 	//	AI Check
 	void Move_AISelect(float _DeltaTime);
 	void Skill_AISelect(float _DeltaTime);
@@ -80,6 +79,6 @@ private:
 	void AISkill(float _DeltaTime);
 
 	//	move
-	bool InitPlayerMove(DIR direction, FVector2D moveVector);
+	bool InitPlayerMove(FVector2D moveVector);
 
 };

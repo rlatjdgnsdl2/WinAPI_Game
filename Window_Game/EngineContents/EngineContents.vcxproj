@@ -172,7 +172,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameDataManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Partner.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -243,7 +251,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameDataManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
       <SubType>
       </SubType>
     </ClCompile>
