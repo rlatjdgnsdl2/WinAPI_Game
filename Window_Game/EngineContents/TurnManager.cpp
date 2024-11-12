@@ -1,9 +1,10 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
-#include <EngineCore/EngineAPICore.h>
 #include <EngineBase/EngineRandom.h>
-#include <EngineCore/EngineCoreDebug.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineWindow.h>
+#include <EngineCore/EngineAPICore.h>
+#include <EngineCore/EngineCoreDebug.h>
 
 
 #include "Player.h"
@@ -12,7 +13,7 @@
 
 
 
-ATurnManager::ATurnManager() :CurTurnType{ TurnType::Player_Select }, PlayerDir{ DIR::Down }, PlayerInput{0}
+ATurnManager::ATurnManager() :CurTurnType{ TurnType::Player_Select }, PlayerDir{ DIR::Down }, PlayerInput{ 0 }
 {
 	
 }
@@ -26,12 +27,16 @@ void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	//	MainPawn 연결
-	SetPlayer();
+	AActor* PlayerActor = GetWorld()->GetPawn();
+	Player = dynamic_cast<APlayer*>(PlayerActor);
+	//	카메라 피봇설정
+	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	GetWorld()->SetCameraPivot(WindowSize.Half()*-1.0f);
+	SetSpawn();
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
-
-	SetSpawn();
 	PathFinder.SetData(this);
+	PushPlayerCamp(Player);
 	CurTurnType = TurnType::Player_Select;
 }
 
@@ -71,34 +76,23 @@ void ATurnManager::Tick(float _DeltaTime)
 	}
 }
 
-void ATurnManager::SetPlayer()
-{
-	AActor* PlayerActor = GetWorld()->GetPawn();
-	Player = dynamic_cast<APlayer*>(PlayerActor);
-}
+
 
 
 void ATurnManager::SetSpawn()
 {
 	UEngineRandom Random;
-	// player pos
+
+	// Player Spawn
 	int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
 	int Index = Random.RandomInt(0, MaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 	GetWorld()->GetPawn()->SetActorLocation(RoomLocation);
 
 
-	
-
-
-
-
-
-
-
-
-	std::list<APokemon*>::iterator StartIter = AllPokemon.begin();
-	std::list<APokemon*>::iterator EndIter = AllPokemon.end();
+	//	몬스터 Spawn
+	std::list<APokemon*>::iterator StartIter = AllAIPokemon.begin();
+	std::list<APokemon*>::iterator EndIter = AllAIPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
@@ -108,6 +102,10 @@ void ATurnManager::SetSpawn()
 			FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
 			if (RoomLocation != Player->GetActorLocation()) {
 				CurPokemon->SetActorLocation(RoomLocation);
+				FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
+				CurPokemon->SetStartLocation(CurPokemonLocation);
+				CurPokemon->SetStartLocation(CurPokemonLocation);
+				
 				IsSpawnable = true;
 			}
 		}

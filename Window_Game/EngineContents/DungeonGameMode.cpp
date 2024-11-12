@@ -15,7 +15,7 @@
 
 ADungeonGameMode::ADungeonGameMode()
 {
-	PokemonPool.resize(20, nullptr);
+	PokemonPool.resize(10, nullptr);
 }
 
 ADungeonGameMode::~ADungeonGameMode()
@@ -58,7 +58,8 @@ void ADungeonGameMode::LevelChangeStart()
 	DungeonInfo CurDungeonInfo = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName);
 	int MaxCount = CurDungeonInfo.Pokemons_In_Dongeon.size() - 1;
 	UEngineRandom Random;
-	//	3. 몬스터생성
+
+		//3. 몬스터생성
 	for (int i = 0; i < PokemonPool.size(); i++)
 	{
 		if (nullptr == PokemonPool[i]) {
@@ -66,15 +67,17 @@ void ADungeonGameMode::LevelChangeStart()
 			PokemonPool[i] = NewPokemon;
 		}
 		int Index = Random.RandomInt(0,MaxCount);
+		//	던전에 사는 포켓몬으로 설정
 		PokemonPool[i]->SetPokemon(CurDungeonInfo.Pokemons_In_Dongeon[Index]);
 
 	}
+	TurnManager->SetAllPokemon(PokemonPool);
 }
 
 void ADungeonGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
-	Dungeon->RoomLocationClear();
+	Dungeon->RoomClear();
 }
 
 

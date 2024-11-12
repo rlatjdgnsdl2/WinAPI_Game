@@ -69,8 +69,8 @@ void ATurnManager::PlayerSelect()
 
 	
 	// AI Idle
-	std::list<class APokemon*> ::iterator StartIter = AllPokemon.begin();
-	std::list<class APokemon*> ::iterator EndIter = AllPokemon.end();
+	std::list<class APokemon*> ::iterator StartIter = AllAIPokemon.begin();
+	std::list<class APokemon*> ::iterator EndIter = AllAIPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;

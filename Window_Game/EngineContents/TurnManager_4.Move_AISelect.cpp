@@ -6,7 +6,7 @@
 
 
 bool SortFunc(APokemon* first, APokemon* second) {
-	if (first->GetPokemonStat().Speed > second->GetPokemonStat().Speed) 
+	if (first->GetPokemonStat().Speed > second->GetPokemonStat().Speed)
 	{
 		return true;
 	}
@@ -19,10 +19,13 @@ bool SortFunc(APokemon* first, APokemon* second) {
 void ATurnManager::Move_AISelect(float _DeltaTime)
 {
 	// speed로 정렬
-	AllPokemon.sort(SortFunc);
+	AllAIPokemon.sort(SortFunc);
+	PlayerCamp.sort(SortFunc);
+	EnemyCamp.sort(SortFunc);
+
 	//	모든 AI포켓몬들
-	std::list<class APokemon*> ::iterator StartIter = AllPokemon.begin();
-	std::list<class APokemon*> ::iterator EndIter = AllPokemon.end();
+	std::list<class APokemon*> ::iterator StartIter = AllAIPokemon.begin();
+	std::list<class APokemon*> ::iterator EndIter = AllAIPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
@@ -33,8 +36,8 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 		CampType CurCamp = CurPokemon->GetCurCamp();
 
 		// 비교할포켓몬들
-		std::list<class APokemon*> ::iterator CompareStartIter = AllPokemon.begin();
-		std::list<class APokemon*> ::iterator CompareEndIter = AllPokemon.end();
+		std::list<class APokemon*> ::iterator CompareStartIter = AllAIPokemon.begin();
+		std::list<class APokemon*> ::iterator CompareEndIter = AllAIPokemon.end();
 		for (; CompareStartIter != CompareEndIter; CompareStartIter++)
 		{
 			//	나 자신이면 건너뜀
@@ -61,20 +64,37 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 					CurPokemon->SetTargetPokemon(ComparePokemon);
 					SkillPokemon.push_back(CurPokemon);
 					//	타겟을 찾음
-					if (true==IsFindTarget) {
+					if (true == IsFindTarget) {
 						break;
 					}
 
 				}
-				
+
 			}
-			if (false == IsFindTarget) {
-				MovePokemon.push_back(CurPokemon);
-			}
-			int a = 0;
+
 
 		}
 
+		if (false == IsFindTarget) {
+			FIntPoint StartIndex = CurPokemon->GetActorLocation().ConvertToPoint() / 72;
+			FIntPoint TargetIndex = Player->GetTargetLocation().ConvertToPoint() / 72;
+			std::list<FIntPoint> PathIndexList = PathFinder.PathFind(StartIndex, TargetIndex);
+			std::list<FIntPoint>::iterator StartIter = PathIndexList.begin();
+			if (PathIndexList.size() == 0) {
+
+				CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
+				CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
+			}
+			else {
+				StartIndex = *StartIter;
+				StartIter++;
+				TargetIndex = *StartIter;
+				CurPokemon->SetStartLocation(FVector2D(StartIndex.X * 72.0f, StartIndex.Y * 72.0f));
+				CurPokemon->SetTargetLocation(FVector2D(TargetIndex.X * 72.0f, TargetIndex.Y * 72.0f));
+
+			}
+			MovePokemon.push_back(CurPokemon);
+		}
 	}
 
 	// 다음단계
@@ -94,14 +114,14 @@ bool ATurnManager::IsMove(const FIntPoint& _Point)
 		return false;
 	}
 
-	// 다른포켓몬이 이동할 곳이면
+	//다른포켓몬이 이동할 곳이면
 	std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
 	std::vector<APokemon*>::iterator EndIter = MovePokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
 		FVector2D CurPokemonTargetLocation = CurPokemon->GetTargetLocation();
-		if (CurPokemonTargetLocation.ConvertToPoint() == CheckPoint * 72) {
+		if (CurPokemonTargetLocation.ConvertToPoint() / 72 == CheckPoint) {
 			return false;
 		}
 	}

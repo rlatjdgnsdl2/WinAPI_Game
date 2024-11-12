@@ -30,8 +30,8 @@ void PMDContentsCore::BeginPlay()
 	//	게임타이틀 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
-	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
-	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
+	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
 	//	Level생성
 	CreateLevel();
 
@@ -107,6 +107,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Mudkip", PokemonAnimaionInfo({ 10,2,7,6 }));
+	UGameDataManager::GetInst().InsertPlayerAbility("Mudkip", PokemonAbility(5, 45, 20, 20, 20, 20, 15));
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
@@ -114,6 +115,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Vulpix", PokemonAnimaionInfo({ 11,2,4,5 }));
+	UGameDataManager::GetInst().InsertPlayerAbility("Vulpix", PokemonAbility(5, 45, 20, 20, 20, 20, 15));
 
 	//	Dungeon
 	//	BeachCave
@@ -126,28 +128,28 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Kabuto", PokemonAnimaionInfo({ 11,2,3,4 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Kabuto", PokemonAbility( 30,10,10,10,10,15 ));
+	UGameDataManager::GetInst().InsertPokemonAbility("Kabuto", PokemonAbility(5, 30,10,10,10,10,15 ));
 
 	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Shellos", PokemonAnimaionInfo({ 13,2,3,6 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Shellos", PokemonAbility(30, 10, 10, 10, 10, 14));
+	UGameDataManager::GetInst().InsertPokemonAbility("Shellos", PokemonAbility(5, 30, 10, 10, 10, 10, 14));
 
 	UImageManager::GetInst().CuttingSprite("Shellder_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Idle.png", 4, 8);
 	UImageManager::GetInst().CuttingSprite("Shellder_Walk.png", 6, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Shellder", PokemonAnimaionInfo({ 10,2,4,6 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Shellder", PokemonAbility(30, 10, 10, 10, 10, 13));
+	UGameDataManager::GetInst().InsertPokemonAbility("Shellder", PokemonAbility(5, 30, 10, 10, 10, 10, 13));
 
 	UImageManager::GetInst().CuttingSprite("Corsola_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
 	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
 	UGameDataManager::GetInst().InsertPokemonAnimationInfo("Corsola", PokemonAnimaionInfo({ 10,2,3,4 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Corsola", PokemonAbility(30, 10, 10, 10, 10, 12));
+	UGameDataManager::GetInst().InsertPokemonAbility("Corsola", PokemonAbility(5, 30, 10, 10, 10, 10, 12));
 	//	이 던전에 나오는 포켓몬들 
 	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", {{"Kabuto","Shellos","Shellder","Corsola"} });
 

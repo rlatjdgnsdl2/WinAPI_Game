@@ -33,8 +33,6 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	CurDuration = 0.0f;
 	CurDir = DIR::Down;
 	CurCamp = CampType::Enemy;
-	StartLocation = GetActorLocation();
-	TargetLocation = GetActorLocation();
 	SkillType CurSkillType = SkillType::NormalAttack;
 	CurPokemonAbility = UGameDataManager::GetInst().GetPokemonAbility(CurPokemonName);
 }
@@ -48,7 +46,7 @@ void APokemon::Idle()
 void APokemon::Move(float _DeltaTime)
 {
 	CurDuration += _DeltaTime;
-	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration *2.0f);	//나중에 스피드 설정
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration *2.0f);	
 	SetActorLocation(NewLocation);
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string((int)CurDir));
 	SpriteRenderer->SetSpriteScale();

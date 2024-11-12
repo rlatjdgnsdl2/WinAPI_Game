@@ -12,18 +12,23 @@ ADungeon_BSP::ADungeon_BSP()
 {
 	Tiles.resize(Height, std::vector<Tile>(Width));
 	SetActorLocation({ 0,0 });
-	
+
 }
 
 ADungeon_BSP::~ADungeon_BSP()
 {
-	delete root;
+	if (root != nullptr) {
+		delete root;
+	}
 }
 
 
-void ADungeon_BSP::RoomLocationClear()
+void ADungeon_BSP::RoomClear()
 {
 	RoomLocations.clear();
+	if (root != nullptr) {
+		delete root;
+	}
 }
 
 void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
@@ -112,7 +117,7 @@ void ADungeon_BSP::InitDungeon()
 				CreateTile(x, y, { 72,72 }, CurDungeonName + "_Wall.png", 4);
 				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::WALL);
-				
+
 			}
 			SetTile(x, y, CurDungeonName + "_Wall.png", 4);
 			Tiles[y][x].SpriteRenderer->SetSpriteScale();
@@ -251,7 +256,7 @@ void ADungeon_BSP::SetNaturally()
 	for (int y = 0; y < Height; y++) {
 		for (int x = 0; x < Width; x++) {
 			Tile& tile = Tiles[y][x];
-			if (nullptr!=tile.SpriteRenderer) {
+			if (nullptr != tile.SpriteRenderer) {
 				// 타일 종류 설정
 				std::string SpriteName = tile.SpriteRenderer->GetCurSpriteName();
 				std::string TypeName = SpriteName.substr(SpriteName.find('_'));

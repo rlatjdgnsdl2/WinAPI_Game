@@ -20,15 +20,25 @@ public:
 
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
-	void SetPlayer();
+
 
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	void SetAllPokemon(std::list<class APokemon*>& _PokemonPool) {
-		AllPokemon = _PokemonPool;
+	void SetAllPokemon(std::vector<class APokemon*>& _PokemonPool) {
+		std::copy(_PokemonPool.begin(), _PokemonPool.end(), std::back_inserter(AllAIPokemon));
 	}
+
+	void PushPlayerCamp(class APokemon* _PlayerCampPokemon) {
+		PlayerCamp.push_back(_PlayerCampPokemon);
+	}
+	void PushEnemyCamp(class APokemon* _EnemyCampPokemon) {
+		EnemyCamp.push_back(_EnemyCampPokemon);
+	}
+
+
 	void SetSpawn();
+
 	UPathFindAStar PathFinder;
 protected:
 
@@ -36,9 +46,16 @@ private:
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
 
-	std::list<class APokemon*> AllPokemon;
+	std::list<class APokemon*> AllAIPokemon;
 	std::vector<class APokemon*> MovePokemon;
 	std::vector<class APokemon*> SkillPokemon;
+
+	std::list<class APokemon*> PlayerCamp;
+	std::list<class APokemon*> EnemyCamp;
+
+	
+
+
 
 	FVector2D PlayerMoveVec;
 	DIR PlayerDir;

@@ -23,7 +23,7 @@ public:
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
 
-	void RoomLocationClear();
+	void RoomClear();
 	void Generate(std::string_view _CurDungeonName);
 
 	Room getRoom(Node* node) const;
