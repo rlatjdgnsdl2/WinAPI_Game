@@ -14,10 +14,7 @@ APlayer::APlayer()
 	
 }
 
-APlayer::APlayer(std::string_view _CurPokemonName):APokemon(_CurPokemonName)
-{
 
-}
 
 APlayer::~APlayer()
 {

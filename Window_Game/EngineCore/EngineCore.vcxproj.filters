@@ -40,6 +40,9 @@
     <ClInclude Include="EngineCoreDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
+    <ClInclude Include="PathFindAstar.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -81,6 +84,9 @@
     <ClCompile Include="EngineCoreDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="PathFindAstar.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -112,6 +118,9 @@
     </Filter>
     <Filter Include="Objects\Components\Collision">
       <UniqueIdentifier>{72f78593-5131-4299-a109-85088149c447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{056fa24e-8a07-422a-a3b2-34ac2d6170b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

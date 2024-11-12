@@ -15,8 +15,8 @@
 
 ATileMap::ATileMap()
 {
-	
-	
+
+
 }
 ATileMap::~ATileMap()
 {
@@ -45,6 +45,8 @@ void ATileMap::SetTile(int _x, int _y, std::string_view _SpriteName, int _Index)
 {
 	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName.data(), _Index);
 }
+
+
 
 
 

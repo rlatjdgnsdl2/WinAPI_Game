@@ -8,6 +8,7 @@ public:
 	static float Sqrt(float _Value) { return ::sqrtf(_Value); }
 };
 
+class FVector2D;
 // 정수 좌표를 나타내는 클래스
 class FIntPoint
 {
@@ -47,6 +48,19 @@ public:
 		Result.Y = Y / _Value;
 		return Result;
 	}
+
+	FIntPoint operator*(int _Value) const
+	{
+		FIntPoint Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
+	}
+
+
+
+
+
 
 	bool operator==(FIntPoint _Other) const
 	{

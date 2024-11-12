@@ -5,15 +5,13 @@
 
 
 
+
 //	설명:
 class APokemon :public AActor
 {
 public:
-
-	friend class TurnManager;
 	//	constrcuter, destructer
 	APokemon();
-	APokemon(std::string_view _CurPokemonName);
 	virtual ~APokemon();
 
 	//	delete Function
@@ -50,7 +48,14 @@ public:
 	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
 	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
 
+	PokemonAbility GetPokemonStat() const { return CurPokemonAbility; }
+	void SetPokemonStat(PokemonAbility _PokemonStat){ CurPokemonAbility = _PokemonStat; }
+
+
+
 	virtual void AnimationSetting();
+
+	
 	
 
 
@@ -59,13 +64,20 @@ protected:
 	class USpriteRenderer* SpriteRenderer;
 	PokemonAnimaionInfo CurPokemonAnimationInfo;
 
-	class APokemon* TargetPokemon;
-	float CurDuration;
+	//	기본
 	CampType CurCamp;
 	DIR CurDir;
+
+	//	이동관련
+	float CurDuration;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
+
+	//	전투관련
+	class APokemon* TargetPokemon;
 	SkillType CurSkillType;
+
+	PokemonAbility CurPokemonAbility;
 
 
 private:

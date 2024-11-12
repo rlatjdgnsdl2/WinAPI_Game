@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/PathFindAstar.h>
+
 
 
 
@@ -16,7 +18,6 @@ public:
 		TileType TileType;
 		FTransform TileTrans;
 	};
-
 	//	constrcuter, destructer
 	ATileMap();
 	virtual ~ATileMap();
@@ -38,10 +39,40 @@ public:
 		Tiles[_y][_x].TileType = _TileType;
 	}
 
+	FIntPoint GetITileIndex(const FVector2D& _Location) {
+		FIntPoint Result;
+		Result = _Location.ConvertToPoint();
+		Result = Result / size;
+		return Result;
+	}
+	
+
+
+	bool IsOver(const FIntPoint& _FIntPoint) {
+		if (0 > _FIntPoint.X) {
+			return true;
+		}
+		if (0 > _FIntPoint.Y) {
+			return true;
+		}
+		if ( Width < _FIntPoint.X) {
+			return true;
+		}
+		if (Height < _FIntPoint.Y) {
+			return true;
+		}
+		return false;
+
+	}
+
 protected:
 	std::vector <std::vector<Tile>> Tiles;
+	int Width = 60;
+	int Height = 40;
+	int size = 72;
 
 private:
+	
 	
 
 };

@@ -67,16 +67,10 @@ void ATurnManager::PlayerSelect()
 		return;
 	}
 
-	// 디버그모드
-	if (UEngineInput::GetInst().IsDown('U')) {
-		PlayerInput = 'U';
-		GetWorld()->SetCameraToMainPawn(false);
-		CurTurnType = TurnType::DebugMode;
-		return;
-	}
+	
 	// AI Idle
-	std::vector<class APokemon*> ::iterator StartIter = AllPokemon.begin();
-	std::vector<class APokemon*> ::iterator EndIter = AllPokemon.end();
+	std::list<class APokemon*> ::iterator StartIter = AllPokemon.begin();
+	std::list<class APokemon*> ::iterator EndIter = AllPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;

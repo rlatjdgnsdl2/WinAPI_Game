@@ -19,9 +19,6 @@
     <ClInclude Include="Player.h">
       <Filter>LevelObjects\00.Global</Filter>
     </ClInclude>
-    <ClInclude Include="Partner.h">
-      <Filter>LevelObjects\00.Global</Filter>
-    </ClInclude>
     <ClInclude Include="TitleAnim.h">
       <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClInclude>
@@ -81,9 +78,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>LevelObjects\00.Global</Filter>
     </ClCompile>
-    <ClCompile Include="Partner.cpp">
-      <Filter>LevelObjects\00.Global</Filter>
-    </ClCompile>
     <ClCompile Include="TitleAnim.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
@@ -137,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="DungeonSelectActor.cpp">
       <Filter>LevelObjects\02.DungeonSelectLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="TurnManager_0.DebugMode.cpp">
-      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>

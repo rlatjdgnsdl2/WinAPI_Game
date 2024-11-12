@@ -20,5 +20,6 @@ void ATurnManager::AISkill(float _DeltaTime)
 
 		CurDuration = 0.0f;
 	}*/
+	SkillPokemon.clear();
 	CurTurnType = TurnType::Player_Select;
 }

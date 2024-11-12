@@ -8,13 +8,13 @@
 
 #include "Player.h"
 #include "Dungeon_BSP.h"
-#include "Partner.h"
+
 
 
 
 ATurnManager::ATurnManager() :CurTurnType{ TurnType::Player_Select }, PlayerDir{ DIR::Down }, PlayerInput{0}
 {
-
+	
 }
 
 ATurnManager::~ATurnManager()
@@ -27,13 +27,11 @@ void ATurnManager::LevelChangeStart()
 	Super::LevelChangeStart();
 	//	MainPawn ¿¬°á
 	SetPlayer();
-	PlayerCamp.push_back(Player);
 	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
 
-	SetSpawnPos();
-	
-	
+	SetSpawn();
+	PathFinder.SetData(this);
 	CurTurnType = TurnType::Player_Select;
 }
 
@@ -69,9 +67,6 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::AI_Skill:
 		AISkill(_DeltaTime);
 		break;
-	case TurnType::DebugMode:
-		DebugMode(_DeltaTime);
-		break;
 
 	}
 }
@@ -83,7 +78,7 @@ void ATurnManager::SetPlayer()
 }
 
 
-void ATurnManager::SetSpawnPos()
+void ATurnManager::SetSpawn()
 {
 	UEngineRandom Random;
 	// player pos
@@ -93,8 +88,17 @@ void ATurnManager::SetSpawnPos()
 	GetWorld()->GetPawn()->SetActorLocation(RoomLocation);
 
 
-	std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
-	std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
+	
+
+
+
+
+
+
+
+
+	std::list<APokemon*>::iterator StartIter = AllPokemon.begin();
+	std::list<APokemon*>::iterator EndIter = AllPokemon.end();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;

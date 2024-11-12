@@ -33,8 +33,8 @@ enum class TurnType
 	Move_AI_Select,
 	Skill_AI_Select,
 	AI_Move,
-	AI_Skill,
-	DebugMode,
+	AI_Skill
+
 };
 
 enum class SkillType

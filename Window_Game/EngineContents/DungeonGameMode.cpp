@@ -15,11 +15,12 @@
 
 ADungeonGameMode::ADungeonGameMode()
 {
-
+	PokemonPool.resize(20, nullptr);
 }
 
 ADungeonGameMode::~ADungeonGameMode()
 {
+
 }
 
 
@@ -36,41 +37,44 @@ void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 
-	// 턴매니저 생성
+	// 1. 턴매니저 생성
 	if (nullptr == TurnManager) {
 		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
 	}
 
-	//	던전생성
-	if (nullptr == TurnManager->Dungeon) {
+	//	2. 던전 생성
+	if (nullptr == Dungeon) {
 
 		ADungeon_BSP* NewDungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
-		TurnManager->Dungeon = NewDungeon;
+		Dungeon = NewDungeon;
 	}
-	//	던전이름 받아와서
+
+	//	던전 이름 받아와서
 	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
-	//	던전생성
-	TurnManager->Dungeon->Generate(CurDungeonName);
-	//	던전에 사는 포켓몬 받아와서
-	std::vector<std::string> Pokemons_In_Dungeon = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName).Pokemons_In_Dongeon;
+	//	던전 형태 생성
+	Dungeon->Generate(CurDungeonName);
+	TurnManager->SetDungeon(Dungeon);
+
+	DungeonInfo CurDungeonInfo = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName);
+	int MaxCount = CurDungeonInfo.Pokemons_In_Dongeon.size() - 1;
 	UEngineRandom Random;
-	int MaxIndex = static_cast<int>(Pokemons_In_Dungeon.size());
-	//	생성
-	for (int i = 0; i < 3; i++)
+	//	3. 몬스터생성
+	for (int i = 0; i < PokemonPool.size(); i++)
 	{
-		int Index = Random.RandomInt(0, MaxIndex-1);
-		//	이러면 LevelChage마다 계속 생성되는데 levelend때 destroy해야하나?
-		APokemon* NewPokemon = GetWorld()->SpawnActor<APokemon>(Pokemons_In_Dungeon[Index]);
-		TurnManager->PushAllPokemon(NewPokemon);
-		TurnManager->PushEnemy(NewPokemon);
+		if (nullptr == PokemonPool[i]) {
+			APokemon* NewPokemon = GetWorld()->SpawnActor<APokemon>();
+			PokemonPool[i] = NewPokemon;
+		}
+		int Index = Random.RandomInt(0,MaxCount);
+		PokemonPool[i]->SetPokemon(CurDungeonInfo.Pokemons_In_Dongeon[Index]);
+
 	}
 }
 
 void ADungeonGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
-	TurnManager->Dungeon->RoomLocationClear();
-	TurnManager->AllClear();
+	Dungeon->RoomLocationClear();
 }
 
 

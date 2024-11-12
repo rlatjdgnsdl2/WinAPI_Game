@@ -10,32 +10,33 @@
 APokemon::APokemon()
 {
 }
-APokemon::APokemon(std::string_view _CurPokemonName)
-{
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SetPokemon(_CurPokemonName);
-}
+
 APokemon::~APokemon()
 {
 
 }
 
+
 void APokemon::SetPokemon(std::string_view _PokemonName)
 {
+	if (SpriteRenderer == nullptr) {
+		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	}
 	CurPokemonName = _PokemonName;
 	SpriteRenderer->SetSprite(CurPokemonName + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
-	CurPokemonAnimationInfo = UGameDataManager::GetInst().GetPokemonInfo(CurPokemonName);
+	CurPokemonAnimationInfo = UGameDataManager::GetInst().GetPokemonAnimationInfo(CurPokemonName);
 	AnimationSetting();
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 
 	TargetPokemon = nullptr;
 	CurDuration = 0.0f;
 	CurDir = DIR::Down;
-	CurCamp = CampType::None;
+	CurCamp = CampType::Enemy;
 	StartLocation = GetActorLocation();
 	TargetLocation = GetActorLocation();
 	SkillType CurSkillType = SkillType::NormalAttack;
+	CurPokemonAbility = UGameDataManager::GetInst().GetPokemonAbility(CurPokemonName);
 }
 
 void APokemon::Idle()

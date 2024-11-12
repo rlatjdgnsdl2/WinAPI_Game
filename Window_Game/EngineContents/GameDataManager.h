@@ -1,6 +1,6 @@
 #pragma once
 
-// 설명 :
+// 설명 : 게임데이터관련 클래스
 class UGameDataManager
 {
 public:
@@ -20,19 +20,19 @@ public:
 	}
 
 	//	PokemonInfo
-	void InsertPokemonInfo(std::string_view _PokemonName, PokemonAnimaionInfo _PokemonInfo) {
-		PokemonInfos.insert({ _PokemonName.data(),_PokemonInfo });
+	void InsertPokemonAnimationInfo(std::string_view _PokemonName, PokemonAnimaionInfo _PokemonAnimationInfos) {
+		PokemonAnimationInfos.insert({ _PokemonName.data(),_PokemonAnimationInfos });
 	}
-	const PokemonAnimaionInfo GetPokemonInfo(std::string_view _PokemonName) const {
-		return PokemonInfos.find(_PokemonName.data())->second;
+	const PokemonAnimaionInfo GetPokemonAnimationInfo(std::string_view _PokemonName) const {
+		return PokemonAnimationInfos.find(_PokemonName.data())->second;
 	}
 
 	//	PokemonData
-	void InsertPokemonData(std::string_view _PokemonName, PokemonStat _PokemonData) {
-		PokemonDatas.insert({ _PokemonName.data(),_PokemonData });
+	void InsertPokemonAbility(std::string_view _PokemonName, PokemonAbility _PokemonAbility) {
+		PokemonAbilities.insert({ _PokemonName.data(), _PokemonAbility });
 	}
-	const PokemonStat GetPokemonData(std::string_view _PokemonName) const {
-		return PokemonDatas.find(_PokemonName.data())->second;
+	const PokemonAbility GetPokemonAbility(std::string_view _PokemonName) const {
+		return PokemonAbilities.find(_PokemonName.data())->second;
 	}
 
 	//	DungeonInfo
@@ -48,12 +48,10 @@ public:
 
 
 
-	std::string GetSelectDungeon() const
-	{
+	std::string GetSelectDungeon() const{
 		return SelectDungeon;
 	}
-	void SetSelectDungeon(std::string_view _SelectDungeon)
-	{
+	void SetSelectDungeon(std::string_view _SelectDungeon){
 		 SelectDungeon = _SelectDungeon;
 	}
 
@@ -64,8 +62,8 @@ protected:
 private:
 	UGameDataManager();
 	std::string SelectDungeon = "BeachCave";
-	std::map<std::string, PokemonAnimaionInfo > PokemonInfos;
-	std::map<std::string, PokemonStat > PokemonDatas;
+	std::map<std::string, PokemonAnimaionInfo > PokemonAnimationInfos;
+	std::map<std::string, PokemonAbility > PokemonAbilities;
 	std::map<std::string, DungeonInfo> DungeonInfos;
 
 	

@@ -11,7 +11,6 @@ public:
 
 	//	constrcuter, destructer
 	APlayer();
-	APlayer(std::string_view _CurPokemonName);
 	virtual ~APlayer();
 
 	//	delete Function

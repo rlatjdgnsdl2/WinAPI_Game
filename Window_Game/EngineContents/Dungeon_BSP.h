@@ -6,6 +6,7 @@
 
 
 
+
 //	Ό³Έν:
 class ADungeon_BSP : public ATileMap
 
@@ -38,8 +39,6 @@ private:
 	UEngineRandom Random;
 	std::string CurDungeonName;
 	Node* root;
-	int Width = 60; 
-	int Height = 40;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
 	

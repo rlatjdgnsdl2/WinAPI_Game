@@ -25,14 +25,38 @@ struct Node {
 
 struct PokemonAnimaionInfo
 {
+	PokemonAnimaionInfo() {}
+	PokemonAnimaionInfo(
+		int _AttackAnimCount,
+		int _HurtAnimCount,
+		int _IdleAnimCount,
+		int _WalkAnimCount) :
+		AttackAnimCount(_AttackAnimCount),
+		HurtAnimCount(_HurtAnimCount),
+		IdleAnimCount(_IdleAnimCount),
+		WalkAnimCount(_WalkAnimCount) {}
 	int AttackAnimCount;
 	int HurtAnimCount;
 	int IdleAnimCount;
 	int WalkAnimCount;
 };
 
-struct PokemonStat 
+struct PokemonAbility
 {
+	PokemonAbility() {}
+	PokemonAbility(
+		unsigned int _Hp,
+		unsigned int _Attack,
+		unsigned int _Defense,
+		unsigned int _Special_Attack,
+		unsigned int _Special_Defense,
+		unsigned int _Speed) :
+		Hp(_Hp),
+		Attack(_Attack),
+		Defense(_Defense),
+		Special_Attack(_Special_Attack),
+		Special_Defense(_Special_Defense),
+		Speed(_Speed) {}
 	unsigned int Hp;
 	unsigned int Attack;
 	unsigned int Defense;

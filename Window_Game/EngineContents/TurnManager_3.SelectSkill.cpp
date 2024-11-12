@@ -38,8 +38,10 @@ void ATurnManager::SelectSkill(int _PlayerInput)
 		default:
 			break;
 		}
-		std::vector<APokemon*>::iterator StartIter = EnemyCamp.begin();
-		std::vector<APokemon*>::iterator EndIter = EnemyCamp.end();
+
+		//	여기 다시 짜야댐
+		std::list<APokemon*>::iterator StartIter = AllPokemon.begin();
+		std::list<APokemon*>::iterator EndIter = AllPokemon.end();
 		for (;StartIter!=EndIter; StartIter++)
 		{
 			APokemon* EnemyPokemon = *StartIter;

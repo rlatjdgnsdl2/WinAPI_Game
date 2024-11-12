@@ -13,24 +13,28 @@ void ATurnManager::SelectMove(int _PlayerInput)
 
 	if (IsMoveable) {
 		CurTurnType = TurnType::Move_AI_Select;
+		return;
 	}
-	else if (!IsMoveable) {
+	if (!IsMoveable) {
 		CurTurnType = TurnType::Player_Select;
+		return;
 	}
-	//	다음단계
+
 };
 
 bool ATurnManager::InitPlayerMove(DIR direction, FVector2D moveVector)
 {
 	Player->SetCurDir(direction);
 	Player->SetStartLocation(Player->GetActorLocation());
-	Player->SetTargetLocation(Player->GetStartLocation() + moveVector*72);
+	Player->SetTargetLocation(Player->GetStartLocation() + moveVector * 72);
 	FVector2D TargetLocation = Player->GetTargetLocation();
 	TileType TargetTileType = Dungeon->GetTileType(TargetLocation.iX() / 72, TargetLocation.iY() / 72);
-	Player->SetCurDuration(0.0f);
-	if (TileType::GROUND != TargetTileType) {
-		Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
-		return false;
+	if (TileType::GROUND == TargetTileType) {
+		Player->SetCurDuration(0.0f);
+		return true;
 	}
-	return true;
+	Player->SetTargetLocation(Player->GetStartLocation()); // 이동 불가시 원래 위치로
+	return false;
 }
+
+

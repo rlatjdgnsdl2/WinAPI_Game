@@ -27,8 +27,10 @@ protected:
 
 private:
 	// GameDataManger¿¡¼­ ¹Þ¾Æ¿È
-	std::string CurDungeonName;
 	class ATurnManager* TurnManager;
+	class ADungeon_BSP* Dungeon;
+	std::string CurDungeonName;
+	std::vector<class APokemon* > PokemonPool;
 
 
 };
