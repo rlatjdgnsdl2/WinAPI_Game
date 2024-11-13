@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineBase/Object.h>
+#include <EngineBase/TimeEvent.h>
 #include "EngineSprite.h"
+
 
 // Ό³Έν :
 class AActor : public UObject
@@ -75,6 +77,7 @@ public:
 	}
 
 protected:
+	UTimeEvent TimeEventer;
 
 private:
 	static void ComponentBeginPlay();

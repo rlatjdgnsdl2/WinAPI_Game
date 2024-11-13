@@ -63,6 +63,7 @@ void AActor::Tick(float _DeltaTime)
 		Trans.Scale = { 6, 6 };
 		UEngineDebug::CoreDebugRender(Trans, UEngineDebug::EDebugPosType::Circle);
 	}
+	TimeEventer.Update(_DeltaTime);
 	std::list<class UActorComponent*>::iterator StartIter = Components.begin();
 	std::list<class UActorComponent*>::iterator EndIter = Components.end();
 	for (; StartIter != EndIter; ++StartIter)
