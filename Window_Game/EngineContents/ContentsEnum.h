@@ -6,6 +6,7 @@ enum class ERenderOrder
 	BACKGROUND = -1000,
 	COLMAP = -999,
 	PLAYER = 0,
+	ATTACK_Player = 1,
 	UI = 10000,
 };
 enum class TileType
