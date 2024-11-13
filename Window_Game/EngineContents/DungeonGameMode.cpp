@@ -72,7 +72,7 @@ void ADungeonGameMode::LevelChangeStart()
 	TurnManager->PushAllAIPokemon(Partner);
 
 	//	利 积己 抛胶飘内靛
-	/*if (nullptr == Enemy01) {
+	if (nullptr == Enemy01) {
 		Enemy01 = GetWorld()->SpawnActor<AEnemy>();
 	}
 	Enemy01->SetPokemon("Kabuto");
@@ -98,7 +98,7 @@ void ADungeonGameMode::LevelChangeStart()
 	}
 	Enemy04->SetPokemon("Kabuto");
 	TurnManager->PushEnemyCamp(Enemy04);
-	TurnManager->PushAllAIPokemon(Enemy04);*/
+	TurnManager->PushAllAIPokemon(Enemy04);
 
 
 
