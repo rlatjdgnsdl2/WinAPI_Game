@@ -29,6 +29,7 @@ public:
 		int ResultIndex = 0;
 		float CurTime = 0.0f;
 		bool Loop = true;
+		bool IsEnd = false;
 
 		void Reset()
 		{
@@ -114,6 +115,12 @@ public:
 
 	void SetCameraEffectScale(float _Effect);
 	void SetSprite(std::string_view _Name, int _CurIndex = 0);
+	bool IsCurAnimationEnd()
+	{
+		return CurAnimation->IsEnd;
+	}
+
+
 
 protected:
 
