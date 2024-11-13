@@ -80,6 +80,16 @@ public:
 		}
 		return Keys[_KeyIndex].IsFree;
 	}
+	bool IsDoubleClick(int _KeyIndex, float _Time)
+	{
+		if (false == Keys.contains(_KeyIndex))
+		{
+			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
+			return false;
+		}
+
+		return Keys[_KeyIndex].IsDown && Keys[_KeyIndex].FreeTime < _Time;
+	}
 
 	// 키 이벤트에 함수를 바인딩하는 함수
 	void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
@@ -106,6 +116,7 @@ private:
 		// 키가 안누르고 있을때
 		bool IsFree = true;
 		float PressTime = 0.0f;
+		float FreeTime = 0.0f;
 
 		std::vector<std::function<void()>> PressEvents;
 		std::vector<std::function<void()>> DownEvents;
@@ -114,6 +125,7 @@ private:
 
 		void EventCheck();
 		void KeyCheck(float _DeltaTime);
+
 	};
 
 	std::map<int, UEngineKey> Keys;
