@@ -78,7 +78,7 @@ public:
 
 	//	연산자들
 
-	FVector2D operator+(FVector2D _Other) const
+	FVector2D operator+(const FVector2D& _Other) const
 	{
 		FVector2D Result;
 		Result.X = X + _Other.X;
@@ -86,7 +86,7 @@ public:
 		return Result;
 	}
 
-	FVector2D operator-(FVector2D _Other) const
+	FVector2D operator-(const FVector2D& _Other) const
 	{
 		FVector2D Result;
 		Result.X = X - _Other.X;
@@ -109,19 +109,38 @@ public:
 		Result.Y = Y * _Value;
 		return Result;
 	}
-	FVector2D& operator+=(FVector2D _Other)
+
+	FVector2D& operator*=(float _Other)
+	{
+		X *= _Other;
+		Y *= _Other;
+		return *this;
+	}
+
+
+
+	FVector2D& operator+=(const FVector2D& _Other)
 	{
 		X += _Other.X;
 		Y += _Other.Y;
 		return *this;
 	}
 
-	FVector2D& operator-=(FVector2D _Other)
+	FVector2D& operator-=(const FVector2D& _Other)
 	{
 		X -= _Other.X;
 		Y -= _Other.Y;
 		return *this;
 	}
+	FVector2D& operator*=(const FVector2D& _Other)
+	{
+		X *= _Other.X;
+		Y *= _Other.Y;
+		return *this;
+	}
+
+
+
 	// 벡터의 반대 방향을 반환하는 연산자
 	FVector2D operator-() const
 	{
@@ -145,7 +164,7 @@ public:
 	}
 
 	// 비교 연산자 오버로드
-	bool operator==(FVector2D _Other) const
+	bool operator==(const FVector2D& _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
 	}

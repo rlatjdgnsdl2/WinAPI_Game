@@ -2,28 +2,23 @@
 #include "TurnManager.h"
 #include "Pokemon.h"
 
-
+int CurIndex = 0;
 
 void ATurnManager::AISkill(float _DeltaTime)
 {
-
-	std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
-	std::vector<APokemon*>::iterator EndIter = SkillPokemon.end();
-	for (; StartIter != EndIter; StartIter++)
-	{
-		APokemon* CurPokemon = *StartIter;
+	int MaxIndex = SkillPokemon.size();
+	if (CurIndex != MaxIndex) {
+		APokemon* CurPokemon = SkillPokemon[CurIndex];
+		CurPokemon->Skill();
 		if (CurPokemon->IsAttack() == false) {
-			CurPokemon->Skill();
-		}
-
-		else if (CurPokemon->IsAttack() == true) {
-			CurPokemon->Skill();
-			return;
+			CurIndex++;
 		}
 	}
 
-	SkillPokemon.clear();
-	CurTurnType = TurnType::Player_Select;
 
-
+	if (CurIndex == MaxIndex) {
+		CurIndex = 0;
+		SkillPokemon.clear();
+		CurTurnType = TurnType::Player_Select;
+	}
 }
