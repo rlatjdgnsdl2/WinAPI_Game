@@ -18,5 +18,5 @@ void AEnemy::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	CurCamp = CampType::Enemy;
-	CurPokemonAbility = UGameDataManager::GetInst().GetPlayerAbility(CurPokemonName);
+	CurPokemonAbility = UGameDataManager::GetInst().GetPokemonAbility(CurPokemonName);
 }

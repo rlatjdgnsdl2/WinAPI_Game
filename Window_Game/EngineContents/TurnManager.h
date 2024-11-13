@@ -29,6 +29,11 @@ public:
 	void SetPlayer(class APlayer* _Player) {
 		Player = _Player;
 	}
+	
+
+	void PushAllAIPokemon(class APokemon* _AIPokemon) {
+		AllAIPokemon.push_back(_AIPokemon);
+	}
 
 	void PushPlayerCamp(class APokemon* _PlayerCampPokemon) {
 		PlayerCamp.push_back(_PlayerCampPokemon);
@@ -38,7 +43,7 @@ public:
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
 
-	void SpawnEnemyPokemon();
+	
 	
 
 

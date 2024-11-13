@@ -17,8 +17,5 @@ void ATurnManager::SelectSkill()
 		break;
 	}
 
-
-
-
 	CurTurnType = TurnType::Player_Skill;
 }

@@ -10,6 +10,7 @@
 #include "GameDataManager.h"
 #include "Player.h"
 #include "Partner.h"
+#include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
 
@@ -59,13 +60,25 @@ void ADungeonGameMode::LevelChangeStart()
 		AActor* PlayerActor = GetWorld()->GetPawn();
 		Player = dynamic_cast<APlayer*>(PlayerActor);
 	}
+	Player->SetPokemon("Mudkip");
 	TurnManager->SetPlayer(Player);
 	TurnManager->PushPlayerCamp(Player);
 	//	颇飘呈 积己
 	if (nullptr == Partner) {
 		Partner = GetWorld()->SpawnActor<APartner>();
 	}
+	Partner->SetPokemon("Vulpix");
 	TurnManager->PushPlayerCamp(Partner);
+	TurnManager->PushAllAIPokemon(Partner);
+
+	//	利 积己
+	if (nullptr == Enemy) {
+		Enemy = GetWorld()->SpawnActor<AEnemy>();
+	}
+	Enemy->SetPokemon("Kabuto");
+	TurnManager->PushEnemyCamp(Enemy);
+	TurnManager->PushAllAIPokemon(Enemy);
+
 
 
 

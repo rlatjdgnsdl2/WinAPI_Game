@@ -7,6 +7,7 @@
 #include <EngineCore/EngineAPICore.h>
 
 #include "Player.h"
+#include "Partner.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
 
@@ -82,20 +83,68 @@ void ATurnManager::Tick(float _DeltaTime)
 void ATurnManager::InitSpawn()
 {
 	UEngineRandom Random;
-	// Player Spawn 생성된 방중에 랜덤한 위치에 
-	int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
-	int Index = Random.RandomInt(0, MaxSize - 1);
-	FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
-	Player->SetActorLocation(RoomLocation);
-	PushPlayerCamp(Player);
-	//	동료들은 플레이어 옆에 소환되기
+	// Player Camp Spawn 
+	{
+		int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
+		int Index = Random.RandomInt(0, MaxSize - 1);
+		FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
+		std::list<APokemon*>::iterator StartIter = PlayerCamp.begin();
+		APokemon* FirstPokemon = *StartIter;
+		FirstPokemon->SetActorLocation(RoomLocation);
+		StartIter++;
+		std::list<APokemon*>::iterator EndIter = PlayerCamp.end();
+		for (; StartIter != EndIter; StartIter++)
+		{
+			APokemon* CurPokemon = *StartIter;
+			bool IsSpawn = false;
+			FIntPoint FirstTileIndex = FirstPokemon->GetCurTile();
+			for (int y = -1; y <= 1; y++)
+			{
+				if (true == IsSpawn) {
+					break;
+				}
+				for (int x = -1; x <= 1; x++)
+				{
+					TileType CheckTileType = Dungeon->GetTileType(FirstTileIndex.X + x, FirstTileIndex.Y + y);
+					if (TileType::GROUND == CheckTileType) {
+						CurPokemon->SetActorLocation({ (FirstTileIndex.X + x) * 72.0f, (FirstTileIndex.Y + y) * 72.0f });
+						IsSpawn = true;
+						break;
+					}
+				}
+			}
+		}
+
+	}
+	//	Enemy Camp Spawn
+	{
+		std::list<APokemon*>::iterator StartIter = EnemyCamp.begin();
+		std::list<APokemon*>::iterator EndIter = EnemyCamp.end();
+		for (; StartIter != EndIter; StartIter++)
+		{
+			APokemon* CurPokemon = *StartIter;
+			int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
+			int Index = Random.RandomInt(0, MaxSize - 1);
+			FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
+			CurPokemon->SetActorLocation(RoomLocation);
+
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
-void ATurnManager::SpawnEnemyPokemon()
-{
-	APokemon* NewEnemyPokemon = GetWorld()->SpawnActor<APokemon>();
-	
-}
+
 
 
 

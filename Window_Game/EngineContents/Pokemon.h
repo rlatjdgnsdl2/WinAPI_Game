@@ -64,8 +64,8 @@ public:
 		TargetLocation = _TargetTileIndex * 72.0f;
 	}
 	//	ÇöÀç
-	FIntPoint GetCurTile(int _TileSize) {
-		FIntPoint CurTileIndex = (GetActorLocation().ConvertToPoint()) / _TileSize;
+	FIntPoint GetCurTile() {
+		FIntPoint CurTileIndex = (GetActorLocation().ConvertToPoint()) / 72;
 		return CurTileIndex;
 	}
 	void SetCurTileIndex(FIntPoint _TileIndex) {
