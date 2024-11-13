@@ -99,7 +99,14 @@ void USpriteRenderer::Render(float _DeltaTime)
 
 	// Trans.Location -= 카메라포스
 
-	CurData.Image->CopyToTrans(BackBufferImage, Trans, CurData.Transform);
+	if (Alpha == 255)
+	{
+		CurData.Image->CopyToTrans(BackBufferImage, Trans, CurData.Transform);
+	}
+	else
+	{
+		CurData.Image->CopyToAlpha(BackBufferImage, Trans, CurData.Transform, Alpha);
+	}
 }
 
 void USpriteRenderer::BeginPlay()
@@ -169,18 +176,6 @@ FVector2D USpriteRenderer::SetSpriteScale(float _Ratio /*= 1.0f*/, int _CurIndex
 
 	SetComponentScale(CurData.Transform.Scale * _Ratio);
 
-	return Scale;
-}
-
-FVector2D USpriteRenderer::GetSpriteScale(int _CurIndex)
-{
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("스프라이트를 세팅하지 않고 스프라이트 크기로 랜더러 크기를 조정할수 없습니다.");
-		return FVector2D::ZERO;
-	}
-	UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(_CurIndex);
-	FVector2D Scale = CurData.Transform.Scale;
 	return Scale;
 }
 
@@ -280,7 +275,6 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 		MSGASSERT("존재하지 않은 애니메이션으로 변경하려고 했습니다. = " + UpperName);
 		return;
 	}
-
 
 	FrameAnimation* ChangeAnimation = &FrameAnimations[UpperName];
 

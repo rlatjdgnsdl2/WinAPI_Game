@@ -125,6 +125,7 @@ protected:
 private:
 	void ScreenClear();
 	void DoubleBuffering();
+	void BeginPlayCheck();
 
 
 	// 게임레벨과 메인폰 생성함수

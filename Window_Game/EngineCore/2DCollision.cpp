@@ -85,7 +85,7 @@ bool U2DCollision::Collision(int _OtherCollisionGroup, std::vector<AActor*>& _Re
 		ECollisionType ThisType = ThisCollision->CollisionType;
 		ECollisionType DestType = DestCollision->CollisionType;
 
-		bool Result = FTransform::IsCollision(ThisType, ThisTrans, DestType, DestTrans);
+		bool Result = FTransform::Collision(ThisType, ThisTrans, DestType, DestTrans);
 
 		// 충돌 true
 		if (true == Result)
@@ -160,7 +160,7 @@ void U2DCollision::CollisionEventCheck(class U2DCollision* _Other)
 	ECollisionType ThisType = ThisCollision->GetCollisionType();
 	ECollisionType DestType = DestCollision->GetCollisionType();
 
-	bool Result = FTransform::IsCollision(ThisType, ThisTrans, DestType, DestTrans);
+	bool Result = FTransform::Collision(ThisType, ThisTrans, DestType, DestTrans);
 
 	// 충돌 true
 	if (true == Result)

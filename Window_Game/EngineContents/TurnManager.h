@@ -66,6 +66,7 @@ private:
 	TurnType CurTurnType;
 	FVector2D PlayerMoveDir;
 	float CurDuration = 0.0f;
+	int PlayerInput;
 
 
 	//	Idle

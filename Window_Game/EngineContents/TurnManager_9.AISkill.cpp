@@ -13,7 +13,7 @@ void ATurnManager::AISkill(float _DeltaTime)
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
-		CurPokemon->Skill(CurPokemon->GetCurSkillType());
+		CurPokemon->Skill();
 
 	}
 	/*if (CurDuration > 0.5f) {

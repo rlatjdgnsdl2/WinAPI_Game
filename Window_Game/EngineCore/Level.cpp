@@ -50,6 +50,7 @@ ULevel::~ULevel()
 // ³»°¡ CurLevel µÆÀ»´ë
 void ULevel::LevelChangeStart()
 {
+	BeginPlayCheck();
 	{
 		{
 			std::list<AActor*>::iterator StartIter = AllActors.begin();
@@ -114,22 +115,7 @@ void ULevel::LevelChangeEnd()
 
 void ULevel::Tick(float _DeltaTime)
 {
-	{
-		std::list<AActor*>::iterator StartIter = BeginPlayList.begin();
-		std::list<AActor*>::iterator EndIter = BeginPlayList.end();
-
-		for (; StartIter != EndIter; ++StartIter)
-		{
-			AActor* CurActor = *StartIter;
-			CurActor->BeginPlay();
-			AllActors.push_back(CurActor);
-		}
-
-		BeginPlayList.clear();
-
-		// todtjdtl 
-		AActor::ComponentBeginPlay();
-	}
+	BeginPlayCheck();
 
 	{
 		std::list<AActor*>::iterator StartIter = AllActors.begin();
@@ -422,6 +408,28 @@ void ULevel::ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder)
 	Renderers[_PrevOrder].remove(_Renderer);
 
 	Renderers[_Renderer->GetOrder()].push_back(_Renderer);
+
+
+}
+
+void ULevel::BeginPlayCheck()
+{
+	{
+		std::list<AActor*>::iterator StartIter = BeginPlayList.begin();
+		std::list<AActor*>::iterator EndIter = BeginPlayList.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			AActor* CurActor = *StartIter;
+			CurActor->BeginPlay();
+			AllActors.push_back(CurActor);
+		}
+
+		BeginPlayList.clear();
+
+		// todtjdtl 
+		AActor::ComponentBeginPlay();
+	}
 
 
 }

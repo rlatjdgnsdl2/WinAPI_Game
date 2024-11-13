@@ -52,9 +52,9 @@ void APokemon::Move(float _DeltaTime)
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::Skill(SkillType _SkillType)
+void APokemon::Skill()
 {
-	switch (_SkillType)
+	switch (CurSkillType)
 	{
 	case SkillType::NormalAttack:
 		SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string((int)CurDir));
@@ -76,9 +76,16 @@ void APokemon::Hurt()
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::SwitchAttack()
+
+
+void APokemon::StartAttack()
 {
-	IsAttack = !IsAttack;
+	IsAttackValue = true;
+}
+
+void APokemon::EndAttack()
+{
+	IsAttackValue = false;
 }
 
 void APokemon::AnimationSetting()
@@ -124,16 +131,23 @@ void APokemon::AnimationSetting()
 
 	//	Attack
 	float AttackFrame = 1.0f / CurPokemonAnimationInfo.AttackAnimCount;
-	SpriteRenderer->CreateAnimation("AttackAnim_2", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 0, CurPokemonAnimationInfo.AttackAnimCount * 1 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_3", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 1, CurPokemonAnimationInfo.AttackAnimCount * 2 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_6", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 2, CurPokemonAnimationInfo.AttackAnimCount * 3 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_9", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 3, CurPokemonAnimationInfo.AttackAnimCount * 4 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_8", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 4, CurPokemonAnimationInfo.AttackAnimCount * 5 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_7", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 5, CurPokemonAnimationInfo.AttackAnimCount * 6 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_4", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 6, CurPokemonAnimationInfo.AttackAnimCount * 7 - 1, AttackFrame);
-	SpriteRenderer->CreateAnimation("AttackAnim_1", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 7, CurPokemonAnimationInfo.AttackAnimCount * 8 - 1, AttackFrame);
-
-	SpriteRenderer->SetAnimationEvent("AttackAnim_1", CurPokemonAnimationInfo.AttackAnimCount * 7+1, std::bind(&APokemon::SwitchAttack, this));
+	SpriteRenderer->CreateAnimation("AttackAnim_2", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 0, CurPokemonAnimationInfo.AttackAnimCount * 1 - 1, AttackFrame,false);
+	SpriteRenderer->CreateAnimation("AttackAnim_3", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 1, CurPokemonAnimationInfo.AttackAnimCount * 2 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_6", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 2, CurPokemonAnimationInfo.AttackAnimCount * 3 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_9", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 3, CurPokemonAnimationInfo.AttackAnimCount * 4 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_8", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 4, CurPokemonAnimationInfo.AttackAnimCount * 5 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_7", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 5, CurPokemonAnimationInfo.AttackAnimCount * 6 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_4", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 6, CurPokemonAnimationInfo.AttackAnimCount * 7 - 1, AttackFrame, false);
+	SpriteRenderer->CreateAnimation("AttackAnim_1", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 7, CurPokemonAnimationInfo.AttackAnimCount * 8 - 1, AttackFrame, false);
+	// AttackAnimaion
+	SpriteRenderer->SetAnimationEvent("AttackAnim_2", (CurPokemonAnimationInfo.AttackAnimCount * 1 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_3", (CurPokemonAnimationInfo.AttackAnimCount * 2 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_6", (CurPokemonAnimationInfo.AttackAnimCount * 3 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_9", (CurPokemonAnimationInfo.AttackAnimCount * 4 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_8", (CurPokemonAnimationInfo.AttackAnimCount * 5 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_7", (CurPokemonAnimationInfo.AttackAnimCount * 6 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_4", (CurPokemonAnimationInfo.AttackAnimCount * 7 - 1), std::bind(&APokemon::EndAttack, this));
+	SpriteRenderer->SetAnimationEvent("AttackAnim_1", (CurPokemonAnimationInfo.AttackAnimCount * 8 - 1), std::bind(&APokemon::EndAttack, this));
 	//	Hurt
 	float HurtFrame = 1.0f / CurPokemonAnimationInfo.HurtAnimCount;
 	SpriteRenderer->CreateAnimation("HurtAnim_2", CurPokemonName + "_Hurt.png", CurPokemonAnimationInfo.HurtAnimCount * 0, CurPokemonAnimationInfo.HurtAnimCount * 1 - 1, HurtFrame);

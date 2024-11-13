@@ -23,7 +23,7 @@ public:
 	virtual void SetPokemon(std::string_view _PokemonName);
 	virtual void Idle();
 	virtual void Move(float _DeltaTime);
-	virtual void Skill(SkillType _SkillType);
+	virtual void Skill();
 	virtual void Hurt();
 
 	DIR GetCurDir() const {
@@ -87,7 +87,12 @@ public:
 	}
 	void SetPokemonAbility(PokemonAbility _PokemonAbility) { CurPokemonAbility = _PokemonAbility; }
 
-	void SwitchAttack();
+	void StartAttack();
+	void EndAttack();
+
+	bool IsAttack() {
+		return IsAttackValue;
+	};
 
 	virtual void AnimationSetting();
 
@@ -95,7 +100,7 @@ public:
 protected:
 	class USpriteRenderer* SpriteRenderer;
 
-	bool IsAttack = false;
+	bool IsAttackValue = false;
 
 	//	±âº»
 	CampType CurCamp;

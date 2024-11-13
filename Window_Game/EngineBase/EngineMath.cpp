@@ -58,8 +58,8 @@ public:
 	CollisionFunctionInit()
 	{
 		//CollisionFunctionInit 객체가 생성될때 
-		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::Rect)] = FTransform::IsRectToRect;
-		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::IsCircleToCircle;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::Rect)] = FTransform::RectToRect;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::CirCleToCirCle;
 	}
 };
 
@@ -67,14 +67,14 @@ public:
 CollisionFunctionInit Inst = CollisionFunctionInit();
 
 
-bool FTransform::IsCollision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
+bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
 {
 	// 충돌 함수 배열에서 적합한 함수를 호출하여 결과 반환
 	return FTransform::AllCollisionFunction[static_cast<int>(_LeftType)][static_cast<int>(_RightType)](_Left, _Right);
 }
 
 
-bool FTransform::IsCircleToCircle(const FTransform& _Left, const FTransform& _Right)
+bool FTransform::CirCleToCirCle(const FTransform& _Left, const FTransform& _Right)
 {
 	FVector2D Len = _Left.Location - _Right.Location;
 	// 두 반지름의 합보다 중심 거리가 짧으면 충돌
@@ -85,7 +85,7 @@ bool FTransform::IsCircleToCircle(const FTransform& _Left, const FTransform& _Ri
 	return false;
 }
 
-bool FTransform::IsRectToRect(const FTransform& _Left, const FTransform& _Right)
+bool FTransform::RectToRect(const FTransform& _Left, const FTransform& _Right)
 {
 	// 한 사각형이 다른 사각형의 경계를 벗어나면 충돌하지 않음
 	if (_Left.CenterLeft() > _Right.CenterRight())

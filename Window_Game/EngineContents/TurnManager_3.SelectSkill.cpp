@@ -4,14 +4,12 @@
 
 void ATurnManager::SelectSkill()
 {
-	SkillType CurPlayerSKillType = Player->GetCurSkillType();
-	switch (CurPlayerSKillType)
+	
+	switch (PlayerInput)
 	{
-	case SkillType::NormalAttack:
-		break;
-	case SkillType::SpecialAttack:
-		break;
-	case SkillType::UseItem:
+	case 'A':
+		Player->SetCurSkillType(SkillType::NormalAttack);
+		Player->StartAttack();
 		break;
 	default:
 		break;

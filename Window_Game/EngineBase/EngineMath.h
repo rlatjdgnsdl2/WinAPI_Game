@@ -19,7 +19,7 @@ public:
 	}
 
 	template <typename DataType>
-	DataType Clamp(DataType value, DataType minValue, DataType maxValue)
+	static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
 	{
 		if (value < minValue)
 			return minValue;
@@ -170,27 +170,72 @@ class FTransform
 {
 private:
 	friend class CollisionFunctionInit;
-	// 충돌 함수 배열
+
 	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
 
 public:
-	// 두 객체 간 충돌을 검사하는 함수
-	static bool IsCollision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
-	// 사각형 간 충돌 검사 함수
-	static bool IsRectToRect(const FTransform& _Left, const FTransform& _Right);
-	// 원 간 충돌 검사 함수
-	static bool IsCircleToCircle(const FTransform& _Left, const FTransform& _Right);
+	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
+
+	// 완전히 같은 형의 함수죠?
+	static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
+	static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
+
+	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
+	static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+
+	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
+	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+
 
 	FVector2D Scale;
 	FVector2D Location;
 
 
-	FVector2D CenterLeftTop() const { return Location - Scale.Half(); }
-	FVector2D CenterRightBottom() const { return Location + Scale.Half(); }
-	float CenterTop() const { return Location.Y - Scale.hY(); }
-	float CenterBottom() const { return Location.Y + Scale.hY(); }
-	float CenterLeft() const { return Location.X - Scale.hX(); }
-	float CenterRight() const { return Location.X + Scale.hX(); }
+	FVector2D CenterLeftTop() const
+	{
+		return Location - Scale.Half();
+	}
+
+	FVector2D CenterLeftBottom() const
+	{
+		FVector2D Location;
+		Location.X = Location.X - Scale.hX();
+		Location.Y = Location.Y + Scale.hY();
+		return Location;
+	}
+
+	float CenterLeft() const
+	{
+		return Location.X - Scale.hX();
+	}
+
+	float CenterTop() const
+	{
+		return Location.Y - Scale.hY();
+	}
+
+	FVector2D CenterRightTop() const
+	{
+		FVector2D Location;
+		Location.X = Location.X + Scale.hX();
+		Location.Y = Location.Y - Scale.hY();
+		return Location;
+	}
+
+	FVector2D CenterRightBottom() const
+	{
+		return Location + Scale.Half();
+	}
+
+	float CenterRight() const
+	{
+		return Location.X + Scale.hX();
+	}
+
+	float CenterBottom() const
+	{
+		return Location.Y + Scale.hY();
+	}
 };
 
 

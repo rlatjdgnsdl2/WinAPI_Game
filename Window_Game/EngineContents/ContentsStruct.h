@@ -28,31 +28,31 @@ struct PokemonAnimaionInfo
 {
 	PokemonAnimaionInfo() {}
 	PokemonAnimaionInfo(
-		char _AttackAnimCount,
-		char _HurtAnimCount,
-		char _IdleAnimCount,
-		char _WalkAnimCount) :
+		int _AttackAnimCount,
+		int _HurtAnimCount,
+		int _IdleAnimCount,
+		int _WalkAnimCount) :
 		AttackAnimCount(_AttackAnimCount),
 		HurtAnimCount(_HurtAnimCount),
 		IdleAnimCount(_IdleAnimCount),
 		WalkAnimCount(_WalkAnimCount) {}
-	char AttackAnimCount{};
-	char HurtAnimCount{};
-	char IdleAnimCount{};
-	char WalkAnimCount{};
+	int AttackAnimCount{};
+	int HurtAnimCount{};
+	int IdleAnimCount{};
+	int WalkAnimCount{};
 };
 
 struct PokemonAbility
 {
 	PokemonAbility() {}
 	PokemonAbility(
-		unsigned char _Level,
-		unsigned char _Hp,
-		unsigned char _Attack,
-		unsigned char _Defense,
-		unsigned char _Special_Attack,
-		unsigned char _Special_Defense,
-		unsigned char _Speed ) :
+		unsigned int _Level,
+		unsigned int _Hp,
+		unsigned int _Attack,
+		unsigned int _Defense,
+		unsigned int _Special_Attack,
+		unsigned int _Special_Defense,
+		unsigned int _Speed ) :
 		Level(_Level),
 		Hp(_Hp),
 		Attack(_Attack),
@@ -60,13 +60,13 @@ struct PokemonAbility
 		Special_Attack(_Special_Attack),
 		Special_Defense(_Special_Defense),
 		Speed(_Speed) {}
-	unsigned char Level{};
-	unsigned char Hp{};
-	unsigned char Attack{};
-	unsigned char Defense{};
-	unsigned char Special_Attack{};
-	unsigned char Special_Defense{};
-	unsigned char Speed{};
+	unsigned int Level{};
+	unsigned int Hp{};
+	unsigned int Attack{};
+	unsigned int Defense{};
+	unsigned int Special_Attack{};
+	unsigned int Special_Defense{};
+	unsigned int Speed{};
 };
 
 

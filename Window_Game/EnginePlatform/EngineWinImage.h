@@ -41,6 +41,10 @@ public:
 		const FTransform& _RenderTrans,
 		const FTransform& _LTImageTrans,
 		UColor _Color = UColor(255, 0, 255, 0));
+	void CopyToAlpha(UEngineWinImage* _TargetImage,
+		const FTransform& _RenderTrans,
+		const FTransform& _LTImageTrans,
+		unsigned char _Alpha);
 
 	//	이미지 로드 함수 // PNG 로드는 GDI Plus를 이용
 	void Load(UEngineWinImage* _TargetImage, std::string_view _Path);
