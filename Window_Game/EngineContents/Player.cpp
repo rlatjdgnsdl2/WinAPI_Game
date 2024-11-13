@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "GameDataManager.h"
 
+#include <EngineCore/SpriteRenderer.h>
+
 
 
 
@@ -25,6 +27,7 @@ void APlayer::SetPokemon(std::string_view _PokemonName)
 	CurCamp = CampType::Player;
 	CurPokemonAbility = UGameDataManager::GetInst().GetPlayerAbility(CurPokemonName);
 }
+	
 
 
 

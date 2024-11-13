@@ -148,6 +148,7 @@ void APokemon::AnimationSetting()
 	SpriteRenderer->SetAnimationEvent("AttackAnim_7", (CurPokemonAnimationInfo.AttackAnimCount * 6 - 1), std::bind(&APokemon::EndAttack, this));
 	SpriteRenderer->SetAnimationEvent("AttackAnim_4", (CurPokemonAnimationInfo.AttackAnimCount * 7 - 1), std::bind(&APokemon::EndAttack, this));
 	SpriteRenderer->SetAnimationEvent("AttackAnim_1", (CurPokemonAnimationInfo.AttackAnimCount * 8 - 1), std::bind(&APokemon::EndAttack, this));
+
 	//	Hurt
 	float HurtFrame = 1.0f / CurPokemonAnimationInfo.HurtAnimCount;
 	SpriteRenderer->CreateAnimation("HurtAnim_2", CurPokemonName + "_Hurt.png", CurPokemonAnimationInfo.HurtAnimCount * 0, CurPokemonAnimationInfo.HurtAnimCount * 1 - 1, HurtFrame);

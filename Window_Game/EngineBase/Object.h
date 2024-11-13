@@ -68,10 +68,23 @@ public:
 	void DebugOff() { IsDebugValue = false; }
 	void DebugSwitch() { IsDebugValue = !IsDebugValue; }
 
+	void TestDebugOn();
+	void TestDebugOff();
+	void TestDebugCheck()
+	{
+		if (true == TestDebug)
+		{
+			int a = 0;
+		}
+	}
+
 protected:
 
 private:
 	std::string Name;
+
+	bool TestDebug = false;
+
 	bool IsActiveValue = true;
 	bool IsDestroyValue = false;
 	bool IsDeathTimeCheck = false;
