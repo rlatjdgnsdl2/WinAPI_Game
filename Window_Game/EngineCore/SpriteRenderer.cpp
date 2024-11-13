@@ -18,13 +18,11 @@ USpriteRenderer::~USpriteRenderer()
 // StaticMeshRenderer : public URenderer
 void USpriteRenderer::Render(float _DeltaTime)
 {
-
 	if (nullptr == Sprite)
 	{
 		MSGASSERT("스프라이트가 세팅되지 않은 액터를 랜더링을 할수 없습니다.");
 		return;
 	}
-
 	UEngineWindow& MainWindow = UEngineAPICore::GetCore()->GetMainWindow();
 	UEngineWinImage* BackBufferImage = MainWindow.GetBackBuffer();
 	UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(CurIndex);
@@ -40,7 +38,6 @@ void USpriteRenderer::Render(float _DeltaTime)
 
 	Trans.Location += Pivot;
 
-	// Trans.Location -= 카메라포스
 
 	if (Alpha == 255)
 	{
@@ -70,10 +67,8 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
 	Super::ComponentTick(_DeltaTime);
 
-	// 일단 여기서 다 짠다.
 	if (nullptr != CurAnimation)
 	{
-
 		CurAnimation->IsEnd = false;
 		std::vector<int>& Indexs = CurAnimation->FrameIndex;
 		std::vector<float>& Times = CurAnimation->FrameTime;
@@ -115,11 +110,9 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 					{
 						CurAnimation->Events[CurIndex]();
 					}
-
 				}
 				else
 				{
-
 					CurAnimation->IsEnd = true;
 					--CurAnimation->CurIndex;
 				}
@@ -297,6 +290,7 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 
 	CurAnimation = &FrameAnimations[UpperName];
 	CurAnimation->Reset();
+	CurIndex = CurAnimation->FrameIndex[CurAnimation->CurIndex];
 
 	if (CurAnimation->Events.contains(CurAnimation->CurIndex))
 	{
