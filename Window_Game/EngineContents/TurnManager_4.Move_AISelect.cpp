@@ -99,11 +99,47 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 					break;
 				}
 			}
+			//	문제없다면 방향설정
+			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetStartLocation()) / 72.0f;
+			if (Dir == FVector2D::UP)
+			{
+				CurPokemon->SetCurDir(DIR::Up);
+			}
+			else if (Dir == FVector2D::DOWN)
+			{
+				CurPokemon->SetCurDir(DIR::Down);
+			}
+			else if (Dir == FVector2D::LEFT)
+			{
+				CurPokemon->SetCurDir(DIR::Left);
+			}
+			else if (Dir == FVector2D::RIGHT)
+			{
+				CurPokemon->SetCurDir(DIR::Right);
+			}
+			else if (Dir == FVector2D::UP + FVector2D::LEFT)
+			{
+				CurPokemon->SetCurDir(DIR::Left_Up);
+			}
+			else if (Dir == FVector2D::UP + FVector2D::RIGHT)
+			{
+				CurPokemon->SetCurDir(DIR::Right_Up);
+			}
+			else if (Dir == FVector2D::DOWN + FVector2D::LEFT)
+			{
+				CurPokemon->SetCurDir(DIR::Left_Down);
+			}
+			else if (Dir == FVector2D::DOWN + FVector2D::RIGHT)
+			{
+				CurPokemon->SetCurDir(DIR::Right_Down);
+			}
+
+
+
 		}
 
+		// 다음단계
+		CurTurnType = TurnType::Player_Move;
 	}
-
-	// 다음단계
-	CurTurnType = TurnType::Player_Move;
 }
 
