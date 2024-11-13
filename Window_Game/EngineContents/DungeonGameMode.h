@@ -32,7 +32,12 @@ private:
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
 	class APartner* Partner;
-	class AEnemy* Enemy;
+	class AEnemy* Enemy01;
+	class AEnemy* Enemy02;
+	class AEnemy* Enemy03;
+	class AEnemy* Enemy04;
+
+
 
 
 };
