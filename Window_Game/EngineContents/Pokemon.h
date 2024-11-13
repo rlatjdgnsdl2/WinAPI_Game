@@ -87,13 +87,15 @@ public:
 	}
 	void SetPokemonAbility(PokemonAbility _PokemonAbility) { CurPokemonAbility = _PokemonAbility; }
 
-
+	void SwitchAttack();
 
 	virtual void AnimationSetting();
 
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
+
+	bool IsAttack = false;
 
 	//	±âº»
 	CampType CurCamp;
