@@ -39,6 +39,6 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		//	다 이동했으면 MovePokemon초기화
 		MovePokemon.clear();
 		//	다음단계
-		CurTurnType = TurnType::AI_Skill;
+		CurTurnType = TurnType::AI_Move;
 	}
 }

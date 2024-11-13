@@ -43,6 +43,8 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				FIntPoint Distance = CompareTargetTile - CurTile;
 				//	근처에 적이 있다면
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
+					CurPokemon->SetTargetPokemon(CurComparePokemon);
+					CurPokemon->SetCurSkillType(SkillType::NormalAttack);
 					SkillPokemon.push_back(CurPokemon);
 					IsFindTarget = true;
 					break;

@@ -6,20 +6,24 @@
 
 void ATurnManager::AISkill(float _DeltaTime)
 {
+
 	std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
 	std::vector<APokemon*>::iterator EndIter = SkillPokemon.end();
-
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
-		CurPokemon->ResetCurDuration();
-		CurPokemon->Skill();
+		if (CurPokemon->IsAttack() == false) {
+			CurPokemon->Skill();
+		}
 
+		else if (CurPokemon->IsAttack() == true) {
+			CurPokemon->Skill();
+			return;
+		}
 	}
-	/*if (CurDuration > 0.5f) {
 
-		CurDuration = 0.0f;
-	}*/
 	SkillPokemon.clear();
 	CurTurnType = TurnType::Player_Select;
+
+
 }

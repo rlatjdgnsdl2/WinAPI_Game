@@ -10,6 +10,14 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
+	// AI Idle
+	std::list<class APokemon*> ::iterator StartIter = AllAIPokemon.begin();
+	std::list<class APokemon*> ::iterator EndIter = AllAIPokemon.end();
+	for (; StartIter != EndIter; StartIter++)
+	{
+		APokemon* CurPokemon = *StartIter;
+		CurPokemon->Idle();
+	}
 	PlayerMoveDir = FVector2D::ZERO;
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
@@ -69,14 +77,6 @@ void ATurnManager::PlayerSelect()
 	}
 
 	
-	// AI Idle
-	std::list<class APokemon*> ::iterator StartIter = AllAIPokemon.begin();
-	std::list<class APokemon*> ::iterator EndIter = AllAIPokemon.end();
-	for (; StartIter != EndIter; StartIter++)
-	{
-		APokemon* CurPokemon = *StartIter;
-		CurPokemon->Idle();
-	}
 
 }
 
