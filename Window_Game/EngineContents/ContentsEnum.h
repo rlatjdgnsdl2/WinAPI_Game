@@ -18,14 +18,12 @@ enum class TileType
 
 enum class CampType
 {
-	None = -1,
 	Player,
 	Enemy
 };
 
 enum class TurnType
 {
-
 	Player_Select,
 	Player_Select_Move,
 	Player_Select_Skill,
@@ -35,12 +33,10 @@ enum class TurnType
 	Skill_AI_Select,
 	AI_Move,
 	AI_Skill
-
 };
 
 enum class SkillType
 {
-	None = -1,
 	NormalAttack,
 	SpecialAttack,
 	UseItem
@@ -55,7 +51,13 @@ enum class DIR
 	Left_Up,
 	Up,
 	Right_Up
+
+	
 };
+
+
+
+
 enum class ECollisionGroup
 {
 	PlayerBody,

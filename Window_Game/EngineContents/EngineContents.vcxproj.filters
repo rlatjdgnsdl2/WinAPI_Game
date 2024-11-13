@@ -64,6 +64,9 @@
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsMath.h">
+      <Filter>_Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -152,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsMath.cpp">
+      <Filter>_Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

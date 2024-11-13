@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Dungeon_BSP.h"
 
-
+// 스피드 순으로 정렬
 bool SortFunc(APokemon* first, APokemon* second) {
 	if (first->GetPokemonStat().Speed > second->GetPokemonStat().Speed)
 	{
@@ -14,7 +14,7 @@ bool SortFunc(APokemon* first, APokemon* second) {
 }
 
 
-void ATurnManager::Move_AISelect(float _DeltaTime)
+void ATurnManager::Move_AISelect()
 {
 	// speed로 정렬
 	AllAIPokemon.sort(SortFunc);
@@ -30,8 +30,9 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 			APokemon* CurPokemon = *StartIter;
 			CurPokemon->ResetCurDuration();
 			FIntPoint CurTile = CurPokemon->GetCurTile();
-			//	나의 진영
+			//	진영체크
 			CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+			//	반대진영 리스트가져옴
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			std::list<APokemon*> ::iterator CompareStartIter = CompareCamp.begin();
 			std::list<APokemon*> ::iterator CompareEndIter = CompareCamp.end();
@@ -43,17 +44,18 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				FIntPoint Distance = CompareTargetTile - CurTile;
 				//	근처에 적이 있다면
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
-					CurPokemon->SetTargetPokemon(CurComparePokemon);
-					CurPokemon->SetCurSkillType(SkillType::NormalAttack);
 					SkillPokemon.push_back(CurPokemon);
+					//	타겟을 찾았으니까 for문 나가기
 					IsFindTarget = true;
 					break;
 				}
 			}
 			//	근처에 적이 없다면
 			if (false == IsFindTarget) {
+				//	플레이어가 가고자 하는 위치타겟
 				FIntPoint PlayerTile = Player->GetTargetTile();
 				FIntPoint CurTile = CurPokemon->GetCurTile();
+				//	Astar로 길찾기
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
@@ -72,7 +74,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 
 	}
 	{
-		// 최종체크
+		// 최종체크 - 수정필요할듯
 		std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
 		std::vector<APokemon*> ::iterator EndIter = MovePokemon.end();
 		for (; StartIter != EndIter; StartIter++)

@@ -50,7 +50,6 @@ void ADungeonGameMode::LevelChangeStart()
 	}
 	//	던전 이름 받아와서
 	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
-
 	//	던전 형태 생성
 	Dungeon->Generate(CurDungeonName);
 	//	턴매니저에게 던전전달
@@ -68,8 +67,8 @@ void ADungeonGameMode::LevelChangeStart()
 		Partner = GetWorld()->SpawnActor<APartner>();
 	}
 	Partner->SetPokemon("Vulpix");
-	TurnManager->PushPlayerCamp(Partner);
 	TurnManager->PushAllAIPokemon(Partner);
+	TurnManager->PushPlayerCamp(Partner);
 
 	//	적 생성 테스트코드
 	if (nullptr == Enemy01) {
@@ -79,26 +78,26 @@ void ADungeonGameMode::LevelChangeStart()
 	TurnManager->PushEnemyCamp(Enemy01);
 	TurnManager->PushAllAIPokemon(Enemy01);
 
-	if (nullptr == Enemy02) {
-		Enemy02 = GetWorld()->SpawnActor<AEnemy>();
-	}
-	Enemy02->SetPokemon("Kabuto");
-	TurnManager->PushEnemyCamp(Enemy02);
-	TurnManager->PushAllAIPokemon(Enemy02);
+	//if (nullptr == Enemy02) {
+	//	Enemy02 = GetWorld()->SpawnActor<AEnemy>();
+	//}
+	//Enemy02->SetPokemon("Kabuto");
+	//TurnManager->PushEnemyCamp(Enemy02);
+	//TurnManager->PushAllAIPokemon(Enemy02);
 
-	if (nullptr == Enemy03) {
-		Enemy03 = GetWorld()->SpawnActor<AEnemy>();
-	}
-	Enemy03->SetPokemon("Kabuto");
-	TurnManager->PushEnemyCamp(Enemy03);
-	TurnManager->PushAllAIPokemon(Enemy03);
+	//if (nullptr == Enemy03) {
+	//	Enemy03 = GetWorld()->SpawnActor<AEnemy>();
+	//}
+	//Enemy03->SetPokemon("Kabuto");
+	//TurnManager->PushEnemyCamp(Enemy03);
+	//TurnManager->PushAllAIPokemon(Enemy03);
 
-	if (nullptr == Enemy04) {
-		Enemy04 = GetWorld()->SpawnActor<AEnemy>();
-	}
-	Enemy04->SetPokemon("Kabuto");
-	TurnManager->PushEnemyCamp(Enemy04);
-	TurnManager->PushAllAIPokemon(Enemy04);
+	//if (nullptr == Enemy04) {
+	//	Enemy04 = GetWorld()->SpawnActor<AEnemy>();
+	//}
+	//Enemy04->SetPokemon("Kabuto");
+	//TurnManager->PushEnemyCamp(Enemy04);
+	//TurnManager->PushAllAIPokemon(Enemy04);
 
 
 

@@ -32,6 +32,10 @@ public:
 	void SetCurDir(DIR _dir) {
 		CurDir = _dir;
 	}
+
+	void SetCurDir(const FIntPoint& _FIntPoint);
+
+
 	void ResetCurDuration() {
 		CurDuration = 0.0f;
 	}
@@ -43,10 +47,10 @@ public:
 		FIntPoint CurStartTileIndex = (StartLocation.ConvertToPoint()) / 72;
 		return CurStartTileIndex;
 	}
-	void SetStartLocation(FVector2D _StartLocation) {
+	void SetStartLocation(const FVector2D& _StartLocation) {
 		StartLocation = _StartLocation;
 	}
-	void SetStartLocation(FIntPoint _StartTileIndex) {
+	void SetStartLocation(const FIntPoint& _StartTileIndex) {
 		StartLocation = _StartTileIndex * 72.0f;
 	}
 	//	Target
@@ -57,10 +61,10 @@ public:
 		FIntPoint CurTargetTileIndex = (TargetLocation.ConvertToPoint()) / 72;
 		return CurTargetTileIndex;
 	}
-	void SetTargetLocation(FVector2D _TargetLocation) {
+	void SetTargetLocation(const FVector2D& _TargetLocation) {
 		TargetLocation = _TargetLocation;
 	}
-	void SetTargetLocation(FIntPoint _TargetTileIndex) {
+	void SetTargetLocation(const FIntPoint& _TargetTileIndex) {
 		TargetLocation = _TargetTileIndex * 72.0f;
 	}
 	//	현재
@@ -85,7 +89,7 @@ public:
 	PokemonAbility GetPokemonStat() const { 
 		return CurPokemonAbility; 
 	}
-	void SetPokemonAbility(PokemonAbility _PokemonAbility) { CurPokemonAbility = _PokemonAbility; }
+	void SetPokemonAbility(const PokemonAbility& _PokemonAbility) { CurPokemonAbility = _PokemonAbility; }
 
 	void StartAttack();
 	void EndAttack();
@@ -102,7 +106,7 @@ public:
 protected:
 	class USpriteRenderer* SpriteRenderer;
 
-	bool IsAttackValue = false;
+	bool IsAttackValue;
 
 	//	기본
 	CampType CurCamp;

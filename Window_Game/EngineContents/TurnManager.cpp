@@ -59,19 +59,19 @@ void ATurnManager::Tick(float _DeltaTime)
 		PlayerMove(_DeltaTime);
 		break;
 	case TurnType::Player_Skill:
-		PlayerSkill(_DeltaTime);
+		PlayerSkill();
 		break;
 	case TurnType::Move_AI_Select:
-		Move_AISelect(_DeltaTime);
+		Move_AISelect();
 		break;
 	case TurnType::Skill_AI_Select:
-		Skill_AISelect(_DeltaTime);
+		Skill_AISelect();
 		break;
 	case TurnType::AI_Move:
 		AIMove(_DeltaTime);
 		break;
 	case TurnType::AI_Skill:
-		AISkill(_DeltaTime);
+		AISkill();
 		break;
 
 	}

@@ -71,20 +71,22 @@ private:
 	int PlayerInput;
 
 
+
+
 	//	Idle
 	void PlayerSelect();
 	//	Select Type
 	void SelectMove();
 	void SelectSkill();
 	//	AI Check
-	void Move_AISelect(float _DeltaTime);
-	void Skill_AISelect(float _DeltaTime);
+	void Move_AISelect();
+	void Skill_AISelect();
 	//	Select Play
 	void PlayerMove(float _DeltaTime);
-	void PlayerSkill(float _DeltaTime);
+	void PlayerSkill();
 	// AI Select Play
 	void AIMove(float _DeltaTime);
-	void AISkill(float _DeltaTime);
+	void AISkill();
 
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);

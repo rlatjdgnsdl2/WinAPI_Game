@@ -5,7 +5,7 @@
 #include "Pokemon.h"
 
 
-void ATurnManager::PlayerSkill(float _DeltaTime)
+void ATurnManager::PlayerSkill()
 {
 	Player->Skill();
 	if (false == Player->IsAttack()) {
