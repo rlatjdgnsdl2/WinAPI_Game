@@ -68,13 +68,14 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 
 	}
 	{
-		//	자신보다 스피드 빠른포켓몬이랑 타겟위치 겹치면 제자리
+		// 최종체크
 		std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
 		std::vector<APokemon*> ::iterator EndIter = MovePokemon.end();
 		for (; StartIter != EndIter; StartIter++)
 		{
 			APokemon* CurPokemon = *StartIter;
 			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
+			//	MovePokemon중 자신보다 스피드 빠른포켓몬이랑 타겟로케이션 겹치면 제자리
 			for (; CompareIter != StartIter; CompareIter++)
 			{
 				APokemon* ComparePokemon = *CompareIter;
@@ -85,9 +86,20 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 					break;
 				}
 			}
+			//	skillPokemon중 타겟로케이션 겹치면 제자리
+			std::vector<APokemon*>::iterator SkillStartIter = SkillPokemon.begin();
+			std::vector<APokemon*> ::iterator SkillEndIter = SkillPokemon.end();
+			for (; SkillStartIter != SkillEndIter; SkillStartIter++)
+			{
+				APokemon* ComparePokemon = *SkillStartIter;
+				FIntPoint CurTarget = CurPokemon->GetTargetTile();
+				FIntPoint CompareTarget = ComparePokemon->GetCurTile();
+				if (CurTarget == CompareTarget) {
+					CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation());
+					break;
+				}
+			}
 		}
-
-
 
 	}
 
