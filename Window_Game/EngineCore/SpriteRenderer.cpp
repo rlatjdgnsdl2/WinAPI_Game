@@ -18,67 +18,6 @@ USpriteRenderer::~USpriteRenderer()
 // StaticMeshRenderer : public URenderer
 void USpriteRenderer::Render(float _DeltaTime)
 {
-	// 일단 여기서 다 짠다.
-	if (nullptr != CurAnimation)
-	{
-
-		CurAnimation->IsEnd = false;
-		std::vector<int>& Indexs = CurAnimation->FrameIndex;
-		std::vector<float>& Times = CurAnimation->FrameTime;
-
-		Sprite = CurAnimation->Sprite;
-
-
-		CurAnimation->CurTime += _DeltaTime;
-
-		float CurFrameTime = Times[CurAnimation->CurIndex];
-
-		//                           0.1 0.1 0.1
-		if (CurAnimation->CurTime > CurFrameTime)
-		{
-			TestDebugCheck();
-
-
-			CurAnimation->CurTime -= CurFrameTime;
-			++CurAnimation->CurIndex;
-
-			if (CurAnimation->Events.contains(CurIndex))
-			{
-				CurAnimation->Events[CurIndex]();
-			}
-
-			// 애니메이션 앤드
-			if (CurAnimation->CurIndex >= Indexs.size())
-			{
-				CurAnimation->IsEnd = true;
-			}
-
-			if (CurAnimation->CurIndex >= Indexs.size())
-			{
-				if (true == CurAnimation->Loop)
-				{
-					CurAnimation->CurIndex = 0;
-
-					if (CurAnimation->Events.contains(CurIndex))
-					{
-						CurAnimation->Events[CurIndex]();
-					}
-
-				}
-				else
-				{
-					CurAnimation->IsEnd = true;
-					--CurAnimation->CurIndex;
-				}
-			}
-
-		}
-
-
-		//         2 3 4           0
-		CurIndex = Indexs[CurAnimation->CurIndex];
-		// ++CurAnimation->CurIndex;
-	}
 
 	if (nullptr == Sprite)
 	{
@@ -130,6 +69,70 @@ void USpriteRenderer::BeginPlay()
 void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
 	Super::ComponentTick(_DeltaTime);
+
+	// 일단 여기서 다 짠다.
+	if (nullptr != CurAnimation)
+	{
+
+		CurAnimation->IsEnd = false;
+		std::vector<int>& Indexs = CurAnimation->FrameIndex;
+		std::vector<float>& Times = CurAnimation->FrameTime;
+
+		Sprite = CurAnimation->Sprite;
+
+
+		CurAnimation->CurTime += _DeltaTime;
+
+		float CurFrameTime = Times[CurAnimation->CurIndex];
+
+		//                           0.1 0.1 0.1
+		if (CurAnimation->CurTime > CurFrameTime)
+		{
+			TestDebugCheck();
+
+
+			CurAnimation->CurTime -= CurFrameTime;
+			++CurAnimation->CurIndex;
+
+			if (CurAnimation->Events.contains(CurIndex))
+			{
+				CurAnimation->Events[CurIndex]();
+			}
+
+			// 애니메이션 앤드
+			if (CurAnimation->CurIndex >= Indexs.size())
+			{
+				CurAnimation->IsEnd = true;
+			}
+
+			if (CurAnimation->CurIndex >= Indexs.size())
+			{
+				if (true == CurAnimation->Loop)
+				{
+					CurAnimation->CurIndex = 0;
+
+					if (CurAnimation->Events.contains(CurIndex))
+					{
+						CurAnimation->Events[CurIndex]();
+					}
+
+				}
+				else
+				{
+
+					CurAnimation->IsEnd = true;
+					--CurAnimation->CurIndex;
+				}
+			}
+
+		}
+
+
+		//         2 3 4           0
+		CurIndex = Indexs[CurAnimation->CurIndex];
+		// ++CurAnimation->CurIndex;
+	}
+
 }
 
 void USpriteRenderer::SetSprite(std::string_view _Name, int _CurIndex /*= 0*/)
@@ -155,6 +158,11 @@ void USpriteRenderer::SetOrder(int _Order)
 	int PrevOrder = Order;
 
 	Order = _Order;
+
+	if (PrevOrder == Order)
+	{
+		return;
+	}
 
 	// 동적으로 해야할때는 레벨이 세팅되어 있을 것이므로
 	// 레벨이 세팅되어 있다면 즉각 바꿔준다.

@@ -80,11 +80,14 @@ void APokemon::Hurt()
 
 void APokemon::StartAttack()
 {
+	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
 	IsAttackValue = true;
+	
 }
 
 void APokemon::EndAttack()
 {
+	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	IsAttackValue = false;
 }
 

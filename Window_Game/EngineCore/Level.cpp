@@ -380,6 +380,11 @@ void ULevel::PushRenderer(class USpriteRenderer* _Renderer)
 {
 	int Order = _Renderer->GetOrder();
 
+	if (Order == 0)
+	{
+		int a = 0;
+	}
+
 	Renderers[Order].push_back(_Renderer);
 }
 
