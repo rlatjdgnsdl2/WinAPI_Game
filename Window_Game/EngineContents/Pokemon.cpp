@@ -76,34 +76,7 @@ void APokemon::Hurt()
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::SetCurDir(const FIntPoint& _FIntPoint)
-{
-	if (_FIntPoint.X < 0 && _FIntPoint.Y == 0) {
-		CurDir = DIR::Left;
-	}
-	else if (_FIntPoint.X > 0 && _FIntPoint.Y == 0) {
-		CurDir = DIR::Right;
-	}
-	else if (_FIntPoint.X == 0 && _FIntPoint.Y < 0) {
-		CurDir = DIR::Up;
-	}
-	else if (_FIntPoint.X == 0 && _FIntPoint.Y > 0) {
-		CurDir = DIR::Down;
-	}
-	else if (_FIntPoint.X < 0 && _FIntPoint.Y < 0) {
-		CurDir = DIR::Left_Up;
-	}
-	else if (_FIntPoint.X < 0 && _FIntPoint.Y > 0) {
-		CurDir = DIR::Left_Down;
-	}
-	else if (_FIntPoint.X > 0 && _FIntPoint.Y < 0) {
-		CurDir = DIR::Right_Up;
-	}
-	else if (_FIntPoint.X > 0 && _FIntPoint.Y > 0) {
-		CurDir = DIR::Right_Down;
-	}
-	
-}
+
 
 
 
@@ -123,39 +96,9 @@ void APokemon::EndAttack()
 void APokemon::PlayHurtAnim()
 {
 	if (TargetPokemon != nullptr) {
-		DIR TargetDir;
-		switch (CurDir)
-		{
-		case DIR::Left_Down:
-			TargetDir = DIR::Right_Up;
-			break;
-		case DIR::Down:
-			TargetDir = DIR::Up;
-			break;
-		case DIR::Right_Down:
-			TargetDir = DIR::Left_Up;
-			break;
-		case DIR::Left:
-			TargetDir = DIR::Right;
-			break;
-		case DIR::Right:
-			TargetDir = DIR::Left;
-			break;
-		case DIR::Left_Up:
-			TargetDir = DIR::Right_Down	;
-			break;
-		case DIR::Up:
-			TargetDir = DIR::Down;
-			break;
-		case DIR::Right_Up:
-			TargetDir = DIR::Left_Down;
-			break;
-		default:
-			break;
-		}
+		DIR TargetDir = UContentsMath::ReverseDir(CurDir);
 		TargetPokemon->SetCurDir(TargetDir);
 		TargetPokemon->Hurt();
-		
 	}
 }
 

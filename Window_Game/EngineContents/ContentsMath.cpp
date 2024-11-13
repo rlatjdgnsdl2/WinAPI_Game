@@ -118,7 +118,39 @@ FIntPoint UContentsMath::DIR_To_FIntPoint(DIR _Dir) {
 		return FIntPoint::RIGHT + FIntPoint::UP;
 		break;
 	default:
-		return FIntPoint({ 0,0 });
+		break;
+	}
+}
+
+DIR UContentsMath::ReverseDir(DIR _Dir)
+{
+	switch (_Dir)
+	{
+	case DIR::Left_Down:
+		return DIR::Right_Up;
+		break;
+	case DIR::Down:
+		return DIR::Up;
+		break;
+	case DIR::Right_Down:
+		return DIR::Left_Up;
+		break;
+	case DIR::Left:
+		return DIR::Right;
+		break;
+	case DIR::Right:
+		return DIR::Left;
+		break;
+	case DIR::Left_Up:
+		return DIR::Right_Down;
+		break;
+	case DIR::Up:
+		return DIR::Down;
+		break;
+	case DIR::Right_Up:
+		return DIR::Left_Down;
+		break;
+	default:
 		break;
 	}
 }

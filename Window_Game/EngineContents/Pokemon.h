@@ -33,9 +33,6 @@ public:
 		CurDir = _dir;
 	}
 
-	void SetCurDir(const FIntPoint& _FIntPoint);
-
-
 	void ResetCurDuration() {
 		CurDuration = 0.0f;
 	}

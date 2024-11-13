@@ -8,6 +8,7 @@ public:
 	static DIR FVector2D_To_DIR(const FVector2D& _FVector2D);
 	static FVector2D DIR_To_Vector2D(DIR _Dir);
 	static FIntPoint DIR_To_FIntPoint(DIR _Dir);
+	static DIR ReverseDir(DIR _Dir);
 
 };
 
