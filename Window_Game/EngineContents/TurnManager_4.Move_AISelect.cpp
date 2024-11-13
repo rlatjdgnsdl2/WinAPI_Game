@@ -14,8 +14,6 @@ bool SortFunc(APokemon* first, APokemon* second) {
 }
 
 
-
-
 void ATurnManager::Move_AISelect(float _DeltaTime)
 {
 	// speed로 정렬
@@ -30,6 +28,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 		{
 			bool IsFindTarget = false;
 			APokemon* CurPokemon = *StartIter;
+			CurPokemon->ResetCurDuration();
 			FIntPoint CurTile = CurPokemon->GetCurTile();
 			//	나의 진영
 			CampType CurPokemonCamp = CurPokemon->GetCurCamp();
@@ -56,13 +55,16 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
-				CurPokemon->SetStartLocation(*Path);
-				Path++;
-				if (Path == PathEnd) {
-					Path = PathForPlayer.begin();
+				if (Path != PathEnd) {
+
+					CurPokemon->SetStartLocation(*Path);
+					Path++;
+					if (Path == PathEnd) {
+						Path = PathForPlayer.begin();
+					}
+					CurPokemon->SetTargetLocation(*Path);
+					MovePokemon.push_back(CurPokemon);
 				}
-				CurPokemon->SetTargetLocation(*Path);
-				MovePokemon.push_back(CurPokemon);
 			}
 		}
 
@@ -86,7 +88,7 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 					break;
 				}
 			}
-			//	skillPokemon중 타겟로케이션 겹치면 제자리
+			//	SkillPokemon중 타겟로케이션 겹치면 제자리
 			std::vector<APokemon*>::iterator SkillStartIter = SkillPokemon.begin();
 			std::vector<APokemon*> ::iterator SkillEndIter = SkillPokemon.end();
 			for (; SkillStartIter != SkillEndIter; SkillStartIter++)
@@ -133,9 +135,6 @@ void ATurnManager::Move_AISelect(float _DeltaTime)
 			{
 				CurPokemon->SetCurDir(DIR::Right_Down);
 			}
-
-
-
 		}
 
 		// 다음단계

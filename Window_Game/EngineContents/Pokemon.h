@@ -94,6 +94,8 @@ public:
 		return IsAttackValue;
 	};
 
+	void PlayHurtAnim();
+
 	virtual void AnimationSetting();
 
 

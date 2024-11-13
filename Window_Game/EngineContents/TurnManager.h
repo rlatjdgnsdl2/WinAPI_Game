@@ -18,6 +18,7 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
+
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
@@ -65,7 +66,8 @@ private:
 
 	TurnType CurTurnType;
 	FVector2D PlayerMoveDir;
-	float CurDuration = 0.0f;
+
+	float CurDuration;
 	int PlayerInput;
 
 

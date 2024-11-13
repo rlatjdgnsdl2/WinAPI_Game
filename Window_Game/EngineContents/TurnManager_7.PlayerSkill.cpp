@@ -7,12 +7,9 @@
 
 void ATurnManager::PlayerSkill(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
 	Player->Skill();
-
-
-
 	if (false == Player->IsAttack()) {
+		Player->SetTargetPokemon(nullptr);
 		CurTurnType = TurnType::Skill_AI_Select;
 	}
 

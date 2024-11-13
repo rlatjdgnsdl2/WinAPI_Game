@@ -18,7 +18,6 @@ void ATurnManager::SelectMove()
 		CurTurnType = TurnType::Player_Select;
 		return;
 	}
-
 };
 
 bool ATurnManager::InitPlayerMove(FVector2D moveVector)
@@ -27,13 +26,10 @@ bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 	FIntPoint TargetTile = Player->GetTargetTile();
 	TileType TargetTileType = Dungeon->GetTileType(TargetTile.X, TargetTile.Y);
 	//앞이 벽이면
-	if (TileType::WALL == TargetTileType) {
+	if (TileType::GROUND != TargetTileType) {
 		Player->SetTargetLocation(Player->GetActorLocation());
 		return false;
 	}
-	/*else if (TileType::WATER == TargetTileType) {
-
-	}*/
 	//앞에 몬스터가 있으면 
 	std::list<APokemon*>::iterator StartIter = EnemyCamp.begin();
 	std::list<APokemon*>::iterator EndIter = EnemyCamp.end();
@@ -45,7 +41,6 @@ bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 			Player->SetTargetLocation(Player->GetActorLocation());
 			return false;
 		}
-
 	}
 	//	위에 조건에 안걸렸다면
 	Player->SetStartLocation(Player->GetActorLocation());

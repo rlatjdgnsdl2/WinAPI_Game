@@ -6,13 +6,13 @@
 
 void ATurnManager::AISkill(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
 	std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
 	std::vector<APokemon*>::iterator EndIter = SkillPokemon.end();
 
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
+		CurPokemon->ResetCurDuration();
 		CurPokemon->Skill();
 
 	}
