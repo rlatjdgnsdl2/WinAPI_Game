@@ -130,14 +130,14 @@ void APokemon::AnimationSetting()
 
 	//	Walk
 	float WalkFrame = 0.5f / CurPokemonAnimationInfo.WalkAnimCount;
-	SpriteRenderer->CreateAnimation("WalkAnim_2", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 0, CurPokemonAnimationInfo.WalkAnimCount * 1 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_3", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 1, CurPokemonAnimationInfo.WalkAnimCount * 2 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_6", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 2, CurPokemonAnimationInfo.WalkAnimCount * 3 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_9", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 3, CurPokemonAnimationInfo.WalkAnimCount * 4 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_8", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 4, CurPokemonAnimationInfo.WalkAnimCount * 5 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_7", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 5, CurPokemonAnimationInfo.WalkAnimCount * 6 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_4", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 6, CurPokemonAnimationInfo.WalkAnimCount * 7 - 1, WalkFrame);
-	SpriteRenderer->CreateAnimation("WalkAnim_1", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 7, CurPokemonAnimationInfo.WalkAnimCount * 8 - 1, WalkFrame);
+	SpriteRenderer->CreateAnimation("WalkAnim_2", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 0, CurPokemonAnimationInfo.WalkAnimCount * 1 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_3", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 1, CurPokemonAnimationInfo.WalkAnimCount * 2 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_6", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 2, CurPokemonAnimationInfo.WalkAnimCount * 3 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_9", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 3, CurPokemonAnimationInfo.WalkAnimCount * 4 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_8", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 4, CurPokemonAnimationInfo.WalkAnimCount * 5 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_7", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 5, CurPokemonAnimationInfo.WalkAnimCount * 6 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_4", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 6, CurPokemonAnimationInfo.WalkAnimCount * 7 - 1, WalkFrame, false);
+	SpriteRenderer->CreateAnimation("WalkAnim_1", CurPokemonName + "_Walk.png", CurPokemonAnimationInfo.WalkAnimCount * 7, CurPokemonAnimationInfo.WalkAnimCount * 8 - 1, WalkFrame, false);
 
 	//	Attack
 	float AttackFrame = 0.5f / CurPokemonAnimationInfo.AttackAnimCount;
