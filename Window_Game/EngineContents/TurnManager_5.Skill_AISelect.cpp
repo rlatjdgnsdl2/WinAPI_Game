@@ -82,7 +82,7 @@ void ATurnManager::Skill_AISelect()
 		{
 			bool IsStand = false;
 			APokemon* CurPokemon = *StartIter;
-			//	나의 타겟로케인션
+			//	나의 타겟로케이션
 			FIntPoint CurTarget = CurPokemon->GetTargetTile();
 			//	MovePokemon중 자신보다 스피드 빠른포켓몬이랑 타겟로케이션 겹치면 제자리
 			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
@@ -101,7 +101,7 @@ void ATurnManager::Skill_AISelect()
 			}
 
 			//	위에 조건에 안걸렸다면
-			if (IsStand = false) {
+			if (IsStand == false) {
 				//	SkillPokemon중 타겟로케이션 겹치면 제자리
 				std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
 				std::vector<APokemon*> ::iterator EndIter = SkillPokemon.end();
