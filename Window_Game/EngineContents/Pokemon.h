@@ -26,7 +26,7 @@ public:
 	virtual void Skill();
 	virtual void Hurt();
 
-	DIR GetCurDir() const {
+	const DIR& GetCurDir() const {
 		return CurDir;
 	}
 	void SetCurDir(DIR _dir) {
@@ -37,62 +37,59 @@ public:
 		CurDuration = 0.0f;
 	}
 	//	StartLocation
-	FVector2D GetStartLocation() const {
+	const FVector2D& GetStartLocation() const {
 		return StartLocation;
 	}
-	FIntPoint GetStartTile() {
-		FIntPoint CurStartTileIndex = (StartLocation.ConvertToPoint()) / 72;
-		return CurStartTileIndex;
+	const FIntPoint& GetStartTile() {
+		return ((StartLocation.ConvertToPoint()) / 72);
 	}
 	void SetStartLocation(const FVector2D& _StartLocation) {
 		StartLocation = _StartLocation;
 	}
-	void SetStartLocation(const FIntPoint& _StartTileIndex) {
+	void SetStartTile(const FIntPoint& _StartTileIndex) {
 		StartLocation = _StartTileIndex * 72.0f;
 	}
 	//	Target
-	FVector2D GetTargetLocation() const {
+	const FVector2D& GetTargetLocation() const {
 		return TargetLocation;
 	}
-	FIntPoint GetTargetTile() {
-		FIntPoint CurTargetTileIndex = (TargetLocation.ConvertToPoint()) / 72;
-		return CurTargetTileIndex;
+	const FIntPoint& GetTargetTile() {
+		return ((TargetLocation.ConvertToPoint()) / 72);
 	}
 	void SetTargetLocation(const FVector2D& _TargetLocation) {
 		TargetLocation = _TargetLocation;
 	}
-	void SetTargetLocation(const FIntPoint& _TargetTileIndex) {
+	void SetTargetTile(const FIntPoint& _TargetTileIndex) {
 		TargetLocation = _TargetTileIndex * 72.0f;
 	}
 	//	ÇöÀç
-	FIntPoint GetCurTile() {
-		FIntPoint CurTileIndex = (GetActorLocation().ConvertToPoint()) / 72;
-		return CurTileIndex;
+	const FIntPoint& GetCurTile() {
+		return ((GetActorLocation().ConvertToPoint()) / 72);
 	}
-	void SetCurTileIndex(FIntPoint _TileIndex) {
-		SetActorLocation(_TileIndex * 72.0f);
-	}
-
-
-	SkillType GetCurSkillType() const {
-		return CurSkillType; 
-	}
-	void SetCurSkillType(SkillType _SkillType) { 
-		CurSkillType = _SkillType; 
+	void SetCurTile(FIntPoint& _CurTileIndex) {
+		SetActorLocation(_CurTileIndex * 72.0f);
 	}
 
-	CampType GetCurCamp() const { 
-		return CurCamp; 
+
+	const SkillType& GetCurSkillType() const {
+		return CurSkillType;
 	}
-	void SetCurCamp(CampType _CampType) { 
-		CurCamp = _CampType; 
+	void SetCurSkillType(SkillType _SkillType) {
+		CurSkillType = _SkillType;
 	}
 
-	class APokemon* GetTargetPokemon() const { 
-		return TargetPokemon; 
+	const CampType GetCurCamp() const {
+		return CurCamp;
 	}
-	void SetTargetPokemon(class APokemon* _TargetPokemon) { 
-		TargetPokemon = _TargetPokemon; 
+	void SetCurCamp(CampType _CampType) {
+		CurCamp = _CampType;
+	}
+
+	class APokemon* GetTargetPokemon() const {
+		return TargetPokemon;
+	}
+	void SetTargetPokemon(class APokemon* _TargetPokemon) {
+		TargetPokemon = _TargetPokemon;
 	}
 
 	PokemonAbility GetPokemonStat() const { 

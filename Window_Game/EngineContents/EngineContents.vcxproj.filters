@@ -67,6 +67,9 @@
     <ClInclude Include="DungeonUI.h">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="PokemonUtility.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="DungeonUI.cpp">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="PokemonUtility.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

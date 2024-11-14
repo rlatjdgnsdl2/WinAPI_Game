@@ -38,7 +38,7 @@ void ATurnManager::Move_AISelect()
 				//	주인공이 내쪽으로 온다면
 				if (PlayerTargetTile == CurTile) {
 					//	주인공이랑 자리 바꾸기
-					CurPokemon->SetStartLocation(CurTile);
+					CurPokemon->SetStartTile(CurTile);
 					CurPokemon->SetTargetLocation(Player->GetStartLocation());
 					MovePokemon.push_back(CurPokemon);
 					continue;
@@ -74,12 +74,12 @@ void ATurnManager::Move_AISelect()
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
 				if (Path != PathEnd) {
 
-					CurPokemon->SetStartLocation(*Path);
+					CurPokemon->SetStartTile(*Path);
 					Path++;
 					if (Path == PathEnd) {
 						Path = PathForPlayer.begin();
 					}
-					CurPokemon->SetTargetLocation(*Path);
+					CurPokemon->SetTargetTile(*Path);
 					MovePokemon.push_back(CurPokemon);
 				}
 			}

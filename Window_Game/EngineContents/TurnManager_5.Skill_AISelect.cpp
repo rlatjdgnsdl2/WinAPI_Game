@@ -61,12 +61,12 @@ void ATurnManager::Skill_AISelect()
 				
 				if (Path != PathEnd) {
 
-					CurPokemon->SetStartLocation(*Path);
+					CurPokemon->SetStartTile(*Path);
 					Path++;
 					if (Path == PathEnd) {
 						Path = PathForPlayer.begin();
 					}
-					CurPokemon->SetTargetLocation(*Path);
+					CurPokemon->SetTargetTile(*Path);
 					MovePokemon.push_back(CurPokemon);
 				}
 
