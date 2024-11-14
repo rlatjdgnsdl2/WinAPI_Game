@@ -32,6 +32,18 @@ void ATurnManager::Move_AISelect()
 			FIntPoint CurTile = CurPokemon->GetCurTile();
 			//	진영체크
 			CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+			//	주인공편일때
+			if (CurPokemonCamp == CampType::Player) {
+				FIntPoint PlayerTargetTile = Player->GetTargetTile();
+				//	주인공이 내쪽으로 온다면
+				if (PlayerTargetTile == CurTile) {
+					//	주인공이랑 자리 바꾸기
+					CurPokemon->SetStartLocation(CurTile);
+					CurPokemon->SetTargetLocation(Player->GetStartLocation());
+					MovePokemon.push_back(CurPokemon);
+					continue;
+				}
+			}
 			//	반대진영 리스트가져옴
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			std::list<APokemon*> ::iterator CompareStartIter = CompareCamp.begin();
@@ -60,14 +72,6 @@ void ATurnManager::Move_AISelect()
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
-				if (Path == PathEnd) {
-					// 플레이어캠프일때 이런경우는 플레이어랑 위치 겹치는거
-					if (CurPokemonCamp == CampType::Player) {
-						CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
-						CurPokemon->SetTargetLocation(Player->GetStartLocation());
-						MovePokemon.push_back(CurPokemon);
-					}
-				}
 				if (Path != PathEnd) {
 
 					CurPokemon->SetStartLocation(*Path);
