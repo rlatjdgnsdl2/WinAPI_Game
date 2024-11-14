@@ -58,6 +58,7 @@ void ATurnManager::Skill_AISelect()
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
+				
 				if (Path != PathEnd) {
 
 					CurPokemon->SetStartLocation(*Path);
@@ -68,6 +69,7 @@ void ATurnManager::Skill_AISelect()
 					CurPokemon->SetTargetLocation(*Path);
 					MovePokemon.push_back(CurPokemon);
 				}
+
 			}
 		}
 

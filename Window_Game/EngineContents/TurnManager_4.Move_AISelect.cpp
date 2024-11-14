@@ -60,6 +60,14 @@ void ATurnManager::Move_AISelect()
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
+				if (Path == PathEnd) {
+					// 플레이어캠프일때 이런경우는 플레이어랑 위치 겹치는거
+					if (CurPokemonCamp == CampType::Player) {
+						CurPokemon->SetStartLocation(CurPokemon->GetActorLocation());
+						CurPokemon->SetTargetLocation(Player->GetStartLocation());
+						MovePokemon.push_back(CurPokemon);
+					}
+				}
 				if (Path != PathEnd) {
 
 					CurPokemon->SetStartLocation(*Path);
