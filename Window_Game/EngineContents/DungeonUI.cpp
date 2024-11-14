@@ -12,16 +12,5 @@ ADungeonUI::~ADungeonUI()
 
 }
 
-void ADungeonUI::LevelChangeStart()
-{
-	Super::LevelChangeStart();
-	
 
-}
-
-void ADungeonUI::BeginPlay()
-{
-	Super::BeginPlay();
-
-}
 

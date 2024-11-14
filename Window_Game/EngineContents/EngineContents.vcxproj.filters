@@ -37,9 +37,6 @@
     <ClInclude Include="Pokemon.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsDefine.h">
-      <Filter>_Header</Filter>
-    </ClInclude>
     <ClInclude Include="GameDataManager.h">
       <Filter>ContentsCore</Filter>
     </ClInclude>

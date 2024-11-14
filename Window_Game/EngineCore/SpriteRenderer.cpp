@@ -83,7 +83,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 		//                           0.1 0.1 0.1
 		if (CurAnimation->CurTime > CurFrameTime)
 		{
-			TestDebugCheck();
+			
 
 
 			CurAnimation->CurTime -= CurFrameTime;
@@ -130,11 +130,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 void USpriteRenderer::SetSprite(std::string_view _Name, int _CurIndex /*= 0*/)
 {
-	// 싱글톤에 대해서 설명할때
-	// 값을 편하게 공유하기 위해서 사용하는 거라고 하면 틀렸다.
-	// 객체를 단 1개 만드는 패턴이라는 것을 잊지 마시고
-
-	// 액터가 만들어졌을때는 로드가 끝난 상황이어야 한다.
+	
 	Sprite = UImageManager::GetInst().FindSprite(_Name);
 
 	if (nullptr == Sprite)
@@ -157,8 +153,6 @@ void USpriteRenderer::SetOrder(int _Order)
 		return;
 	}
 
-	// 동적으로 해야할때는 레벨이 세팅되어 있을 것이므로
-	// 레벨이 세팅되어 있다면 즉각 바꿔준다.
 	ULevel* Level = GetActor()->GetWorld();
 
 	if (nullptr != Level)
@@ -202,7 +196,6 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 			Times.push_back(Time);
 			++_Start;
 		}
-
 	}
 	else
 	{
@@ -214,8 +207,6 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 			++_End;
 		}
 	}
-
-
 	CreateAnimation(_AnimationName, _SpriteName, Indexs, Times, _Loop);
 }
 
@@ -223,12 +214,10 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
 {
 	std::vector<float> Times;
-
 	for (size_t i = 0; i < _Indexs.size(); i++)
 	{
 		Times.push_back(_Frame);
 	}
-
 	CreateAnimation(_AnimationName, _SpriteName, _Indexs, Times, _Loop);
 }
 

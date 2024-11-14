@@ -437,8 +437,12 @@ void ULevel::BeginPlayCheck()
 
 		BeginPlayList.clear();
 
+		Renderers;
+
 		// todtjdtl 
 		AActor::ComponentBeginPlay();
+
+		Renderers;
 	}
 
 

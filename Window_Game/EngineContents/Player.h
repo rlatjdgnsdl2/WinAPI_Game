@@ -20,12 +20,7 @@ public:
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
 	virtual void Tick(float _DeltaTime)override;
-	
-
-
 	virtual void SetPokemon(std::string_view _PokemonName) override;
-
-
 
 protected:
 

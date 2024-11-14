@@ -151,7 +151,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsDefine.h" />
     <ClInclude Include="ContentsEnum.h">
       <SubType>
       </SubType>

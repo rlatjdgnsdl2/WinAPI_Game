@@ -11,10 +11,18 @@ enum class ERenderOrder
 };
 enum class TileType
 {
-	GROUND = 0,
+	None = -1,
+	GROUND,
 	WALL,
-	WATER
+	WATER,
+	FIRE
 };
+enum class PokemonType {
+	WATER,
+	FIRE,
+	STONE
+};
+
 
 enum class CampType
 {
@@ -52,10 +60,7 @@ enum class DIR
 	Left_Up,
 	Up,
 	Right_Up
-
-	
 };
-
 
 
 
