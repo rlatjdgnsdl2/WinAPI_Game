@@ -42,6 +42,7 @@ void ATurnManager::Skill_AISelect()
 				FIntPoint Distance = CompareTargetTile - CurTile;
 				//	근처에 적이 있다면
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
+					CurPokemon->StartAttack();
 					SkillPokemon.push_back(CurPokemon);
 					//	타겟을 찾았으니까 for문 나가기
 					IsFindTarget = true;
@@ -72,72 +73,53 @@ void ATurnManager::Skill_AISelect()
 
 	}
 	{
-		// 최종체크 - 수정필요할듯
+		// 최종체크 - 서로서로 안겹치게 조정
 		std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
 		std::vector<APokemon*> ::iterator EndIter = MovePokemon.end();
 		for (; StartIter != EndIter; StartIter++)
 		{
+			bool IsStand = false;
 			APokemon* CurPokemon = *StartIter;
-			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
+			//	나의 타겟로케인션
+			FIntPoint CurTarget = CurPokemon->GetTargetTile();
 			//	MovePokemon중 자신보다 스피드 빠른포켓몬이랑 타겟로케이션 겹치면 제자리
+			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
 			for (; CompareIter != StartIter; CompareIter++)
 			{
 				APokemon* ComparePokemon = *CompareIter;
-				FIntPoint CurTarget = CurPokemon->GetTargetTile();
+				//	나보다 빠른 포켓몬의 타겟로케이션
 				FIntPoint CompareTarget = ComparePokemon->GetTargetTile();
+				//	나보다 빠른 포켓몬이랑 로케이션 겹치면
 				if (CurTarget == CompareTarget) {
+					//	제자리걸음
 					CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation());
+					IsStand = true;
 					break;
 				}
 			}
-			//	SkillPokemon중 타겟로케이션 겹치면 제자리
-			std::vector<APokemon*>::iterator SkillStartIter = SkillPokemon.begin();
-			std::vector<APokemon*> ::iterator SkillEndIter = SkillPokemon.end();
-			for (; SkillStartIter != SkillEndIter; SkillStartIter++)
-			{
-				APokemon* ComparePokemon = *SkillStartIter;
-				FIntPoint CurTarget = CurPokemon->GetTargetTile();
-				FIntPoint CompareTarget = ComparePokemon->GetCurTile();
-				if (CurTarget == CompareTarget) {
-					CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation());
-					break;
+
+			//	위에 조건에 안걸렸다면
+			if (IsStand = false) {
+				//	SkillPokemon중 타겟로케이션 겹치면 제자리
+				std::vector<APokemon*>::iterator StartIter = SkillPokemon.begin();
+				std::vector<APokemon*> ::iterator EndIter = SkillPokemon.end();
+				for (; StartIter != EndIter; StartIter++)
+				{
+					APokemon* ComparePokemon = *StartIter;
+					FIntPoint CompareTarget = ComparePokemon->GetCurTile();
+					if (CurTarget == CompareTarget) {
+						CurPokemon->SetTargetLocation(CurPokemon->GetStartLocation());
+						break;
+					}
 				}
 			}
 			//	문제없다면 방향설정
 			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetStartLocation()) / 72.0f;
-			if (Dir == FVector2D::UP)
-			{
-				CurPokemon->SetCurDir(DIR::Up);
-			}
-			else if (Dir == FVector2D::DOWN)
-			{
-				CurPokemon->SetCurDir(DIR::Down);
-			}
-			else if (Dir == FVector2D::LEFT)
-			{
-				CurPokemon->SetCurDir(DIR::Left);
-			}
-			else if (Dir == FVector2D::RIGHT)
-			{
-				CurPokemon->SetCurDir(DIR::Right);
-			}
-			else if (Dir == FVector2D::UP + FVector2D::LEFT)
-			{
-				CurPokemon->SetCurDir(DIR::Left_Up);
-			}
-			else if (Dir == FVector2D::UP + FVector2D::RIGHT)
-			{
-				CurPokemon->SetCurDir(DIR::Right_Up);
-			}
-			else if (Dir == FVector2D::DOWN + FVector2D::LEFT)
-			{
-				CurPokemon->SetCurDir(DIR::Left_Down);
-			}
-			else if (Dir == FVector2D::DOWN + FVector2D::RIGHT)
-			{
-				CurPokemon->SetCurDir(DIR::Right_Down);
+			if (Dir != FVector2D::ZERO) {
+				CurPokemon->SetCurDir(UContentsMath::FVector2D_To_DIR(Dir));
 			}
 		}
 	}
 	CurTurnType = TurnType::AI_Move;
+	return;
 }

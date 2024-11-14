@@ -31,7 +31,6 @@ public:
 		Player = _Player;
 	}
 	
-
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
 	}
@@ -43,11 +42,6 @@ public:
 	void PushEnemyCamp(class APokemon* _EnemyCampPokemon) {
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
-
-	
-	
-
-
 
 	UPathFindAStar PathFinder;
 protected:

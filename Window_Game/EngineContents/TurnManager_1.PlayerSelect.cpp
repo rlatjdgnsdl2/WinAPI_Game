@@ -69,7 +69,7 @@ void ATurnManager::PlayerSelect()
 		return;
 	}
 	// Player_Select_Skill 단계로 가는 키
-	if (UEngineInput::GetInst().IsDown('A')) {
+	if (UEngineInput::GetInst().IsPress('A')) {
 		Player->SetCurSkillType(SkillType::NormalAttack);
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;

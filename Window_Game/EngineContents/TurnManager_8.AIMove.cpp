@@ -12,16 +12,20 @@ void ATurnManager::AIMove(float _DeltaTime)
 		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Move(_DeltaTime);
 	}
+	//	이동했으면 목적지에 모두 도착했는지 체크
 	StartIter = MovePokemon.begin();
 	for (; StartIter != EndIter; StartIter++)
 	{
 		APokemon* CurPokemon = *StartIter;
-		if (CurPokemon->GetActorLocation() != CurPokemon->GetTargetLocation()) {
+		FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
+		//	한명이라도 도착안했으면 리턴
+		if (CurPokemonLocation != CurPokemon->GetTargetLocation()) {
 			return;
 		}
 	}
+	//	도착했으면 MovePokemon 초기화하고 스킬단계
 	MovePokemon.clear();
 	CurTurnType = TurnType::AI_Skill;
+	return;
 
-	// MovePokemon에 있는 포켓몬들이 다 이동하면 이동
 }
