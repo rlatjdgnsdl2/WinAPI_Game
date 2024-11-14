@@ -104,6 +104,7 @@ protected:
 	class USpriteRenderer* SpriteRenderer;
 
 	bool IsAttackValue;
+	bool IsHurtValue;
 
 	//	±âº»
 	CampType CurCamp;
