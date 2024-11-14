@@ -73,6 +73,10 @@ public:
 	}
 
 	FVector2D SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
+	FVector2D GetSpriteScale(int _CurIndex) {
+		UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(_CurIndex);
+
+	}
 
 
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);

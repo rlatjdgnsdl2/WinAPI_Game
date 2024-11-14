@@ -49,6 +49,9 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::Player_Select:
 		PlayerSelect();
 		break;
+	case TurnType::Open_Menu:
+		OpenMenu();
+		break;
 	case TurnType::Player_Select_Move:
 		SelectMove();
 		break;

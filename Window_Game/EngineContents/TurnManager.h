@@ -66,9 +66,9 @@ private:
 
 
 
-
 	//	Idle
 	void PlayerSelect();
+	void OpenMenu();
 	//	Select Type
 	void SelectMove();
 	void SelectSkill();

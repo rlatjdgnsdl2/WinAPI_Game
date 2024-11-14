@@ -74,14 +74,26 @@ public:
 	}
 
 
-	SkillType GetCurSkillType() const { return CurSkillType; }
-	void SetCurSkillType(SkillType _SkillType) { CurSkillType = _SkillType; }
+	SkillType GetCurSkillType() const {
+		return CurSkillType; 
+	}
+	void SetCurSkillType(SkillType _SkillType) { 
+		CurSkillType = _SkillType; 
+	}
 
-	CampType GetCurCamp() const { return CurCamp; }
-	void SetCurCamp(CampType _CampType) { CurCamp = _CampType; }
+	CampType GetCurCamp() const { 
+		return CurCamp; 
+	}
+	void SetCurCamp(CampType _CampType) { 
+		CurCamp = _CampType; 
+	}
 
-	class APokemon* GetTargetPokemon() const { return TargetPokemon; }
-	void SetTargetPokemon(class APokemon* _TargetPokemon) { TargetPokemon = _TargetPokemon; }
+	class APokemon* GetTargetPokemon() const { 
+		return TargetPokemon; 
+	}
+	void SetTargetPokemon(class APokemon* _TargetPokemon) { 
+		TargetPokemon = _TargetPokemon; 
+	}
 
 	PokemonAbility GetPokemonStat() const { 
 		return CurPokemonAbility; 
@@ -90,13 +102,10 @@ public:
 
 	void StartAttack();
 	void EndAttack();
-
 	bool IsAttack() {
 		return IsAttackValue;
 	};
-
 	void PlayHurtAnim();
-
 	virtual void AnimationSetting();
 
 

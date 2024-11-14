@@ -25,6 +25,7 @@ enum class CampType
 enum class TurnType
 {
 	Player_Select,
+	Open_Menu,
 	Player_Select_Move,
 	Player_Select_Skill,
 	Player_Move,

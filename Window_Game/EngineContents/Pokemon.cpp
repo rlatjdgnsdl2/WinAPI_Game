@@ -13,7 +13,6 @@ APokemon::APokemon()
 
 APokemon::~APokemon()
 {
-
 }
 
 void APokemon::SetPokemon(std::string_view _PokemonName)

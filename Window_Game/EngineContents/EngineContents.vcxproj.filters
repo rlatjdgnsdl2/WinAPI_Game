@@ -67,6 +67,9 @@
     <ClInclude Include="ContentsMath.h">
       <Filter>_Header</Filter>
     </ClInclude>
+    <ClInclude Include="DungeonUI.h">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -158,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="ContentsMath.cpp">
       <Filter>_Header</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager_OpenMenu.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\TurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonUI.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -61,6 +61,13 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	if (true == IsCurLevelReset)
+	{
+		delete CurLevel;
+		CurLevel = nullptr;
+		IsCurLevelReset = false;
+	}
+
 	//	다음레벨에 입장할때
 	if (nullptr != NextLevel)
 	{
@@ -95,12 +102,12 @@ void UEngineAPICore::Tick()
 
 void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 {
-	std::string ChangeName = _LevelName.data();
-	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
+	std::string UpperName = UEngineString::ToUpper(_LevelName);
+	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(UpperName);
 	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
 	if (EndIter == FindIter)
 	{
-		MSGASSERT(ChangeName + "라는 이름의 레벨은 존재하지 않습니다.");
+		MSGASSERT(UpperName + " 라는 이름의 레벨은 존재하지 않습니다.");
 		return;
 	}
 	NextLevel = FindIter->second;

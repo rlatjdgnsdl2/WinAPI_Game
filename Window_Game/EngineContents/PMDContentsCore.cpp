@@ -80,6 +80,11 @@ void PMDContentsCore::RoadResources()
 	Global.Append("Global");
 	UImageManager::GetInst().LoadFolder(Global.GetPathToString());
 
+	UEngineDirectory Dungeon;
+	Dungeon.MoveParentToDirectory("Resources");
+	Dungeon.Append("Dungeon");
+	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
+
 	UEngineDirectory Dungeon_BeachCave;
 	Dungeon_BeachCave.MoveParentToDirectory("Resources");
 	Dungeon_BeachCave.Append("Dungeon_BeachCave");

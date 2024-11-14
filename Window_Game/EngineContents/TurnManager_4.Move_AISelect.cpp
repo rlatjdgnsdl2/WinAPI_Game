@@ -134,9 +134,6 @@ void ATurnManager::Move_AISelect()
 				CurPokemon->SetCurDir(UContentsMath::FVector2D_To_DIR(Dir));
 			}
 		}
-
-
-
 	}
 	// 다음단계
 	CurTurnType = TurnType::Player_Move;
