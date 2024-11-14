@@ -36,7 +36,7 @@ void ATurnManager::Move_AISelect()
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			std::list<APokemon*> ::iterator CompareStartIter = CompareCamp.begin();
 			std::list<APokemon*> ::iterator CompareEndIter = CompareCamp.end();
-			//  반대진영 포켓몬들의 타겟로케이션 확인
+			// 타켓로케이션 확인
 			for (; CompareStartIter != CompareEndIter; CompareStartIter++)
 			{
 				APokemon* CurComparePokemon = *CompareStartIter;
@@ -44,6 +44,7 @@ void ATurnManager::Move_AISelect()
 				FIntPoint Distance = CompareTargetTile - CurTile;
 				//	근처에 적이 있다면
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
+					CurPokemon->StartAttack();
 					SkillPokemon.push_back(CurPokemon);
 					//	타겟을 찾았으니까 for문 나가기
 					IsFindTarget = true;
@@ -59,12 +60,10 @@ void ATurnManager::Move_AISelect()
 				std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
 				std::list<FIntPoint>::iterator Path = PathForPlayer.begin();
 				std::list<FIntPoint>::iterator PathEnd = PathForPlayer.end();
-				//	길을 찾았으면
 				if (Path != PathEnd) {
 
 					CurPokemon->SetStartLocation(*Path);
 					Path++;
-					//	길이 제자리걸음이면
 					if (Path == PathEnd) {
 						Path = PathForPlayer.begin();
 					}
@@ -123,9 +122,11 @@ void ATurnManager::Move_AISelect()
 			}
 		}
 
-		// 다음단계
-		CurTurnType = TurnType::Player_Move;
-		return;
+
+
 	}
+	// 다음단계
+	CurTurnType = TurnType::Player_Move;
+	return;
 }
 
