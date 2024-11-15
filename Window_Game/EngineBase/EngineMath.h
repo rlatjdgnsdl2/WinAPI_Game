@@ -173,7 +173,7 @@ public:
 		return X == _Other.X && Y == _Other.Y;
 	}
 	// 정수로 변환 후 비교
-	bool EqualToInt(FVector2D _Other) const
+	bool EqualToInt(const FVector2D& _Other) const
 	{
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}

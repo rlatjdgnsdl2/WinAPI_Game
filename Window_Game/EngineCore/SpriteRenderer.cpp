@@ -60,7 +60,7 @@ void USpriteRenderer::BeginPlay()
 	AActor* Actor = GetActor();
 	ULevel* Level = Actor->GetWorld();
 
-	Level->PushRenderer(this);
+	Level->ChangeRenderOrder(this, this->GetOrder());
 }
 
 void USpriteRenderer::ComponentTick(float _DeltaTime)
@@ -69,7 +69,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 	if (nullptr != CurAnimation)
 	{
-		CurAnimation->IsEnd = false;
+		
 		std::vector<int>& Indexs = CurAnimation->FrameIndex;
 		std::vector<float>& Times = CurAnimation->FrameTime;
 
@@ -98,6 +98,9 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 			if (CurAnimation->CurIndex >= Indexs.size())
 			{
 				CurAnimation->IsEnd = true;
+			}
+			else {
+				CurAnimation->IsEnd = false;
 			}
 
 			if (CurAnimation->CurIndex >= Indexs.size())

@@ -18,7 +18,6 @@ public:
 	inline float GetDeltaTime() const { return DeltaTime; }
 	inline double GetDoubleDeltaTime() const { return dDeltaTime; }
 
-	
 	void TimeCheck();		
 	void TimeStart();		
 	float End();			

@@ -108,11 +108,13 @@ void ATurnManager::InitSpawn()
 				}
 				for (int x = -1; x <= 1; x++)
 				{
-					TileType CheckTileType = Dungeon->GetTileType(FirstTileIndex.X + x, FirstTileIndex.Y + y);
-					if (TileType::GROUND == CheckTileType) {
-						CurPokemon->SetActorLocation({ (FirstTileIndex.X + x) * 72.0f, (FirstTileIndex.Y + y) * 72.0f });
-						IsSpawn = true;
-						break;
+					if (x != 0 && y != 0) {
+						TileType CheckTileType = Dungeon->GetTileType(FirstTileIndex.X + x, FirstTileIndex.Y + y);
+						if (TileType::GROUND == CheckTileType) {
+							CurPokemon->SetActorLocation({ (FirstTileIndex.X + x) * 72.0f, (FirstTileIndex.Y + y) * 72.0f });
+							IsSpawn = true;
+							break;
+						}
 					}
 				}
 			}
