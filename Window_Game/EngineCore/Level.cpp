@@ -228,13 +228,11 @@ void ULevel::Collision(float _DeltaTime)
 	}
 }
 
-// 엔진 이벤트코드니까 이상한 곳에서 할필요가 없다.
-// 컨텐츠에서는 존재하는지도 몰라야 한다.
+
 
 
 void ULevel::Release(float _DeltaTime)
 {
-	// 릴리즈 순서는 말단부터 돌려야 합니다.
 	std::list<AActor*>::iterator StartIter = AllActors.begin();
 	std::list<AActor*>::iterator EndIter = AllActors.end();
 
@@ -256,7 +254,6 @@ void ULevel::Release(float _DeltaTime)
 			std::list<class U2DCollision*>::iterator CollisionStartIter = CollisionList.begin();
 			std::list<class U2DCollision*>::iterator CollisionEndIter = CollisionList.end();
 
-			// 언리얼은 중간에 삭제할수 없어.
 			for (; CollisionStartIter != CollisionEndIter; )
 			{
 				if (false == (*CollisionStartIter)->IsDestroy())
@@ -265,9 +262,6 @@ void ULevel::Release(float _DeltaTime)
 					continue;
 				}
 
-				// 랜더러는 지울 필요가 없습니다.
-				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
-				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
 				CollisionStartIter = CollisionList.erase(CollisionStartIter);
 			}
 		}
@@ -285,7 +279,6 @@ void ULevel::Release(float _DeltaTime)
 			std::list<class U2DCollision*>::iterator CollisionStartIter = CollisionList.begin();
 			std::list<class U2DCollision*>::iterator CollisionEndIter = CollisionList.end();
 
-			// 언리얼은 중간에 삭제할수 없어.
 			for (; CollisionStartIter != CollisionEndIter; )
 			{
 				if (false == (*CollisionStartIter)->IsDestroy())
@@ -293,10 +286,6 @@ void ULevel::Release(float _DeltaTime)
 					++CollisionStartIter;
 					continue;
 				}
-
-				// 랜더러는 지울 필요가 없습니다.
-				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
-				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
 				CollisionStartIter = CollisionList.erase(CollisionStartIter);
 			}
 		}
@@ -314,7 +303,7 @@ void ULevel::Release(float _DeltaTime)
 			std::list<class USpriteRenderer*>::iterator RenderStartIter = RendererList.begin();
 			std::list<class USpriteRenderer*>::iterator RenderEndIter = RendererList.end();
 
-			// 언리얼은 중간에 삭제할수 없어.
+			
 			for (; RenderStartIter != RenderEndIter; )
 			{
 				if (false == (*RenderStartIter)->IsDestroy())
@@ -322,10 +311,6 @@ void ULevel::Release(float _DeltaTime)
 					++RenderStartIter;
 					continue;
 				}
-
-				// 랜더러는 지울 필요가 없습니다.
-				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
-				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
 				RenderStartIter = RendererList.erase(RenderStartIter);
 			}
 		}
@@ -347,8 +332,6 @@ void ULevel::Release(float _DeltaTime)
 				++StartIter;
 				continue;
 			}
-
-			// 레벨은 액터의 삭제권한을 가지고 있으니 액터는 진짜 지워 준다.
 			delete CurActor;
 			StartIter = AllActors.erase(StartIter);
 		}
@@ -366,7 +349,6 @@ void ULevel::ScreenClear()
 
 void ULevel::DoubleBuffering()
 {
-	// 레벨의 랜더링이 끝났다.
 	UEngineWindow& MainWindow = UEngineAPICore::GetCore()->GetMainWindow();
 
 	UEngineWinImage* WindowImage = MainWindow.GetWindowImage();
@@ -376,7 +358,6 @@ void ULevel::DoubleBuffering()
 	Trans.Location = MainWindow.GetWindowSize().Half();
 	Trans.Scale = MainWindow.GetWindowSize();
 
-	// 이미지 들은 백버퍼에 다 그려졌을 것이다.
 	BackBufferImage->CopyToBit(WindowImage, Trans);
 
 }
@@ -409,17 +390,8 @@ void ULevel::PushCheckCollision(class U2DCollision* _Collision)
 
 void ULevel::ChangeRenderOrder(class USpriteRenderer* _Renderer, int _PrevOrder)
 {
-	//std::vector<int> Value;
-	// 벡터는 리무브가 없다.
-	//Value.remove
-
-	// 0번에 들어있었을 것이다.
-	// 별로 빠른 함수는 아닙니다.
 	Renderers[_PrevOrder].remove(_Renderer);
-
 	Renderers[_Renderer->GetOrder()].push_back(_Renderer);
-
-
 }
 
 void ULevel::BeginPlayCheck()
@@ -437,12 +409,8 @@ void ULevel::BeginPlayCheck()
 
 		BeginPlayList.clear();
 
-		Renderers;
-
-		// todtjdtl 
 		AActor::ComponentBeginPlay();
 
-		Renderers;
 	}
 
 

@@ -34,7 +34,6 @@ void ATurnManager::LevelChangeStart()
 
 	// 처음 스폰위치
 	InitSpawn();
-	Player->SetStartLocation(Player->GetActorLocation());
 	Player->SetTargetLocation(Player->GetActorLocation());
 	PathFinder.SetData(Dungeon);
 

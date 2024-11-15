@@ -36,19 +36,7 @@ public:
 	void ResetCurDuration() {
 		CurDuration = 0.0f;
 	}
-	//	StartLocation
-	const FVector2D& GetStartLocation() const {
-		return StartLocation;
-	}
-	const FIntPoint& GetStartTile() {
-		return ((StartLocation.ConvertToPoint()) / 72);
-	}
-	void SetStartLocation(const FVector2D& _StartLocation) {
-		StartLocation = _StartLocation;
-	}
-	void SetStartTile(const FIntPoint& _StartTileIndex) {
-		StartLocation = _StartTileIndex * 72.0f;
-	}
+	
 	//	Target
 	const FVector2D& GetTargetLocation() const {
 		return TargetLocation;
@@ -56,12 +44,16 @@ public:
 	const FIntPoint& GetTargetTile() {
 		return ((TargetLocation.ConvertToPoint()) / 72);
 	}
+
 	void SetTargetLocation(const FVector2D& _TargetLocation) {
 		TargetLocation = _TargetLocation;
+		StartLocation = GetActorLocation();
 	}
 	void SetTargetTile(const FIntPoint& _TargetTileIndex) {
 		TargetLocation = _TargetTileIndex * 72.0f;
+		StartLocation = GetActorLocation();
 	}
+
 	//	ÇöÀç
 	const FIntPoint& GetCurTile() {
 		return ((GetActorLocation().ConvertToPoint()) / 72);

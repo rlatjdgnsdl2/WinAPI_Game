@@ -149,9 +149,6 @@ void APokemon::AnimationSetting()
 	SpriteRenderer->CreateAnimation("AttackAnim_4", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 6, CurPokemonAnimationInfo.AttackAnimCount * 7 - 1, AttackFrame, false);
 	SpriteRenderer->CreateAnimation("AttackAnim_1", CurPokemonName + "_Attack.png", CurPokemonAnimationInfo.AttackAnimCount * 7, CurPokemonAnimationInfo.AttackAnimCount * 8 - 1, AttackFrame, false);
 
-
-
-
 	// EndAttack bind
 	SpriteRenderer->SetAnimationEvent("AttackAnim_2", (CurPokemonAnimationInfo.AttackAnimCount * 1 - 1), std::bind(&APokemon::EndAttack, this));
 	SpriteRenderer->SetAnimationEvent("AttackAnim_3", (CurPokemonAnimationInfo.AttackAnimCount * 2 - 1), std::bind(&APokemon::EndAttack, this));

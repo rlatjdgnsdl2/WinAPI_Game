@@ -10,12 +10,8 @@
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
-	// AI Idle
-	std::list<class APokemon*> ::iterator StartIter = AllAIPokemon.begin();
-	std::list<class APokemon*> ::iterator EndIter = AllAIPokemon.end();
-	for (; StartIter != EndIter; StartIter++)
+	for (APokemon* CurPokemon : AllAIPokemon)
 	{
-		APokemon* CurPokemon = *StartIter;
 		CurPokemon->Idle();
 	}
 	PlayerMoveDir = FVector2D::ZERO;
@@ -76,7 +72,7 @@ void ATurnManager::PlayerSelect()
 		return;
 	}
 
-	
+
 
 }
 

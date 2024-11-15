@@ -10,35 +10,30 @@ void ATurnManager::SelectMove()
 	bool IsMoveable = false;
 	IsMoveable = InitPlayerMove(PlayerMoveDir);
 
-	if (IsMoveable) {
-		CurTurnType = TurnType::Move_AI_Select;
-		return;
-	}
 	if (!IsMoveable) {
 		CurTurnType = TurnType::Player_Select;
 		return;
 	}
+	CurTurnType = TurnType::Move_AI_Select;
+	return;
 };
 
 bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 {
 	FVector2D PlayerLocation = Player->GetActorLocation();
-	Player->SetStartLocation(PlayerLocation);
 	Player->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
 	FIntPoint TargetTile = Player->GetTargetTile();
 	TileType TargetTileType = Dungeon->GetTileType(TargetTile.X, TargetTile.Y);
-	//앞이 땅이 아니면
+	//	앞이 땅이 아니면
 	if (TileType::GROUND != TargetTileType) {
 		Player->SetTargetLocation(PlayerLocation);
 		return false;
 	}
-	//앞에 몬스터가 있으면 
-	std::list<APokemon*>::iterator StartIter = EnemyCamp.begin();
-	std::list<APokemon*>::iterator EndIter = EnemyCamp.end();
-	for (; StartIter != EndIter; StartIter++)
+	//	앞에 몬스터가 있으면 
+	for (APokemon* EnemyPokemon : EnemyCamp)
 	{
-		APokemon* EnemyPokemon = *StartIter;
-		FVector2D EnemyLocation = EnemyPokemon->GetActorLocation();
+		//	플레이어가 이동하는 단계는 AI들이 움직이기 전이므로
+		FVector2D EnemyLocation = EnemyPokemon->GetTargetLocation();
 		if (Player->GetTargetLocation() == EnemyLocation) {
 			Player->SetTargetLocation(PlayerLocation);
 			return false;

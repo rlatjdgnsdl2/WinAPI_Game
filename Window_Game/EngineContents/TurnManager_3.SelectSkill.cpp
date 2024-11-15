@@ -12,13 +12,11 @@ void ATurnManager::SelectSkill()
 		FIntPoint TargetTile = Player->GetCurTile() + Dir.ConvertToPoint();
 
 		//	자신이 공격한 방향에 적포켓몬이 있는지 확인
-		std::list<APokemon*>::iterator EnemyStartIter = EnemyCamp.begin();
-		std::list<APokemon*>::iterator EnemyEndIter = EnemyCamp.end();
-		for (; EnemyStartIter != EnemyEndIter; EnemyStartIter++)
+		for (APokemon* CurCheckPokemon : EnemyCamp)
 		{
-			APokemon* CurCheckPokemon = *EnemyStartIter;
 			FIntPoint CheckPokemonTile = CurCheckPokemon->GetCurTile();
 			if (TargetTile == CheckPokemonTile) {
+				//	있으면 타겟포켓몬으로 지정
 				Player->SetTargetPokemon(CurCheckPokemon);
 				break;
 			}

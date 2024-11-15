@@ -8,8 +8,8 @@
 void ATurnManager::PlayerSkill()
 {
 
-	if (Player->IsAttack()) {
-		Player->Skill();
+	Player->Skill();
+	if (true==Player->IsAttack()) {
 		return;
 	}
 	Player->SetTargetPokemon(nullptr);
