@@ -2,11 +2,9 @@
 #include "TitleBackground.h"
 
 
-#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
 
-#include "ContentsEnum.h"
 #include "TitleGameMode.h"
 
 
@@ -20,12 +18,19 @@ ATitleBackground::ATitleBackground()
 ATitleBackground::~ATitleBackground() {}
 
 
+void ATitleBackground::BeginPlay()
+{
+	Super::BeginPlay();
+	BGMPlayer = UEngineSound::Play("TitleBGM.mp3");
+}
+
 void ATitleBackground::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	SetActorLocation({0,0});
 	FVector2D TitleScale = SpriteRenderer->SetSpriteScale();
 	SpriteRenderer->SetComponentLocation(TitleScale.Half());
+	
 }
 
 

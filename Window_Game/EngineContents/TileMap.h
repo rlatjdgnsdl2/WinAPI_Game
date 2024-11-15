@@ -39,7 +39,7 @@ public:
 		Tiles[_y][_x].TileType = _TileType;
 	}
 
-	FIntPoint GetITileIndex(const FVector2D& _Location) {
+	FIntPoint GetTileIndex(const FVector2D& _Location) {
 		FIntPoint Result;
 		Result = _Location.ConvertToPoint();
 		Result = Result / size;

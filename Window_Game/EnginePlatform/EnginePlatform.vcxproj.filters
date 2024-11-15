@@ -80,33 +80,33 @@
     <Filter Include="ThirdParty\FMOD">
       <UniqueIdentifier>{7023b814-e457-40ef-86f7-ce52461406a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\FMOD\Bin">
-      <UniqueIdentifier>{c98c3180-bb53-4b51-942f-86dc1ca63e63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty\FMOD\Inc">
       <UniqueIdentifier>{e7917b5d-1a21-4b65-8f66-eef44147645d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\FMOD\Bin\Debug">
-      <UniqueIdentifier>{dfdf19d8-8081-434c-9f9e-e1b56af445b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\FMOD\Bin\Release">
-      <UniqueIdentifier>{c039cc69-76eb-4d77-a3a4-033be39056f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{22e7679c-c498-4d9a-b008-55fa8357ddec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin">
+      <UniqueIdentifier>{b10983bc-7d20-4dfc-bdfa-5a936b89aed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin\Debug">
+      <UniqueIdentifier>{6a3ca81c-7c7a-4573-b80f-67c8aa5ba8c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin\Release">
+      <UniqueIdentifier>{c6b25cb3-f325-4803-90b3-2060a668adf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Debug\fmodL.dll">
+    <CopyFileToFolders Include="ThirdParty\FMOD\bin\Debug\fmodL.dll">
       <Filter>ThirdParty\FMOD\Bin\Debug</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Debug\fmodL_vc.lib">
+    <CopyFileToFolders Include="ThirdParty\FMOD\bin\Debug\fmodL_vc.lib">
       <Filter>ThirdParty\FMOD\Bin\Debug</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Release\fmod.dll">
+    <CopyFileToFolders Include="ThirdParty\FMOD\bin\Release\fmod.dll">
       <Filter>ThirdParty\FMOD\Bin\Release</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Release\fmod_vc.lib">
+    <CopyFileToFolders Include="ThirdParty\FMOD\bin\Release\fmod_vc.lib">
       <Filter>ThirdParty\FMOD\Bin\Release</Filter>
     </CopyFileToFolders>
   </ItemGroup>

@@ -36,9 +36,9 @@ void PMDContentsCore::BeginPlay()
 	CreateLevel();
 
 	//	처음 레벨 입장
-	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
 	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 
 }
 void PMDContentsCore::Tick()
@@ -57,49 +57,79 @@ int PMDContentsCore::GetTileIndex(std::string_view _key)
 void PMDContentsCore::RoadResources()
 {
 	//	리소스 로드
-	UEngineDirectory Dir;
-	if (false == Dir.MoveParentToDirectory("Resources"))
 	{
-		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-		return;
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UImageManager::GetInst().Load(FilePath);
+		}
 	}
-	std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
-
-	for (size_t i = 0; i < ImageFiles.size(); i++)
+	// 사운드 로드
 	{
-		std::string FilePath = ImageFiles[i].GetPathToString();
-		UImageManager::GetInst().Load(FilePath);
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Sound");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineSound::Load(FilePath);
+		}
 	}
-	UEngineDirectory Title;
-	Title.MoveParentToDirectory("Resources");
-	Title.Append("Title");
-	UImageManager::GetInst().LoadFolder(Title.GetPathToString());
+	{
 
-	UEngineDirectory Global;
-	Global.MoveParentToDirectory("Resources");
-	Global.Append("Global");
-	UImageManager::GetInst().LoadFolder(Global.GetPathToString());
+		UEngineDirectory Title;
+		Title.MoveParentToDirectory("Resources//Image");
+		Title.Append("Title");
+		UImageManager::GetInst().LoadFolder(Title.GetPathToString());
+	}
+	{
 
-	UEngineDirectory Dungeon;
-	Dungeon.MoveParentToDirectory("Resources");
-	Dungeon.Append("Dungeon");
-	UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
+		UEngineDirectory Global;
+		Global.MoveParentToDirectory("Resources//Image");
+		Global.Append("Global");
+		UImageManager::GetInst().LoadFolder(Global.GetPathToString());
+	}
+	{
 
-	UEngineDirectory Dungeon_BeachCave;
-	Dungeon_BeachCave.MoveParentToDirectory("Resources");
-	Dungeon_BeachCave.Append("Dungeon_BeachCave");
-	UImageManager::GetInst().LoadFolder(Dungeon_BeachCave.GetPathToString());
+		UEngineDirectory Dungeon;
+		Dungeon.MoveParentToDirectory("Resources//Image");
+		Dungeon.Append("Dungeon");
+		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
+	}
+	{
 
-	UEngineDirectory Dungeon_AmpPlains;
-	Dungeon_AmpPlains.MoveParentToDirectory("Resources");
-	Dungeon_AmpPlains.Append("Dungeon_AmpPlains");
-	UImageManager::GetInst().LoadFolder(Dungeon_AmpPlains.GetPathToString());
+		UEngineDirectory Dungeon_BeachCave;
+		Dungeon_BeachCave.MoveParentToDirectory("Resources//Image");
+		Dungeon_BeachCave.Append("Dungeon_BeachCave");
+		UImageManager::GetInst().LoadFolder(Dungeon_BeachCave.GetPathToString());
+	}
+	{
 
-	UEngineDirectory DungeonSelect;
-	DungeonSelect.MoveParentToDirectory("Resources");
-	DungeonSelect.Append("DungeonSelect");
-	UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
+		UEngineDirectory Dungeon_AmpPlains;
+		Dungeon_AmpPlains.MoveParentToDirectory("Resources//Image");
+		Dungeon_AmpPlains.Append("Dungeon_AmpPlains");
+		UImageManager::GetInst().LoadFolder(Dungeon_AmpPlains.GetPathToString());
+	}
+	{
 
+		UEngineDirectory DungeonSelect;
+		DungeonSelect.MoveParentToDirectory("Resources//Image");
+		DungeonSelect.Append("DungeonSelect");
+		UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
+	}
 
 	//	Font
 	UImageManager::GetInst().CuttingSprite("English_Font.png", 78, 1);
@@ -112,7 +142,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
 	UGameDataManager::GetInst().InsertAnimInfo("Mudkip", AnimInfo({ 10,2,7,6 }));
-	UGameDataManager::GetInst().InsertPlayerAbility("Mudkip", PokemonInfo(PokemonType::WATER,5,45,20,15));
+	UGameDataManager::GetInst().InsertPlayerAbility("Mudkip", PokemonInfo(PokemonType::WATER, 5, 45, 20, 15));
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
@@ -156,10 +186,7 @@ void PMDContentsCore::RoadResources()
 	UGameDataManager::GetInst().InsertAnimInfo("Corsola", AnimInfo({ 10,2,3,4 }));
 	UGameDataManager::GetInst().InsertPokemonAbility("Corsola", PokemonInfo(PokemonType::WATER, 5, 35, 10, 11));
 	//	이 던전에 나오는 포켓몬들 
-	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", {{"Kabuto","Shellos","Shellder","Corsola"} });
-
-
-
+	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", { {"Kabuto","Shellos","Shellder","Corsola"} });
 
 	//	AmpPlains
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
