@@ -10,11 +10,38 @@
     <ClInclude Include="EngineWindow.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="EngineWinImage.h">
-      <Filter>Window</Filter>
-    </ClInclude>
     <ClInclude Include="EngineWinDebug.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod.hpp">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_codec.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_common.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_dsp.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_dsp_effects.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_errors.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\inc\fmod_output.h">
+      <Filter>ThirdParty\FMOD\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWinImage.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSound.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -27,11 +54,14 @@
     <ClCompile Include="EngineWindow.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="EngineWinImage.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="EngineWinDebug.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineWinImage.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSound.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,5 +74,40 @@
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{0a73d21d-6c92-4352-af67-89ff03c747ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{97df0f1e-6590-4987-a102-f49c75724244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD">
+      <UniqueIdentifier>{7023b814-e457-40ef-86f7-ce52461406a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin">
+      <UniqueIdentifier>{c98c3180-bb53-4b51-942f-86dc1ca63e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Inc">
+      <UniqueIdentifier>{e7917b5d-1a21-4b65-8f66-eef44147645d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin\Debug">
+      <UniqueIdentifier>{dfdf19d8-8081-434c-9f9e-e1b56af445b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Bin\Release">
+      <UniqueIdentifier>{c039cc69-76eb-4d77-a3a4-033be39056f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{22e7679c-c498-4d9a-b008-55fa8357ddec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Debug\fmodL.dll">
+      <Filter>ThirdParty\FMOD\Bin\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Debug\fmodL_vc.lib">
+      <Filter>ThirdParty\FMOD\Bin\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Release\fmod.dll">
+      <Filter>ThirdParty\FMOD\Bin\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\GM2\API\EnginePlatform\ThirdParty\FMOD\bin\Release\fmod_vc.lib">
+      <Filter>ThirdParty\FMOD\Bin\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

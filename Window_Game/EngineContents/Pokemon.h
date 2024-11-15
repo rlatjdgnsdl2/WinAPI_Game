@@ -41,7 +41,7 @@ public:
 	const FVector2D& GetTargetLocation() const {
 		return TargetLocation;
 	}
-	const FIntPoint& GetTargetTile() {
+	const FIntPoint GetTargetTile() {
 		return ((TargetLocation.ConvertToPoint()) / 72);
 	}
 
@@ -55,7 +55,7 @@ public:
 	}
 
 	//	ÇöÀç
-	const FIntPoint& GetCurTile() {
+	const FIntPoint GetCurTile() {
 		return ((GetActorLocation().ConvertToPoint()) / 72);
 	}
 	void SetCurTile(FIntPoint& _CurTileIndex) {

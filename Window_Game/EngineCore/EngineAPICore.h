@@ -5,7 +5,7 @@
 #include "Level.h"
 #include "EngineContentsCore.h"
 #include <EngineBase/EngineString.h>
-#include <map>
+#include <EnginePlatform/EngineSound.h>
 
 //	lib
 #pragma comment (lib, "EngineBase.lib")

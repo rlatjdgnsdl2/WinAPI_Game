@@ -39,6 +39,11 @@ namespace UEngineDebug
 
 	void CoreOutPutString(std::string_view _Text)
 	{
+		if (false == IsDebug)
+		{
+			return;
+		}
+
 		// #ifdef _DEBUG
 				// 바로 출력하지 않는다.
 		DebugTexts.push_back({ _Text.data(), EngineTextPos });
@@ -48,6 +53,10 @@ namespace UEngineDebug
 
 	void CoreOutPutString(std::string_view _Text, FVector2D _Pos)
 	{
+		if (false == IsDebug)
+		{
+			return;
+		}
 		// #ifdef _DEBUG
 		DebugTexts.push_back({ _Text.data(), _Pos });
 		// #endif
@@ -65,6 +74,11 @@ namespace UEngineDebug
 
 	void CoreDebugRender(FTransform _Trans, EDebugPosType _Type)
 	{
+		if (false == IsDebug)
+		{
+			return;
+		}
+
 		DebugPoses.push_back({ _Trans, _Type });
 	}
 

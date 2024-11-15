@@ -7,7 +7,7 @@
 void ATurnManager::AISkill()
 {
 	static int GCurIndex = 0;
-	int MaxIndex = SkillPokemon.size();
+	size_t MaxIndex = SkillPokemon.size();
 
 	if (GCurIndex == MaxIndex) {
 		GCurIndex = 0;
@@ -39,5 +39,4 @@ void ATurnManager::AISkill()
 	CurPokemon->SetTargetPokemon(nullptr);
 	GCurIndex++;
 	return;
-
 }

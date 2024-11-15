@@ -29,6 +29,7 @@ UEngineAPICore::~UEngineAPICore()
 		}
 	}
 	Levels.clear();
+	UEngineSound::Release();
 }
 
 
@@ -87,6 +88,7 @@ void UEngineAPICore::Tick()
 	//	level roops
 	DeltaTimer.TimeCheck();
 	float DeltaTime = DeltaTimer.GetDeltaTime();
+	UEngineSound::Update();
 	UEngineInput::GetInst().KeyCheck(DeltaTime);
 	if (nullptr == CurLevel)
 	{
