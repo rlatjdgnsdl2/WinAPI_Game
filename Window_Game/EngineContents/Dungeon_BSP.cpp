@@ -33,7 +33,7 @@ void ADungeon_BSP::RoomClear()
 
 void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
 {
-	CurDungeonName = _CurDungeonName.data();
+	SetName(_CurDungeonName);
 	root = new Node{ 5, 5, Width - 11, Height - 11 };
 	InitDungeon();
 	Split(root);
@@ -114,12 +114,12 @@ void ADungeon_BSP::InitDungeon()
 		for (int x = 0; x < Width; x++)
 		{
 			if (Tiles[y][x].SpriteRenderer == nullptr) {
-				CreateTile(x, y, { 72,72 }, CurDungeonName + "_Wall.png", 4);
+				CreateTile(x, y, { 72,72 }, GetName() + "_Wall.png", 4);
 				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::WALL);
 
 			}
-			SetTile(x, y, CurDungeonName + "_Wall.png", 4);
+			SetTile(x, y, GetName() + "_Wall.png", 4);
 			Tiles[y][x].SpriteRenderer->SetSpriteScale();
 			SetTileType(x, y, TileType::WALL);
 		}
@@ -145,7 +145,7 @@ void ADungeon_BSP::CreateNaturalFeatures()
 		// 자연환경 타일 배치
 		for (int y = FeatureY; y < FeatureY + FeatureHeight; ++y) {
 			for (int x = FeatureX; x < FeatureX + FeatureWidth; ++x) {
-				SetTile(x, y, CurDungeonName + "_Water.png", 4); // 예: 물 타일
+				SetTile(x, y, GetName() + "_Water.png", 4); // 예: 물 타일
 				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::WATER); // 물 타일 타입 설정
 			}
@@ -181,7 +181,7 @@ void ADungeon_BSP::CreateRooms(Node* node)
 		// 방의 타일을 설정
 		for (int y = RoomLocation_Y; y < RoomLocation_Y + RoomHeight; ++y) {
 			for (int x = RoomLocation_X; x < RoomLocation_X + RoomWidth; ++x) {
-				SetTile(x, y, CurDungeonName + "_Ground.png", 4);
+				SetTile(x, y, GetName() + "_Ground.png", 4);
 				Tiles[y][x].SpriteRenderer->SetSpriteScale();
 				SetTileType(x, y, TileType::GROUND);
 				RoomLocations.push_back(FVector2D(x * 72, y * 72));
@@ -219,13 +219,13 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 
 	// 첫 번째 구간: 시작점에서 중간점까지
 	while (startX != midX) {
-		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		SetTile(startX, startY, GetName() + "_Ground.png", 4);
 		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startX += (startX < midX) ? 1 : -1;
 	}
 	while (startY != midY) {
-		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		SetTile(startX, startY, GetName() + "_Ground.png", 4);
 		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startY += (startY < midY) ? 1 : -1;
@@ -233,13 +233,13 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 
 	// 두 번째 구간: 중간점에서 끝점까지
 	while (startX != endX) {
-		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		SetTile(startX, startY, GetName() + "_Ground.png", 4);
 		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startX += (startX < endX) ? 1 : -1;
 	}
 	while (startY != endY) {
-		SetTile(startX, startY, CurDungeonName + "_Ground.png", 4);
+		SetTile(startX, startY, GetName() + "_Ground.png", 4);
 		Tiles[startY][startX].SpriteRenderer->SetSpriteScale();
 		SetTileType(startX, startY, TileType::GROUND);
 		startY += (startY < endY) ? 1 : -1;
@@ -304,7 +304,6 @@ bool ADungeon_BSP::IsMove(const FIntPoint& _Point)
 	if (TileType::GROUND != CheckTileType) {
 		return false;
 	}
-
 	return true;
 }
 

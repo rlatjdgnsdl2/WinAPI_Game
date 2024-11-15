@@ -27,16 +27,12 @@ public:
 
 	Room getRoom(Node* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
-	void SetCurDungoenName(std::string_view _CurDungeonName) {
-		CurDungeonName = _CurDungeonName;
-	}
 
 protected:
 
 private:
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
-	std::string CurDungeonName;
 	Node* root;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;

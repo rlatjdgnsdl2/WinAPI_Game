@@ -22,8 +22,8 @@ void ATurnManager::Move_AISelect()
 		{
 			bool IsFindTarget = false;
 			CurPokemon->ResetCurDuration();
-			FIntPoint CurTile = CurPokemon->GetCurTile();
-			CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+			FIntPoint CurTile = CurPokemon->GetTile();
+			CampType CurPokemonCamp = CurPokemon->GetCamp();
 			//	주인공편일때 주인공이 내쪽으로 온다면
 			if (CurPokemonCamp == CampType::Player && Player->GetTargetTile() == CurTile) {
 				CurPokemon->SetTargetLocation(Player->GetActorLocation());
@@ -90,7 +90,7 @@ void ATurnManager::Move_AISelect()
 			//	위에 조건에 안걸렸다면
 			if (!IsStand) {
 				for (APokemon* ComparePokemon : SkillPokemon) {
-					if (CurTarget == ComparePokemon->GetCurTile()) {
+					if (CurTarget == ComparePokemon->GetTile()) {
 						CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
 						break;
 					}
@@ -99,7 +99,7 @@ void ATurnManager::Move_AISelect()
 			//	문제없다면 방향설정
 			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetActorLocation()) / 72.0f;
 			if (Dir != FVector2D::ZERO) {
-				CurPokemon->SetCurDir(UContentsMath::FVector2D_To_DIR(Dir));
+				CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
 			}
 		}
 	}

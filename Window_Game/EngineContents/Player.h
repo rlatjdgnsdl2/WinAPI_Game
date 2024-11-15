@@ -25,6 +25,7 @@ public:
 protected:
 
 private:
+	int Exp;
 
 };
 

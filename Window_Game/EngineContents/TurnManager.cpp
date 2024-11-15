@@ -7,7 +7,6 @@
 #include <EngineCore/EngineAPICore.h>
 
 #include "Player.h"
-#include "Partner.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
 
@@ -99,7 +98,7 @@ void ATurnManager::InitSpawn()
 		{
 			APokemon* CurPokemon = *StartIter;
 			bool IsSpawn = false;
-			FIntPoint FirstTileIndex = FirstPokemon->GetCurTile();
+			FIntPoint FirstTileIndex = FirstPokemon->GetTile();
 			for (int y = -1; y <= 1; y++)
 			{
 				if (true == IsSpawn) {

@@ -58,17 +58,11 @@
     <ClInclude Include="Enemy.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
-    <ClInclude Include="Partner.h">
-      <Filter>LevelObjects\00.Pokemon</Filter>
-    </ClInclude>
     <ClInclude Include="ContentsMath.h">
       <Filter>_Header</Filter>
     </ClInclude>
     <ClInclude Include="DungeonUI.h">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="PokemonUtility.h">
-      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,9 +150,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="Partner.cpp">
-      <Filter>LevelObjects\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="ContentsMath.cpp">
       <Filter>_Header</Filter>
     </ClCompile>
@@ -168,7 +159,13 @@
     <ClCompile Include="DungeonUI.cpp">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClCompile>
-    <ClCompile Include="PokemonUtility.cpp">
+    <ClCompile Include="Pokemon_AnimSet.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon_Move.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon_Fight.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>

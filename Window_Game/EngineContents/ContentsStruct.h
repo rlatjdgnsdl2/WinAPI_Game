@@ -23,10 +23,10 @@ struct Node {
 };
 
 
-struct PokemonAnimaionInfo
+struct AnimInfo
 {
-	PokemonAnimaionInfo() {}
-	PokemonAnimaionInfo(
+	AnimInfo() {}
+	AnimInfo(
 		int _AttackAnimCount,
 		int _HurtAnimCount,
 		int _IdleAnimCount,
@@ -41,10 +41,10 @@ struct PokemonAnimaionInfo
 	int WalkAnimCount{};
 };
 
-struct PokemonAbility
+struct PokemonInfo
 {
-	PokemonAbility() {}
-	PokemonAbility(
+	PokemonInfo() {}
+	PokemonInfo(
 		unsigned int _Level,
 		unsigned int _Hp,
 		unsigned int _Attack,

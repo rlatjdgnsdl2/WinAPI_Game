@@ -32,8 +32,8 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
-	CurCamp = CampType::Player;
-	CurPokemonAbility = UGameDataManager::GetInst().GetPlayerAbility(CurPokemonName);
+	SetCamp(CampType::Player);
+	SetCurAbility(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
 }
 
 

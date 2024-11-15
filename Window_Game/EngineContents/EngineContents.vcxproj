@@ -187,10 +187,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Partner.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -200,10 +196,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DungeonSelectGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PokemonUtility.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -278,10 +270,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Partner.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
@@ -294,10 +282,9 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PokemonUtility.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Pokemon_AnimSet.cpp" />
+    <ClCompile Include="Pokemon_Fight.cpp" />
+    <ClCompile Include="Pokemon_Move.cpp" />
     <ClCompile Include="TempPlayer.cpp">
       <SubType>
       </SubType>

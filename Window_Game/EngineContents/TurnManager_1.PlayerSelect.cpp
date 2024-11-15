@@ -18,55 +18,55 @@ void ATurnManager::PlayerSelect()
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
 		PlayerMoveDir += FVector2D::UP;
-		Player->SetCurDir(DIR::Up);
+		Player->SetDir(DIR::Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD7)) {
 		PlayerMoveDir += FVector2D::UP + FVector2D::LEFT;
-		Player->SetCurDir(DIR::Left_Up);
+		Player->SetDir(DIR::Left_Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD4)) {
 		PlayerMoveDir += FVector2D::LEFT;
-		Player->SetCurDir(DIR::Left);
+		Player->SetDir(DIR::Left);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD1)) {
 		PlayerMoveDir += FVector2D::DOWN + FVector2D::LEFT;
-		Player->SetCurDir(DIR::Left_Down);
+		Player->SetDir(DIR::Left_Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD2)) {
 		PlayerMoveDir += FVector2D::DOWN;
-		Player->SetCurDir(DIR::Down);
+		Player->SetDir(DIR::Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD3)) {
 		PlayerMoveDir += FVector2D::DOWN + FVector2D::RIGHT;
-		Player->SetCurDir(DIR::Right_Down);
+		Player->SetDir(DIR::Right_Down);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD6)) {
 		PlayerMoveDir += FVector2D::RIGHT;
-		Player->SetCurDir(DIR::Right);
+		Player->SetDir(DIR::Right);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD9)) {
 		PlayerMoveDir += FVector2D::UP + FVector2D::RIGHT;
-		Player->SetCurDir(DIR::Right_Up);
+		Player->SetDir(DIR::Right_Up);
 		CurTurnType = TurnType::Player_Select_Move;
 		return;
 	}
 	// Player_Select_Skill 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress('A')) {
-		Player->SetCurSkillType(SkillType::NormalAttack);
+		Player->SetSkillType(SkillType::NormalAttack);
 		PlayerInput = 'A';
 		CurTurnType = TurnType::Player_Select_Skill;
 		return;

@@ -1,15 +1,11 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-
-
-
-
-
 //	설명:
 class APokemon :public AActor
 {
 public:
+
 	//	constrcuter, destructer
 	APokemon();
 	virtual ~APokemon();
@@ -26,87 +22,48 @@ public:
 	virtual void Skill();
 	virtual void Hurt();
 
-	const DIR& GetCurDir() const {
-		return CurDir;
-	}
-	void SetCurDir(DIR _dir) {
-		CurDir = _dir;
-	}
+	const CampType GetCamp() const { return Camp; }
+	const DIR& GetDir() const { return Dir; }
+	void SetCamp(CampType _CampType) { Camp = _CampType; }
+	void SetDir(DIR _dir) { Dir = _dir; }
+	//	이동
+	void ResetCurDuration();
+	const FVector2D& GetTargetLocation() const;
+	const FIntPoint GetTargetTile();
+	const FIntPoint GetTile();
+	void SetTargetLocation(const FVector2D& _TargetLocation);
+	void SetTargetTile(const FIntPoint& _TargetTileIndex);
+	void SetTile(FIntPoint& _CurTileIndex);
 
-	void ResetCurDuration() {
-		CurDuration = 0.0f;
-	}
-	
-	//	Target
-	const FVector2D& GetTargetLocation() const {
-		return TargetLocation;
-	}
-	const FIntPoint GetTargetTile() {
-		return ((TargetLocation.ConvertToPoint()) / 72);
-	}
-
-	void SetTargetLocation(const FVector2D& _TargetLocation) {
-		TargetLocation = _TargetLocation;
-		StartLocation = GetActorLocation();
-	}
-	void SetTargetTile(const FIntPoint& _TargetTileIndex) {
-		TargetLocation = _TargetTileIndex * 72.0f;
-		StartLocation = GetActorLocation();
-	}
-
-	//	현재
-	const FIntPoint GetCurTile() {
-		return ((GetActorLocation().ConvertToPoint()) / 72);
-	}
-	void SetCurTile(FIntPoint& _CurTileIndex) {
-		SetActorLocation(_CurTileIndex * 72.0f);
-	}
-
-
-	const SkillType& GetCurSkillType() const {
-		return CurSkillType;
-	}
-	void SetCurSkillType(SkillType _SkillType) {
-		CurSkillType = _SkillType;
-	}
-
-	const CampType GetCurCamp() const {
-		return CurCamp;
-	}
-	void SetCurCamp(CampType _CampType) {
-		CurCamp = _CampType;
-	}
-
-	class APokemon* GetTargetPokemon() const {
-		return TargetPokemon;
-	}
-	void SetTargetPokemon(class APokemon* _TargetPokemon) {
-		TargetPokemon = _TargetPokemon;
-	}
-
-	PokemonAbility GetPokemonStat() const { 
-		return CurPokemonAbility; 
-	}
-	void SetPokemonAbility(const PokemonAbility& _PokemonAbility) { CurPokemonAbility = _PokemonAbility; }
-
+	//	전투
+	const SkillType& GetSkillType() const;
+	class APokemon* GetTargetPokemon() const;
+	void SetSkillType(SkillType _SkillType);
+	void SetTargetPokemon(class APokemon* _TargetPokemon);
 	void StartAttack();
 	void EndAttack();
-	bool IsAttack() {
-		return IsAttackValue;
-	};
-	void PlayHurtAnim();
-	virtual void AnimationSetting();
+	bool IsAttack();
 
+
+
+	PokemonInfo GetPokemonStat() const {
+		return CurAbility;
+	}
+
+	void SetCurAbility(const PokemonInfo& _PokemonAbility) { CurAbility = _PokemonAbility; }
+
+	void PlayHurtAnim();
+	virtual void AnimSet();
 
 protected:
-	class USpriteRenderer* SpriteRenderer;
 
+private:
+	class USpriteRenderer* SpriteRenderer;
 	bool IsAttackValue;
 	bool IsHurtValue;
-
 	//	기본
-	CampType CurCamp;
-	DIR CurDir;
+	CampType Camp;
+	DIR Dir;
 
 	//	이동관련
 	float CurDuration;
@@ -115,14 +72,10 @@ protected:
 
 	//	전투관련
 	class APokemon* TargetPokemon;
-	SkillType CurSkillType;
+	SkillType Skill;
 
+	PokemonInfo CurAbility;
 
-
-	std::string CurPokemonName;
-	PokemonAnimaionInfo CurPokemonAnimationInfo;
-	PokemonAbility CurPokemonAbility;
-private:
 
 
 };

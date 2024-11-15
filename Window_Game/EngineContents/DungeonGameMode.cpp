@@ -9,7 +9,6 @@
 
 #include "GameDataManager.h"
 #include "Player.h"
-#include "Partner.h"
 #include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
@@ -64,7 +63,7 @@ void ADungeonGameMode::LevelChangeStart()
 	TurnManager->PushPlayerCamp(Player);
 	//	파트너 생성
 	if (nullptr == Partner) {
-		Partner = GetWorld()->SpawnActor<APartner>();
+		Partner = GetWorld()->SpawnActor<APlayer>();
 	}
 	Partner->SetPokemon("Vulpix");
 	TurnManager->PushAllAIPokemon(Partner);

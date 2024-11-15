@@ -24,8 +24,8 @@ void ATurnManager::Skill_AISelect()
 		{
 			bool IsFindTarget = false;
 			CurPokemon->ResetCurDuration();
-			FIntPoint CurTile = CurPokemon->GetCurTile();
-			CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+			FIntPoint CurTile = CurPokemon->GetTile();
+			CampType CurPokemonCamp = CurPokemon->GetCamp();
 			//	반대진영 리스트가져옴
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			// 타켓로케이션 확인
@@ -83,7 +83,7 @@ void ATurnManager::Skill_AISelect()
 			//	위에 조건에 안걸렸다면
 			if (!IsStand) {
 				for (APokemon* ComparePokemon : SkillPokemon) {
-					if (CurTarget == ComparePokemon->GetCurTile()) {
+					if (CurTarget == ComparePokemon->GetTile()) {
 						CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
 						break;
 					}
@@ -92,7 +92,7 @@ void ATurnManager::Skill_AISelect()
 			//	문제없다면 방향설정
 			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetActorLocation()) / 72.0f;
 			if (Dir != FVector2D::ZERO) {
-				CurPokemon->SetCurDir(UContentsMath::FVector2D_To_DIR(Dir));
+				CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
 			}
 		}
 	}

@@ -20,35 +20,35 @@ public:
 	}
 
 	//	PokemonInfo
-	void InsertPokemonAnimationInfo(std::string_view _PokemonName, const PokemonAnimaionInfo& _PokemonAnimationInfos) {
-		PokemonAnimationInfos.insert({ _PokemonName.data(),_PokemonAnimationInfos });
+	void InsertAnimInfo(std::string_view _PokemonName, const AnimInfo& _PokemonAnimationInfos) {
+		Animations.insert({ _PokemonName.data(),_PokemonAnimationInfos });
 	}
-	const PokemonAnimaionInfo& GetPokemonAnimationInfo(std::string_view _PokemonName) const {
-		return PokemonAnimationInfos.find(_PokemonName.data())->second;
+	const AnimInfo& GetAnimInfo(std::string_view _PokemonName) const {
+		return Animations.find(_PokemonName.data())->second;
 	}
 	//	DungeonInfo
 	void InsertDungeonInfo(std::string_view _DungeonName,const DungeonInfo& _DungeonInfo) {
-		DungeonInfos.insert({ _DungeonName.data(),_DungeonInfo });
+		Dungeons.insert({ _DungeonName.data(),_DungeonInfo });
 	}
 	const DungeonInfo& GetDungeonInfo(std::string_view _DungeonName) const {
-		return DungeonInfos.find(_DungeonName.data())->second;
+		return Dungeons.find(_DungeonName.data())->second;
 	}
 
 	//	PokemonAbility
-	void InsertPokemonAbility(std::string_view _PokemonName, const PokemonAbility& _PokemonAbility) {
-		PokemonAbilities.insert({ _PokemonName.data(), _PokemonAbility });
+	void InsertPokemonAbility(std::string_view _PokemonName, const PokemonInfo& _PokemonAbility) {
+		Pokemons.insert({ _PokemonName.data(), _PokemonAbility });
 	}
-	PokemonAbility GetPokemonAbility(std::string_view _PokemonName) const {
-		return PokemonAbilities.find(_PokemonName.data())->second;
+	PokemonInfo GetPokemonAbility(std::string_view _PokemonName) const {
+		return Pokemons.find(_PokemonName.data())->second;
 	}
 
 
 	// PlayerAbility
-	PokemonAbility GetPlayerAbility(std::string_view _PlayerName) {
+	PokemonInfo GetPlayerAbility(std::string_view _PlayerName) {
 		return PlayerAbilities.find(_PlayerName.data())->second;
 	}
 
-	void InsertPlayerAbility(std::string_view _PlayerName, PokemonAbility _PokemonAbility) {
+	void InsertPlayerAbility(std::string_view _PlayerName, PokemonInfo _PokemonAbility) {
 		PlayerAbilities.insert({ _PlayerName.data(), _PokemonAbility });
 	}
 
@@ -68,12 +68,12 @@ protected:
 private:
 	UGameDataManager();
 	std::string SelectDungeon = "BeachCave";
-	std::map<std::string, PokemonAbility> PlayerAbilities;
-	std::map<std::string, PokemonAnimaionInfo > PokemonAnimationInfos;
-	std::map<std::string, PokemonAbility > PokemonAbilities;
-	std::map<std::string, DungeonInfo> DungeonInfos;
+	std::map<std::string, AnimInfo > Animations;
+	std::map<std::string, PokemonInfo > Pokemons;
+	std::map<std::string, DungeonInfo> Dungeons;
 
 	
+	std::map<std::string, PokemonInfo> PlayerAbilities;
 
 };
 

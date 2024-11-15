@@ -19,14 +19,14 @@ void ATurnManager::AISkill()
 	APokemon* CurPokemon = SkillPokemon[GCurIndex];
 	// 타겟포켓몬 정하기
 	if (CurPokemon->GetTargetPokemon() == nullptr) {
-		FIntPoint CurTile = CurPokemon->GetCurTile();
-		CampType CurPokemonCamp = CurPokemon->GetCurCamp();
+		FIntPoint CurTile = CurPokemon->GetTile();
+		CampType CurPokemonCamp = CurPokemon->GetCamp();
 		std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 		for (APokemon* CurComparePokemon : CompareCamp) {
 			FIntPoint Distance = CurComparePokemon->GetTargetTile() - CurTile;
 			if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
-				CurPokemon->SetCurDir(UContentsMath::FIntPoint_To_DIR(Distance));
-				CurPokemon->SetCurSkillType(SkillType::NormalAttack);
+				CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(Distance));
+				CurPokemon->SetSkillType(SkillType::NormalAttack);
 				CurPokemon->SetTargetPokemon(CurComparePokemon);
 				break;
 			}

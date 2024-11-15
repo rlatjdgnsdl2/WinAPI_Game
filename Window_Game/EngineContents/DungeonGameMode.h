@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
-#include "Partner.h"
+
 
 //	설명: 턴매니저 생성 담당
 class ADungeonGameMode : public AGameMode
@@ -31,7 +31,7 @@ private:
 	class ATurnManager* TurnManager;
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
-	class APartner* Partner;
+	class APlayer* Partner;
 	class AEnemy* Enemy01;
 	class AEnemy* Enemy02;
 	class AEnemy* Enemy03;
