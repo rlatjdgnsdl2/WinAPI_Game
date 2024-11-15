@@ -16,6 +16,8 @@ public:
 	AEnemy& operator=(AEnemy&& _Other) noexcept = delete;
 
 	virtual void SetPokemon(std::string_view _PokemonName) override;
+
+
 protected:
 
 private:

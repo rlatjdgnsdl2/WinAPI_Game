@@ -56,7 +56,6 @@ public:
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
-
 	PokemonAbility CurAbility;
 
 	bool IsAttackValue;

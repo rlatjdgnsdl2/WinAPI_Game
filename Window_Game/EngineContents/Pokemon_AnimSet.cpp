@@ -5,14 +5,6 @@
 #include "GameDataManager.h"
 
 
-
-
-
-
-
-
-
-
 void APokemon::AnimSet()
 {
 	AnimInfo CurAnimInfo = UGameDataManager::GetInst().GetAnimInfo(GetName());

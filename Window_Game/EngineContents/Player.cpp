@@ -26,32 +26,26 @@ void APlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	UEngineDebug::CoreOutPutString(std::to_string(1/_DeltaTime));
-
 }
 
 void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	SetCamp(CampType::Player);
-	CurAbility.SetCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
-
-
-	
+	CurAbility.SetCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));	
 }
 
-void APlayer::EndAttack()
-{
-	if (TargetPokemon != nullptr) {
-		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
-	}
-	bool IsDie = TargetPokemon->GetCurAbility().IsDie();
-	if (IsDie) {
-		CurAbility.SetExp(TargetPokemon->GetCurAbility().DropExp());
-	}
-
-
-
-}
+//void APlayer::EndAttack()
+//{
+//	if (TargetPokemon != nullptr) {
+//		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
+//	}
+//	bool IsDie = TargetPokemon->GetCurAbility().IsDie();
+//	if (IsDie) {
+//		CurAbility.SetExp(TargetPokemon->GetCurAbility().DropExp());
+//	}
+//	IsAttackValue = false;
+//}
 
 
 

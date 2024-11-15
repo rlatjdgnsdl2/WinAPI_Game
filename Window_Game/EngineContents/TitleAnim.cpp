@@ -15,7 +15,6 @@ ATitleAnim::ATitleAnim()
 	SpriteRenderer->SetSprite("1.Intro_anim.png");
 	float frame = 2.0f / 15;
 	SpriteRenderer->CreateAnimation("IntroAnim", "1.Intro_Anim.png", 0, 14, frame, false);
-
 }
 ATitleAnim::~ATitleAnim()
 {
