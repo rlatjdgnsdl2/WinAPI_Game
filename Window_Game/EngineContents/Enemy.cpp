@@ -18,6 +18,6 @@ void AEnemy::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	SetCamp(CampType::Enemy);
-	SetCurAbility(UGameDataManager::GetInst().GetPokemonAbility(GetName()));
+	CurAbility.SetCurStatus(UGameDataManager::GetInst().GetPokemonAbility(GetName()));
 
 }

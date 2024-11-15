@@ -6,7 +6,7 @@
 
 // 스피드 순으로 정렬
 bool SortFunc(APokemon* first, APokemon* second) {
-	return first->GetPokemonStat().Speed > second->GetPokemonStat().Speed;
+	return first->GetCurAbility().GetSpeed() > second->GetCurAbility().GetSpeed();
 }
 
 

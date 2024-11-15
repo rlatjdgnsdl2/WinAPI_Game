@@ -5,7 +5,7 @@
 
 void APokemon::Skill()
 {
-	switch (Skill)
+	switch (CurSkill)
 	{
 	case SkillType::NormalAttack:
 		SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string(static_cast<int>(Dir)));
@@ -35,6 +35,10 @@ void APokemon::StartAttack()
 
 void APokemon::EndAttack()
 {
+	if (TargetPokemon != nullptr) {
+		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
+	}
+	TargetPokemon = nullptr;
 	IsAttackValue = false;
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 }
@@ -50,10 +54,10 @@ void APokemon::PlayHurtAnim()
 
 
 const SkillType& APokemon::GetSkillType() const {
-	return Skill;
+	return CurSkill;
 }
 void APokemon::SetSkillType(SkillType _SkillType) {
-	Skill = _SkillType;
+	CurSkill = _SkillType;
 }
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include "PokemonAbility.h"
 
 //	설명:
 class APokemon :public AActor
@@ -17,6 +18,7 @@ public:
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
 	virtual void SetPokemon(std::string_view _PokemonName);
+	virtual void AnimSet();
 	virtual void Idle();
 	virtual void Move(float _DeltaTime);
 	virtual void Skill();
@@ -41,40 +43,36 @@ public:
 	void SetSkillType(SkillType _SkillType);
 	void SetTargetPokemon(class APokemon* _TargetPokemon);
 	void StartAttack();
-	void EndAttack();
+	virtual void EndAttack();
 	bool IsAttack();
+	void PlayHurtAnim();
 
-
-
-	PokemonInfo GetPokemonStat() const {
+	PokemonAbility& GetCurAbility() {
 		return CurAbility;
 	}
 
-	void SetCurAbility(const PokemonInfo& _PokemonAbility) { CurAbility = _PokemonAbility; }
 
-	void PlayHurtAnim();
-	virtual void AnimSet();
+
 
 protected:
-
-private:
 	class USpriteRenderer* SpriteRenderer;
+
+	PokemonAbility CurAbility;
+
 	bool IsAttackValue;
 	bool IsHurtValue;
 	//	기본
 	CampType Camp;
 	DIR Dir;
-
 	//	이동관련
 	float CurDuration;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
-
 	//	전투관련
 	class APokemon* TargetPokemon;
-	SkillType Skill;
+	SkillType CurSkill;
+private:
 
-	PokemonInfo CurAbility;
 
 
 

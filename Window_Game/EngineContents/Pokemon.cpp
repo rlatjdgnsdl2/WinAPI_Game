@@ -1,8 +1,10 @@
 #include "PreCompile.h"
+#include "PreCompile.h"
 #include "Pokemon.h"
 
 #include <EngineCore/SpriteRenderer.h>
 #include "GameDataManager.h"
+
 
 
 APokemon::APokemon()

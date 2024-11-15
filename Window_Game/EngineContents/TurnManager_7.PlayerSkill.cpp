@@ -12,7 +12,6 @@ void ATurnManager::PlayerSkill()
 	if (true==Player->IsAttack()) {
 		return;
 	}
-	Player->SetTargetPokemon(nullptr);
 	CurTurnType = TurnType::Skill_AI_Select;
 	return;
 }

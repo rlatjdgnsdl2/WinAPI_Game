@@ -21,11 +21,12 @@ public:
 
 	virtual void Tick(float _DeltaTime)override;
 	virtual void SetPokemon(std::string_view _PokemonName) override;
+	virtual void EndAttack()override;
 
 protected:
 
 private:
-	int Exp;
+	
 
 };
 

@@ -5,11 +5,7 @@
 #include "Player.h"
 
 bool SortFuncD(APokemon* first, APokemon* second) {
-	if (first->GetPokemonStat().Speed > second->GetPokemonStat().Speed)
-	{
-		return true;
-	}
-	return false;
+	return first->GetCurAbility().GetSpeed() > second->GetCurAbility().GetSpeed();
 }
 
 void ATurnManager::Skill_AISelect()

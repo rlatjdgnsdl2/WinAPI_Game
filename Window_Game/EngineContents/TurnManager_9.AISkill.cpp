@@ -36,7 +36,6 @@ void ATurnManager::AISkill()
 	if (true == CurPokemon->IsAttack()) {
 		return;
 	}
-	CurPokemon->SetTargetPokemon(nullptr);
 	GCurIndex++;
 	return;
 }

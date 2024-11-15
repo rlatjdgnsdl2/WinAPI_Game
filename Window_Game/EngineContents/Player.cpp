@@ -33,7 +33,24 @@ void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	SetCamp(CampType::Player);
-	SetCurAbility(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
+	CurAbility.SetCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
+
+
+	
+}
+
+void APlayer::EndAttack()
+{
+	if (TargetPokemon != nullptr) {
+		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
+	}
+	bool IsDie = TargetPokemon->GetCurAbility().IsDie();
+	if (IsDie) {
+		CurAbility.SetExp(TargetPokemon->GetCurAbility().DropExp());
+	}
+
+
+
 }
 
 
