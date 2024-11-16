@@ -38,7 +38,6 @@ void APokemon::EndAttack()
 	if (TargetPokemon != nullptr) {
 		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
 	}
-	TargetPokemon = nullptr;
 	IsAttackValue = false;
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 }

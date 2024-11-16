@@ -4,6 +4,7 @@
 class PokemonAbility 
 {
 public:
+	friend class APokemon;
 	//	constrcuter, destructer
 	PokemonAbility();
 	virtual ~PokemonAbility();
@@ -14,7 +15,7 @@ public:
 	PokemonAbility& operator=(const PokemonAbility& _Other) = delete;
 	PokemonAbility& operator=(PokemonAbility&& _Other) noexcept = delete;
 
-	void SetCurStatus(const PokemonInfo& _PokemonInfo) {
+	void InitCurStatus(const PokemonInfo& _PokemonInfo) {
 		CurStatus = _PokemonInfo;
 		CurStatus.CurHp = CurStatus.MaxHp;
 		CurStatus.MaxEXP = CurStatus.Level * 100;

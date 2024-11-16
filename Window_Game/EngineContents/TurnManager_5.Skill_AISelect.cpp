@@ -62,7 +62,7 @@ void ATurnManager::Skill_AISelect()
 			//	나의 타겟로케이션
 			FIntPoint CurTarget = CurPokemon->GetTargetTile();
 			//	MovePokemon중 자신보다 스피드 빠른포켓몬이랑 타겟로케이션 겹치면 제자리
-			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
+			std::list<APokemon*>::iterator CompareIter = MovePokemon.begin();
 			for (; *CompareIter != CurPokemon; CompareIter++)
 			{
 				APokemon* ComparePokemon = *CompareIter;

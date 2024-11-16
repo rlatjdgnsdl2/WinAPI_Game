@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EnginePlatform/EngineSound.h>
 #include "PokemonAbility.h"
 
 //	Ό³Έν:
@@ -51,12 +52,10 @@ public:
 		return CurAbility;
 	}
 
-
-
-
 protected:
 	class USpriteRenderer* SpriteRenderer;
 	PokemonAbility CurAbility;
+	UEngineSound BGMPlayer;
 
 	bool IsAttackValue;
 	bool IsHurtValue;

@@ -64,15 +64,15 @@ void ATurnManager::Move_AISelect()
 
 	{
 		// 최종체크 - 서로서로 안겹치게 조정
-		std::vector<APokemon*>::iterator StartIter = MovePokemon.begin();
-		std::vector<APokemon*> ::iterator EndIter = MovePokemon.end();
+		std::list<APokemon*>::iterator StartIter = MovePokemon.begin();
+		std::list<APokemon*> ::iterator EndIter = MovePokemon.end();
 		for (APokemon* CurPokemon: MovePokemon)
 		{
 			bool IsStand = false;
 			//	나의 타겟로케이션
 			FIntPoint CurTarget = CurPokemon->GetTargetTile();
 			//	MovePokemon중 자신보다 스피드 빠른포켓몬이랑 타겟로케이션 겹치면 제자리
-			std::vector<APokemon*>::iterator CompareIter = MovePokemon.begin();
+			std::list<APokemon*>::iterator CompareIter = MovePokemon.begin();
 			for (; CompareIter != StartIter; CompareIter++)
 			{
 				APokemon* ComparePokemon = *CompareIter;

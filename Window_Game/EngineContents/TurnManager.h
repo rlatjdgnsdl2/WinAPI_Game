@@ -54,8 +54,8 @@ private:
 	std::list<class APokemon*> PlayerCamp;
 	std::list<class APokemon*> EnemyCamp;
 
-	std::vector<class APokemon*> MovePokemon;
-	std::vector<class APokemon*> SkillPokemon;
+	std::list<class APokemon*> MovePokemon;
+	std::list<class APokemon*> SkillPokemon;
 
 
 	TurnType CurTurnType;
