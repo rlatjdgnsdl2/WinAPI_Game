@@ -6,17 +6,17 @@
 
 void ATurnManager::AISkill()
 {
-	static int GCurIndex = 0;
+	std::list<APokemon*>::iterator StartIter = SkillPokemon.begin();
+	std::list<APokemon*>::iterator EndIter = SkillPokemon.end();
 	size_t MaxIndex = SkillPokemon.size();
 
-	if (GCurIndex == MaxIndex) {
-		GCurIndex = 0;
+	if (StartIter == EndIter) {
 		SkillPokemon.clear();
 		CurTurnType = TurnType::Player_Select;
 		return;
 	}
 	//	AI_Skill에 입장하면 포켓몬들이 동시에 공격하는게 아니라 SKillPokemon에 들어있는대로 순서대로 공격
-	APokemon* CurPokemon = *SkillPokemon.begin()+GCurIndex;
+	APokemon* CurPokemon = *StartIter;
 	// 타겟포켓몬 정하기
 
 	if (CurPokemon->GetTargetPokemon() == nullptr) {
@@ -50,6 +50,6 @@ void ATurnManager::AISkill()
 		TargetPokemon->Destroy();
 	}
 	CurPokemon->SetTargetPokemon(nullptr);
-	GCurIndex++;
+	SkillPokemon.remove(CurPokemon);
 	return;
 }
