@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
+
 #include "Player.h"
 #include "Dungeon_BSP.h"
+#include "MoveController.h"
 
 //	Select_Move단계
 void ATurnManager::SelectMove()
@@ -11,36 +13,36 @@ void ATurnManager::SelectMove()
 	IsMoveable = InitPlayerMove(PlayerMoveDir);
 
 	if (!IsMoveable) {
-		CurTurnType = TurnType::Player_Select;
+		CurTurn = TurnType::Player_Select;
 		return;
 	}
-	CurTurnType = TurnType::Move_AI_Select;
+	CurTurn = TurnType::Move_AI_Select;
 	return;
 };
 
 bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 {
 	FVector2D PlayerLocation = Player->GetActorLocation();
-	Player->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
-	FIntPoint TargetTile = Player->GetTargetTile();
+	UMoveController* PlayerMove = Player->GetMoveController();
+	PlayerMove->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
+	FIntPoint TargetTile = PlayerMove->GetTargetTile();
 	TileType TargetTileType = Dungeon->GetTileType(TargetTile.X, TargetTile.Y);
 	//	앞이 땅이 아니면
 	if (TileType::GROUND != TargetTileType) {
-		Player->SetTargetLocation(PlayerLocation);
+		PlayerMove->SetTargetLocation(PlayerLocation);
 		return false;
 	}
-	//	앞에 몬스터가 있으면 
+	//	앞에 적이 있으면 이동불가
 	for (APokemon* EnemyPokemon : EnemyCamp)
 	{
-		//	플레이어가 이동하는 단계는 AI들이 움직이기 전이므로
-		FVector2D EnemyLocation = EnemyPokemon->GetTargetLocation();
-		if (Player->GetTargetLocation() == EnemyLocation) {
-			Player->SetTargetLocation(PlayerLocation);
+		FVector2D EnemyLocation = EnemyPokemon->GetMoveController()->GetTargetLocation();
+		if (PlayerMove->GetTargetLocation() == EnemyLocation) {
+			PlayerMove->SetTargetLocation(PlayerLocation);
 			return false;
 		}
 	}
 	//	위에 조건에 안걸렸다면
-	Player->ResetCurDuration();
+	PlayerMove->ResetCurDuration();
 	return true;
 }
 

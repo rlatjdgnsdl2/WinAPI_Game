@@ -31,17 +31,17 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
-	SetCamp(CampType::Player);
-	CurAbility.InitCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
+	SetCamp();
+	AbilityController.InitCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
 }
 
 void APlayer::EndAttack()
 {
 	if (TargetPokemon != nullptr) {
-		TargetPokemon->GetCurAbility().SetDamage(CurAbility.GetATK());
+		TargetPokemon->GetCurAbility().SetDamage(AbilityController.GetATK());
 		bool IsDie = TargetPokemon->GetCurAbility().IsDie();
 		if (IsDie) {
-			CurAbility.SetExp(TargetPokemon->GetCurAbility().DropExp());
+			AbilityController.SetExp(TargetPokemon->GetCurAbility().DropExp());
 		}
 	}
 	IsAttackValue = false;

@@ -31,11 +31,7 @@ private:
 	class ATurnManager* TurnManager;
 	class ADungeon_BSP* Dungeon;
 	class APlayer* Player;
-	class APlayer* Partner;
-	class AEnemy* Enemy01;
-	class AEnemy* Enemy02;
-	class AEnemy* Enemy03;
-	class AEnemy* Enemy04;
+	
 
 
 

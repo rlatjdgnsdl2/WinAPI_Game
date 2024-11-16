@@ -23,10 +23,17 @@ public:
 	virtual void SetPokemon(std::string_view _PokemonName) override;
 	virtual void EndAttack()override;
 
+	virtual void SetCamp() {
+		Camp = CampType::Player;
+	}
+	virtual CampType GetCamp() {
+		return Camp;
+	}
+
 protected:
 
 private:
-	
+	CampType Camp = CampType::Player;
 
 };
 

@@ -2,7 +2,19 @@
 #include <EngineCore/GameMode.h>
 #include <EngineCore/PathFindAstar.h>
 
-
+enum class TurnType
+{
+	Player_Select,
+	Open_Menu,
+	Player_Select_Move,
+	Player_Select_Skill,
+	Player_Move,
+	Player_Skill,
+	Move_AI_Select,
+	Skill_AI_Select,
+	AI_Move,
+	AI_Skill
+};
 
 //	설명: 던전내 규칙을 관리
 class ATurnManager : public AGameMode
@@ -58,13 +70,12 @@ private:
 	std::list<class APokemon*> SkillPokemon;
 
 
-	TurnType CurTurnType;
+
+	TurnType CurTurn;
 	FVector2D PlayerMoveDir;
 
 	float CurDuration;
 	int PlayerInput;
-
-
 
 	//	Idle
 	void PlayerSelect();

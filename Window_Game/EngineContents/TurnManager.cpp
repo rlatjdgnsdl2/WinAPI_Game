@@ -36,13 +36,13 @@ void ATurnManager::LevelChangeStart()
 	Player->SetTargetLocation(Player->GetActorLocation());
 	PathFinder.SetData(Dungeon);
 
-	CurTurnType = TurnType::Player_Select;
+	CurTurn = TurnType::Player_Select;
 }
 
 void ATurnManager::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	switch (CurTurnType)
+	switch (CurTurn)
 	{
 	case TurnType::Player_Select:
 		PlayerSelect();

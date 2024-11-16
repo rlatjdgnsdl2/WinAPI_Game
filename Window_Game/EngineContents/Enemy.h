@@ -5,6 +5,7 @@
 class AEnemy :public APokemon
 {
 public:
+	
 	//	constrcuter, destructer
 	AEnemy();
 	virtual ~AEnemy();
@@ -17,10 +18,17 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName) override;
 
+	virtual void SetCamp() {
+		Camp = CampType::Enemy;
+	}
+	virtual CampType GetCamp() {
+		return Camp;
+	}
+
 
 protected:
 
 private:
-
+	CampType Camp = CampType::Enemy;
 };
 

@@ -61,47 +61,43 @@ void ADungeonGameMode::LevelChangeStart()
 	Player->SetPokemon("Mudkip");
 	TurnManager->SetPlayer(Player);
 	TurnManager->PushPlayerCamp(Player);
+
+
 	//	颇飘呈 积己
-	if (nullptr == Partner) {
-		Partner = GetWorld()->SpawnActor<APlayer>();
+	{
+		APlayer* Partner = GetWorld()->SpawnActor<APlayer>();
+		Partner->SetPokemon("Vulpix");
+		TurnManager->PushAllAIPokemon(Partner);
+		TurnManager->PushPlayerCamp(Partner);
 	}
-	Partner->SetPokemon("Vulpix");
-	TurnManager->PushAllAIPokemon(Partner);
-	TurnManager->PushPlayerCamp(Partner);
-
-	//	利 积己 抛胶飘内靛
-	if (nullptr == Enemy01) {
-		Enemy01 = GetWorld()->SpawnActor<AEnemy>();
+	//	利 积己
+	{
+		AEnemy* Enemy = GetWorld()->SpawnActor<AEnemy>();
+		Enemy->SetPokemon("Kabuto");
+		TurnManager->PushEnemyCamp(Enemy);
+		TurnManager->PushAllAIPokemon(Enemy);
 	}
-	Enemy01->SetPokemon("Kabuto");
-	TurnManager->PushEnemyCamp(Enemy01);
-	TurnManager->PushAllAIPokemon(Enemy01);
 
-	if (nullptr == Enemy02) {
-		Enemy02 = GetWorld()->SpawnActor<AEnemy>();
+	{
+		AEnemy* Enemy = GetWorld()->SpawnActor<AEnemy>();
+		Enemy->SetPokemon("Shellder");
+		TurnManager->PushEnemyCamp(Enemy);
+		TurnManager->PushAllAIPokemon(Enemy);
 	}
-	Enemy02->SetPokemon("Shellder");
-	TurnManager->PushEnemyCamp(Enemy02);
-	TurnManager->PushAllAIPokemon(Enemy02);
 
-	if (nullptr == Enemy03) {
-		Enemy03 = GetWorld()->SpawnActor<AEnemy>();
+	{
+		AEnemy* Enemy = GetWorld()->SpawnActor<AEnemy>();
+		Enemy->SetPokemon("Shellos");
+		TurnManager->PushEnemyCamp(Enemy);
+		TurnManager->PushAllAIPokemon(Enemy);
 	}
-	Enemy03->SetPokemon("Shellos");
-	TurnManager->PushEnemyCamp(Enemy03);
-	TurnManager->PushAllAIPokemon(Enemy03);
 
-	if (nullptr == Enemy04) {
-		Enemy04 = GetWorld()->SpawnActor<AEnemy>();
+	{
+		AEnemy* Enemy = GetWorld()->SpawnActor<AEnemy>();
+		Enemy->SetPokemon("Corsola");
+		TurnManager->PushEnemyCamp(Enemy);
+		TurnManager->PushAllAIPokemon(Enemy);
 	}
-	Enemy04->SetPokemon("Corsola");
-	TurnManager->PushEnemyCamp(Enemy04);
-	TurnManager->PushAllAIPokemon(Enemy04);
-
-
-
-
-
 }
 
 void ADungeonGameMode::LevelChangeEnd()

@@ -64,7 +64,13 @@
     <ClInclude Include="DungeonUI.h">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="PokemonAbility.h">
+    <ClInclude Include="AbilityController.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveController.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillController.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
@@ -165,13 +171,13 @@
     <ClCompile Include="Pokemon_AnimSet.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="Pokemon_Move.cpp">
+    <ClCompile Include="AbilityController.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="Pokemon_Fight.cpp">
+    <ClCompile Include="MoveController.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="PokemonAbility.cpp">
+    <ClCompile Include="SkillController.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>

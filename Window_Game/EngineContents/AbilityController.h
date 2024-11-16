@@ -1,19 +1,20 @@
 #pragma once
+#include <EngineCore/ActorComponent.h>
 
 //	Ό³Έν:
-class PokemonAbility 
+class UAbilityController :public UActorComponent
 {
 public:
 	friend class APokemon;
 	//	constrcuter, destructer
-	PokemonAbility();
-	virtual ~PokemonAbility();
+	UAbilityController();
+	virtual ~UAbilityController();
 
 	//	delete Function
-	PokemonAbility(const PokemonAbility& _Other) = delete;
-	PokemonAbility(PokemonAbility&& _Other) noexcept = delete;
-	PokemonAbility& operator=(const PokemonAbility& _Other) = delete;
-	PokemonAbility& operator=(PokemonAbility&& _Other) noexcept = delete;
+	UAbilityController(const UAbilityController& _Other) = delete;
+	UAbilityController(UAbilityController&& _Other) noexcept = delete;
+	UAbilityController& operator=(const UAbilityController& _Other) = delete;
+	UAbilityController& operator=(UAbilityController&& _Other) noexcept = delete;
 
 	void InitCurStatus(const PokemonInfo& _PokemonInfo) {
 		CurStatus = _PokemonInfo;
@@ -59,6 +60,7 @@ protected:
 
 private:
 	PokemonInfo CurStatus;
+	
 
 };
 

@@ -1,37 +1,29 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
+#include <EngineBase/EngineRandom.h>
 #include "Pokemon.h"
+#include "SkillController.h"
 
 
 
 void ATurnManager::AISkill()
 {
+	size_t MaxIndex = SkillPokemon.size();
 	std::list<APokemon*>::iterator StartIter = SkillPokemon.begin();
 	std::list<APokemon*>::iterator EndIter = SkillPokemon.end();
-	size_t MaxIndex = SkillPokemon.size();
-
 	if (StartIter == EndIter) {
-		SkillPokemon.clear();
-		CurTurnType = TurnType::Player_Select;
+		CurTurn = TurnType::Player_Select;
 		return;
 	}
 	//	AI_Skill에 입장하면 포켓몬들이 동시에 공격하는게 아니라 SKillPokemon에 들어있는대로 순서대로 공격
 	APokemon* CurPokemon = *StartIter;
-	// 타겟포켓몬 정하기
-
-	if (CurPokemon->GetTargetPokemon() == nullptr) {
-		FIntPoint CurTile = CurPokemon->GetTile();
-		CampType CurPokemonCamp = CurPokemon->GetCamp();
-		std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
-		for (APokemon* CurComparePokemon : CompareCamp) {
-			FIntPoint Distance = CurComparePokemon->GetTargetTile() - CurTile;
-			if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
-				CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(Distance));
-				CurPokemon->SetSkillType(SkillType::NormalAttack);
-				CurPokemon->SetTargetPokemon(CurComparePokemon);
-				break;
-			}
-		}
+	USkillController* CurAISkill = CurPokemon->GetSkillController();
+	// 랜덤으로 타겟포켓몬 정하기
+	if (CurAISkill->GetTargetPokemon() == nullptr) {
+		std::vector<APokemon*>& TargetablePokemons = CurAISkill->GetTargetablePokemons();
+		
+		
+		
 	}
 	if (CurPokemon != nullptr) {
 		CurPokemon->Skill();
