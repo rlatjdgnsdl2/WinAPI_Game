@@ -7,6 +7,7 @@ void ATurnManager::SelectSkill()
 	USkillController* PlayerSkill = Player->GetSkillController();
 	//	일반공격을 선택했으면
 	if (PlayerInput == 'A') {
+		PlayerSkill->SetSkill(SkillType::NormalAttack);
 		DIR CurPlayerDir = Player->GetDir();
 		FVector2D Dir = UContentsMath::DIR_To_Vector2D(CurPlayerDir);
 		FIntPoint TargetTile = Player->GetTile() + Dir.ConvertToPoint();
@@ -20,6 +21,17 @@ void ATurnManager::SelectSkill()
 			}
 		}
 	}
+
+	//	스킬을 선택했으면
+	else if (PlayerInput == 'S') {
+		PlayerSkill->SetSkill(SkillType::SpecialAttack);
+	}
+	//	아이템사용을 선택했으면
+	else if (PlayerInput == 'D') {
+		PlayerSkill->SetSkill(SkillType::UseItem);
+	}
+
+	//	임시코드
 	Player->StartAttack();
 	CurTurn = TurnType::Player_Skill;
 	return;

@@ -62,12 +62,12 @@ protected:
 	class UMoveController* MoveController;
 	class USkillController* SkillController;
 	class UAbilityController* AbilityController;
-private:
+	DIR Dir;
 	UEngineSound BGMPlayer;
 	bool IsAttackValue;
 	bool IsHurtValue;
+private:
 	//	±âº»
-	DIR Dir;
 
 
 

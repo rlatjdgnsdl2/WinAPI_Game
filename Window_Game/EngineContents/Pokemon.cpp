@@ -20,6 +20,7 @@ APokemon::~APokemon()
 
 void APokemon::SetPokemon(std::string_view _PokemonName)
 {
+	SetName(_PokemonName);
 	if (SpriteRenderer == nullptr) {
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	}
@@ -29,7 +30,6 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	if (SkillController == nullptr) {
 		SkillController = CreateDefaultSubObject<USkillController>();
 	}
-	SetName(_PokemonName);
 	//	스프라이트 세팅
 	SpriteRenderer->SetSprite(GetName() + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
@@ -39,7 +39,6 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	//	기본
 	Dir = DIR::Down;
-	SkillType CurSkillType = SkillType::NormalAttack;
 }
 
 void APokemon::Idle()

@@ -18,8 +18,8 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName) override;
 
-	virtual void SetCamp() {
-		Camp = CampType::Enemy;
+	virtual void SetCamp(CampType _Camp) {
+		Camp = _Camp;
 	}
 	virtual CampType GetCamp() {
 		return Camp;
