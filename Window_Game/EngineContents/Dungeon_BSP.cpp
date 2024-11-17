@@ -12,7 +12,6 @@ ADungeon_BSP::ADungeon_BSP()
 {
 	Tiles.resize(Height, std::vector<Tile>(Width));
 	SetActorLocation({ 0,0 });
-
 }
 
 ADungeon_BSP::~ADungeon_BSP()
@@ -22,6 +21,46 @@ ADungeon_BSP::~ADungeon_BSP()
 	}
 }
 
+
+void ADungeon_BSP::BeginPlay()
+{
+	Super::BeginPlay();
+	{
+		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		UIRenderer->SetSprite("DungeonFont_B.png", 0);
+		UIRenderer->SetSpriteScale();
+		UIRenderer->SetOrder(ERenderOrder::UI);
+		UIRenderer->SetCameraEffect(false);
+		UIRenderer->SetComponentLocation({ 18,18 });
+		UIRenderers.insert({ "B", UIRenderer });
+	}
+	{
+		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		UIRenderer->SetSprite(std::format("DungeonFont_{}.png", CurFloor), 0);
+		UIRenderer->SetSpriteScale();
+		UIRenderer->SetOrder(ERenderOrder::UI);
+		UIRenderer->SetCameraEffect(false);
+		UIRenderer->SetComponentLocation({ 18 + 24 * 1,18 });
+		UIRenderers.insert({ "FN", UIRenderer });
+	}
+	{
+		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		UIRenderer->SetSprite("DungeonFont_F.png", 0);
+		UIRenderer->SetSpriteScale();
+		UIRenderer->SetOrder(ERenderOrder::UI);
+		UIRenderer->SetCameraEffect(false);
+		UIRenderer->SetComponentLocation({ 18 + 24 * 2,18 });
+		UIRenderers.insert({ "F", UIRenderer });
+	}
+
+	
+}
+
+void ADungeon_BSP::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	UIRenderers["FN"]->SetSprite(std::format("DungeonFont_{}.png", CurFloor), 0);
+}
 
 void ADungeon_BSP::RoomClear()
 {
@@ -291,6 +330,8 @@ void ADungeon_BSP::SetNextPotal()
 	PotalLocation = RoomLocation;
 
 }
+
+
 
 bool ADungeon_BSP::IsMove(const FIntPoint& _Point)
 {

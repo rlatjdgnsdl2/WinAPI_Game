@@ -57,6 +57,9 @@ public:
 	bool IsDie() const {
 		return CurHp <= 0;
 	}
+	int GetLevel() const {
+		return CurLevel;
+	}
 
 
 

@@ -73,6 +73,9 @@
     <ClInclude Include="SkillController.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
+    <ClInclude Include="Partner.h">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -178,6 +181,9 @@
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="SkillController.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>

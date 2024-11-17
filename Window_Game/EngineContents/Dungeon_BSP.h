@@ -21,6 +21,10 @@ public:
 	ADungeon_BSP(ADungeon_BSP&& _Other) noexcept = delete;
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
+	
+	virtual void BeginPlay()override;
+	virtual void LevelChangeStart()override;
+
 
 	void RoomClear();
 	void Generate(std::string_view _CurDungeonName);
@@ -36,6 +40,12 @@ private:
 	Node* root;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
+
+	int CurFloor = 1;
+
+	std::map<std::string,class USpriteRenderer*> UIRenderers;
+
+
 	
 
 	//	던전생성과정
@@ -47,6 +57,7 @@ private:
 	void SetNaturally();
 	
 	void SetNextPotal();
+
 
 
 
