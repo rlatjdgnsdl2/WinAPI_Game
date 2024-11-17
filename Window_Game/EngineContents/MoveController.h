@@ -23,7 +23,7 @@ public:
 		return ((TargetLocation.ConvertToPoint()) / 72);
 	};
 	const FIntPoint& GetTile() {
-		return (GetActor()->GetActorLocation().ConvertToPoint()) / 72);
+		return GetActor()->GetActorLocation().ConvertToPoint() / 72;
 	};
 	void SetTargetLocation(const FVector2D& _TargetLocation) {
 		TargetLocation = _TargetLocation;

@@ -3,6 +3,7 @@
 #include <EngineBase/EngineRandom.h>
 #include "Pokemon.h"
 #include "SkillController.h"
+#include "AbilityController.h"
 
 
 
@@ -26,13 +27,14 @@ void ATurnManager::AISkill()
 		
 	}
 	if (CurPokemon != nullptr) {
-		CurPokemon->Skill();
+		CurPokemon->Skill(SkillType::NormalAttack);
 	}
 	if (true == CurPokemon->IsAttack()) {
 		return;
 	}
-	APokemon* TargetPokemon = CurPokemon->GetTargetPokemon();
-	if (true == TargetPokemon->GetCurAbility().IsDie()) {
+	//	공격끝나면 타겟포켓몬이 죽었는지 확인
+	APokemon* TargetPokemon = CurAISkill->GetTargetPokemon();
+	if (true == TargetPokemon->GetCurAbility()->IsDie()) {
 		AllAIPokemon.remove(TargetPokemon);
 		SkillPokemon.remove(TargetPokemon);
 		MovePokemon.remove(TargetPokemon);
@@ -41,7 +43,7 @@ void ATurnManager::AISkill()
 		CompareCamp.remove(TargetPokemon);
 		TargetPokemon->Destroy();
 	}
-	CurPokemon->SetTargetPokemon(nullptr);
+	CurAISkill->SetTargetPokemon(nullptr);
 	SkillPokemon.remove(CurPokemon);
 	return;
 }

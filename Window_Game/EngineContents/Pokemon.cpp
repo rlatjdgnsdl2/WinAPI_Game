@@ -30,6 +30,9 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	if (SkillController == nullptr) {
 		SkillController = CreateDefaultSubObject<USkillController>();
 	}
+	if (AbilityController == nullptr) {
+		AbilityController = CreateDefaultSubObject<UAbilityController>();
+	}
 	//	스프라이트 세팅
 	SpriteRenderer->SetSprite(GetName() + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();

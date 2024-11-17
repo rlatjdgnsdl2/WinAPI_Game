@@ -1,6 +1,5 @@
 #pragma once
 #include <EngineCore/Actor.h>
-#include <EnginePlatform/EngineSound.h>
 
 //	설명:
 class APokemon :public AActor
@@ -32,13 +31,13 @@ public:
 		SetActorLocation(_CurTileIndex * 72.0f);
 	};
 	const FIntPoint& GetTile() {
-		return (GetActorLocation().ConvertToPoint()) / 72);
+		return ((GetActorLocation().ConvertToPoint()) / 72);
 	};
 
 
 
-	virtual void SetCamp(CampType _Camp) {}
-	virtual CampType GetCamp() {}
+	virtual void SetCamp(CampType _Camp) = 0;
+	virtual CampType GetCamp() = 0;
 
 	//	전투
 	void NormalAttack();
@@ -62,12 +61,12 @@ protected:
 	class UMoveController* MoveController;
 	class USkillController* SkillController;
 	class UAbilityController* AbilityController;
+	
 	DIR Dir;
-	UEngineSound BGMPlayer;
 	bool IsAttackValue;
 	bool IsHurtValue;
 private:
-	//	기본
+
 
 
 

@@ -34,7 +34,8 @@ struct AnimInfo
 		AttackAnimCount(_AttackAnimCount),
 		HurtAnimCount(_HurtAnimCount),
 		IdleAnimCount(_IdleAnimCount),
-		WalkAnimCount(_WalkAnimCount) {}
+		WalkAnimCount(_WalkAnimCount) {
+	}
 	int AttackAnimCount{};
 	int HurtAnimCount{};
 	int IdleAnimCount{};
@@ -53,8 +54,10 @@ struct PokemonInfo
 		PokemonType(_PokemonType),
 		Level(_Level),
 		MaxHp(_MaxHp),
+		CurHp(_MaxHp),
 		ATK(_Attack),
-		SPD(_Speed) {
+		SPD(_Speed),
+		MaxEXP(_Level * 100) {
 	}
 	PokemonType PokemonType;
 	int Level;

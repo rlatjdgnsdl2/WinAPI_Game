@@ -5,6 +5,8 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineCoreDebug.h>
 
+#include "AbilityController.h"
+
 
 
 
@@ -31,21 +33,20 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
-	SetCamp();
-	AbilityController.InitCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
+	AbilityController->InitCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
 }
 
-void APlayer::EndAttack()
-{
-	if (TargetPokemon != nullptr) {
-		TargetPokemon->GetCurAbility().SetDamage(AbilityController.GetATK());
-		bool IsDie = TargetPokemon->GetCurAbility().IsDie();
-		if (IsDie) {
-			AbilityController.SetExp(TargetPokemon->GetCurAbility().DropExp());
-		}
-	}
-	IsAttackValue = false;
-}
+//void APlayer::EndAttack()
+//{
+//	if (TargetPokemon != nullptr) {
+//		TargetPokemon->GetCurAbility().SetDamage(AbilityController.GetATK());
+//		bool IsDie = TargetPokemon->GetCurAbility().IsDie();
+//		if (IsDie) {
+//			AbilityController.SetExp(TargetPokemon->GetCurAbility().DropExp());
+//		}
+//	}
+//	IsAttackValue = false;
+//}
 
 
 

@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
+#include "MoveController.h"
 
 
 
@@ -33,7 +34,7 @@ void ATurnManager::LevelChangeStart()
 
 	// 처음 스폰위치
 	InitSpawn();
-	Player->SetTargetLocation(Player->GetActorLocation());
+	Player->GetMoveController()->SetTargetLocation(Player->GetActorLocation());
 	PathFinder.SetData(Dungeon);
 
 	CurTurn = TurnType::Player_Select;

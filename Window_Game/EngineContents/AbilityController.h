@@ -17,6 +17,7 @@ public:
 	UAbilityController& operator=(UAbilityController&& _Other) noexcept = delete;
 
 	void InitCurStatus(const PokemonInfo& _PokemonInfo) {
+		// 고쳐야함
 		CurStatus = _PokemonInfo;
 		CurStatus.CurHp = CurStatus.MaxHp;
 		CurStatus.MaxEXP = CurStatus.Level * 100;
