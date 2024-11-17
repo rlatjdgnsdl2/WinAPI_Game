@@ -7,6 +7,7 @@
 
 
 
+
 void ATurnManager::AISkill()
 {
 	size_t MaxIndex = SkillPokemon.size();
@@ -22,9 +23,15 @@ void ATurnManager::AISkill()
 	// 랜덤으로 타겟포켓몬 정하기
 	if (CurAISkill->GetTargetPokemon() == nullptr) {
 		std::vector<APokemon*>& TargetablePokemons = CurAISkill->GetTargetablePokemons();
-		
-		
-		
+		size_t TargetableSize = TargetablePokemons.size();
+		UEngineRandom Random;
+		int TargetIndex = Random.RandomInt(0, TargetableSize - 1);
+		APokemon* TargetPokemon = TargetablePokemons[TargetIndex];
+		FIntPoint TargetTile = TargetPokemon->GetTile();
+		FIntPoint CurTile = CurPokemon->GetTile();
+		FIntPoint TargetDir = TargetTile - CurTile;
+		CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(TargetDir));
+		CurAISkill->SetTargetPokemon(TargetPokemon);
 	}
 	if (CurPokemon != nullptr) {
 		CurPokemon->Skill(SkillType::NormalAttack);

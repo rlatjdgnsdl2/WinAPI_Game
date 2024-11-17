@@ -33,7 +33,7 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
-	AbilityController->InitCurStatus(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
+	AbilityController->InitCurAbility(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
 }
 
 //void APlayer::EndAttack()

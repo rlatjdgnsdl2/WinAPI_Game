@@ -5,7 +5,6 @@
 class UAbilityController :public UActorComponent
 {
 public:
-	friend class APokemon;
 	//	constrcuter, destructer
 	UAbilityController();
 	virtual ~UAbilityController();
@@ -16,52 +15,68 @@ public:
 	UAbilityController& operator=(const UAbilityController& _Other) = delete;
 	UAbilityController& operator=(UAbilityController&& _Other) noexcept = delete;
 
-	void InitCurStatus(const PokemonInfo& _PokemonInfo) {
-		// 고쳐야함
-		CurStatus = _PokemonInfo;
-		CurStatus.CurHp = CurStatus.MaxHp;
-		CurStatus.MaxEXP = CurStatus.Level * 100;
-	}
-	int GetSpeed() const{
-		return CurStatus.SPD;
+	void InitCurAbility(const PokemonInfo& _PokemonInfo) {
+		CurPokemonType = _PokemonInfo.PokemonType;
+		CurLevel = _PokemonInfo.Level;
+		CurMaxHp = _PokemonInfo.MaxHp;
+		CurHp = CurMaxHp;
+		CurATK = _PokemonInfo.ATK;
+		CurSPD = _PokemonInfo.SPD;
+		MaxExp = CurLevel * 100;
+		CurExp = 0;
 	}
 	void LevelUp() {
-		CurStatus.Level += 1;
-		CurStatus.EXP = 0;
+		CurLevel++;
+		CurMaxHp += 2;
+		CurHp +=2;
+		CurATK += 2;
+		MaxExp = CurLevel * 100;
+		CurExp = 0;
 	}
-	void SetDamage(int _Atk) {
-		CurStatus.CurHp -= _Atk;
-		if (CurStatus.CurHp < 0) {
-			CurStatus.CurHp = 0;
-		}
+	void SetDamage(int _Damage) {
+		CurHp -= _Damage;
+		if (CurHp <= 0) {
+			CurHp = 0;
+		}	
 	}
-	void Recover(int _Recover) {
-		CurStatus.CurHp += _Recover;
-		if (CurStatus.CurHp > CurStatus.MaxHp) {
-			CurStatus.CurHp = CurStatus.MaxHp;
-		}
+	void SetHeal(int _Heal) {
+		CurHp += _Heal;
 	}
-	void SetExp(int _EXP) {
-		CurStatus.EXP += _EXP;
-		if (CurStatus.EXP > CurStatus.MaxEXP) {
+	void SetExp(int _Exp) {
+		CurExp += _Exp;
+		if (CurExp >= MaxExp) {
 			LevelUp();
-			CurStatus.MaxEXP = CurStatus.Level * 100;
 		}
 	}
-	int DropExp() {
-		return CurStatus.Level * 2;
+	int GetATK() const {
+		return CurATK;
 	}
-	bool IsDie() {
-		return CurStatus.CurHp == 0;
+	int GetSPD() const {
+		return CurSPD;
 	}
-	int GetATK() {
-		return CurStatus.ATK;
+	bool IsDie() const {
+		return CurHp <= 0;
 	}
+
+
+
+
+
+
+
+
 protected:
 
 private:
-	PokemonInfo CurStatus;
-	
+	PokemonType CurPokemonType;
+	int CurLevel;
+	int CurMaxHp;
+	int CurHp;
+	int CurATK;
+	int CurSPD;
+	int MaxExp;
+	int CurExp;
+
 
 };
 

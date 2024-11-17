@@ -8,7 +8,7 @@
 #include "AbilityController.h"
 
 bool SortFuncD(APokemon* first, APokemon* second) {
-	return first->GetCurAbility()->GetSpeed() > second->GetCurAbility()->GetSpeed();
+	return first->GetCurAbility()->GetSPD() > second->GetCurAbility()->GetSPD();
 }
 
 void ATurnManager::Skill_AISelect()

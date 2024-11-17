@@ -11,7 +11,7 @@
 
 // 스피드 순으로 정렬
 bool SortFunc(APokemon* first, APokemon* second) {
-	return first->GetCurAbility()->GetSpeed() > second->GetCurAbility()->GetSpeed();
+	return first->GetCurAbility()->GetSPD() > second->GetCurAbility()->GetSPD();
 }
 
 

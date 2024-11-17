@@ -54,19 +54,14 @@ struct PokemonInfo
 		PokemonType(_PokemonType),
 		Level(_Level),
 		MaxHp(_MaxHp),
-		CurHp(_MaxHp),
 		ATK(_Attack),
-		SPD(_Speed),
-		MaxEXP(_Level * 100) {
+		SPD(_Speed){
 	}
 	PokemonType PokemonType;
 	int Level;
 	int MaxHp;
-	int CurHp;
 	int ATK;
 	int SPD;
-	int MaxEXP;
-	int EXP = 0;
 };
 
 
