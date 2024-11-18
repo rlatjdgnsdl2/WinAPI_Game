@@ -19,6 +19,7 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
+	void ResultMessage();
 	
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
@@ -34,9 +35,10 @@ private:
 	class APlayer* Player;
 	class ADungeon_BSP* Dungeon;
 	FVector2D UIPos = FVector2D(20.0f, 20.0f);
+	FIntPoint Text_MaxCount = FIntPoint({30,3});
 
 
-	//UI
+	//	상단 UI
 	class USpriteRenderer* UI_B;
 	class USpriteRenderer* UI_FValue;
 	class USpriteRenderer* UI_F;
@@ -49,8 +51,17 @@ private:
 	class USpriteRenderer* UI_Slash;
 	class USpriteRenderer* UI_MaxHpValue10;
 	class USpriteRenderer* UI_MaxHpValue01;
+	std::vector<class USpriteRenderer* > HpBar;
 
-	std::vector<class USpriteRenderer* > HPBar;
+	//	하단 메시지
+	class USpriteRenderer* ResultMessageBox_Border;
+	class USpriteRenderer* ResultMessageBox_In;
+	std::vector<std::vector<class USpriteRenderer* >> ResultMessageBox_Text;
+
+
+
+	
+	
 
 	
 

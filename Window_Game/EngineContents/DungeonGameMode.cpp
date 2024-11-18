@@ -34,6 +34,7 @@ void ADungeonGameMode::BeginPlay()
 
 	ADungeonUI* DungeonUI = GetWorld()->SpawnActor<ADungeonUI>();
 	DungeonUI->SetDungeon(Dungeon);
+	TurnManager->SetDungeonUI(DungeonUI);
 }
 
 void ADungeonGameMode::Tick(float _DeltaTime)

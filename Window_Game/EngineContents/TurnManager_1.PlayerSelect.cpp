@@ -70,6 +70,12 @@ void ATurnManager::PlayerSelect()
 		CurTurn = TurnType::Player_Select_Skill;
 		return;
 	}
+	// Player_Select_Skill 단계로 가는 키
+	if (UEngineInput::GetInst().IsPress('S')) {
+		PlayerInput = 'S';
+		CurTurn = TurnType::Player_Select_Skill;
+		return;
+	}
 
 
 

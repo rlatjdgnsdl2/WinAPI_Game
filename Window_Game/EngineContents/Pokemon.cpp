@@ -2,11 +2,13 @@
 #include "Pokemon.h"
 
 #include <EngineCore/SpriteRenderer.h>
+
+#include "GameDataManager.h"
 #include "MoveController.h"
 #include "SkillController.h"
 #include "AbilityController.h"
-#include "GameDataManager.h"
 
+#include "SpecialSkill.h"
 
 
 APokemon::APokemon()
@@ -58,6 +60,7 @@ void APokemon::Skill(SkillType _Skill)
 		NormalAttack();
 		break;
 	case SkillType::SpecialAttack:
+		SpecialAttack();
 		break;
 	case SkillType::UseItem:
 		break;
@@ -76,6 +79,12 @@ void APokemon::NormalAttack()
 {
 	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
+}
+
+void APokemon::SpecialAttack()
+{
+	ASpecialSkill* Skill = GetWorld()->SpawnActor<ASpecialSkill>();
+	Skill->SetActorLocation(GetActorLocation()+UContentsMath::DIR_To_Vector2D(Dir)*72.0f);
 }
 
 void APokemon::StartAttack()

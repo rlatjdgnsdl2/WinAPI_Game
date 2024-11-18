@@ -49,6 +49,8 @@ void ATurnManager::AISkill()
 		std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 		CompareCamp.remove(TargetPokemon);
 		TargetPokemon->Destroy();
+
+		//CurTurn = TurnType::Result;
 	}
 	CurAISkill->SetTargetPokemon(nullptr);
 	SkillPokemon.remove(CurPokemon);

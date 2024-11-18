@@ -52,6 +52,7 @@ void ATurnManager::LevelChangeStart()
 		PushAllAIPokemon(Partner);
 		
 	}
+	SpawnEnemy();
 	PushPlayerCamp(Player);
 	// 처음 스폰위치
 	InitSpawn();
@@ -105,6 +106,9 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::AI_Skill:
 		AISkill();
 		break;
+	case TurnType::Result:
+
+		break;
 
 	}
 }
@@ -157,6 +161,11 @@ void ATurnManager::SpawnEnemy()
 	std::string EnemyName = Pokemons_In_Dongeon[Index];
 	AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>();
 	NewEnemy->SetPokemon(EnemyName);
+
+	int SpawnMaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
+	int SpawnIndex = Random.RandomInt(0, SpawnMaxSize - 1);
+	FVector2D RoomLocation = Dungeon->GetRoomLocations()[SpawnIndex];
+	NewEnemy->SetActorLocation(RoomLocation);
 
 	PushAllAIPokemon(NewEnemy);
 	PushEnemyCamp(NewEnemy);

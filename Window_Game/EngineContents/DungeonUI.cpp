@@ -10,7 +10,8 @@
 
 ADungeonUI::ADungeonUI()
 {
-
+	HpBar.resize(300,nullptr);
+	ResultMessageBox_Text.resize(3,std::vector<USpriteRenderer*>(30,nullptr));
 }
 
 ADungeonUI::~ADungeonUI()
@@ -118,6 +119,43 @@ void ADungeonUI::BeginPlay()
 	UIPos.X += UI_MaxHpValue01Scale.X;
 	UI_MaxHpValue01->SetOrder(ERenderOrder::UI_BASIC);
 
+	for (int i = 0; i < HpBar.size(); i++)
+	{
+		HpBar[i] = CreateDefaultSubObject<USpriteRenderer>();
+		HpBar[i]->SetSprite("Dungeon_HpBar.png");
+		FVector2D HpBarScale = HpBar[i]->SetSpriteScale(1.0f);
+		HpBar[i]->SetCameraEffect(false);
+		HpBar[i]->SetComponentLocation(UIPos);
+		UIPos.X += HpBarScale.X;
+		HpBar[i]->SetOrder(ERenderOrder::UI_BASIC);
+		HpBar[i]->SetSpriteScale(0.0f);
+	}
+
+	ResultMessageBox_Border = CreateDefaultSubObject<USpriteRenderer>();
+	ResultMessageBox_Border->SetSprite("MessageBox_Basic.png");
+	ResultMessageBox_Border->SetSpriteScale(1.0f);
+	ResultMessageBox_Border->SetCameraEffect(false);
+	ResultMessageBox_Border->SetOrder(ERenderOrder::UI_BASIC);
+	ResultMessageBox_Border->SetComponentLocation({375,500});
+
+	ResultMessageBox_In = CreateDefaultSubObject<USpriteRenderer>();
+	ResultMessageBox_In->SetSprite("MessageBox_Basic.bmp");
+	ResultMessageBox_In->SetSpriteScale(1.0f);
+	ResultMessageBox_In->SetAlphafloat(0.7f);
+	ResultMessageBox_In->SetCameraEffect(false);
+	ResultMessageBox_In->SetOrder(ERenderOrder::UI_BASIC);
+	ResultMessageBox_In->SetComponentLocation({ 375,500 });
+
+	for (int y = 0; y < Text_MaxCount.Y; y++)
+	{
+		for (int x = 0; x < Text_MaxCount.X; x++)
+		{
+			USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
+			NewText->SetSprite()
+			ResultMessageBox_Text[y][x] = NewText;
+		}
+	}
+
 
 }
 
@@ -131,15 +169,37 @@ void ADungeonUI::LevelChangeStart()
 void ADungeonUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	int CurHp = Player->GetCurAbility()->GetCurHP();
+	int MaxHp = Player->GetCurAbility()->GetMaxHP();
 	UI_LvValue10->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetLevel() / 10));
 	UI_LvValue01->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetLevel() % 10));
 
-	UI_CurHpValue10->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetCurHP() / 10));
-	UI_CurHpValue01->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetCurHP() % 10));
+	UI_CurHpValue10->SetSprite(std::format("DungeonFont_{}.png", CurHp / 10));
+	UI_CurHpValue01->SetSprite(std::format("DungeonFont_{}.png", CurHp % 10));
 
-	UI_MaxHpValue10->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetMaxHP() / 10));
-	UI_MaxHpValue01->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetMaxHP() % 10));
+	UI_MaxHpValue10->SetSprite(std::format("DungeonFont_{}.png", MaxHp / 10));
+	UI_MaxHpValue01->SetSprite(std::format("DungeonFont_{}.png", MaxHp % 10));
+	for (int i = 0; i < MaxHp; i++)
+	{
+		if (i < CurHp)
+		{
+			HpBar[i]->SetSprite("Dungeon_HpBar.png");
+			HpBar[i]->SetSpriteScale(1.0f);
+		}
+		else
+		{
+			HpBar[i]->SetSprite("Dungeon_DamageBar.png");
+			HpBar[i]->SetSpriteScale(1.0f);
+		}
+	}
 
+	
+
+
+}
+
+void ADungeonUI::ResultMessage()
+{
 
 }
 

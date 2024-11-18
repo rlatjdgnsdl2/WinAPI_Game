@@ -46,6 +46,8 @@ public:
 		return TargetablePokemons;
 	};
 
+
+
 protected:
 
 private:

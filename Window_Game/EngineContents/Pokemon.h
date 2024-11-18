@@ -41,6 +41,7 @@ public:
 
 	//	¿¸≈ı
 	void NormalAttack();
+	void SpecialAttack();
 	void StartAttack();
 	virtual void EndAttack();
 	bool IsAttack();

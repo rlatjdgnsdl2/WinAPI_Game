@@ -13,7 +13,8 @@ enum class TurnType
 	Move_AI_Select,
 	Skill_AI_Select,
 	AI_Move,
-	AI_Skill
+	AI_Skill,
+	Result
 };
 
 //	설명: 던전내 규칙을 관리
@@ -43,6 +44,9 @@ public:
 	void SetPlayer(class APlayer* _Player) {
 		Player = _Player;
 	}
+	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
+		DungeonUI = _DungeonUI;
+	}
 
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
@@ -64,6 +68,7 @@ private:
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
+	class ADungeonUI* DungeonUI = nullptr;
 
 	std::list<class APokemon*> AllAIPokemon;
 	std::list<class APokemon*> PlayerCamp;

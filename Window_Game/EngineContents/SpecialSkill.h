@@ -18,6 +18,7 @@ public:
 
 	
 	virtual void BeginPlay()override;
+	virtual void Tick(float _DeltaTime)override;
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
