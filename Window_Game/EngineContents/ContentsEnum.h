@@ -7,7 +7,10 @@ enum class ERenderOrder
 	COLMAP = -999,
 	PLAYER = 0,
 	ATTACK_Player = 100,
-	UI = 10000,
+	UI_BACKGROUND = 5000,
+	UI_BASIC = 10000,
+	UI_IMAGE = 20000,
+	FONT = 30000
 };
 enum class TileType
 {

@@ -27,7 +27,11 @@ ATurnManager::~ATurnManager()
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	//	MainPawn 연결
+	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
+	Dungeon->Generate(CurDungeonName);
+
+
+
 	//	카메라 피봇설정
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(WindowSize.Half() * -1.0f);

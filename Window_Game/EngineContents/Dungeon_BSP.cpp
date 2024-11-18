@@ -10,7 +10,7 @@
 
 ADungeon_BSP::ADungeon_BSP()
 {
-	Tiles.resize(Height, std::vector<Tile>(Width));
+	Tiles.resize(Height, std::vector<DungeonTile>(Width));
 	SetActorLocation({ 0,0 });
 }
 
@@ -25,33 +25,7 @@ ADungeon_BSP::~ADungeon_BSP()
 void ADungeon_BSP::BeginPlay()
 {
 	Super::BeginPlay();
-	{
-		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		UIRenderer->SetSprite("DungeonFont_B.png", 0);
-		UIRenderer->SetSpriteScale();
-		UIRenderer->SetOrder(ERenderOrder::UI);
-		UIRenderer->SetCameraEffect(false);
-		UIRenderer->SetComponentLocation({ 18,18 });
-		UIRenderers.insert({ "B", UIRenderer });
-	}
-	{
-		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		UIRenderer->SetSprite(std::format("DungeonFont_{}.png", CurFloor), 0);
-		UIRenderer->SetSpriteScale();
-		UIRenderer->SetOrder(ERenderOrder::UI);
-		UIRenderer->SetCameraEffect(false);
-		UIRenderer->SetComponentLocation({ 18 + 24 * 1,18 });
-		UIRenderers.insert({ "FN", UIRenderer });
-	}
-	{
-		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		UIRenderer->SetSprite("DungeonFont_F.png", 0);
-		UIRenderer->SetSpriteScale();
-		UIRenderer->SetOrder(ERenderOrder::UI);
-		UIRenderer->SetCameraEffect(false);
-		UIRenderer->SetComponentLocation({ 18 + 24 * 2,18 });
-		UIRenderers.insert({ "F", UIRenderer });
-	}
+	
 
 	
 }
@@ -294,7 +268,7 @@ void ADungeon_BSP::SetNaturally()
 {
 	for (int y = 0; y < Height; y++) {
 		for (int x = 0; x < Width; x++) {
-			Tile& tile = Tiles[y][x];
+			DungeonTile& tile = Tiles[y][x];
 			if (nullptr != tile.SpriteRenderer) {
 				// 타일 종류 설정
 				std::string SpriteName = tile.SpriteRenderer->GetCurSpriteName();

@@ -30,8 +30,9 @@ void ADungeonGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	ATurnManager* TurnManager = GetWorld()->SpawnActor<ATurnManager>();
-	ADungeon_BSP* NewDungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
-
+	ADungeon_BSP* Dungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
+	TurnManager->SetDungeon(Dungeon);
+	TurnManager->SetPlayer(dynamic_cast<APlayer*>(GetWorld()->GetPawn()));
 }
 
 
@@ -47,27 +48,13 @@ void ADungeonGameMode::Tick(float _DeltaTime)
 void ADungeonGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	// 1. 턴매니저 생성
-	if (nullptr == TurnManager) {
-		TurnManager = GetWorld()->SpawnActor<ATurnManager>();
-	}
-	//	2. 던전 생성
-	if (nullptr == Dungeon) {
-
-		ADungeon_BSP* NewDungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
-		Dungeon = NewDungeon;
-	}
 	//	던전 이름 받아와서
 	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
 	//	던전 형태 생성
 	Dungeon->Generate(CurDungeonName);
-	//	턴매니저에게 던전전달
+
 	TurnManager->SetDungeon(Dungeon);
-	//	플레이어 연결
-	if (nullptr == Player) {
-		AActor* PlayerActor = GetWorld()->GetPawn();
-		Player = dynamic_cast<APlayer*>(PlayerActor);
-	}
+
 	Player->SetPokemon("Mudkip");
 	TurnManager->SetPlayer(Player);
 	TurnManager->PushPlayerCamp(Player);

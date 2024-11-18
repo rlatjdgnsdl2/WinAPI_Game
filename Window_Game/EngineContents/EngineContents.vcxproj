@@ -151,6 +151,14 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CharacterSelect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <SubType>
       </SubType>
@@ -167,7 +175,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="DungeonSelectActor.h">
+    <ClInclude Include="DungeonSelect.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -250,6 +258,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterSelect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CharacterSelectGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <SubType>
       </SubType>
@@ -266,7 +282,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="DungeonSelectActor.cpp">
+    <ClCompile Include="DungeonSelect.cpp">
       <SubType>
       </SubType>
     </ClCompile>

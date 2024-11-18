@@ -11,13 +11,6 @@ class ATileMap : public AActor
 {
 
 public:
-	class Tile
-	{
-	public:
-		class USpriteRenderer* SpriteRenderer = nullptr;
-		TileType TileType;
-		FTransform TileTrans;
-	};
 	//	constrcuter, destructer
 	ATileMap();
 	virtual ~ATileMap();
@@ -66,7 +59,7 @@ public:
 	}
 
 protected:
-	std::vector <std::vector<Tile>> Tiles;
+	std::vector <std::vector<DungeonTile>> Tiles;
 	int Width = 60;
 	int Height = 40;
 	int size = 72;

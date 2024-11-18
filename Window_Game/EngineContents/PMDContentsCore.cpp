@@ -7,12 +7,15 @@
 #include <EngineCore/ImageManager.h>
 
 #include "GameDataManager.h"
-#include "TitleGameMode.h"
-#include "TempPlayer.h"
 
-#include "DungeonGameMode.h"
+#include "TitleGameMode.h"
+#include "CharacterSelectGameMode.h"
 #include "DungeonSelectGameMode.h"
-#include "DungeonSelectActor.h"
+#include "DungeonGameMode.h"
+
+#include "TempPlayer.h"
+#include "CharacterSelect.h"
+#include "DungeonSelect.h"
 #include "Player.h"
 
 
@@ -33,12 +36,21 @@ void PMDContentsCore::BeginPlay()
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
 	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
 	//	Level생성
-	CreateLevel();
+	//	타이틀레벨
+	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
+	//	캐릭터 선택레벨
+	UEngineAPICore::GetCore()->CreateLevel<ACharacterSelectGameMode, ACharacterSelect>("CharacterSelectLevel");
+	//	던전 선택레벨
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonSelectGameMode, ADungeonSelectActor>("DungeonSelectLevel");
+	//	던전레벨
+	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
+
 
 	//	처음 레벨 입장
 	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
 	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-	UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 
 }
 void PMDContentsCore::Tick()
@@ -89,46 +101,46 @@ void PMDContentsCore::RoadResources()
 		}
 	}
 	{
-
 		UEngineDirectory Title;
 		Title.MoveParentToDirectory("Resources//Image");
 		Title.Append("Title");
 		UImageManager::GetInst().LoadFolder(Title.GetPathToString());
 	}
 	{
-
 		UEngineDirectory Global;
 		Global.MoveParentToDirectory("Resources//Image");
 		Global.Append("Global");
 		UImageManager::GetInst().LoadFolder(Global.GetPathToString());
 	}
 	{
-
+		UEngineDirectory CharacterSelect;
+		CharacterSelect.MoveParentToDirectory("Resources//Image");
+		CharacterSelect.Append("CharacterSelect");
+		UImageManager::GetInst().LoadFolder(CharacterSelect.GetPathToString());
+	}
+	{
+		UEngineDirectory DungeonSelect;
+		DungeonSelect.MoveParentToDirectory("Resources//Image");
+		DungeonSelect.Append("DungeonSelect");
+		UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
+	}
+	{
 		UEngineDirectory Dungeon;
 		Dungeon.MoveParentToDirectory("Resources//Image");
 		Dungeon.Append("Dungeon");
 		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
 	}
 	{
-
 		UEngineDirectory Dungeon_BeachCave;
 		Dungeon_BeachCave.MoveParentToDirectory("Resources//Image");
 		Dungeon_BeachCave.Append("Dungeon_BeachCave");
 		UImageManager::GetInst().LoadFolder(Dungeon_BeachCave.GetPathToString());
 	}
 	{
-
 		UEngineDirectory Dungeon_AmpPlains;
 		Dungeon_AmpPlains.MoveParentToDirectory("Resources//Image");
 		Dungeon_AmpPlains.Append("Dungeon_AmpPlains");
 		UImageManager::GetInst().LoadFolder(Dungeon_AmpPlains.GetPathToString());
-	}
-	{
-
-		UEngineDirectory DungeonSelect;
-		DungeonSelect.MoveParentToDirectory("Resources//Image");
-		DungeonSelect.Append("DungeonSelect");
-		UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
 	}
 
 	//	Font
@@ -198,15 +210,7 @@ void PMDContentsCore::RoadResources()
 
 }
 
-void PMDContentsCore::CreateLevel()
-{
-	//	타이틀레벨
-	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonSelectGameMode, ADungeonSelectActor>("DungeonSelectLevel");
-	//	던전레벨
-	UEngineAPICore::GetCore()->CreateLevel<ADungeonGameMode, APlayer>("DungeonLevel");
-	//	마을레벨
-}
+
 void PMDContentsCore::InitKeySet()
 {
 	TileIndexForKey.insert({ "000011011",0 });

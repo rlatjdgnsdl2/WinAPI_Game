@@ -27,24 +27,7 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	{
-		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		UIRenderer->SetSprite("DungeonFont_LV.png", 0);
-		UIRenderer->SetSpriteScale();
-		UIRenderer->SetOrder(ERenderOrder::UI);
-		UIRenderer->SetCameraEffect(false);
-		UIRenderer->SetComponentLocation({ 18 + 24 * 3,18 });
-		UIRenderers.insert({ "LV", UIRenderer });
-	}
-	{
-		USpriteRenderer* UIRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		UIRenderer->SetSprite("DungeonFont_0.png", 0);
-		UIRenderer->SetSpriteScale();
-		UIRenderer->SetOrder(ERenderOrder::UI);
-		UIRenderer->SetCameraEffect(false);
-		UIRenderer->SetComponentLocation({ 18 + 24 * 4,18 });
-		UIRenderers.insert({ "LvN", UIRenderer });
-	}
+	
 }
 
 void APlayer::LevelChangeStart()

@@ -26,7 +26,6 @@ private:
 	static std::map<std::string, int > TileIndexForKey;
 	void InitKeySet();
 	void RoadResources();
-	void CreateLevel();
 
 
 };

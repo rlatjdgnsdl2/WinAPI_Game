@@ -64,6 +64,23 @@ struct PokemonInfo
 	int SPD;
 };
 
+class DungeonTile
+{
+public:
+	class USpriteRenderer* SpriteRenderer = nullptr;
+	TileType TileType;
+	FTransform TileTrans;
+};
+
+
+class UITile
+{
+public:
+	class USpriteRenderer* SpriteRenderer = nullptr;
+	
+};
+
+
 
 
 

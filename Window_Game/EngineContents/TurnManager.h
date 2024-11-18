@@ -30,7 +30,6 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
-
 	void LevelChangeStart() override;
 	void Tick(float _DeltaTime) override;
 
@@ -59,6 +58,10 @@ public:
 protected:
 
 private:
+	std::string CurDungeonName;
+
+
+
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
 
