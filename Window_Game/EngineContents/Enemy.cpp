@@ -15,9 +15,9 @@ AEnemy::~AEnemy()
 
 }
 
+
 void AEnemy::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);
 	AbilityController->InitCurAbility(UGameDataManager::GetInst().GetPokemonAbility(GetName()));
-
 }

@@ -22,15 +22,14 @@ public:
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
 	
-	virtual void BeginPlay()override;
-	virtual void LevelChangeStart()override;
-
+	virtual void LevelChangeEnd()override;
 
 	void RoomClear();
-	void Generate(std::string_view _CurDungeonName);
-
-	Room getRoom(Node* node) const;
+	void Generate();
+	Room GetRoom(Node* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
+
+	int GetCurFloor() const { return CurFloor; }
 
 protected:
 
@@ -45,9 +44,6 @@ private:
 
 	std::map<std::string,class USpriteRenderer*> UIRenderers;
 
-
-	
-
 	//	던전생성과정
 	void InitDungeon();
 	void CreateNaturalFeatures();
@@ -55,12 +51,7 @@ private:
 	void CreateRooms(Node* node);
 	void ConnectRooms(Node* node);
 	void SetNaturally();
-	
 	void SetNextPotal();
-
-
-
-
 
 	// IPathFindData을(를) 통해 상속됨
 	bool IsMove(const FIntPoint& _Point) override;

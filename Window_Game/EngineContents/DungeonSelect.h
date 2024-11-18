@@ -15,11 +15,6 @@ public:
 	ADungeonSelectActor& operator=(const ADungeonSelectActor& _Other) = delete;
 	ADungeonSelectActor& operator=(ADungeonSelectActor&& _Other) noexcept = delete;
 
-	virtual void Tick(float _DeltaTime)override;
-	virtual void LevelChangeStart() override;
-
-	
-
 protected:
 
 private:

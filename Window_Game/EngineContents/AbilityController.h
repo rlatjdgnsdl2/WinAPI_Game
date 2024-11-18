@@ -60,13 +60,12 @@ public:
 	int GetLevel() const {
 		return CurLevel;
 	}
-
-
-
-
-
-
-
+	int GetCurHP() const {
+		return CurHp;
+	}
+	int GetMaxHP() const {
+		return CurMaxHp;
+	}
 
 protected:
 

@@ -82,6 +82,9 @@
     <ClInclude Include="CharacterSelect.h">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
     </ClInclude>
+    <ClInclude Include="SpecialSkill.h">
+      <Filter>LevelObjects\00.Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -198,6 +201,9 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialSkill.cpp">
+      <Filter>LevelObjects\00.Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -235,6 +241,9 @@
     </Filter>
     <Filter Include="LevelObjects\02.CharactorSelectLevel">
       <UniqueIdentifier>{3e22cc2e-1f91-4758-ac17-d12ba2924967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelObjects\00.Skill">
+      <UniqueIdentifier>{a7216147-53ee-46b1-a735-8a4d0d3e2bdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

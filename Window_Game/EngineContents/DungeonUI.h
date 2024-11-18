@@ -15,12 +15,15 @@ public:
 	ADungeonUI& operator=(const ADungeonUI& _Other) = delete;
 	ADungeonUI& operator=(ADungeonUI&& _Other) noexcept = delete;
 
-	void SetPlayer(class APlayer* _Player) {
-		Player = _Player;
+	virtual void BeginPlay()override;
+	virtual void LevelChangeStart()override;
+	virtual void Tick(float _DeltaTime)override;
+
+	
+	void SetDungeon(class ADungeon_BSP* _Dungeon) {
+		Dungeon = _Dungeon;
 	}
-	void SetPartner(class APlayer* _Partner) {
-		Player = _Partner;
-	}
+	
 
 
 
@@ -29,7 +32,29 @@ protected:
 
 private:
 	class APlayer* Player;
-	class APartner* Partner;
+	class ADungeon_BSP* Dungeon;
+	FVector2D UIPos = FVector2D(20.0f, 20.0f);
+
+
+	//UI
+	class USpriteRenderer* UI_B;
+	class USpriteRenderer* UI_FValue;
+	class USpriteRenderer* UI_F;
+	class USpriteRenderer* UI_Lv;
+	class USpriteRenderer* UI_LvValue10;
+	class USpriteRenderer* UI_LvValue01;
+	class USpriteRenderer* UI_Hp;
+	class USpriteRenderer* UI_CurHpValue10;
+	class USpriteRenderer* UI_CurHpValue01;
+	class USpriteRenderer* UI_Slash;
+	class USpriteRenderer* UI_MaxHpValue10;
+	class USpriteRenderer* UI_MaxHpValue01;
+
+	std::vector<class USpriteRenderer* > HPBar;
+
+	
+
+	
 	
 
 

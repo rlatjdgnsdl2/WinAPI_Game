@@ -23,8 +23,7 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 	virtual void SetPokemon(std::string_view _PokemonName) override;
-	//virtual void EndAttack()override;
-
+	
 	virtual void SetCamp(CampType _Camp) {
 		Camp = _Camp;
 	}

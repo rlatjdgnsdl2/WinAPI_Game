@@ -21,19 +21,12 @@ public:
 
 	virtual void Tick(float _DeltaTime)override;
 	virtual void BeginPlay() override;
-	virtual void LevelChangeStart() override;
-	virtual void LevelChangeEnd()override;
-
 	
 
 protected:
 
 private:
-	// GameDataManger¿¡¼­ ¹Þ¾Æ¿È
-	std::string CurDungeonName;
-	class ATurnManager* TurnManager;
-	class ADungeon_BSP* Dungeon;
-	class APlayer* Player;
+	
 	
 
 

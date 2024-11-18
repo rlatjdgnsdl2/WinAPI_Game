@@ -1,21 +1,26 @@
 #include "PreCompile.h"
 #include "DungeonSelectGameMode.h"
 
+
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/EngineCoreDebug.h>
+
+
+
+
 #include "GameDataManager.h"
 
 
 ADungeonSelectGameMode::ADungeonSelectGameMode()
 {
+	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	SetActorLocation(WindowSize.Half());
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("WorldMap.png");
-	/*SpriteRenderer->SetSpriteScale(0.7f);
-	SetActorLocation({ 0,0 });
-	FVector2D SpriteScale = SpriteRenderer->GetSpriteScale();
-	SpriteRenderer->SetComponentLocation(SpriteScale * 0.35f);
-	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);*/
+	FVector2D Size = SpriteRenderer->SetSpriteScale(0.5f);
+	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 }
 
 ADungeonSelectGameMode::~ADungeonSelectGameMode()
@@ -27,24 +32,19 @@ ADungeonSelectGameMode::~ADungeonSelectGameMode()
 void ADungeonSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	DungeonMaps.insert({ "BeachCave",FVector2D({410,327}) });
-	DungeonMaps.insert({ "AmpPlains",FVector2D({730,394}) });
-
+	DungeonMaps.insert({"BeachCave",FVector2D({298,269}) });
 	DungeonMapStartIter = DungeonMaps.begin();
 	DungeonMapEndIter = DungeonMaps.end();
-
 	GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
-	GetWorld()->SetCameraToMainPawn(true);
-	FVector2D Size = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
-
-
+	GetWorld()->SetCameraToMainPawn(false);
 }
 
 void ADungeonSelectGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 	if (true == UEngineInput::GetInst().IsDown('A'))
 	{
 		if (DungeonMapStartIter == DungeonMaps.begin()) {
@@ -52,9 +52,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 		}
 		DungeonMapStartIter--;
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
-
 	}
-
 	if (true == UEngineInput::GetInst().IsDown('D'))
 	{
 		DungeonMapStartIter++;
@@ -63,17 +61,12 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 		}
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
 	}
-
+	//	던전입장
 	if (true == UEngineInput::GetInst().IsDown('G')) {
 		UGameDataManager::GetInst().SetSelectDungeon(DungeonMapStartIter->first);
 		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 	}
-
 }
 
-void ADungeonSelectGameMode::SetCamera()
-{
-
-}
 
 

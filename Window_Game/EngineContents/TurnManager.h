@@ -30,8 +30,10 @@ public:
 	ATurnManager& operator=(const ATurnManager& _Other) = delete;
 	ATurnManager& operator=(ATurnManager&& _Other) noexcept = delete;
 
-	void LevelChangeStart() override;
-	void Tick(float _DeltaTime) override;
+	virtual void BeginPlay()override;
+	virtual void LevelChangeStart() override;
+	virtual void LevelChangeEnd()override;
+	virtual void Tick(float _DeltaTime) override;
 
 	void InitSpawn();
 
@@ -41,7 +43,7 @@ public:
 	void SetPlayer(class APlayer* _Player) {
 		Player = _Player;
 	}
-	
+
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
 	}
@@ -60,8 +62,6 @@ protected:
 private:
 	std::string CurDungeonName;
 
-
-
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
 
@@ -72,11 +72,8 @@ private:
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
 
-
-
 	TurnType CurTurn;
 	FVector2D PlayerMoveDir;
-
 	float CurDuration;
 	int PlayerInput;
 
@@ -95,8 +92,8 @@ private:
 	// AI Select Play
 	void AIMove(float _DeltaTime);
 	void AISkill();
-
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
+	void SpawnEnemy();
 
 };

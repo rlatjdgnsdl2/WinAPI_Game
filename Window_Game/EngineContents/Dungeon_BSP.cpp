@@ -4,8 +4,9 @@
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/SpriteRenderer.h>
 
-#include "PMDContentsCore.h"
 
+#include "PMDContentsCore.h"
+#include "GameDataManager.h"
 
 
 ADungeon_BSP::ADungeon_BSP()
@@ -22,18 +23,10 @@ ADungeon_BSP::~ADungeon_BSP()
 }
 
 
-void ADungeon_BSP::BeginPlay()
+void ADungeon_BSP::LevelChangeEnd()
 {
-	Super::BeginPlay();
-	
-
-	
-}
-
-void ADungeon_BSP::LevelChangeStart()
-{
-	Super::LevelChangeStart();
-	UIRenderers["FN"]->SetSprite(std::format("DungeonFont_{}.png", CurFloor), 0);
+	Super::LevelChangeEnd();
+	RoomClear();
 }
 
 void ADungeon_BSP::RoomClear()
@@ -44,9 +37,10 @@ void ADungeon_BSP::RoomClear()
 	}
 }
 
-void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
+void ADungeon_BSP::Generate()
 {
-	SetName(_CurDungeonName);
+	std::string CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
+	SetName(CurDungeonName);
 	root = new Node{ 5, 5, Width - 11, Height - 11 };
 	InitDungeon();
 	Split(root);
@@ -57,16 +51,16 @@ void ADungeon_BSP::Generate(std::string_view _CurDungeonName)
 	SetNextPotal();
 }
 
-Room ADungeon_BSP::getRoom(Node* node) const
+Room ADungeon_BSP::GetRoom(Node* node) const
 {
 	if (node->isLeaf() && node->room.isValid()) return node->room;
 	Room room;
 	if (node->left) {
-		room = getRoom(node->left);
+		room = GetRoom(node->left);
 		if (room.isValid()) return room;  // 방을 찾은 경우 반환
 	}
 	if (node->right) {
-		room = getRoom(node->right);
+		room = GetRoom(node->right);
 		if (room.isValid()) return room;  // 방을 찾은 경우 반환
 	}
 	// 방이 없을 경우 기본값 반환
@@ -217,8 +211,8 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 
 	// 왼쪽과 오른쪽 자식 노드에서 방을 가져옵니다.
 	// 각 노드의 가장 가까운 방을 가져와 복도로 연결합니다.
-	Room room1 = getRoom(node->left);
-	Room room2 = getRoom(node->right);
+	Room room1 = GetRoom(node->left);
+	Room room2 = GetRoom(node->right);
 
 	// 방의 중심점 계산
 	int startX = room1.x + room1.width / 2;

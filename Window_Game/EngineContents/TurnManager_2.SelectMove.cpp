@@ -47,3 +47,5 @@ bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 }
 
 
+
+

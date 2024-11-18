@@ -6,6 +6,7 @@
 #include <EngineCore/EngineCoreDebug.h>
 
 #include "AbilityController.h"
+#include "GameDataManager.h"
 
 
 
@@ -27,21 +28,18 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetName(UGameDataManager::GetInst().GetSelectPlayer());
 }
 
 void APlayer::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetPokemon("Mudkip");
-	UIRenderers["LvN"]->SetSprite(std::format("DungeonFont_{}.png", GetCurAbility()->GetLevel()), 0);
-
+	SetPokemon(GetName());
 }
 
 void APlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//UEngineDebug::CoreOutPutString(std::to_string(1 / _DeltaTime));
 }
 
 void APlayer::SetPokemon(std::string_view _PokemonName)
@@ -50,17 +48,6 @@ void APlayer::SetPokemon(std::string_view _PokemonName)
 	AbilityController->InitCurAbility(UGameDataManager::GetInst().GetPlayerAbility(GetName()));
 }
 
-//void APlayer::EndAttack()
-//{
-//	if (TargetPokemon != nullptr) {
-//		TargetPokemon->GetCurAbility().SetDamage(AbilityController.GetATK());
-//		bool IsDie = TargetPokemon->GetCurAbility().IsDie();
-//		if (IsDie) {
-//			AbilityController.SetExp(TargetPokemon->GetCurAbility().DropExp());
-//		}
-//	}
-//	IsAttackValue = false;
-//}
 
 
 

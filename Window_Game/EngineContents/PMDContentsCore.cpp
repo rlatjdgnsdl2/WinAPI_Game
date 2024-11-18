@@ -113,6 +113,12 @@ void PMDContentsCore::RoadResources()
 		UImageManager::GetInst().LoadFolder(Global.GetPathToString());
 	}
 	{
+		UEngineDirectory Skill;
+		Skill.MoveParentToDirectory("Resources//Image");
+		Skill.Append("Skill");
+		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
+	}
+	{
 		UEngineDirectory CharacterSelect;
 		CharacterSelect.MoveParentToDirectory("Resources//Image");
 		CharacterSelect.Append("CharacterSelect");
@@ -154,7 +160,7 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
 	UGameDataManager::GetInst().InsertAnimInfo("Mudkip", AnimInfo({ 10,2,7,6 }));
-	UGameDataManager::GetInst().InsertPlayerAbility("Mudkip", PokemonInfo(PokemonType::WATER, 5, 45, 20, 15));
+	
 
 	//	partner
 	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
@@ -204,8 +210,10 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Wall.png", 5, 10);
 	UImageManager::GetInst().CuttingSprite("AmpPlains_Water.png", 5, 10);
-
 	UGameDataManager::GetInst().InsertDungeonInfo("AmpPlains", { {"Kabuto","Shellos","Shellder","Corsola"} });
+
+	//	Skill
+	UImageManager::GetInst().CuttingSprite("Water_Bomb.png", 8, 1);
 
 
 }
@@ -507,21 +515,6 @@ void PMDContentsCore::InitKeySet()
 	TileIndexForKey.insert({ "110111010",44 });
 	TileIndexForKey.insert({ "011111110",45 });
 	TileIndexForKey.insert({ "110111011",46 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

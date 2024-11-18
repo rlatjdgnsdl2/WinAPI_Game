@@ -7,6 +7,8 @@
 #include <EngineCore/EngineAPICore.h>
 
 #include "Player.h"
+#include "Partner.h"
+#include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
 #include "MoveController.h"
@@ -24,24 +26,48 @@ ATurnManager::~ATurnManager()
 
 }
 
+void ATurnManager::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
-	Dungeon->Generate(CurDungeonName);
-
-
-
-	//	카메라 피봇설정
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	GetWorld()->SetCameraPivot(WindowSize.Half() * -1.0f);
+	GetWorld()->SetCameraPivot(WindowSize.Half()*-1.0f);
 
+
+
+	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
+	Dungeon->Generate();
+	PathFinder.SetData(Dungeon);
+	//	임시
+	{
+		APartner* Partner = GetWorld()->SpawnActor<APartner>();
+		Partner->SetPokemon("Vulpix");
+
+		PushPlayerCamp(Partner);
+		PushAllAIPokemon(Partner);
+		
+	}
+	PushPlayerCamp(Player);
 	// 처음 스폰위치
 	InitSpawn();
 	Player->GetMoveController()->SetTargetLocation(Player->GetActorLocation());
-	PathFinder.SetData(Dungeon);
 
 	CurTurn = TurnType::Player_Select;
+}
+
+void ATurnManager::LevelChangeEnd()
+{
+	Super::LevelChangeEnd();
+	AllAIPokemon.clear();
+	PlayerCamp.clear();
+	EnemyCamp.clear();
+	MovePokemon.clear();
+	SkillPokemon.clear();
 }
 
 void ATurnManager::Tick(float _DeltaTime)
@@ -84,8 +110,6 @@ void ATurnManager::Tick(float _DeltaTime)
 }
 
 
-
-
 void ATurnManager::InitSpawn()
 {
 	UEngineRandom Random;
@@ -122,35 +146,22 @@ void ATurnManager::InitSpawn()
 				}
 			}
 		}
-
 	}
-	//	Enemy Camp Spawn
-	{
-		std::list<APokemon*>::iterator StartIter = EnemyCamp.begin();
-		std::list<APokemon*>::iterator EndIter = EnemyCamp.end();
-		for (; StartIter != EndIter; StartIter++)
-		{
-			APokemon* CurPokemon = *StartIter;
-			int MaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
-			int Index = Random.RandomInt(0, MaxSize - 1);
-			FVector2D RoomLocation = Dungeon->GetRoomLocations()[Index];
-			CurPokemon->SetActorLocation(RoomLocation);
-
-		}
-	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
+void ATurnManager::SpawnEnemy()
+{
+	UEngineRandom Random;
+	const std::vector<std::string>& Pokemons_In_Dongeon = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName).Pokemons_In_Dongeon;
+	size_t MaxSize = Pokemons_In_Dongeon.size();
+	int Index = Random.RandomInt(0, MaxSize - 1);
+	std::string EnemyName = Pokemons_In_Dongeon[Index];
+	AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>();
+	NewEnemy->SetPokemon(EnemyName);
+
+	PushAllAIPokemon(NewEnemy);
+	PushEnemyCamp(NewEnemy);
+}
+
 
 
 

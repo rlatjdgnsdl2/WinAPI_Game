@@ -10,6 +10,8 @@ public:
 	APartner();
 	virtual ~APartner();
 
+	virtual void BeginPlay()override;
+	virtual void LevelChangeStart()override;
 	virtual void SetPokemon(std::string_view _PokemonName);
 
 	//	delete Function

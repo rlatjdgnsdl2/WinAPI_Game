@@ -14,6 +14,16 @@ APartner::~APartner()
 
 }
 
+void APartner::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void APartner::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+}
+
 void APartner::SetPokemon(std::string_view _PokemonName)
 {
 	APokemon::SetPokemon(_PokemonName);

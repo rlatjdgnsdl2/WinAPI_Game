@@ -1,7 +1,8 @@
 #pragma once
+#include <EngineBase/Object.h>
 
 // 설명 : 게임데이터관련 클래스
-class UGameDataManager
+class UGameDataManager : public UObject
 {
 public:
 	// constrcuter destructer
@@ -62,17 +63,23 @@ public:
 		 SelectDungeon = _SelectDungeon;
 	}
 
+	std::string GetSelectPlayer() const {
+		return SelectPlayer;
+	}
+	void SetSelectPlayer(std::string_view _SelectPlayer) {
+		SelectPlayer = _SelectPlayer;
+	}
+
 	
 protected:
 
 private:
 	UGameDataManager();
+	std::string SelectPlayer;
 	std::string SelectDungeon = "BeachCave";
 	std::map<std::string, AnimInfo > Animations;
 	std::map<std::string, PokemonInfo > Pokemons;
 	std::map<std::string, DungeonInfo> Dungeons;
-
-	
 	std::map<std::string, PokemonInfo> PlayerAbilities;
 
 };
