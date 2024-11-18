@@ -10,7 +10,7 @@ enum class ERenderOrder
 	UI_BACKGROUND = 5000,
 	UI_BASIC = 10000,
 	UI_IMAGE = 20000,
-	FONT = 30000
+	UI_Text = 30000
 };
 enum class TileType
 {
@@ -56,7 +56,23 @@ enum class DIR
 enum class ECollisionGroup
 {
 	PlayerBody,
-	MonsterBody,
+	MonsterBody
+};
+
+
+enum class Text_Index
+{
+	a = 0, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,
+	A , B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+	One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Zero,
+	Dot, Plus, Minus,
+	Exclamation = 67,
+	Question = 69,
+	SmallQuotation_F, SmallQuotation_B,
+	BigQuotation_F, BigQuotation_B,
+	Male, Female,
+	SpaceBar = 77,
+	MAX
 };
 
 

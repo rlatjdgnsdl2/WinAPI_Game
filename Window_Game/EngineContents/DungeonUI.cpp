@@ -141,7 +141,7 @@ void ADungeonUI::BeginPlay()
 	ResultMessageBox_In = CreateDefaultSubObject<USpriteRenderer>();
 	ResultMessageBox_In->SetSprite("MessageBox_Basic.bmp");
 	ResultMessageBox_In->SetSpriteScale(1.0f);
-	ResultMessageBox_In->SetAlphafloat(0.7f);
+	ResultMessageBox_In->SetAlphafloat(0.5f);
 	ResultMessageBox_In->SetCameraEffect(false);
 	ResultMessageBox_In->SetOrder(ERenderOrder::UI_BASIC);
 	ResultMessageBox_In->SetComponentLocation({ 375,500 });
@@ -150,9 +150,9 @@ void ADungeonUI::BeginPlay()
 	{
 		for (int x = 0; x < Text_MaxCount.X; x++)
 		{
-			USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
-			NewText->SetSprite()
-			ResultMessageBox_Text[y][x] = NewText;
+			//USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
+			//NewText->SetSprite()
+			//ResultMessageBox_Text[y][x] = NewText;
 		}
 	}
 

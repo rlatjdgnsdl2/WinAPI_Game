@@ -26,7 +26,7 @@ ACharacterSelect::ACharacterSelect()
 		BoxUI = CreateDefaultSubObject<USpriteRenderer>();
 		BoxUI->SetSprite("MessageBox_Middle.bmp");
 		BoxUI->SetSpriteScale();
-		BoxUI->SetAlphafloat(0.8f);
+		BoxUI->SetAlphafloat(0.5f);
 		BoxUI->SetOrder(ERenderOrder::UI_BACKGROUND);
 	}
 
