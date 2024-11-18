@@ -26,6 +26,15 @@ ADungeonGameMode::~ADungeonGameMode()
 }
 
 
+void ADungeonGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	ATurnManager* TurnManager = GetWorld()->SpawnActor<ATurnManager>();
+	ADungeon_BSP* NewDungeon = GetWorld()->SpawnActor<ADungeon_BSP>();
+
+}
+
+
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);

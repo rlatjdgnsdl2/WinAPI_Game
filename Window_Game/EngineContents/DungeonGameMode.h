@@ -11,15 +11,18 @@ public:
 	ADungeonGameMode();
 	virtual ~ADungeonGameMode();
 
+
+
 	//	delete Function
 	ADungeonGameMode(const ADungeonGameMode& _Other) = delete;
 	ADungeonGameMode(ADungeonGameMode&& _Other) noexcept = delete;
 	ADungeonGameMode& operator=(const ADungeonGameMode& _Other) = delete;
 	ADungeonGameMode& operator=(ADungeonGameMode&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime)override;
-	void LevelChangeStart() override;
-	void LevelChangeEnd()override;
+	virtual void Tick(float _DeltaTime)override;
+	virtual void BeginPlay() override;
+	virtual void LevelChangeStart() override;
+	virtual void LevelChangeEnd()override;
 
 	
 

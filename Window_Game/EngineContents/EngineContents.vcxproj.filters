@@ -52,9 +52,6 @@
     <ClInclude Include="Dungeon_BSP.h">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonGameMode.h">
-      <Filter>LevelObjects\03.DungeonLevel</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
     </ClInclude>
     <ClInclude Include="Partner.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGameMode.h">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,9 +156,6 @@
     <ClCompile Include="Dungeon_BSP.cpp">
       <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonGameMode.cpp">
-      <Filter>LevelObjects\03.DungeonLevel</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
@@ -185,6 +182,9 @@
     </ClCompile>
     <ClCompile Include="Partner.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGameMode.cpp">
+      <Filter>LevelObjects\03.DungeonLevel\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
