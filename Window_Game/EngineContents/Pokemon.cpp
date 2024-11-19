@@ -4,7 +4,6 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
-#include "MoveController.h"
 #include "SkillController.h"
 #include "AbilityController.h"
 
@@ -26,9 +25,7 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	if (SpriteRenderer == nullptr) {
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	}
-	if (MoveController == nullptr) {
-		MoveController = CreateDefaultSubObject<UMoveController>();
-	}
+	
 	if (SkillController == nullptr) {
 		SkillController = CreateDefaultSubObject<USkillController>();
 	}

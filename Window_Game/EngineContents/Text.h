@@ -25,8 +25,7 @@ protected:
 
 private:
 	std::string StringValue;
-	FVector2D TextSize = FVector2D({15.0f,17.0f});
-	FVector2D TextStartLocation;
+	FVector2D TextSize = FVector2D({14.0f,20.0f});
 	std::vector<class USpriteRenderer*> TextRenderer;
 
 };

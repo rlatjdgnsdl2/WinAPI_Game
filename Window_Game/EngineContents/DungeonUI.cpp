@@ -1,16 +1,21 @@
 #include "PreCompile.h"
 #include "DungeonUI.h"
 
+
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include "Player.h"
 #include "AbilityController.h"
 #include "Dungeon_BSP.h"
+#include "Box.h"
+#include "Text.h"
 
 
 
 ADungeonUI::ADungeonUI()
 {
-	HpBar.resize(300,nullptr);
+	HpBar.resize(300, nullptr);
+	MenuStringRenderer.resize(7);
 }
 
 ADungeonUI::~ADungeonUI()
@@ -129,12 +134,59 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetOrder(ERenderOrder::UI_BASIC);
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
+
+	MenuBox = GetWorld()->SpawnActor<ABox>();
+	MenuBox->SetActorLocation({ 25,50 });
+	MenuBox->SetBoxSize({ 200.0f, 350.0f });
+	MenuBox->SetActive(false);
+
+
+	DungeonNameBox = GetWorld()->SpawnActor<ABox>();
+	DungeonNameBox->SetActorLocation({ 280, 100 });
+	DungeonNameBox->SetBoxSize({ 400.0f, 100.0f });
+
+
+	MyInfoBox = GetWorld()->SpawnActor<ABox>();
+	MyInfoBox->SetActorLocation({ 25, 400 });
+	MyInfoBox->SetBoxSize({ 750.0f, 150.0f });
+
+	MenuString.push_back("Skill");
+	MenuString.push_back("Item");
+	MenuString.push_back("Team");
+	MenuString.push_back("Other");
+	MenuString.push_back("Foot");
+	MenuString.push_back("Rest");
+	MenuString.push_back("Close");
+
+	for (int i = 0; i < MenuString.size(); i++)
+	{
+		{
+			AText* NewText = GetWorld()->SpawnActor<AText>();
+			NewText->SetString(MenuString[i]);
+			NewText->SetActorLocation({ 65.0f,78.0f * 20.0f * i });
+			MenuStringRenderer[i] = NewText;
+		}
+	}
+	CurDungeonNameRenderer = GetWorld()->SpawnActor<AText>();
+	CurDungeonNameRenderer->SetString(Dungeon->GetName());
+	CurDungeonNameRenderer->SetActorLocation({ 400.0f, 140.0f });
+	CurDungeonNameRenderer->SetActive(false);
+
+
+
 }
 
 void ADungeonUI::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	UI_FValue->SetSprite(std::format("DungeonFont_{}.png",Dungeon->GetCurFloor()));
+	UI_FValue->SetSprite(std::format("DungeonFont_{}.png", Dungeon->GetCurFloor()));
+	MenuBox->SetActive(false);
+	DungeonNameBox->SetActive(false);
+	MyInfoBox->SetActive(false);
+	for (int i = 0; i < MenuString.size(); i++)
+	{
+		MenuStringRenderer[i]->SetActive(false);
+	}
 
 }
 
@@ -165,7 +217,45 @@ void ADungeonUI::Tick(float _DeltaTime)
 		}
 	}
 
-	
+	if (true == UEngineInput::GetInst().IsDown('I'))
+	{
+		if (MenuBox->IsActive()) {
+
+			MenuBox->SetActive(false);
+			DungeonNameBox->SetActive(false);
+			MyInfoBox->SetActive(false);
+
+			for (int i = 0; i < 7; i++)
+			{
+				MenuStringRenderer[i]->SetActive(false);
+			}
+			CurDungeonNameRenderer->SetActive(false);
+
+
+
+		}
+		else {
+			MenuBox->SetActive(true);
+			DungeonNameBox->SetActive(true);
+			MyInfoBox->SetActive(true);
+			for (int i = 0; i < 7; i++)
+			{
+				MenuStringRenderer[i]->SetActive(true);
+				MenuStringRenderer[i]->SetActorLocation({ 80.0f,60.0f + 25.0f*i  });
+			}
+			CurDungeonNameRenderer->SetActive(true);
+		}
+
+	}
+
+
+
+
+
+
+
+
+
 
 
 }

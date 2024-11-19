@@ -7,7 +7,6 @@
 
 #include "Pokemon.h"
 #include "Player.h"
-#include "MoveController.h"
 
 
 
@@ -22,7 +21,7 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	}
 	// 플레이어가 도착했으면
 	FVector2D CurPlayerLocation = Player->GetActorLocation();
-	FVector2D PlayerTargetLocation = Player->GetMoveController()->GetTargetLocation();
+	FVector2D PlayerTargetLocation = Player->GetTargetLocation();
 	if (CurPlayerLocation == PlayerTargetLocation)
 	{
 		//	MovePokemon에 있는 포켓몬 모두 강제로 도착하게

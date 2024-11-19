@@ -26,17 +26,12 @@ public:
 	}
 	
 
-
-
 protected:
-
-
 private:
 	class APlayer* Player;
 	class ADungeon_BSP* Dungeon;
 	FVector2D UIPos = FVector2D(20.0f, 20.0f);
 	FIntPoint Text_MaxCount = FIntPoint({30,3});
-
 
 	//	상단 UI
 	class USpriteRenderer* UI_B;
@@ -54,7 +49,16 @@ private:
 	std::vector<class USpriteRenderer* > HpBar;
 
 	class ABox* DungeonLogBox;
-	class ABox* MenuOpenBox;
+
+	//	메뉴 오픈시
+	class ABox* MenuBox;
+	class ABox* DungeonNameBox;
+	class ABox* MyInfoBox;
+	std::vector<std::string> MenuString;
+	std::vector<class AText*> MenuStringRenderer;
+
+	class AText* CurDungeonNameRenderer;
+
 
 	
 

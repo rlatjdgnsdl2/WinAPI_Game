@@ -22,8 +22,11 @@ void ATurnManager::SelectMove()
 
 bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 {
+	if (Player == nullptr) {
+		return false;
+	}
+
 	FVector2D PlayerLocation = Player->GetActorLocation();
-	
 	Player->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
 	FIntPoint TargetTile = Player->GetTargetTile();
 	TileType TargetTileType = Dungeon->GetTileType(TargetTile.X, TargetTile.Y);

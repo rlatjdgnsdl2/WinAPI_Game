@@ -5,6 +5,10 @@
 void ATurnManager::SelectSkill()
 {
 	USkillController* PlayerSkill = Player->GetSkillController();
+	if (PlayerSkill == nullptr) {
+		CurTurn = TurnType::Player_Select;
+		return;
+	}
 	//	일반공격을 선택했으면
 	if (PlayerInput == 'A') {
 		PlayerSkill->SetSkill(SkillType::NormalAttack);

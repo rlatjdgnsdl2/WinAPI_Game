@@ -56,9 +56,7 @@ public:
 	class UAbilityController* GetCurAbility() {
 		return AbilityController;
 	}
-	class UMoveController* GetMoveController() {
-		return MoveController;
-	}
+
 	class USkillController* GetSkillController() {
 		return SkillController;
 	}
@@ -66,16 +64,16 @@ public:
 protected:
 	class USpriteRenderer* SpriteRenderer;
 
+	//	이동관련
 	float CurDuration;
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
 
 
 
-
-	class UMoveController* MoveController;
-	class USkillController* SkillController;
 	class UAbilityController* AbilityController;
+	class USkillController* SkillController;
+
 	
 	DIR Dir;
 	bool IsAttackValue;

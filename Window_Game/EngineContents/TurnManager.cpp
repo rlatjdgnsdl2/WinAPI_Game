@@ -11,7 +11,7 @@
 #include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
-#include "MoveController.h"
+
 
 
 
@@ -56,7 +56,7 @@ void ATurnManager::LevelChangeStart()
 	PushPlayerCamp(Player);
 	// 처음 스폰위치
 	InitSpawn();
-	Player->GetMoveController()->SetTargetLocation(Player->GetActorLocation());
+	Player->SetTargetLocation(Player->GetActorLocation());
 
 	CurTurn = TurnType::Player_Select;
 }

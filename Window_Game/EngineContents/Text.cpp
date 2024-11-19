@@ -12,7 +12,7 @@ AText::AText()
 		USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
 		NewText->SetSprite("Text_White.png", static_cast<int>(Text_Index::MAX)+1);
 		NewText->SetSpriteScale();
-		NewText->SetComponentLocation(FVector2D({ TextSize.X * i,0.0f }));
+		NewText->SetComponentLocation(FVector2D({ TextSize.X * i,TextSize.Y }));
 		NewText->SetOrder(ERenderOrder::UI_Text);
 		NewText->SetCameraEffect(false);
 		TextRenderer[i] = NewText;

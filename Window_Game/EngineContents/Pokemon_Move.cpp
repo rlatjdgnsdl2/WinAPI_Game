@@ -18,11 +18,11 @@ const FIntPoint& APokemon::GetTargetTile() {
 
 void APokemon::SetTargetLocation(const FVector2D& _TargetLocation) {
 	TargetLocation = _TargetLocation;
-	StartLocation = GetActor()->GetActorLocation();
+	StartLocation = GetActorLocation();
 };
 void APokemon::SetTargetTile(const FIntPoint& _TargetTileIndex) {
 	TargetLocation = _TargetTileIndex * 72.0f;
-	StartLocation = GetActor()->GetActorLocation();
+	StartLocation = GetActorLocation();
 };
 
 

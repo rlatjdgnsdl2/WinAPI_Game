@@ -33,18 +33,9 @@ ABox::~ABox()
 
 }
 
-void ABox::SetDungeonLogBox()
-{
-	SetBox({ 300, 126 });
-}
-
-void ABox::SetCharacterSelectBox()
-{
-	SetBox({ 678, 500 });
-}
 
 
-void ABox::SetBox(FVector2D BoxSize)
+void ABox::SetBoxSize(FVector2D BoxSize)
 {
 	FVector2D CornerSize = { 24, 12 };
 	FVector2D Pivot = { 0.0f, 0.0f };
@@ -74,7 +65,7 @@ void ABox::SetBox(FVector2D BoxSize)
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();
 	BoxUI[1][1].SpriteRenderer->SetComponentLocation(Pivot);
 	BoxUI[1][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, BoxSize.Y - CornerSize.Y * 2.0f));
-	BoxUI[1][1].SpriteRenderer->SetAlphafloat(0.5f);
+	BoxUI[1][1].SpriteRenderer->SetAlphafloat(0.3f);
 	BoxUI[1][1].SpriteRenderer->SetOrder(ERenderOrder::UI_BACKGROUND);
 
 

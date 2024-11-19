@@ -56,7 +56,7 @@ void ACharacterSelect::BeginPlay()
 	Super::BeginPlay();
 	Box = GetWorld()->SpawnActor<ABox>();
 	Box->SetActorLocation({ 60,60 });
-	Box->SetCharacterSelectBox();
+
 	GetWorld()->SetCameraToMainPawn(false);
 	CurIter = CharacterImages.begin();
 	CurIter->second->SetSpriteScale(1.0f);

@@ -1,7 +1,6 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
 #include "Pokemon.h"
-#include "MoveController.h"
 
 void ATurnManager::AIMove(float _DeltaTime)
 {
@@ -11,7 +10,7 @@ void ATurnManager::AIMove(float _DeltaTime)
 	// 이동했으면 목적지에 모두 도착했는지 체크
 	for (APokemon* CurPokemon : MovePokemon) {
 		FVector2D CurPokemonLocation = CurPokemon->GetActorLocation();
-		FVector2D CurPokemonTargetLocation = CurPokemon->GetMoveController()->GetTargetLocation();
+		FVector2D CurPokemonTargetLocation = CurPokemon->GetTargetLocation();
 		if (CurPokemonLocation != CurPokemonTargetLocation) {
 			return;
 		}
