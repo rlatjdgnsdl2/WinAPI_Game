@@ -1,6 +1,13 @@
 #pragma once
 #include <EngineCore/Actor.h>
-
+enum class TextColor {
+	White,
+	Red,
+	Blue,
+	Green,
+	Yellow,
+	Black,
+};
 //	Ό³Έν:
 class AText:public AActor
 {
@@ -17,7 +24,7 @@ public:
 	AText& operator=(AText&& _Other) noexcept = delete;
 
 
-	void SetString(std::string_view _StringValue);
+	void SetString(std::string_view _StringValue,std::string_view _color="White");
 	int CharToTextIndex(char c);
 
 

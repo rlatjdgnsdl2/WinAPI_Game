@@ -142,8 +142,8 @@ void ADungeonUI::BeginPlay()
 
 
 	DungeonNameBox = GetWorld()->SpawnActor<ABox>();
-	DungeonNameBox->SetActorLocation({ 280, 100 });
-	DungeonNameBox->SetBoxSize({ 400.0f, 100.0f });
+	DungeonNameBox->SetActorLocation({ 280, 70 });
+	DungeonNameBox->SetBoxSize({ 400.0f, 80.0f });
 
 
 	MyInfoBox = GetWorld()->SpawnActor<ABox>();
@@ -168,8 +168,7 @@ void ADungeonUI::BeginPlay()
 		}
 	}
 	CurDungeonNameRenderer = GetWorld()->SpawnActor<AText>();
-	CurDungeonNameRenderer->SetString(Dungeon->GetName());
-	CurDungeonNameRenderer->SetActorLocation({ 400.0f, 140.0f });
+	CurDungeonNameRenderer->SetActorLocation({ 400.0f, 80.0f });
 	CurDungeonNameRenderer->SetActive(false);
 
 
@@ -243,6 +242,7 @@ void ADungeonUI::Tick(float _DeltaTime)
 				MenuStringRenderer[i]->SetActive(true);
 				MenuStringRenderer[i]->SetActorLocation({ 80.0f,60.0f + 25.0f*i  });
 			}
+			CurDungeonNameRenderer->SetString(Dungeon->GetName(),"Yellow");
 			CurDungeonNameRenderer->SetActive(true);
 		}
 

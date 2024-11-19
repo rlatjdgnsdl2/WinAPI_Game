@@ -19,6 +19,11 @@ void ATurnManager::PlayerSelect()
 		CurPokemon->Idle();
 	}
 	PlayerMoveDir = FVector2D::ZERO;
+
+	if (UEngineInput::GetInst().IsPress('I')) {
+		//CurTurn = TurnType::Open_Menu;
+		return;
+	}
 	// Player_Select_Move 단계로 가는 키
 	if (UEngineInput::GetInst().IsPress(VK_NUMPAD8)) {
 		PlayerMoveDir += FVector2D::UP;
@@ -68,6 +73,7 @@ void ATurnManager::PlayerSelect()
 		CurTurn = TurnType::Player_Select_Move;
 		return;
 	}
+	
 	// Player_Select_Skill 단계로 가는 키
 	if (UEngineInput::GetInst().IsDown('A')) {
 		PlayerInput = 'A';
@@ -80,6 +86,7 @@ void ATurnManager::PlayerSelect()
 		CurTurn = TurnType::Player_Select_Skill;
 		return;
 	}
+
 
 
 

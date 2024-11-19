@@ -150,10 +150,10 @@ void PMDContentsCore::RoadResources()
 	}
 
 	//	Font
-	/*UImageManager::GetInst().CuttingSprite("Text_Yellow.png", 26, 4);
-	UImageManager::GetInst().CuttingSprite("Text_Blue.png", 26, 4);
-	UImageManager::GetInst().CuttingSprite("Text_Green.png", 26, 4);*/
-	UImageManager::GetInst().CuttingSprite("Text_White.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("Yellow_Text.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("Blue_Text.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("Green_Text.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("White_Text.png", 26, 4);
 
 	//	Title
 	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
