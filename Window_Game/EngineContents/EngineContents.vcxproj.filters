@@ -64,9 +64,6 @@
     <ClInclude Include="AbilityController.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
-    <ClInclude Include="MoveController.h">
-      <Filter>LevelObjects\00.Pokemon</Filter>
-    </ClInclude>
     <ClInclude Include="SkillController.h">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClInclude>
@@ -85,8 +82,14 @@
     <ClInclude Include="SpecialSkill.h">
       <Filter>LevelObjects\00.Skill</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>LevelObjects</Filter>
+    <ClInclude Include="TextManager.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -186,9 +189,6 @@
     <ClCompile Include="AbilityController.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="MoveController.cpp">
-      <Filter>LevelObjects\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="SkillController.cpp">
       <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
@@ -207,8 +207,17 @@
     <ClCompile Include="SpecialSkill.cpp">
       <Filter>LevelObjects\00.Skill</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>LevelObjects</Filter>
+    <ClCompile Include="Text.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TextManager.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokemon_Move.cpp">
+      <Filter>LevelObjects\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +259,9 @@
     </Filter>
     <Filter Include="LevelObjects\00.Skill">
       <UniqueIdentifier>{a7216147-53ee-46b1-a735-8a4d0d3e2bdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{bd611918-98de-4a3b-8f45-f6873e05c1b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

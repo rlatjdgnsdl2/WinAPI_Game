@@ -34,6 +34,12 @@ public:
 		return ((GetActorLocation().ConvertToPoint()) / 72);
 	};
 
+	//	이동관련
+	const FVector2D& GetTargetLocation() const;
+	const FIntPoint& GetTargetTile();
+	void SetTargetLocation(const FVector2D& _TargetLocation);
+	void SetTargetTile(const FIntPoint& _TargetTileIndex);
+	void ResetCurDuration();
 
 
 	virtual void SetCamp(CampType _Camp) = 0;
@@ -59,6 +65,14 @@ public:
 
 protected:
 	class USpriteRenderer* SpriteRenderer;
+
+	float CurDuration;
+	FVector2D StartLocation;
+	FVector2D TargetLocation;
+
+
+
+
 	class UMoveController* MoveController;
 	class USkillController* SkillController;
 	class UAbilityController* AbilityController;
@@ -67,6 +81,7 @@ protected:
 	bool IsAttackValue;
 	bool IsHurtValue;
 private:
+
 
 
 

@@ -119,7 +119,9 @@ bool APokemon::IsAttack() {
 
 void APokemon::Move(float _DeltaTime)
 {
-	MoveController->Move(_DeltaTime);
+	CurDuration += _DeltaTime;
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration / 0.5f);
+	SetActorLocation(NewLocation);
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
 }

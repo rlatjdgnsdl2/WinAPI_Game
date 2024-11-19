@@ -1,11 +1,13 @@
 #include "PreCompile.h"
 #include "CharacterSelect.h"
 
+#include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineWindow.h>
+#include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
-#include <EnginePlatform/EngineWindow.h>
-#include <EnginePlatform/EngineInput.h>
 
+#include "Box.h"
 #include "GameDataManager.h"
 
 
@@ -15,21 +17,6 @@ ACharacterSelect::ACharacterSelect()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation(WindowSize.Half());
-	{
-		BorderUI = CreateDefaultSubObject<USpriteRenderer>();
-		BorderUI->SetSprite("MessageBox_Middle.png");
-		BorderUI->SetSpriteScale();
-		BorderUI->SetOrder(ERenderOrder::UI_BACKGROUND);
-	}
-
-	{
-		BoxUI = CreateDefaultSubObject<USpriteRenderer>();
-		BoxUI->SetSprite("MessageBox_Middle.bmp");
-		BoxUI->SetSpriteScale();
-		BoxUI->SetAlphafloat(0.5f);
-		BoxUI->SetOrder(ERenderOrder::UI_BACKGROUND);
-	}
-
 	{
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("Mudkip.png");
@@ -56,6 +43,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
 		CharacterImages.insert({ "Pikachu",SpriteRenderer });
 	}
+
 }
 
 ACharacterSelect::~ACharacterSelect()
@@ -66,6 +54,9 @@ ACharacterSelect::~ACharacterSelect()
 void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
+	Box = GetWorld()->SpawnActor<ABox>();
+	Box->SetActorLocation({ 60,60 });
+	Box->SetCharacterSelectBox();
 	GetWorld()->SetCameraToMainPawn(false);
 	CurIter = CharacterImages.begin();
 	CurIter->second->SetSpriteScale(1.0f);
@@ -74,6 +65,12 @@ void ACharacterSelect::BeginPlay()
 void ACharacterSelect::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
+
+
+
 	switch (CurSelectType)
 	{
 	case ACharacterSelect::SelectType::Player:
@@ -102,8 +99,8 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			std::string PartnerName = "Vulpix";
 			UGameDataManager::GetInst().InsertPlayerAbility(PartnerName, PokemonInfo(PokemonType::FIRE, 5, 45, 20, 15));
 			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-			
-			
+
+
 		}
 
 		break;

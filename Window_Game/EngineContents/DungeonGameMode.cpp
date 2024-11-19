@@ -5,12 +5,14 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/ImageManager.h>
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/Level.h>
 
 #include "GameDataManager.h"
 #include "Player.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
+#include "TextManager.h"
 #include "DungeonUI.h"
 
 
@@ -35,11 +37,17 @@ void ADungeonGameMode::BeginPlay()
 	ADungeonUI* DungeonUI = GetWorld()->SpawnActor<ADungeonUI>();
 	DungeonUI->SetDungeon(Dungeon);
 	TurnManager->SetDungeonUI(DungeonUI);
+
+	ATextManager* TextManager = GetWorld()->SpawnActor<ATextManager>();
+	TurnManager->SetTextManager(TextManager);
 }
 
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 	if (true == UEngineInput::GetInst().IsDown('G'))
 	{
 		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");

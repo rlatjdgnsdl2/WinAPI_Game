@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "Dungeon_BSP.h"
-#include "MoveController.h"
+
 
 //	Select_Move단계
 void ATurnManager::SelectMove()
@@ -23,26 +23,26 @@ void ATurnManager::SelectMove()
 bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 {
 	FVector2D PlayerLocation = Player->GetActorLocation();
-	UMoveController* PlayerMove = Player->GetMoveController();
-	PlayerMove->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
-	FIntPoint TargetTile = PlayerMove->GetTargetTile();
+	
+	Player->SetTargetLocation(PlayerLocation + moveVector * 72.0f);
+	FIntPoint TargetTile = Player->GetTargetTile();
 	TileType TargetTileType = Dungeon->GetTileType(TargetTile.X, TargetTile.Y);
 	//	앞이 땅이 아니면
 	if (TileType::GROUND != TargetTileType) {
-		PlayerMove->SetTargetLocation(PlayerLocation);
+		Player->SetTargetLocation(PlayerLocation);
 		return false;
 	}
 	//	앞에 적이 있으면 이동불가
 	for (APokemon* EnemyPokemon : EnemyCamp)
 	{
-		FVector2D EnemyLocation = EnemyPokemon->GetMoveController()->GetTargetLocation();
-		if (PlayerMove->GetTargetLocation() == EnemyLocation) {
-			PlayerMove->SetTargetLocation(PlayerLocation);
+		FVector2D EnemyLocation = EnemyPokemon->GetTargetLocation();
+		if (Player->GetTargetLocation() == EnemyLocation) {
+			Player->SetTargetLocation(PlayerLocation);
 			return false;
 		}
 	}
 	//	위에 조건에 안걸렸다면
-	PlayerMove->ResetCurDuration();
+	Player->ResetCurDuration();
 	return true;
 }
 

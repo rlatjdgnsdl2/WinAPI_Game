@@ -11,7 +11,6 @@
 ADungeonUI::ADungeonUI()
 {
 	HpBar.resize(300,nullptr);
-	ResultMessageBox_Text.resize(3,std::vector<USpriteRenderer*>(30,nullptr));
 }
 
 ADungeonUI::~ADungeonUI()
@@ -130,33 +129,6 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetOrder(ERenderOrder::UI_BASIC);
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
-
-	ResultMessageBox_Border = CreateDefaultSubObject<USpriteRenderer>();
-	ResultMessageBox_Border->SetSprite("MessageBox_Basic.png");
-	ResultMessageBox_Border->SetSpriteScale(1.0f);
-	ResultMessageBox_Border->SetCameraEffect(false);
-	ResultMessageBox_Border->SetOrder(ERenderOrder::UI_BASIC);
-	ResultMessageBox_Border->SetComponentLocation({375,500});
-
-	ResultMessageBox_In = CreateDefaultSubObject<USpriteRenderer>();
-	ResultMessageBox_In->SetSprite("MessageBox_Basic.bmp");
-	ResultMessageBox_In->SetSpriteScale(1.0f);
-	ResultMessageBox_In->SetAlphafloat(0.5f);
-	ResultMessageBox_In->SetCameraEffect(false);
-	ResultMessageBox_In->SetOrder(ERenderOrder::UI_BASIC);
-	ResultMessageBox_In->SetComponentLocation({ 375,500 });
-
-	for (int y = 0; y < Text_MaxCount.Y; y++)
-	{
-		for (int x = 0; x < Text_MaxCount.X; x++)
-		{
-			//USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
-			//NewText->SetSprite()
-			//ResultMessageBox_Text[y][x] = NewText;
-		}
-	}
-
-
 }
 
 void ADungeonUI::LevelChangeStart()

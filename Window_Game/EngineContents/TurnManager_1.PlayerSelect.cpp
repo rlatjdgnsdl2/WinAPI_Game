@@ -5,11 +5,15 @@
 
 #include "Player.h"
 #include "Pokemon.h"
+#include "TextManager.h"
+#include "Box.h"
+
 
 //	Player_Select단계
 void ATurnManager::PlayerSelect()
 {
 	Player->Idle();
+
 	for (APokemon* CurPokemon : AllAIPokemon)
 	{
 		CurPokemon->Idle();
@@ -65,13 +69,13 @@ void ATurnManager::PlayerSelect()
 		return;
 	}
 	// Player_Select_Skill 단계로 가는 키
-	if (UEngineInput::GetInst().IsPress('A')) {
+	if (UEngineInput::GetInst().IsDown('A')) {
 		PlayerInput = 'A';
 		CurTurn = TurnType::Player_Select_Skill;
 		return;
 	}
 	// Player_Select_Skill 단계로 가는 키
-	if (UEngineInput::GetInst().IsPress('S')) {
+	if (UEngineInput::GetInst().IsDown('S')) {
 		PlayerInput = 'S';
 		CurTurn = TurnType::Player_Select_Skill;
 		return;

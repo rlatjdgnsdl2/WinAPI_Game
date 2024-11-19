@@ -53,10 +53,10 @@ private:
 	class USpriteRenderer* UI_MaxHpValue01;
 	std::vector<class USpriteRenderer* > HpBar;
 
-	//	하단 메시지
-	class USpriteRenderer* ResultMessageBox_Border;
-	class USpriteRenderer* ResultMessageBox_In;
-	std::vector<std::vector<class USpriteRenderer* >> ResultMessageBox_Text;
+	class ABox* DungeonLogBox;
+	class ABox* MenuOpenBox;
+
+	
 
 
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 #include <EngineCore/PathFindAstar.h>
+#include "TextManager.h"
 
 enum class TurnType
 {
@@ -47,6 +48,9 @@ public:
 	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
 		DungeonUI = _DungeonUI;
 	}
+	void SetTextManager(class ATextManager* _TextManager) {
+		TextManager = _TextManager;
+	}
 
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
@@ -65,6 +69,8 @@ protected:
 
 private:
 	std::string CurDungeonName;
+	class ATextManager* TextManager;
+	
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;

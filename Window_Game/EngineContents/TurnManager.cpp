@@ -74,6 +74,7 @@ void ATurnManager::LevelChangeEnd()
 void ATurnManager::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
 	switch (CurTurn)
 	{
 	case TurnType::Player_Select:

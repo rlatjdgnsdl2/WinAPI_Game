@@ -26,11 +26,11 @@ protected:
 
 private:
 	SelectType CurSelectType = SelectType::Player;
-	class USpriteRenderer* BorderUI;
-	class USpriteRenderer* BoxUI;
 	FVector2D ImageSize = { 120,120 };
 	std::unordered_map<std::string, class USpriteRenderer*> CharacterImages;
 	std::unordered_map<std::string, class USpriteRenderer*> ::iterator CurIter;
+
+	class ABox* Box;
 
 
 };
