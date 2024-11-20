@@ -46,18 +46,17 @@ struct PokemonInfo
 {
 	PokemonInfo() {}
 	PokemonInfo(
-		PokemonType _PokemonType,
 		int _Level,
 		int _MaxHp,
 		int _Attack,
 		int _Speed) :
-		PokemonType(_PokemonType),
+
 		Level(_Level),
 		MaxHp(_MaxHp),
 		ATK(_Attack),
-		SPD(_Speed){
+		SPD(_Speed) {
 	}
-	PokemonType PokemonType;
+
 	int Level;
 	int MaxHp;
 	int ATK;
@@ -77,7 +76,7 @@ class UITile
 {
 public:
 	class USpriteRenderer* SpriteRenderer = nullptr;
-	
+
 };
 
 

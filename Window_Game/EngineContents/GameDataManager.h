@@ -1,6 +1,12 @@
 #pragma once
 #include <EngineBase/Object.h>
 
+class PlayerData {
+public:
+
+};
+
+
 // 설명 : 게임데이터관련 클래스
 class UGameDataManager : public UObject
 {

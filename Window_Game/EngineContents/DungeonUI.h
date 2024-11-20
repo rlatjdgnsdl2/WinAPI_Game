@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 
+
+
 //	설명: 던전 내 UI
 class ADungeonUI :public AGameMode
 {
@@ -8,7 +10,6 @@ public:
 	//	constrcuter, destructer
 	ADungeonUI();
 	virtual ~ADungeonUI();
-
 	//	delete Function
 	ADungeonUI(const ADungeonUI& _Other) = delete;
 	ADungeonUI(ADungeonUI&& _Other) noexcept = delete;
@@ -19,19 +20,27 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
-	void ResultMessage();
-	
+	void IsGoNextFloor();
+
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	
+	bool IsOpenMenu() const { return IsOpenMenuValue; }
 
+	void SetBasicUI(class ABasicUI* _BasicUI) {
+		BasicUI = _BasicUI;
+	}
+	
 protected:
 private:
+	bool IsOpenMenuValue = false;
+	bool IsUseItemValue = false;
+
 	class APlayer* Player;
 	class ADungeon_BSP* Dungeon;
-	FVector2D UIPos = FVector2D(20.0f, 20.0f);
-	FIntPoint Text_MaxCount = FIntPoint({30,3});
+	class ABasicUI* BasicUI;
+	FVector2D UIStartPos = FVector2D(20.0f, 20.0f);
+	const FIntPoint Text_MaxCount = FIntPoint({30,3});
 
 	//	상단 UI
 	class USpriteRenderer* UI_B;
@@ -50,13 +59,18 @@ private:
 
 	class ABox* DungeonLogBox;
 
-	//	메뉴 오픈시
-	class ABox* MenuBox;
-	class ABox* DungeonNameBox;
-	class ABox* MyInfoBox;
-	std::vector<std::string> MenuString;
-	std::vector<class AText*> MenuStringRenderer;
 
+
+	// 한세트
+	class ABox* NextFloorBox;
+	class ABox* AnswerSelectBox;
+	class AText* NextFloorText;
+	class AText* Yes;
+	class AText* No;
+
+
+	//	메뉴 오픈시
+	class ABox* DungeonNameBox;
 	class AText* CurDungeonNameRenderer;
 
 

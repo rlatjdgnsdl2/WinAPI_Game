@@ -18,11 +18,7 @@ ATitleBackground::ATitleBackground()
 ATitleBackground::~ATitleBackground() {}
 
 
-void ATitleBackground::BeginPlay()
-{
-	Super::BeginPlay();
-	BGMPlayer = UEngineSound::Play("TitleBGM.mp3");
-}
+
 
 void ATitleBackground::LevelChangeStart()
 {

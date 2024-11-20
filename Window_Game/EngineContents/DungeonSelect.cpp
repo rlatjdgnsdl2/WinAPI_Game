@@ -9,10 +9,10 @@
 ADungeonSelectActor::ADungeonSelectActor() 
 {
 	//	Box
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Select_Box.png");
-	SpriteRenderer->SetSpriteScale();
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	SelectBoxRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SelectBoxRenderer->SetSprite("Select_Box.png");
+	SelectBoxRenderer->SetSpriteScale();
+	SelectBoxRenderer->SetOrder(ERenderOrder::PLAYER);
 	
 }
 

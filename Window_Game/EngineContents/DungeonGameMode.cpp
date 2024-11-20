@@ -12,8 +12,8 @@
 #include "Player.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
-#include "TextManager.h"
 #include "DungeonUI.h"
+#include "BasicUI.h"
 
 
 ADungeonGameMode::ADungeonGameMode()
@@ -34,12 +34,16 @@ void ADungeonGameMode::BeginPlay()
 	TurnManager->SetDungeon(Dungeon);
 	TurnManager->SetPlayer(dynamic_cast<APlayer*>(GetWorld()->GetPawn()));
 
+	ABasicUI* BasicUI = GetWorld()->SpawnActor<ABasicUI>();
+	TurnManager->SetBasicUI(BasicUI);
+
 	ADungeonUI* DungeonUI = GetWorld()->SpawnActor<ADungeonUI>();
 	DungeonUI->SetDungeon(Dungeon);
+	DungeonUI->SetBasicUI(BasicUI);
 	TurnManager->SetDungeonUI(DungeonUI);
+	
 
-	ATextManager* TextManager = GetWorld()->SpawnActor<ATextManager>();
-	TurnManager->SetTextManager(TextManager);
+
 }
 
 void ADungeonGameMode::Tick(float _DeltaTime)

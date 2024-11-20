@@ -1,5 +1,8 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EnginePlatform/EngineSound.h>
+
+
 
 //	Ό³Έν:
 class ATitleGameMode:public AGameMode
@@ -26,6 +29,7 @@ private:
 	float TitlePlayTime = 0.0f;
 	class ATitleBackground* TitleBackGround;
 	class ATitleAnim* TitleAnim;
+	USoundPlayer BGMPlayer;
 
 	FVector2D LeftAcceleration = FVector2D::LEFT;
 	FVector2D UpAcceleration = FVector2D::UP;

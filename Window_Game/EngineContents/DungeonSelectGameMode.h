@@ -23,9 +23,12 @@ public:
 protected:
 
 private:
-	class USpriteRenderer* SpriteRenderer;
+	class USpriteRenderer* WorldMapRenderer;
 	std::map<std::string, FVector2D>DungeonMaps;
 	std::map<std::string, FVector2D>::iterator DungeonMapStartIter;
 	std::map<std::string, FVector2D>::iterator DungeonMapEndIter;
+
+	class ABox* DungeonNameBox;
+	class AText* DungeonNameRenderer;
 };
 

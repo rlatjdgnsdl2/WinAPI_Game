@@ -6,7 +6,6 @@
 #include "SkillController.h"
 #include "AbilityController.h"
 
-#include "TextManager.h"
 
 
 void ATurnManager::PlayerSkill()

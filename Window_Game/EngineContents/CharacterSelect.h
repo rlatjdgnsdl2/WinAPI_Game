@@ -1,14 +1,11 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+
 //	Ό³Έν:
 class ACharacterSelect :public AActor
 {
 public:
-	enum class SelectType {
-		Player,
-		Partner
-	};
 	//	constrcuter, destructer
 	ACharacterSelect();
 	virtual ~ACharacterSelect();
@@ -25,12 +22,19 @@ public:
 protected:
 
 private:
-	SelectType CurSelectType = SelectType::Player;
-	FVector2D ImageSize = { 120,120 };
-	std::unordered_map<std::string, class USpriteRenderer*> CharacterImages;
+	const FVector2D ImageSize = { 120,120 };
+	std::unordered_map<std::string, class USpriteRenderer*> PlayerCharacterImages;
+	std::unordered_map<std::string, class USpriteRenderer*> PartnerCharacterImages;
 	std::unordered_map<std::string, class USpriteRenderer*> ::iterator CurIter;
 
-	class ABox* Box;
+	class ABox* CharacterTable;
+	class AText* Mudkip_Text;
+	class AText* Chikorita_Text;
+	class AText* Pikachu_Text;
+
+	class AText* ExplanationText01;
+	class AText* ExplanationText02;
+
 
 
 };

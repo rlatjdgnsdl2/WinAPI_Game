@@ -18,7 +18,7 @@ public:
 protected:
 
 private:
-	class USpriteRenderer* SpriteRenderer;
+	class USpriteRenderer* SelectBoxRenderer;
 	
 
 };

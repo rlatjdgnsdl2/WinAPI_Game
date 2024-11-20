@@ -16,7 +16,6 @@ public:
 	UAbilityController& operator=(UAbilityController&& _Other) noexcept = delete;
 
 	void InitCurAbility(const PokemonInfo& _PokemonInfo) {
-		CurPokemonType = _PokemonInfo.PokemonType;
 		CurLevel = _PokemonInfo.Level;
 		CurMaxHp = _PokemonInfo.MaxHp;
 		CurHp = CurMaxHp;

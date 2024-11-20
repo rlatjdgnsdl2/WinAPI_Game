@@ -8,6 +8,7 @@
 #include <EngineCore/EngineAPICore.h>
 
 #include "Box.h"
+#include "Text.h"
 #include "GameDataManager.h"
 
 
@@ -23,7 +24,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ -200,0 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
-		CharacterImages.insert({ "Mudkip",SpriteRenderer });
+		PlayerCharacterImages.insert({ "Mudkip",SpriteRenderer });
 	}
 
 	{
@@ -32,7 +33,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ 0,0 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
-		CharacterImages.insert({ "Chikorita",SpriteRenderer });
+		PlayerCharacterImages.insert({ "Chikorita",SpriteRenderer });
 	}
 
 	{
@@ -41,9 +42,8 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ 200,0 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
-		CharacterImages.insert({ "Pikachu",SpriteRenderer });
+		PlayerCharacterImages.insert({ "Pikachu",SpriteRenderer });
 	}
-
 }
 
 ACharacterSelect::~ACharacterSelect()
@@ -54,11 +54,33 @@ ACharacterSelect::~ACharacterSelect()
 void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
-	Box = GetWorld()->SpawnActor<ABox>();
-	Box->SetActorLocation({ 60,60 });
+	CharacterTable = GetWorld()->SpawnActor<ABox>();
+	CharacterTable->SetBoxSize({ 650,300 });
+	CharacterTable->SetActorLocation({ 80,170 });
+
+	Mudkip_Text = GetWorld()->SpawnActor<AText>();
+	Mudkip_Text->SetString("Mudkip","Blue");
+	Mudkip_Text->SetActorLocation({ 140, 350 });
+
+	Chikorita_Text = GetWorld()->SpawnActor<AText>();
+	Chikorita_Text->SetString("Chikorita","Green");
+	Chikorita_Text->SetActorLocation({ 340, 350 });
+
+	Pikachu_Text = GetWorld()->SpawnActor<AText>();
+	Pikachu_Text->SetString("Pikachu","Yellow");
+	Pikachu_Text->SetActorLocation({ 540, 350 });
+
+	ExplanationText01 = GetWorld()->SpawnActor<AText>();
+	ExplanationText01->SetString("Select Your Pokemon to push A or D ", "White");
+	ExplanationText01->SetActorLocation({ 140, 380 });
+
+	ExplanationText02 = GetWorld()->SpawnActor<AText>();
+	ExplanationText02->SetString("And push SPACE_BAR ", "White");
+	ExplanationText02->SetActorLocation({ 140, 410 });
+
 
 	GetWorld()->SetCameraToMainPawn(false);
-	CurIter = CharacterImages.begin();
+	CurIter = PlayerCharacterImages.begin();
 	CurIter->second->SetSpriteScale(1.0f);
 }
 
@@ -70,55 +92,40 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 
 
-
-	switch (CurSelectType)
-	{
-	case ACharacterSelect::SelectType::Player:
-		if (true == UEngineInput::GetInst().IsDown('D')) {
-			CurIter->second->SetSpriteScale(0.5f);
-			CurIter++;
-			if (CurIter == CharacterImages.end()) {
-				CurIter = CharacterImages.begin();
-			}
-			CurIter->second->SetSpriteScale(1.0f);
+	if (true == UEngineInput::GetInst().IsDown('D')) {
+		CurIter->second->SetSpriteScale(0.5f);
+		CurIter++;
+		if (CurIter == PlayerCharacterImages.end()) {
+			CurIter = PlayerCharacterImages.begin();
 		}
-
-		if (true == UEngineInput::GetInst().IsDown('A')) {
-			CurIter->second->SetSpriteScale(0.5f);
-			if (CurIter == CharacterImages.begin()) {
-				CurIter = CharacterImages.end();
-			}
-			CurIter--;
-			CurIter->second->SetSpriteScale(1.0f);
-		}
-		if (true == UEngineInput::GetInst().IsDown('G')) {
-			std::string PlayerName = CurIter->first;
-			UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
-			UGameDataManager::GetInst().InsertPlayerAbility(PlayerName, PokemonInfo(PokemonType::WATER, 5, 45, 20, 15));
-			//	임시
-			std::string PartnerName = "Vulpix";
-			UGameDataManager::GetInst().InsertPlayerAbility(PartnerName, PokemonInfo(PokemonType::FIRE, 5, 45, 20, 15));
-			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-
-
-		}
-
-		break;
-	case ACharacterSelect::SelectType::Partner:
-		/*if (true == UEngineInput::GetInst().IsDown('G')) {
-			UGameDataManager::GetInst().InsertPlayerAbility(PlayerName, PokemonInfo(PokemonType::FIRE, 5, 45, 20, 15));
-			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-		}*/
-		break;
-	default:
-		break;
+		CurIter->second->SetSpriteScale(1.0f);
 	}
 
+	if (true == UEngineInput::GetInst().IsDown('A')) {
+		CurIter->second->SetSpriteScale(0.5f);
+		if (CurIter == PlayerCharacterImages.begin()) {
+			CurIter = PlayerCharacterImages.end();
+		}
+		CurIter--;
+		CurIter->second->SetSpriteScale(1.0f);
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+		std::string PlayerName = CurIter->first;
+		UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
+		UGameDataManager::GetInst().InsertPlayerAbility(PlayerName, PokemonInfo( 5, 45, 20, 15));
+		//	임시
+		std::string PartnerName = "Vulpix";
+		UGameDataManager::GetInst().InsertPlayerAbility(PartnerName, PokemonInfo( 5, 45, 20, 15));
+		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 
-
-
-
-
-
-
+	}
 }
+
+
+
+
+
+
+
+
+

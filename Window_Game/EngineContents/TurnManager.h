@@ -1,7 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 #include <EngineCore/PathFindAstar.h>
-#include "TextManager.h"
 
 enum class TurnType
 {
@@ -45,6 +44,9 @@ public:
 	void SetPlayer(class APlayer* _Player) {
 		Player = _Player;
 	}
+	void SetBasicUI(class ABasicUI* _BasicUI) {
+		BasicUI = _BasicUI;
+	}
 	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
 		DungeonUI = _DungeonUI;
 	}
@@ -74,6 +76,7 @@ private:
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
+	class ABasicUI* BasicUI = nullptr;
 	class ADungeonUI* DungeonUI = nullptr;
 
 	std::list<class APokemon*> AllAIPokemon;

@@ -35,12 +35,7 @@ void ATitleAnim::LevelChangeStart()
 
 void ATitleAnim::PlayAnimation(float _DeltaTime)
 {
-	SpriteRenderer->ChangeAnimation("IntroAnim",true);
-	
-	
-
-
-
+	SpriteRenderer->ChangeAnimation("IntroAnim");
 }
 
 

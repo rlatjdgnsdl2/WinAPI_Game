@@ -5,6 +5,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include "Player.h"
+#include "BasicUI.h"
 #include "AbilityController.h"
 #include "Dungeon_BSP.h"
 #include "Box.h"
@@ -15,7 +16,7 @@
 ADungeonUI::ADungeonUI()
 {
 	HpBar.resize(300, nullptr);
-	MenuStringRenderer.resize(7);
+	
 }
 
 ADungeonUI::~ADungeonUI()
@@ -31,96 +32,96 @@ void ADungeonUI::BeginPlay()
 	UI_B->SetSprite("DungeonFont_B.png");
 	FVector2D UI_BScale = UI_B->SetSpriteScale();
 	UI_B->SetCameraEffect(false);
-	UI_B->SetComponentLocation(UIPos);
-	UIPos.X += UI_BScale.X;
+	UI_B->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_BScale.X;
 	UI_B->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_FValue = CreateDefaultSubObject<USpriteRenderer>();
 	UI_FValue->SetSprite("DungeonFont_0.png");
 	FVector2D UI_FValueScale = UI_FValue->SetSpriteScale();
 	UI_FValue->SetCameraEffect(false);
-	UI_FValue->SetComponentLocation(UIPos);
-	UIPos.X += UI_FValueScale.X;
+	UI_FValue->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_FValueScale.X;
 	UI_FValue->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_F = CreateDefaultSubObject<USpriteRenderer>();
 	UI_F->SetSprite("DungeonFont_F.png");
 	FVector2D UI_FScale = UI_F->SetSpriteScale();
 	UI_F->SetCameraEffect(false);
-	UI_F->SetComponentLocation(UIPos);
-	UIPos.X += UI_FScale.X + 10;
+	UI_F->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_FScale.X + 10;
 	UI_F->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_Lv = CreateDefaultSubObject<USpriteRenderer>();
 	UI_Lv->SetSprite("DungeonFont_Lv.png");
 	FVector2D UI_LvScale = UI_Lv->SetSpriteScale();
 	UI_Lv->SetCameraEffect(false);
-	UI_Lv->SetComponentLocation(UIPos);
-	UIPos.X += UI_LvScale.X;
+	UI_Lv->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_LvScale.X;
 	UI_Lv->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_LvValue10 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_LvValue10->SetSprite("DungeonFont_0.png");
 	FVector2D UI_LvValue10Scale = UI_LvValue10->SetSpriteScale();
 	UI_LvValue10->SetCameraEffect(false);
-	UI_LvValue10->SetComponentLocation(UIPos);
-	UIPos.X += UI_LvValue10Scale.X;
+	UI_LvValue10->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_LvValue10Scale.X;
 	UI_LvValue10->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_LvValue01 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_LvValue01->SetSprite("DungeonFont_0.png");
 	FVector2D UI_LvValue01Scale = UI_LvValue01->SetSpriteScale();
 	UI_LvValue01->SetCameraEffect(false);
-	UI_LvValue01->SetComponentLocation(UIPos);
-	UIPos.X += UI_LvValue01Scale.X + 100;
+	UI_LvValue01->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_LvValue01Scale.X + 100;
 	UI_LvValue01->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_Hp = CreateDefaultSubObject<USpriteRenderer>();
 	UI_Hp->SetSprite("DungeonFont_Hp.png");
 	FVector2D UI_HpScale = UI_Hp->SetSpriteScale();
 	UI_Hp->SetCameraEffect(false);
-	UI_Hp->SetComponentLocation(UIPos);
-	UIPos.X += UI_HpScale.X;
+	UI_Hp->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_HpScale.X;
 	UI_Hp->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_CurHpValue10 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_CurHpValue10->SetSprite("DungeonFont_0.png");
 	FVector2D UI_CurHpValue10Scale = UI_CurHpValue10->SetSpriteScale();
 	UI_CurHpValue10->SetCameraEffect(false);
-	UI_CurHpValue10->SetComponentLocation(UIPos);
-	UIPos.X += UI_CurHpValue10Scale.X;
+	UI_CurHpValue10->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_CurHpValue10Scale.X;
 	UI_CurHpValue10->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_CurHpValue01 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_CurHpValue01->SetSprite("DungeonFont_0.png");
 	FVector2D UI_CurHpValue01Scale = UI_CurHpValue01->SetSpriteScale();
 	UI_CurHpValue01->SetCameraEffect(false);
-	UI_CurHpValue01->SetComponentLocation(UIPos);
-	UIPos.X += UI_CurHpValue01Scale.X;
+	UI_CurHpValue01->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_CurHpValue01Scale.X;
 	UI_CurHpValue01->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_Slash = CreateDefaultSubObject<USpriteRenderer>();
 	UI_Slash->SetSprite("DungeonFont_Slash.png");
 	FVector2D UI_SlashScale = UI_Slash->SetSpriteScale();
 	UI_Slash->SetCameraEffect(false);
-	UI_Slash->SetComponentLocation(UIPos);
-	UIPos.X += UI_SlashScale.X;
+	UI_Slash->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_SlashScale.X;
 	UI_Slash->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_MaxHpValue10 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_MaxHpValue10->SetSprite("DungeonFont_0.png");
 	FVector2D UI_MaxHpValue10Scale = UI_MaxHpValue10->SetSpriteScale();
 	UI_MaxHpValue10->SetCameraEffect(false);
-	UI_MaxHpValue10->SetComponentLocation(UIPos);
-	UIPos.X += UI_MaxHpValue10Scale.X;
+	UI_MaxHpValue10->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_MaxHpValue10Scale.X;
 	UI_MaxHpValue10->SetOrder(ERenderOrder::UI_BASIC);
 
 	UI_MaxHpValue01 = CreateDefaultSubObject<USpriteRenderer>();
 	UI_MaxHpValue01->SetSprite("DungeonFont_0.png");
 	FVector2D UI_MaxHpValue01Scale = UI_MaxHpValue01->SetSpriteScale();
 	UI_MaxHpValue01->SetCameraEffect(false);
-	UI_MaxHpValue01->SetComponentLocation(UIPos);
-	UIPos.X += UI_MaxHpValue01Scale.X;
+	UI_MaxHpValue01->SetComponentLocation(UIStartPos);
+	UIStartPos.X += UI_MaxHpValue01Scale.X;
 	UI_MaxHpValue01->SetOrder(ERenderOrder::UI_BASIC);
 
 	for (int i = 0; i < HpBar.size(); i++)
@@ -129,48 +130,42 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetSprite("Dungeon_HpBar.png");
 		FVector2D HpBarScale = HpBar[i]->SetSpriteScale(1.0f);
 		HpBar[i]->SetCameraEffect(false);
-		HpBar[i]->SetComponentLocation(UIPos);
-		UIPos.X += HpBarScale.X;
+		HpBar[i]->SetComponentLocation(UIStartPos);
+		UIStartPos.X += HpBarScale.X;
 		HpBar[i]->SetOrder(ERenderOrder::UI_BASIC);
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
 
-	MenuBox = GetWorld()->SpawnActor<ABox>();
-	MenuBox->SetActorLocation({ 25,50 });
-	MenuBox->SetBoxSize({ 200.0f, 350.0f });
-	MenuBox->SetActive(false);
-
-
 	DungeonNameBox = GetWorld()->SpawnActor<ABox>();
 	DungeonNameBox->SetActorLocation({ 280, 70 });
 	DungeonNameBox->SetBoxSize({ 400.0f, 80.0f });
+	DungeonNameBox->SetActive(false);
 
-
-	MyInfoBox = GetWorld()->SpawnActor<ABox>();
-	MyInfoBox->SetActorLocation({ 25, 400 });
-	MyInfoBox->SetBoxSize({ 750.0f, 150.0f });
-
-	MenuString.push_back("Skill");
-	MenuString.push_back("Item");
-	MenuString.push_back("Team");
-	MenuString.push_back("Other");
-	MenuString.push_back("Foot");
-	MenuString.push_back("Rest");
-	MenuString.push_back("Close");
-
-	for (int i = 0; i < MenuString.size(); i++)
-	{
-		{
-			AText* NewText = GetWorld()->SpawnActor<AText>();
-			NewText->SetString(MenuString[i]);
-			NewText->SetActorLocation({ 65.0f,78.0f * 20.0f * i });
-			MenuStringRenderer[i] = NewText;
-		}
-	}
+	
 	CurDungeonNameRenderer = GetWorld()->SpawnActor<AText>();
 	CurDungeonNameRenderer->SetActorLocation({ 400.0f, 80.0f });
 	CurDungeonNameRenderer->SetActive(false);
 
+	// 다음던전 가냐고 물어보는 UI
+	NextFloorBox = GetWorld()->SpawnActor<ABox>();
+	NextFloorBox->SetBoxSize({ 450.0f, 100.0f });
+	NextFloorBox->SetActorLocation({ 60, 100 });
+
+	NextFloorText = GetWorld()->SpawnActor<AText>();
+	NextFloorText->SetActorLocation({ 100.0f, 110.0f });
+	NextFloorText->SetString("Do you Want Next Floor?");
+
+	AnswerSelectBox = GetWorld()->SpawnActor<ABox>();
+	AnswerSelectBox->SetBoxSize({ 200.0f, 130.0f });
+	AnswerSelectBox->SetActorLocation({ 500, 100 });
+
+	Yes = GetWorld()->SpawnActor<AText>();
+	Yes->SetActorLocation({ 550.0f, 120.0f });
+	Yes->SetString("Yes");
+
+	No = GetWorld()->SpawnActor<AText>();
+	No->SetActorLocation({550.0f, 160.0f });
+	No->SetString("No");
 
 
 }
@@ -179,14 +174,7 @@ void ADungeonUI::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	UI_FValue->SetSprite(std::format("DungeonFont_{}.png", Dungeon->GetCurFloor()));
-	MenuBox->SetActive(false);
 	DungeonNameBox->SetActive(false);
-	MyInfoBox->SetActive(false);
-	for (int i = 0; i < MenuString.size(); i++)
-	{
-		MenuStringRenderer[i]->SetActive(false);
-	}
-
 }
 
 void ADungeonUI::Tick(float _DeltaTime)
@@ -216,54 +204,45 @@ void ADungeonUI::Tick(float _DeltaTime)
 		}
 	}
 
-	if (true == UEngineInput::GetInst().IsDown('I'))
-	{
-		if (MenuBox->IsActive()) {
-
-			MenuBox->SetActive(false);
-			DungeonNameBox->SetActive(false);
-			MyInfoBox->SetActive(false);
-
-			for (int i = 0; i < 7; i++)
-			{
-				MenuStringRenderer[i]->SetActive(false);
-			}
-			CurDungeonNameRenderer->SetActive(false);
-
-
-
-		}
-		else {
-			MenuBox->SetActive(true);
+	if (BasicUI != nullptr) {
+		MenuType CurMenu = BasicUI->GetCurMenuType();
+		switch (CurMenu)
+		{
+		case MenuType::Menu:
+			CurDungeonNameRenderer->SetString(Dungeon->GetName(), "Yellow");
 			DungeonNameBox->SetActive(true);
-			MyInfoBox->SetActive(true);
-			for (int i = 0; i < 7; i++)
-			{
-				MenuStringRenderer[i]->SetActive(true);
-				MenuStringRenderer[i]->SetActorLocation({ 80.0f,60.0f + 25.0f*i  });
-			}
-			CurDungeonNameRenderer->SetString(Dungeon->GetName(),"Yellow");
 			CurDungeonNameRenderer->SetActive(true);
+			break;
+		case MenuType::Skill:
+			DungeonNameBox->SetActive(false);
+			CurDungeonNameRenderer->SetActive(false);
+			break;
+		case MenuType::Item:
+			DungeonNameBox->SetActive(false);
+			CurDungeonNameRenderer->SetActive(false);
+			break;
+		case MenuType::Team:
+			DungeonNameBox->SetActive(false);
+			CurDungeonNameRenderer->SetActive(false);
+			break;
+
+		case MenuType::Close:
+			DungeonNameBox->SetActive(false);
+			CurDungeonNameRenderer->SetActive(false);
+			break;
+		default:
+			break;
 		}
-
 	}
-
-
-
-
-
-
-
-
-
-
 
 }
 
-void ADungeonUI::ResultMessage()
+void ADungeonUI::IsGoNextFloor()
 {
 
 }
+
+
 
 
 

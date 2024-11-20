@@ -25,6 +25,8 @@ public:
 
 
 	void SetString(std::string_view _StringValue,std::string_view _color="White");
+	std::string GetString() const { return StringValue; }	
+	void SetColor(std::string_view _color);
 	int CharToTextIndex(char c);
 
 

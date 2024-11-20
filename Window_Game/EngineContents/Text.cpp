@@ -31,11 +31,27 @@ void AText::SetString(std::string_view _StringValue, std::string_view _color)
 	StringValue = _StringValue;
 	std::string Color = _color.data();
 	const char* C_String = StringValue.c_str();
+	for (size_t i = 0; i < TextRenderer.size(); i++)
+	{
+		TextRenderer[i]->SetSprite("White_Text.png", static_cast<int>(Text_Index::MAX) + 1);
+	}
 	for (size_t i = 0; i < StringValue.size(); i++)
 	{
 		char c = C_String[i];
 		int TextIndex = CharToTextIndex(c);
 		TextRenderer[i]->SetSprite(Color+"_Text.png", TextIndex);
+	}
+}
+
+void AText::SetColor(std::string_view _color)
+{
+	std::string Color = _color.data();
+	const char* C_String = StringValue.c_str();
+	for (size_t i = 0; i < StringValue.size(); i++)
+	{
+		char c = C_String[i];
+		int TextIndex = CharToTextIndex(c);
+		TextRenderer[i]->SetSprite(Color + "_Text.png", TextIndex);
 	}
 }
 
