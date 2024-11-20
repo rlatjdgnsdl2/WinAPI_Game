@@ -18,7 +18,7 @@ public:
 	void AnimSet();
 	void Idle();
 	void Move(float _DeltaTime);
-	void Skill(SkillType _Skill);
+	void Skill();
 	void Hurt();
 
 	void SetDir(DIR _Dir) {
@@ -42,13 +42,22 @@ public:
 	void ResetCurDuration();
 
 
+	//	전투관련
+	void SetSkill(SkillType _Skill);
+	SkillType GetSkill() const;
+	void SetTargetPokemon(class APokemon* _TargetPokemon);
+	void PushTargetablePokemon(class APokemon* _TargetablePokemon);
+	void ClearTargetablePokemon();
+	class APokemon* GetTargetPokemon() const;
+	std::vector<class APokemon*>& GetTargetablePokemons();
+
 	virtual void SetCamp(CampType _Camp) = 0;
 	virtual CampType GetCamp() = 0;
 
 	//	전투
 	void NormalAttack();
 	void SpecialAttack();
-	void StartAttack();
+	void ReadyAttack();
 	virtual void EndAttack();
 	bool IsAttack();
 	void PlayHurtAnim();
@@ -57,11 +66,8 @@ public:
 		return AbilityController;
 	}
 
-	class USkillController* GetSkillController() {
-		return SkillController;
-	}
-
 protected:
+	DIR Dir;
 	class USpriteRenderer* SpriteRenderer;
 
 	//	이동관련
@@ -69,15 +75,20 @@ protected:
 	FVector2D StartLocation;
 	FVector2D TargetLocation;
 
-
-
+	//	전투관련
+	SkillType CurSkill;
+	std::vector<class APokemon*> TargetablePokemons;
+	class APokemon* TargetPokemon;
 	class UAbilityController* AbilityController;
-	class USkillController* SkillController;
-
-	
-	DIR Dir;
+	class ASpecialSkill* SpecialSkill;
 	bool IsAttackValue;
 	bool IsHurtValue;
+
+	int CurLevel;
+	int CurMaxHp;
+	int CurHp;
+	int CurATK;
+	int CurSPD;
 private:
 
 

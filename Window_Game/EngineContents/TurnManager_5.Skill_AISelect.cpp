@@ -4,7 +4,7 @@
 #include "Pokemon.h"
 #include "Player.h"
 
-#include "SkillController.h"
+
 #include "AbilityController.h"
 
 bool SortFuncD(APokemon* first, APokemon* second) {
@@ -20,7 +20,7 @@ void ATurnManager::Skill_AISelect()
 	{
 		//	모든 AI포켓몬들
 		for (APokemon* CurPokemon : AllAIPokemon) {
-			USkillController* CurAISkill = CurPokemon->GetSkillController();
+
 			bool IsFindTarget = false;
 			CurPokemon->ResetCurDuration();
 			FIntPoint CurTile = CurPokemon->GetTile();
@@ -33,9 +33,9 @@ void ATurnManager::Skill_AISelect()
 				//	근처에 적이 있다면 스킬리스트
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
 					IsFindTarget = true;
-					CurAISkill->PushTargetablePokemon(CurComparePokemon);
+					CurPokemon->PushTargetablePokemon(CurComparePokemon);
 					//	애니메이션 첫 프레임에 바인드가 잘 되지않아 넣음 - 추후 수정
-					CurPokemon->StartAttack();
+					CurPokemon->ReadyAttack();
 					SkillPokemon.push_back(CurPokemon);
 					break;
 				}

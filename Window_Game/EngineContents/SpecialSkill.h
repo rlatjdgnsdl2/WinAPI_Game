@@ -16,9 +16,11 @@ public:
 	ASpecialSkill& operator=(const ASpecialSkill& _Other) = delete;
 	ASpecialSkill& operator=(ASpecialSkill&& _Other) noexcept = delete;
 
-	
 	virtual void BeginPlay()override;
 	virtual void Tick(float _DeltaTime)override;
+
+
+	bool IsAttack();
 
 protected:
 	class USpriteRenderer* SpriteRenderer;

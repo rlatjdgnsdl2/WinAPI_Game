@@ -4,13 +4,12 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
-#include "SkillController.h"
 #include "AbilityController.h"
 
 #include "SpecialSkill.h"
 
 
-APokemon::APokemon()
+APokemon::APokemon() :AbilityController(nullptr), SpriteRenderer(nullptr), CurDuration(0.0f), StartLocation(FVector2D::ZERO), TargetLocation(FVector2D::ZERO), CurSkill(SkillType::NormalAttack), TargetPokemon(nullptr), SpecialSkill(nullptr), IsAttackValue(false), IsHurtValue(false), CurLevel(0), CurMaxHp(0), CurHp(0), CurATK(0), CurSPD(0)
 {
 }
 
@@ -18,17 +17,13 @@ APokemon::~APokemon()
 {
 
 }
-
 void APokemon::SetPokemon(std::string_view _PokemonName)
 {
 	SetName(_PokemonName);
 	if (SpriteRenderer == nullptr) {
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	}
-	
-	if (SkillController == nullptr) {
-		SkillController = CreateDefaultSubObject<USkillController>();
-	}
+
 	if (AbilityController == nullptr) {
 		AbilityController = CreateDefaultSubObject<UAbilityController>();
 	}
@@ -49,9 +44,9 @@ void APokemon::Idle()
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::Skill(SkillType _Skill)
+void APokemon::Skill()
 {
-	switch (_Skill)
+	switch (CurSkill)
 	{
 	case SkillType::NormalAttack:
 		NormalAttack();
@@ -80,11 +75,20 @@ void APokemon::NormalAttack()
 
 void APokemon::SpecialAttack()
 {
-	ASpecialSkill* Skill = GetWorld()->SpawnActor<ASpecialSkill>();
-	Skill->SetActorLocation(GetActorLocation()+UContentsMath::DIR_To_Vector2D(Dir)*72.0f);
+	if (SpecialSkill == nullptr) {
+		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>();
+		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_Vector2D(Dir) * 72.0f);
+		return;
+	}
+	if (false == SpecialSkill->IsAttack()) {
+
+		EndAttack();
+		SpecialSkill->Destroy();
+		SpecialSkill = nullptr;
+	};
 }
 
-void APokemon::StartAttack()
+void APokemon::ReadyAttack()
 {
 	IsAttackValue = true;
 	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
@@ -92,8 +96,8 @@ void APokemon::StartAttack()
 
 void APokemon::EndAttack()
 {
-	APokemon* TargetPokemon = SkillController->GetTargetPokemon();
-	if (SkillController->GetTargetPokemon() != nullptr) {
+	APokemon* TargetPokemon = GetTargetPokemon();
+	if (TargetPokemon != nullptr) {
 		TargetPokemon->GetCurAbility()->SetDamage(AbilityController->GetATK());
 	}
 	IsAttackValue = false;
@@ -102,7 +106,7 @@ void APokemon::EndAttack()
 
 void APokemon::PlayHurtAnim()
 {
-	APokemon* TargetPokemon = SkillController->GetTargetPokemon();
+	APokemon* TargetPokemon = GetTargetPokemon();
 	if (TargetPokemon != nullptr) {
 		DIR TargetDir = UContentsMath::ReverseDir(Dir);
 		TargetPokemon->SetDir(TargetDir);

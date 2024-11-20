@@ -223,10 +223,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="SkillController.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="SpecialSkill.h">
       <SubType>
       </SubType>
@@ -347,10 +343,7 @@
     </ClCompile>
     <ClCompile Include="Pokemon_AnimSet.cpp" />
     <ClCompile Include="Pokemon_Move.cpp" />
-    <ClCompile Include="SkillController.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Pokmon_Skill.cpp" />
     <ClCompile Include="SpecialSkill.cpp">
       <SubType>
       </SubType>

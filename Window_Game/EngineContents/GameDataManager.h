@@ -1,10 +1,7 @@
 #pragma once
 #include <EngineBase/Object.h>
 
-class PlayerData {
-public:
 
-};
 
 
 // 설명 : 게임데이터관련 클래스
@@ -59,6 +56,11 @@ public:
 		PlayerAbilities.insert({ _PlayerName.data(), _PokemonAbility });
 	}
 
+	void SetPlayerAbility(std::string_view _PlayerName, PokemonInfo _PokemonAbility) {
+		PokemonInfo& PlayerData = PlayerAbilities[_PlayerName.data()];
+	}
+	
+
 
 
 
@@ -87,6 +89,7 @@ private:
 	std::map<std::string, PokemonInfo > Pokemons;
 	std::map<std::string, DungeonInfo> Dungeons;
 	std::map<std::string, PokemonInfo> PlayerAbilities;
+	std::set<std::string> SkillNames = {"Fire_Bomb","Lightning_Bomb","Water_Bomb"};
 
 };
 

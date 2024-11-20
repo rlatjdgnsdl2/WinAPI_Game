@@ -106,6 +106,9 @@ public:
 
 	bool IsCurAnimationEnd()
 	{
+		if (CurAnimation == nullptr) {
+			return false;
+		}
 		return CurAnimation->IsEnd;
 	}
 

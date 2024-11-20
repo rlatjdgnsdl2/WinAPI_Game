@@ -15,6 +15,7 @@ public:
 	UAbilityController& operator=(const UAbilityController& _Other) = delete;
 	UAbilityController& operator=(UAbilityController&& _Other) noexcept = delete;
 
+	//	나중에 플레이어 데이터로 변경
 	void InitCurAbility(const PokemonInfo& _PokemonInfo) {
 		CurLevel = _PokemonInfo.Level;
 		CurMaxHp = _PokemonInfo.MaxHp;
@@ -65,11 +66,9 @@ public:
 	int GetMaxHP() const {
 		return CurMaxHp;
 	}
-
 protected:
 
 private:
-	PokemonType CurPokemonType;
 	int CurLevel;
 	int CurMaxHp;
 	int CurHp;
@@ -77,6 +76,7 @@ private:
 	int CurSPD;
 	int MaxExp;
 	int CurExp;
+	int Hungry;
 
 
 };

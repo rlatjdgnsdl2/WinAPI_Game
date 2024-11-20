@@ -101,66 +101,25 @@ void PMDContentsCore::RoadResources()
 		}
 	}
 	{
-		UEngineDirectory Title;
-		Title.MoveParentToDirectory("Resources//Image");
-		Title.Append("Title");
-		UImageManager::GetInst().LoadFolder(Title.GetPathToString());
+		UEngineDirectory Skill;
+		Skill.MoveParentToDirectory("Resources//Image//Skill");
+		Skill.Append("Fire_Bomb");
+		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
 	}
-	{
-		UEngineDirectory Global;
-		Global.MoveParentToDirectory("Resources//Image");
-		Global.Append("Global");
-		UImageManager::GetInst().LoadFolder(Global.GetPathToString());
-	}
+
 	{
 		UEngineDirectory Skill;
-		Skill.MoveParentToDirectory("Resources//Image");
-		Skill.Append("Skill");
+		Skill.MoveParentToDirectory("Resources//Image//Skill");
+		Skill.Append("Lightning_Bomb");
 		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
 	}
 	{
-		UEngineDirectory CharacterSelect;
-		CharacterSelect.MoveParentToDirectory("Resources//Image");
-		CharacterSelect.Append("CharacterSelect");
-		UImageManager::GetInst().LoadFolder(CharacterSelect.GetPathToString());
+		UEngineDirectory Skill;
+		Skill.MoveParentToDirectory("Resources//Image//Skill");
+		Skill.Append("Water_Bomb");
+		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
 	}
-	{
-		UEngineDirectory DungeonSelect;
-		DungeonSelect.MoveParentToDirectory("Resources//Image");
-		DungeonSelect.Append("DungeonSelect");
-		UImageManager::GetInst().LoadFolder(DungeonSelect.GetPathToString());
-	}
-	//	´øÀü
-	{
-		UEngineDirectory Dungeon;
-		Dungeon.MoveParentToDirectory("Resources//Image");
-		Dungeon.Append("Dungeon");
-		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
-	}
-	{
-		UEngineDirectory Dungeon;
-		Dungeon.MoveParentToDirectory("Resources//Image");
-		Dungeon.Append("Dungeon_BeachCave");
-		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
-	}
-	{
-		UEngineDirectory Dungeon;
-		Dungeon.MoveParentToDirectory("Resources//Image");
-		Dungeon.Append("Dungeon_AmpPlains");
-		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
-	}
-	{
-		UEngineDirectory Dungeon;
-		Dungeon.MoveParentToDirectory("Resources//Image");
-		Dungeon.Append("Dungeon_SurroundedSea");
-		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
-	}
-	{
-		UEngineDirectory Dungeon;
-		Dungeon.MoveParentToDirectory("Resources//Image");
-		Dungeon.Append("Dungeon_DeepDarkCrater");
-		UImageManager::GetInst().LoadFolder(Dungeon.GetPathToString());
-	}
+	
 
 	//	Font
 	UImageManager::GetInst().CuttingSprite("Yellow_Text.png", 26, 4);
@@ -260,8 +219,6 @@ void PMDContentsCore::RoadResources()
 	//	Item
 	UImageManager::GetInst().CuttingSprite("Item.png", 3, 1);
 
-	//	Skill
-	UImageManager::GetInst().CuttingSprite("Water_Bomb.png", 8, 1);
 
 
 }

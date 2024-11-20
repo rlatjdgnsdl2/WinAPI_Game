@@ -64,9 +64,6 @@
     <ClInclude Include="AbilityController.h">
       <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
-    <ClInclude Include="SkillController.h">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClInclude>
     <ClInclude Include="Partner.h">
       <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
@@ -189,9 +186,6 @@
     <ClCompile Include="AbilityController.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="SkillController.cpp">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="Partner.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
@@ -227,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="BasicUI_OpenItem.cpp">
       <Filter>Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Pokmon_Skill.cpp">
+      <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
