@@ -60,6 +60,12 @@ public:
 		PokemonInfo& PlayerData = PlayerAbilities[_PlayerName.data()];
 	}
 	
+	void InsertSkillAnimCount(std::string_view _SkillName, int _SkillAnimCount) {
+		SkillAnimCount.insert({ _SkillName.data(),_SkillAnimCount });
+	}
+	int GetSkillAnimCount(std::string_view _SkillName) const {
+		return SkillAnimCount.find(_SkillName.data())->second;
+	}
 
 
 
@@ -86,10 +92,9 @@ private:
 	std::string SelectPlayer;
 	std::string SelectDungeon = "BeachCave";
 	std::map<std::string, AnimInfo > Animations;
+	std::map<std::string, int> SkillAnimCount;
 	std::map<std::string, PokemonInfo > Pokemons;
 	std::map<std::string, DungeonInfo> Dungeons;
 	std::map<std::string, PokemonInfo> PlayerAbilities;
-	std::set<std::string> SkillNames = {"Fire_Bomb","Lightning_Bomb","Water_Bomb"};
-
 };
 

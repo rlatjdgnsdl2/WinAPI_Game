@@ -18,6 +18,7 @@ public:
 	ATitleGameMode& operator=(const ATitleGameMode& _Other) = delete;
 	ATitleGameMode& operator=(ATitleGameMode&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	virtual void LevelChangeStart() override;
 	virtual void LevelChangeEnd() override;
@@ -29,6 +30,7 @@ private:
 	float TitlePlayTime = 0.0f;
 	class ATitleBackground* TitleBackGround;
 	class ATitleAnim* TitleAnim;
+	class ATitleLogo* TitleLogo;
 	USoundPlayer BGMPlayer;
 
 	FVector2D LeftAcceleration = FVector2D::LEFT;

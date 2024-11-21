@@ -8,11 +8,13 @@
 #include "TitleGameMode.h"
 
 
+
 ATitleBackground::ATitleBackground()
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("1.Intro_Bg.png");
-	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
+	BgRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	BgRenderer->SetSprite("1.Intro_Bg.png");
+	BgRenderer->SetOrder(ERenderOrder::BACKGROUND);
+
 }
 
 ATitleBackground::~ATitleBackground() {}
@@ -24,8 +26,8 @@ void ATitleBackground::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	SetActorLocation({0,0});
-	FVector2D TitleScale = SpriteRenderer->SetSpriteScale();
-	SpriteRenderer->SetComponentLocation(TitleScale.Half());
+	FVector2D TitleScale = BgRenderer->SetSpriteScale();
+	BgRenderer->SetComponentLocation(TitleScale.Half());
 	
 }
 

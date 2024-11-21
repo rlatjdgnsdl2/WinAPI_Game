@@ -2,12 +2,18 @@
 #include "SpecialSkill.h"
 
 #include <EngineCore/SpriteRenderer.h>
+#include "GameDataManager.h"
 
 ASpecialSkill::ASpecialSkill() 
 {
 	
 	
 
+}
+
+ASpecialSkill::ASpecialSkill(std::string_view SkillName)
+{
+	SetName(SkillName);
 }
 
 ASpecialSkill::~ASpecialSkill() 
@@ -19,20 +25,20 @@ void ASpecialSkill::BeginPlay()
 {
 	Super::BeginPlay();
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Water_Bomb", 0);
-	
+	SpriteRenderer->SetSprite(GetName(), 0);
 	FVector2D Scale = SpriteRenderer->SetSpriteScale();
 	SpriteRenderer->SetComponentLocation({ 0.0f,Scale.Y/3.0f *-1.0f});
 	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
-	float Frame = 1.0f / 8.0f;
-	SpriteRenderer->CreateAnimation("Water_Bomb", "Water_Bomb", 0, 7, Frame, false);
+	int MaxCount = UGameDataManager::GetInst().GetSkillAnimCount(GetName());
+	float Frame = 1.0f / MaxCount;
+	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount-1, Frame, false);
 
 }
 
 void ASpecialSkill::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	SpriteRenderer->ChangeAnimation("Water_Bomb");
+	SpriteRenderer->ChangeAnimation(GetName());
 }
 
 bool ASpecialSkill::IsAttack()

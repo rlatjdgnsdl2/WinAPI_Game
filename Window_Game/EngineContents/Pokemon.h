@@ -65,6 +65,12 @@ public:
 	class UAbilityController* GetCurAbility() {
 		return AbilityController;
 	}
+	
+	const std::list<std::string>& GetSkillList() {
+		return SkillList;
+	}
+
+
 
 protected:
 	DIR Dir;
@@ -79,8 +85,10 @@ protected:
 	SkillType CurSkill;
 	std::vector<class APokemon*> TargetablePokemons;
 	class APokemon* TargetPokemon;
-	class UAbilityController* AbilityController;
+	std::list<std::string> SkillList;
 	class ASpecialSkill* SpecialSkill;
+	class UAbilityController* AbilityController;
+
 	bool IsAttackValue;
 	bool IsHurtValue;
 

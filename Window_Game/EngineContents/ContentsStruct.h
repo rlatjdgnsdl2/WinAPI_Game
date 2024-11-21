@@ -22,6 +22,8 @@ struct Node {
 	}
 };
 
+;
+
 
 struct AnimInfo
 {

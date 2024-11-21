@@ -12,7 +12,6 @@ AText::AText()
 		USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
 		NewText->SetSprite("White_Text.png", static_cast<int>(Text_Index::MAX)+1);
 		NewText->SetSpriteScale();
-		NewText->SetComponentLocation(FVector2D({ TextSize.X * i,TextSize.Y }));
 		NewText->SetOrder(ERenderOrder::UI_Text);
 		NewText->SetCameraEffect(false);
 		TextRenderer[i] = NewText;
@@ -26,7 +25,8 @@ AText::~AText()
 }
 
 
-void AText::SetString(std::string_view _StringValue, std::string_view _color)
+
+void AText::SetString(std::string_view _StringValue, std::string_view _color, FVector2D _TextSize)
 {
 	StringValue = _StringValue;
 	std::string Color = _color.data();
@@ -40,8 +40,14 @@ void AText::SetString(std::string_view _StringValue, std::string_view _color)
 		char c = C_String[i];
 		int TextIndex = CharToTextIndex(c);
 		TextRenderer[i]->SetSprite(Color+"_Text.png", TextIndex);
+		TextRenderer[i]->SetComponentLocation(FVector2D({ _TextSize.X * i,_TextSize.Y }));
 	}
 }
+
+
+
+
+
 
 void AText::SetColor(std::string_view _color)
 {

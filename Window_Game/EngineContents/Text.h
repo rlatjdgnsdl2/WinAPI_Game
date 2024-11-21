@@ -24,7 +24,9 @@ public:
 	AText& operator=(AText&& _Other) noexcept = delete;
 
 
-	void SetString(std::string_view _StringValue,std::string_view _color="White");
+	void SetString(std::string_view _StringValue, std::string_view _color="White", FVector2D _TextSize = FVector2D({ 14.0f,20.0f }));
+	void ShowFlowText();
+
 	std::string GetString() const { return StringValue; }	
 	void SetColor(std::string_view _color);
 	int CharToTextIndex(char c);
@@ -34,7 +36,6 @@ protected:
 
 private:
 	std::string StringValue;
-	FVector2D TextSize = FVector2D({14.0f,20.0f});
 	std::vector<class USpriteRenderer*> TextRenderer;
 
 };

@@ -88,6 +88,12 @@
     <ClInclude Include="Text.h">
       <Filter>Global\UI</Filter>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxUI.h">
+      <Filter>Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -224,6 +230,12 @@
     </ClCompile>
     <ClCompile Include="Pokmon_Skill.cpp">
       <Filter>Global\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxUI.cpp">
+      <Filter>Global\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

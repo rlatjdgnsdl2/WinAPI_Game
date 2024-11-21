@@ -30,7 +30,6 @@ public:
 	void SetBasicUI(class ABasicUI* _BasicUI) {
 		BasicUI = _BasicUI;
 	}
-	
 protected:
 private:
 	bool IsOpenMenuValue = false;
@@ -58,8 +57,6 @@ private:
 	std::vector<class USpriteRenderer* > HpBar;
 
 	class ABox* DungeonLogBox;
-
-
 
 	// ÇÑ¼¼Æ®
 	class ABox* NextFloorBox;

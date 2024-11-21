@@ -44,6 +44,18 @@ public:
 		BeginPlayList.push_back(ActorPtr);
 		return NewActor;
 	}
+	template<typename ActorType>
+	ActorType* SpawnActor(std::string_view _String)
+	{
+		ActorType* NewActor = new ActorType(_String);
+		AActor* ActorPtr = dynamic_cast<AActor*>(NewActor);
+		ActorPtr->World = this;
+		BeginPlayList.push_back(ActorPtr);
+		return NewActor;
+	}
+
+
+
 
 
 

@@ -8,7 +8,9 @@ class ASpecialSkill : public AActor
 public:
 	//	constrcuter, destructer
 	ASpecialSkill();
+	ASpecialSkill(std::string_view SkillName);
 	virtual ~ASpecialSkill();
+	
 
 	//	delete Function
 	ASpecialSkill(const ASpecialSkill& _Other) = delete;
@@ -18,7 +20,6 @@ public:
 
 	virtual void BeginPlay()override;
 	virtual void Tick(float _DeltaTime)override;
-
 
 	bool IsAttack();
 

@@ -105,19 +105,23 @@ void PMDContentsCore::RoadResources()
 		Skill.MoveParentToDirectory("Resources//Image//Skill");
 		Skill.Append("Fire_Bomb");
 		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
+		UGameDataManager::GetInst().InsertSkillAnimCount("Fire_Bomb", 9);
 	}
+
 
 	{
 		UEngineDirectory Skill;
 		Skill.MoveParentToDirectory("Resources//Image//Skill");
 		Skill.Append("Lightning_Bomb");
 		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
+		UGameDataManager::GetInst().InsertSkillAnimCount("Lightning_Bomb", 15);
 	}
 	{
 		UEngineDirectory Skill;
 		Skill.MoveParentToDirectory("Resources//Image//Skill");
 		Skill.Append("Water_Bomb");
 		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
+		UGameDataManager::GetInst().InsertSkillAnimCount("Water_Bomb", 8);
 	}
 	
 

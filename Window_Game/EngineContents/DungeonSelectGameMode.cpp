@@ -45,8 +45,9 @@ void ADungeonSelectGameMode::BeginPlay()
 	DungeonNameBox = GetWorld()->SpawnActor<ABox>();
 	DungeonNameBox->SetActorLocation({ 210, 500 });
 	DungeonNameBox->SetBoxSize({ 400.0f, 80.0f });
+
 	DungeonNameRenderer = GetWorld()->SpawnActor<AText>();
-	DungeonNameRenderer->SetActorLocation({ 300.0f, 510.0f });
+	DungeonNameRenderer->SetActorLocation({ 300.0f, 520.0f });
 	
 }
 

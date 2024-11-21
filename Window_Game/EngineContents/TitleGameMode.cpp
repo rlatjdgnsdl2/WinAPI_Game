@@ -8,6 +8,7 @@
 #include <EngineCore/ImageManager.h>
 
 #include "TitleAnim.h"
+#include "TitleLogo.h"
 #include "TitleBackground.h"
 
 
@@ -21,26 +22,28 @@ ATitleGameMode::~ATitleGameMode()
 }
 
 
+
 void ATitleGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-
-	if (TitleBackGround == nullptr) {
-		TitleBackGround = GetWorld()->SpawnActor<ATitleBackground>();
-	}
-	if (TitleAnim == nullptr) {
-		TitleAnim = GetWorld()->SpawnActor<ATitleAnim>();
-	}
-	GetWorld()->SetCameraToMainPawn(false);
-
 	BGMPlayer = UEngineSound::Play("TitleBGM.mp3");
+}
+
+void ATitleGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	TitleBackGround = GetWorld()->SpawnActor<ATitleBackground>();
+	TitleAnim = GetWorld()->SpawnActor<ATitleAnim>();
+	TitleLogo = GetWorld()->SpawnActor<ATitleLogo>();
+	TitleLogo->SetActive(false);	
+	GetWorld()->SetCameraToMainPawn(false);
 }
 
 void ATitleGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	TitlePlayTime += _DeltaTime;
-	// A누르면 다음레벨
+	// Space누르면 다음레벨
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 	{
 		UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
@@ -58,8 +61,9 @@ void ATitleGameMode::Tick(float _DeltaTime)
 		TitleAnim->PlayAnimation(_DeltaTime);
 		TitleAnim->AddActorLocation((FVector2D({ -2.5f, -1.5f }) + LeftAcceleration + UpAcceleration) * _DeltaTime * 100.0f);
 	}
-	if (10.0f < TitlePlayTime && TitlePlayTime < 15.7f) {
+	if (10.0f < TitlePlayTime && TitlePlayTime < 12.0f) {
 		TitleBackGround->AddActorLocation(FVector2D::DOWN * _DeltaTime * 200.f);
+		TitleLogo->SetActive(true);
 	}
 
 
@@ -68,6 +72,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 void ATitleGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
+	TitleLogo->SetActive(false);
 	TitlePlayTime = 0.0f;
 }
 

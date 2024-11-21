@@ -76,7 +76,7 @@ void APokemon::NormalAttack()
 void APokemon::SpecialAttack()
 {
 	if (SpecialSkill == nullptr) {
-		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>();
+		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>("Lightning_Bomb");
 		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_Vector2D(Dir) * 72.0f);
 		return;
 	}

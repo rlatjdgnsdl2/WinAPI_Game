@@ -152,7 +152,7 @@ void ADungeonUI::BeginPlay()
 	NextFloorBox->SetActorLocation({ 60, 100 });
 
 	NextFloorText = GetWorld()->SpawnActor<AText>();
-	NextFloorText->SetActorLocation({ 100.0f, 110.0f });
+	NextFloorText->SetActorLocation({ 100.0f, 120.0f });
 	NextFloorText->SetString("Do you Want Next Floor?");
 
 	AnswerSelectBox = GetWorld()->SpawnActor<ABox>();
