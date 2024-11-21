@@ -6,10 +6,12 @@
 #include <EngineCore/SpriteRenderer.h>
 #include "Player.h"
 #include "BasicUI.h"
+
 #include "AbilityController.h"
 #include "Dungeon_BSP.h"
 #include "Box.h"
 #include "Text.h"
+
 
 #include "BoxUI.h"
 
@@ -138,8 +140,8 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
 
-	
-
+	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 250, 100 }));
+	DungeonNameUI->CreateString("");
 }
 
 void ADungeonUI::LevelChangeStart()
@@ -175,6 +177,18 @@ void ADungeonUI::Tick(float _DeltaTime)
 			HpBar[i]->SetSpriteScale(1.0f);
 		}
 	}
+	if (BasicUI->GetCurMenuType() == MenuType::Menu) {
+		DungeonNameUI->SetString(0, std::format("      {}", Dungeon->GetName()));
+		DungeonNameUI->SetStringColor(0, "Yellow");
+		DungeonNameUI->ShowUI();
+		
+	}
+	else {
+		DungeonNameUI->HideUI();
+	}
+	
+	
+
 
 	
 

@@ -6,7 +6,7 @@
 #include "GameDataManager.h"
 #include "AbilityController.h"
 
-#include "SpecialSkill.h"
+
 
 
 APokemon::APokemon() :AbilityController(nullptr), SpriteRenderer(nullptr), CurDuration(0.0f), StartLocation(FVector2D::ZERO), TargetLocation(FVector2D::ZERO), CurSkill(SkillType::NormalAttack), TargetPokemon(nullptr), SpecialSkill(nullptr), IsAttackValue(false), IsHurtValue(false), CurLevel(0), CurMaxHp(0), CurHp(0), CurATK(0), CurSPD(0)
@@ -67,56 +67,6 @@ void APokemon::Hurt()
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::NormalAttack()
-{
-	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string(static_cast<int>(Dir)));
-	SpriteRenderer->SetSpriteScale();
-}
-
-void APokemon::SpecialAttack()
-{
-	if (SpecialSkill == nullptr) {
-		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>("Lightning_Bomb");
-		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_Vector2D(Dir) * 72.0f);
-		return;
-	}
-	if (false == SpecialSkill->IsAttack()) {
-
-		EndAttack();
-		SpecialSkill->Destroy();
-		SpecialSkill = nullptr;
-	};
-}
-
-void APokemon::ReadyAttack()
-{
-	IsAttackValue = true;
-	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
-}
-
-void APokemon::EndAttack()
-{
-	APokemon* TargetPokemon = GetTargetPokemon();
-	if (TargetPokemon != nullptr) {
-		TargetPokemon->GetCurAbility()->SetDamage(AbilityController->GetATK());
-	}
-	IsAttackValue = false;
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-}
-
-void APokemon::PlayHurtAnim()
-{
-	APokemon* TargetPokemon = GetTargetPokemon();
-	if (TargetPokemon != nullptr) {
-		DIR TargetDir = UContentsMath::ReverseDir(Dir);
-		TargetPokemon->SetDir(TargetDir);
-		TargetPokemon->Hurt();
-	}
-}
-
-bool APokemon::IsAttack() {
-	return IsAttackValue;
-};
 
 void APokemon::Move(float _DeltaTime)
 {

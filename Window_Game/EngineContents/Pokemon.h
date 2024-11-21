@@ -69,6 +69,9 @@ public:
 	const std::list<std::string>& GetSkillList() {
 		return SkillList;
 	}
+	std::string GetCurSpecialSkillName() {
+		return CurSpecialSKillName;
+	}
 
 
 
@@ -88,6 +91,8 @@ protected:
 	std::list<std::string> SkillList;
 	class ASpecialSkill* SpecialSkill;
 	class UAbilityController* AbilityController;
+
+	std::string CurSpecialSKillName="";
 
 	bool IsAttackValue;
 	bool IsHurtValue;

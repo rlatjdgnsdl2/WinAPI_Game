@@ -23,6 +23,10 @@ void ATurnManager::SelectSkill()
 
 	//	스킬을 선택했으면
 	else if (PlayerInput == 'S') {
+		if (Player->GetCurSpecialSkillName() == "") {
+			CurTurn = TurnType::Player_Select;
+			return;
+		}
 		Player->SetSkill(SkillType::SpecialAttack);
 	}
 	//	아이템사용을 선택했으면

@@ -20,8 +20,12 @@ public:
 	virtual void BeginPlay()override;
 
 	void CreateString(std::string_view _StringValue, std::string_view _color= "White", FVector2D _TextSize = FVector2D({ 14.0f,20.0f }),float _Timee=0.0f);
+	void CreateString(class AText* _Text);
+
 	void SetString(int Index, std::string_view _StringValue);
+	void SetString(int Index, class AText* _Text);
 	void SetStringColor(int Index, std::string_view _color);
+
 	void SetStringColor(class AText* Text, std::string_view _color);
 	void SetStringColor(int _Index, int _TextStartIndex, int _TextEndIndex, std::string_view _color);
 
@@ -29,15 +33,16 @@ public:
 	std::vector<class AText*>::iterator GetTextIter() { return TextIter; }
 
 
-	void TextIterReset() { TextIter = Texts.begin(); }
-	void TextIterNext() { 	
+
+	void ResetTextIter() { TextIter = Texts.begin(); }
+	void NextTextIter() { 	
 		++TextIter; 
 		if (TextIter == Texts.end())
 		{
 			TextIter = Texts.begin();
 		}
 	}
-	void TextIterPrev() {
+	void PrevTextIter() {
 		if (TextIter == Texts.begin())
 		{
 			TextIter = Texts.end();
@@ -45,10 +50,11 @@ public:
 		--TextIter;
 	}
 
-	void ShowUI(float _DeltaTime);
+
+	void ShowUI(float _DeltaTime=0.0f);
 	void HideUI();
 
-
+	
 protected:
 
 private:
@@ -56,6 +62,7 @@ private:
 	FTransform BoxTrans;
 	std::vector<class AText*> Texts;
 	std::vector<class AText*>::iterator TextIter;
+
 
 };
 

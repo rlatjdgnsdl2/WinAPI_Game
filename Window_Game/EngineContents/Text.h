@@ -28,6 +28,7 @@ public:
 
 	void ShowText(float _DeltaTime);
 	void SetString(std::string_view _StringValue, std::string_view _color = "White", FVector2D _TextSize = FVector2D({ 14.0f,20.0f }), float _Time=0.0f);
+	void SetString(class AText* Text);
 	void SetTime(float _Time) { Time = _Time; }
 
 	std::string GetString() const { return StringValue; }	

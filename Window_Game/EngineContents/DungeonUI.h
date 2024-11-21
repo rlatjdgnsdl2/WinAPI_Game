@@ -69,8 +69,7 @@ private:
 
 
 	//	¸Þ´º ¿ÀÇÂ½Ã
-	class ABox* DungeonNameBox;
-	class AText* CurDungeonNameRenderer;
+	class ABoxUI* DungeonNameUI;
 
 
 	

@@ -36,12 +36,11 @@ public:
 
 
 	void OpenMenu();
-	//void OpenSkill();
+	void OpenSkill();
 	void OpenItem();
 	//void OpenTeam();
 	//void OpenOther();
 	//void CloseMenu();
-
 
 protected:
 
@@ -54,10 +53,12 @@ private:
 	class ABoxUI* MenuBoxUI;
 	class ABoxUI* MyInfoBoxUI;
 
+	class ABoxUI* SkillUI;
+	class ABoxUI* SkillInfoUI;
 
-	class ABox* MyInfoBox;
-	class AText* PlayerName;
-	class AText* PlayerHp;
+
+
+	
 
 
 

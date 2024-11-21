@@ -35,6 +35,15 @@ void ABasicUI::BeginPlay()
 	MyInfoBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 750.0f, 150.0f } ,{ 25, 400 } ));
 	MyInfoBoxUI->CreateString("");
 	MyInfoBoxUI->CreateString("");
+
+	SkillUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 200 }, { 25, 50 }));
+	SkillUI->CreateString("Fire_Bomb");
+	SkillUI->CreateString("Ligitning_Bomb");
+	SkillUI->CreateString("Water_Bomb");
+	SkillUI->CreateString("Water_Bomb");
+
+	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, {25, 350 }));
+	SkillInfoUI->CreateString("");
 	CurMenuType = MenuType::Close;
 	
 
@@ -54,6 +63,7 @@ void ABasicUI::Tick(float _DeltaTime)
 		OpenMenu();
 		break;
 	case MenuType::Skill:
+		OpenSkill();
 		break;
 	case MenuType::Item:
 		break;
@@ -62,16 +72,13 @@ void ABasicUI::Tick(float _DeltaTime)
 	case MenuType::Close:
 		if (true == UEngineInput::GetInst().IsDown('Q'))
 		{
-			MenuBoxUI->ShowUI(_DeltaTime);
-			MenuBoxUI->TextIterReset();
-			MyInfoBoxUI->SetString(0, std::format("{}   CurHp   {} - {}", Player->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-			MyInfoBoxUI->SetString(1, std::format("{}   CurHp   {} - {}", Partner->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-			//MyInfoBoxUI->SetStringColor(0,0)
-			//MyInfoBoxUI->ShowUI(_DeltaTime);
-
-			
-
-
+			MenuBoxUI->ShowUI();
+			MenuBoxUI->ResetTextIter();
+			MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
+			MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
+			MyInfoBoxUI->SetStringColor(0, 0, Player->GetName().size(), "Blue");
+			MyInfoBoxUI->SetStringColor(1, 0, Partner->GetName().size(), "Blue");
+			MyInfoBoxUI->ShowUI();
 			CurMenuType = MenuType::Menu;
 		}
 		break;

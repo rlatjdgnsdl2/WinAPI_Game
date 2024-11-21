@@ -40,6 +40,16 @@ void ABoxUI::SetString(int Index, std::string_view _StringValue)
 	Texts[Index]->SetString(_StringValue);
 }
 
+void ABoxUI::SetString(int Index, AText* _Text)
+{
+	Texts[Index] = _Text;
+}
+
+void ABoxUI::CreateString(AText* _Text)
+{
+	Texts.push_back(_Text);
+}
+
 void ABoxUI::SetStringColor(int Index, std::string_view _color)
 {
 	Texts[Index]->SetColor(_color);

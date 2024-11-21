@@ -79,6 +79,24 @@ void AText::SetString(std::string_view _StringValue, std::string_view _color, FV
 	}
 }
 
+void AText::SetString(AText* Text)
+{
+	StringValue = Text->GetString();
+	TextSize = Text->TextSize;
+	Time = Text->Time;
+	Color = Text->Color;
+	Reserve(StringValue.size());
+	CurCount = 0;
+	for (size_t i = 0; i < StringValue.size(); i++)
+	{
+		char c = StringValue[i];
+		int TextIndex = CharToTextIndex(c);
+		TextRenderer[i]->SetSprite(Color + "_Text.png", TextIndex);
+		TextRenderer[i]->SetComponentLocation(FVector2D({ TextSize.X * i,TextSize.Y }));
+		TextRenderer[i]->SetActive(false);
+	}
+}
+
 
 void AText::SetColor(std::string_view _color)
 {
@@ -118,6 +136,7 @@ int AText::CharToTextIndex(char _C)
 	}
 	switch (_C) {
 	case '!': return static_cast<int>(Text_Index::Exclamation);
+	case '-': return static_cast<int>(Text_Index::Minus);
 	case '?': return static_cast<int>(Text_Index::Question);
 	default: return static_cast<int>(Text_Index::MAX)+1;
 	}
