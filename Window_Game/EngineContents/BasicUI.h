@@ -1,14 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 
-enum class MenuType {
-	Menu,
-	Skill,
-	Item,
-	Team,
-	Close
-};
-
 
 //	Ό³Έν:
 class ABasicUI :public AGameMode
@@ -48,6 +40,7 @@ private:
 	class APlayer* Player;
 	class APartner* Partner;
 	MenuType CurMenuType;
+	TurnType CurTurn;
 
 	//	UI
 	class ABoxUI* MenuBoxUI;

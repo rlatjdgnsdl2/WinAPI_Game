@@ -4,6 +4,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include "BoxUI.h"
 
+#include "Player.h"
 #include "Text.h"
 #include "Box.h"
 
@@ -30,9 +31,14 @@ void ABasicUI::OpenSkill() {
 		return;
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+		// 스킬선택
+		// 플레이어한테 스킬해줘야함
+		Player->SetCurSpecialSkillName((*(SkillUI->GetTextIter()))->GetString());
+
+
 		SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "White");
 		SkillUI->HideUI();
 		SkillInfoUI->HideUI();
-		CurMenuType = MenuType::Close;
+ 		CurMenuType = MenuType::Close;
 	}
 }

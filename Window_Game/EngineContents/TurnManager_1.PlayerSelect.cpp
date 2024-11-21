@@ -81,7 +81,7 @@ void ATurnManager::PlayerSelect()
 	}
 	// Player_Select_Skill 단계로 가는 키
 	if (UEngineInput::GetInst().IsDown('S')) {
-		PlayerInput = 'S';
+ 		PlayerInput = 'S';
 		CurTurn = TurnType::Player_Select_Skill;
 		return;
 	}

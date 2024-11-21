@@ -14,9 +14,7 @@
 #include "BasicUI.h"
 
 
-
-
-
+TurnType ATurnManager::CurTurn;
 ATurnManager::ATurnManager()
 {
 
@@ -108,11 +106,6 @@ void ATurnManager::Tick(float _DeltaTime)
 		break;
 	case TurnType::AI_Skill:
 		AISkill();
-		break;
-	case TurnType::Result:
-
-		break;
-
 	}
 }
 

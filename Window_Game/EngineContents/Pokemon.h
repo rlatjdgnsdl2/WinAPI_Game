@@ -72,6 +72,9 @@ public:
 	std::string GetCurSpecialSkillName() {
 		return CurSpecialSKillName;
 	}
+	void SetCurSpecialSkillName(std::string_view _SpecialSkillName) {
+		CurSpecialSKillName = _SpecialSkillName;
+	}
 
 
 
