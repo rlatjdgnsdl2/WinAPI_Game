@@ -59,10 +59,10 @@ struct PokemonInfo
 		SPD(_Speed) {
 	}
 
-	int Level;
-	int MaxHp;
-	int ATK;
-	int SPD;
+	int Level{};
+	int MaxHp{};
+	int ATK{};
+	int SPD{};
 };
 
 class DungeonTile
@@ -72,18 +72,6 @@ public:
 	TileType TileType;
 	FTransform TileTrans;
 };
-
-
-class UITile
-{
-public:
-	class USpriteRenderer* SpriteRenderer = nullptr;
-
-};
-
-
-
-
 
 
 struct DungeonInfo {

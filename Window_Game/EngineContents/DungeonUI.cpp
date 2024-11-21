@@ -177,6 +177,8 @@ void ADungeonUI::Tick(float _DeltaTime)
 			HpBar[i]->SetSpriteScale(1.0f);
 		}
 	}
+
+	//	던전이름UI
 	if (BasicUI->GetCurMenuType() == MenuType::Menu) {
 		DungeonNameUI->SetString(0, std::format("      {}", Dungeon->GetName()));
 		DungeonNameUI->SetStringColor(0, "Yellow");

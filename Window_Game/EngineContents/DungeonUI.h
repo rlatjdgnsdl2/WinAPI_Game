@@ -42,28 +42,28 @@ private:
 	const FIntPoint Text_MaxCount = FIntPoint({30,3});
 
 	//	상단 UI
-	class USpriteRenderer* UI_B;
-	class USpriteRenderer* UI_FValue;
-	class USpriteRenderer* UI_F;
-	class USpriteRenderer* UI_Lv;
-	class USpriteRenderer* UI_LvValue10;
-	class USpriteRenderer* UI_LvValue01;
-	class USpriteRenderer* UI_Hp;
-	class USpriteRenderer* UI_CurHpValue10;
-	class USpriteRenderer* UI_CurHpValue01;
-	class USpriteRenderer* UI_Slash;
-	class USpriteRenderer* UI_MaxHpValue10;
-	class USpriteRenderer* UI_MaxHpValue01;
+	class USpriteRenderer* UI_B = nullptr;
+	class USpriteRenderer* UI_FValue = nullptr;
+	class USpriteRenderer* UI_F = nullptr;
+	class USpriteRenderer* UI_Lv = nullptr;
+	class USpriteRenderer* UI_LvValue10 = nullptr;
+	class USpriteRenderer* UI_LvValue01 = nullptr;
+	class USpriteRenderer* UI_Hp = nullptr;
+	class USpriteRenderer* UI_CurHpValue10 = nullptr;
+	class USpriteRenderer* UI_CurHpValue01 = nullptr;
+	class USpriteRenderer* UI_Slash = nullptr;
+	class USpriteRenderer* UI_MaxHpValue10 = nullptr;
+	class USpriteRenderer* UI_MaxHpValue01 = nullptr;
 	std::vector<class USpriteRenderer* > HpBar;
 
 	class ABox* DungeonLogBox;
 
 	// 한세트
-	class ABox* NextFloorBox;
-	class ABox* AnswerSelectBox;
-	class AText* NextFloorText;
-	class AText* Yes;
-	class AText* No;
+	class ABox* NextFloorBox = nullptr;
+	class ABox* AnswerSelectBox = nullptr;
+	class AText* NextFloorText = nullptr;
+	class AText* Yes = nullptr;
+	class AText* No = nullptr;
 
 	class ABoxUI* Test;
 
