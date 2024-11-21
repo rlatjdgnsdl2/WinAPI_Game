@@ -61,22 +61,27 @@ void ACharacterSelect::BeginPlay()
 	Mudkip_Text = GetWorld()->SpawnActor<AText>();
 	Mudkip_Text->SetString("Mudkip","Blue");
 	Mudkip_Text->SetActorLocation({ 140, 350 });
+	Mudkip_Text->ShowText(0.0f);
 
 	Chikorita_Text = GetWorld()->SpawnActor<AText>();
 	Chikorita_Text->SetString("Chikorita","Green");
 	Chikorita_Text->SetActorLocation({ 340, 350 });
+	Chikorita_Text->ShowText(0.0f);
 
 	Pikachu_Text = GetWorld()->SpawnActor<AText>();
 	Pikachu_Text->SetString("Pikachu","Yellow");
 	Pikachu_Text->SetActorLocation({ 540, 350 });
+	Pikachu_Text->ShowText(0.0f);
 
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
 	ExplanationText01->SetString("Select Your Pokemon to push A or D ", "White");
 	ExplanationText01->SetActorLocation({ 140, 380 });
+	ExplanationText01->ShowText(0.0f);
 
 	ExplanationText02 = GetWorld()->SpawnActor<AText>();
 	ExplanationText02->SetString("And push SPACE_BAR ", "White");
 	ExplanationText02->SetActorLocation({ 140, 410 });
+	ExplanationText02->ShowText(0.0f);
 
 
 	GetWorld()->SetCameraToMainPawn(false);

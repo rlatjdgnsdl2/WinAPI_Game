@@ -7,8 +7,6 @@ public:
 	FVector2D BoxPieceSize;
 };
 
-
-
 //	Ό³Έν:
 class ABox : public AActor
 {
@@ -31,6 +29,7 @@ public:
 protected:
 
 private:
+	const FVector2D CornerSize = { 24, 12 };
 	std::vector<std::vector<BoxPiece>> BoxUI;
 
 };

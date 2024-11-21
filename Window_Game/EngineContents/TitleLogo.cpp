@@ -28,7 +28,9 @@ void ATitleLogo::BeginPlay()
 
 	TitleText = GetWorld()->SpawnActor<AText>();
 	TitleText->SetActorLocation(WinSize.Half() + FVector2D(-100, 200));
-	TitleText->SetString("Press SpaceBar");
+	TitleText->SetString("Press SpaceBar","White",{14.0f,20.0f},0.1f);
+	
+	
 }
 
 void ATitleLogo::Tick(float _DeltaTime)
@@ -38,6 +40,7 @@ void ATitleLogo::Tick(float _DeltaTime)
 	if (IsActive()) {
 		float Value = UEngineMath::Clamp(CurDuration/2.0f, 0.0f, 1.0f);
 		LogoRenderer->SetSpriteScale(Value);
+		TitleText->ShowText(_DeltaTime);
 		
 	};
 }

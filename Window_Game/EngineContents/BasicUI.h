@@ -30,6 +30,10 @@ public:
 
 	MenuType GetCurMenuType() const { return CurMenuType; }
 
+	void SetPartner(class APartner* _Partner) {
+		Partner = _Partner;
+	}
+
 
 	void OpenMenu();
 	//void OpenSkill();
@@ -43,7 +47,12 @@ protected:
 
 private:
 	class APlayer* Player;
+	class APartner* Partner;
 	MenuType CurMenuType;
+
+	//	UI
+	class ABoxUI* MenuBoxUI;
+	class ABoxUI* MyInfoBoxUI;
 
 
 	class ABox* MyInfoBox;
@@ -52,20 +61,6 @@ private:
 
 
 
-
-	//	¸Þ´º
-	class ABox* MenuBox;
-	class ABox* ItemBox;
-	class ABox* SkillBox;
-	class ABox* TeamBox;
-
-	
-
-
-	std::vector<std::string> MenuString;
-	std::vector<class AText*> MenuStringRenderer;
-	std::vector<class AText*>::iterator MenuIter;
-	class AText* CurDungeonNameRenderer;
 
 };
 

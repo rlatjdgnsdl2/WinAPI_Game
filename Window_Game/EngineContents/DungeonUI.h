@@ -65,6 +65,8 @@ private:
 	class AText* Yes;
 	class AText* No;
 
+	class ABoxUI* Test;
+
 
 	//	¸Þ´º ¿ÀÇÂ½Ã
 	class ABox* DungeonNameBox;

@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
+#include "BasicUI.h"
 
 
 
@@ -47,6 +48,7 @@ void ATurnManager::LevelChangeStart()
 	{
 		APartner* Partner = GetWorld()->SpawnActor<APartner>();
 		Partner->SetPokemon("Vulpix");
+		BasicUI->SetPartner(Partner);
 
 		PushPlayerCamp(Partner);
 		PushAllAIPokemon(Partner);

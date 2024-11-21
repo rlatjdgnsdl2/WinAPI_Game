@@ -11,6 +11,8 @@
 #include "Box.h"
 #include "Text.h"
 
+#include "BoxUI.h"
+
 
 
 ADungeonUI::ADungeonUI()
@@ -136,37 +138,7 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
 
-	DungeonNameBox = GetWorld()->SpawnActor<ABox>();
-	DungeonNameBox->SetActorLocation({ 280, 70 });
-	DungeonNameBox->SetBoxSize({ 400.0f, 80.0f });
-	DungeonNameBox->SetActive(false);
-
 	
-	CurDungeonNameRenderer = GetWorld()->SpawnActor<AText>();
-	CurDungeonNameRenderer->SetActorLocation({ 400.0f, 80.0f });
-	CurDungeonNameRenderer->SetActive(false);
-
-	// 다음던전 가냐고 물어보는 UI
-	NextFloorBox = GetWorld()->SpawnActor<ABox>();
-	NextFloorBox->SetBoxSize({ 450.0f, 100.0f });
-	NextFloorBox->SetActorLocation({ 60, 100 });
-
-	NextFloorText = GetWorld()->SpawnActor<AText>();
-	NextFloorText->SetActorLocation({ 100.0f, 120.0f });
-	NextFloorText->SetString("Do you Want Next Floor?");
-
-	AnswerSelectBox = GetWorld()->SpawnActor<ABox>();
-	AnswerSelectBox->SetBoxSize({ 200.0f, 130.0f });
-	AnswerSelectBox->SetActorLocation({ 500, 100 });
-
-	Yes = GetWorld()->SpawnActor<AText>();
-	Yes->SetActorLocation({ 550.0f, 120.0f });
-	Yes->SetString("Yes");
-
-	No = GetWorld()->SpawnActor<AText>();
-	No->SetActorLocation({550.0f, 160.0f });
-	No->SetString("No");
-
 
 }
 
@@ -174,7 +146,6 @@ void ADungeonUI::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	UI_FValue->SetSprite(std::format("DungeonFont_{}.png", Dungeon->GetCurFloor()));
-	DungeonNameBox->SetActive(false);
 }
 
 void ADungeonUI::Tick(float _DeltaTime)
@@ -187,6 +158,7 @@ void ADungeonUI::Tick(float _DeltaTime)
 
 	UI_CurHpValue10->SetSprite(std::format("DungeonFont_{}.png", CurHp / 10));
 	UI_CurHpValue01->SetSprite(std::format("DungeonFont_{}.png", CurHp % 10));
+
 
 	UI_MaxHpValue10->SetSprite(std::format("DungeonFont_{}.png", MaxHp / 10));
 	UI_MaxHpValue01->SetSprite(std::format("DungeonFont_{}.png", MaxHp % 10));
@@ -204,36 +176,7 @@ void ADungeonUI::Tick(float _DeltaTime)
 		}
 	}
 
-	if (BasicUI != nullptr) {
-		MenuType CurMenu = BasicUI->GetCurMenuType();
-		switch (CurMenu)
-		{
-		case MenuType::Menu:
-			CurDungeonNameRenderer->SetString(Dungeon->GetName(), "Yellow");
-			DungeonNameBox->SetActive(true);
-			CurDungeonNameRenderer->SetActive(true);
-			break;
-		case MenuType::Skill:
-			DungeonNameBox->SetActive(false);
-			CurDungeonNameRenderer->SetActive(false);
-			break;
-		case MenuType::Item:
-			DungeonNameBox->SetActive(false);
-			CurDungeonNameRenderer->SetActive(false);
-			break;
-		case MenuType::Team:
-			DungeonNameBox->SetActive(false);
-			CurDungeonNameRenderer->SetActive(false);
-			break;
-
-		case MenuType::Close:
-			DungeonNameBox->SetActive(false);
-			CurDungeonNameRenderer->SetActive(false);
-			break;
-		default:
-			break;
-		}
-	}
+	
 
 }
 

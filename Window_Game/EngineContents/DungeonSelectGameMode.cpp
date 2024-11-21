@@ -48,6 +48,8 @@ void ADungeonSelectGameMode::BeginPlay()
 
 	DungeonNameRenderer = GetWorld()->SpawnActor<AText>();
 	DungeonNameRenderer->SetActorLocation({ 300.0f, 520.0f });
+
+	DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
 	
 }
 
@@ -57,8 +59,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
-
-	DungeonNameRenderer->SetString(DungeonMapStartIter->first,"Green");
+	DungeonNameRenderer->ShowText(0.0f);
 
 	if (true == UEngineInput::GetInst().IsDown('A'))
 	{
@@ -67,6 +68,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 		}
 		DungeonMapStartIter--;
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
+		DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
 	}
 	if (true == UEngineInput::GetInst().IsDown('D'))
 	{
@@ -75,6 +77,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 			DungeonMapStartIter = DungeonMaps.begin();
 		}
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
+		DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
 	}
 	//	던전입장
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {

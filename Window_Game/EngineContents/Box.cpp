@@ -18,12 +18,12 @@ ABox::ABox()
 			USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 			NewSpriteRenderer->SetSprite(Sprites[y * 3 + x]);
 			NewSpriteRenderer->SetSpriteScale();
-			NewSpriteRenderer->SetComponentScale(FVector2D(24, 12));
+			NewSpriteRenderer->SetComponentScale(CornerSize);
 			NewSpriteRenderer->SetCameraEffect(false);
-			NewSpriteRenderer->SetComponentLocation(FVector2D({ 24.0f * x, 12.0f * y }));
+			NewSpriteRenderer->SetComponentLocation(FVector2D({ CornerSize.X * x, CornerSize.Y * y }));
 			NewSpriteRenderer->SetOrder(ERenderOrder::UI_BASIC);
 			BoxUI[y][x].SpriteRenderer = NewSpriteRenderer;
-			BoxUI[y][x].BoxPieceSize = FVector2D(24, 12);
+			BoxUI[y][x].BoxPieceSize = CornerSize;
 		}
 	}
 }
@@ -37,7 +37,7 @@ ABox::~ABox()
 
 void ABox::SetBoxSize(FVector2D BoxSize)
 {
-	FVector2D CornerSize = { 24, 12 };
+	
 	FVector2D Pivot = { 0.0f, 0.0f };
 
 	// 상단 박스 설정
@@ -49,7 +49,7 @@ void ABox::SetBoxSize(FVector2D BoxSize)
 
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();
 	BoxUI[0][1].SpriteRenderer->SetComponentLocation(Pivot);
-	BoxUI[0][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, 12.0f));
+	BoxUI[0][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, CornerSize.Y));
 
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();
 	BoxUI[0][2].SpriteRenderer->SetComponentLocation(Pivot);
@@ -82,7 +82,7 @@ void ABox::SetBoxSize(FVector2D BoxSize)
 
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();
 	BoxUI[2][1].SpriteRenderer->SetComponentLocation(Pivot);
-	BoxUI[2][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, 12.0f));
+	BoxUI[2][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, CornerSize.Y));
 
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();
 	BoxUI[2][2].SpriteRenderer->SetComponentLocation(Pivot);
