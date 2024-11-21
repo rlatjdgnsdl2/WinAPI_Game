@@ -30,7 +30,7 @@ public:
 	void SetStringColor(int _Index, int _TextStartIndex, int _TextEndIndex, std::string_view _color);
 
 	
-	std::vector<class AText*>::iterator GetTextIter() { return TextIter; }
+	std::vector<class AText*>::iterator GetCurTextIter() { return TextIter; }
 
 
 

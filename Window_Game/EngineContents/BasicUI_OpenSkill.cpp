@@ -10,21 +10,21 @@
 
 
 void ABasicUI::OpenSkill() {
-	SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "Yellow");
+	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "Yellow");
 	
 
 	if (true == UEngineInput::GetInst().IsDown('W'))
 	{
-		SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "White");
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('S'))
 	{
-		SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "White");
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->NextTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('Q')) {
-		SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "White");
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->HideUI();
 		SkillInfoUI->HideUI();
 		CurMenuType = MenuType::Close;
@@ -33,10 +33,10 @@ void ABasicUI::OpenSkill() {
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		// 스킬선택
 		// 플레이어한테 스킬해줘야함
-		Player->SetCurSpecialSkillName((*(SkillUI->GetTextIter()))->GetString());
+		Player->SetCurSpecialSkillName((*(SkillUI->GetCurTextIter()))->GetString());
 
 
-		SkillUI->SetStringColor(*(SkillUI->GetTextIter()), "White");
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->HideUI();
 		SkillInfoUI->HideUI();
  		CurMenuType = MenuType::Close;

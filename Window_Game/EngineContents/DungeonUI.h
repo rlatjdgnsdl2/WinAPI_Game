@@ -20,16 +20,17 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
-	void IsGoNextFloor();
-
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	bool IsOpenMenu() const { return IsOpenMenuValue; }
 
 	void SetBasicUI(class ABasicUI* _BasicUI) {
 		BasicUI = _BasicUI;
 	}
+
+	void IsGoingNextFloor();
+	void HideNextFloorUI();
+
 protected:
 private:
 	bool IsOpenMenuValue = false;
@@ -39,7 +40,6 @@ private:
 	class ADungeon_BSP* Dungeon;
 	class ABasicUI* BasicUI;
 	FVector2D UIStartPos = FVector2D(20.0f, 20.0f);
-	const FIntPoint Text_MaxCount = FIntPoint({30,3});
 
 	//	상단 UI
 	class USpriteRenderer* UI_B = nullptr;
@@ -56,20 +56,15 @@ private:
 	class USpriteRenderer* UI_MaxHpValue01 = nullptr;
 	std::vector<class USpriteRenderer* > HpBar;
 
-	class ABox* DungeonLogBox;
-
-	// 한세트
-	class ABox* NextFloorBox = nullptr;
-	class ABox* AnswerSelectBox = nullptr;
-	class AText* NextFloorText = nullptr;
-	class AText* Yes = nullptr;
-	class AText* No = nullptr;
-
-	class ABoxUI* Test;
-
-
-	//	메뉴 오픈시
+	
+	//	던전에서 메뉴 오픈시
 	class ABoxUI* DungeonNameUI;
+
+	//	다음층질문창
+	class ABoxUI* Q_NextFloorUI;
+	class ABoxUI* A_NextFloorUI;
+
+
 
 
 	

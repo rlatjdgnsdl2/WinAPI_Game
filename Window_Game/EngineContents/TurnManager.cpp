@@ -14,7 +14,7 @@
 #include "BasicUI.h"
 
 
-TurnType ATurnManager::CurTurn;
+
 ATurnManager::ATurnManager()
 {
 
@@ -28,19 +28,20 @@ ATurnManager::~ATurnManager()
 void ATurnManager::BeginPlay()
 {
 	Super::BeginPlay();
-
+	//	카메라 피봇
+	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
+	GetWorld()->SetCameraPivot(WindowSize.Half()*-1.0f);
 }
 
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	GetWorld()->SetCameraPivot(WindowSize.Half()*-1.0f);
-
-
-
+	
+	//	던전 생성
 	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
 	Dungeon->Generate();
+	NextPotalLocation = Dungeon->GetPotalLocation();
+
 	PathFinder.SetData(Dungeon);
 	//	임시
 	{
@@ -64,6 +65,10 @@ void ATurnManager::LevelChangeStart()
 void ATurnManager::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
+	for (APokemon* Pokemon : AllAIPokemon)
+	{
+		Pokemon->Destroy();
+	}
 	AllAIPokemon.clear();
 	PlayerCamp.clear();
 	EnemyCamp.clear();
@@ -80,7 +85,7 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::Player_Select:
 		PlayerSelect();
 		break;
-	case TurnType::Open_Menu:
+	case TurnType::Open_UI:
 		OpenMenu();
 		break;
 	case TurnType::Player_Select_Move:

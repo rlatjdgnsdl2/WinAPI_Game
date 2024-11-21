@@ -44,6 +44,8 @@ public:
 		BeginPlayList.push_back(ActorPtr);
 		return NewActor;
 	}
+
+	
 	template<typename ActorType>
 	ActorType* SpawnActor(std::string_view _String )
 	{

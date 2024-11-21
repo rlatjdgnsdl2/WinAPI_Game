@@ -32,6 +32,7 @@ void ADungeon_BSP::LevelChangeEnd()
 void ADungeon_BSP::RoomClear()
 {
 	RoomLocations.clear();
+	Rooms.clear();
 	if (root != nullptr) {
 		delete root;
 	}
@@ -184,6 +185,7 @@ void ADungeon_BSP::CreateRooms(Node* node)
 
 		// 생성된 방 정보를 노드에 저장
 		node->room = { RoomLocation_X, RoomLocation_Y, RoomWidth, RoomHeight };
+		Rooms.push_back(node->room);
 
 		// 방의 타일을 설정
 		for (int y = RoomLocation_Y; y < RoomLocation_Y + RoomHeight; ++y) {
@@ -209,8 +211,8 @@ void ADungeon_BSP::ConnectRooms(Node* node)
 		return;
 	}
 
-	// 왼쪽과 오른쪽 자식 노드에서 방을 가져옵니다.
-	// 각 노드의 가장 가까운 방을 가져와 복도로 연결합니다.
+	// 왼쪽과 오른쪽 자식 노드에서 방을 가져옴.
+	// 각 노드의 가장 가까운 방을 가져와 복도로 연결.
 	Room room1 = GetRoom(node->left);
 	Room room2 = GetRoom(node->right);
 

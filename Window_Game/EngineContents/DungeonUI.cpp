@@ -140,8 +140,15 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
 
-	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 250, 100 }));
+	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 200, 100 }));
 	DungeonNameUI->CreateString("");
+
+	Q_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 500.0f, 100.0f }, { 100, 100 }));
+	Q_NextFloorUI->CreateString("Do you Want to go Next Floor?");
+	A_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 150.0f, 110.0f }, { 600, 100 }));
+	A_NextFloorUI->CreateString("Yes");
+	A_NextFloorUI->CreateString("No");
+	A_NextFloorUI->ResetTextIter();
 }
 
 void ADungeonUI::LevelChangeStart()
@@ -188,18 +195,52 @@ void ADungeonUI::Tick(float _DeltaTime)
 	else {
 		DungeonNameUI->HideUI();
 	}
-	
-	
+	if (BasicUI->GetCurMenuType() == MenuType::NextFloor)
+	{
+		AText* Text = *(A_NextFloorUI->GetCurTextIter());
+		A_NextFloorUI->SetStringColor(Text, "Yellow");
+		if (true == UEngineInput::GetInst().IsDown('W'))
+		{
+			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
+			A_NextFloorUI->PrevTextIter();
+		}
+		if (true == UEngineInput::GetInst().IsDown('S'))
+		{
+			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
+			A_NextFloorUI->NextTextIter();
+		}
 
 
+		if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
+		{
+			if (Text->GetString() == "Yes")
+			{
+				
+			}
+			else
+			{
+				
+			}
+		}
+	}
+
 	
+		
 
 }
 
-void ADungeonUI::IsGoNextFloor()
+void ADungeonUI::IsGoingNextFloor()
 {
-
+	Q_NextFloorUI->ShowUI();
+	A_NextFloorUI->ShowUI();
 }
+
+void ADungeonUI::HideNextFloorUI()
+{
+	Q_NextFloorUI->HideUI();
+	A_NextFloorUI->HideUI();
+}
+
 
 
 

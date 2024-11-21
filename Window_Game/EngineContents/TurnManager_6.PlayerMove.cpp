@@ -7,7 +7,7 @@
 
 #include "Pokemon.h"
 #include "Player.h"
-
+#include "DungeonUI.h"
 
 
 
@@ -24,6 +24,21 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	FVector2D PlayerTargetLocation = Player->GetTargetLocation();
 	if (CurPlayerLocation == PlayerTargetLocation)
 	{
+		// 포탈위치인지 확인
+		if (CurPlayerLocation == NextPotalLocation)
+		{
+			//  다음층이 Max층이면
+			//  Game Clear
+			//	UI띠우고
+			DungeonUI->IsGoingNextFloor();
+			PreTurn = CurTurn;
+			CurTurn = TurnType::Open_UI;
+			
+			//return;
+			//  Dungeon->NextFloor();
+			//  레벨변경(같은 레벨이니까 레벨 리셋해야하나?)
+		}
+		
 		//	MovePokemon에 있는 포켓몬 모두 강제로 도착하게
 		for (APokemon* CurPokemon : MovePokemon) {
 			CurPokemon->Move(1.0f);

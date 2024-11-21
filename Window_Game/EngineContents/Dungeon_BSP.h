@@ -29,7 +29,11 @@ public:
 	Room GetRoom(Node* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
 
+	FVector2D GetPotalLocation() const { return PotalLocation; }
+
 	int GetCurFloor() const { return CurFloor; }
+	void NextFloor() { CurFloor++; }
+	void InitFloor() { CurFloor = 1; }
 
 protected:
 
@@ -37,12 +41,13 @@ private:
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
 	Node* root;
+
+	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
 
 	int CurFloor = 1;
 
-	std::map<std::string,class USpriteRenderer*> UIRenderers;
 
 	//	던전생성과정
 	void InitDungeon();

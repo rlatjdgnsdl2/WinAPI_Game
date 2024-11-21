@@ -21,12 +21,13 @@ public:
 	virtual void Tick(float _DeltaTime)override;
 
 	MenuType GetCurMenuType() const { return CurMenuType; }
+	void SetCurMenuType(MenuType _CurMenuType) { CurMenuType = _CurMenuType; }
 
 	void SetPartner(class APartner* _Partner) {
 		Partner = _Partner;
 	}
 
-
+	void ShowMenu();
 	void OpenMenu();
 	void OpenSkill();
 	void OpenItem();

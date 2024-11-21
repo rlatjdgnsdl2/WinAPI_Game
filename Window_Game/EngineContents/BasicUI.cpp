@@ -70,23 +70,10 @@ void ABasicUI::Tick(float _DeltaTime)
 	case MenuType::Team:
 		break;
 	case MenuType::Close:
-
 		if (true == UEngineInput::GetInst().IsDown('Q'))
 		{
-			CurTurn = ATurnManager::GetCurTurn();
-			if (CurTurn == TurnType::Open_Menu) {
-
-				MenuBoxUI->ShowUI();
-				MenuBoxUI->ResetTextIter();
-				MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-				MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-				MyInfoBoxUI->SetStringColor(0, 0, Player->GetName().size(), "Blue");
-				MyInfoBoxUI->SetStringColor(1, 0, Partner->GetName().size(), "Blue");
-				MyInfoBoxUI->ShowUI();
-				CurMenuType = MenuType::Menu;
-			}
+			ShowMenu();
 		}
-
 		break;
 	default:
 		break;

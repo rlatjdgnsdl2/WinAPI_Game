@@ -5,7 +5,8 @@
 
 #include "Player.h"
 #include "Pokemon.h"
-#include "Box.h"
+
+#include "BasicUI.h"
 
 
 //	Player_Select단계
@@ -19,8 +20,8 @@ void ATurnManager::PlayerSelect()
 	}
 	PlayerMoveDir = FVector2D::ZERO;
 
-	if (UEngineInput::GetInst().IsPress('Q')) {
-		CurTurn = TurnType::Open_Menu;
+	if (UEngineInput::GetInst().IsDown('Q')) {
+		CurTurn = TurnType::Open_UI;
 		return;
 	}
 	// Player_Select_Move 단계로 가는 키

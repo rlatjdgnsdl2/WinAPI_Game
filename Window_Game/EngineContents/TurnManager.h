@@ -52,7 +52,10 @@ public:
 	void PushEnemyCamp(class APokemon* _EnemyCampPokemon) {
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
-	static TurnType GetCurTurn() { return CurTurn; }
+	TurnType GetCurTurn() { return CurTurn; }
+	void SetCurTurn(TurnType _CurTurn) { CurTurn = _CurTurn; }
+
+	void ComeBackTurn() { CurTurn = PreTurn; }
 
 	UPathFindAStar PathFinder;
 protected:
@@ -60,7 +63,6 @@ protected:
 private:
 	std::string CurDungeonName;
 	class ATextManager* TextManager;
-	
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
@@ -74,7 +76,11 @@ private:
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
 
-	static TurnType CurTurn;
+	FVector2D NextPotalLocation;
+
+	TurnType CurTurn;
+	TurnType PreTurn;
+
 	FVector2D PlayerMoveDir;
 	float CurDuration;
 	int PlayerInput;
@@ -97,5 +103,7 @@ private:
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
 	void SpawnEnemy();
+
+
 
 };
