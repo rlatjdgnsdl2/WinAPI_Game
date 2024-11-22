@@ -18,18 +18,18 @@ public:
 	//	나중에 플레이어 데이터로 변경
 	void InitCurAbility(const PokemonInfo& _PokemonInfo) {
 		CurLevel = _PokemonInfo.Level;
-		CurMaxHp = _PokemonInfo.MaxHp;
-		CurHp = CurMaxHp;
-		CurATK = _PokemonInfo.ATK;
+		MaxHp = _PokemonInfo.MaxHp;
+		CurHp = MaxHp;
+		ATK = _PokemonInfo.ATK;
 		CurSPD = _PokemonInfo.SPD;
 		MaxExp = CurLevel * 100;
 		CurExp = 0;
 	}
 	void LevelUp() {
 		CurLevel++;
-		CurMaxHp += 2;
+		MaxHp += 2;
 		CurHp +=2;
-		CurATK += 2;
+		ATK += 2;
 		MaxExp = CurLevel * 100;
 		CurExp = 0;
 	}
@@ -49,7 +49,7 @@ public:
 		}
 	}
 	int GetATK() const {
-		return CurATK;
+		return ATK;
 	}
 	int GetSPD() const {
 		return CurSPD;
@@ -64,19 +64,23 @@ public:
 		return CurHp;
 	}
 	int GetMaxHP() const {
-		return CurMaxHp;
+		return MaxHp;
 	}
 protected:
 
 private:
-	int CurLevel;
-	int CurMaxHp;
-	int CurHp;
-	int CurATK;
-	int CurSPD;
-	int MaxExp;
-	int CurExp;
-	int Hungry;
+	int CurLevel{};
+	int MaxHp{};
+	int CurHp{};
+	int ATK{};
+	int DEF{};
+	int SATK{};
+	int SDEF{};
+	int CurSPD{};
+
+	int MaxExp{};
+	int CurExp{};
+	int Hungry{};
 
 
 };
