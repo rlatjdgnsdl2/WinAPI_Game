@@ -34,7 +34,6 @@ void PMDContentsCore::BeginPlay()
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("Pokemon Mystery Dungeon : Explorers of Sky");
 	//	윈도우 크기 설정
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * ScaleRate, 192 * ScaleRate });
-	//UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 256 * 7, 192 * 5 });
 	//	Level생성
 	//	타이틀레벨
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, ATempPlayer>("TitleLevel");
@@ -100,30 +99,9 @@ void PMDContentsCore::RoadResources()
 			UEngineSound::Load(FilePath);
 		}
 	}
-	{
-		UEngineDirectory Skill;
-		Skill.MoveParentToDirectory("Resources//Image//Skill");
-		Skill.Append("Fire_Bomb");
-		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
-		UGameDataManager::GetInst().InsertSkillAnimCount("Fire_Bomb", 9);
-	}
-
-
-	{
-		UEngineDirectory Skill;
-		Skill.MoveParentToDirectory("Resources//Image//Skill");
-		Skill.Append("Lightning_Bomb");
-		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
-		UGameDataManager::GetInst().InsertSkillAnimCount("Lightning_Bomb", 15);
-	}
-	{
-		UEngineDirectory Skill;
-		Skill.MoveParentToDirectory("Resources//Image//Skill");
-		Skill.Append("Water_Bomb");
-		UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
-		UGameDataManager::GetInst().InsertSkillAnimCount("Water_Bomb", 8);
-	}
-	
+	RoadSkill("Fire_Bomb", 9);
+	RoadSkill("Lightning_Bomb", 15);
+	RoadSkill("Water_Bomb", 8);
 
 	//	Font
 	UImageManager::GetInst().CuttingSprite("Yellow_Text.png", 26, 4);
@@ -132,95 +110,44 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("White_Text.png", 26, 4);
 
 	//	Title
-	UImageManager::GetInst().CuttingSprite("1.Intro_anim.png", 5, 3);
+	UImageManager::GetInst().CuttingSprite("Title_anim.png", 5, 3);
+
 	//	player
-	UImageManager::GetInst().CuttingSprite("Mudkip_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
-	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
-	UImageManager::GetInst().CuttingSprite("Mudkip_Shoot.png", 11, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Mudkip", AnimInfo({ 10,2,7,6,11 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Mudkip", PokemonInfo(5, 30, 10, 15));
-
-	UImageManager::GetInst().CuttingSprite("Pikachu_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Pikachu_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Pikachu_Idle.png", 6, 8);
-	UImageManager::GetInst().CuttingSprite("Pikachu_Walk.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Pikachu_Shoot.png", 11, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Pikachu", AnimInfo({ 10,2,6,4,11 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Pikachu", PokemonInfo(5, 30, 10, 15));
-
-	UImageManager::GetInst().CuttingSprite("Chikorita_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Chikorita_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Chikorita_Idle.png", 6, 8);
-	UImageManager::GetInst().CuttingSprite("Chikorita_Walk.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Chikorita_Shoot.png", 11, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Chikorita", AnimInfo({ 10,2,6,4 ,11}));
+	RoadPokemon("Chikorita", 10, 2, 6, 11, 4);
 	UGameDataManager::GetInst().InsertPokemonAbility("Chikorita", PokemonInfo(5, 30, 10, 15));
+	RoadPokemon("Mudkip", 10, 2, 7, 11, 6);
+	UGameDataManager::GetInst().InsertPokemonAbility("Mudkip", PokemonInfo(5, 30, 10, 15));
+	RoadPokemon("Pikachu", 10, 2, 6, 11, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Pikachu", PokemonInfo(5, 30, 10, 15));
+	RoadPokemon("Vulpix", 11, 2, 4, 13, 5);
+	UGameDataManager::GetInst().InsertPokemonAbility("Vulpix", PokemonInfo(5, 30, 10, 15));
 
-	//	partner
-	UImageManager::GetInst().CuttingSprite("Vulpix_Attack.png", 11, 8);
-	UImageManager::GetInst().CuttingSprite("Vulpix_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Vulpix_Idle.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Vulpix_Walk.png", 5, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Vulpix", AnimInfo({ 11,2,4,5 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Vulpix", PokemonInfo( 5, 30, 10, 15));
 
-	
 
 	//	Dungeon
 	//	BeachCave
-	UImageManager::GetInst().CuttingSprite("BeachCave_Ground.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("BeachCave_Wall.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("BeachCave_Water.png", 5, 10);
-
-	UImageManager::GetInst().CuttingSprite("Kabuto_Attack.png", 11, 8);
-	UImageManager::GetInst().CuttingSprite("Kabuto_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Kabuto_Idle.png", 3, 8);
-	UImageManager::GetInst().CuttingSprite("Kabuto_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Kabuto", AnimInfo({ 11,2,3,4 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Kabuto", PokemonInfo( 5, 30, 10, 14));
-
-	UImageManager::GetInst().CuttingSprite("Shellos_Attack.png", 13, 8);
-	UImageManager::GetInst().CuttingSprite("Shellos_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Shellos_Idle.png", 3, 8);
-	UImageManager::GetInst().CuttingSprite("Shellos_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Shellos", AnimInfo({ 13,2,3,6 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Shellos", PokemonInfo( 5, 30, 10, 12));
-
-	UImageManager::GetInst().CuttingSprite("Shellder_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Shellder_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Shellder_Idle.png", 4, 8);
-	UImageManager::GetInst().CuttingSprite("Shellder_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Shellder", AnimInfo({ 10,2,4,6 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Shellder", PokemonInfo( 5, 40, 10, 10));
-
-	UImageManager::GetInst().CuttingSprite("Corsola_Attack.png", 10, 8);
-	UImageManager::GetInst().CuttingSprite("Corsola_Hurt.png", 2, 8);
-	UImageManager::GetInst().CuttingSprite("Corsola_Idle.png", 3, 8);
-	UImageManager::GetInst().CuttingSprite("Corsola_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Corsola", AnimInfo({ 10,2,3,4 }));
-	UGameDataManager::GetInst().InsertPokemonAbility("Corsola", PokemonInfo( 5, 35, 10, 11));
-	//	이 던전에 나오는 포켓몬들 
-	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", { {"Kabuto","Shellos","Shellder","Corsola"} });
+	RoadDungeon("BeachCave");
+	RoadPokemon("Kabuto", 11, 2, 3,11, 4);
+	RoadPokemon("Shellos", 13, 2, 3, 12, 6);
+	RoadPokemon("Shellder", 10, 2, 4, 13, 6);
+	RoadPokemon("Corsola", 10, 2, 3, 11, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Kabuto", PokemonInfo(5, 30, 10, 14));
+	UGameDataManager::GetInst().InsertPokemonAbility("Shellos", PokemonInfo(5, 30, 10, 12));
+	UGameDataManager::GetInst().InsertPokemonAbility("Shellder", PokemonInfo(5, 40, 10, 10));
+	UGameDataManager::GetInst().InsertPokemonAbility("Corsola", PokemonInfo(5, 35, 10, 11));
+	UGameDataManager::GetInst().InsertDungeonInfo("BeachCave", DungeonInfo(60, 40, 5, { "Kabuto","Shellos","Shellder","Corsola" }));
 
 	//	AmpPlains
-	UImageManager::GetInst().CuttingSprite("AmpPlains_Ground.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("AmpPlains_Wall.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("AmpPlains_Water.png", 5, 10);
-	UGameDataManager::GetInst().InsertDungeonInfo("AmpPlains", { {"Kabuto","Shellos","Shellder","Corsola"} });
+	RoadDungeon("AmpPlains");
+	UGameDataManager::GetInst().InsertDungeonInfo("AmpPlains", DungeonInfo(60, 40, 5, { "Kabuto","Shellos","Shellder","Corsola" }));
 
 	//	DeepDarkCrater
-	UImageManager::GetInst().CuttingSprite("DeepDarkCrater_Ground.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("DeepDarkCrater_Wall.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("DeepDarkCrater_Water.png", 5, 10);
-	UGameDataManager::GetInst().InsertDungeonInfo("DeepDarkCrater", { {"Kabuto","Shellos","Shellder","Corsola"} });
+	RoadDungeon("DeepDarkCrater");
+	UGameDataManager::GetInst().InsertDungeonInfo("DeepDarkCrater", DungeonInfo(60, 40, 5, { "Kabuto","Shellos","Shellder","Corsola" }));
 
 	//	SurroundedSea
-	UImageManager::GetInst().CuttingSprite("SurroundedSea_Ground.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("SurroundedSea_Wall.png", 5, 10);
-	UImageManager::GetInst().CuttingSprite("SurroundedSea_Water.png", 5, 10);
-	UGameDataManager::GetInst().InsertDungeonInfo("SurroundedSea", { {"Kabuto","Shellos","Shellder","Corsola"} });
+	RoadDungeon("SurroundedSea");
+	UGameDataManager::GetInst().InsertDungeonInfo("SurroundedSea", DungeonInfo(60, 40, 5, { "Kabuto","Shellos","Shellder","Corsola" }));
 
 
 	//	Item
@@ -228,6 +155,32 @@ void PMDContentsCore::RoadResources()
 
 
 
+}
+
+void PMDContentsCore::RoadPokemon(std::string_view _PokemonName, int _Attack, int _Hurt, int _Idle, int _Shoot, int _Walk)
+{
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Attack.png", _PokemonName), _Attack, 8);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Hurt.png", _PokemonName), _Hurt, 8);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Idle.png", _PokemonName), _Idle, 8);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Shoot.png", _PokemonName), _Shoot, 8);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Walk.png", _PokemonName), _Walk, 8);
+	UGameDataManager::GetInst().InsertAnimInfo(_PokemonName, AnimInfo({ _Attack,_Hurt,_Idle,_Shoot,_Walk }));
+}
+
+void PMDContentsCore::RoadSkill(std::string_view _SkillName, int size)
+{
+	UEngineDirectory Skill;
+	Skill.MoveParentToDirectory("Resources//Image//Skill");
+	Skill.Append(_SkillName);
+	UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
+	UGameDataManager::GetInst().InsertSkillAnimCount(_SkillName, size);
+}
+
+void PMDContentsCore::RoadDungeon(std::string_view _DungeonName)
+{
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Ground.png", _DungeonName), 5, 10);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Wall.png", _DungeonName), 5, 10);
+	UImageManager::GetInst().CuttingSprite(std::format("{}_Water.png", _DungeonName), 5, 10);
 }
 
 

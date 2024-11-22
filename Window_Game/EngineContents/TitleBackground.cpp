@@ -12,8 +12,8 @@
 ATitleBackground::ATitleBackground()
 {
 	BgRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	BgRenderer->SetSprite("1.Intro_Bg.png");
-	BgRenderer->SetOrder(ERenderOrder::BACKGROUND);
+	BgRenderer->SetSprite("Title_Bg.png");
+	BgRenderer->SetOrder(ERenderOrder::BackGround);
 
 }
 

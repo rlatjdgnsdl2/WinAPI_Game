@@ -32,7 +32,7 @@ std::vector<class APokemon*>& APokemon::GetTargetablePokemons() {
 void APokemon::ReadyAttack()
 {
 	IsAttackValue = true;
-	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
+	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
 }
 
 void APokemon::EndAttack()
@@ -42,7 +42,7 @@ void APokemon::EndAttack()
 		TargetPokemon->GetCurAbility()->SetDamage(AbilityController->GetATK());
 	}
 	IsAttackValue = false;
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
 }
 
 void APokemon::PlayHurtAnim()

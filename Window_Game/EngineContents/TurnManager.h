@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 #include <EngineCore/PathFindAstar.h>
+#include <Enginebase/EngineRandom.h>
 
 
 
@@ -28,16 +29,18 @@ public:
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	void SetPlayer(class APlayer* _Player) {
-		Player = _Player;
-	}
 	void SetBasicUI(class ABasicUI* _BasicUI) {
 		BasicUI = _BasicUI;
 	}
 	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
 		DungeonUI = _DungeonUI;
 	}
-
+	void SetPlayer(class APlayer* _Player) {
+		Player = _Player;
+	}
+	void SetPartner(class APartner* _Partner) {
+		Partner = _Partner;
+	}
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
 	}
@@ -50,18 +53,21 @@ public:
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
 	TurnType GetCurTurn() { return CurTurn; }
-	void SetCurTurn(TurnType _CurTurn) { CurTurn = _CurTurn; }
 
 	void ComeBackTurn() { CurTurn = PreTurn; }
 
 	UPathFindAStar PathFinder;
+	UEngineRandom Random;
 protected:
 
 private:
 	std::string CurDungeonName;
 
 	class APlayer* Player = nullptr;
+	class APartner* Partner = nullptr;
+
 	class ADungeon_BSP* Dungeon = nullptr;
+
 	class ABasicUI* BasicUI = nullptr;
 	class ADungeonUI* DungeonUI = nullptr;
 
@@ -71,8 +77,6 @@ private:
 
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
-
-	FVector2D NextPotalLocation;
 
 	TurnType CurTurn;
 	TurnType PreTurn;

@@ -40,8 +40,6 @@ void ATurnManager::LevelChangeStart()
 	//	던전 생성
 	CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
 	Dungeon->Generate();
-	NextPotalLocation = Dungeon->GetPotalLocation();
-
 	PathFinder.SetData(Dungeon);
 	//	임시
 	{
@@ -53,6 +51,12 @@ void ATurnManager::LevelChangeStart()
 		PushAllAIPokemon(Partner);
 		
 	}
+
+	
+	SpawnEnemy();
+	SpawnEnemy();
+	SpawnEnemy();
+	SpawnEnemy();
 	SpawnEnemy();
 	PushPlayerCamp(Player);
 	// 처음 스폰위치
@@ -155,7 +159,8 @@ void ATurnManager::InitSpawn()
 }
 void ATurnManager::SpawnEnemy()
 {
-	UEngineRandom Random;
+	
+	
 	const std::vector<std::string>& Pokemons_In_Dongeon = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName).Pokemons_In_Dongeon;
 	int MaxSize = static_cast<int>(Pokemons_In_Dongeon.size());
 	int Index = Random.RandomInt(0, MaxSize - 1);

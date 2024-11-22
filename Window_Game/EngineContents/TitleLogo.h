@@ -20,7 +20,7 @@ public:
 protected:
 
 private:
-	class USpriteRenderer* LogoRenderer;
+	class USpriteRenderer* SpriteRenderer;
 	class AText* TitleText;
 	float CurDuration = 0.0f;
 

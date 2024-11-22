@@ -3,13 +3,13 @@
 
 enum class ERenderOrder
 {
-	BACKGROUND = -1000,
-	COLMAP = -999,
-	PLAYER = 0,
-	ATTACK_Player = 100,
-	UI_BACKGROUND = 5000,
-	UI_BASIC = 10000,
-	UI_IMAGE = 20000,
+	BackGround = -1000,
+	ColMap = -999,
+	Player = 0,
+	AttacK_Player = 100,
+	UI_BackGround = 5000,
+	UI_Basic = 10000,
+	UI_Image = 20000,
 	UI_Text = 30000
 };
 enum class TileType
@@ -17,30 +17,27 @@ enum class TileType
 	None = -1,
 	GROUND,
 	WALL,
-	WATER,
-	FIRE
-};
-enum class PokemonType {
-	WATER,
-	FIRE,
-	STONE
+	WATER
 };
 
 
 enum class CampType
 {
+	None = -1,
 	Player,
 	Enemy
 };
 
 enum class SkillType
 {
+	None = -1,
 	NormalAttack,
 	SpecialAttack,
 	UseItem
 };
 enum class DIR
 {
+	None = -1,
 	Left_Down = 1,
 	Down,
 	Right_Down,
@@ -49,7 +46,6 @@ enum class DIR
 	Left_Up,
 	Up,
 	Right_Up,
-	None
 };
 
 
@@ -69,11 +65,9 @@ enum class Text_Index
 	Dot, Plus, Minus,
 	Exclamation = 67,
 	Question = 69,
-	SmallQuotation_F, SmallQuotation_B,
-	BigQuotation_F, BigQuotation_B,
 	Male, Female,
-	SpaceBar = 77,
-	MAX
+	Comma,
+	MAX=79
 };
 
 
@@ -98,5 +92,12 @@ enum class MenuType {
 	Item,
 	Close
 };
+enum class TextColor {
+	White,
+	Blue,
+	Green,
+	Yellow,
+};
+
 
 

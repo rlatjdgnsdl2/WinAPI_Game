@@ -21,7 +21,7 @@ ABox::ABox()
 			NewSpriteRenderer->SetComponentScale(CornerSize);
 			NewSpriteRenderer->SetCameraEffect(false);
 			NewSpriteRenderer->SetComponentLocation(FVector2D({ CornerSize.X * x, CornerSize.Y * y }));
-			NewSpriteRenderer->SetOrder(ERenderOrder::UI_BASIC);
+			NewSpriteRenderer->SetOrder(ERenderOrder::UI_Basic);
 			BoxUI[y][x].SpriteRenderer = NewSpriteRenderer;
 			BoxUI[y][x].BoxPieceSize = CornerSize;
 		}
@@ -66,7 +66,7 @@ void ABox::SetBoxSize(FVector2D BoxSize)
 	BoxUI[1][1].SpriteRenderer->SetComponentLocation(Pivot);
 	BoxUI[1][1].SpriteRenderer->SetComponentScale(FVector2D(BoxSize.X - CornerSize.X * 2.0f, BoxSize.Y - CornerSize.Y * 2.0f));
 	BoxUI[1][1].SpriteRenderer->SetAlphafloat(0.3f);
-	BoxUI[1][1].SpriteRenderer->SetOrder(ERenderOrder::UI_BACKGROUND);
+	BoxUI[1][1].SpriteRenderer->SetOrder(ERenderOrder::UI_BackGround);
 
 
 	Pivot += FVector2D((BoxSize.X - CornerSize.X * 2), 0.0f).Half();

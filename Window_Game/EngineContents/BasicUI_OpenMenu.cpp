@@ -15,8 +15,8 @@ void ABasicUI::ShowMenu()
 	MenuBoxUI->ResetTextIter();
 	MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
 	MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-	MyInfoBoxUI->SetStringColor(0, 0, static_cast<int>(Player->GetName().size()), "Blue");
-	MyInfoBoxUI->SetStringColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");
+	MyInfoBoxUI->SetStringParticialColor(0, 0, static_cast<int>(Player->GetName().size()), "Blue");
+	MyInfoBoxUI->SetStringParticialColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");
 	MyInfoBoxUI->ShowUI();
 	CurMenuType = MenuType::Menu;
 }

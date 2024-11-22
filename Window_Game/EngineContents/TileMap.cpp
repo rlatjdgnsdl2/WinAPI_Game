@@ -15,14 +15,13 @@
 
 ATileMap::ATileMap()
 {
-
-
+	Tiles.resize(Height, std::vector<DungeonTile>(Width));
+	SetActorLocation({ 0,0 });
 }
 ATileMap::~ATileMap()
 {
 
 }
-
 
 void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _SpriteName, int _Index)
 {
@@ -33,8 +32,8 @@ void ATileMap::CreateTile(int _x, int _y, FVector2D _Scale, std::string_view _Sp
 	}
 	Tiles[_y][_x].SpriteRenderer->SetSprite(_SpriteName, _Index);
 	Tiles[_y][_x].SpriteRenderer->SetComponentLocation({ (_x)*_Scale.X,(_y)*_Scale.Y });
-	Tiles[_y][_x].SpriteRenderer->SetSpriteScale(1.0f);
-	Tiles[_y][_x].SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
+	Tiles[_y][_x].SpriteRenderer->SetSpriteScale();
+	Tiles[_y][_x].SpriteRenderer->SetOrder(ERenderOrder::BackGround);
 	FVector2D TileLocation = Tiles[_y][_x].SpriteRenderer->GetComponentLocation();
 	Tiles[_y][_x].TileTrans = FTransform(_Scale, TileLocation);
 }

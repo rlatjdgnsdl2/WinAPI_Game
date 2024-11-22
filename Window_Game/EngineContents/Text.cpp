@@ -5,7 +5,7 @@
 
 AText::AText()
 {
-	
+
 }
 
 AText::~AText()
@@ -15,49 +15,44 @@ AText::~AText()
 
 void AText::Reserve(int _Count)
 {
+	// 기존에 있던 글자 제거
 	for (size_t i = 0; i < TextRenderer.size(); i++)
 	{
-		TextRenderer[i]->SetActive(false);
+		TextRenderer[i]->Destroy();
 	}
- 	TextRenderer.resize(_Count);
+	TextRenderer.resize(_Count);
 	for (size_t i = 0; i < TextRenderer.size(); i++)
 	{
 		USpriteRenderer* NewText = CreateDefaultSubObject<USpriteRenderer>();
-		NewText->SetSprite("White_Text.png", static_cast<int>(Text_Index::MAX) + 1);
-		NewText->SetSpriteScale();
 		NewText->SetOrder(ERenderOrder::UI_Text);
 		NewText->SetCameraEffect(false);
 		TextRenderer[i] = NewText;
 	}
 }
 
+
 void AText::ShowText(float _DeltaTime)
 {
 	int Size = static_cast<int>(StringValue.size());
-	for (size_t i = 0; i < Size; i++)
-	{
+	for (size_t i = 0; i < Size; i++) {
 		TextRenderer[i]->SetActive(false);
 	}
 
-	if (Time == 0.0f)
-	{
+	if (Time == 0.0f) {
 		CurCount = Size;
 	}
 
 	CurTime += _DeltaTime;
 
-	if (CurTime > Time)
-	{
+	if (CurTime > Time) {
 		++CurCount;
 		CurTime = 0.0f;
 	}
-	if (CurCount >= Size)
-	{
+	if (CurCount >= Size) {
 		CurCount = Size;
 	}
 
-	for (size_t i = 0; i < CurCount; i++)
-	{
+	for (size_t i = 0; i < CurCount; i++) {
 		TextRenderer[i]->SetActive(true);
 	}
 }
@@ -75,28 +70,13 @@ void AText::SetString(std::string_view _StringValue, std::string_view _color, FV
 		char c = StringValue[i];
 		int TextIndex = CharToTextIndex(c);
 		TextRenderer[i]->SetSprite(Color + "_Text.png", TextIndex);
+		TextRenderer[i]->SetSpriteScale();
 		TextRenderer[i]->SetComponentLocation(FVector2D({ TextSize.X * i,TextSize.Y }));
 		TextRenderer[i]->SetActive(false);
 	}
 }
 
-void AText::SetString(AText* Text)
-{
-	StringValue = Text->GetString();
-	TextSize = Text->TextSize;
-	Time = Text->Time;
-	Color = Text->Color;
-	Reserve(static_cast<int>(StringValue.size()));
-	CurCount = 0;
-	for (size_t i = 0; i < StringValue.size(); i++)
-	{
-		char c = StringValue[i];
-		int TextIndex = CharToTextIndex(c);
-		TextRenderer[i]->SetSprite(Color + "_Text.png", TextIndex);
-		TextRenderer[i]->SetComponentLocation(FVector2D({ TextSize.X * i,TextSize.Y }));
-		TextRenderer[i]->SetActive(false);
-	}
-}
+
 
 
 void AText::SetColor(std::string_view _color)
@@ -110,10 +90,10 @@ void AText::SetColor(std::string_view _color)
 	}
 }
 
-void AText::SetColor(int _StartIndex, int _EndIndex, std::string_view _color)
+void AText::SetParticialColor(int _StartIndex, int _EndIndex, std::string_view _color)
 {
 	std::string Color = _color.data();
-	for (size_t i = _StartIndex; i < _EndIndex; i++)
+	for (int i = _StartIndex; i < _EndIndex; i++)
 	{
 		char c = StringValue[i];
 		int TextIndex = CharToTextIndex(c);
@@ -137,9 +117,12 @@ int AText::CharToTextIndex(char _C)
 	}
 	switch (_C) {
 	case '!': return static_cast<int>(Text_Index::Exclamation);
-	case '-': return static_cast<int>(Text_Index::Minus);
 	case '?': return static_cast<int>(Text_Index::Question);
-	default: return static_cast<int>(Text_Index::MAX)+1;
+	case',': return static_cast<int>(Text_Index::Comma);
+	case '+': return static_cast<int>(Text_Index::Plus);
+	case '-': return static_cast<int>(Text_Index::Minus);
+	case '.': return static_cast<int>(Text_Index::Dot);
+	default: return static_cast<int>(Text_Index::MAX);
 	}
 }
 

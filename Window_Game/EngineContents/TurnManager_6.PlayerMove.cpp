@@ -7,6 +7,7 @@
 
 #include "Pokemon.h"
 #include "Player.h"
+#include "Dungeon_BSP.h"
 #include "DungeonUI.h"
 
 
@@ -22,6 +23,7 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 	// 플레이어가 도착했으면
 	FVector2D CurPlayerLocation = Player->GetActorLocation();
 	FVector2D PlayerTargetLocation = Player->GetTargetLocation();
+	FVector2D NextPotalLocation = Dungeon->GetPotalLocation();
 	if (CurPlayerLocation == PlayerTargetLocation)
 	{
 		// 포탈위치인지 확인

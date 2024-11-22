@@ -31,13 +31,6 @@ public:
 	{
 		Tiles[_y][_x].TileType = _TileType;
 	}
-
-	FIntPoint GetTileIndex(const FVector2D& _Location) {
-		FIntPoint Result;
-		Result = _Location.ConvertToPoint();
-		Result = Result / size;
-		return Result;
-	}
 	
 
 
@@ -60,9 +53,9 @@ public:
 
 protected:
 	std::vector <std::vector<DungeonTile>> Tiles;
-	int Width = 60;
-	int Height = 40;
-	int size = 72;
+	const int Width = 60;
+	const int Height = 40;
+	
 
 private:
 	

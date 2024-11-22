@@ -5,8 +5,6 @@
 class APokemon :public AActor
 {
 public:
-
-
 	APokemon();
 	virtual ~APokemon();
 	APokemon(const APokemon& _Other) = delete;
@@ -81,7 +79,6 @@ public:
 protected:
 	DIR Dir;
 	class USpriteRenderer* SpriteRenderer;
-	AnimInfo CurAnimInfo;
 
 	//	이동관련
 	float CurDuration;
@@ -98,14 +95,14 @@ protected:
 
 	std::string CurSpecialSKillName="";
 
-	bool IsAttackValue;
-	bool IsHurtValue;
+	bool IsAttackValue{};
+	bool IsHurtValue{};
 
-	int CurLevel;
-	int CurMaxHp;
-	int CurHp;
-	int CurATK;
-	int CurSPD;
+	int CurLevel{};
+	int CurMaxHp{};
+	int CurHp{};
+	int CurATK{};
+	int CurSPD{};
 private:
 
 

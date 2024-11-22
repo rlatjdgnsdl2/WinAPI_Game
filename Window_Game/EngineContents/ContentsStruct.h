@@ -3,20 +3,26 @@
 
 
 struct Room {
-	int x, y, width, height;
+	int x{};
+	int y{};
+	int width{};
+	int height{};
 	bool isValid() const {
 		return width > 0 && height > 0;
 	}
 };
 
-struct Node {
-	int x, y, width, height;
-	Room room;
-	Node* left = nullptr;
-	Node* right = nullptr;
+struct RoomNode {
+	int x{};
+	int y{};
+	int width{};
+	int height{};
+	Room room{};
+	RoomNode* left = nullptr;
+	RoomNode* right = nullptr;
 	bool isLeaf() const { return left == nullptr && right == nullptr; }
 
-	~Node() {
+	~RoomNode() {
 		delete left;
 		delete right;
 	}
@@ -27,37 +33,23 @@ struct Node {
 
 struct AnimInfo
 {
-	AnimInfo() {}
 	AnimInfo(
 		int _AttackAnimCount,
 		int _HurtAnimCount,
 		int _IdleAnimCount,
+		int _ShootAnimCount,
 		int _WalkAnimCount) :
 		AttackAnimCount(_AttackAnimCount),
 		HurtAnimCount(_HurtAnimCount),
 		IdleAnimCount(_IdleAnimCount),
-		WalkAnimCount(_WalkAnimCount) {
+		ShootAnimCount(_ShootAnimCount),
+		WalkAnimCount(_WalkAnimCount){
 	}
-	AnimInfo(
-		int _AttackAnimCount,
-		int _HurtAnimCount,
-		int _IdleAnimCount,
-		int _WalkAnimCount,
-		int _ShootAnimCount) :
-		AttackAnimCount(_AttackAnimCount),
-		HurtAnimCount(_HurtAnimCount),
-		IdleAnimCount(_IdleAnimCount),
-		WalkAnimCount(_WalkAnimCount),
-		ShootAnimCount(_ShootAnimCount) {
-	}
-
-
-
 	int AttackAnimCount{};
 	int HurtAnimCount{};
 	int IdleAnimCount{};
-	int WalkAnimCount{};
 	int ShootAnimCount{};
+	int WalkAnimCount{};
 };
 
 struct PokemonInfo
@@ -74,7 +66,6 @@ struct PokemonInfo
 		ATK(_Attack),
 		SPD(_Speed) {
 	}
-
 	int Level{};
 	int MaxHp{};
 	int ATK{};
@@ -91,6 +82,19 @@ public:
 
 
 struct DungeonInfo {
+	DungeonInfo(
+		int _Width,
+		int _Height,
+		int _MaxFloor,
+		const std::vector<std::string>&_Pokemons_In_Dongeon) :
+		Width(_Width),
+		Height(_Height),
+		MaxFloor(_MaxFloor),
+		Pokemons_In_Dongeon(_Pokemons_In_Dongeon) {
+	}
+	int MaxFloor{};
+	int Width{};
+	int Height{};
 	std::vector<std::string> Pokemons_In_Dongeon;
 };
 

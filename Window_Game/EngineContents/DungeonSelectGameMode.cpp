@@ -21,7 +21,7 @@ ADungeonSelectGameMode::ADungeonSelectGameMode()
 	WorldMapRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	WorldMapRenderer->SetSprite("WorldMap.png");
 	FVector2D Size = WorldMapRenderer->SetSpriteScale(0.5f);
-	WorldMapRenderer->SetOrder(ERenderOrder::BACKGROUND);
+	WorldMapRenderer->SetOrder(ERenderOrder::BackGround);
 }
 
 ADungeonSelectGameMode::~ADungeonSelectGameMode()

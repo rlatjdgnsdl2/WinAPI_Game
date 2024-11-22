@@ -10,7 +10,7 @@ ACharacterSelectGameMode::ACharacterSelectGameMode()
 	BackGround->SetSprite("CharacterSelet_bg.png");
 	FVector2D Size = BackGround->SetSpriteScale();
 	BackGround->SetComponentLocation(Size.Half());
-	BackGround->SetOrder(ERenderOrder::UI_BACKGROUND);
+	BackGround->SetOrder(ERenderOrder::UI_BackGround);
 }
 
 ACharacterSelectGameMode::~ACharacterSelectGameMode() 

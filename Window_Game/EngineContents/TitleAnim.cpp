@@ -11,10 +11,10 @@
 ATitleAnim::ATitleAnim()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
-	SpriteRenderer->SetSprite("1.Intro_anim.png");
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
+	SpriteRenderer->SetSprite("Title_anim.png");
 	float frame = 2.0f / 15;
-	SpriteRenderer->CreateAnimation("IntroAnim", "1.Intro_Anim.png", 0, 14, frame, false);
+	SpriteRenderer->CreateAnimation("TitleAnim", "Title_Anim.png", 0, 14, frame, false);
 }
 ATitleAnim::~ATitleAnim()
 {
@@ -35,7 +35,7 @@ void ATitleAnim::LevelChangeStart()
 
 void ATitleAnim::PlayAnimation(float _DeltaTime)
 {
-	SpriteRenderer->ChangeAnimation("IntroAnim");
+	SpriteRenderer->ChangeAnimation("TitleAnim");
 }
 
 

@@ -9,11 +9,8 @@
 #include "GameDataManager.h"
 
 
-ADungeon_BSP::ADungeon_BSP() :
-	root(nullptr)
-	, CurFloor(1)
+ADungeon_BSP::ADungeon_BSP() :root(nullptr)
 {
-	Tiles.resize(Height, std::vector<DungeonTile>(Width));
 	SetActorLocation({ 0,0 });
 }
 
@@ -44,7 +41,7 @@ void ADungeon_BSP::Generate()
 {
 	std::string CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
 	SetName(CurDungeonName);
-	root = new Node{ 5, 5, Width - 11, Height - 11 };
+	root = new RoomNode{ 5, 5, Width - 11, Height - 11 };
 	InitDungeon();
 	Split(root);
 	CreateNaturalFeatures();
@@ -54,7 +51,7 @@ void ADungeon_BSP::Generate()
 	SetNextPotal();
 }
 
-Room ADungeon_BSP::GetRoom(Node* node) const
+Room ADungeon_BSP::GetRoom(RoomNode* node) const
 {
 	if (node->isLeaf() && node->room.isValid()) return node->room;
 	Room room;
@@ -67,12 +64,12 @@ Room ADungeon_BSP::GetRoom(Node* node) const
 		if (room.isValid()) return room;  // 방을 찾은 경우 반환
 	}
 	// 방이 없을 경우 기본값 반환
-	return Room();  // 또는 Room의 기본값, 혹은 예외 처리
+	return Room();  
 }
 
 
 
-void ADungeon_BSP::Split(Node* node)
+void ADungeon_BSP::Split(RoomNode* node)
 {
 	// 노드의 크기가 최소 크기보다 작으면 분할을 중지
 	if (node->width < MIN_SIZE || node->height < MIN_SIZE) {
@@ -95,16 +92,16 @@ void ADungeon_BSP::Split(Node* node)
 
 	// 가로로 분할
 	if (SplitHorizon) {
-		node->left = new Node{ node->x, node->y, node->width, SplitPos };
-		node->right = new Node{ node->x, node->y + SplitPos, node->width, node->height - SplitPos };
+		node->left = new RoomNode{ node->x, node->y, node->width, SplitPos };
+		node->right = new RoomNode{ node->x, node->y + SplitPos, node->width, node->height - SplitPos };
 	}
 	// 세로로 분할
 	else {
-		node->left = new Node{ node->x, node->y, SplitPos, node->height };
-		node->right = new Node{ node->x + SplitPos, node->y, node->width - SplitPos, node->height };
+		node->left = new RoomNode{ node->x, node->y, SplitPos, node->height };
+		node->right = new RoomNode{ node->x + SplitPos, node->y, node->width - SplitPos, node->height };
 	}
-	Node* NewNodeLeft = node->left;
-	Node* NewNodeRight = node->right;
+	RoomNode* NewNodeLeft = node->left;
+	RoomNode* NewNodeRight = node->right;
 
 	// 재귀적으로 분할을 계속 진행
 	if (nullptr != NewNodeLeft) {
@@ -165,7 +162,7 @@ void ADungeon_BSP::CreateNaturalFeatures()
 
 
 
-void ADungeon_BSP::CreateRooms(Node* node)
+void ADungeon_BSP::CreateRooms(RoomNode* node)
 {
 	if (node == nullptr)
 	{
@@ -206,7 +203,7 @@ void ADungeon_BSP::CreateRooms(Node* node)
 
 }
 
-void ADungeon_BSP::ConnectRooms(Node* node)
+void ADungeon_BSP::ConnectRooms(RoomNode* node)
 {
 	// 왼쪽 또는 오른쪽 자식 노드가 없는 경우, 연결할 방이 없으므로 함수를 종료
 	if (!node->left || !node->right) {

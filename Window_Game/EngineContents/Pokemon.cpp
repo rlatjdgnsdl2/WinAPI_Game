@@ -33,7 +33,7 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	//	애니메이션 세팅
 	SetAnim();
 	//	랜더오더
-	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
 	//	기본
 	Dir = DIR::Down;
 }

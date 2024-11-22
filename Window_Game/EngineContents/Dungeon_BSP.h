@@ -24,9 +24,9 @@ public:
 	
 	virtual void LevelChangeEnd()override;
 
-	void RoomClear();
 	void Generate();
-	Room GetRoom(Node* node) const;
+	void RoomClear();
+	Room GetRoom(RoomNode* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
 
 	FVector2D GetPotalLocation() const { return PotalLocation; }
@@ -35,26 +35,28 @@ public:
 	void NextFloor() { CurFloor++; }
 	void InitFloor() { CurFloor = 1; }
 
+
 protected:
 
 private:
 	const int MIN_SIZE = 8;
 	UEngineRandom Random;
-	Node* root;
+	RoomNode* root;
 
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
 
-	int CurFloor = 1;
+	int CurFloor;
+	int MaxFloor;
 
 
 	//	던전생성과정
 	void InitDungeon();
 	void CreateNaturalFeatures();
-	void Split(Node* node);
-	void CreateRooms(Node* node);
-	void ConnectRooms(Node* node);
+	void Split(RoomNode* node);
+	void CreateRooms(RoomNode* node);
+	void ConnectRooms(RoomNode* node);
 	void SetNaturally();
 	void SetNextPotal();
 

@@ -20,6 +20,8 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
+	void CreateTopUI(const std::string& key, const std::string& spriteName, float offsetX = 0.0f);
+
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
@@ -46,52 +48,44 @@ private:
 	bool IsAskValue = false;
 	bool IsNewLogValue = false;
 
-	class APlayer* Player;
-	class ADungeon_BSP* Dungeon;
-	class ABasicUI* BasicUI;
-	class ATurnManager* TurnManager;
+	class APlayer* Player = nullptr;
+	class ADungeon_BSP* Dungeon = nullptr;
+	class ABasicUI* BasicUI = nullptr;
+	class ATurnManager* TurnManager = nullptr;
 	FVector2D UIStartPos = FVector2D(20.0f, 20.0f);
 
 	//	상단 UI
-	class USpriteRenderer* UI_B = nullptr;
-	class USpriteRenderer* UI_FValue = nullptr;
-	class USpriteRenderer* UI_F = nullptr;
-	class USpriteRenderer* UI_Lv = nullptr;
-	class USpriteRenderer* UI_LvValue10 = nullptr;
-	class USpriteRenderer* UI_LvValue01 = nullptr;
-	class USpriteRenderer* UI_Hp = nullptr;
-	class USpriteRenderer* UI_CurHpValue10 = nullptr;
-	class USpriteRenderer* UI_CurHpValue01 = nullptr;
-	class USpriteRenderer* UI_Slash = nullptr;
-	class USpriteRenderer* UI_MaxHpValue10 = nullptr;
-	class USpriteRenderer* UI_MaxHpValue01 = nullptr;
+	std::unordered_map<std::string, class USpriteRenderer*> TopUI;
 	std::vector<class USpriteRenderer* > HpBar;
 
-	
+
+
+
 	//	던전에서 메뉴 오픈시
-	class ABoxUI* DungeonNameUI;
+	class ABoxUI* DungeonNameUI = nullptr;
 
 	//	다음층질문창
-	class ABoxUI* Q_NextFloorUI;
-	class ABoxUI* A_NextFloorUI;
+	class ABoxUI* Q_NextFloorUI = nullptr;
+	class ABoxUI* A_NextFloorUI = nullptr;
 
-	class ABoxUI* LogBoxUI;
-	
-
-
-
-
-	
+	//	전투 로그메시지
+	class ABoxUI* LogBoxUI = nullptr;
 
 
 
-	
-	
 
-	
 
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 
 
 

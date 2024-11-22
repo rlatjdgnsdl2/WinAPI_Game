@@ -19,12 +19,12 @@ ATitleLogo::~ATitleLogo()
 void ATitleLogo::BeginPlay()
 {
 	Super::BeginPlay();
-	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	LogoRenderer->SetSprite("TitleLogo.png");
-	LogoRenderer->SetOrder(ERenderOrder::PLAYER);
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite("Title_TitleLogo.png");
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
 	FVector2D WinSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation(WinSize.Half());
-	LogoRenderer->SetCameraEffect(false);
+	SpriteRenderer->SetCameraEffect(false);
 
 	TitleText = GetWorld()->SpawnActor<AText>();
 	TitleText->SetActorLocation(WinSize.Half() + FVector2D(-100, 200));
@@ -39,7 +39,7 @@ void ATitleLogo::Tick(float _DeltaTime)
 	CurDuration += _DeltaTime;
 	if (IsActive()) {
 		float Value = UEngineMath::Clamp(CurDuration/2.0f, 0.0f, 1.0f);
-		LogoRenderer->SetSpriteScale(Value);
+		SpriteRenderer->SetSpriteScale(Value);
 		TitleText->ShowText(_DeltaTime);
 		
 	};

@@ -12,7 +12,7 @@ ADungeonSelectActor::ADungeonSelectActor()
 	SelectBoxRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SelectBoxRenderer->SetSprite("Select_Box.png");
 	SelectBoxRenderer->SetSpriteScale();
-	SelectBoxRenderer->SetOrder(ERenderOrder::PLAYER);
+	SelectBoxRenderer->SetOrder(ERenderOrder::Player);
 	
 }
 

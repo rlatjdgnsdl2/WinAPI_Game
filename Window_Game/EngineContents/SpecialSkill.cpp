@@ -28,7 +28,7 @@ void ASpecialSkill::BeginPlay()
 	SpriteRenderer->SetSprite(GetName(), 0);
 	FVector2D Scale = SpriteRenderer->SetSpriteScale();
 	SpriteRenderer->SetComponentLocation({ 0.0f,Scale.Y/3.0f *-1.0f});
-	SpriteRenderer->SetOrder(ERenderOrder::ATTACK_Player);
+	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
 	int MaxCount = UGameDataManager::GetInst().GetSkillAnimCount(GetName());
 	float Frame = 1.0f / MaxCount;
 	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount-1, Frame, false);

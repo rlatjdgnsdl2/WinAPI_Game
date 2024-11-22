@@ -23,7 +23,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSprite("Mudkip.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ -200,0 });
-		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
+		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Mudkip",SpriteRenderer });
 	}
 
@@ -32,7 +32,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSprite("Chikorita.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ 0,0 });
-		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
+		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Chikorita",SpriteRenderer });
 	}
 
@@ -41,7 +41,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetSprite("Pikachu.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
 		SpriteRenderer->SetComponentLocation({ 200,0 });
-		SpriteRenderer->SetOrder(ERenderOrder::UI_IMAGE);
+		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Pikachu",SpriteRenderer });
 	}
 }
