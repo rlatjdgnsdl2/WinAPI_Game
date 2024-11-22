@@ -41,6 +41,7 @@ void ADungeonGameMode::BeginPlay()
 	DungeonUI->SetDungeon(Dungeon);
 	DungeonUI->SetBasicUI(BasicUI);
 	TurnManager->SetDungeonUI(DungeonUI);
+	DungeonUI->SetTurnManager(TurnManager);
 	
 
 

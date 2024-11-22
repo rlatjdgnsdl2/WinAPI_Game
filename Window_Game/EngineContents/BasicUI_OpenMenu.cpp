@@ -24,12 +24,12 @@ void ABasicUI::ShowMenu()
 void ABasicUI::OpenMenu() {
 
 	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "Yellow");
-	if (true == UEngineInput::GetInst().IsDown('W'))
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8))
 	{
 		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 		MenuBoxUI->PrevTextIter();
 	}
-	if (true == UEngineInput::GetInst().IsDown('S'))
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2))
 	{
 		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 		MenuBoxUI->NextTextIter();

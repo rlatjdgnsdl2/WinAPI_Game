@@ -97,7 +97,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 
 
-	if (true == UEngineInput::GetInst().IsDown('D')) {
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD6)) {
 		CurIter->second->SetSpriteScale(0.5f);
 		CurIter++;
 		if (CurIter == PlayerCharacterImages.end()) {
@@ -106,7 +106,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		CurIter->second->SetSpriteScale(1.0f);
 	}
 
-	if (true == UEngineInput::GetInst().IsDown('A')) {
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD4)) {
 		CurIter->second->SetSpriteScale(0.5f);
 		if (CurIter == PlayerCharacterImages.begin()) {
 			CurIter = PlayerCharacterImages.end();

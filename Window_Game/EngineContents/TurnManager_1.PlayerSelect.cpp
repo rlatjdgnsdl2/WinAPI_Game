@@ -21,6 +21,7 @@ void ATurnManager::PlayerSelect()
 	PlayerMoveDir = FVector2D::ZERO;
 
 	if (UEngineInput::GetInst().IsDown('Q')) {
+		PreTurn = CurTurn;
 		CurTurn = TurnType::Open_UI;
 		return;
 	}

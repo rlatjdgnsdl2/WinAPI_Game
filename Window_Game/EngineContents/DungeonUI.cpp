@@ -4,13 +4,16 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/EngineAPICore.h>
 #include "Player.h"
 #include "BasicUI.h"
 
 #include "AbilityController.h"
+#include "DungeonGameMode.h"
 #include "Dungeon_BSP.h"
 #include "Box.h"
 #include "Text.h"
+#include "TurnManager.h"
 
 
 #include "BoxUI.h"
@@ -140,7 +143,7 @@ void ADungeonUI::BeginPlay()
 		HpBar[i]->SetSpriteScale(0.0f);
 	}
 
-	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 200, 100 }));
+	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 250, 100 }));
 	DungeonNameUI->CreateString("");
 
 	Q_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 500.0f, 100.0f }, { 100, 100 }));
@@ -195,16 +198,16 @@ void ADungeonUI::Tick(float _DeltaTime)
 	else {
 		DungeonNameUI->HideUI();
 	}
-	if (BasicUI->GetCurMenuType() == MenuType::NextFloor)
+	if (IsAskValue==true)
 	{
 		AText* Text = *(A_NextFloorUI->GetCurTextIter());
 		A_NextFloorUI->SetStringColor(Text, "Yellow");
-		if (true == UEngineInput::GetInst().IsDown('W'))
+		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8))
 		{
 			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
 			A_NextFloorUI->PrevTextIter();
 		}
-		if (true == UEngineInput::GetInst().IsDown('S'))
+		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2))
 		{
 			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
 			A_NextFloorUI->NextTextIter();
@@ -215,11 +218,14 @@ void ADungeonUI::Tick(float _DeltaTime)
 		{
 			if (Text->GetString() == "Yes")
 			{
-				
+				HideNextFloorUI();
+				UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+				Dungeon->NextFloor();
 			}
-			else
+			else if(Text->GetString() == "No")
 			{
-				
+				HideNextFloorUI();
+				TurnManager->ComeBackTurn();
 			}
 		}
 	}
@@ -233,12 +239,14 @@ void ADungeonUI::IsGoingNextFloor()
 {
 	Q_NextFloorUI->ShowUI();
 	A_NextFloorUI->ShowUI();
+	IsAskValue = true;
 }
 
 void ADungeonUI::HideNextFloorUI()
 {
 	Q_NextFloorUI->HideUI();
 	A_NextFloorUI->HideUI();
+	IsAskValue = false;
 }
 
 

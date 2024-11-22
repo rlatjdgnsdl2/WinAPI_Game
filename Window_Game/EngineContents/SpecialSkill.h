@@ -21,12 +21,14 @@ public:
 	virtual void BeginPlay()override;
 	virtual void Tick(float _DeltaTime)override;
 
+
 	bool IsAttack();
 
 protected:
-	class USpriteRenderer* SpriteRenderer;
 
 private:
+	class USpriteRenderer* SpriteRenderer;
+
 
 };
 

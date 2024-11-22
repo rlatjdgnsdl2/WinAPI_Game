@@ -33,10 +33,8 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 			DungeonUI->IsGoingNextFloor();
 			PreTurn = CurTurn;
 			CurTurn = TurnType::Open_UI;
+			return;
 			
-			//return;
-			//  Dungeon->NextFloor();
-			//  레벨변경(같은 레벨이니까 레벨 리셋해야하나?)
 		}
 		
 		//	MovePokemon에 있는 포켓몬 모두 강제로 도착하게

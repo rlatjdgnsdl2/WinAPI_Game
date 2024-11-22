@@ -7,7 +7,7 @@
 void ATurnManager::OpenMenu() {
 
 	MenuType CurMenu = BasicUI->GetCurMenuType();
-	if (CurMenu == MenuType::Close) {
-		CurTurn = TurnType::Player_Select;
+	if (CurMenu == MenuType::Close&&DungeonUI->IsAsk()==false) {
+		CurTurn = PreTurn;
 	}
 }

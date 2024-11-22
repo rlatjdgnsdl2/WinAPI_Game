@@ -33,6 +33,8 @@ void ASpecialSkill::BeginPlay()
 	float Frame = 1.0f / MaxCount;
 	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount-1, Frame, false);
 
+
+
 }
 
 void ASpecialSkill::Tick(float _DeltaTime)

@@ -28,17 +28,23 @@ public:
 		BasicUI = _BasicUI;
 	}
 
+	bool IsAsk() const { return IsAskValue; }
+
+	void SetTurnManager(class ATurnManager* _TurnManager) {
+		TurnManager = _TurnManager;
+	}
+
 	void IsGoingNextFloor();
 	void HideNextFloorUI();
 
 protected:
 private:
-	bool IsOpenMenuValue = false;
-	bool IsUseItemValue = false;
+	bool IsAskValue = false;
 
 	class APlayer* Player;
 	class ADungeon_BSP* Dungeon;
 	class ABasicUI* BasicUI;
+	class ATurnManager* TurnManager;
 	FVector2D UIStartPos = FVector2D(20.0f, 20.0f);
 
 	//	»ó´Ü UI

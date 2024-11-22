@@ -13,12 +13,12 @@ void ABasicUI::OpenSkill() {
 	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "Yellow");
 	
 
-	if (true == UEngineInput::GetInst().IsDown('W'))
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8))
 	{
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->PrevTextIter();
 	}
-	if (true == UEngineInput::GetInst().IsDown('S'))
+	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2))
 	{
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->NextTextIter();
