@@ -34,12 +34,17 @@ public:
 		TurnManager = _TurnManager;
 	}
 
+	class ABoxUI* GetLogBoxUI() { return LogBoxUI; }
+	bool IsNewLog() const { return IsNewLogValue; }
+	void SetNewLog(bool _IsNewLog) { IsNewLogValue = _IsNewLog; }
+
 	void IsGoingNextFloor();
 	void HideNextFloorUI();
 
 protected:
 private:
 	bool IsAskValue = false;
+	bool IsNewLogValue = false;
 
 	class APlayer* Player;
 	class ADungeon_BSP* Dungeon;
@@ -69,6 +74,9 @@ private:
 	//	다음층질문창
 	class ABoxUI* Q_NextFloorUI;
 	class ABoxUI* A_NextFloorUI;
+
+	class ABoxUI* LogBoxUI;
+	
 
 
 

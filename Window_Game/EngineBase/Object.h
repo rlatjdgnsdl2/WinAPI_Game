@@ -68,8 +68,7 @@ public:
 	void DebugOff() { IsDebugValue = false; }
 	void DebugSwitch() { IsDebugValue = !IsDebugValue; }
 
-	void TestDebugOn();
-	void TestDebugOff();
+	
 	void TestDebugCheck()
 	{
 		if (true == TestDebug)

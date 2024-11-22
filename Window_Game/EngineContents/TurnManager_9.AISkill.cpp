@@ -9,7 +9,7 @@
 
 void ATurnManager::AISkill()
 {
-	size_t MaxIndex = SkillPokemon.size();
+	int MaxIndex = static_cast<int>(SkillPokemon.size());
 	std::list<APokemon*>::iterator StartIter = SkillPokemon.begin();
 	std::list<APokemon*>::iterator EndIter = SkillPokemon.end();
 	if (StartIter == EndIter) {
@@ -21,13 +21,14 @@ void ATurnManager::AISkill()
 	// 랜덤으로 타겟포켓몬 정하기
 	if (CurPokemon->GetTargetPokemon() == nullptr) {
 		std::vector<APokemon*>& TargetablePokemons = CurPokemon->GetTargetablePokemons();
-		size_t TargetableSize = TargetablePokemons.size();
+		int TargetableSize = static_cast<int>(TargetablePokemons.size());
 		UEngineRandom Random;
 		int TargetIndex = Random.RandomInt(0, TargetableSize - 1);
 		APokemon* TargetPokemon = TargetablePokemons[TargetIndex];
 		FIntPoint TargetTile = TargetPokemon->GetTile();
 		FIntPoint CurTile = CurPokemon->GetTile();
 		FIntPoint TargetDir = TargetTile - CurTile;
+
 		CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(TargetDir));
 		CurPokemon->SetTargetPokemon(TargetPokemon);
 		CurPokemon->SetSkill(SkillType::NormalAttack);
@@ -50,8 +51,6 @@ void ATurnManager::AISkill()
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			CompareCamp.remove(TargetPokemon);
 			TargetPokemon->Destroy();
-
-			//CurTurn = TurnType::Result;
 		}
 	}
 	CurPokemon->SetTargetPokemon(nullptr);

@@ -33,14 +33,15 @@ void AText::Reserve(int _Count)
 
 void AText::ShowText(float _DeltaTime)
 {
-	for (size_t i = 0; i < TextRenderer.size(); i++)
+	int Size = static_cast<int>(StringValue.size());
+	for (size_t i = 0; i < Size; i++)
 	{
 		TextRenderer[i]->SetActive(false);
 	}
 
 	if (Time == 0.0f)
 	{
-		CurCount = TextRenderer.size();
+		CurCount = Size;
 	}
 
 	CurTime += _DeltaTime;
@@ -50,9 +51,9 @@ void AText::ShowText(float _DeltaTime)
 		++CurCount;
 		CurTime = 0.0f;
 	}
-	if (CurCount >= TextRenderer.size())
+	if (CurCount >= Size)
 	{
-		CurCount = TextRenderer.size();
+		CurCount = Size;
 	}
 
 	for (size_t i = 0; i < CurCount; i++)
@@ -67,7 +68,7 @@ void AText::SetString(std::string_view _StringValue, std::string_view _color, FV
 	TextSize = _TextSize;
 	Time = _Time;
 	Color = _color.data();
-	Reserve(StringValue.size());
+	Reserve(static_cast<int>(StringValue.size()));
 	CurCount = 0;
 	for (size_t i = 0; i < StringValue.size(); i++)
 	{
@@ -85,7 +86,7 @@ void AText::SetString(AText* Text)
 	TextSize = Text->TextSize;
 	Time = Text->Time;
 	Color = Text->Color;
-	Reserve(StringValue.size());
+	Reserve(static_cast<int>(StringValue.size()));
 	CurCount = 0;
 	for (size_t i = 0; i < StringValue.size(); i++)
 	{

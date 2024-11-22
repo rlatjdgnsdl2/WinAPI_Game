@@ -71,7 +71,7 @@ void APokemon::SpecialAttack()
 
 	if (SpecialSkill == nullptr) {
 		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>(CurSpecialSKillName);
-		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_Vector2D(Dir) * 72.0f);
+		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
 		return;
 	}
 	if (false == SpecialSkill->IsAttack()) {

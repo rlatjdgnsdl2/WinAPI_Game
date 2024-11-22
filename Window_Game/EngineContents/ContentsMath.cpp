@@ -6,151 +6,161 @@
 
 
 DIR UContentsMath::FIntPoint_To_DIR(const FIntPoint& _FIntPoint) {
+	DIR Dir = DIR::None;
 	if (_FIntPoint.X < 0 && _FIntPoint.Y == 0) {
-		return DIR::Left;
+		Dir = DIR::Left;
 	}
 	else if (_FIntPoint.X > 0 && _FIntPoint.Y == 0) {
-		return DIR::Right;
+		Dir = DIR::Right;
 	}
 	else if (_FIntPoint.X == 0 && _FIntPoint.Y < 0) {
-		return  DIR::Up;
+		Dir = DIR::Up;
 	}
 	else if (_FIntPoint.X == 0 && _FIntPoint.Y > 0) {
-		return DIR::Down;
+		Dir = DIR::Down;
 	}
 	else if (_FIntPoint.X < 0 && _FIntPoint.Y < 0) {
-		return  DIR::Left_Up;
+		Dir = DIR::Left_Up;
 	}
 	else if (_FIntPoint.X < 0 && _FIntPoint.Y > 0) {
-		return  DIR::Left_Down;
+		Dir = DIR::Left_Down;
 	}
 	else if (_FIntPoint.X > 0 && _FIntPoint.Y < 0) {
-		return  DIR::Right_Up;
+		Dir = DIR::Right_Up;
 	}
 	else if (_FIntPoint.X > 0 && _FIntPoint.Y > 0) {
-		return  DIR::Right_Down;
+		Dir = DIR::Right_Down;
 	}
+	return Dir;
+
 }
 DIR UContentsMath::FVector2D_To_DIR(const FVector2D& _FVector2D) {
+	DIR Dir = DIR::None;
 	if (_FVector2D.X < 0 && _FVector2D.Y == 0) {
-		return DIR::Left;
+		Dir = DIR::Left;
 	}
 	else if (_FVector2D.X > 0 && _FVector2D.Y == 0) {
-		return DIR::Right;
+		Dir = DIR::Right;
 	}
 	else if (_FVector2D.X == 0 && _FVector2D.Y < 0) {
-		return  DIR::Up;
+		Dir = DIR::Up;
 	}
 	else if (_FVector2D.X == 0 && _FVector2D.Y > 0) {
-		return DIR::Down;
+		Dir = DIR::Down;
 	}
 	else if (_FVector2D.X < 0 && _FVector2D.Y < 0) {
-		return  DIR::Left_Up;
+		Dir = DIR::Left_Up;
 	}
 	else if (_FVector2D.X < 0 && _FVector2D.Y > 0) {
-		return  DIR::Left_Down;
+		Dir = DIR::Left_Down;
 	}
 	else if (_FVector2D.X > 0 && _FVector2D.Y < 0) {
-		return  DIR::Right_Up;
+		Dir = DIR::Right_Up;
 	}
 	else if (_FVector2D.X > 0 && _FVector2D.Y > 0) {
-		return  DIR::Right_Down;
+		Dir = DIR::Right_Down;
 	}
+	return Dir;
 }
 
-FVector2D UContentsMath::DIR_To_Vector2D(DIR _Dir) {
+FVector2D UContentsMath::DIR_To_FVector2D(DIR _Dir) {
+	FVector2D Dir = FVector2D::ZERO;
 	switch (_Dir)
 	{
 	case DIR::Left_Down:
-		return FVector2D::LEFT + FVector2D::DOWN;
+		Dir = FVector2D::LEFT + FVector2D::DOWN;
 		break;
 	case DIR::Down:
-		return FVector2D::DOWN;
+		Dir = FVector2D::DOWN;
 		break;
 	case DIR::Right_Down:
-		return FVector2D::RIGHT + FVector2D::DOWN;
+		Dir = FVector2D::RIGHT + FVector2D::DOWN;
 		break;
 	case DIR::Left:
-		return FVector2D::LEFT;
+		Dir = FVector2D::LEFT;
 		break;
 	case DIR::Right:
-		return FVector2D::RIGHT;
+		Dir = FVector2D::RIGHT;
 		break;
 	case DIR::Left_Up:
-		return FVector2D::LEFT + FVector2D::UP;
+		Dir = FVector2D::LEFT + FVector2D::UP;
 		break;
 	case DIR::Up:
-		return FVector2D::UP;
+		Dir = FVector2D::UP;
 		break;
 	case DIR::Right_Up:
-		return FVector2D::RIGHT + FVector2D::UP;
+		Dir = FVector2D::RIGHT + FVector2D::UP;
 		break;
 	default:
-		return FVector2D::ZERO;
 		break;
 	}
+	return Dir;
 }
 FIntPoint UContentsMath::DIR_To_FIntPoint(DIR _Dir) {
+	FIntPoint Dir = FIntPoint::ZERO;
 	switch (_Dir)
 	{
 	case DIR::Left_Down:
-		return FIntPoint::LEFT + FIntPoint::DOWN;
+		Dir= FIntPoint::LEFT + FIntPoint::DOWN;
 		break;
 	case DIR::Down:
-		return FIntPoint::DOWN;
+		Dir = FIntPoint::DOWN;
 		break;
 	case DIR::Right_Down:
-		return FIntPoint::RIGHT + FIntPoint::DOWN;
+		Dir = FIntPoint::RIGHT + FIntPoint::DOWN;
 		break;
 	case DIR::Left:
-		return FIntPoint::LEFT;
+		Dir =  FIntPoint::LEFT;
 		break;
 	case DIR::Right:
-		return FIntPoint::RIGHT;
+		Dir = FIntPoint::RIGHT;
 		break;
 	case DIR::Left_Up:
-		return FIntPoint::LEFT + FIntPoint::UP;
+		Dir = FIntPoint::LEFT + FIntPoint::UP;
 		break;
 	case DIR::Up:
-		return FIntPoint::UP;
+		Dir = FIntPoint::UP;
 		break;
 	case DIR::Right_Up:
-		return FIntPoint::RIGHT + FIntPoint::UP;
+		Dir = FIntPoint::RIGHT + FIntPoint::UP;
 		break;
 	default:
 		break;
 	}
+	return Dir;
 }
 
 DIR UContentsMath::ReverseDir(DIR _Dir)
 {
+	DIR Dir = DIR::None;
 	switch (_Dir)
 	{
 	case DIR::Left_Down:
-		return DIR::Right_Up;
+		Dir = DIR::Right_Up;
 		break;
 	case DIR::Down:
-		return DIR::Up;
+		Dir = DIR::Up;
 		break;
 	case DIR::Right_Down:
-		return DIR::Left_Up;
+		Dir = DIR::Left_Up;
 		break;
 	case DIR::Left:
-		return DIR::Right;
+		Dir = DIR::Right;
 		break;
 	case DIR::Right:
-		return DIR::Left;
+		Dir = DIR::Left;
 		break;
 	case DIR::Left_Up:
-		return DIR::Right_Down;
+		Dir = DIR::Right_Down;
 		break;
 	case DIR::Up:
-		return DIR::Down;
+		Dir = DIR::Down;
 		break;
 	case DIR::Right_Up:
-		return DIR::Left_Down;
+		Dir = DIR::Left_Down;
 		break;
 	default:
 		break;
 	}
+	return Dir;
 }

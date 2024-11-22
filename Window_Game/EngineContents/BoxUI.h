@@ -57,11 +57,11 @@ public:
 	
 protected:
 
-private:
 	class ABox* Box;
 	FTransform BoxTrans;
 	std::vector<class AText*> Texts;
 	std::vector<class AText*>::iterator TextIter;
+private:
 
 
 };

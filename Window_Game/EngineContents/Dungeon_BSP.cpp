@@ -9,7 +9,9 @@
 #include "GameDataManager.h"
 
 
-ADungeon_BSP::ADungeon_BSP()
+ADungeon_BSP::ADungeon_BSP() :
+	root(nullptr)
+	, CurFloor(1)
 {
 	Tiles.resize(Height, std::vector<DungeonTile>(Width));
 	SetActorLocation({ 0,0 });
@@ -291,7 +293,7 @@ void ADungeon_BSP::SetNaturally()
 
 void ADungeon_BSP::SetNextPotal()
 {
-	int MaxSize = RoomLocations.size() - 1;
+	int MaxSize = static_cast<int>(RoomLocations.size()) - 1;
 	int Index = Random.RandomInt(0, MaxSize);
 	FVector2D RoomLocation = RoomLocations[Index];
 	FIntPoint RoomIndex = FIntPoint(RoomLocation.iX() / 72, RoomLocation.iY() / 72);

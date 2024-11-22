@@ -85,8 +85,8 @@ class DungeonTile
 {
 public:
 	class USpriteRenderer* SpriteRenderer = nullptr;
-	TileType TileType;
-	FTransform TileTrans;
+	TileType TileType = TileType::None;
+	FTransform TileTrans{};
 };
 
 

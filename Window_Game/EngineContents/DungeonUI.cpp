@@ -20,6 +20,7 @@
 
 
 
+
 ADungeonUI::ADungeonUI()
 {
 	HpBar.resize(300, nullptr);
@@ -152,6 +153,12 @@ void ADungeonUI::BeginPlay()
 	A_NextFloorUI->CreateString("Yes");
 	A_NextFloorUI->CreateString("No");
 	A_NextFloorUI->ResetTextIter();
+
+	LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
+	LogBoxUI->CreateString("");
+	LogBoxUI->CreateString("");
+	LogBoxUI->CreateString("");
+	
 }
 
 void ADungeonUI::LevelChangeStart()
@@ -229,6 +236,17 @@ void ADungeonUI::Tick(float _DeltaTime)
 			}
 		}
 	}
+
+	if (IsNewLogValue == true)
+	{
+		LogBoxUI->ShowUI();
+
+	}
+	else
+	{
+		LogBoxUI->HideUI();
+	}
+
 
 	
 		

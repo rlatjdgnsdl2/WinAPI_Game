@@ -4,14 +4,14 @@
 #include <EngineCore/SpriteRenderer.h>
 #include "GameDataManager.h"
 
-ASpecialSkill::ASpecialSkill() 
+ASpecialSkill::ASpecialSkill() :SpriteRenderer(nullptr)
 {
 	
 	
 
 }
 
-ASpecialSkill::ASpecialSkill(std::string_view SkillName)
+ASpecialSkill::ASpecialSkill(std::string_view SkillName):SpriteRenderer(nullptr)
 {
 	SetName(SkillName);
 }
@@ -32,7 +32,7 @@ void ASpecialSkill::BeginPlay()
 	int MaxCount = UGameDataManager::GetInst().GetSkillAnimCount(GetName());
 	float Frame = 1.0f / MaxCount;
 	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount-1, Frame, false);
-
+	
 
 
 }

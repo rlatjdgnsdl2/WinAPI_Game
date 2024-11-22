@@ -27,7 +27,7 @@ public:
 protected:
 
 private:
-	class USpriteRenderer* SpriteRenderer;
+	class USpriteRenderer* SpriteRenderer = nullptr;
 
 
 };

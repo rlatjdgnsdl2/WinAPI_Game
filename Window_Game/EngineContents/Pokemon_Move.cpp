@@ -9,10 +9,10 @@
 
 
 //	¿Ãµø
-const FVector2D& APokemon::GetTargetLocation() const {
+const FVector2D APokemon::GetTargetLocation() const {
 	return TargetLocation;
 };
-const FIntPoint& APokemon::GetTargetTile() {
+const FIntPoint APokemon::GetTargetTile() {
 	return ((TargetLocation.ConvertToPoint()) / 72);
 };
 

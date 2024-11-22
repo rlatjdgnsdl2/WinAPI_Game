@@ -48,7 +48,8 @@ enum class DIR
 	Right = 6,
 	Left_Up,
 	Up,
-	Right_Up
+	Right_Up,
+	None
 };
 
 
@@ -88,7 +89,6 @@ enum class TurnType
 	Skill_AI_Select,
 	AI_Move,
 	AI_Skill
-
 };
 
 
@@ -96,9 +96,7 @@ enum class MenuType {
 	Menu,
 	Skill,
 	Item,
-	Team,
-	Close,
-	NextFloor
+	Close
 };
 
 

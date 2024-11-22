@@ -37,9 +37,6 @@ public:
 	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
 		DungeonUI = _DungeonUI;
 	}
-	void SetTextManager(class ATextManager* _TextManager) {
-		TextManager = _TextManager;
-	}
 
 	void PushAllAIPokemon(class APokemon* _AIPokemon) {
 		AllAIPokemon.push_back(_AIPokemon);
@@ -62,7 +59,6 @@ protected:
 
 private:
 	std::string CurDungeonName;
-	class ATextManager* TextManager;
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
@@ -82,7 +78,6 @@ private:
 	TurnType PreTurn;
 
 	FVector2D PlayerMoveDir;
-	float CurDuration;
 	int PlayerInput;
 
 	//	Idle

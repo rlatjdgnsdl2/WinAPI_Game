@@ -15,7 +15,7 @@
 
 
 
-ATurnManager::ATurnManager()
+ATurnManager::ATurnManager() :Dungeon(nullptr), Player(nullptr), BasicUI(nullptr), DungeonUI(nullptr), CurTurn(TurnType::Player_Select), PreTurn(TurnType::Player_Select),PlayerInput(-1)
 {
 
 }
@@ -157,7 +157,7 @@ void ATurnManager::SpawnEnemy()
 {
 	UEngineRandom Random;
 	const std::vector<std::string>& Pokemons_In_Dongeon = UGameDataManager::GetInst().GetDungeonInfo(CurDungeonName).Pokemons_In_Dongeon;
-	size_t MaxSize = Pokemons_In_Dongeon.size();
+	int MaxSize = static_cast<int>(Pokemons_In_Dongeon.size());
 	int Index = Random.RandomInt(0, MaxSize - 1);
 	std::string EnemyName = Pokemons_In_Dongeon[Index];
 	AEnemy* NewEnemy = GetWorld()->SpawnActor<AEnemy>();

@@ -30,13 +30,13 @@ public:
 	void SetTile(const FIntPoint& _CurTileIndex) {
 		SetActorLocation(_CurTileIndex * 72.0f);
 	};
-	const FIntPoint& GetTile() {
+	const FIntPoint GetTile() {
 		return ((GetActorLocation().ConvertToPoint()) / 72);
 	};
 
 	//	이동관련
-	const FVector2D& GetTargetLocation() const;
-	const FIntPoint& GetTargetTile();
+	const FVector2D GetTargetLocation() const;
+	const FIntPoint GetTargetTile();
 	void SetTargetLocation(const FVector2D& _TargetLocation);
 	void SetTargetTile(const FIntPoint& _TargetTileIndex);
 	void ResetCurDuration();

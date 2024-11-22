@@ -8,7 +8,7 @@ void ATurnManager::SelectSkill()
 	if (PlayerInput == 'A') {
 		Player->SetSkill(SkillType::NormalAttack);
 		DIR CurPlayerDir = Player->GetDir();
-		FVector2D Dir = UContentsMath::DIR_To_Vector2D(CurPlayerDir);
+		FVector2D Dir = UContentsMath::DIR_To_FVector2D(CurPlayerDir);
 		FIntPoint TargetTile = Player->GetTile() + Dir.ConvertToPoint();
 		//	자신이 공격한 방향에 적포켓몬이 있는지 확인
 		for (APokemon* CurCheckPokemon : EnemyCamp){

@@ -105,6 +105,14 @@ public:
 		Result.Y = Y / _Value;
 		return Result;
 	}
+	FVector2D operator/(float _Value) const
+	{
+		FVector2D Result;
+		Result.X = X / _Value;
+		Result.Y = Y / _Value;
+		return Result;
+	}
+
 
 	FVector2D operator*(float _Value) const
 	{
@@ -200,14 +208,14 @@ public:
 	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
 
 	// 완전히 같은 형의 함수죠?
-	static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
+	//static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
+	//static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
 
 	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+	//static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
 
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+	//static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
 
 	FVector2D Scale;
@@ -274,6 +282,7 @@ public:
 	static const FIntPoint RIGHT;
 	static const FIntPoint UP;
 	static const FIntPoint DOWN;
+	static const FIntPoint ZERO;
 
 	FIntPoint() {}
 	FIntPoint(int _X, int _Y) : X(_X), Y(_Y) {}

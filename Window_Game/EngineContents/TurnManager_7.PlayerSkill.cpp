@@ -5,6 +5,8 @@
 #include "Pokemon.h"
 
 #include "AbilityController.h"
+#include "DungeonUI.h"
+
 
 
 
@@ -18,6 +20,7 @@ void ATurnManager::PlayerSkill()
 
 	// 공격이 끝났으면 타겟포켓몬이 죽었는지 확인
 	if (TargetPokemon != nullptr) {
+		DungeonUI->SetNewLog(true);
 		//	타겟포켓몬이 죽었으면
 		if (true == TargetPokemon->GetCurAbility()->IsDie()) {
 			CampType TargetCamp = TargetPokemon->GetCamp();
