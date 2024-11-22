@@ -64,13 +64,7 @@ void ABasicUI::OpenMenu() {
 			CurMenuType = MenuType::Item;
 		
 		}
-		else if ("Team" == CurTextString) {
-			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
-			MenuBoxUI->HideUI();
-			MyInfoBoxUI->HideUI();
-			CurMenuType = MenuType::Team;
-
-		}
+	
 		else if ("Close" == CurTextString) {
 			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 			MenuBoxUI->HideUI();

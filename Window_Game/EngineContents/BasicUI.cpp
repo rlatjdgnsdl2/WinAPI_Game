@@ -30,7 +30,6 @@ void ABasicUI::BeginPlay()
 	MenuBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 200,350 }, { 25,50 }));
 	MenuBoxUI->CreateString("Skill");
 	MenuBoxUI->CreateString("Item");
-	MenuBoxUI->CreateString("Team");
 	MenuBoxUI->CreateString("Close");
 
 	MyInfoBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 750.0f, 150.0f }, { 25, 400 }));
@@ -66,8 +65,6 @@ void ABasicUI::Tick(float _DeltaTime)
 		OpenSkill();
 		break;
 	case MenuType::Item:
-		break;
-	case MenuType::Team:
 		break;
 	case MenuType::Close:
 		if (true == UEngineInput::GetInst().IsDown('Q'))

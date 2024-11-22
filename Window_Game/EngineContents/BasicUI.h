@@ -31,9 +31,7 @@ public:
 	void OpenMenu();
 	void OpenSkill();
 	void OpenItem();
-	//void OpenTeam();
-	//void OpenOther();
-	//void CloseMenu();
+
 
 protected:
 
