@@ -38,10 +38,26 @@ struct AnimInfo
 		IdleAnimCount(_IdleAnimCount),
 		WalkAnimCount(_WalkAnimCount) {
 	}
+	AnimInfo(
+		int _AttackAnimCount,
+		int _HurtAnimCount,
+		int _IdleAnimCount,
+		int _WalkAnimCount,
+		int _ShootAnimCount) :
+		AttackAnimCount(_AttackAnimCount),
+		HurtAnimCount(_HurtAnimCount),
+		IdleAnimCount(_IdleAnimCount),
+		WalkAnimCount(_WalkAnimCount),
+		ShootAnimCount(_ShootAnimCount) {
+	}
+
+
+
 	int AttackAnimCount{};
 	int HurtAnimCount{};
 	int IdleAnimCount{};
 	int WalkAnimCount{};
+	int ShootAnimCount{};
 };
 
 struct PokemonInfo

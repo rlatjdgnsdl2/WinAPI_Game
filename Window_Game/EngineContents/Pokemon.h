@@ -15,10 +15,10 @@ public:
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
 	virtual void SetPokemon(std::string_view _PokemonName);
-	void AnimSet();
+	virtual void SetAnim();
 	void Idle();
 	void Move(float _DeltaTime);
-	void Skill();
+	virtual void Skill();
 	void Hurt();
 
 	void SetDir(DIR _Dir) {
@@ -81,6 +81,7 @@ public:
 protected:
 	DIR Dir;
 	class USpriteRenderer* SpriteRenderer;
+	AnimInfo CurAnimInfo;
 
 	//	이동관련
 	float CurDuration;

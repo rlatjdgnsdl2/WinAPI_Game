@@ -31,7 +31,7 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	SpriteRenderer->SetSprite(GetName() + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
 	//	애니메이션 세팅
-	AnimSet();
+	SetAnim();
 	//	랜더오더
 	SpriteRenderer->SetOrder(ERenderOrder::PLAYER);
 	//	기본

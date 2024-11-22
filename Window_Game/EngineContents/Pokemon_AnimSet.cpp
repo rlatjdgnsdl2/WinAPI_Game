@@ -5,9 +5,9 @@
 #include "GameDataManager.h"
 
 
-void APokemon::AnimSet()
+void APokemon::SetAnim()
 {
-	AnimInfo CurAnimInfo = UGameDataManager::GetInst().GetAnimInfo(GetName());
+	CurAnimInfo = UGameDataManager::GetInst().GetAnimInfo(GetName());
 	//	Idle
 	std::vector<int> IdleIndex_2(CurAnimInfo.IdleAnimCount);
 	std::vector<int> IdleIndex_3(CurAnimInfo.IdleAnimCount);
@@ -88,8 +88,6 @@ void APokemon::AnimSet()
 	SpriteRenderer->CreateAnimation("HurtAnim_7", GetName() + "_Hurt.png", CurAnimInfo.HurtAnimCount * 5, CurAnimInfo.HurtAnimCount * 6 - 1, HurtFrame);
 	SpriteRenderer->CreateAnimation("HurtAnim_4", GetName() + "_Hurt.png", CurAnimInfo.HurtAnimCount * 6, CurAnimInfo.HurtAnimCount * 7 - 1, HurtFrame);
 	SpriteRenderer->CreateAnimation("HurtAnim_1", GetName() + "_Hurt.png", CurAnimInfo.HurtAnimCount * 7, CurAnimInfo.HurtAnimCount * 8 - 1, HurtFrame);
-
-
 
 
 }

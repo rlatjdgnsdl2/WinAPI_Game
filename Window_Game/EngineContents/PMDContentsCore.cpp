@@ -138,21 +138,24 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Mudkip_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Idle.png", 7, 8);
 	UImageManager::GetInst().CuttingSprite("Mudkip_Walk.png", 6, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Mudkip", AnimInfo({ 10,2,7,6 }));
+	UImageManager::GetInst().CuttingSprite("Mudkip_Shoot.png", 11, 8);
+	UGameDataManager::GetInst().InsertAnimInfo("Mudkip", AnimInfo({ 10,2,7,6,11 }));
 	UGameDataManager::GetInst().InsertPokemonAbility("Mudkip", PokemonInfo(5, 30, 10, 15));
 
 	UImageManager::GetInst().CuttingSprite("Pikachu_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Pikachu_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Pikachu_Idle.png", 6, 8);
 	UImageManager::GetInst().CuttingSprite("Pikachu_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Pikachu", AnimInfo({ 10,2,6,4 }));
+	UImageManager::GetInst().CuttingSprite("Pikachu_Shoot.png", 11, 8);
+	UGameDataManager::GetInst().InsertAnimInfo("Pikachu", AnimInfo({ 10,2,6,4,11 }));
 	UGameDataManager::GetInst().InsertPokemonAbility("Pikachu", PokemonInfo(5, 30, 10, 15));
 
 	UImageManager::GetInst().CuttingSprite("Chikorita_Attack.png", 10, 8);
 	UImageManager::GetInst().CuttingSprite("Chikorita_Hurt.png", 2, 8);
 	UImageManager::GetInst().CuttingSprite("Chikorita_Idle.png", 6, 8);
 	UImageManager::GetInst().CuttingSprite("Chikorita_Walk.png", 4, 8);
-	UGameDataManager::GetInst().InsertAnimInfo("Chikorita", AnimInfo({ 10,2,6,4 }));
+	UImageManager::GetInst().CuttingSprite("Chikorita_Shoot.png", 11, 8);
+	UGameDataManager::GetInst().InsertAnimInfo("Chikorita", AnimInfo({ 10,2,6,4 ,11}));
 	UGameDataManager::GetInst().InsertPokemonAbility("Chikorita", PokemonInfo(5, 30, 10, 15));
 
 	//	partner

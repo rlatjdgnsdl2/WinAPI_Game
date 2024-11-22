@@ -65,6 +65,9 @@ void APokemon::NormalAttack()
 
 void APokemon::SpecialAttack()
 {
+
+	SpriteRenderer->ChangeAnimation("ShootAnim_" + std::to_string(static_cast<int>(Dir)));
+	SpriteRenderer->SetSpriteScale();
 	if (SpecialSkill == nullptr) {
 		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>(CurSpecialSKillName);
 		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_Vector2D(Dir) * 72.0f);
