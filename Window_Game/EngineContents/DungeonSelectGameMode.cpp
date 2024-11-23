@@ -49,7 +49,7 @@ void ADungeonSelectGameMode::BeginPlay()
 	DungeonNameRenderer = GetWorld()->SpawnActor<AText>();
 	DungeonNameRenderer->SetActorLocation({ 300.0f, 520.0f });
 
-	DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
+	DungeonNameRenderer->SetString(DungeonMapStartIter->first, TextColor::Green);
 	
 }
 
@@ -68,7 +68,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 		}
 		DungeonMapStartIter--;
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
-		DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
+		DungeonNameRenderer->SetString(DungeonMapStartIter->first, TextColor::Green);
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
 	{
@@ -77,7 +77,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 			DungeonMapStartIter = DungeonMaps.begin();
 		}
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
-		DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
+		DungeonNameRenderer->SetString(DungeonMapStartIter->first, TextColor::Green);
 	}
 	//	던전입장
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {

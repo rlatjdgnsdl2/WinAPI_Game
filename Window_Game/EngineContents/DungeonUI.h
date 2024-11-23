@@ -40,6 +40,7 @@ public:
 	class ABoxUI* GetLogBoxUI() { return LogBoxUI; }
 	
 	void NewLogMessage(const std::string_view _Message);
+	void NewLogMessage(const std::vector<std::string>& _Message, const std::vector<TextColor>& _colors);
 	void SetNewLogVal(bool _IsNewLog) { IsNewLogValue = _IsNewLog; }
 	bool IsNewLog() const { return IsNewLogValue; }
 

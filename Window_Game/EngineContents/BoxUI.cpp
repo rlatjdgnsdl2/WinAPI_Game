@@ -27,37 +27,46 @@ void ABoxUI::BeginPlay()
 	Box->SetActive(false);
 }
 
-void ABoxUI::CreateString(std::string_view _StringValue, std::string_view _color, FVector2D _TextSize, float _Time)
+void ABoxUI::CreateString(std::string_view _StringValue, TextColor _Color, FVector2D _TextSize, float _Time)
 {
 	AText* NewText = GetWorld()->SpawnActor<AText>();
-	NewText->SetString(_StringValue, _color, _TextSize, _Time);
+	NewText->SetString(_StringValue, _Color, _TextSize, _Time);
 	NewText->SetActive(false);
 	Texts.push_back(NewText);
 }
 
-void ABoxUI::SetString(int Index, std::string_view _StringValue)
+void ABoxUI::CreateString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _colors, const FVector2D& _TextSize, float _Time)
 {
-	Texts[Index]->SetString(_StringValue);
+	AText* NewText = GetWorld()->SpawnActor<AText>();
+	NewText->SetString(_StringValues, _colors, _TextSize, _Time);
+	NewText->SetActive(false);
+	Texts.push_back(NewText);
+}
+
+void ABoxUI::SetString(std::string_view _StringValue, int Index, TextColor _Color, FVector2D _TextSize, float _Time)
+{
+	Texts[Index]->SetString(_StringValue, _Color, _TextSize, _Time);
+}
+
+void ABoxUI::SetString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _colors, int Index, const FVector2D& _TextSize, float _Time)
+{
+	Texts[Index]->SetString(_StringValues, _colors, _TextSize, _Time);
 }
 
 
 
-
-
-void ABoxUI::SetStringColor(int Index, std::string_view _color)
+void ABoxUI::SetStringColor(AText* Text, TextColor _Color)
 {
-	Texts[Index]->SetColor(_color);
+	Text->SetColor(_Color);
 }
 
-void ABoxUI::SetStringColor(AText* Text, std::string_view _color)
+
+
+void ABoxUI::SetStringColor(int Index, TextColor _Color)
 {
-	Text->SetColor(_color);
+	Texts[Index]->SetColor(_Color);
 }
 
-void ABoxUI::SetStringParticialColor(int _TextIndex, int _StartIndex, int _EndIndex, std::string_view _color)
-{
-	Texts[_TextIndex]->SetParticialColor(_StartIndex, _EndIndex, _color);
-}
 
 void ABoxUI::NewMessage(const std::string_view _Message)
 {
@@ -66,11 +75,24 @@ void ABoxUI::NewMessage(const std::string_view _Message)
 	}
 
 	else if (Texts.size() >= 3) {
-		SetString(0, Texts[1]->GetString());
-		SetString(1, Texts[2]->GetString());
-		SetString(2, _Message);
+		SetString(Texts[1]->GetString(), 0);
+		SetString(Texts[2]->GetString(), 1);
+		SetString(_Message, 2);
 	}
-	TextIter = Texts.begin();
+}
+
+void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vector<TextColor>& _colors)
+{
+	if (Texts.size() < 3) {
+		CreateString(_Message, _colors);
+	}
+	else if (Texts.size() >= 3) {
+		
+		Texts[0]->SetString(Texts[1]);
+		Texts[1]->SetString(Texts[2]);
+		Texts[2]->SetString(_Message, _colors);
+	}
+	
 }
 
 void ABoxUI::ShowUI(float _DeltaTime) {

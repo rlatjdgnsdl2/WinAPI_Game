@@ -59,29 +59,29 @@ void ACharacterSelect::BeginPlay()
 	CharacterTable->SetActorLocation({ 30,30 });
 
 	Mudkip_Text = GetWorld()->SpawnActor<AText>();
-	Mudkip_Text->SetString("Mudkip","Blue");
+	Mudkip_Text->SetString("Mudkip",TextColor::Blue);
 	Mudkip_Text->SetActorLocation({ 100, 200 });
 	Mudkip_Text->ShowText(0.0f);
 
 	Chikorita_Text = GetWorld()->SpawnActor<AText>();
-	Chikorita_Text->SetString("Chikorita","Green");
+	Chikorita_Text->SetString("Chikorita", TextColor::Green);
 	Chikorita_Text->SetActorLocation({ 230, 200 });
 	Chikorita_Text->ShowText(0.0f);
 
 	Pikachu_Text = GetWorld()->SpawnActor<AText>();
-	Pikachu_Text->SetString("Pikachu","Yellow");
+	Pikachu_Text->SetString("Pikachu",TextColor::Yellow);
 	Pikachu_Text->SetActorLocation({ 400, 200 });
 	Pikachu_Text->ShowText(0.0f);
 
 
 	//  Ό³Έν
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
-	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", "White");
+	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", TextColor::White);
 	ExplanationText01->SetActorLocation({ 100, 440 });
 	ExplanationText01->ShowText(0.0f);
 
 	ExplanationText02 = GetWorld()->SpawnActor<AText>();
-	ExplanationText02->SetString("And push SPACE_BAR ", "White");
+	ExplanationText02->SetString("And push SPACE_BAR ", TextColor::White);
 	ExplanationText02->SetActorLocation({ 100, 470 });
 	ExplanationText02->ShowText(0.0f);
 
