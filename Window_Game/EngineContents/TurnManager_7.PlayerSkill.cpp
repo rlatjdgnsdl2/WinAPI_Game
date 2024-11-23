@@ -4,25 +4,45 @@
 #include "Player.h"
 #include "Pokemon.h"
 
-#include "AbilityController.h"
 #include "DungeonUI.h"
 
 
 
 
+void ATurnManager::PlayerSkillStart() {
+	Player->StartAttack();
+	APokemon* TargetPokemon = Player->GetTargetPokemon();
+	if (TargetPokemon != nullptr) {
+		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
+		DungeonUI->NewLogMessage(std::format("{} damage to {} for {}", Player->GetName(), TargetPokemon->GetName(), Damage));
+		TargetPokemon->SetDamage(Damage);
+		CurTurn = TurnType::Player_Skill;
+	}
+}
+
+
 void ATurnManager::PlayerSkill()
 {
-	APokemon* TargetPokemon = Player->GetTargetPokemon();
 	Player->Skill();
 	if (true == Player->IsAttack()) {
 		return;
 	}
+	CurTurn = TurnType::Player_Skill_End;
+}
 
+void ATurnManager::PlayerSkillEnd()
+{
+	APokemon* TargetPokemon = Player->GetTargetPokemon();
 	// 공격이 끝났으면 타겟포켓몬이 죽었는지 확인
 	if (TargetPokemon != nullptr) {
-		DungeonUI->SetNewLog(true);
 		//	타겟포켓몬이 죽었으면
-		if (true == TargetPokemon->GetCurAbility()->IsDie()) {
+		if (true == TargetPokemon->IsDie()) {
+			int Level = TargetPokemon->GetLevel();
+			DungeonUI->NewLogMessage(std::format("{} Die and {} Gain EXP {}", TargetPokemon->GetName(), Player->GetName(), TargetPokemon->GetLevel() * 3));
+			// 경험치 획득 후 레벨업했으면
+			if (true == Player->GainExp(TargetPokemon->GetLevel() * 100)) {
+				DungeonUI->NewLogMessage(std::format("{} Level Up", Player->GetName()));
+			}
 			CampType TargetCamp = TargetPokemon->GetCamp();
 			std::list<APokemon*>& CompareCamp = (CampType::Player == TargetCamp) ? PlayerCamp : EnemyCamp;
 			//	모든 리스트에서 제거
@@ -31,10 +51,11 @@ void ATurnManager::PlayerSkill()
 			SkillPokemon.remove(TargetPokemon);
 			MovePokemon.remove(TargetPokemon);
 			TargetPokemon->Destroy();
-			//CurTurn = TurnType::Result;
 		}
 	}
 	Player->SetTargetPokemon(nullptr);
 	CurTurn = TurnType::Skill_AI_Select;
 	return;
 }
+
+

@@ -20,8 +20,8 @@ public:
 protected:
 
 private:
-	class USpriteRenderer* SpriteRenderer;
-	class AText* TitleText;
+	class USpriteRenderer* SpriteRenderer = nullptr;
+	class AText* TitleText = nullptr;
 	float CurDuration = 0.0f;
 
 };

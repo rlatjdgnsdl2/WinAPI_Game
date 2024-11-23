@@ -15,7 +15,7 @@ public:
 	UEngineRandom& operator=(const UEngineRandom& _Other) = delete;
 	UEngineRandom& operator=(UEngineRandom&& _Other) noexcept = delete;
 
-	void SetSeed(__int64 _Seed) { std::mt19937_64 MtGen = std::mt19937_64(_Seed); }
+	void SetSeed(__int64 _Seed) { MtGen = std::mt19937_64(_Seed); }
 
 	int RandomInt(int _Min, int _Max)
 	{

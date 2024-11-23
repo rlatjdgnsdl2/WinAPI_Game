@@ -56,12 +56,21 @@ public:
 		return NewActor;
 	}
 
-
 	// UIÀü¿ë
 	template<typename ActorType>
 	ActorType* SpawnActor(FTransform _Trans)
 	{
 		ActorType* NewActor = new ActorType(_Trans);
+		AActor* ActorPtr = dynamic_cast<AActor*>(NewActor);
+		ActorPtr->World = this;
+		BeginPlayList.push_back(ActorPtr);
+		return NewActor;
+	}
+
+	template<typename ActorType>
+	ActorType* SpawnActor(std::string_view _String, int _Int)
+	{
+		ActorType* NewActor = new ActorType(_String, _Int);
 		AActor* ActorPtr = dynamic_cast<AActor*>(NewActor);
 		ActorPtr->World = this;
 		BeginPlayList.push_back(ActorPtr);

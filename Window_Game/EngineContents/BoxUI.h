@@ -22,12 +22,12 @@ public:
 	void CreateString(std::string_view _StringValue, std::string_view _color= "White", FVector2D _TextSize = FVector2D({ 14.0f,20.0f }),float _Timee=0.0f);
 
 	void SetString(int Index, std::string_view _StringValue);
-	void SetString(int Index, class AText* _Text);
 	void SetStringColor(int Index, std::string_view _color);
 
 	void SetStringColor(class AText* Text, std::string_view _color);
 	void SetStringParticialColor(int _TextIndex, int _StartIndex, int _EndIndex, std::string_view _color);
 
+	void NewMessage(const std::string_view _Message);
 	
 	std::vector<class AText*>::iterator GetCurTextIter() { return TextIter; }
 	int GetTextVecSize() { return static_cast<int>(Texts.size()); }
@@ -51,8 +51,8 @@ public:
 	void HideUI();
 
 protected:
-	class ABox* Box;
-	FTransform BoxTrans;
+	class ABox* Box = nullptr;
+	FTransform BoxTrans = FTransform(FVector2D::ZERO,FVector2D::ZERO);
 	std::vector<class AText*> Texts;
 	std::vector<class AText*>::iterator TextIter;
 private:

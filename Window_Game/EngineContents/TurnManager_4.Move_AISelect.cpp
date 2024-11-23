@@ -6,11 +6,11 @@
 #include "Player.h"
 #include "Dungeon_BSP.h"
 
-#include "AbilityController.h"
+
 
 // 스피드 순으로 정렬
 bool SortFunc(APokemon* first, APokemon* second) {
-	return first->GetCurAbility()->GetSPD() > second->GetCurAbility()->GetSPD();
+	return first->GetSPD() > second->GetSPD();
 }
 
 
@@ -43,7 +43,7 @@ void ATurnManager::Move_AISelect()
 					IsFindTarget = true;
 					CurPokemon->PushTargetablePokemon(CurComparePokemon);
 					//	애니메이션 첫 프레임에 바인드가 잘 되지않아 넣음 - 추후 수정
-					CurPokemon->ReadyAttack();
+					CurPokemon->StartAttack();
 					SkillPokemon.push_back(CurPokemon);
 					break;
 				}

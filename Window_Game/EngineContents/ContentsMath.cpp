@@ -101,7 +101,7 @@ FIntPoint UContentsMath::DIR_To_FIntPoint(DIR _Dir) {
 	switch (_Dir)
 	{
 	case DIR::Left_Down:
-		Dir= FIntPoint::LEFT + FIntPoint::DOWN;
+		Dir = FIntPoint::LEFT + FIntPoint::DOWN;
 		break;
 	case DIR::Down:
 		Dir = FIntPoint::DOWN;
@@ -110,7 +110,7 @@ FIntPoint UContentsMath::DIR_To_FIntPoint(DIR _Dir) {
 		Dir = FIntPoint::RIGHT + FIntPoint::DOWN;
 		break;
 	case DIR::Left:
-		Dir =  FIntPoint::LEFT;
+		Dir = FIntPoint::LEFT;
 		break;
 	case DIR::Right:
 		Dir = FIntPoint::RIGHT;
@@ -163,4 +163,16 @@ DIR UContentsMath::ReverseDir(DIR _Dir)
 		break;
 	}
 	return Dir;
+}
+
+int UContentsMath::DamageCalculation(int _Attack, int _Defense)
+{
+	int Damage = 0;
+	int Attack = _Attack;
+	int Defense = _Defense;
+	if (Attack <= Defense) {
+		Defense = Attack;
+	}
+	Damage = Attack + (Attack-Defense);
+	return Damage;
 }

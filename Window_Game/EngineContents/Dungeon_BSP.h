@@ -21,7 +21,11 @@ public:
 	ADungeon_BSP(ADungeon_BSP&& _Other) noexcept = delete;
 	ADungeon_BSP& operator=(const ADungeon_BSP& _Other) = delete;
 	ADungeon_BSP& operator=(ADungeon_BSP&& _Other) noexcept = delete;
-	
+
+	virtual void BeginPlay() override;
+	void InitKeySet();
+
+	virtual void LevelChangeStart() override;
 	virtual void LevelChangeEnd()override;
 
 	void Generate();
@@ -31,23 +35,25 @@ public:
 
 	FVector2D GetPotalLocation() const { return PotalLocation; }
 
+	void NextFloor() { 
+		CurFloor++; 
+		if (CurFloor > MaxFloor) {
+			CurFloor = 1;
+		}
+	}
+	void ResetFloor() { CurFloor = 1; }
 	int GetCurFloor() const { return CurFloor; }
-	void NextFloor() { CurFloor++; }
-	void InitFloor() { CurFloor = 1; }
-
-
+	UEngineRandom Random;
 protected:
 
 private:
-	const int MIN_SIZE = 8;
-	UEngineRandom Random;
 	RoomNode* root;
 
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
 
-	int CurFloor;
+	int CurFloor=1;
 	int MaxFloor;
 
 
@@ -60,7 +66,8 @@ private:
 	void SetNaturally();
 	void SetNextPotal();
 
-	// IPathFindData을(를) 통해 상속됨
+	std::map<std::string, int > TileIndexForKey;
+
 	bool IsMove(const FIntPoint& _Point) override;
 
 };

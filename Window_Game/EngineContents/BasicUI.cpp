@@ -4,7 +4,6 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
 #include "Player.h"
-#include "AbilityController.h"
 #include "BoxUI.h"
 #include "Partner.h"
 #include "Text.h"
@@ -43,7 +42,7 @@ void ABasicUI::BeginPlay()
 
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
-	CurMenuType = MenuType::Close;
+	CurMenuType = MenuType::CloseMenu;
 
 
 }
@@ -58,7 +57,7 @@ void ABasicUI::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	switch (CurMenuType)
 	{
-	case MenuType::Menu:
+	case MenuType::ShowMenu:
 		OpenMenu();
 		break;
 	case MenuType::Skill:
@@ -66,7 +65,7 @@ void ABasicUI::Tick(float _DeltaTime)
 		break;
 	case MenuType::Item:
 		break;
-	case MenuType::Close:
+	case MenuType::CloseMenu:
 		if (true == UEngineInput::GetInst().IsDown('Q'))
 		{
 			ShowMenu();

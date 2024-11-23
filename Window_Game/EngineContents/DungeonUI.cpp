@@ -8,7 +8,6 @@
 #include "Player.h"
 #include "BasicUI.h"
 
-#include "AbilityController.h"
 #include "DungeonGameMode.h"
 #include "Dungeon_BSP.h"
 #include "Box.h"
@@ -71,9 +70,7 @@ void ADungeonUI::BeginPlay()
 	A_NextFloorUI->ResetTextIter();
 
 	LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
-	LogBoxUI->CreateString("");
-	LogBoxUI->CreateString("");
-	LogBoxUI->CreateString("");
+
 }
 
 void ADungeonUI::LevelChangeStart()
@@ -85,26 +82,26 @@ void ADungeonUI::LevelChangeStart()
 void ADungeonUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	int CurHp = Player->GetCurAbility()->GetCurHP();
-	int MaxHp = Player->GetCurAbility()->GetMaxHP();
-	TopUI["UI_LvVal10"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetLevel() / 10));
-	TopUI["UI_LvVal01"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetCurAbility()->GetLevel() % 10));
+	int CurHp = Player->GetCurHP();
+	int MaxHp = Player->GetMaxHP();
+	TopUI["UI_LvVal10"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetLevel() / 10));
+	TopUI["UI_LvVal01"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetLevel() % 10));
 	TopUI["UI_CurHpVal10"]->SetSprite(std::format("DungeonFont_{}.png", CurHp / 10));
 	TopUI["UI_CurHpVal01"]->SetSprite(std::format("DungeonFont_{}.png", CurHp % 10));
 	TopUI["UI_MaxHpVal10"]->SetSprite(std::format("DungeonFont_{}.png", MaxHp / 10));
 	TopUI["UI_MaxHpVal01"]->SetSprite(std::format("DungeonFont_{}.png", MaxHp % 10));
-	for (int i = 0; i < MaxHp; i++){
-		if (i < CurHp){
+	for (int i = 0; i < MaxHp; i++) {
+		if (i < CurHp) {
 			HpBar[i]->SetSprite("Dungeon_HpBar.png");
 			HpBar[i]->SetSpriteScale(1.0f);
 		}
-		else{
+		else {
 			HpBar[i]->SetSprite("Dungeon_DamageBar.png");
 			HpBar[i]->SetSpriteScale(1.0f);
 		}
 	}
 	//	던전이름UI
-	if (BasicUI->GetCurMenuType() == MenuType::Menu) {
+	if (BasicUI->GetCurMenuType() == MenuType::ShowMenu) {
 		DungeonNameUI->SetString(0, std::format("      {}", Dungeon->GetName()));
 		DungeonNameUI->SetStringColor(0, "Yellow");
 		DungeonNameUI->ShowUI();
@@ -112,36 +109,36 @@ void ADungeonUI::Tick(float _DeltaTime)
 	else {
 		DungeonNameUI->HideUI();
 	}
-	if (IsAskValue == true){
+	if (IsAskValue == true) {
 		AText* Text = *(A_NextFloorUI->GetCurTextIter());
 		A_NextFloorUI->SetStringColor(Text, "Yellow");
-		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8)){
+		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8)) {
 			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
 			A_NextFloorUI->PrevTextIter();
 		}
-		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2)){
+		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2)) {
 			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), "White");
 			A_NextFloorUI->NextTextIter();
 		}
 
 
-		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)){
-			if (Text->GetString() == "Yes"){
+		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			if (Text->GetString() == "Yes") {
 				HideNextFloorUI();
-				UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 				Dungeon->NextFloor();
+				UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 			}
-			else if (Text->GetString() == "No"){
+			else if (Text->GetString() == "No") {
 				HideNextFloorUI();
 				TurnManager->ComeBackTurn();
 			}
 		}
 	}
 
-	if (IsNewLogValue == true){
+	if (IsNewLogValue == true) {
 		LogBoxUI->ShowUI();
 	}
-	else{
+	else {
 		LogBoxUI->HideUI();
 	}
 
@@ -166,6 +163,13 @@ void ADungeonUI::CreateTopUI(const std::string& key, const std::string& spriteNa
 
 
 
+
+
+void ADungeonUI::NewLogMessage(const std::string_view _Message)
+{
+	LogBoxUI->NewMessage(_Message);
+	IsNewLogValue = true;
+}
 
 void ADungeonUI::IsGoingNextFloor()
 {

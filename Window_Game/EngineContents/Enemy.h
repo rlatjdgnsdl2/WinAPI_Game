@@ -7,7 +7,7 @@ class AEnemy :public APokemon
 public:
 	
 	//	constrcuter, destructer
-	AEnemy();
+	AEnemy(std::string_view _PokemonName,int _Level);
 	virtual ~AEnemy();
 
 	//	delete Function
@@ -16,19 +16,20 @@ public:
 	AEnemy& operator=(const AEnemy& _Other) = delete;
 	AEnemy& operator=(AEnemy&& _Other) noexcept = delete;
 
-	virtual void SetPokemon(std::string_view _PokemonName) override;
+	virtual void BeginPlay() override;
 
-	virtual void SetCamp(CampType _Camp) {
-		Camp = _Camp;
+
+	virtual void SetPokemon(std::string_view _PokemonName) override;
+	void SetLevel(int _Level) {
+		Level = _Level;
 	}
-	virtual CampType GetCamp() {
-		return Camp;
+	int GetLevel() const {
+		return Level;
 	}
 
 
 protected:
 
 private:
-	CampType Camp = CampType::Enemy;
 };
 

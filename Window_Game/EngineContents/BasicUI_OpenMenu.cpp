@@ -3,7 +3,8 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include "Player.h"
-#include "AbilityController.h"
+
+
 #include "Partner.h"
 #include "BoxUI.h"
 #include "Text.h"
@@ -13,23 +14,23 @@ void ABasicUI::ShowMenu()
 {
 	MenuBoxUI->ShowUI();
 	MenuBoxUI->ResetTextIter();
-	MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
-	MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurAbility()->GetCurHP(), Player->GetCurAbility()->GetMaxHP()));
+	MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurHP(), Player->GetMaxHP()));
+	/*MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurHP(), Player->GetMaxHP()));*/
 	MyInfoBoxUI->SetStringParticialColor(0, 0, static_cast<int>(Player->GetName().size()), "Blue");
-	MyInfoBoxUI->SetStringParticialColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");
+	/*MyInfoBoxUI->SetStringParticialColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");*/
 	MyInfoBoxUI->ShowUI();
-	CurMenuType = MenuType::Menu;
+	CurMenuType = MenuType::ShowMenu;
 }
 
 void ABasicUI::OpenMenu() {
 
 	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "Yellow");
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8))
+	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
 		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 		MenuBoxUI->PrevTextIter();
 	}
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2))
+	if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 	{
 		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 		MenuBoxUI->NextTextIter();
@@ -38,7 +39,7 @@ void ABasicUI::OpenMenu() {
 		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 		MenuBoxUI->HideUI();
 		MyInfoBoxUI->HideUI();
-		CurMenuType = MenuType::Close;
+		CurMenuType = MenuType::CloseMenu;
 		return;
 	}
 
@@ -69,7 +70,7 @@ void ABasicUI::OpenMenu() {
 			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 			MenuBoxUI->HideUI();
 			MyInfoBoxUI->HideUI();
-			CurMenuType = MenuType::Close;
+			CurMenuType = MenuType::CloseMenu;
 		}
 
 

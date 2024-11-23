@@ -78,19 +78,28 @@ enum class TurnType
 	Player_Select_Move,
 	Player_Select_Skill,
 	Player_Move,
+	Player_Skill_Start,
 	Player_Skill,
+	Player_Skill_End,
 	Move_AI_Select,
 	Skill_AI_Select,
 	AI_Move,
-	AI_Skill
+	AI_Skill_Start,
+	AI_Skill,
+	AI_Skill_End
 };
 
 
 enum class MenuType {
-	Menu,
-	Skill,
-	Item,
-	Close
+	OpenMenu,
+	ShowMenu,
+	CloseMenu,
+	OpenSkill,
+	ShowSkill,
+	CloseSkill,
+	OpenItem,
+	SHowItem,
+	CloseItem
 };
 enum class TextColor {
 	White,

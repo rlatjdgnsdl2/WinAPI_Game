@@ -34,7 +34,7 @@ void ATurnManager::SelectSkill()
 		Player->SetSkill(SkillType::UseItem);
 	}*/
 	//	임시코드
-	Player->ReadyAttack();
-	CurTurn = TurnType::Player_Skill;
+	
+	CurTurn = TurnType::Player_Skill_Start;
 	return;
 }

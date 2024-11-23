@@ -26,6 +26,10 @@ void AActor::ComponentBeginPlay()
 		for (; StartIter != EndIter; ++StartIter)
 		{
 			UActorComponent* CurComponent = *StartIter;
+			if (nullptr == CurComponent)
+			{
+				continue;
+			}
 			CurComponent->BeginPlay();
 		}
 		ComponentBeginPlayList.clear();

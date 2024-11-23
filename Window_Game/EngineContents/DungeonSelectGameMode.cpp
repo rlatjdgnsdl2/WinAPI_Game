@@ -61,7 +61,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 	DungeonNameRenderer->ShowText(0.0f);
 
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD4))
+	if (true == UEngineInput::GetInst().IsDown(VK_LEFT))
 	{
 		if (DungeonMapStartIter == DungeonMaps.begin()) {
 			DungeonMapStartIter = DungeonMaps.end();
@@ -70,7 +70,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 		GetWorld()->GetPawn()->SetActorLocation(DungeonMapStartIter->second);
 		DungeonNameRenderer->SetString(DungeonMapStartIter->first, "Green");
 	}
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD6))
+	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
 	{
 		DungeonMapStartIter++;
 		if (DungeonMapStartIter == DungeonMapEndIter) {

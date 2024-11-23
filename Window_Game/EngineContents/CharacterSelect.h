@@ -27,13 +27,13 @@ private:
 	std::unordered_map<std::string, class USpriteRenderer*> PartnerCharacterImages;
 	std::unordered_map<std::string, class USpriteRenderer*> ::iterator CurIter;
 
-	class ABox* CharacterTable;
-	class AText* Mudkip_Text;
-	class AText* Chikorita_Text;
-	class AText* Pikachu_Text;
+	class ABox* CharacterTable = nullptr;
+	class AText* Mudkip_Text = nullptr;
+	class AText* Chikorita_Text = nullptr;
+	class AText* Pikachu_Text = nullptr;
 
-	class AText* ExplanationText01;
-	class AText* ExplanationText02;
+	class AText* ExplanationText01 = nullptr;
+	class AText* ExplanationText02 = nullptr;
 
 
 

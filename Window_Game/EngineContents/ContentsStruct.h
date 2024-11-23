@@ -43,7 +43,7 @@ struct AnimInfo
 		HurtAnimCount(_HurtAnimCount),
 		IdleAnimCount(_IdleAnimCount),
 		ShootAnimCount(_ShootAnimCount),
-		WalkAnimCount(_WalkAnimCount){
+		WalkAnimCount(_WalkAnimCount) {
 	}
 	int AttackAnimCount{};
 	int HurtAnimCount{};
@@ -52,25 +52,63 @@ struct AnimInfo
 	int WalkAnimCount{};
 };
 
+// 0레벨일때 포켓몬 기본 능력치 도감
 struct PokemonInfo
 {
 	PokemonInfo() {}
 	PokemonInfo(
-		int _Level,
-		int _MaxHp,
-		int _Attack,
-		int _Speed) :
-
-		Level(_Level),
-		MaxHp(_MaxHp),
-		ATK(_Attack),
-		SPD(_Speed) {
+		int _HP,
+		int _ATK,
+		int _STK,
+		int _DEF,
+		int _SPD) :
+		HP(_HP),
+		ATK(_ATK),
+		STK(_STK),
+		DEF(_DEF),
+		SPD(_SPD) {
 	}
-	int Level{};
-	int MaxHp{};
+	int HP{};
 	int ATK{};
+	int STK{};
+	int DEF{};
 	int SPD{};
 };
+// 포켓몬 능력치
+class PokemonAbility {
+public:
+	PokemonAbility() {}
+	void InitAbility(const PokemonInfo& _BasicAbility, int _Level) {
+		MaxHP = _BasicAbility.HP + (_Level - 1) * 2;
+		CurHP = MaxHP;
+		ATK = _BasicAbility.ATK + (_Level - 1) * 2;
+		CurATK = ATK;
+		STK = _BasicAbility.STK + (_Level - 1) * 2;
+		CurSTK = STK;
+		DEF = _BasicAbility.DEF + (_Level - 1) * 2;
+		CurDEF = DEF;
+		SPD = _BasicAbility.SPD + (_Level - 1) * 2;
+		CurSPD = SPD;
+	}
+	int MaxHP{};
+	int CurHP{};
+	int ATK{};
+	int CurATK{};
+	int STK{};
+	int CurSTK{};
+	int DEF{};
+	int CurDEF{};
+	int SPD{};
+	int CurSPD{};
+};
+//	플레이어만 가지고 있는 데이터
+class PlayerData {
+public:
+	PlayerData() {}
+	PlayerData(int _Level) :Level(_Level) {}
+	int Level{};
+};
+
 
 class DungeonTile
 {
@@ -80,21 +118,23 @@ public:
 	FTransform TileTrans{};
 };
 
-
 struct DungeonInfo {
 	DungeonInfo(
 		int _Width,
 		int _Height,
 		int _MaxFloor,
-		const std::vector<std::string>&_Pokemons_In_Dongeon) :
+		int _MaxLevel,
+		const std::vector<std::string>& _Pokemons_In_Dongeon) :
 		Width(_Width),
 		Height(_Height),
 		MaxFloor(_MaxFloor),
+		MaxLevel(_MaxLevel),
 		Pokemons_In_Dongeon(_Pokemons_In_Dongeon) {
 	}
-	int MaxFloor{};
 	int Width{};
 	int Height{};
+	int MaxFloor{};
+	int MaxLevel{};
 	std::vector<std::string> Pokemons_In_Dongeon;
 };
 

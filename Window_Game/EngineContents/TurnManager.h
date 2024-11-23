@@ -61,8 +61,6 @@ public:
 protected:
 
 private:
-	std::string CurDungeonName;
-
 	class APlayer* Player = nullptr;
 	class APartner* Partner = nullptr;
 
@@ -78,6 +76,7 @@ private:
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
 
+	float CurDuration =0.0f;
 	TurnType CurTurn;
 	TurnType PreTurn;
 
@@ -85,7 +84,7 @@ private:
 	int PlayerInput;
 
 	//	Idle
-	void PlayerSelect();
+	void PlayerSelect(float _DeltaTime);
 	void OpenMenu();
 	//	Select Type
 	void SelectMove();
@@ -95,10 +94,15 @@ private:
 	void Skill_AISelect();
 	//	Select Play
 	void PlayerMove(float _DeltaTime);
+	void PlayerSkillStart();
 	void PlayerSkill();
+	void PlayerSkillEnd();
+
 	// AI Select Play
 	void AIMove(float _DeltaTime);
+	void AISkillStart();
 	void AISkill();
+	void AISkillEnd();
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
 	void SpawnEnemy();

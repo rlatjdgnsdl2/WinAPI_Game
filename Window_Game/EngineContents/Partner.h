@@ -10,9 +10,6 @@ public:
 	APartner();
 	virtual ~APartner();
 
-	virtual void BeginPlay()override;
-	virtual void LevelChangeStart()override;
-	virtual void SetPokemon(std::string_view _PokemonName);
 
 	//	delete Function
 	APartner(const APartner& _Other) = delete;
@@ -20,18 +17,14 @@ public:
 	APartner& operator=(const APartner& _Other) = delete;
 	APartner& operator=(APartner&& _Other) noexcept = delete;
 
-	virtual void SetCamp(CampType _Camp) {
-		Camp = _Camp;
-	}
-	virtual CampType GetCamp() {
-		return Camp;
-	}
 
 
 protected:
 
 private:
-	CampType Camp = CampType::Player;
+	int MaxExp{};
+	int Exp{};
+
 
 };
 

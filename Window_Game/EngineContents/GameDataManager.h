@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineBase/Object.h>
+#include <EngineBase/EngineRandom.h>
 
 
 
@@ -37,35 +38,50 @@ public:
 	const DungeonInfo& GetDungeonInfo(std::string_view _DungeonName) const {
 		return Dungeons.find(_DungeonName.data())->second;
 	}
+	const int GetDungeonMaxFloor(std::string_view _DungeonName) const {
+		return Dungeons.find(_DungeonName.data())->second.MaxFloor;
+	}
+	const int GetDungeonMaxLevel(std::string_view _DungeonName) const {
+		return Dungeons.find(_DungeonName.data())->second.MaxLevel;
+	}
+	const size_t GetPokemonInDungeonSize(std::string_view _DungeonName) const {
+		return Dungeons.find(_DungeonName.data())->second.Pokemons_In_Dongeon.size();
+	}
+	const std::string GetPokemonInDungeon()  {
+		
+		int MaxSize = static_cast<int>(Dungeons.find(SelectDungeon)->second.Pokemons_In_Dongeon.size());
+		int Index = Random.RandomInt(0, MaxSize - 1);
+		std::string PokemonName = Dungeons.find(SelectDungeon)->second.Pokemons_In_Dongeon[Index];
+		return PokemonName;
+	}
+	int GetEnemyPokemonLevel() {
+		int Level = Random.RandomInt(max(1, GetDungeonMaxLevel(SelectDungeon)-5), GetDungeonMaxLevel(SelectDungeon));
+		return Level;
+	}
 
+	
 	//	PokemonAbility
 	void InsertPokemonAbility(std::string_view _PokemonName, const PokemonInfo& _PokemonAbility) {
 		Pokemons.insert({ _PokemonName.data(), _PokemonAbility });
 	}
-	PokemonInfo GetPokemonAbility(std::string_view _PokemonName) const {
+	const PokemonInfo& GetPokemonAbility(std::string_view _PokemonName) const {
 		return Pokemons.find(_PokemonName.data())->second;
 	}
-
-
-	// PlayerAbility
-	PokemonInfo GetPlayerAbility(std::string_view _PlayerName) {
-		return PlayerAbilities.find(_PlayerName.data())->second;
-	}
-
-	void InsertPlayerAbility(std::string_view _PlayerName, PokemonInfo _PokemonAbility) {
-		PlayerAbilities.insert({ _PlayerName.data(), _PokemonAbility });
-	}
-
-	void SetPlayerAbility(std::string_view _PlayerName, PokemonInfo _PokemonAbility) {
-		PokemonInfo& PlayerData = PlayerAbilities[_PlayerName.data()];
-	}
-	
 	void InsertSkillAnimCount(std::string_view _SkillName, int _SkillAnimCount) {
-		SkillAnimCount.insert({ _SkillName.data(),_SkillAnimCount });
+		SkillAnimations.insert({ _SkillName.data(),_SkillAnimCount });
 	}
 	int GetSkillAnimCount(std::string_view _SkillName) const {
-		return SkillAnimCount.find(_SkillName.data())->second;
+		return SkillAnimations.find(_SkillName.data())->second;
 	}
+
+	//	PlayerData
+	void InsertPlayerData(std::string_view _PlayerName, const PlayerData& _PlayerData) {
+		PlayerDatas.insert({ _PlayerName.data(),_PlayerData });
+	}
+	const PlayerData& GetPlayerData(std::string_view _PlayerName) const {
+		return PlayerDatas.find(_PlayerName.data())->second;
+	}
+
 
 
 
@@ -88,13 +104,16 @@ public:
 protected:
 
 private:
+	UEngineRandom Random;
 	UGameDataManager();
 	std::string SelectPlayer;
 	std::string SelectDungeon = "BeachCave";
 	std::map<std::string, AnimInfo > Animations;
-	std::map<std::string, int> SkillAnimCount;
+	std::map<std::string, int> SkillAnimations;
 	std::map<std::string, PokemonInfo > Pokemons;
 	std::map<std::string, DungeonInfo> Dungeons;
-	std::map<std::string, PokemonInfo> PlayerAbilities;
+
+	std::map<std::string, PlayerData> PlayerDatas;
+	
 };
 

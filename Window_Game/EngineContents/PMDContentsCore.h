@@ -18,13 +18,12 @@ public:
 	
 	void BeginPlay() override;
 	void Tick() override;
-	static int GetTileIndex(std::string_view _key);
+
 
 
 protected:
 private:
-	static std::map<std::string, int > TileIndexForKey;
-	void InitKeySet();
+	
 	void RoadResources();
 	void RoadPokemon(std::string_view _PokemonName, int _Attack, int _Hurt, int _Idle, int _Shoot, int _Walk);
 	void RoadSkill(std::string_view _SkillName, int size);

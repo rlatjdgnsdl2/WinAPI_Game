@@ -13,12 +13,12 @@ void ABasicUI::OpenSkill() {
 	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "Yellow");
 	
 
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8))
+	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->PrevTextIter();
 	}
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2))
+	if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 	{
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->NextTextIter();
@@ -27,7 +27,7 @@ void ABasicUI::OpenSkill() {
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->HideUI();
 		SkillInfoUI->HideUI();
-		CurMenuType = MenuType::Close;
+		CurMenuType = MenuType::CloseMenu;
 		return;
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
@@ -39,6 +39,6 @@ void ABasicUI::OpenSkill() {
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), "White");
 		SkillUI->HideUI();
 		SkillInfoUI->HideUI();
- 		CurMenuType = MenuType::Close;
+ 		CurMenuType = MenuType::CloseMenu;
 	}
 }

@@ -22,7 +22,7 @@ ACharacterSelect::ACharacterSelect()
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("Mudkip.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ -200,0 });
+		SpriteRenderer->SetComponentLocation({ -250,-150 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Mudkip",SpriteRenderer });
 	}
@@ -31,7 +31,7 @@ ACharacterSelect::ACharacterSelect()
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("Chikorita.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ 0,0 });
+		SpriteRenderer->SetComponentLocation({ -100,-150 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Chikorita",SpriteRenderer });
 	}
@@ -40,7 +40,7 @@ ACharacterSelect::ACharacterSelect()
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("Pikachu.png");
 		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ 200,0 });
+		SpriteRenderer->SetComponentLocation({ 50,-150 });
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ "Pikachu",SpriteRenderer });
 	}
@@ -55,32 +55,34 @@ void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
 	CharacterTable = GetWorld()->SpawnActor<ABox>();
-	CharacterTable->SetBoxSize({ 650,300 });
-	CharacterTable->SetActorLocation({ 80,170 });
+	CharacterTable->SetBoxSize({ 700,500 });
+	CharacterTable->SetActorLocation({ 30,30 });
 
 	Mudkip_Text = GetWorld()->SpawnActor<AText>();
 	Mudkip_Text->SetString("Mudkip","Blue");
-	Mudkip_Text->SetActorLocation({ 140, 350 });
+	Mudkip_Text->SetActorLocation({ 100, 200 });
 	Mudkip_Text->ShowText(0.0f);
 
 	Chikorita_Text = GetWorld()->SpawnActor<AText>();
 	Chikorita_Text->SetString("Chikorita","Green");
-	Chikorita_Text->SetActorLocation({ 340, 350 });
+	Chikorita_Text->SetActorLocation({ 230, 200 });
 	Chikorita_Text->ShowText(0.0f);
 
 	Pikachu_Text = GetWorld()->SpawnActor<AText>();
 	Pikachu_Text->SetString("Pikachu","Yellow");
-	Pikachu_Text->SetActorLocation({ 540, 350 });
+	Pikachu_Text->SetActorLocation({ 400, 200 });
 	Pikachu_Text->ShowText(0.0f);
 
+
+	//  설명
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
-	ExplanationText01->SetString("Select Your Pokemon to push A or D ", "White");
-	ExplanationText01->SetActorLocation({ 140, 380 });
+	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", "White");
+	ExplanationText01->SetActorLocation({ 100, 440 });
 	ExplanationText01->ShowText(0.0f);
 
 	ExplanationText02 = GetWorld()->SpawnActor<AText>();
 	ExplanationText02->SetString("And push SPACE_BAR ", "White");
-	ExplanationText02->SetActorLocation({ 140, 410 });
+	ExplanationText02->SetActorLocation({ 100, 470 });
 	ExplanationText02->ShowText(0.0f);
 
 
@@ -97,7 +99,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 
 
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD6)) {
+	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT)) {
 		CurIter->second->SetSpriteScale(0.5f);
 		CurIter++;
 		if (CurIter == PlayerCharacterImages.end()) {
@@ -106,7 +108,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		CurIter->second->SetSpriteScale(1.0f);
 	}
 
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD4)) {
+	if (true == UEngineInput::GetInst().IsDown(VK_LEFT)) {
 		CurIter->second->SetSpriteScale(0.5f);
 		if (CurIter == PlayerCharacterImages.begin()) {
 			CurIter = PlayerCharacterImages.end();
@@ -117,10 +119,10 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		std::string PlayerName = CurIter->first;
 		UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
-		UGameDataManager::GetInst().InsertPlayerAbility(PlayerName, PokemonInfo( 5, 45, 20, 15));
+		UGameDataManager::GetInst().InsertPlayerData(PlayerName,PlayerData(5) );
 		//	임시
 		std::string PartnerName = "Vulpix";
-		UGameDataManager::GetInst().InsertPlayerAbility(PartnerName, PokemonInfo( 5, 45, 20, 15));
+		UGameDataManager::GetInst().InsertPlayerData(PartnerName, PlayerData(5));
 		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 
 	}

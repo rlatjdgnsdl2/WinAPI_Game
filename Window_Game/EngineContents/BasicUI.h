@@ -38,6 +38,7 @@ protected:
 private:
 	class APlayer* Player;
 	class APartner* Partner;
+
 	MenuType CurMenuType;
 	TurnType CurTurn;
 

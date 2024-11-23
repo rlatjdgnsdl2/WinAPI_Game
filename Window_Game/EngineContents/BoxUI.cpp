@@ -40,10 +40,7 @@ void ABoxUI::SetString(int Index, std::string_view _StringValue)
 	Texts[Index]->SetString(_StringValue);
 }
 
-void ABoxUI::SetString(int Index, AText* _Text)
-{
-	Texts[Index] = _Text;
-}
+
 
 
 
@@ -62,11 +59,25 @@ void ABoxUI::SetStringParticialColor(int _TextIndex, int _StartIndex, int _EndIn
 	Texts[_TextIndex]->SetParticialColor(_StartIndex, _EndIndex, _color);
 }
 
+void ABoxUI::NewMessage(const std::string_view _Message)
+{
+	if (Texts.size() < 3) {
+		CreateString(_Message);
+	}
+
+	else if (Texts.size() >= 3) {
+		SetString(0, Texts[1]->GetString());
+		SetString(1, Texts[2]->GetString());
+		SetString(2, _Message);
+	}
+	TextIter = Texts.begin();
+}
+
 void ABoxUI::ShowUI(float _DeltaTime) {
 	Box->SetActive(true);
 	FVector2D Location = BoxTrans.Location;
 	Box->SetActorLocation(Location);
-	for (AText* Text : Texts){
+	for (AText* Text : Texts) {
 		Location.Y += 30.0f;
 		Text->SetActive(true);
 		Text->ShowText(_DeltaTime);
@@ -74,9 +85,9 @@ void ABoxUI::ShowUI(float _DeltaTime) {
 	}
 }
 
-void ABoxUI::HideUI(){
+void ABoxUI::HideUI() {
 	Box->SetActive(false);
-	for (AText* Text : Texts){
+	for (AText* Text : Texts) {
 		Text->SetActive(false);
 	}
 }

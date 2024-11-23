@@ -51,8 +51,8 @@ void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
-	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
-	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
+	/*UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));*/
 	if (true == UEngineInput::GetInst().IsDown('G'))
 	{
 		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");

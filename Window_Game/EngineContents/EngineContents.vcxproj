@@ -223,10 +223,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="AbilityController.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="SpecialSkill.h">
       <SubType>
       </SubType>
@@ -325,6 +321,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Dungeon_Key.cpp" />
     <ClCompile Include="Enemy.cpp">
       <SubType>
       </SubType>
@@ -349,12 +346,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="AbilityController.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Pokemon_AnimSet.cpp" />
-    <ClCompile Include="Pokemon_Move.cpp" />
     <ClCompile Include="Pokmon_Skill.cpp" />
     <ClCompile Include="SpecialSkill.cpp">
       <SubType>

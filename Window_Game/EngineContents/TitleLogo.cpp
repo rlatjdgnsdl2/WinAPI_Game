@@ -20,7 +20,7 @@ void ATitleLogo::BeginPlay()
 {
 	Super::BeginPlay();
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Title_TitleLogo.png");
+	SpriteRenderer->SetSprite("Title_Logo.png");
 	SpriteRenderer->SetOrder(ERenderOrder::Player);
 	FVector2D WinSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation(WinSize.Half());

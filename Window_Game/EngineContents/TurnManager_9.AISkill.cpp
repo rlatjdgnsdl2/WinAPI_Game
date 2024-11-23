@@ -1,10 +1,14 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
+
 #include <EngineBase/EngineRandom.h>
 #include "Pokemon.h"
-#include "AbilityController.h"
 
 
+void ATurnManager::AISkillStart()
+{
+	CurTurn = TurnType::AI_Skill;
+}
 
 
 void ATurnManager::AISkill()
@@ -13,7 +17,8 @@ void ATurnManager::AISkill()
 	std::list<APokemon*>::iterator StartIter = SkillPokemon.begin();
 	std::list<APokemon*>::iterator EndIter = SkillPokemon.end();
 	if (StartIter == EndIter) {
-		CurTurn = TurnType::Player_Select;
+		CurDuration = 0.0f;
+		CurTurn = TurnType::AI_Skill_End;
 		return;
 	}
 	//	AI_Skill에 입장하면 포켓몬들이 동시에 공격하는게 아니라 SKillPokemon에 들어있는대로 순서대로 공격
@@ -43,7 +48,7 @@ void ATurnManager::AISkill()
 	APokemon* TargetPokemon = CurPokemon->GetTargetPokemon();
 	if (TargetPokemon != nullptr) {
 
-		if (true == TargetPokemon->GetCurAbility()->IsDie()) {
+		if (true == TargetPokemon->IsDie()) {
 			AllAIPokemon.remove(TargetPokemon);
 			SkillPokemon.remove(TargetPokemon);
 			MovePokemon.remove(TargetPokemon);
@@ -56,4 +61,9 @@ void ATurnManager::AISkill()
 	CurPokemon->SetTargetPokemon(nullptr);
 	SkillPokemon.remove(CurPokemon);
 	return;
+}
+
+void ATurnManager::AISkillEnd()
+{
+	CurTurn = TurnType::Player_Select;
 }

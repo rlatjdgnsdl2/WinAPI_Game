@@ -61,9 +61,6 @@
     <ClInclude Include="DungeonUI.h">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="AbilityController.h">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClInclude>
     <ClInclude Include="Partner.h">
       <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
@@ -75,9 +72,6 @@
     </ClInclude>
     <ClInclude Include="CharacterSelect.h">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialSkill.h">
-      <Filter>Global\00.Skill</Filter>
     </ClInclude>
     <ClInclude Include="BasicUI.h">
       <Filter>Global\UI</Filter>
@@ -93,6 +87,9 @@
     </ClInclude>
     <ClInclude Include="BoxUI.h">
       <Filter>Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialSkill.h">
+      <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -189,9 +186,6 @@
     <ClCompile Include="Pokemon_AnimSet.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="AbilityController.cpp">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="Partner.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
@@ -203,12 +197,6 @@
     </ClCompile>
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="SpecialSkill.cpp">
-      <Filter>Global\00.Skill</Filter>
-    </ClCompile>
-    <ClCompile Include="Pokemon_Move.cpp">
-      <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="BasicUI.cpp">
       <Filter>Global\UI</Filter>
@@ -236,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="BoxUI.cpp">
       <Filter>Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_Key.cpp">
+      <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialSkill.cpp">
+      <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,9 +274,6 @@
     </Filter>
     <Filter Include="Global\00.Pokemon">
       <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global\00.Skill">
-      <UniqueIdentifier>{a7216147-53ee-46b1-a735-8a4d0d3e2bdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

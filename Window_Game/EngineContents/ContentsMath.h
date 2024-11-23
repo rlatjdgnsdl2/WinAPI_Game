@@ -9,6 +9,7 @@ public:
 	static FVector2D DIR_To_FVector2D(DIR _Dir);
 	static FIntPoint DIR_To_FIntPoint(DIR _Dir);
 	static DIR ReverseDir(DIR _Dir);
+	static int DamageCalculation(int _Attack, int _Defense);
 
 };
 

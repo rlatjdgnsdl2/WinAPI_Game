@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineBase/TimeEvent.h>
 
 
 
@@ -37,8 +38,11 @@ public:
 	}
 
 	class ABoxUI* GetLogBoxUI() { return LogBoxUI; }
+	
+	void NewLogMessage(const std::string_view _Message);
+	void SetNewLogVal(bool _IsNewLog) { IsNewLogValue = _IsNewLog; }
 	bool IsNewLog() const { return IsNewLogValue; }
-	void SetNewLog(bool _IsNewLog) { IsNewLogValue = _IsNewLog; }
+
 
 	void IsGoingNextFloor();
 	void HideNextFloorUI();
@@ -47,6 +51,7 @@ protected:
 private:
 	bool IsAskValue = false;
 	bool IsNewLogValue = false;
+	
 
 	class APlayer* Player = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
@@ -57,6 +62,9 @@ private:
 	//	»ó´Ü UI
 	std::unordered_map<std::string, class USpriteRenderer*> TopUI;
 	std::vector<class USpriteRenderer* > HpBar;
+
+
+
 
 
 

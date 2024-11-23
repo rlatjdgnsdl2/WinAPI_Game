@@ -4,12 +4,11 @@
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/SpriteRenderer.h>
 
-
-#include "PMDContentsCore.h"
 #include "GameDataManager.h"
 
+const int MIN_SIZE = 8;
 
-ADungeon_BSP::ADungeon_BSP() :root(nullptr)
+ADungeon_BSP::ADungeon_BSP() :root(nullptr), MaxFloor{}
 {
 	SetActorLocation({ 0,0 });
 }
@@ -21,6 +20,20 @@ ADungeon_BSP::~ADungeon_BSP()
 	}
 }
 
+
+
+void ADungeon_BSP::BeginPlay()
+{
+	Super::BeginPlay();
+	InitKeySet();
+}
+
+
+void ADungeon_BSP::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	MaxFloor = UGameDataManager::GetInst().GetDungeonMaxFloor(GetName());
+}
 
 void ADungeon_BSP::LevelChangeEnd()
 {
@@ -71,6 +84,7 @@ Room ADungeon_BSP::GetRoom(RoomNode* node) const
 
 void ADungeon_BSP::Split(RoomNode* node)
 {
+	
 	// 노드의 크기가 최소 크기보다 작으면 분할을 중지
 	if (node->width < MIN_SIZE || node->height < MIN_SIZE) {
 		return;
@@ -281,7 +295,7 @@ void ADungeon_BSP::SetNaturally()
 							FindKey += (SpriteName == Tiles[y + i][x + j].SpriteRenderer->GetCurSpriteName()) ? "1" : "0";
 						}
 					}
-					tile.SpriteRenderer->SetSprite(SpriteName, PMDContentsCore::GetTileIndex(FindKey));
+					tile.SpriteRenderer->SetSprite(SpriteName, TileIndexForKey[FindKey]);
 				}
 			}
 		}
@@ -297,7 +311,6 @@ void ADungeon_BSP::SetNextPotal()
 	SetTile(RoomIndex.X, RoomIndex.Y, "NextPotal.png", 0);
 	Tiles[RoomIndex.Y][RoomIndex.X].SpriteRenderer->SetSpriteScale();
 	PotalLocation = RoomLocation;
-
 }
 
 

@@ -4,13 +4,12 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
-#include "AbilityController.h"
 
 
 
-
-APokemon::APokemon() :AbilityController(nullptr), SpriteRenderer(nullptr), CurDuration(0.0f), StartLocation(FVector2D::ZERO), TargetLocation(FVector2D::ZERO), CurSkill(SkillType::NormalAttack), TargetPokemon(nullptr), SpecialSkill(nullptr), IsAttackValue(false), IsHurtValue(false), CurLevel(0), CurMaxHp(0), CurHp(0), CurATK(0), CurSPD(0)
+APokemon::APokemon() 
 {
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 }
 
 APokemon::~APokemon()
@@ -19,23 +18,14 @@ APokemon::~APokemon()
 }
 void APokemon::SetPokemon(std::string_view _PokemonName)
 {
-	SetName(_PokemonName);
-	if (SpriteRenderer == nullptr) {
-		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	}
-
-	if (AbilityController == nullptr) {
-		AbilityController = CreateDefaultSubObject<UAbilityController>();
-	}
 	//	스프라이트 세팅
 	SpriteRenderer->SetSprite(GetName() + "_Idle.png");
 	SpriteRenderer->SetSpriteScale();
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
 	//	애니메이션 세팅
 	SetAnim();
-	//	랜더오더
-	SpriteRenderer->SetOrder(ERenderOrder::Player);
-	//	기본
-	Dir = DIR::Down;
+	//	능력치
+	PokemonInfo = UGameDataManager::GetInst().GetPokemonAbility(_PokemonName);
 }
 
 void APokemon::Idle()

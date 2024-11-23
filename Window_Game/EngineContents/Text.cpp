@@ -18,7 +18,7 @@ void AText::Reserve(int _Count)
 	// 기존에 있던 글자 제거
 	for (size_t i = 0; i < TextRenderer.size(); i++)
 	{
-		TextRenderer[i]->Destroy();
+		TextRenderer[i]->SetActive(false);
 	}
 	TextRenderer.resize(_Count);
 	for (size_t i = 0; i < TextRenderer.size(); i++)

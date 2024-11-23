@@ -5,10 +5,9 @@
 #include "Player.h"
 
 
-#include "AbilityController.h"
 
 bool SortFuncD(APokemon* first, APokemon* second) {
-	return first->GetCurAbility()->GetSPD() > second->GetCurAbility()->GetSPD();
+	return first->GetSPD() > second->GetSPD();
 }
 
 void ATurnManager::Skill_AISelect()
@@ -34,7 +33,7 @@ void ATurnManager::Skill_AISelect()
 				IsFindTarget = true;
 				CurPokemon->PushTargetablePokemon(CurComparePokemon);
 				//	애니메이션 첫 프레임에 바인드가 잘 되지않아 넣음 - 추후 수정
-				CurPokemon->ReadyAttack();
+				CurPokemon->StartAttack();
 				SkillPokemon.push_back(CurPokemon);
 				break;
 			}
