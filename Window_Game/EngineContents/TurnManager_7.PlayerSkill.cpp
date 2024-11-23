@@ -16,8 +16,9 @@ void ATurnManager::PlayerSkillStart() {
 		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
 		DungeonUI->NewLogMessage(std::format("{} damage to {} for {}", Player->GetName(), TargetPokemon->GetName(), Damage));
 		TargetPokemon->SetDamage(Damage);
-		CurTurn = TurnType::Player_Skill;
 	}
+
+	CurTurn = TurnType::Player_Skill;
 }
 
 

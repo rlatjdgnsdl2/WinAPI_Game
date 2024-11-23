@@ -201,7 +201,7 @@
     <ClCompile Include="BasicUI.cpp">
       <Filter>Global\UI</Filter>
     </ClCompile>
-    <ClCompile Include="BasicUI_OpenMenu.cpp">
+    <ClCompile Include="BasicUI_Menu.cpp">
       <Filter>Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
@@ -210,10 +210,10 @@
     <ClCompile Include="Text.cpp">
       <Filter>Global\UI</Filter>
     </ClCompile>
-    <ClCompile Include="BasicUI_OpenSkill.cpp">
+    <ClCompile Include="BasicUI_Skill.cpp">
       <Filter>Global\UI</Filter>
     </ClCompile>
-    <ClCompile Include="BasicUI_OpenItem.cpp">
+    <ClCompile Include="BasicUI_Item.cpp">
       <Filter>Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Pokmon_Skill.cpp">

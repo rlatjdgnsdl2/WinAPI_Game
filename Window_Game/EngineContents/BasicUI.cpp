@@ -42,7 +42,7 @@ void ABasicUI::BeginPlay()
 
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
-	CurMenuType = MenuType::CloseMenu;
+	CurMenu = MenuType::None;
 
 
 }
@@ -55,21 +55,36 @@ void ABasicUI::LevelChangeStart()
 void ABasicUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	switch (CurMenuType)
+	switch (CurMenu)
 	{
-	case MenuType::ShowMenu:
-		OpenMenu();
-		break;
-	case MenuType::Skill:
-		OpenSkill();
-		break;
-	case MenuType::Item:
-		break;
-	case MenuType::CloseMenu:
+	case MenuType::None:
 		if (true == UEngineInput::GetInst().IsDown('Q'))
 		{
-			ShowMenu();
+			CurMenu = MenuType::OpenMenu;
 		}
+		break;
+	case MenuType::OpenMenu:
+		OpenMenu();
+		break;
+	case MenuType::ShowMenu:
+		ShowMenu();
+		break;
+	case MenuType::CloseMenu:
+		CloseMenu();
+		break;
+
+
+
+	case MenuType::OpenSkill:
+		OpenSkill();
+		break;
+	case MenuType::ShowSkill:
+		ShowSkill();
+		break;
+	case MenuType::CloseSkill:
+		CloseSkill();
+		break;
+	case MenuType::OpenItem:
 		break;
 	default:
 		break;

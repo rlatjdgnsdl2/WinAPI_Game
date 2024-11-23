@@ -91,6 +91,7 @@ enum class TurnType
 
 
 enum class MenuType {
+	None,
 	OpenMenu,
 	ShowMenu,
 	CloseMenu,

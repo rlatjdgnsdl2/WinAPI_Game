@@ -12,18 +12,6 @@
 
 void ABasicUI::ShowMenu()
 {
-	MenuBoxUI->ShowUI();
-	MenuBoxUI->ResetTextIter();
-	MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurHP(), Player->GetMaxHP()));
-	/*MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurHP(), Player->GetMaxHP()));*/
-	MyInfoBoxUI->SetStringParticialColor(0, 0, static_cast<int>(Player->GetName().size()), "Blue");
-	/*MyInfoBoxUI->SetStringParticialColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");*/
-	MyInfoBoxUI->ShowUI();
-	CurMenuType = MenuType::ShowMenu;
-}
-
-void ABasicUI::OpenMenu() {
-
 	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "Yellow");
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
@@ -36,10 +24,8 @@ void ABasicUI::OpenMenu() {
 		MenuBoxUI->NextTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('Q')) {
-		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
-		MenuBoxUI->HideUI();
-		MyInfoBoxUI->HideUI();
-		CurMenuType = MenuType::CloseMenu;
+		
+		CurMenu = MenuType::CloseMenu;
 		return;
 	}
 
@@ -51,28 +37,44 @@ void ABasicUI::OpenMenu() {
 			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 			MenuBoxUI->HideUI();
 			MyInfoBoxUI->HideUI();
-			SkillInfoUI->ShowUI();
-			SkillInfoUI->ResetTextIter();
-			SkillUI->ShowUI();
-			SkillUI->ResetTextIter();
 			
-			CurMenuType = MenuType::Skill;
+
+			CurMenu = MenuType::OpenSkill;
+			return;
 		}
 		else if ("Item" == CurTextString) {
 			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
 			MenuBoxUI->HideUI();
 			MyInfoBoxUI->HideUI();
-			CurMenuType = MenuType::Item;
-		
+			CurMenu = MenuType::OpenItem;
+			return;
+
 		}
-	
+
 		else if ("Close" == CurTextString) {
-			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
-			MenuBoxUI->HideUI();
-			MyInfoBoxUI->HideUI();
-			CurMenuType = MenuType::CloseMenu;
+			CurMenu = MenuType::CloseMenu;
+			return;
 		}
-
-
 	}
+}
+
+void ABasicUI::OpenMenu() {
+
+	MenuBoxUI->ShowUI();
+	MenuBoxUI->ResetTextIter();
+
+	MyInfoBoxUI->SetString(0, std::format("{} -   CurHp   {} - {}", Player->GetName(), Player->GetCurHP(), Player->GetMaxHP()));
+	/*MyInfoBoxUI->SetString(1, std::format("{} -   CurHp   {} - {}", Partner->GetName(), Player->GetCurHP(), Player->GetMaxHP()));*/
+	MyInfoBoxUI->SetStringParticialColor(0, 0, static_cast<int>(Player->GetName().size()), "Blue");
+	/*MyInfoBoxUI->SetStringParticialColor(1, 0, static_cast<int>(Partner->GetName().size()), "Blue");*/
+	MyInfoBoxUI->ShowUI();
+	CurMenu = MenuType::ShowMenu;
+}
+
+
+void ABasicUI::CloseMenu() {
+	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), "White");
+	MenuBoxUI->HideUI();
+	MyInfoBoxUI->HideUI();
+	CurMenu = MenuType::None;
 }

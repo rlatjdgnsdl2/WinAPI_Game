@@ -274,9 +274,9 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BasicUI_OpenItem.cpp" />
-    <ClCompile Include="BasicUI_OpenMenu.cpp" />
-    <ClCompile Include="BasicUI_OpenSkill.cpp" />
+    <ClCompile Include="BasicUI_Item.cpp" />
+    <ClCompile Include="BasicUI_Menu.cpp" />
+    <ClCompile Include="BasicUI_Skill.cpp" />
     <ClCompile Include="Box.cpp">
       <SubType>
       </SubType>

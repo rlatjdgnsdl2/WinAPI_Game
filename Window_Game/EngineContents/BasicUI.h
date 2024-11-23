@@ -20,16 +20,20 @@ public:
 	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
-	MenuType GetCurMenuType() const { return CurMenuType; }
-	void SetCurMenuType(MenuType _CurMenuType) { CurMenuType = _CurMenuType; }
+	MenuType GetCurMenuType() const { return CurMenu; }
+	void SetCurMenuType(MenuType _CurMenuType) { CurMenu = _CurMenuType; }
 
 	void SetPartner(class APartner* _Partner) {
 		Partner = _Partner;
 	}
 
-	void ShowMenu();
 	void OpenMenu();
+	void ShowMenu();
+	void CloseMenu();
+
 	void OpenSkill();
+	void ShowSkill();
+	void CloseSkill();
 	void OpenItem();
 
 
@@ -39,7 +43,7 @@ private:
 	class APlayer* Player;
 	class APartner* Partner;
 
-	MenuType CurMenuType;
+	MenuType CurMenu;
 	TurnType CurTurn;
 
 	//	UI
