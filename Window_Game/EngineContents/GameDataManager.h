@@ -55,7 +55,7 @@ public:
 		return PokemonName;
 	}
 	int GetEnemyPokemonLevel() {
-		int Level = Random.RandomInt(max(1, GetDungeonMaxLevel(SelectDungeon)-5), GetDungeonMaxLevel(SelectDungeon));
+		int Level = Random.RandomInt(max(1, GetDungeonMaxLevel(SelectDungeon)-3), GetDungeonMaxLevel(SelectDungeon));
 		return Level;
 	}
 

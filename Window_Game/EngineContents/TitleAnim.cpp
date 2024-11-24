@@ -13,7 +13,7 @@ ATitleAnim::ATitleAnim()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::Player);
 	SpriteRenderer->SetSprite("Title_anim.png");
-	float frame = 2.0f / 15;
+	float frame = 1.5f / 15;
 	SpriteRenderer->CreateAnimation("TitleAnim", "Title_Anim.png", 0, 14, frame, false);
 }
 ATitleAnim::~ATitleAnim()
@@ -26,9 +26,9 @@ ATitleAnim::~ATitleAnim()
 void ATitleAnim::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetActorLocation({ 500,200 });
-	FVector2D AnimCharactor = SpriteRenderer->SetSpriteScale(1.0f);
-	SpriteRenderer->SetComponentLocation(AnimCharactor.Half());
+	SetActorLocation({ 800,300 });
+	SpriteRenderer->SetSpriteScale(1.0f);
+	
 }
 
 

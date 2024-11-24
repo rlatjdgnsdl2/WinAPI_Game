@@ -34,7 +34,12 @@ ADungeonSelectGameMode::~ADungeonSelectGameMode()
 void ADungeonSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	DungeonMaps.insert({ "BeachCave",FVector2D({298,269}) });
+	Fade = GetWorld()->SpawnActor<AFade>();
+
+	DungeonMaps.insert({ "BeachCave",FVector2D({324,330}) });
+	DungeonMaps.insert({ "DrenchedBluff",FVector2D({ 360,342 }) });
+	DungeonMaps.insert({ "MtBristle",FVector2D({ 468,232 }) });
+	DungeonMaps.insert({ "AppleWoods",FVector2D({ 490, 268 }) });
 	DungeonMaps.insert({ "DeepDarkCrater",FVector2D({131,150}) });
 	DungeonMaps.insert({ "SurroundedSea",FVector2D({119,448}) });
 	DungeonMaps.insert({ "AmpPlains",FVector2D({563,281}) });
@@ -57,11 +62,7 @@ void ADungeonSelectGameMode::BeginPlay()
 void ADungeonSelectGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	{
-		AFade* Actor = GetWorld()->SpawnActor<AFade>();
-		Actor->FadeOut();
-		Fade = Actor;
-	}
+	Fade->FadeOut();
 }
 
 void ADungeonSelectGameMode::LevelChangeEnd()

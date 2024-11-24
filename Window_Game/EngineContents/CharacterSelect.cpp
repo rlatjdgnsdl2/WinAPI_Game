@@ -50,6 +50,8 @@ ACharacterSelect::~ACharacterSelect()
 void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
+	Fade = GetWorld()->SpawnActor<AFade>();
+
 	CharacterTable = GetWorld()->SpawnActor<ABox>();
 	CharacterTable->SetBoxSize({ 760,410 });
 	CharacterTable->SetActorLocation({ 10,20 });
@@ -197,11 +199,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 void ACharacterSelect::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	{
-		AFade* Actor = GetWorld()->SpawnActor<AFade>();
-		Actor->FadeOut();
-		Fade = Actor;
-	}
+	Fade->FadeOut();
 
 	CharacterName->ShowUI(0.0f);
 	SelectPokemon->ShowUI(0.0f);
