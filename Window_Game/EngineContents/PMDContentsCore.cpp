@@ -101,6 +101,8 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Blue_Text.png", 26, 4);
 	UImageManager::GetInst().CuttingSprite("Green_Text.png", 26, 4);
 	UImageManager::GetInst().CuttingSprite("White_Text.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("Red_Text.png", 26, 4);
+	UImageManager::GetInst().CuttingSprite("Pink_Text.png", 26, 4);
 
 	//	Title
 	UImageManager::GetInst().CuttingSprite("Title_anim.png", 5, 3);

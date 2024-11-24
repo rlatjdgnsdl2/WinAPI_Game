@@ -66,13 +66,13 @@ void ACharacterSelect::BeginPlay()
 
 	//  설명
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
-	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", Color::White);
-	ExplanationText01->SetActorLocation({ 100, 340 });
+	ExplanationText01->SetString("Press the direction key to select Your Pokemon", Color::White);
+	ExplanationText01->SetActorLocation({ 60, 340 });
 	ExplanationText01->ShowText(0.0f);
 
 	ExplanationText02 = GetWorld()->SpawnActor<AText>();
-	ExplanationText02->SetString("And push SPACE_BAR ", Color::White);
-	ExplanationText02->SetActorLocation({ 100, 370 });
+	ExplanationText02->SetString("And Press SPACE_BAR ", Color::White);
+	ExplanationText02->SetActorLocation({ 60, 370 });
 	ExplanationText02->ShowText(0.0f);
 
 
@@ -82,70 +82,94 @@ void ACharacterSelect::BeginPlay()
 void ACharacterSelect::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
+	/*FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
-	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
+	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));*/
 
-	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT)) {
-		CurIter->second->SetSpriteScale(0.5f);
-		CurIter++;
-		if (CurIter == PlayerCharacterImages.end()) {
-			CurIter = PlayerCharacterImages.begin();
+
+	if (IsNextLevel)
+	{
+		CurDuration += _DeltaTime;
+		if (CurDuration > 2.0f) {
+			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 		}
-		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("  " + CurIter->first, Color::Blue);
-		CharacterName->ShowUI(0.0f);
+		return;
+	}
+	if (IsPlayerSelect && IsPartnerSelect)
+	{
+		if (UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			IsNextLevel = true;
+			Fade->FadeIn();
+			return;
+		}
+
 	}
 
-	if (true == UEngineInput::GetInst().IsDown(VK_LEFT)) {
-		CurIter->second->SetSpriteScale(0.5f);
-		if (CurIter == PlayerCharacterImages.begin()) {
-			CurIter = PlayerCharacterImages.end();
-		}
-		CurIter--;
-		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("  " + CurIter->first, Color::Blue);
-		CharacterName->ShowUI(0.0f);
-	}
-	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
-		CurIter->second->SetSpriteScale(0.5f);
-		for (int i = 0; i < 7; ++i) {
-			if (CurIter == PlayerCharacterImages.begin()) {
-				CurIter = PlayerCharacterImages.end();
-			}
-			CurIter--;
-		}
-		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("  " + CurIter->first, Color::Blue);
-		CharacterName->ShowUI(0.0f);
-	}
-	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
-		CurIter->second->SetSpriteScale(0.5f);
-		for (int i = 0; i < 7; ++i) {
+	if (IsPartnerSelect == false || IsPlayerSelect == false)
+	{
+		if (true == UEngineInput::GetInst().IsDown(VK_RIGHT)) {
+			CurIter->second->SetSpriteScale(0.5f);
 			CurIter++;
 			if (CurIter == PlayerCharacterImages.end()) {
 				CurIter = PlayerCharacterImages.begin();
 			}
+			CurIter->second->SetSpriteScale(1.0f);
+			CharacterName->SetString("  " + CurIter->first, Color::Blue);
+			CharacterName->ShowUI(0.0f);
+			return;
 		}
-		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("  " + CurIter->first, Color::Blue);
-		CharacterName->ShowUI(0.0f);
+
+		if (true == UEngineInput::GetInst().IsDown(VK_LEFT)) {
+			CurIter->second->SetSpriteScale(0.5f);
+			if (CurIter == PlayerCharacterImages.begin()) {
+				CurIter = PlayerCharacterImages.end();
+			}
+			CurIter--;
+			CurIter->second->SetSpriteScale(1.0f);
+			CharacterName->SetString("  " + CurIter->first, Color::Blue);
+			CharacterName->ShowUI(0.0f);
+			return;
+		}
+		if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+			CurIter->second->SetSpriteScale(0.5f);
+			for (int i = 0; i < 7; ++i) {
+				if (CurIter == PlayerCharacterImages.begin()) {
+					CurIter = PlayerCharacterImages.end();
+				}
+				CurIter--;
+			}
+			CurIter->second->SetSpriteScale(1.0f);
+			CharacterName->SetString("  " + CurIter->first, Color::Blue);
+			CharacterName->ShowUI(0.0f);
+			return;
+		}
+		if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+			CurIter->second->SetSpriteScale(0.5f);
+			for (int i = 0; i < 7; ++i) {
+				CurIter++;
+				if (CurIter == PlayerCharacterImages.end()) {
+					CurIter = PlayerCharacterImages.begin();
+				}
+			}
+			CurIter->second->SetSpriteScale(1.0f);
+			CharacterName->SetString("  " + CurIter->first, Color::Blue);
+			CharacterName->ShowUI(0.0f);
+			return;
+		}
 	}
 
-
-	if (PlayerSelect == false) {
+	if (!IsPlayerSelect) {
 		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 			PlayerName = CurIter->first;
-			SelectPokemon->SetString(PlayerName, Color::Green,0);
+			SelectPokemon->SetString(PlayerName, Color::Green, 0);
 			SelectPokemon->ShowUI();
 			UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
 			UGameDataManager::GetInst().InsertPlayerData(PlayerName, PlayerData(5));
-			PlayerSelect = true;
+			IsPlayerSelect = true;
 			return;
-			//	임시
 		}
 	}
-	if (PlayerSelect == true)
+	else if (IsPlayerSelect)
 	{
 		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 			PartnerName = CurIter->first;
@@ -157,19 +181,17 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			}
 			SelectPokemon->SetString(PartnerName, Color::Green, 1);
 			SelectPokemon->ShowUI();
+			CharacterName->SetString("Press SpaceBar", Color::Blue);
+			CharacterName->ShowUI();
 			UGameDataManager::GetInst().SetSelectPlayer(PartnerName);
 			UGameDataManager::GetInst().InsertPlayerData(PartnerName, PlayerData(5));
-			PartnerSelect = true;
-			Fade->FadeIn();
+			IsPartnerSelect = true;
+			return;
 		}
 	}
-	if (PartnerSelect == true)
-	{
-		CurDuration += _DeltaTime;
-		if (CurDuration > 2.0f) {
-			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-		}
-	}
+
+
+
 }
 
 void ACharacterSelect::LevelChangeStart()
@@ -188,10 +210,13 @@ void ACharacterSelect::LevelChangeStart()
 void ACharacterSelect::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
-	PlayerSelect = false;
-	PartnerSelect = false;
+	IsPlayerSelect = false;
+	IsPartnerSelect = false;
+	IsNextLevel = false;
 	CurDuration = 0.0f;
 }
+
+
 
 
 

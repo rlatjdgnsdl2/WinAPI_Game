@@ -20,6 +20,7 @@ public:
 	virtual void Tick(float _DeltaTime)override;
 	virtual void LevelChangeStart()override;
 	virtual void LevelChangeEnd()override;
+
 protected:
 
 private:
@@ -29,9 +30,9 @@ private:
 	class AFade* Fade = nullptr;
 	float CurDuration = 0.0f;
 
-
-	bool PlayerSelect = false;
-	bool PartnerSelect = false;
+	bool IsNextLevel = false;
+	bool IsPlayerSelect = false;
+	bool IsPartnerSelect = false;
 	std::string PlayerName;
 	std::string PartnerName;
 

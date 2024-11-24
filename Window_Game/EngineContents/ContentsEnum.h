@@ -105,6 +105,8 @@ enum class MenuType {
 	CloseItem
 };
 enum class Color {
+	Red,
+	Pink,
 	White,
 	Blue,
 	Green,
