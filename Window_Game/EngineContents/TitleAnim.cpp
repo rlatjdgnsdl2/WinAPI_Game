@@ -26,7 +26,7 @@ ATitleAnim::~ATitleAnim()
 void ATitleAnim::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetActorLocation({ 600,300 });
+	SetActorLocation({ 650,300 });
 }
 
 

@@ -38,6 +38,12 @@ void ATurnManager::LevelChangeStart()
 	Super::LevelChangeStart();
 	PathFinder.SetData(Dungeon);
 	PushPlayerCamp(Player);
+	Partner = GetWorld()->SpawnActor<APartner>();
+	BasicUI->SetPartner(Partner);
+	PushAllAIPokemon(Partner);
+	PushPlayerCamp(Partner);
+
+
 	// 처음 스폰위치
 	Dungeon->Generate();
 	InitSpawn();

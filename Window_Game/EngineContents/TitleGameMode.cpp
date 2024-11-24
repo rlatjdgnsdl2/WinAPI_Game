@@ -27,12 +27,6 @@ ATitleGameMode::~ATitleGameMode()
 
 
 
-void ATitleGameMode::LevelChangeStart()
-{
-	Super::LevelChangeStart();
-	BGMPlayer = UEngineSound::Play("TitleBGM.mp3");
-	Fade->FadeOut();
-}
 
 void ATitleGameMode::BeginPlay()
 {
@@ -44,6 +38,12 @@ void ATitleGameMode::BeginPlay()
 	TitleLogo->SetActive(false);
 	GetWorld()->SetCameraToMainPawn(false);
 	Fade = GetWorld()->SpawnActor<AFade>();
+}
+void ATitleGameMode::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	BGMPlayer = UEngineSound::Play("TitleBGM.mp3");
+	Fade->FadeOut();
 }
 
 void ATitleGameMode::Tick(float _DeltaTime)
@@ -118,57 +118,23 @@ void ATitleGameMode::LevelChangeEnd()
 
 void ATitleGameMode::SpawnPetals()
 {
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800); 
-		int RandomY = Random.RandomInt(700, 1000); 
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(true);
-		PetalList.push_back(NewPetal);
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800);
-		int RandomY = Random.RandomInt(1000, 1300);
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(true);
-		PetalList.push_back(NewPetal);
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800);
-		int RandomY = Random.RandomInt(1300, 1600);
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(true);
-		PetalList.push_back(NewPetal);
-	}
+	auto SpawnPetalGroup = [&](bool isSmall, int startY, int endY) {
+		for (int i = 0; i < 10; i++){
+			int RandomX = Random.RandomInt(300, 800);
+			int RandomY = Random.RandomInt(startY, endY);
+			ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
+			NewPetal->SetSmall(isSmall);
+			PetalList.push_back(NewPetal);
+		}
+		};
 
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800); 
-		int RandomY = Random.RandomInt(700, 1000);
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(false);
-		PetalList.push_back(NewPetal);
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800);
-		int RandomY = Random.RandomInt(1000, 1300);
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(false);
-		PetalList.push_back(NewPetal);
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		int RandomX = Random.RandomInt(300, 800);
-		int RandomY = Random.RandomInt(1300, 1600);
-		ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));
-		NewPetal->SetSmall(false);
-		PetalList.push_back(NewPetal);
-	}
+	SpawnPetalGroup(true, 700, 1000);
+	SpawnPetalGroup(true, 1000, 1300);
+	SpawnPetalGroup(true, 1300, 1600);
+	SpawnPetalGroup(false, 700, 1000);
+	SpawnPetalGroup(false, 1000, 1300);
+	SpawnPetalGroup(false, 1300, 1600);
 }
-
 
 
 

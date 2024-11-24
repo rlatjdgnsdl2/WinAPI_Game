@@ -81,6 +81,9 @@ public:
 	const PlayerData& GetPlayerData(std::string_view _PlayerName) const {
 		return PlayerDatas.find(_PlayerName.data())->second;
 	}
+	void SetPlayerData(std::string_view _PlayerName, int _Level) {
+		PlayerDatas.find(_PlayerName.data())->second = _Level;
+	}
 
 
 
@@ -99,6 +102,12 @@ public:
 	void SetSelectPlayer(std::string_view _SelectPlayer) {
 		SelectPlayer = _SelectPlayer;
 	}
+	std::string GetSelectPartner() const {
+		return SelectPartner;
+	}
+	void SetSelectPartner(std::string_view _SelectPartner) {
+		SelectPartner = _SelectPartner;
+	}
 
 	
 protected:
@@ -107,6 +116,7 @@ private:
 	UEngineRandom Random;
 	UGameDataManager();
 	std::string SelectPlayer;
+	std::string SelectPartner;
 	std::string SelectDungeon = "BeachCave";
 	std::map<std::string, AnimInfo > Animations;
 	std::map<std::string, int> SkillAnimations;

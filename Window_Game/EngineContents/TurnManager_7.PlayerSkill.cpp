@@ -41,11 +41,15 @@ void ATurnManager::PlayerSkillEnd()
 		if (true == TargetPokemon->IsDie()) {
 			int Level = TargetPokemon->GetLevel();
 			DungeonUI->NewLogMessage(
-				{ TargetPokemon->GetName()," Die and ",Player->GetName(),  " Gain EXP ",std::to_string(TargetPokemon->GetLevel() * 100) }, { Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
+				{ TargetPokemon->GetName()," Die and ","Player Party",  " Gain EXP ",std::to_string(TargetPokemon->GetLevel() * 100)}, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
 			// 경험치 획득 후 레벨업했으면
-			if (true == Player->GainExp(TargetPokemon->GetLevel() * 100)) {
-				DungeonUI->NewLogMessage(
-					{ Player->GetName()," Level Up!", }, {Color::Blue,Color::Yellow});
+			for (APokemon* CurPokemon : PlayerCamp) {
+				if (CurPokemon != nullptr && CurPokemon->GainExp(TargetPokemon->GetLevel() * 100)) {
+					DungeonUI->NewLogMessage(
+						{ CurPokemon->GetName()," Level Up!", }, { Color::Blue,Color::Yellow });
+					DungeonUI->NewLogMessage(
+						{ "All Ability ","+2" }, { Color::White,Color::Yellow });
+				}
 			}
 			CampType TargetCamp = TargetPokemon->GetCamp();
 			std::list<APokemon*>& CompareCamp = (CampType::Player == TargetCamp) ? PlayerCamp : EnemyCamp;

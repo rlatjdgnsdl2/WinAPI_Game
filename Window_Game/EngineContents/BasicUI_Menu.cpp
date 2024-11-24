@@ -64,8 +64,11 @@ void ABasicUI::OpenMenu() {
 	MenuBoxUI->ResetTextIter();
 
 	MyInfoBoxUI->SetString(
-		{ Player->GetName(),std::format("    CurHP -  {} - {}",Player->GetCurHP(),Player->GetMaxHP()) },
-		{ Color::Blue,Color::White },0);
+		{"Lv ",std::to_string(Player->GetLevel())," "+ Player->GetName(),std::format("    CurHP -  {} - {}",Player->GetCurHP(),Player->GetMaxHP())},
+		{ Color::White, Color::Yellow,Color::Blue,Color::White },0);
+	MyInfoBoxUI->SetString(
+		{"Lv ",std::to_string(Partner->GetLevel())," " + Partner->GetName(),std::format("    CurHP -  {} - {}",Player->GetCurHP(),Player->GetMaxHP())},
+		{ Color::White, Color::Yellow,Color::Blue,Color::White }, 1);
 	MyInfoBoxUI->ShowUI();
 	CurMenu = MenuType::ShowMenu;
 }

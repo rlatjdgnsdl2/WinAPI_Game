@@ -20,7 +20,8 @@ public:
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() override;
-
+	virtual void LevelChangeStart() override;
+	virtual void LevelChangeEnd() override;
 	virtual void SetPokemon(std::string_view _PokemonName) override;
 
 	void LevelUp() {

@@ -22,7 +22,7 @@ void ATurnManager::Move_AISelect()
 	EnemyCamp.sort(SortFunc);
 	{
 		//	모든 AI포켓몬들
-		for (APokemon* CurPokemon : AllAIPokemon){
+		for (APokemon* CurPokemon : AllAIPokemon) {
 			bool IsFindTarget = false;
 			CurPokemon->ResetCurDuration();
 			FIntPoint CurTile = CurPokemon->GetTile();
@@ -36,7 +36,7 @@ void ATurnManager::Move_AISelect()
 			//	반대진영 리스트가져옴
 			std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 			// 타켓로케이션 확인
-			for (APokemon* CurComparePokemon : CompareCamp){
+			for (APokemon* CurComparePokemon : CompareCamp) {
 				FIntPoint Distance = CurComparePokemon->GetTargetTile() - CurTile;
 				//	근처에 적이 있다면 스킬리스트
 				if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
@@ -88,16 +88,20 @@ void ATurnManager::Move_AISelect()
 				for (APokemon* ComparePokemon : SkillPokemon) {
 					if (CurTarget == ComparePokemon->GetTile()) {
 						CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
+						IsStand = true;
 						break;
 					}
 				}
 			}
-
 			// 문제없다면 방향설정
-			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetActorLocation()) / 72.0f;
-			if (Dir != FVector2D::ZERO) {
-				CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
+			if (!IsStand) {
+				FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetActorLocation()) / 72.0f;
+				if (Dir != FVector2D::ZERO) {
+					CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
+				}
+
 			}
+
 		}
 	}
 	// 다음단계

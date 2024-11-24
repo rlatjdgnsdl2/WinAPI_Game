@@ -185,7 +185,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			SelectPokemon->ShowUI();
 			CharacterName->SetString("Press SpaceBar", Color::Blue);
 			CharacterName->ShowUI();
-			UGameDataManager::GetInst().SetSelectPlayer(PartnerName);
+			UGameDataManager::GetInst().SetSelectPartner(PartnerName);
 			UGameDataManager::GetInst().InsertPlayerData(PartnerName, PlayerData(5));
 			IsPartnerSelect = true;
 			return;

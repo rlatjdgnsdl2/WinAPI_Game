@@ -17,7 +17,7 @@ void ATurnManager::AIMove(float _DeltaTime)
 	}
 	// 도착했으면 MovePokemon 초기화하고 스킬단계
 	MovePokemon.clear();
-	CurTurn = TurnType::AI_Skill;
+	CurTurn = TurnType::AI_Skill_Start;
 	return;
 
 }

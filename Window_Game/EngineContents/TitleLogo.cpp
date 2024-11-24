@@ -29,8 +29,7 @@ void ATitleLogo::BeginPlay()
 	TitleText = GetWorld()->SpawnActor<AText>();
 	TitleText->SetActorLocation(WinSize.Half() + FVector2D(-100, 200));
 	TitleText->SetString("Press SpaceBar",Color::White,{14.0f,20.0f},0.1f);
-	
-	
+		
 }
 
 void ATitleLogo::Tick(float _DeltaTime)

@@ -19,6 +19,10 @@ public:
 	void Skill();
 	void Hurt();
 
+	virtual void LevelUp() {}
+	virtual bool IsLevelUp() { return false; }
+	virtual bool GainExp(int _Exp) { return false; }
+
 	void SetDir(DIR _Dir) {
 		Dir = _Dir;
 	}
@@ -78,6 +82,9 @@ public:
 	}
 	std::vector<class APokemon*>& GetTargetablePokemons() {
 		return TargetablePokemons;
+	}
+	void ResetTargetablePokemon() {
+		TargetablePokemons.clear();
 	}
 
 	//	¿¸≈ı

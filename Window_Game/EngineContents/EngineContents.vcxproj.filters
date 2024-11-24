@@ -61,9 +61,6 @@
     <ClInclude Include="DungeonUI.h">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
     </ClInclude>
-    <ClInclude Include="Partner.h">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="TitlePetal.h">
       <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="Partner.h">
+      <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +192,6 @@
     <ClCompile Include="Pokemon_AnimSet.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
-    <ClCompile Include="Partner.cpp">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="DungeonGameMode.cpp">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
     </ClCompile>
@@ -242,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="TitlePetal.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Partner.cpp">
+      <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
