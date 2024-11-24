@@ -19,19 +19,26 @@ public:
 	virtual void BeginPlay()override;
 	virtual void Tick(float _DeltaTime)override;
 	virtual void LevelChangeStart()override;
-
+	virtual void LevelChangeEnd()override;
 protected:
 
 private:
 	const FVector2D ImageSize = { 120,120 };
 	std::map<std::string, class USpriteRenderer*> PlayerCharacterImages;
 	std::map<std::string, class USpriteRenderer*> ::iterator CurIter;
-	
+	class AFade* Fade = nullptr;
+	float CurDuration = 0.0f;
 
+
+	bool PlayerSelect = false;
+	bool PartnerSelect = false;
+	std::string PlayerName;
+	std::string PartnerName;
 
 
 	class ABox* CharacterTable = nullptr;
 	class ABoxUI* CharacterName = nullptr;
+	class ABoxUI* SelectPokemon = nullptr;
 	
 
 	class AText* ExplanationText01 = nullptr;

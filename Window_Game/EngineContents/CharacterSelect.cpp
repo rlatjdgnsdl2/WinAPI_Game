@@ -10,6 +10,7 @@
 #include "Box.h"
 #include "Text.h"
 #include "BoxUI.h"
+#include "Fade.h"
 #include "GameDataManager.h"
 
 
@@ -55,8 +56,13 @@ void ACharacterSelect::BeginPlay()
 	CurIter = PlayerCharacterImages.begin();
 	CurIter->second->SetSpriteScale(1.0f);
 
-	CharacterName = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 600,100 }, { 100,450 }));
-	CharacterName->CreateString("             " + CurIter->first,Color::Blue);
+	CharacterName = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 440,100 }, { 330,450 }));
+	CharacterName->CreateString("  " + CurIter->first, Color::Blue);
+
+	SelectPokemon = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 300,130 }, { 20,450 }));
+	SelectPokemon->CreateString("Your Pokemon", Color::White);
+	SelectPokemon->CreateString("Your Partner", Color::White);
+
 
 	//  설명
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
@@ -87,7 +93,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			CurIter = PlayerCharacterImages.begin();
 		}
 		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("             "+CurIter->first, Color::Blue);
+		CharacterName->SetString("  " + CurIter->first, Color::Blue);
 		CharacterName->ShowUI(0.0f);
 	}
 
@@ -98,7 +104,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		}
 		CurIter--;
 		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->SetString("  " + CurIter->first, Color::Blue);
 		CharacterName->ShowUI(0.0f);
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
@@ -110,7 +116,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			CurIter--;
 		}
 		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->SetString("  " + CurIter->first, Color::Blue);
 		CharacterName->ShowUI(0.0f);
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
@@ -122,28 +128,69 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			}
 		}
 		CurIter->second->SetSpriteScale(1.0f);
-		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->SetString("  " + CurIter->first, Color::Blue);
 		CharacterName->ShowUI(0.0f);
 	}
 
 
-
-	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
-		std::string PlayerName = CurIter->first;
-		UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
-		UGameDataManager::GetInst().InsertPlayerData(PlayerName,PlayerData(5) );
-		//	임시
-		std::string PartnerName = "Vulpix";
-		UGameDataManager::GetInst().InsertPlayerData(PartnerName, PlayerData(5));
-		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
-
+	if (PlayerSelect == false) {
+		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			PlayerName = CurIter->first;
+			SelectPokemon->SetString(PlayerName, Color::Green,0);
+			SelectPokemon->ShowUI();
+			UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
+			UGameDataManager::GetInst().InsertPlayerData(PlayerName, PlayerData(5));
+			PlayerSelect = true;
+			return;
+			//	임시
+		}
+	}
+	if (PlayerSelect == true)
+	{
+		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			PartnerName = CurIter->first;
+			if (PlayerName == PartnerName)
+			{
+				CharacterName->SetString("Pick a different Pokemon ", Color::Yellow);
+				CharacterName->ShowUI();
+				return;
+			}
+			SelectPokemon->SetString(PartnerName, Color::Green, 1);
+			SelectPokemon->ShowUI();
+			UGameDataManager::GetInst().SetSelectPlayer(PartnerName);
+			UGameDataManager::GetInst().InsertPlayerData(PartnerName, PlayerData(5));
+			PartnerSelect = true;
+			Fade->FadeIn();
+		}
+	}
+	if (PartnerSelect == true)
+	{
+		CurDuration += _DeltaTime;
+		if (CurDuration > 2.0f) {
+			UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
+		}
 	}
 }
 
 void ACharacterSelect::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+	{
+		AFade* Actor = GetWorld()->SpawnActor<AFade>();
+		Actor->FadeOut();
+		Fade = Actor;
+	}
+
 	CharacterName->ShowUI(0.0f);
+	SelectPokemon->ShowUI(0.0f);
+}
+
+void ACharacterSelect::LevelChangeEnd()
+{
+	Super::LevelChangeEnd();
+	PlayerSelect = false;
+	PartnerSelect = false;
+	CurDuration = 0.0f;
 }
 
 

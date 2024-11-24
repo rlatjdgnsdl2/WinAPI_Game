@@ -11,6 +11,7 @@
 
 #include "Box.h"
 #include "Text.h"
+#include "Fade.h"
 #include "GameDataManager.h"
 
 
@@ -50,7 +51,24 @@ void ADungeonSelectGameMode::BeginPlay()
 	DungeonNameRenderer->SetActorLocation({ 300.0f, 520.0f });
 
 	DungeonNameRenderer->SetString(DungeonMapStartIter->first, Color::Green);
-	
+
+}
+
+void ADungeonSelectGameMode::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	{
+		AFade* Actor = GetWorld()->SpawnActor<AFade>();
+		Actor->FadeOut();
+		Fade = Actor;
+	}
+}
+
+void ADungeonSelectGameMode::LevelChangeEnd()
+{
+	Super::LevelChangeEnd();
+	CurDuration = 0.0f;
+	IsNextLevel = false;
 }
 
 void ADungeonSelectGameMode::Tick(float _DeltaTime)
@@ -82,7 +100,17 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 	//	던전입장
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		UGameDataManager::GetInst().SetSelectDungeon(DungeonMapStartIter->first);
-		UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+		IsNextLevel = true;
+		Fade->FadeIn();
+	}
+
+	if (IsNextLevel == true)
+	{
+		CurDuration += _DeltaTime;
+		if (CurDuration > 2.0f) {
+			UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
+
+		}
 	}
 }
 

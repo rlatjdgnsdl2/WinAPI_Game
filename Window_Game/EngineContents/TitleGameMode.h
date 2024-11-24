@@ -28,10 +28,14 @@ protected:
 
 private:
 	float TitlePlayTime = 0.0f;
+	float FadeTime = 0.0f;
 	class ATitleBackground* TitleBackGround;
 	class ATitleAnim* TitleAnim;
 	class ATitleLogo* TitleLogo;
 	USoundPlayer BGMPlayer;
+	bool IsNextLevel = false;
+	class AFade* Fade = nullptr;	
+
 
 	FVector2D LeftAcceleration = FVector2D::LEFT;
 	FVector2D UpAcceleration = FVector2D::UP;

@@ -5,12 +5,14 @@ enum class ERenderOrder
 {
 	BackGround = -1000,
 	ColMap = -999,
+
 	Player = 0,
 	AttacK_Player = 100,
 	UI_BackGround = 5000,
 	UI_Basic = 10000,
 	UI_Image = 20000,
-	UI_Text = 30000
+	UI_Text = 30000,
+	FADE = 40000
 };
 enum class TileType
 {

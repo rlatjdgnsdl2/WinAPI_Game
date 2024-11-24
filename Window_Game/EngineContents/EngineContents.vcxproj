@@ -203,6 +203,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="GameDataManager.h">
       <SubType>
       </SubType>
@@ -326,6 +327,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GameDataManager.cpp">
       <SubType>
       </SubType>

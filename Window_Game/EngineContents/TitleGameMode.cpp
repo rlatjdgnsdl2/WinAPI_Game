@@ -10,7 +10,7 @@
 #include "TitleAnim.h"
 #include "TitleLogo.h"
 #include "TitleBackground.h"
-
+#include "Fade.h"
 
 ATitleGameMode::ATitleGameMode()
 {
@@ -35,7 +35,7 @@ void ATitleGameMode::BeginPlay()
 	TitleBackGround = GetWorld()->SpawnActor<ATitleBackground>();
 	TitleAnim = GetWorld()->SpawnActor<ATitleAnim>();
 	TitleLogo = GetWorld()->SpawnActor<ATitleLogo>();
-	TitleLogo->SetActive(false);	
+	TitleLogo->SetActive(false);
 	GetWorld()->SetCameraToMainPawn(false);
 }
 
@@ -46,7 +46,12 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	// Space누르면 다음레벨
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 	{
-		UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
+		{
+			AFade* Actor = GetWorld()->SpawnActor<AFade>();
+			Actor->FadeIn();
+			Fade = Actor;
+		}
+		IsNextLevel = true;
 	}
 	// 타이틀 배경 움직임
 	if (2.5f < TitlePlayTime && TitlePlayTime < 8.2f) {
@@ -65,16 +70,23 @@ void ATitleGameMode::Tick(float _DeltaTime)
 		TitleBackGround->AddActorLocation(FVector2D::DOWN * _DeltaTime * 200.f);
 		TitleLogo->SetActive(true);
 	}
-
-
+	if (IsNextLevel == true)
+	{
+		FadeTime += _DeltaTime;
+		if (FadeTime > 2.0f)
+		{
+			UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
+		}
+	}
 }
 
 void ATitleGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
 	TitleLogo->SetActive(false);
+	FadeTime = 0.0f;
 	TitlePlayTime = 0.0f;
-	
+	IsNextLevel = false;
 }
 
 

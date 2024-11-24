@@ -106,12 +106,46 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Title_anim.png", 5, 3);
 
 	//	player
+	RoadPokemon("Bulbasaur", 11, 2, 3, 6, 6);
+	UGameDataManager::GetInst().InsertPokemonAbility("Bulbasaur", PokemonInfo(22, 3, 4, 2, 3));
+	RoadPokemon("Charmander", 11, 2, 4, 9, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Charmander", PokemonInfo(22, 3, 4, 3, 2));
 	RoadPokemon("Chikorita", 10, 2, 6, 11, 4);
 	UGameDataManager::GetInst().InsertPokemonAbility("Chikorita", PokemonInfo(30, 4, 4, 3, 3 ));
+	RoadPokemon("Chimchar", 10, 2, 5, 12, 7);
+	UGameDataManager::GetInst().InsertPokemonAbility("Chimchar", PokemonInfo(22, 4, 4, 3, 5));
+	RoadPokemon("Cyndaquil", 10, 2, 2, 10, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Cyndaquil", PokemonInfo(25, 4, 4, 2, 2));
+	RoadPokemon("Eevee", 11, 2, 2,8, 7);
+	UGameDataManager::GetInst().InsertPokemonAbility("Eevee", PokemonInfo(25, 4, 3, 5, 5));
+	RoadPokemon("Meowth", 10, 2, 4, 9, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Meowth", PokemonInfo(20, 2, 4, 4, 4));
 	RoadPokemon("Mudkip", 10, 2, 7, 11, 6);
 	UGameDataManager::GetInst().InsertPokemonAbility("Mudkip", PokemonInfo(26, 4, 4, 3, 3));
+	RoadPokemon("Munchlax", 13, 2, 4, 12, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Munchlax", PokemonInfo(30, 5, 5, 3, 3));
+	RoadPokemon("Phanpy", 13, 2, 4, 12, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Phanpy", PokemonInfo(22, 2, 3, 2, 3));
 	RoadPokemon("Pikachu", 10, 2, 6, 11, 4);
 	UGameDataManager::GetInst().InsertPokemonAbility("Pikachu", PokemonInfo(20, 3, 3, 3, 3));
+	RoadPokemon("Piplup", 14, 2, 6, 12, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Piplup", PokemonInfo(23, 3, 4, 5, 4));
+	RoadPokemon("Riolu", 15, 2, 4, 9, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Riolu", PokemonInfo(20, 3, 4, 2, 2));
+	RoadPokemon("Shinx", 15, 2, 7, 12, 7);
+	UGameDataManager::GetInst().InsertPokemonAbility("Shinx", PokemonInfo(21, 2, 2, 2, 2));
+	RoadPokemon("Skitty", 11, 2, 4, 11, 7);
+	UGameDataManager::GetInst().InsertPokemonAbility("Skitty", PokemonInfo(30, 4, 4, 3, 3));
+	RoadPokemon("Squirtle", 10, 2, 8, 11, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Squirtle", PokemonInfo(30, 3, 3, 3, 3));
+	RoadPokemon("Torchic", 11, 2, 5, 13, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Torchic", PokemonInfo(25, 4, 4, 3, 3));
+	RoadPokemon("Totodile", 10, 2, 7, 14, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Totodile", PokemonInfo(25, 4, 4, 3, 3));
+	RoadPokemon("Treecko", 10, 2, 3, 9, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Treecko", PokemonInfo(25, 3, 4, 3, 3));
+	RoadPokemon("Turtwig", 11, 2, 4, 12, 4);
+	UGameDataManager::GetInst().InsertPokemonAbility("Turtwig", PokemonInfo(20, 5, 5, 3, 3));
 	RoadPokemon("Vulpix", 11, 2, 4, 13, 5);
 	UGameDataManager::GetInst().InsertPokemonAbility("Vulpix", PokemonInfo(24, 4, 4, 4, 4));
 

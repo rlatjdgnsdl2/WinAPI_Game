@@ -16,6 +16,8 @@ public:
 	ADungeonSelectGameMode& operator=(ADungeonSelectGameMode&& _Other) noexcept = delete;
 
 	void BeginPlay()override;
+	void LevelChangeStart()override;
+	void LevelChangeEnd()override;
 	void Tick(float _DeltaTime)override;
 
 
@@ -27,6 +29,11 @@ private:
 	std::map<std::string, FVector2D>DungeonMaps;
 	std::map<std::string, FVector2D>::iterator DungeonMapStartIter;
 	std::map<std::string, FVector2D>::iterator DungeonMapEndIter;
+
+	bool IsNextLevel = false;
+
+	class AFade* Fade = nullptr;
+	float CurDuration = 0.0f;
 
 	class ABox* DungeonNameBox;
 	class AText* DungeonNameRenderer;

@@ -91,6 +91,9 @@
     <ClInclude Include="SpecialSkill.h">
       <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
+    <ClInclude Include="Fade.h">
+      <Filter>Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="SpecialSkill.cpp">
       <Filter>Global\00.Pokemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade.cpp">
+      <Filter>Global\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
