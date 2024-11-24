@@ -102,7 +102,7 @@ enum class MenuType {
 	SHowItem,
 	CloseItem
 };
-enum class TextColor {
+enum class Color {
 	White,
 	Blue,
 	Green,

@@ -27,7 +27,7 @@ void ABoxUI::BeginPlay()
 	Box->SetActive(false);
 }
 
-void ABoxUI::CreateString(std::string_view _StringValue, TextColor _Color, FVector2D _TextSize, float _Time)
+void ABoxUI::CreateString(std::string_view _StringValue, Color _Color, FVector2D _TextSize, float _Time)
 {
 	AText* NewText = GetWorld()->SpawnActor<AText>();
 	NewText->SetString(_StringValue, _Color, _TextSize, _Time);
@@ -35,7 +35,7 @@ void ABoxUI::CreateString(std::string_view _StringValue, TextColor _Color, FVect
 	Texts.push_back(NewText);
 }
 
-void ABoxUI::CreateString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _colors, const FVector2D& _TextSize, float _Time)
+void ABoxUI::CreateString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, const FVector2D& _TextSize, float _Time)
 {
 	AText* NewText = GetWorld()->SpawnActor<AText>();
 	NewText->SetString(_StringValues, _colors, _TextSize, _Time);
@@ -43,45 +43,45 @@ void ABoxUI::CreateString(const std::vector<std::string>& _StringValues, const s
 	Texts.push_back(NewText);
 }
 
-void ABoxUI::SetString(std::string_view _StringValue, int Index, TextColor _Color, FVector2D _TextSize, float _Time)
+void ABoxUI::SetString(std::string_view _StringValue, Color _Color, int Index, FVector2D _TextSize, float _Time)
 {
 	Texts[Index]->SetString(_StringValue, _Color, _TextSize, _Time);
 }
 
-void ABoxUI::SetString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _colors, int Index, const FVector2D& _TextSize, float _Time)
+void ABoxUI::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, int Index, const FVector2D& _TextSize, float _Time)
 {
 	Texts[Index]->SetString(_StringValues, _colors, _TextSize, _Time);
 }
 
 
 
-void ABoxUI::SetStringColor(AText* Text, TextColor _Color)
+void ABoxUI::SetStringColor(AText* Text, Color _Color)
 {
 	Text->SetColor(_Color);
 }
 
 
 
-void ABoxUI::SetStringColor(int Index, TextColor _Color)
+void ABoxUI::SetStringColor(int Index, Color _Color)
 {
 	Texts[Index]->SetColor(_Color);
 }
 
 
-void ABoxUI::NewMessage(const std::string_view _Message)
+void ABoxUI::NewMessage(const std::string_view _Message, Color _Color)
 {
 	if (Texts.size() < 3) {
 		CreateString(_Message);
 	}
 
 	else if (Texts.size() >= 3) {
-		SetString(Texts[1]->GetString(), 0);
-		SetString(Texts[2]->GetString(), 1);
-		SetString(_Message, 2);
+		SetString(Texts[1]->GetString(), _Color,0);
+		SetString(Texts[2]->GetString(), _Color,1);
+		SetString(_Message,_Color, 2);
 	}
 }
 
-void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vector<TextColor>& _colors)
+void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors)
 {
 	if (Texts.size() < 3) {
 		CreateString(_Message, _colors);

@@ -177,21 +177,21 @@ int UContentsMath::DamageCalculation(int _Attack, int _Defense)
 	return Damage;
 }
 
-std::string UContentsMath::Color_To_String(TextColor _color)
+std::string UContentsMath::Color_To_String(Color _color)
 {
 	std::string Color="";
 	switch (_color)
 	{
-	case TextColor::White:
+	case Color::White:
 		Color = "White";
 		break;
-	case TextColor::Blue:
+	case Color::Blue:
 		Color= "Blue";
 		break;
-	case TextColor::Green:
+	case Color::Green:
 		Color= "Green";
 		break;
-	case TextColor::Yellow:
+	case Color::Yellow:
 		Color = "Yellow";
 		break;
 	default:

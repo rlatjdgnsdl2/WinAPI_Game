@@ -38,11 +38,12 @@ bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 	//	앞에 적이 있으면 이동불가
 	for (APokemon* EnemyPokemon : EnemyCamp)
 	{
-		FVector2D EnemyLocation = EnemyPokemon->GetTargetLocation();
+		FVector2D EnemyLocation = EnemyPokemon->GetActorLocation();
 		if (Player->GetTargetLocation() == EnemyLocation) {
 			Player->SetTargetLocation(PlayerLocation);
 			return false;
 		}
+		
 	}
 	//	위에 조건에 안걸렸다면
 	Player->ResetCurDuration();

@@ -10,7 +10,7 @@ public:
 	static FIntPoint DIR_To_FIntPoint(DIR _Dir);
 	static DIR ReverseDir(DIR _Dir);
 	static int DamageCalculation(int _Attack, int _Defense);
-	static std::string Color_To_String(TextColor _color);
+	static std::string Color_To_String(Color _color);
 
 };
 

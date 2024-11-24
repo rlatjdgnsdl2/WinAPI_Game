@@ -9,6 +9,7 @@
 
 #include "Box.h"
 #include "Text.h"
+#include "BoxUI.h"
 #include "GameDataManager.h"
 
 
@@ -18,31 +19,25 @@ ACharacterSelect::ACharacterSelect()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation(WindowSize.Half());
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("Mudkip.png");
-		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ -250,-150 });
-		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
-		PlayerCharacterImages.insert({ "Mudkip",SpriteRenderer });
-	}
+	std::vector<std::string> PlayerNames = {
+	"Bulbasaur","Charmander","Chikorita","Chimchar","Cyndaquil","Eevee","Meowth",
+	"Mudkip","Munchlax","Phanpy","Pikachu","Piplup","Riolu","Shinx",
+	"Skitty","Squirtle","Torchic","Totodile","Treecko","Turtwig","Vulpix"
+	};
 
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("Chikorita.png");
-		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ -100,-150 });
-		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
-		PlayerCharacterImages.insert({ "Chikorita",SpriteRenderer });
-	}
+	std::vector<FVector2D> Locations = {
+		{-300, -200}, {-200, -200}, {-100, -200}, {0, -200}, {100, -200}, {200, -200}, {300, -200},
+		{-300, -100}, {-200, -100}, {-100, -100}, {0, -100}, {100, -100}, {200, -100}, {300, -100},
+		{-300, 0}, {-200, 0}, {-100, 0}, {0, 0}, {100, 0}, {200, 0}, {300, 0}
+	};
 
-	{
+	for (size_t i = 0; i < PlayerNames.size(); ++i) {
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("Pikachu.png");
-		SpriteRenderer->SetSpriteScale(0.5f);
-		SpriteRenderer->SetComponentLocation({ 50,-150 });
+		SpriteRenderer->SetSprite(PlayerNames[i] + ".png");
+		SpriteRenderer->SetSpriteScale(0.5);
+		SpriteRenderer->SetComponentLocation(Locations[i]);
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
-		PlayerCharacterImages.insert({ "Pikachu",SpriteRenderer });
+		PlayerCharacterImages.insert({ PlayerNames[i], SpriteRenderer });
 	}
 }
 
@@ -55,40 +50,27 @@ void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
 	CharacterTable = GetWorld()->SpawnActor<ABox>();
-	CharacterTable->SetBoxSize({ 700,500 });
-	CharacterTable->SetActorLocation({ 30,30 });
+	CharacterTable->SetBoxSize({ 760,410 });
+	CharacterTable->SetActorLocation({ 10,20 });
+	CurIter = PlayerCharacterImages.begin();
+	CurIter->second->SetSpriteScale(1.0f);
 
-	Mudkip_Text = GetWorld()->SpawnActor<AText>();
-	Mudkip_Text->SetString("Mudkip",TextColor::Blue);
-	Mudkip_Text->SetActorLocation({ 100, 200 });
-	Mudkip_Text->ShowText(0.0f);
-
-	Chikorita_Text = GetWorld()->SpawnActor<AText>();
-	Chikorita_Text->SetString("Chikorita", TextColor::Green);
-	Chikorita_Text->SetActorLocation({ 230, 200 });
-	Chikorita_Text->ShowText(0.0f);
-
-	Pikachu_Text = GetWorld()->SpawnActor<AText>();
-	Pikachu_Text->SetString("Pikachu",TextColor::Yellow);
-	Pikachu_Text->SetActorLocation({ 400, 200 });
-	Pikachu_Text->ShowText(0.0f);
-
+	CharacterName = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 600,100 }, { 100,450 }));
+	CharacterName->CreateString("             " + CurIter->first,Color::Blue);
 
 	//  Ό³Έν
 	ExplanationText01 = GetWorld()->SpawnActor<AText>();
-	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", TextColor::White);
-	ExplanationText01->SetActorLocation({ 100, 440 });
+	ExplanationText01->SetString("Select Your Pokemon to push Left or Right ", Color::White);
+	ExplanationText01->SetActorLocation({ 100, 340 });
 	ExplanationText01->ShowText(0.0f);
 
 	ExplanationText02 = GetWorld()->SpawnActor<AText>();
-	ExplanationText02->SetString("And push SPACE_BAR ", TextColor::White);
-	ExplanationText02->SetActorLocation({ 100, 470 });
+	ExplanationText02->SetString("And push SPACE_BAR ", Color::White);
+	ExplanationText02->SetActorLocation({ 100, 370 });
 	ExplanationText02->ShowText(0.0f);
 
 
 	GetWorld()->SetCameraToMainPawn(false);
-	CurIter = PlayerCharacterImages.begin();
-	CurIter->second->SetSpriteScale(1.0f);
 }
 
 void ACharacterSelect::Tick(float _DeltaTime)
@@ -98,7 +80,6 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
 	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));
 
-
 	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT)) {
 		CurIter->second->SetSpriteScale(0.5f);
 		CurIter++;
@@ -106,6 +87,8 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			CurIter = PlayerCharacterImages.begin();
 		}
 		CurIter->second->SetSpriteScale(1.0f);
+		CharacterName->SetString("             "+CurIter->first, Color::Blue);
+		CharacterName->ShowUI(0.0f);
 	}
 
 	if (true == UEngineInput::GetInst().IsDown(VK_LEFT)) {
@@ -115,7 +98,36 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		}
 		CurIter--;
 		CurIter->second->SetSpriteScale(1.0f);
+		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->ShowUI(0.0f);
 	}
+	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+		CurIter->second->SetSpriteScale(0.5f);
+		for (int i = 0; i < 7; ++i) {
+			if (CurIter == PlayerCharacterImages.begin()) {
+				CurIter = PlayerCharacterImages.end();
+			}
+			CurIter--;
+		}
+		CurIter->second->SetSpriteScale(1.0f);
+		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->ShowUI(0.0f);
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+		CurIter->second->SetSpriteScale(0.5f);
+		for (int i = 0; i < 7; ++i) {
+			CurIter++;
+			if (CurIter == PlayerCharacterImages.end()) {
+				CurIter = PlayerCharacterImages.begin();
+			}
+		}
+		CurIter->second->SetSpriteScale(1.0f);
+		CharacterName->SetString("             " + CurIter->first, Color::Blue);
+		CharacterName->ShowUI(0.0f);
+	}
+
+
+
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		std::string PlayerName = CurIter->first;
 		UGameDataManager::GetInst().SetSelectPlayer(PlayerName);
@@ -126,6 +138,12 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 
 	}
+}
+
+void ACharacterSelect::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	CharacterName->ShowUI(0.0f);
 }
 
 

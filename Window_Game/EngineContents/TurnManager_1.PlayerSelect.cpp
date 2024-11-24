@@ -27,6 +27,7 @@ void ATurnManager::PlayerSelect(float _DeltaTime)
 
 	if (UEngineInput::GetInst().IsDown('Q')) {
 		PreTurn = CurTurn;
+		DungeonUI->SetNewLogVal(false);
 		CurTurn = TurnType::Open_UI;
 		return;
 	}
@@ -60,7 +61,43 @@ void ATurnManager::PlayerSelect(float _DeltaTime)
 		}
 		return;
 	}
-	
+
+	//	È¸Àü
+	if (UEngineInput::GetInst().IsDown('R')) {
+		
+		DIR CurDir = Player->GetDir();
+		switch (CurDir)
+		{
+		case DIR::Up:
+			Player->SetDir(DIR::Right_Up);
+			break;
+		case DIR::Right_Up:
+			Player->SetDir(DIR::Right);
+			break;
+		case DIR::Right:
+			Player->SetDir(DIR::Right_Down);
+			break;
+		case DIR::Right_Down:
+			Player->SetDir(DIR::Down);
+			break;
+		case DIR::Down:
+			Player->SetDir(DIR::Left_Down);
+			break;
+		case DIR::Left_Down:
+			Player->SetDir(DIR::Left);
+			break;
+		case DIR::Left:
+			Player->SetDir(DIR::Left_Up);
+			break;
+		case DIR::Left_Up:
+			Player->SetDir(DIR::Up);
+			break;
+		}
+		return;
+	}
+
+
+
 	if (UEngineInput::GetInst().IsPress(VK_UP)) {
 		PlayerMoveDir += FVector2D::UP;
 		Player->SetDir(DIR::Up);

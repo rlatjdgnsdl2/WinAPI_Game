@@ -17,15 +17,15 @@ void ABasicUI::OpenSkill() {
 	return;
 }
 void ABasicUI::ShowSkill() {
-	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), TextColor::Yellow);
+	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::Yellow);
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
-		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), TextColor::White);
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 		SkillUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 	{
-		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), TextColor::White);
+		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 		SkillUI->NextTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('Q')) {
@@ -43,7 +43,7 @@ void ABasicUI::ShowSkill() {
 
 
 void ABasicUI::CloseSkill() {
-	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), TextColor::White);
+	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 	SkillUI->HideUI();
 	SkillInfoUI->HideUI();
 	CurMenu = MenuType::None;

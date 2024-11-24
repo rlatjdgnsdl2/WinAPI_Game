@@ -74,6 +74,7 @@ void ATitleGameMode::LevelChangeEnd()
 	Super::LevelChangeEnd();
 	TitleLogo->SetActive(false);
 	TitlePlayTime = 0.0f;
+	
 }
 
 

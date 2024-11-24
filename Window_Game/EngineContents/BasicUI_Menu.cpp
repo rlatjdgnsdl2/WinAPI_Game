@@ -12,15 +12,15 @@
 
 void ABasicUI::ShowMenu()
 {
-	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::Yellow);
+	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::Yellow);
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
-		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::White);
+		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::White);
 		MenuBoxUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 	{
-		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::White);
+		MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::White);
 		MenuBoxUI->NextTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('Q')) {
@@ -34,7 +34,7 @@ void ABasicUI::ShowMenu()
 		AText* CurText = *(MenuBoxUI->GetCurTextIter());
 		std::string CurTextString = CurText->GetString();
 		if ("Skill" == CurTextString) {
-			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::White);
+			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::White);
 			MenuBoxUI->HideUI();
 			MyInfoBoxUI->HideUI();
 
@@ -43,7 +43,7 @@ void ABasicUI::ShowMenu()
 			return;
 		}
 		else if ("Item" == CurTextString) {
-			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::White);
+			MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::White);
 			MenuBoxUI->HideUI();
 			MyInfoBoxUI->HideUI();
 			CurMenu = MenuType::OpenItem;
@@ -65,14 +65,14 @@ void ABasicUI::OpenMenu() {
 
 	MyInfoBoxUI->SetString(
 		{ Player->GetName(),std::format("    CurHP -  {} - {}",Player->GetCurHP(),Player->GetMaxHP()) },
-		{ TextColor::Blue,TextColor::White },0);
+		{ Color::Blue,Color::White },0);
 	MyInfoBoxUI->ShowUI();
 	CurMenu = MenuType::ShowMenu;
 }
 
 
 void ABasicUI::CloseMenu() {
-	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), TextColor::White);
+	MenuBoxUI->SetStringColor(*(MenuBoxUI->GetCurTextIter()), Color::White);
 	MenuBoxUI->HideUI();
 	MyInfoBoxUI->HideUI();
 	CurMenu = MenuType::None;

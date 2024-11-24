@@ -23,14 +23,14 @@ public:
 	void Reserve(int _Count);
 
 	void ShowText(float _DeltaTime);
-	void SetString(std::string_view _StringValue, TextColor _Color = TextColor::White, const FVector2D& _TextSize = FVector2D({ 14.0f,20.0f }), float _Time=0.0f);
+	void SetString(std::string_view _StringValue, Color _Color = Color::White, const FVector2D& _TextSize = FVector2D({ 14.0f,20.0f }), float _Time=0.0f);
 	void SetString(const AText* _Text);
 	void SetTime(float _Time) { Time = _Time; }
 
-	void SetString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _Colors, const FVector2D& _TextSize = FVector2D({ 14.0f,20.0f }), float _Time = 0.0f);
+	void SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _Colors, const FVector2D& _TextSize = FVector2D({ 14.0f,20.0f }), float _Time = 0.0f);
 
 	std::string GetString() const { return StringValue; }	
-	void SetColor(TextColor _Color);
+	void SetColor(Color _Color);
 	
 	int CharToTextIndex(char c);
 

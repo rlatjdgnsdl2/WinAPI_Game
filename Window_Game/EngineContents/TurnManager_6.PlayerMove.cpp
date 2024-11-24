@@ -16,6 +16,7 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 {
 	//	Player move
 	Player->Move(_DeltaTime);
+	DungeonUI->SetNewLogVal(false);
 	// 플레이어가 이동할때 MovePokemon에 있는 포켓몬 모두 동시에 이동함
 	for (APokemon* CurPokemon : MovePokemon) {
 		CurPokemon->Move(_DeltaTime);

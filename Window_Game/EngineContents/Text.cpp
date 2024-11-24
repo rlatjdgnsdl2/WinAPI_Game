@@ -50,6 +50,7 @@ void AText::ShowText(float _DeltaTime)
 	}
 	if (CurCount >= Size) {
 		CurCount = Size;
+		Time = 0.0f;
 	}
 
 	for (size_t i = 0; i < CurCount; i++) {
@@ -57,7 +58,7 @@ void AText::ShowText(float _DeltaTime)
 	}
 }
 
-void AText::SetString(std::string_view _StringValue, TextColor _color, const FVector2D& _TextSize, float _Time)
+void AText::SetString(std::string_view _StringValue, Color _color, const FVector2D& _TextSize, float _Time)
 {
 	TextSize = _TextSize;
 	Time = _Time;
@@ -65,16 +66,16 @@ void AText::SetString(std::string_view _StringValue, TextColor _color, const FVe
 	std::string Color;
 	switch (_color)
 	{
-	case TextColor::White:
+	case Color::White:
 		Color = "White";
 		break;
-	case TextColor::Blue:
+	case Color::Blue:
 		Color = "Blue";
 		break;
-	case TextColor::Green:
+	case Color::Green:
 		Color = "Green";
 		break;
-	case TextColor::Yellow:
+	case Color::Yellow:
 		Color = "Yellow";
 		break;
 	}
@@ -110,7 +111,7 @@ void AText::SetString(const AText* _Text)
 	}
 }
 
-void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<TextColor>& _colors, const FVector2D& _TextSize, float _Time)
+void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, const FVector2D& _TextSize, float _Time)
 {
 	if (_StringValues.size() != _colors.size())
 	{
@@ -143,7 +144,7 @@ void AText::SetString(const std::vector<std::string>& _StringValues, const std::
 	}
 }
 
-void AText::SetColor(TextColor _Color)
+void AText::SetColor(Color _Color)
 {
 	std::string Color = UContentsMath::Color_To_String(_Color);
 	for (size_t i = 0; i < StringValue.size(); i++)

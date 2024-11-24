@@ -103,7 +103,7 @@ void ADungeonUI::Tick(float _DeltaTime)
 	//	던전이름UI
 	if (BasicUI->GetCurMenuType() == MenuType::ShowMenu) {
 		DungeonNameUI->SetString(std::format("      {}", Dungeon->GetName()));
-		DungeonNameUI->SetStringColor(0, TextColor::Yellow);
+		DungeonNameUI->SetStringColor(0, Color::Yellow);
 		DungeonNameUI->ShowUI();
 	}
 	else {
@@ -111,13 +111,13 @@ void ADungeonUI::Tick(float _DeltaTime)
 	}
 	if (IsAskValue == true) {
 		AText* Text = *(A_NextFloorUI->GetCurTextIter());
-		A_NextFloorUI->SetStringColor(Text, TextColor::Yellow);
+		A_NextFloorUI->SetStringColor(Text, Color::Yellow);
 		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8)) {
-			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), TextColor::White);
+			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), Color::White);
 			A_NextFloorUI->PrevTextIter();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2)) {
-			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), TextColor::White);
+			A_NextFloorUI->SetStringColor(*(A_NextFloorUI->GetCurTextIter()), Color::White);
 			A_NextFloorUI->NextTextIter();
 		}
 
@@ -166,7 +166,7 @@ void ADungeonUI::NewLogMessage(const std::string_view _Message)
 	IsNewLogValue = true;
 }
 
-void ADungeonUI::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<TextColor>& _colors)
+void ADungeonUI::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors)
 {
 	LogBoxUI->NewMessage(_Message, _colors);
 	IsNewLogValue = true;
