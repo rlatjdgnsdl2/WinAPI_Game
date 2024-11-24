@@ -45,6 +45,17 @@ public:
 		return NewActor;
 	}
 
+
+	template<typename ActorType>
+	ActorType* SpawnActor(FVector2D _FVector2D)
+	{
+		ActorType* NewActor = new ActorType(_FVector2D);
+		AActor* ActorPtr = dynamic_cast<AActor*>(NewActor);
+		ActorPtr->World = this;
+		BeginPlayList.push_back(ActorPtr);
+		return NewActor;
+	}
+
 	
 	template<typename ActorType>
 	ActorType* SpawnActor(std::string_view _String )

@@ -41,6 +41,5 @@ void ATitleLogo::Tick(float _DeltaTime)
 		float Value = UEngineMath::Clamp(CurDuration/2.0f, 0.0f, 1.0f);
 		SpriteRenderer->SetSpriteScale(Value);
 		TitleText->ShowText(_DeltaTime);
-		
 	};
 }

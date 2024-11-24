@@ -12,7 +12,7 @@ ATitleAnim::ATitleAnim()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::Player);
-	SpriteRenderer->SetSprite("Title_anim.png");
+	SpriteRenderer->SetSprite("Title_Anim.png");
 	float frame = 1.5f / 15;
 	SpriteRenderer->CreateAnimation("TitleAnim", "Title_Anim.png", 0, 14, frame, false);
 }
@@ -26,9 +26,7 @@ ATitleAnim::~ATitleAnim()
 void ATitleAnim::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	SetActorLocation({ 800,300 });
-	SpriteRenderer->SetSpriteScale(1.0f);
-	
+	SetActorLocation({ 600,300 });
 }
 
 

@@ -105,7 +105,8 @@ void PMDContentsCore::RoadResources()
 	UImageManager::GetInst().CuttingSprite("Pink_Text.png", 26, 4);
 
 	//	Title
-	UImageManager::GetInst().CuttingSprite("Title_anim.png", 5, 3);
+	UImageManager::GetInst().CuttingSprite("Title_Anim.png", 5, 3);
+	UImageManager::GetInst().CuttingSprite("Title_Petal.png", 8, 4);
 
 	//	player
 	RoadPokemon("Bulbasaur", 11, 2, 3, 6, 6);

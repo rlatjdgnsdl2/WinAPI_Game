@@ -94,6 +94,9 @@
     <ClInclude Include="Fade.h">
       <Filter>Global\UI</Filter>
     </ClInclude>
+    <ClInclude Include="TitlePetal.h">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="Fade.cpp">
       <Filter>Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TitlePetal.cpp">
+      <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

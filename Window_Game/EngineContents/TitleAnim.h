@@ -18,6 +18,8 @@ public:
 	void LevelChangeStart() override;
 	void PlayAnimation(float _DeltaTime);
 
+	class USpriteRenderer* GetSpriteRenderer() { return SpriteRenderer; }
+
 
 protected:
 
