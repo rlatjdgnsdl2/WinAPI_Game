@@ -16,7 +16,7 @@
 
 
 
-ATurnManager::ATurnManager() :Dungeon(nullptr), Player(nullptr),UIManager(nullptr), DungeonUI(nullptr), CurTurn(TurnType::Player_Select), PreTurn(TurnType::Player_Select), PlayerInput(-1)
+ATurnManager::ATurnManager() :Dungeon(nullptr), Player(nullptr), UIManager(nullptr), DungeonUI(nullptr), CurTurn(TurnType::Player_Select), PreTurn(TurnType::Player_Select), PlayerInput(-1)
 {
 
 }
@@ -173,12 +173,26 @@ void ATurnManager::SpawnEnemy()
 
 
 	int SpawnMaxSize = static_cast<int>(Dungeon->GetRoomLocations().size());
-	int SpawnIndex = Random.RandomInt(0, SpawnMaxSize - 1);
-	FVector2D RoomLocation = Dungeon->GetRoomLocations()[SpawnIndex];
-	NewEnemy->SetActorLocation(RoomLocation);
-	NewEnemy->SetTargetLocation(Player->GetActorLocation());
-	PushAllAIPokemon(NewEnemy);
-	PushEnemyCamp(NewEnemy);
+	bool IsSpawnable = false;
+	while (true) {
+		int SpawnIndex = Random.RandomInt(0, SpawnMaxSize - 1);
+		FVector2D RoomLocation = Dungeon->GetRoomLocations()[SpawnIndex];
+		for (APokemon* CurPokemon : AllAIPokemon)
+		{
+			if (RoomLocation == CurPokemon->GetActorLocation()) {
+				IsSpawnable = false;
+				break;
+			}
+			IsSpawnable = true;
+		}
+		if (IsSpawnable) {
+			NewEnemy->SetActorLocation(RoomLocation);
+			NewEnemy->SetTargetLocation(Player->GetActorLocation());
+			PushAllAIPokemon(NewEnemy);
+			PushEnemyCamp(NewEnemy);
+			break;
+		}
+	}
 }
 
 void ATurnManager::SetItems()
