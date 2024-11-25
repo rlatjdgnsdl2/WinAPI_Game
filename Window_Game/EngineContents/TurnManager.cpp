@@ -12,6 +12,7 @@
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
 #include "BasicUI.h"
+#include "Item.h"
 
 
 
@@ -83,46 +84,46 @@ void ATurnManager::Tick(float _DeltaTime)
 	{
 	case TurnType::Player_Select:
 		PlayerSelect(_DeltaTime);
-		break;
+		return;
 	case TurnType::Open_UI:
 		OpenMenu();
-		break;
+		return;
 	case TurnType::Player_Select_Move:
 		SelectMove();
-		break;
+		return;
 	case TurnType::Player_Select_Skill:
 		SelectSkill();
-		break;
+		return;
 	case TurnType::Player_Move:
 		PlayerMove(_DeltaTime);
-		break;
+		return;
 	case TurnType::Player_Skill_Start:
 		PlayerSkillStart();
-		break;
+		return;
 	case TurnType::Player_Skill:
 		PlayerSkill();
-		break;
+		return;
 	case TurnType::Player_Skill_End:
 		PlayerSkillEnd();
-		break;
+		return;
 	case TurnType::Move_AI_Select:
 		Move_AISelect();
-		break;
+		return;
 	case TurnType::Skill_AI_Select:
 		Skill_AISelect();
-		break;
+		return;
 	case TurnType::AI_Move:
 		AIMove(_DeltaTime);
-		break;
+		return;
 	case TurnType::AI_Skill_Start:
 		AISkillStart();
-		break;
+		return;
 	case TurnType::AI_Skill:
 		AISkill();
-		break;
+		return;
 	case TurnType::AI_Skill_End:
 		AISkillEnd();
-		break;
+		return;
 	}
 }
 
@@ -175,8 +176,23 @@ void ATurnManager::SpawnEnemy()
 	int SpawnIndex = Random.RandomInt(0, SpawnMaxSize - 1);
 	FVector2D RoomLocation = Dungeon->GetRoomLocations()[SpawnIndex];
 	NewEnemy->SetActorLocation(RoomLocation);
+	NewEnemy->SetTargetLocation(Player->GetActorLocation());
 	PushAllAIPokemon(NewEnemy);
 	PushEnemyCamp(NewEnemy);
+}
+
+void ATurnManager::SetItems()
+{
+	for (int i = 0; i < 100; i++)
+	{
+		std::string ItemName = UGameDataManager::GetInst().GetRandomItem();
+		AItem* NewItem = GetWorld()->SpawnActor<AItem>(ItemName);
+		int MaxSize = static_cast<int>(Dungeon->RoomLocations.size()) - 1;
+		int Index = Random.RandomInt(0, MaxSize);
+		FVector2D RoomLocation = Dungeon->RoomLocations[Index];
+		NewItem->SetActorLocation(RoomLocation);
+		Items.push_back(NewItem);
+	}
 }
 
 

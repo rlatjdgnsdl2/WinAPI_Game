@@ -109,6 +109,15 @@ public:
 		SelectPartner = _SelectPartner;
 	}
 
+	std::string GetItemInfo(std::string_view _ItemName) const {
+		return ItemInfo.find(_ItemName.data())->second;
+	}
+	std::string GetRandomItem() {
+		int MaxSize = static_cast<int>(Items.size());
+		int Index = Random.RandomInt(0, MaxSize - 1);
+		return Items[Index];
+	}
+
 	
 protected:
 
@@ -119,9 +128,18 @@ private:
 	std::string SelectPartner;
 	std::string SelectDungeon = "BeachCave";
 	std::map<std::string, AnimInfo > Animations;
-	std::map<std::string, int> SkillAnimations;
 	std::map<std::string, PokemonInfo > Pokemons;
 	std::map<std::string, DungeonInfo> Dungeons;
+
+
+	
+	std::map<std::string, int> SkillAnimations;
+	std::map<std::string, std::string> ItemInfo;
+	std::vector<std::string> Items;
+
+	
+
+
 
 	std::map<std::string, PlayerData> PlayerDatas;
 	

@@ -37,7 +37,9 @@ private:
 	class ATitleBackground* TitleBackGround;
 	class ATitleAnim* TitleAnim;
 	class ATitleLogo* TitleLogo;
+	 
 	USoundPlayer BGMPlayer;
+
 	bool IsNextLevel = false;
 	class AFade* Fade = nullptr;
 

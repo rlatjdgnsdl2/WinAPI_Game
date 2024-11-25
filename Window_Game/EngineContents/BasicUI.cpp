@@ -42,6 +42,14 @@ void ABasicUI::BeginPlay()
 
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
+
+	ItemUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 300 }, { 25, 50 }));
+	
+
+
+
+
+
 	CurMenu = MenuType::None;
 
 

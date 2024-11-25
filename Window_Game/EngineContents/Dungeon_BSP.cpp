@@ -5,6 +5,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
+#include "Item.h"
 
 const int MIN_SIZE = 8;
 
@@ -62,6 +63,7 @@ void ADungeon_BSP::Generate()
 	ConnectRooms(root);
 	SetNaturally();
 	SetNextPotal();
+	
 }
 
 Room ADungeon_BSP::GetRoom(RoomNode* node) const

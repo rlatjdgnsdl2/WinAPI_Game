@@ -21,6 +21,7 @@ void ATurnManager::Skill_AISelect()
 	for (APokemon* CurPokemon : AllAIPokemon) {
 		bool IsFindTarget = false;
 		CurPokemon->ResetCurDuration();
+		CurPokemon->ClearTargetablePokemon();
 		FIntPoint CurTile = CurPokemon->GetTile();
 		CampType CurPokemonCamp = CurPokemon->GetCamp();
 		//	반대진영 리스트가져옴
@@ -31,15 +32,14 @@ void ATurnManager::Skill_AISelect()
 			//	근처에 적이 있다면 스킬리스트
 			if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
 				IsFindTarget = true;
-				CurPokemon->PushTargetablePokemon(CurComparePokemon);
-				//	애니메이션 첫 프레임에 바인드가 잘 되지않아 넣음 - 추후 수정
-				CurPokemon->StartAttack();
-				SkillPokemon.push_back(CurPokemon);
 				break;
 			}
 		}
+		if (IsFindTarget) {
+			SkillPokemon.push_back(CurPokemon);
+		}
 		//	근처에 적이 없다면 무브리스트
-		if (false == IsFindTarget) {
+		else if (!IsFindTarget) {
 			//	플레이어를 향해 길찾기
 			FIntPoint PlayerTile = Player->GetTargetTile();
 			std::list<FIntPoint> PathForPlayer = PathFinder.PathFind(CurTile, PlayerTile);
@@ -55,15 +55,14 @@ void ATurnManager::Skill_AISelect()
 	}
 
 	// 최종체크 - 서로서로 안겹치게 조정
-	for (APokemon* CurPokemon : MovePokemon)
-	{
+	for (APokemon* CurPokemon : MovePokemon) {
 		bool IsStand = false;
 		FIntPoint CurTarget = CurPokemon->GetTargetTile();
-
-		// 무브리스트 중 자신보다 스피드 빠른 포켓몬이랑 타겟로케이션 겹치면 제자리
-		for (APokemon* ComparePokemon : MovePokemon)
-		{
-			if (ComparePokemon == CurPokemon) { break; }
+		for (APokemon* ComparePokemon : MovePokemon) {
+			if (ComparePokemon == CurPokemon) {
+				break;
+			}
+			// 무브리스트 중 자신보다 스피드 빠른 포켓몬이랑 타겟로케이션 겹치면 제자리
 			if (CurTarget == ComparePokemon->GetTargetTile()) {
 				CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
 				IsStand = true;
@@ -75,19 +74,19 @@ void ATurnManager::Skill_AISelect()
 			for (APokemon* ComparePokemon : SkillPokemon) {
 				if (CurTarget == ComparePokemon->GetTile()) {
 					CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
+					IsStand = true;
 					break;
 				}
 			}
 		}
-
 		// 문제없다면 방향설정
-		FVector2D CurTargetLocation = CurPokemon->GetTargetLocation();
-		FVector2D CurLocation = CurPokemon->GetActorLocation();
-		FVector2D DirVec = (CurTargetLocation - CurLocation) / 72.0f;
-		if (DirVec != FVector2D::ZERO) {
-			DIR Dir = UContentsMath::FVector2D_To_DIR(DirVec);
-			CurPokemon->SetDir(Dir);
+		if (!IsStand) {
+			FVector2D Dir = (CurPokemon->GetTargetLocation() - CurPokemon->GetActorLocation()) / 72.0f;
+			if (Dir != FVector2D::ZERO) {
+				CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
+			}
 		}
+
 	}
 
 

@@ -58,7 +58,7 @@ void AText::ShowText(float _DeltaTime)
 	}
 }
 
-void AText::SetString(std::string_view _StringValue, Color _color, const FVector2D& _TextSize, float _Time)
+void AText::SetString(std::string_view _StringValue, Color _color, float _Time, const FVector2D& _TextSize)
 {
 	TextSize = _TextSize;
 	Time = _Time;
@@ -111,7 +111,7 @@ void AText::SetString(const AText* _Text)
 	}
 }
 
-void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, const FVector2D& _TextSize, float _Time)
+void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, float _Time, const FVector2D& _TextSize)
 {
 	if (_StringValues.size() != _colors.size())
 	{

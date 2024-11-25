@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EnginePlatform/EngineSound.h>	
 
 //	Ό³Έν:
 class ACharacterSelectGameMode :public AGameMode
@@ -24,7 +25,7 @@ protected:
 
 private:
 	class USpriteRenderer* BackGround;
-	
+	USoundPlayer BGMPlayer;
 	
 
 

@@ -8,6 +8,7 @@ void ATurnManager::OpenMenu() {
 
 	MenuType CurMenu = BasicUI->GetCurMenuType();
 	if (CurMenu == MenuType::None&&DungeonUI->IsAsk()==false) {
+		DungeonUI->SetNewLogVal(false);
 		CurTurn = PreTurn;
 	}
 }

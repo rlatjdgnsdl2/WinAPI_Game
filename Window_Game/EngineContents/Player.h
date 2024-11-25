@@ -24,6 +24,7 @@ public:
 	virtual void LevelChangeEnd() override;
 	virtual void SetPokemon(std::string_view _PokemonName) override;
 
+
 	void LevelUp() {
 		Level++;
 		Ability.MaxHP += 2;

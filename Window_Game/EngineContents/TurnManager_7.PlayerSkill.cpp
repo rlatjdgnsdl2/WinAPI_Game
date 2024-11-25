@@ -15,11 +15,11 @@ void ATurnManager::PlayerSkillStart() {
 	if (TargetPokemon != nullptr) {
 		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
 		DungeonUI->NewLogMessage(
-			{Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
+			{Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow},0.1f);
 		TargetPokemon->SetDamage(Damage);
 	}
-
 	CurTurn = TurnType::Player_Skill;
+	return;
 }
 
 
@@ -30,6 +30,7 @@ void ATurnManager::PlayerSkill()
 		return;
 	}
 	CurTurn = TurnType::Player_Skill_End;
+	return;
 }
 
 void ATurnManager::PlayerSkillEnd()
@@ -41,19 +42,20 @@ void ATurnManager::PlayerSkillEnd()
 		if (true == TargetPokemon->IsDie()) {
 			int Level = TargetPokemon->GetLevel();
 			DungeonUI->NewLogMessage(
-				{ TargetPokemon->GetName()," Die and ","Player Party",  " Gain EXP ",std::to_string(TargetPokemon->GetLevel() * 100)}, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
+				{ TargetPokemon->GetName()," Die and ","Player Party"," Gain EXP ",std::to_string(Level * 100)}, 
+				{Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
 			// 경험치 획득 후 레벨업했으면
 			for (APokemon* CurPokemon : PlayerCamp) {
-				if (CurPokemon != nullptr && CurPokemon->GainExp(TargetPokemon->GetLevel() * 100)) {
+				if (CurPokemon != nullptr && CurPokemon->GainExp(Level * 100)) {
 					DungeonUI->NewLogMessage(
 						{ CurPokemon->GetName()," Level Up!", }, { Color::Blue,Color::Yellow });
 					DungeonUI->NewLogMessage(
 						{ "All Ability ","+2" }, { Color::White,Color::Yellow });
 				}
 			}
+			//	모든 리스트에서 제거
 			CampType TargetCamp = TargetPokemon->GetCamp();
 			std::list<APokemon*>& CompareCamp = (CampType::Player == TargetCamp) ? PlayerCamp : EnemyCamp;
-			//	모든 리스트에서 제거
 			AllAIPokemon.remove(TargetPokemon);
 			CompareCamp.remove(TargetPokemon);
 			SkillPokemon.remove(TargetPokemon);
@@ -61,6 +63,7 @@ void ATurnManager::PlayerSkillEnd()
 			TargetPokemon->Destroy();
 		}
 	}
+	// 타겟초기화
 	Player->SetTargetPokemon(nullptr);
 	CurTurn = TurnType::Skill_AI_Select;
 	return;

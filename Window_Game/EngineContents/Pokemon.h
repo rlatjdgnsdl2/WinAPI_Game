@@ -60,6 +60,21 @@ public:
 	void ResetCurDuration() {
 		CurDuration = 0.0f;
 	}
+	void SetMoveSpeed(float _MoveSpeed) {
+		MoveSpeed = _MoveSpeed;
+	}
+	void SetWalk() {
+		MoveSpeed = 2.0f;
+	}
+	void SetRun() {
+		MoveSpeed = 4.0f;
+	}
+	float GetMoveSpeed() const {
+		return MoveSpeed;
+	}
+
+
+
 
 	//	전투관련
 	void SetSkill(SkillType _Skill) {
@@ -159,6 +174,7 @@ public:
 protected:
 	DIR Dir = DIR::Down;
 	CampType Camp = CampType::None;
+	float MoveSpeed = 2.0f;
 	int Level{};
 
 	class USpriteRenderer* SpriteRenderer = nullptr;

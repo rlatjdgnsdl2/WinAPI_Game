@@ -63,11 +63,13 @@ void ADungeonSelectGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	Fade->FadeOut();
+	BGMPlayer = UEngineSound::Play("DungeonSelectBGM.mp3");
 }
 
 void ADungeonSelectGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
+	BGMPlayer.Off();
 	CurDuration = 0.0f;
 	IsNextLevel = false;
 }

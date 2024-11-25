@@ -5,8 +5,9 @@ enum class ERenderOrder
 {
 	BackGround = -1000,
 	ColMap = -999,
-
+	Item = -10,
 	Player = 0,
+	
 	AttacK_Player = 100,
 	UI_BackGround = 5000,
 	UI_Basic = 10000,

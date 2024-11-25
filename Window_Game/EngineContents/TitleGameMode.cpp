@@ -113,13 +113,14 @@ void ATitleGameMode::LevelChangeEnd()
 	{
 		Petal->Destroy();
 	}
+	BGMPlayer.Off();
 }
 
 
 void ATitleGameMode::SpawnPetals()
 {
 	auto SpawnPetalGroup = [&](bool isSmall, int startY, int endY) {
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < 5; i++){
 			int RandomX = Random.RandomInt(300, 800);
 			int RandomY = Random.RandomInt(startY, endY);
 			ATitlePetal* NewPetal = GetWorld()->SpawnActor<ATitlePetal>(FVector2D({ RandomX, RandomY }));

@@ -76,6 +76,9 @@ private:
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
 
+	std::vector<class AItem*> Items;
+
+
 	float CurDuration =0.0f;
 	TurnType CurTurn;
 	TurnType PreTurn;
@@ -103,13 +106,13 @@ private:
 	void AISkillStart();
 	void AISkill();
 	void AISkillEnd();
-	void ResetTurn();
-	void SelectRandomTarget(APokemon* CurPokemon);
-	void HandleTargetDeath(APokemon* CurPokemon, APokemon* TargetPokemon);
-	void RemovePokemonFromLists(APokemon* TargetPokemon);
+
+	
+	
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
 	void SpawnEnemy();
+	void SetItems();
 
 
 

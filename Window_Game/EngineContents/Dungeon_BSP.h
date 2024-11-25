@@ -56,6 +56,7 @@ private:
 	int CurFloor=1;
 	int MaxFloor;
 
+	
 
 	//	던전생성과정
 	void InitDungeon();
@@ -65,6 +66,7 @@ private:
 	void ConnectRooms(RoomNode* node);
 	void SetNaturally();
 	void SetNextPotal();
+
 
 	std::map<std::string, int > TileIndexForKey;
 

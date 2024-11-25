@@ -22,12 +22,13 @@ ACharacterSelectGameMode::~ACharacterSelectGameMode()
 void ACharacterSelectGameMode::LevelChangeStart()
 {
 	Super::LevelChangeStart();
-	
 	//	소리재생
+	BGMPlayer = UEngineSound::Play("CharacterSelectBGM.mp3");
 }
 
 void ACharacterSelectGameMode::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
 	// 소리 끄기 및 초기화
+	BGMPlayer.Off();
 }

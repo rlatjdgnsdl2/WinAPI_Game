@@ -39,8 +39,8 @@ public:
 
 	class ABoxUI* GetLogBoxUI() { return LogBoxUI; }
 	
-	void NewLogMessage(const std::string_view _Message);
-	void NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors);
+	void NewLogMessage(const std::string_view _Message,Color _Color = Color::White, float _Time = 0.0f);
+	void NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors,float _Time = 0.0f);
 	void SetNewLogVal(bool _IsNewLog) { IsNewLogValue = _IsNewLog; }
 	bool IsNewLog() const { return IsNewLogValue; }
 
@@ -63,11 +63,6 @@ private:
 	//	상단 UI
 	std::unordered_map<std::string, class USpriteRenderer*> TopUI;
 	std::vector<class USpriteRenderer* > HpBar;
-
-
-
-
-
 
 
 	//	던전에서 메뉴 오픈시

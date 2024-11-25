@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EnginePlatform/EngineSound.h>
 
 //	Ό³Έν:
 class ADungeonSelectGameMode : public AGameMode
@@ -29,6 +30,7 @@ private:
 	std::map<std::string, FVector2D>DungeonMaps;
 	std::map<std::string, FVector2D>::iterator DungeonMapStartIter;
 	std::map<std::string, FVector2D>::iterator DungeonMapEndIter;
+	USoundPlayer BGMPlayer;
 
 	bool IsNextLevel = false;
 

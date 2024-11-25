@@ -53,6 +53,9 @@ private:
 	class ABoxUI* SkillUI;
 	class ABoxUI* SkillInfoUI;
 
+	class ABoxUI* ItemUI;
+	class ABoxUI* ItemInfoUI;
+
 
 
 	

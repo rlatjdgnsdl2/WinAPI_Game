@@ -160,15 +160,15 @@ void ADungeonUI::CreateTopUI(const std::string& key, const std::string& spriteNa
 
 
 
-void ADungeonUI::NewLogMessage(const std::string_view _Message)
+void ADungeonUI::NewLogMessage(const std::string_view _Message, Color _Color, float _Time)
 {
-	LogBoxUI->NewMessage(_Message);
+	LogBoxUI->NewMessage(_Message,_Color,_Time);
 	IsNewLogValue = true;
 }
 
-void ADungeonUI::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors)
+void ADungeonUI::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors, float _Time)
 {
-	LogBoxUI->NewMessage(_Message, _colors);
+	LogBoxUI->NewMessage(_Message, _colors,_Time);
 	IsNewLogValue = true;
 }
 

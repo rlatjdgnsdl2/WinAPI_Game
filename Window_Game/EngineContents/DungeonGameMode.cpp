@@ -47,6 +47,18 @@ void ADungeonGameMode::BeginPlay()
 
 }
 
+void ADungeonGameMode::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	BGMPlayer = UEngineSound::Play(UGameDataManager::GetInst().GetSelectDungeon() + "BGM.mp3");
+}
+
+void ADungeonGameMode::LevelChangeEnd()
+{
+	Super::LevelChangeEnd();
+	BGMPlayer.Off();
+}
+
 void ADungeonGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);

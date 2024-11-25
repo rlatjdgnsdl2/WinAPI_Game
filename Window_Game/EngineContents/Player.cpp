@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "GameDataManager.h"
-
+#include <EngineCore/SpriteRenderer.h>
 
 
 
@@ -49,6 +49,7 @@ void APlayer::SetPokemon(std::string_view _PokemonName)
 	MaxExp = Level * 100;
 	InitAbility(PokemonInfo, PlayerData.Level+10);
 }
+
 
 
 

@@ -97,6 +97,12 @@
     <ClInclude Include="Partner.h">
       <Filter>Global\00.Pokemon</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -243,6 +249,15 @@
     <ClCompile Include="Partner.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager_Menu.cpp">
+      <Filter>Global\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -286,6 +301,9 @@
     </Filter>
     <Filter Include="Global\00.Pokemon">
       <UniqueIdentifier>{aa1617c2-7abb-453c-bb4d-af7b7afc135f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{5cfdc2d0-e657-48d0-89f6-e20e6abce6db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

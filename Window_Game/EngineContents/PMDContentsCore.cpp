@@ -203,12 +203,6 @@ void PMDContentsCore::RoadResources()
 	RoadDungeon("SurroundedSea");
 	UGameDataManager::GetInst().InsertDungeonInfo("SurroundedSea", DungeonInfo(60, 40, 5,5, { "Kabuto","Shellos","Shellder","Corsola" }));
 
-
-	//	Item
-	UImageManager::GetInst().CuttingSprite("Item.png", 3, 1);
-
-
-
 }
 
 void PMDContentsCore::RoadPokemon(std::string_view _PokemonName, int _Attack, int _Hurt, int _Idle, int _Shoot, int _Walk)
