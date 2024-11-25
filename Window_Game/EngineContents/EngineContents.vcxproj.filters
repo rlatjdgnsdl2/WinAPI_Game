@@ -58,9 +58,6 @@
     <ClInclude Include="ContentsMath.h">
       <Filter>_Header</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonUI.h">
-      <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="DungeonGameMode.h">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
     </ClInclude>
@@ -70,20 +67,8 @@
     <ClInclude Include="CharacterSelect.h">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
     </ClInclude>
-    <ClInclude Include="BasicUI.h">
-      <Filter>Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Global\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>LevelObjects\01.TitleLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxUI.h">
-      <Filter>Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="SpecialSkill.h">
       <Filter>Global\00.Pokemon</Filter>
@@ -101,7 +86,16 @@
       <Filter>Item</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
-      <Filter>Global\UI</Filter>
+      <Filter>Global\UI\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxUI.h">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Global\UI\UIElement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +186,6 @@
     <ClCompile Include="TurnManager_OpenMenu.cpp">
       <Filter>LevelObjects\04.DungeonLevel\TurnManager</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonUI.cpp">
-      <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
-    </ClCompile>
     <ClCompile Include="Pokemon_AnimSet.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
@@ -207,32 +198,11 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
     </ClCompile>
-    <ClCompile Include="BasicUI.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicUI_Menu.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicUI_Skill.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicUI_Item.cpp">
-      <Filter>Global\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Pokmon_Skill.cpp">
       <Filter>Global\00.Pokemon</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxUI.cpp">
-      <Filter>Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon_Key.cpp">
       <Filter>LevelObjects\04.DungeonLevel\Dungeon</Filter>
@@ -252,11 +222,32 @@
     <ClCompile Include="Item.cpp">
       <Filter>Item</Filter>
     </ClCompile>
+    <ClCompile Include="UIManager_Skill.cpp">
+      <Filter>Global\UI\UIManager</Filter>
+    </ClCompile>
     <ClCompile Include="UIManager.cpp">
-      <Filter>Global\UI</Filter>
+      <Filter>Global\UI\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager_DungeonLog.cpp">
+      <Filter>Global\UI\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager_Item.cpp">
+      <Filter>Global\UI\UIManager</Filter>
     </ClCompile>
     <ClCompile Include="UIManager_Menu.cpp">
-      <Filter>Global\UI</Filter>
+      <Filter>Global\UI\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager_NextFloor.cpp">
+      <Filter>Global\UI\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxUI.cpp">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +295,12 @@
     </Filter>
     <Filter Include="Item">
       <UniqueIdentifier>{5cfdc2d0-e657-48d0-89f6-e20e6abce6db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\UI\UIManager">
+      <UniqueIdentifier>{f2927479-e185-4501-b8c3-3d9e8d89daa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\UI\UIElement">
+      <UniqueIdentifier>{238624c5-9f19-45a0-956f-7165992eb62c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

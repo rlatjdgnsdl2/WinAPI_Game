@@ -4,13 +4,14 @@
 #include <EnginePlatform/EngineInput.h>
 
 #include "BoxUI.h"
+#include "Dungeon_BSP.h"
 #include "Text.h"
 #include "Player.h"
 #include "Partner.h"
 
 
 void AUIManager::OpenMenu() {
-	
+
 	MenuUI->ShowUI();
 	MenuUI->ResetTextIter();
 
@@ -22,10 +23,13 @@ void AUIManager::OpenMenu() {
 		{ Color::White, Color::Yellow,Color::Blue,Color::White }, 1);
 	MyInfoUI->ShowUI();
 	if (CurLevelName == "DungeonLevel") {
-
+		DungeonNameUI->SetString("      " + Dungeon->GetName());
+		DungeonNameUI->SetStringColor(0, Color::Yellow);
+		DungeonNameUI->ShowUI();
 	}
 	CurMenu = MenuType::ShowMenu;
 }
+
 void AUIManager::ShowMenu() {
 	AText* Text = *(MenuUI->GetCurTextIter());
 	MenuUI->SetStringColor(Text, Color::Yellow);
@@ -50,6 +54,9 @@ void AUIManager::ShowMenu() {
 			MenuUI->SetStringColor(Text, Color::White);
 			MenuUI->HideUI();
 			MyInfoUI->HideUI();
+			if (CurLevelName == "DungeonLevel") {
+				DungeonNameUI->HideUI();
+			}
 			CurMenu = MenuType::OpenSkill;
 			return;
 		}
@@ -57,6 +64,9 @@ void AUIManager::ShowMenu() {
 			MenuUI->SetStringColor(Text, Color::White);
 			MenuUI->HideUI();
 			MyInfoUI->HideUI();
+			if (CurLevelName == "DungeonLevel") {
+				DungeonNameUI->HideUI();
+			}
 			CurMenu = MenuType::OpenItem;
 			return;
 		}
@@ -67,6 +77,13 @@ void AUIManager::ShowMenu() {
 	}
 }
 void AUIManager::CloseMenu() {
+	if (CurLevelName == "DungeonLevel") {
+		DungeonNameUI->HideUI();
+	}
+	MenuUI->SetStringColor(*(MenuUI->GetCurTextIter()), Color::White);
+	MenuUI->HideUI();
+	MyInfoUI->HideUI();
+	CurMenu = MenuType::None;
 
 }
 

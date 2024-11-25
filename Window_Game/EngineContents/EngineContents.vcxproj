@@ -151,10 +151,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BasicUI.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Box.h">
       <SubType>
       </SubType>
@@ -188,10 +184,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DungeonSelect.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="DungeonUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -283,13 +275,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BasicUI.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="BasicUI_Item.cpp" />
-    <ClCompile Include="BasicUI_Menu.cpp" />
-    <ClCompile Include="BasicUI_Skill.cpp" />
     <ClCompile Include="Box.cpp">
       <SubType>
       </SubType>
@@ -323,10 +308,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DungeonSelect.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DungeonUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -431,7 +412,11 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UIManager_DungeonLog.cpp" />
+    <ClCompile Include="UIManager_Item.cpp" />
     <ClCompile Include="UIManager_Menu.cpp" />
+    <ClCompile Include="UIManager_NextFloor.cpp" />
+    <ClCompile Include="UIManager_Skill.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

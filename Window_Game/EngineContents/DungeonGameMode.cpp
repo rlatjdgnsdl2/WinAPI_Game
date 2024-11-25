@@ -12,8 +12,10 @@
 #include "Player.h"
 #include "Dungeon_BSP.h"
 #include "TurnManager.h"
-#include "DungeonUI.h"
-#include "BasicUI.h"
+#include "UIManager.h"
+
+//#include "DungeonUI.h"
+//#include "BasicUI.h"
 
 
 ADungeonGameMode::ADungeonGameMode()
@@ -34,17 +36,12 @@ void ADungeonGameMode::BeginPlay()
 	TurnManager->SetDungeon(Dungeon);
 	TurnManager->SetPlayer(dynamic_cast<APlayer*>(GetWorld()->GetPawn()));
 
-	ABasicUI* BasicUI = GetWorld()->SpawnActor<ABasicUI>();
-	TurnManager->SetBasicUI(BasicUI);
-
-	ADungeonUI* DungeonUI = GetWorld()->SpawnActor<ADungeonUI>();
-	DungeonUI->SetDungeon(Dungeon);
-	DungeonUI->SetBasicUI(BasicUI);
-	TurnManager->SetDungeonUI(DungeonUI);
-	DungeonUI->SetTurnManager(TurnManager);
-	
-
-
+	//ABasicUI* BasicUI = GetWorld()->SpawnActor<ABasicUI>();
+	//TurnManager->SetBasicUI(BasicUI);
+	AUIManager* UIManager = GetWorld()->SpawnActor<AUIManager>();
+	UIManager->SetDungeon(Dungeon);
+	UIManager->SetCurLevelName(GetWorld()->GetName());
+	TurnManager->SetUIManager(UIManager);
 }
 
 void ADungeonGameMode::LevelChangeStart()

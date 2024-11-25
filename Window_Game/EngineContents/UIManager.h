@@ -16,6 +16,7 @@ public:
 	AUIManager& operator=(AUIManager&& _Other) noexcept = delete;
 
 	virtual void BeginPlay()override;
+	virtual void LevelChangeStart()override;
 	virtual void Tick(float _DeltaTime)override;
 
 	MenuType GetCurMenuType() const {
@@ -27,25 +28,27 @@ public:
 	void SetPartner(class APartner* _Partner) {
 		Partner = _Partner;
 	}
-
-	
+	void SetDungeon(class ADungeon_BSP* _Dungeon) {
+		Dungeon = _Dungeon;
+	}
 	void SetCurLevelName(std::string_view _LevelName) {
 		CurLevelName = _LevelName.data();
 	}
 
-	void OpenMenu();
-	void ShowMenu();
-	void CloseMenu();
+	void NewLogMessage(const std::string_view _Message, Color _Color = Color::White);
+	void NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _Colors);
 
-	void OpenSkill();
-	void ShowSkill();
-	void CloseSkill();
-	void OpenItem();
+
+	
+
+	//void OpenItem();
+
 
 protected:
 
 private:
 	FVector2D UIStartPos = FVector2D(20.0f, 20.0f);
+	float CurDuration = 0.0f;
 	//	UIÁ¤º¸
 	class APlayer* Player = nullptr;
 	class APartner* Partner = nullptr;
@@ -75,9 +78,28 @@ private:
 
 	class ABoxUI* LogBoxUI = nullptr;
 
-
-
 	void CreateTopUI(const std::string& key, const std::string& spriteName, float offsetX = 0.0f);
+
+	void OpenMenu();
+	void ShowMenu();
+	void CloseMenu();
+
+	void OpenSkill();
+	void ShowSkill();
+	void CloseSkill();
+
+	void OpenItem();
+	void ShowItem();
+	void CloseItem();
+
+	void OpenNextFloor();
+	void ShowNextFloor();
+	void CloseNextFloor();
+
+	void OpenLog();
+	void ShowLog(float _DeltaTime);
+	void CloseLog();
+
 
 };
 

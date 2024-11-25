@@ -2,31 +2,22 @@
 #include "TurnManager.h"
 
 #include <EnginePlatform/EngineInput.h>
-
 #include "Player.h"
-#include "DungeonUI.h"
+
 
 
 //	Player_Select´Ü°è
 void ATurnManager::PlayerSelect(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
-	if (CurDuration > 5.0f)
-	{
-		if (DungeonUI->IsNewLog()) {
-			DungeonUI->SetNewLogVal(false);
-		}
-	}
+	
 	Player->Idle();
 	for (APokemon* CurPokemon : AllAIPokemon)
 	{
 		CurPokemon->Idle();
 	}
 	PlayerMoveDir = FVector2D::ZERO;
-
 	if (UEngineInput::GetInst().IsDown('Q')) {
 		PreTurn = CurTurn;
-		DungeonUI->SetNewLogVal(false);
 		CurTurn = TurnType::Open_UI;
 		return;
 	}

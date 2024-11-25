@@ -58,9 +58,8 @@ void AText::ShowText(float _DeltaTime)
 	}
 }
 
-void AText::SetString(std::string_view _StringValue, Color _color, float _Time, const FVector2D& _TextSize)
+void AText::SetString(std::string_view _StringValue, Color _color, float _Time)
 {
-	TextSize = _TextSize;
 	Time = _Time;
 	StringValue = _StringValue;
 	std::string Color;
@@ -95,7 +94,6 @@ void AText::SetString(std::string_view _StringValue, Color _color, float _Time, 
 void AText::SetString(const AText* _Text)
 {
 	StringValue = _Text->GetString();
-	TextSize = _Text->TextSize;
 	Time = _Text->Time;
 	Reserve(static_cast<int>(StringValue.size()));
 
@@ -111,13 +109,12 @@ void AText::SetString(const AText* _Text)
 	}
 }
 
-void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, float _Time, const FVector2D& _TextSize)
+void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, float _Time)
 {
 	if (_StringValues.size() != _colors.size())
 	{
 		return;
 	}
-	TextSize = _TextSize;
 	Time = _Time;
 	StringValue.clear(); // 기존 문자열 초기화
 	for (const std::string& Str : _StringValues)

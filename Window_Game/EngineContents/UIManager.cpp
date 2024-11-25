@@ -4,15 +4,16 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "BoxUI.h"
+#include "Dungeon_BSP.h"
 #include "Player.h"
 
 
-AUIManager::AUIManager() 
+AUIManager::AUIManager()
 {
 
 }
 
-AUIManager::~AUIManager() 
+AUIManager::~AUIManager()
 {
 
 }
@@ -21,61 +22,77 @@ void AUIManager::BeginPlay()
 {
 	Super::BeginPlay();
 	Player = dynamic_cast<APlayer*>(GetWorld()->GetPawn());
-
+	//	메뉴
 	MenuUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 200,350 }, { 25,50 }));
 	MenuUI->CreateString("Skill");
 	MenuUI->CreateString("Item");
 	MenuUI->CreateString("Close");
-
+	//	내정보
 	MyInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 750.0f, 150.0f }, { 25, 400 }));
 	MyInfoUI->CreateString("");
 	MyInfoUI->CreateString("");
-
+	//	스킬
 	SkillUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 200 }, { 25, 50 }));
+	//	임시 스킬
 	SkillUI->CreateString("Fire_Bomb");
 	SkillUI->CreateString("Lightning_Bomb");
 	SkillUI->CreateString("Water_Bomb");
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
-
+	//	인벤토리
 	ItemUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 300 }, { 25, 50 }));
 
-	CreateTopUI("UI_B", "DungeonFont_B.png");
-	CreateTopUI("UI_FVal", "DungeonFont_0.png");
-	CreateTopUI("UI_F", "DungeonFont_F.png", 10.0f);
-	CreateTopUI("UI_Lv", "DungeonFont_Lv.png");
-	CreateTopUI("UI_LvVal10", "DungeonFont_0.png");
-	CreateTopUI("UI_LvVal01", "DungeonFont_0.png", 100.0f);
-	CreateTopUI("UI_Hp", "DungeonFont_Hp.png");
-	CreateTopUI("UI_CurHpVal10", "DungeonFont_0.png");
-	CreateTopUI("UI_CurHpVal01", "DungeonFont_0.png");
-	CreateTopUI("UI_Slash", "DungeonFont_Slash.png");
-	CreateTopUI("UI_MaxHpVal10", "DungeonFont_0.png");
-	CreateTopUI("UI_MaxHpVal01", "DungeonFont_0.png");
-
-	for (int i = 0; i < HpBar.size(); i++)
+	//	던전일때만
+	if (CurLevelName == "DUNGEONLEVEL")
 	{
-		HpBar[i] = CreateDefaultSubObject<USpriteRenderer>();
-		HpBar[i]->SetSprite("Dungeon_HpBar.png");
-		FVector2D HpBarScale = HpBar[i]->SetSpriteScale(1.0f);
-		HpBar[i]->SetCameraEffect(false);
-		HpBar[i]->SetComponentLocation(UIStartPos);
-		UIStartPos.X += HpBarScale.X;
-		HpBar[i]->SetOrder(ERenderOrder::UI_Basic);
-		HpBar[i]->SetSpriteScale(0.0f);
+		HpBar.resize(300, nullptr);
+		CreateTopUI("UI_B", "DungeonFont_B.png");
+		CreateTopUI("UI_FVal", "DungeonFont_0.png");
+		CreateTopUI("UI_F", "DungeonFont_F.png", 10.0f);
+		CreateTopUI("UI_Lv", "DungeonFont_Lv.png");
+		CreateTopUI("UI_LvVal10", "DungeonFont_0.png");
+		CreateTopUI("UI_LvVal01", "DungeonFont_0.png", 100.0f);
+		CreateTopUI("UI_Hp", "DungeonFont_Hp.png");
+		CreateTopUI("UI_CurHpVal10", "DungeonFont_0.png");
+		CreateTopUI("UI_CurHpVal01", "DungeonFont_0.png");
+		CreateTopUI("UI_Slash", "DungeonFont_Slash.png");
+		CreateTopUI("UI_MaxHpVal10", "DungeonFont_0.png");
+		CreateTopUI("UI_MaxHpVal01", "DungeonFont_0.png");
+
+		for (int i = 0; i < HpBar.size(); i++)
+		{
+			HpBar[i] = CreateDefaultSubObject<USpriteRenderer>();
+			HpBar[i]->SetSprite("Dungeon_HpBar.png");
+			FVector2D HpBarScale = HpBar[i]->SetSpriteScale(1.0f);
+			HpBar[i]->SetCameraEffect(false);
+			HpBar[i]->SetComponentLocation(UIStartPos);
+			UIStartPos.X += HpBarScale.X;
+			HpBar[i]->SetOrder(ERenderOrder::UI_Basic);
+			HpBar[i]->SetSpriteScale(0.0f);
+		}
+		DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 250, 100 }));
+		DungeonNameUI->CreateString("");
+
+		Q_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 500.0f, 100.0f }, { 100, 100 }));
+		Q_NextFloorUI->CreateString("Do you Want to go Next Floor?");
+		A_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 150.0f, 110.0f }, { 600, 100 }));
+		A_NextFloorUI->CreateString("Yes");
+		A_NextFloorUI->CreateString("No");
+		A_NextFloorUI->ResetTextIter();
+
+		LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
 	}
-	DungeonNameUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 450.0f, 80.0f }, { 250, 100 }));
-	DungeonNameUI->CreateString("");
 
-	Q_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 500.0f, 100.0f }, { 100, 100 }));
-	Q_NextFloorUI->CreateString("Do you Want to go Next Floor?");
-	A_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 150.0f, 110.0f }, { 600, 100 }));
-	A_NextFloorUI->CreateString("Yes");
-	A_NextFloorUI->CreateString("No");
-	A_NextFloorUI->ResetTextIter();
-
-	LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
 	CurMenu = MenuType::None;
+}
+
+void AUIManager::LevelChangeStart()
+{
+	Super::LevelChangeStart();
+	if (CurLevelName == "DUNGEONLEVEL")
+	{
+		TopUI["UI_FVal"]->SetSprite(std::format("DungeonFont_{}.png", Dungeon->GetCurFloor()));
+	}
 }
 
 void AUIManager::Tick(float _DeltaTime)
@@ -84,8 +101,8 @@ void AUIManager::Tick(float _DeltaTime)
 	switch (CurMenu)
 	{
 	case MenuType::None:
-		if (true == UEngineInput::GetInst().IsDown('Q')){
-			CurMenu = MenuType::OpenMenu;		
+		if (true == UEngineInput::GetInst().IsDown('Q')) {
+			CurMenu = MenuType::OpenMenu;
 		}
 		break;
 	case MenuType::OpenMenu:
@@ -97,9 +114,6 @@ void AUIManager::Tick(float _DeltaTime)
 	case MenuType::CloseMenu:
 		CloseMenu();
 		break;
-
-
-
 	case MenuType::OpenSkill:
 		OpenSkill();
 		break;
@@ -110,11 +124,43 @@ void AUIManager::Tick(float _DeltaTime)
 		CloseSkill();
 		break;
 	case MenuType::OpenItem:
+		OpenItem();
 		break;
+	case MenuType::ShowItem:
+		ShowItem();
+		break;
+	case MenuType::CloseItem:
+		CloseItem();
+		break;
+	case MenuType::OpenLog:
+		OpenLog();
+		break;
+	case MenuType::ShowLog:
+		ShowLog(_DeltaTime);
+		break;
+	case MenuType::CloseLog:
+		CloseLog();
+		break;
+	case MenuType::OpenNextFloor:
+		OpenNextFloor();
+		break;
+	case MenuType::ShowNextFloor:
+		ShowNextFloor();
+		break;
+	case MenuType::CloseNextFloor:
+		CloseNextFloor();
+		break;
+
+
+
+
+
 	default:
 		break;
 	}
-	if (CurLevelName == "DungeonLevel")
+
+	// 던전레벨일때 상시 렌더링
+	if (CurLevelName == "DUNGEONLEVEL")
 	{
 		int CurHp = Player->GetCurHP();
 		int MaxHp = Player->GetMaxHP();
@@ -138,6 +184,7 @@ void AUIManager::Tick(float _DeltaTime)
 
 
 }
+
 
 
 

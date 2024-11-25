@@ -98,12 +98,24 @@ enum class MenuType {
 	OpenMenu,
 	ShowMenu,
 	CloseMenu,
+
 	OpenSkill,
 	ShowSkill,
 	CloseSkill,
+
 	OpenItem,
-	SHowItem,
-	CloseItem
+	ShowItem,
+	CloseItem,
+
+	OpenNextFloor,
+	ShowNextFloor,
+	CloseNextFloor,
+
+	OpenLog,
+	ShowLog,
+	CloseLog
+
+	
 };
 enum class Color {
 	Red,

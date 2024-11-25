@@ -11,12 +11,12 @@
 #include "Enemy.h"
 #include "Dungeon_BSP.h"
 #include "GameDataManager.h"
-#include "BasicUI.h"
+#include "UIManager.h"
 #include "Item.h"
 
 
 
-ATurnManager::ATurnManager() :Dungeon(nullptr), Player(nullptr), BasicUI(nullptr), DungeonUI(nullptr), CurTurn(TurnType::Player_Select), PreTurn(TurnType::Player_Select), PlayerInput(-1)
+ATurnManager::ATurnManager() :Dungeon(nullptr), Player(nullptr),UIManager(nullptr), DungeonUI(nullptr), CurTurn(TurnType::Player_Select), PreTurn(TurnType::Player_Select), PlayerInput(-1)
 {
 
 }
@@ -40,7 +40,7 @@ void ATurnManager::LevelChangeStart()
 	PathFinder.SetData(Dungeon);
 	PushPlayerCamp(Player);
 	Partner = GetWorld()->SpawnActor<APartner>();
-	BasicUI->SetPartner(Partner);
+	UIManager->SetPartner(Partner);
 	PushAllAIPokemon(Partner);
 	PushPlayerCamp(Partner);
 

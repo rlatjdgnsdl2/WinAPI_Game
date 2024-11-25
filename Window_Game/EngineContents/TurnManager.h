@@ -29,8 +29,11 @@ public:
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	void SetBasicUI(class ABasicUI* _BasicUI) {
+	/*void SetBasicUI(class ABasicUI* _BasicUI) {
 		BasicUI = _BasicUI;
+	}*/
+	void SetUIManager(class AUIManager* _UIManager) {
+		UIManager = _UIManager;
 	}
 	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
 		DungeonUI = _DungeonUI;
@@ -66,7 +69,8 @@ private:
 
 	class ADungeon_BSP* Dungeon = nullptr;
 
-	class ABasicUI* BasicUI = nullptr;
+	//class ABasicUI* BasicUI = nullptr;
+	class AUIManager* UIManager = nullptr;
 	class ADungeonUI* DungeonUI = nullptr;
 
 	std::list<class APokemon*> AllAIPokemon;

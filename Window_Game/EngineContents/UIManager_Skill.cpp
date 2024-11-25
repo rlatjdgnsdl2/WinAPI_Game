@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "BasicUI.h"
+#include "UIManager.h"
 
 #include <EnginePlatform/EngineInput.h>
 #include "BoxUI.h"
@@ -8,7 +8,7 @@
 #include "Text.h"
 #include "Box.h"
 
-void ABasicUI::OpenSkill() {
+void AUIManager::OpenSkill() {
 	SkillInfoUI->ShowUI();
 	SkillInfoUI->ResetTextIter();
 	SkillUI->ShowUI();
@@ -16,7 +16,7 @@ void ABasicUI::OpenSkill() {
 	CurMenu = MenuType::ShowSkill;
 	return;
 }
-void ABasicUI::ShowSkill() {
+void AUIManager::ShowSkill() {
 	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::Yellow);
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
@@ -29,7 +29,7 @@ void ABasicUI::ShowSkill() {
 		SkillUI->NextTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown('Q')) {
-		
+
 		CurMenu = MenuType::CloseSkill;
 		return;
 	}
@@ -42,7 +42,7 @@ void ABasicUI::ShowSkill() {
 }
 
 
-void ABasicUI::CloseSkill() {
+void AUIManager::CloseSkill() {
 	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 	SkillUI->HideUI();
 	SkillInfoUI->HideUI();

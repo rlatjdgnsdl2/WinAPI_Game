@@ -3,7 +3,8 @@
 
 #include <EngineBase/EngineRandom.h>
 #include "Pokemon.h"
-#include "DungeonUI.h"
+#include "UIManager.h"
+//#include "DungeonUI.h"
 
 void ATurnManager::AISkillStart()
 {
@@ -55,7 +56,7 @@ void ATurnManager::AISkillStart()
 	CurPokemon->ResetTargetablePokemon();
 	CurPokemon->StartAttack();
 	int Damage = UContentsMath::DamageCalculation(CurPokemon->GetATK(), TargetPokemon->GetDEF());
-	DungeonUI->NewLogMessage(
+	UIManager->NewLogMessage(
 		{ CurPokemon->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) },
 		{ Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
 	TargetPokemon->SetDamage(Damage);
@@ -84,14 +85,14 @@ void ATurnManager::AISkillEnd()
 		else {
 			// 죽은 포켓몬이 적일때
 			int Level = TargetPokemon->GetLevel();
-			DungeonUI->NewLogMessage(
+			UIManager->NewLogMessage(
 				{ TargetPokemon->GetName()," Die and ", "Player Party",  " Gain EXP ",std::to_string(TargetPokemon->GetLevel() * 100) }, { Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
 			// 파티원 전원 경험치 획득 후 레벨업했으면
 			for (APokemon* CurPokemon : PlayerCamp) {
 				if (CurPokemon != nullptr && CurPokemon->GainExp(TargetPokemon->GetLevel() * 100)) {
-					DungeonUI->NewLogMessage(
+					UIManager->NewLogMessage(
 						{ CurPokemon->GetName()," Level Up!", }, { Color::Blue,Color::Yellow });
-					DungeonUI->NewLogMessage(
+					UIManager->NewLogMessage(
 						{ "All Ability ","+2" }, { Color::White,Color::Yellow });
 				}
 			}

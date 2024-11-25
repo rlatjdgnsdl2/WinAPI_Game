@@ -3,8 +3,8 @@
 
 #include "Player.h"
 #include "Pokemon.h"
+#include "UIManager.h"
 
-#include "DungeonUI.h"
 
 
 
@@ -14,8 +14,8 @@ void ATurnManager::PlayerSkillStart() {
 	APokemon* TargetPokemon = Player->GetTargetPokemon();
 	if (TargetPokemon != nullptr) {
 		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
-		DungeonUI->NewLogMessage(
-			{Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow},0.1f);
+		UIManager->NewLogMessage(
+			{Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
 		TargetPokemon->SetDamage(Damage);
 	}
 	CurTurn = TurnType::Player_Skill;
@@ -41,15 +41,15 @@ void ATurnManager::PlayerSkillEnd()
 		//	타겟포켓몬이 죽었으면
 		if (true == TargetPokemon->IsDie()) {
 			int Level = TargetPokemon->GetLevel();
-			DungeonUI->NewLogMessage(
+			UIManager->NewLogMessage(
 				{ TargetPokemon->GetName()," Die and ","Player Party"," Gain EXP ",std::to_string(Level * 100)}, 
 				{Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
 			// 경험치 획득 후 레벨업했으면
 			for (APokemon* CurPokemon : PlayerCamp) {
 				if (CurPokemon != nullptr && CurPokemon->GainExp(Level * 100)) {
-					DungeonUI->NewLogMessage(
+					UIManager->NewLogMessage(
 						{ CurPokemon->GetName()," Level Up!", }, { Color::Blue,Color::Yellow });
-					DungeonUI->NewLogMessage(
+					UIManager->NewLogMessage(
 						{ "All Ability ","+2" }, { Color::White,Color::Yellow });
 				}
 			}
