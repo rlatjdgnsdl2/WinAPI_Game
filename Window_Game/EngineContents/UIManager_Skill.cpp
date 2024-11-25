@@ -3,6 +3,7 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include "BoxUI.h"
+#include "GameDataManager.h"
 
 #include "Player.h"
 #include "Text.h"
@@ -10,14 +11,18 @@
 
 void AUIManager::OpenSkill() {
 	SkillInfoUI->ShowUI();
-	SkillInfoUI->ResetTextIter();
 	SkillUI->ShowUI();
 	SkillUI->ResetTextIter();
 	CurMenu = MenuType::ShowSkill;
 	return;
 }
 void AUIManager::ShowSkill() {
-	SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::Yellow);
+	AText* SkillText = *(SkillUI->GetCurTextIter());
+	SkillUI->SetStringColor(SkillText, Color::Yellow);
+	std::string SkillName = SkillText->GetString();
+	std::string SkillInfo = UGameDataManager::GetInst().GetSkillInfo(SkillName);
+	SkillInfoUI->SetString(SkillInfo);
+	SkillInfoUI->ShowUI();
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);

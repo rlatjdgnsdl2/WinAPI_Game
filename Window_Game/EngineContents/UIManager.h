@@ -38,6 +38,11 @@ public:
 	void NewLogMessage(const std::string_view _Message, Color _Color = Color::White);
 	void NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _Colors);
 
+	void SetItemList(std::list<std::string>& _ItemList) {
+		ItemList = &_ItemList;
+	}
+
+
 
 	
 
@@ -53,6 +58,7 @@ private:
 	class APlayer* Player = nullptr;
 	class APartner* Partner = nullptr;
 	class ADungeon_BSP* Dungeon = nullptr;
+	std::list<std::string>* ItemList;
 	std::string CurLevelName;
 	MenuType CurMenu;
 	TurnType CurTurn;
@@ -74,7 +80,7 @@ private:
 	class ABoxUI* DungeonNameUI = nullptr;
 
 	class ABoxUI* Q_NextFloorUI = nullptr;
-	class ABoxUI* A_NextFloorUI = nullptr;
+	class ABoxUI* A_AnswerUI = nullptr;
 
 	class ABoxUI* LogBoxUI = nullptr;
 

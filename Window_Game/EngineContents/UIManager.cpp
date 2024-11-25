@@ -41,6 +41,11 @@ void AUIManager::BeginPlay()
 	SkillInfoUI->CreateString("");
 	//	인벤토리
 	ItemUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 300 }, { 25, 50 }));
+	ItemUI->CreateString("Apple");
+	ItemUI->CreateString("Oran");
+	ItemUI->CreateString("SkillDisk");
+	ItemInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
+	ItemInfoUI->CreateString("");
 
 	//	던전일때만
 	if (CurLevelName == "DUNGEONLEVEL")
@@ -75,10 +80,10 @@ void AUIManager::BeginPlay()
 
 		Q_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 500.0f, 100.0f }, { 100, 100 }));
 		Q_NextFloorUI->CreateString("Do you Want to go Next Floor?");
-		A_NextFloorUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 150.0f, 110.0f }, { 600, 100 }));
-		A_NextFloorUI->CreateString("Yes");
-		A_NextFloorUI->CreateString("No");
-		A_NextFloorUI->ResetTextIter();
+		A_AnswerUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 150.0f, 110.0f }, { 600, 100 }));
+		A_AnswerUI->CreateString("Yes");
+		A_AnswerUI->CreateString("No");
+		A_AnswerUI->ResetTextIter();
 
 		LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
 	}

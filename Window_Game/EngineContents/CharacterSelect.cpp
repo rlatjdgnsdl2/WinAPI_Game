@@ -50,6 +50,7 @@ ACharacterSelect::~ACharacterSelect()
 void ACharacterSelect::BeginPlay()
 {
 	Super::BeginPlay();
+
 	Fade = GetWorld()->SpawnActor<AFade>();
 
 	CharacterTable = GetWorld()->SpawnActor<ABox>();
@@ -84,11 +85,6 @@ void ACharacterSelect::BeginPlay()
 void ACharacterSelect::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	/*FVector2D MousePos = UEngineAPICore::GetCore()->GetMainWindow().GetMousePos();
-	UEngineDebug::CoreOutPutString(std::to_string(MousePos.X));
-	UEngineDebug::CoreOutPutString(std::to_string(MousePos.Y));*/
-
-
 	if (IsNextLevel)
 	{
 		CurDuration += _DeltaTime;

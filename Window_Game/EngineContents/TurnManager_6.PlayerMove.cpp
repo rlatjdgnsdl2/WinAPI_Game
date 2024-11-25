@@ -27,8 +27,15 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		return;
 	}
 	// 플레이어가 도착했으면
+	//	MovePokemon에 있는 포켓몬 모두 강제로 도착하게
+	for (APokemon* CurPokemon : MovePokemon) {
+		CurPokemon->Move(1.0f);
+	}
+	//	다 이동했으면 MovePokemon초기화
+	MovePokemon.clear();
+
 	FVector2D NextPotalLocation = Dungeon->GetPotalLocation();
-	// 포탈위치인지 확인
+	// 플레이어 도착위치가 포탈위치인지 확인
 	if (CurPlayerLocation == NextPotalLocation){
 		//  다음층이 Max층이면
 		//  Game Clear
@@ -38,12 +45,6 @@ void ATurnManager::PlayerMove(float _DeltaTime)
 		CurTurn = TurnType::Open_UI;
 		return;
 	}
-	//	MovePokemon에 있는 포켓몬 모두 강제로 도착하게
-	for (APokemon* CurPokemon : MovePokemon) {
-		CurPokemon->Move(1.0f);
-	}
-	//	다 이동했으면 MovePokemon초기화
-	MovePokemon.clear();
 
 	CurTurn = TurnType::AI_Skill_Start;
 	return;

@@ -10,35 +10,40 @@
 
 void AUIManager::OpenNextFloor() {
 	Q_NextFloorUI->ShowUI();
-	A_NextFloorUI->ShowUI();
+	A_AnswerUI->ShowUI();
+	CurMenu = MenuType::ShowNextFloor;
+
 }
 
 void AUIManager::ShowNextFloor() {
-	AText* Text = *(A_NextFloorUI->GetCurTextIter());
-	A_NextFloorUI->SetStringColor(Text, Color::Yellow);
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD8)) {
-		A_NextFloorUI->SetStringColor(Text, Color::White);
-		A_NextFloorUI->PrevTextIter();
+	AText* Text = *(A_AnswerUI->GetCurTextIter());
+	A_AnswerUI->SetStringColor(Text, Color::Yellow);
+	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+		A_AnswerUI->SetStringColor(Text, Color::White);
+		A_AnswerUI->PrevTextIter();
 	}
-	if (true == UEngineInput::GetInst().IsDown(VK_NUMPAD2)) {
-		A_NextFloorUI->SetStringColor(Text, Color::White);
-		A_NextFloorUI->NextTextIter();
+	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+		A_AnswerUI->SetStringColor(Text, Color::White);
+		A_AnswerUI->NextTextIter();
 	}
 
 
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		if (Text->GetString() == "Yes") {
 			Q_NextFloorUI->HideUI();
-			A_NextFloorUI->HideUI();
+			A_AnswerUI->HideUI();
 			UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 			return;
 		}
 		else if (Text->GetString() == "No") {
 			Q_NextFloorUI->HideUI();
-			A_NextFloorUI->HideUI();
+			A_AnswerUI->HideUI();
+			CurMenu = MenuType::CloseNextFloor;
 		}
 	}
 }
 void AUIManager::CloseNextFloor() {
-
+	Q_NextFloorUI->HideUI();
+	A_AnswerUI->HideUI();
+	CurMenu = MenuType::None;
 }

@@ -9,17 +9,14 @@
 
 
 
-void AUIManager::NewLogMessage(const std::string_view _Message, Color _Color)
-{
-	LogBoxUI->NewMessage(_Message, _Color,0.2f);
+void AUIManager::NewLogMessage(const std::string_view _Message, Color _Color){
+	LogBoxUI->NewMessage(_Message, _Color);
 	CurMenu = MenuType::OpenLog;
 	return;
 }
 
-void AUIManager::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _Colors)
-{
-
-	LogBoxUI->NewMessage(_Message, _Colors,0.2f);
+void AUIManager::NewLogMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _Colors){
+	LogBoxUI->NewMessage(_Message, _Colors);
 	CurMenu = MenuType::OpenLog;
 	return;
 }

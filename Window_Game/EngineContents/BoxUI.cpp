@@ -95,6 +95,21 @@ void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vec
 	
 }
 
+void ABoxUI::NextPage(const std::list<std::string>& _List)
+{
+	for (auto& Text : Texts)
+	{
+		Text->SetActive(false);
+	}
+	int Size = static_cast<int>(_List.size());
+	std::list<std::string>::const_iterator Iter = _List.begin();
+	for (size_t i = 0; i < Size; i++)
+	{
+		SetString(*Iter,Color::White,i);
+		Iter++;
+	}
+}
+
 void ABoxUI::ShowUI(float _DeltaTime) {
 	Box->SetActive(true);
 	FVector2D Location = BoxTrans.Location;

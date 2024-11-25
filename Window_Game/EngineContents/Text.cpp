@@ -50,7 +50,6 @@ void AText::ShowText(float _DeltaTime)
 	}
 	if (CurCount >= Size) {
 		CurCount = Size;
-		Time = 0.0f;
 	}
 
 	for (size_t i = 0; i < CurCount; i++) {
