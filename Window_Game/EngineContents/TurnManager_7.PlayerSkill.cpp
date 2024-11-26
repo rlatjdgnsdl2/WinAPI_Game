@@ -12,13 +12,15 @@
 void ATurnManager::PlayerSkillStart() {
 	Player->StartAttack();
 	APokemon* TargetPokemon = Player->GetTargetPokemon();
-	if (TargetPokemon != nullptr) {
-		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
-		UIManager->NewLogMessage(
-			{ Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, { Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
-		TargetPokemon->SetDamage(Damage);
-		TargetPokemon->ResetCurDuration();
+	if (TargetPokemon == nullptr) {
+		CurTurn = TurnType::Player_Skill;
+		return;
 	}
+	int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
+	UIManager->NewLogMessage(
+		{ Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, { Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
+	TargetPokemon->SetDamage(Damage);
+	TargetPokemon->ResetCurDuration();
 	CurTurn = TurnType::Player_Skill;
 	return;
 }
@@ -27,17 +29,22 @@ void ATurnManager::PlayerSkillStart() {
 void ATurnManager::PlayerSkill(float _DeltaTime)
 {
 	Player->Skill();
-	APokemon* TargetPokemon = Player->GetTargetPokemon();
 	if (true == Player->IsAttack()) {
 		return;
 	}
+	APokemon* TargetPokemon = Player->GetTargetPokemon();
+	if (TargetPokemon == nullptr) {
+		CurTurn = TurnType::Player_Skill_End;
+		return;
+	}
 	CurDuration += _DeltaTime;
-	if (CurDuration < 1.5f) {
+	if (CurDuration < 1.0f) {
 		if (TargetPokemon->IsDie()) {
 			TargetPokemon->Die(_DeltaTime);
 			return;
 		}
 	}
+	CurDuration = 0.0f;
 	CurTurn = TurnType::Player_Skill_End;
 	return;
 }
@@ -45,6 +52,10 @@ void ATurnManager::PlayerSkill(float _DeltaTime)
 void ATurnManager::PlayerSkillEnd()
 {
 	APokemon* TargetPokemon = Player->GetTargetPokemon();
+	if (TargetPokemon == nullptr) {
+		CurTurn = TurnType::Skill_AI_Select;
+		return;
+	}
 	// 공격이 끝났으면 타겟포켓몬이 죽었는지 확인
 	if (TargetPokemon != nullptr) {
 		//	타겟포켓몬이 죽었으면

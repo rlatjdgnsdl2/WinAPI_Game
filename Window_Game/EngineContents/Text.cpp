@@ -108,6 +108,14 @@ void AText::SetString(const AText* _Text)
 	}
 }
 
+void AText::SetOrder(ERenderOrder _Order)
+{
+	for (size_t i = 0; i < TextRenderer.size(); i++)
+	{
+		TextRenderer[i]->SetOrder(_Order);
+	}
+}
+
 void AText::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, float _Time)
 {
 	if (_StringValues.size() != _colors.size())

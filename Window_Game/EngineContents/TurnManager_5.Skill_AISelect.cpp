@@ -28,7 +28,8 @@ void ATurnManager::Skill_AISelect()
 		std::list<APokemon*>& CompareCamp = (CurPokemonCamp == CampType::Player) ? EnemyCamp : PlayerCamp;
 		// 타켓로케이션 확인
 		for (APokemon* CurComparePokemon : CompareCamp) {
-			FIntPoint Distance = CurComparePokemon->GetTargetTile() - CurTile;
+			FIntPoint CompareTile = CurComparePokemon->GetTargetTile();
+			FIntPoint Distance = CompareTile - CurTile;
 			//	근처에 적이 있다면 스킬리스트
 			if (std::abs(Distance.X) <= 1 && std::abs(Distance.Y) <= 1) {
 				IsFindTarget = true;
@@ -72,7 +73,7 @@ void ATurnManager::Skill_AISelect()
 		// 위에 조건에 안걸렸다면 스킬리스트 중 겹치는지 확인
 		if (!IsStand) {
 			for (APokemon* ComparePokemon : SkillPokemon) {
-				if (CurTarget == ComparePokemon->GetTile()) {
+				if (CurTarget == ComparePokemon->GetTargetTile()) {
 					CurPokemon->SetTargetLocation(CurPokemon->GetActorLocation());
 					IsStand = true;
 					break;
@@ -86,7 +87,6 @@ void ATurnManager::Skill_AISelect()
 				CurPokemon->SetDir(UContentsMath::FVector2D_To_DIR(Dir));
 			}
 		}
-
 	}
 
 

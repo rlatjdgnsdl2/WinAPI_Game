@@ -26,6 +26,7 @@ public:
 	void SetString(std::string_view _StringValue, Color _Color = Color::White, float _Time = 0.0f);
 	void SetString(const AText* _Text);
 	void SetTime(float _Time) { Time = _Time; }
+	void SetOrder(ERenderOrder _Order);
 
 	void SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _Colors, float _Time = 0.0f);
 

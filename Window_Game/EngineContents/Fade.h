@@ -18,6 +18,7 @@ public:
 	AFade& operator=(const AFade& _Other) = delete;
 	AFade& operator=(AFade&& _Other) noexcept = delete;
 
+	void Reset();
 	// 0 => 1
 	void FadeIn();
 

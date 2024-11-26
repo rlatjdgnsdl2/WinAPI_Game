@@ -12,8 +12,9 @@ enum class ERenderOrder
 	UI_BackGround = 5000,
 	UI_Basic = 10000,
 	UI_Image = 20000,
-	UI_Text = 30000,
-	FADE = 40000
+	UI_Text = 40000,
+	FADE = 50000,
+	UI_FadeText = 60000,
 };
 enum class TileType
 {
@@ -76,6 +77,7 @@ enum class Text_Index
 
 enum class TurnType
 {
+	Fade,
 	Player_Select,
 	Open_UI,
 	Player_Select_Move,

@@ -1,9 +1,11 @@
 #include "PreCompile.h"
 #include "UIManager.h"
 
+
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 
+#include "Dungeon_BSP.h"
 #include "BoxUI.h"
 #include "Text.h"
 
@@ -32,6 +34,7 @@ void AUIManager::ShowNextFloor() {
 		if (Text->GetString() == "Yes") {
 			Q_NextFloorUI->HideUI();
 			A_AnswerUI->HideUI();
+			Dungeon->NextFloor();
 			UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 			return;
 		}

@@ -64,6 +64,9 @@ public:
 protected:
 
 private:
+	class AFade* Fade = nullptr;
+	class AText* DungeonName = nullptr;
+
 	class APlayer* Player = nullptr;
 	class APartner* Partner = nullptr;
 

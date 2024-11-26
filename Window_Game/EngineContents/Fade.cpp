@@ -27,6 +27,11 @@ void AFade::FadeChange()
 	BackSpriteRenderer->SetAlphafloat(FadeValue);
 }
 
+void AFade::Reset()
+{
+	BackSpriteRenderer->SetAlphafloat(1.0f);
+}
+
 // 0 => 1
 void AFade::FadeIn()
 {

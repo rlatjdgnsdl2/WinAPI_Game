@@ -13,6 +13,8 @@
 #include "GameDataManager.h"
 #include "UIManager.h"
 #include "Item.h"
+#include "Fade.h"
+#include "Text.h"
 
 
 
@@ -32,23 +34,29 @@ void ATurnManager::BeginPlay()
 	//	카메라 피봇
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	GetWorld()->SetCameraPivot(WindowSize.Half() * -1.0f);
+	Fade = GetWorld()->SpawnActor<AFade>();
+	DungeonName = GetWorld()->SpawnActor<AText>();
+
+	DungeonName->SetActorLocation(WindowSize.Half()+FVector2D::LEFT*80);
+
 }
 
 void ATurnManager::LevelChangeStart()
 {
 	Super::LevelChangeStart();
+	DungeonName->SetActive(true);
+	DungeonName->SetString(std::format("{}F {}", Dungeon->GetCurFloor(), UGameDataManager::GetInst().GetSelectDungeon()), Color::White);
+	DungeonName->SetOrder(ERenderOrder::UI_FadeText);
+	Fade->Reset();
 	PathFinder.SetData(Dungeon);
 	PushPlayerCamp(Player);
 	Partner = GetWorld()->SpawnActor<APartner>();
 	UIManager->SetPartner(Partner);
 	PushAllAIPokemon(Partner);
 	PushPlayerCamp(Partner);
-
-
 	// 처음 스폰위치
 	Dungeon->Generate();
 	InitSpawn();
-
 	SpawnEnemy();
 	SpawnEnemy();
 	SpawnEnemy();
@@ -56,10 +64,8 @@ void ATurnManager::LevelChangeStart()
 	SpawnEnemy();
 	SpawnEnemy();
 	SpawnEnemy();
-
 	Player->SetTargetLocation(Player->GetActorLocation());
-
-	CurTurn = TurnType::Player_Select;
+	CurTurn = TurnType::Fade;
 }
 
 void ATurnManager::LevelChangeEnd()
@@ -73,7 +79,7 @@ void ATurnManager::LevelChangeEnd()
 	PlayerCamp.clear();
 	EnemyCamp.clear();
 	MovePokemon.clear();
-	SkillPokemon.clear();
+	SkillPokemon.clear();	
 }
 
 void ATurnManager::Tick(float _DeltaTime)
@@ -82,6 +88,18 @@ void ATurnManager::Tick(float _DeltaTime)
 
 	switch (CurTurn)
 	{
+	case TurnType::Fade:
+		CurDuration += _DeltaTime;
+		if (CurDuration < 2.5f)
+		{
+			DungeonName->ShowText(0.0f);
+			return;
+		}
+		Fade->FadeOut();
+		DungeonName->SetActive(false);
+		CurDuration = 0.0f;
+		CurTurn = TurnType::Player_Select;
+		return;
 	case TurnType::Player_Select:
 		PlayerSelect(_DeltaTime);
 		return;

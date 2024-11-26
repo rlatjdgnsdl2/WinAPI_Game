@@ -73,12 +73,13 @@ void ATurnManager::AISkill(float _DeltaTime)
 		return;
 	}
 	CurDuration += _DeltaTime;
-	if (CurDuration < 1.5f) {
+	if (CurDuration < 1.0f) {
 		if (TargetPokemon->IsDie()) {
 			TargetPokemon->Die(_DeltaTime);
 			return;
 		}
 	}
+	CurDuration = 0.0f;
 	CurTurn = TurnType::AI_Skill_End;
 }
 

@@ -51,6 +51,7 @@ private:
 	RoomNode* root;
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
+	std::vector<std::vector<class USpriteRenderer*>> MiniMap;
 	FVector2D PotalLocation;
 
 	int CurFloor=1;
@@ -64,8 +65,10 @@ private:
 	void ConnectRooms(RoomNode* node);
 	void SetNaturally();
 	void SetNextPotal();
+	void SetMiniMap();
 
 	std::map<std::string, int > TileIndexForKey;
+	std::map<std::string, std::string> MiniMapSpriteName;
 
 	bool IsMove(const FIntPoint& _Point) override;
 

@@ -12,6 +12,7 @@ const int MIN_SIZE = 8;
 ADungeon_BSP::ADungeon_BSP() :root(nullptr), MaxFloor{}
 {
 	SetActorLocation({ 0,0 });
+	MiniMap.resize(Height, std::vector<USpriteRenderer*>(Width));
 }
 
 ADungeon_BSP::~ADungeon_BSP()
@@ -63,6 +64,7 @@ void ADungeon_BSP::Generate()
 	ConnectRooms(root);
 	SetNaturally();
 	SetNextPotal();
+	SetMiniMap();
 }
 
 Room ADungeon_BSP::GetRoom(RoomNode* node) const
@@ -78,14 +80,65 @@ Room ADungeon_BSP::GetRoom(RoomNode* node) const
 		if (room.isValid()) return room;  // 방을 찾은 경우 반환
 	}
 	// 방이 없을 경우 기본값 반환
-	return Room();  
+	return Room();
+}
+
+void ADungeon_BSP::SetMiniMap()
+{
+	for (int y = 0; y < Height; y++)
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			if (MiniMap[y][x] == nullptr) {
+				USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+				NewSpriteRenderer->SetSprite("Void.png");
+				NewSpriteRenderer->SetComponentLocation({ (x) * 12,(y) * 12 });
+				NewSpriteRenderer->SetSpriteScale();
+				NewSpriteRenderer->SetCameraEffect(false);
+				NewSpriteRenderer->SetOrder(ERenderOrder::UI_Image);
+				MiniMap[y][x] = NewSpriteRenderer;
+			}
+		}
+	}
+
+	for (int y = 0; y < Height; y++) {
+		for (int x = 0; x < Width; x++) {
+			if (nullptr != MiniMap[y][x]) {
+				// 타일 종류 설정
+				// 경계 검사 후 타일 패턴 설정
+				TileType CurTileType = Tiles[y][x].TileType;
+				if (CurTileType == TileType::WALL) {
+					MiniMap[y][x]->SetSprite("Void.png");
+				}
+				else if (CurTileType == TileType::WATER) {
+					MiniMap[y][x]->SetSprite("Void.png");
+				}
+				else if (CurTileType == TileType::GROUND) {
+
+					if (y > 0 && x > 0 && y < Height - 1 && x < Width - 1) {
+						std::string FindKey;
+						for (int i = -1; i <= 1; ++i) {
+							for (int j = -1; j <= 1; ++j) {
+								FindKey += (CurTileType == Tiles[y + i][x + j].TileType) ? "1" : "0";
+							}
+						}
+						std::string SpriteName = MiniMapSpriteName.find(FindKey)->second;
+						MiniMap[y][x]->SetSprite(SpriteName);
+					}
+				}
+			}
+		}
+	}
+
+
+
 }
 
 
 
 void ADungeon_BSP::Split(RoomNode* node)
 {
-	
+
 	// 노드의 크기가 최소 크기보다 작으면 분할을 중지
 	if (node->width < MIN_SIZE || node->height < MIN_SIZE) {
 		return;
