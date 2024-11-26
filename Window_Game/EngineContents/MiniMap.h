@@ -31,8 +31,11 @@ private:
 	std::vector<std::vector<class USpriteRenderer*>> MiniMapRenderers;
 	class USpriteRenderer* PlayerRenderer = nullptr;
 	class USpriteRenderer* PotalRenderer = nullptr;	
+
+
 	class ADungeon_BSP* Dungeon = nullptr;
 	class APlayer* Player = nullptr;
+	const FVector2D SpriteSize = { 8,8 };
 	const int Width = 60;
 	const int Height = 40;
 

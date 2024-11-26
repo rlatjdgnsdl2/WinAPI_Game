@@ -550,25 +550,25 @@ void ADungeon_BSP::InitKeySet()
 	MiniMapSpriteName.insert({ "110111111","Void.png" });
 	MiniMapSpriteName.insert({ "011111111","Void.png" });
 												
-	MiniMapSpriteName.insert({ "011011010","Void.png" });
-	MiniMapSpriteName.insert({ "111011010","Void.png" });
-	MiniMapSpriteName.insert({ "011011110","Void.png" });
-	MiniMapSpriteName.insert({ "111011110","Void.png" });
+	MiniMapSpriteName.insert({ "011011010","Left.png" });
+	MiniMapSpriteName.insert({ "111011010","Left.png" });
+	MiniMapSpriteName.insert({ "011011110","Left.png" });
+	MiniMapSpriteName.insert({ "111011110","Left.png" });
 												
-	MiniMapSpriteName.insert({ "110110010","Void.png" });
-	MiniMapSpriteName.insert({ "111110010","Void.png" });
-	MiniMapSpriteName.insert({ "110110011","Void.png" });
-	MiniMapSpriteName.insert({ "111110011","Void.png" });
+	MiniMapSpriteName.insert({ "110110010","Right.png" });
+	MiniMapSpriteName.insert({ "111110010","Right.png" });
+	MiniMapSpriteName.insert({ "110110011","Right.png" });
+	MiniMapSpriteName.insert({ "111110011","Right.png" });
 												
-	MiniMapSpriteName.insert({ "110011011","Void.png" });
-	MiniMapSpriteName.insert({ "010011111","Void.png" });
-	MiniMapSpriteName.insert({ "110011111","Void.png" });
-	MiniMapSpriteName.insert({ "010011011","Void.png" });
+	MiniMapSpriteName.insert({ "110011011","Left.png" });
+	MiniMapSpriteName.insert({ "010011111","Left.png" });
+	MiniMapSpriteName.insert({ "110011111","Left.png" });
+	MiniMapSpriteName.insert({ "010011011","Left.png" });
 												
-	MiniMapSpriteName.insert({ "011110110","Void.png" });
-	MiniMapSpriteName.insert({ "010110111","Void.png" });
-	MiniMapSpriteName.insert({ "011110111","Void.png" });
-	MiniMapSpriteName.insert({ "010110110","Void.png" });
+	MiniMapSpriteName.insert({ "011110110","Right.png" });
+	MiniMapSpriteName.insert({ "010110111","Right.png" });
+	MiniMapSpriteName.insert({ "011110111","Right.png" });
+	MiniMapSpriteName.insert({ "010110110","Right.png" });
 												
 	MiniMapSpriteName.insert({ "100111110","Top.png" });
 	MiniMapSpriteName.insert({ "001111110","Top.png" });

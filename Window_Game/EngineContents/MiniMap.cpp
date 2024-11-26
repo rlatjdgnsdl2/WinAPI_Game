@@ -21,7 +21,7 @@ AMiniMap::AMiniMap()
 	PotalRenderer->SetOrder(ERenderOrder::UI_Image);
 	PotalRenderer->SetCameraEffect(false);
 
-	SetActorLocation({ 10,20 });
+	SetActorLocation({ 0,40 });
 }
 
 AMiniMap::~AMiniMap() 
@@ -37,7 +37,7 @@ void AMiniMap::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	FIntPoint PlayerPos = Player->GetTile();
-	FVector2D PlayerLocation = { PlayerPos.X * 12, PlayerPos.Y * 12 };
+	FVector2D PlayerLocation = { PlayerPos.X * SpriteSize.X, PlayerPos.Y * SpriteSize.Y };
 	PlayerRenderer->SetComponentLocation(PlayerLocation);
 }
 void AMiniMap::SetMiniMap()
@@ -49,7 +49,7 @@ void AMiniMap::SetMiniMap()
 			if (MiniMapRenderers[y][x] == nullptr) {
 				USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 				NewSpriteRenderer->SetSprite("Void.png");
-				NewSpriteRenderer->SetComponentLocation({ (x) * 12,(y) * 12 });
+				NewSpriteRenderer->SetComponentLocation({ (x) * SpriteSize.X,(y) * SpriteSize.Y });
 				NewSpriteRenderer->SetSpriteScale();
 				NewSpriteRenderer->SetCameraEffect(false);
 				NewSpriteRenderer->SetOrder(ERenderOrder::UI_Image);
@@ -86,7 +86,7 @@ void AMiniMap::SetMiniMap()
 			}
 		}
 	}
-	FVector2D PotalLocation = Dungeon->GetPotalLocation();
-	PotalRenderer->SetComponentLocation({ PotalLocation.X / 6, PotalLocation.Y / 6 });
+	FVector2D PotalTileIndex = Dungeon->GetPotalTile();
+	PotalRenderer->SetComponentLocation({ PotalTileIndex.X * SpriteSize.X, PotalTileIndex.Y * SpriteSize.Y });
 }
 

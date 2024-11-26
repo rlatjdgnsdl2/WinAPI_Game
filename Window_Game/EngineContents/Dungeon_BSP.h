@@ -35,6 +35,7 @@ public:
 	std::string GetMinimapSpriteName(const std::string_view _Key) const { return MiniMapSpriteName.find(_Key.data())->second; }
 
 	FVector2D GetPotalLocation() const { return PotalLocation; }
+	FVector2D GetPotalTile() const { return PotalLocation / 72; }
 
 	void NextFloor() { 
 		CurFloor++; 
