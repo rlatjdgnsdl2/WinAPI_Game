@@ -97,6 +97,9 @@
     <ClInclude Include="Text.h">
       <Filter>Global\UI\UIElement</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -247,6 +250,9 @@
       <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
       <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
   </ItemGroup>

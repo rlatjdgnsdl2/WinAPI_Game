@@ -35,6 +35,7 @@ void APokemon::SpecialAttack()
 	}
 	if (false == SpecialSkill->IsAttack()) {
 		EndAttack();
+		SpecialSkill->SetActive(false);
 		SpecialSkill->Destroy();
 		SpecialSkill = nullptr;
 	};

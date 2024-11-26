@@ -32,6 +32,7 @@ public:
 	void RoomClear();
 	Room GetRoom(RoomNode* node) const;
 	std::vector<FVector2D> GetRoomLocations() const { return RoomLocations; }
+	std::string GetMinimapSpriteName(const std::string_view _Key) const { return MiniMapSpriteName.find(_Key.data())->second; }
 
 	FVector2D GetPotalLocation() const { return PotalLocation; }
 
@@ -43,6 +44,8 @@ public:
 	}
 	void ResetFloor() { CurFloor = 1; }
 	int GetCurFloor() const { return CurFloor; }
+
+
 	
 protected:
 
@@ -51,7 +54,8 @@ private:
 	RoomNode* root;
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
-	std::vector<std::vector<class USpriteRenderer*>> MiniMap;
+	class AMiniMap* MiniMap;
+	
 	FVector2D PotalLocation;
 
 	int CurFloor=1;

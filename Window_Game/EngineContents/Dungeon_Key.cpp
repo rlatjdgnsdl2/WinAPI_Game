@@ -314,7 +314,7 @@ void ADungeon_BSP::InitKeySet()
 	MiniMapSpriteName.insert({ "001011111","LeftTop.png" });
 	MiniMapSpriteName.insert({ "101011111","LeftTop.png" });
 	
-	MiniMapSpriteName.insert({ "000111111","Top.png"});
+	MiniMapSpriteName.insert({ "000111111","Top.png"}); 
 	MiniMapSpriteName.insert({ "001111111","Top.png" });
 	MiniMapSpriteName.insert({ "100111111","Top.png" });
 	MiniMapSpriteName.insert({ "101111111","Top.png" });

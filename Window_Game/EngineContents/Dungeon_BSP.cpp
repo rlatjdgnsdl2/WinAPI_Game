@@ -5,6 +5,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
+#include "MiniMap.h"
 #include "Item.h"
 
 const int MIN_SIZE = 8;
@@ -12,7 +13,6 @@ const int MIN_SIZE = 8;
 ADungeon_BSP::ADungeon_BSP() :root(nullptr), MaxFloor{}
 {
 	SetActorLocation({ 0,0 });
-	MiniMap.resize(Height, std::vector<USpriteRenderer*>(Width));
 }
 
 ADungeon_BSP::~ADungeon_BSP()
@@ -85,53 +85,11 @@ Room ADungeon_BSP::GetRoom(RoomNode* node) const
 
 void ADungeon_BSP::SetMiniMap()
 {
-	for (int y = 0; y < Height; y++)
-	{
-		for (int x = 0; x < Width; x++)
-		{
-			if (MiniMap[y][x] == nullptr) {
-				USpriteRenderer* NewSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-				NewSpriteRenderer->SetSprite("Void.png");
-				NewSpriteRenderer->SetComponentLocation({ (x) * 12,(y) * 12 });
-				NewSpriteRenderer->SetSpriteScale();
-				NewSpriteRenderer->SetCameraEffect(false);
-				NewSpriteRenderer->SetOrder(ERenderOrder::UI_Image);
-				MiniMap[y][x] = NewSpriteRenderer;
-			}
-		}
+	if (nullptr == MiniMap) {
+		MiniMap = GetWorld()->SpawnActor<AMiniMap>();
 	}
-
-	for (int y = 0; y < Height; y++) {
-		for (int x = 0; x < Width; x++) {
-			if (nullptr != MiniMap[y][x]) {
-				// 타일 종류 설정
-				// 경계 검사 후 타일 패턴 설정
-				TileType CurTileType = Tiles[y][x].TileType;
-				if (CurTileType == TileType::WALL) {
-					MiniMap[y][x]->SetSprite("Void.png");
-				}
-				else if (CurTileType == TileType::WATER) {
-					MiniMap[y][x]->SetSprite("Void.png");
-				}
-				else if (CurTileType == TileType::GROUND) {
-
-					if (y > 0 && x > 0 && y < Height - 1 && x < Width - 1) {
-						std::string FindKey;
-						for (int i = -1; i <= 1; ++i) {
-							for (int j = -1; j <= 1; ++j) {
-								FindKey += (CurTileType == Tiles[y + i][x + j].TileType) ? "1" : "0";
-							}
-						}
-						std::string SpriteName = MiniMapSpriteName.find(FindKey)->second;
-						MiniMap[y][x]->SetSprite(SpriteName);
-					}
-				}
-			}
-		}
-	}
-
-
-
+	MiniMap->SetDungeon(this);
+	MiniMap->SetMiniMap();
 }
 
 

@@ -31,6 +31,14 @@ public:
 	{
 		Tiles[_y][_x].TileType = _TileType;
 	}
+	const std::vector<std::vector<DungeonTile>>& GetTiles()const
+	{
+		return Tiles;
+	}
+	const DungeonTile& GetTile(int _x, int _y)const
+	{
+		return Tiles[_y][_x];
+	}
 	
 
 

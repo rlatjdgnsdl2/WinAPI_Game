@@ -86,6 +86,7 @@ void AUIManager::BeginPlay()
 		A_AnswerUI->ResetTextIter();
 
 		LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
+
 	}
 
 	CurMenu = MenuType::None;
