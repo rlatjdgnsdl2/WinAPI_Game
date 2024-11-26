@@ -43,20 +43,18 @@ public:
 	}
 	void ResetFloor() { CurFloor = 1; }
 	int GetCurFloor() const { return CurFloor; }
-	UEngineRandom Random;
+	
 protected:
 
 private:
+	UEngineRandom Random;
 	RoomNode* root;
-
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
 	FVector2D PotalLocation;
 
 	int CurFloor=1;
 	int MaxFloor;
-
-	
 
 	//	던전생성과정
 	void InitDungeon();
@@ -66,7 +64,6 @@ private:
 	void ConnectRooms(RoomNode* node);
 	void SetNaturally();
 	void SetNextPotal();
-
 
 	std::map<std::string, int > TileIndexForKey;
 

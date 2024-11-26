@@ -13,11 +13,14 @@ public:
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
 	virtual void SetPokemon(std::string_view _PokemonName);
+	virtual void Tick(float _DeltaTime) override;
 	void SetAnim();
 	void Idle();
 	void Move(float _DeltaTime);
 	void Skill();
 	void Hurt();
+	void Die(float _DeltaTime);
+
 
 	virtual void LevelUp() {}
 	virtual bool IsLevelUp() { return false; }
@@ -181,6 +184,7 @@ protected:
 
 	//	이동관련
 	float CurDuration = 0.0f;
+	float DeadDuration = 0.0f;
 	FVector2D StartLocation = FVector2D::ZERO;
 	FVector2D TargetLocation = FVector2D::ZERO;
 

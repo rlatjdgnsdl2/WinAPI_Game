@@ -15,19 +15,28 @@ void ATurnManager::PlayerSkillStart() {
 	if (TargetPokemon != nullptr) {
 		int Damage = UContentsMath::DamageCalculation(Player->GetATK(), TargetPokemon->GetDEF());
 		UIManager->NewLogMessage(
-			{Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, {Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
+			{ Player->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) }, { Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
 		TargetPokemon->SetDamage(Damage);
+		TargetPokemon->ResetCurDuration();
 	}
 	CurTurn = TurnType::Player_Skill;
 	return;
 }
 
 
-void ATurnManager::PlayerSkill()
+void ATurnManager::PlayerSkill(float _DeltaTime)
 {
 	Player->Skill();
+	APokemon* TargetPokemon = Player->GetTargetPokemon();
 	if (true == Player->IsAttack()) {
 		return;
+	}
+	CurDuration += _DeltaTime;
+	if (CurDuration < 1.5f) {
+		if (TargetPokemon->IsDie()) {
+			TargetPokemon->Die(_DeltaTime);
+			return;
+		}
 	}
 	CurTurn = TurnType::Player_Skill_End;
 	return;
@@ -42,8 +51,8 @@ void ATurnManager::PlayerSkillEnd()
 		if (true == TargetPokemon->IsDie()) {
 			int Level = TargetPokemon->GetLevel();
 			UIManager->NewLogMessage(
-				{ TargetPokemon->GetName()," Die and ","Player Party"," Gain EXP ",std::to_string(Level * 100)}, 
-				{Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow});
+				{ TargetPokemon->GetName()," Die and ","Player Party"," Gain EXP ",std::to_string(Level * 100) },
+				{ Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
 			// 경험치 획득 후 레벨업했으면
 			for (APokemon* CurPokemon : PlayerCamp) {
 				if (CurPokemon != nullptr && CurPokemon->GainExp(Level * 100)) {

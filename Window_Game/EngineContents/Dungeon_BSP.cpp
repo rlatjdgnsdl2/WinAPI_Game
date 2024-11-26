@@ -63,7 +63,6 @@ void ADungeon_BSP::Generate()
 	ConnectRooms(root);
 	SetNaturally();
 	SetNextPotal();
-	
 }
 
 Room ADungeon_BSP::GetRoom(RoomNode* node) const

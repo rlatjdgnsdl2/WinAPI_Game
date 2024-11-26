@@ -35,7 +35,7 @@ public:
 			Control->setPaused(true);
 		}
 	}
-
+	
 
 	void Loop(int Count = -1)
 	{

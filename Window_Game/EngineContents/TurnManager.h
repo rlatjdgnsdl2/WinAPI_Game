@@ -102,13 +102,13 @@ private:
 	//	Select Play
 	void PlayerMove(float _DeltaTime);
 	void PlayerSkillStart();
-	void PlayerSkill();
+	void PlayerSkill(float _DeltaTime);
 	void PlayerSkillEnd();
 
 	// AI Select Play
 	void AIMove(float _DeltaTime);
 	void AISkillStart();
-	void AISkill();
+	void AISkill(float _DeltaTime);
 	void AISkillEnd();
 
 	

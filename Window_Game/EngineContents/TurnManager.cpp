@@ -101,7 +101,7 @@ void ATurnManager::Tick(float _DeltaTime)
 		PlayerSkillStart();
 		return;
 	case TurnType::Player_Skill:
-		PlayerSkill();
+		PlayerSkill(_DeltaTime);
 		return;
 	case TurnType::Player_Skill_End:
 		PlayerSkillEnd();
@@ -119,7 +119,7 @@ void ATurnManager::Tick(float _DeltaTime)
 		AISkillStart();
 		return;
 	case TurnType::AI_Skill:
-		AISkill();
+		AISkill(_DeltaTime);
 		return;
 	case TurnType::AI_Skill_End:
 		AISkillEnd();

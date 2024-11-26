@@ -7,7 +7,7 @@
 
 
 
-APokemon::APokemon() 
+APokemon::APokemon()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 }
@@ -26,6 +26,11 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	SetAnim();
 	//	´É·ÂÄ¡
 	PokemonInfo = UGameDataManager::GetInst().GetPokemonAbility(_PokemonName);
+}
+
+void APokemon::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
 }
 
 void APokemon::Idle()
@@ -55,6 +60,18 @@ void APokemon::Hurt()
 {
 	SpriteRenderer->ChangeAnimation("HurtAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
+}
+
+void APokemon::Die(float _DeltaTime)
+{
+	CurDuration += _DeltaTime;
+	DeadDuration += _DeltaTime;
+	SpriteRenderer->ChangeAnimation("HurtAnim_" + std::to_string(static_cast<int>(Dir)));
+	SpriteRenderer->SetSpriteScale();
+	if (DeadDuration > 0.1f) {
+		SpriteRenderer->SetActiveSwitch();
+		DeadDuration = 0.0f;
+	}
 }
 
 

@@ -196,18 +196,26 @@ void ACharacterSelect::LevelChangeStart()
 {
 	Super::LevelChangeStart();
 	Fade->FadeOut();
-
-	CharacterName->ShowUI(0.0f);
-	SelectPokemon->ShowUI(0.0f);
+	BGMPlayer = UEngineSound::Play("CharacterSelectBGM.mp3");
+	CharacterName->ShowUI();
+	SelectPokemon->ShowUI();
 }
 
 void ACharacterSelect::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
+	BGMPlayer.Off();
 	IsPlayerSelect = false;
 	IsPartnerSelect = false;
 	IsNextLevel = false;
 	CurDuration = 0.0f;
+
+	PlayerName.clear();
+	PartnerName.clear();
+
+	SelectPokemon->SetString("Your Pokemon", Color::White,0);
+	SelectPokemon->SetString("Your Partner", Color::White,1);
+
 }
 
 

@@ -60,15 +60,24 @@ void ATurnManager::AISkillStart()
 		{ CurPokemon->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) },
 		{ Color::Blue,Color::White,Color::Blue,Color::White,Color::Yellow });
 	TargetPokemon->SetDamage(Damage);
+	TargetPokemon->ResetCurDuration();
 	CurTurn = TurnType::AI_Skill;
 }
 
-void ATurnManager::AISkill()
+void ATurnManager::AISkill(float _DeltaTime)
 {
 	APokemon* CurPokemon = SkillPokemon.front();
+	APokemon* TargetPokemon = CurPokemon->GetTargetPokemon();
 	CurPokemon->Skill();
 	if (CurPokemon->IsAttack()) {
 		return;
+	}
+	CurDuration += _DeltaTime;
+	if (CurDuration < 1.5f) {
+		if (TargetPokemon->IsDie()) {
+			TargetPokemon->Die(_DeltaTime);
+			return;
+		}
 	}
 	CurTurn = TurnType::AI_Skill_End;
 }
@@ -101,6 +110,7 @@ void ATurnManager::AISkillEnd()
 			MovePokemon.remove(TargetPokemon);
 			EnemyCamp.remove(TargetPokemon);
 			TargetPokemon->Destroy();
+
 		}
 	}
 	CurPokemon->ResetTargetablePokemon();

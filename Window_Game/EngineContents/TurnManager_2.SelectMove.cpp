@@ -42,7 +42,6 @@ bool ATurnManager::InitPlayerMove(FVector2D moveVector)
 			Player->SetTargetLocation(PlayerLocation);
 			return false;
 		}
-		
 	}
 	//	위에 조건에 안걸렸다면
 	Player->ResetCurDuration();
