@@ -168,6 +168,7 @@ void AUIManager::Tick(float _DeltaTime)
 	// 던전레벨일때 상시 렌더링
 	if (CurLevelName == "DUNGEONLEVEL")
 	{
+		
 		int CurHp = Player->GetCurHP();
 		int MaxHp = Player->GetMaxHP();
 		TopUI["UI_LvVal10"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetLevel() / 10));
