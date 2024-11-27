@@ -4,6 +4,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "BoxUI.h"
+#include "DungeonLogBox.h"
 #include "Dungeon_BSP.h"
 #include "Player.h"
 
@@ -90,7 +91,7 @@ void AUIManager::BeginPlay()
 		A_AnswerUI->CreateString("No");
 		A_AnswerUI->ResetTextIter();
 
-		LogBoxUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
+		LogBoxUI = GetWorld()->SpawnActor<ADungeonLogBox>(FTransform({ 700.0f, 150.0f }, { 50, 400 }));
 
 	}
 

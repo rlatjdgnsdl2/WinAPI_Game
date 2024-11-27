@@ -84,7 +84,7 @@ private:
 	class ABoxUI* Q_NextFloorUI = nullptr;
 	class ABoxUI* A_AnswerUI = nullptr;
 
-	class ABoxUI* LogBoxUI = nullptr;
+	class ADungeonLogBox* LogBoxUI = nullptr;
 
 	void CreateTopUI(const std::string& key, const std::string& spriteName, float offsetX = 0.0f);
 

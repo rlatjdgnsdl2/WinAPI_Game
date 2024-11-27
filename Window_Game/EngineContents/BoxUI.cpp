@@ -27,6 +27,14 @@ void ABoxUI::BeginPlay()
 	Box->SetActive(false);
 }
 
+void ABoxUI::SetTextsCount(int _Count)
+{
+	for (int i = 0; i < _Count; i++)
+	{
+		CreateString("");
+	}
+}
+
 void ABoxUI::CreateString(std::string_view _StringValue, Color _Color, float _Time)
 {
 	AText* NewText = GetWorld()->SpawnActor<AText>();
@@ -68,65 +76,13 @@ void ABoxUI::SetStringColor(AText* Text, Color _Color)
 
 void ABoxUI::SetStringColor(int Index, Color _Color)
 {
-	Texts[Index]->SetColor(_Color);
-}
+	if (Index < Texts.size()) {
 
-
-void ABoxUI::NewMessage(const std::string_view _Message, Color _Color, float _Time)
-{
-	if (Texts.size() < 3) {
-		CreateString(_Message);
-	}
-
-	else if (Texts.size() >= 3) {
-		SetString(Texts[1]->GetString(), _Color, 0);
-		SetString(Texts[2]->GetString(), _Color, 1);
-		SetString(_Message, _Color, 2, _Time);
+		Texts[Index]->SetColor(_Color);
 	}
 }
 
-void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors, float _Time)
-{
-	if (Texts.size() < 3) {
-		CreateString(_Message, _colors);
-	}
-	else if (Texts.size() >= 3) {
 
-		Texts[0]->SetString(Texts[1]);
-		Texts[1]->SetString(Texts[2]);
-		Texts[2]->SetString(_Message, _colors, _Time);
-	}
-
-}
-
-void ABoxUI::ShowPage(const std::list<std::string>& _List, int _Page,int _Count)
-{
-	for (auto& Text : Texts)
-	{
-		Text->SetActive(false);
-	}
-	int Size = static_cast<int>(_List.size());
-	std::list<std::string>::const_iterator StartIter = _List.begin();
-	
-	for (int i = 0; i < (_Page)*_Count; i++)
-	{
-		if (StartIter == _List.end())
-		{
-			break;
-		}
-		StartIter++;
-	}
-	for (int i = 0; i < _Count; i++)
-	{
-		if (StartIter == _List.end())
-		{
-			break;
-		}
-		Texts[i]->SetString(*StartIter);
-		Texts[i]->SetActive(true);
-		StartIter++;
-	}
-}
 
 void ABoxUI::ShowUI(float _DeltaTime) {
 	Box->SetActive(true);

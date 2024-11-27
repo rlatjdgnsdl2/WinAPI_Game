@@ -17,10 +17,9 @@ public:
 	ABoxUI& operator=(const ABoxUI& _Other) = delete;
 	ABoxUI& operator=(ABoxUI&& _Other) noexcept = delete;
 
-
-
 	virtual void BeginPlay()override;
 
+	void SetTextsCount(int _Count);
 	void CreateString(std::string_view _StringValue, Color _Color = Color::White, float _Time = 0.0f);
 	void CreateString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, float _Time = 0.0f);
 
@@ -29,10 +28,8 @@ public:
 	void SetStringColor(class AText* Text, Color _Color);
 	void SetStringColor(int Index, Color _Color);
 
-	void NewMessage(const std::string_view _Message, Color _Color = Color::White, float _Time = 0.0f);
-	void NewMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors,float _Time=0.0f);
-
-	void ShowPage(const std::list<std::string>& _List,int _Page, int _Count);
+	
+	
 
 	std::vector<class AText*>::iterator GetCurTextIter() { 
 		return TextIter; 
@@ -57,8 +54,8 @@ public:
 	void HideUI();
 
 protected:
-	class ABox* Box = nullptr;
 	FTransform BoxTrans = FTransform(FVector2D::ZERO, FVector2D::ZERO);
+	class ABox* Box = nullptr;
 	std::vector<class AText*> Texts;
 	std::vector<class AText*>::iterator TextIter;
 private:

@@ -3,7 +3,7 @@
 
 #include <EnginePlatform/EngineInput.h>
 
-#include "BoxUI.h"
+#include "DungeonLogBox.h"
 
 
 

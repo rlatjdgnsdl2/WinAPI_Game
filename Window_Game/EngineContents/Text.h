@@ -17,9 +17,6 @@ public:
 	AText& operator=(AText&& _Other) noexcept = delete;
 
 
-
-
-
 	void Reserve(int _Count);
 
 	void ShowText(float _DeltaTime);

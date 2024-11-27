@@ -50,6 +50,7 @@ void AText::ShowText(float _DeltaTime)
 	}
 	if (CurCount >= Size) {
 		CurCount = Size;
+		Time = 0.0f;
 	}
 
 	for (size_t i = 0; i < CurCount; i++) {
@@ -95,7 +96,6 @@ void AText::SetString(const AText* _Text)
 	StringValue = _Text->GetString();
 	Time = _Text->Time;
 	Reserve(static_cast<int>(StringValue.size()));
-
 	CurCount = 0;
 	for (size_t i = 0; i < StringValue.size(); i++)
 	{

@@ -11,7 +11,7 @@ void AUIManager::OpenItem() {
 	std::list<std::string> ItemList = UGameDataManager::GetInst().GetPlayerInventory();
 	ItemInfoUI->ShowUI();
 	ItemUI->ResetTextIter();
-	ItemUI->ShowPage(ItemList, CurPage, 8);
+	//ItemUI->ShowPage(ItemList, CurPage, 8);
 	ItemUI->ShowUI();
 	CurMenu = MenuType::ShowItem;
 	return;
@@ -48,7 +48,7 @@ void AUIManager::ShowItem() {
 			if (CurPage < 0) {
 				CurPage = MaxPage;
 			}
-			ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
+			//ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
 			ItemUI->ShowUI();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
@@ -62,7 +62,7 @@ void AUIManager::ShowItem() {
 			if (CurPage > MaxPage) {
 				CurPage = 0;
 			}
-			ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
+			//ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
 			ItemUI->ShowUI();
 		}
 		if (true == UEngineInput::GetInst().IsDown('Q')) {
