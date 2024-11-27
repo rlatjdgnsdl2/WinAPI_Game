@@ -6,6 +6,7 @@
 class ABoxUI :public AActor
 {
 public:
+	
 	//	constrcuter, destructer
 	ABoxUI();
 	ABoxUI(FTransform _BoxTrans);
@@ -28,9 +29,6 @@ public:
 	void SetStringColor(class AText* Text, Color _Color);
 	void SetStringColor(int Index, Color _Color);
 
-	
-	
-
 	std::vector<class AText*>::iterator GetCurTextIter() { 
 		return TextIter; 
 	}
@@ -50,12 +48,13 @@ public:
 		--TextIter;
 	}
 
-	void ShowUI(float _DeltaTime = 0.0f);
+	virtual void ShowUI(float _DeltaTime = 0.0f);
 	void HideUI();
 
 protected:
 	FTransform BoxTrans = FTransform(FVector2D::ZERO, FVector2D::ZERO);
 	class ABox* Box = nullptr;
+	int TextsCount = 0;	
 	std::vector<class AText*> Texts;
 	std::vector<class AText*>::iterator TextIter;
 private:

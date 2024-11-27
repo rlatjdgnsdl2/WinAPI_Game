@@ -7,6 +7,7 @@
 #include "DungeonLogBox.h"
 #include "Dungeon_BSP.h"
 #include "Player.h"
+#include "Inventory.h"
 
 
 AUIManager::AUIManager()
@@ -23,15 +24,17 @@ void AUIManager::BeginPlay()
 {
 	Super::BeginPlay();
 	Player = dynamic_cast<APlayer*>(GetWorld()->GetPawn());
+
 	//	메뉴
 	MenuUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 200,350 }, { 25,50 }));
 	MenuUI->CreateString("Skill");
 	MenuUI->CreateString("Item");
 	MenuUI->CreateString("Close");
+
 	//	내정보
 	MyInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 750.0f, 150.0f }, { 25, 400 }));
-	MyInfoUI->CreateString("");
-	MyInfoUI->CreateString("");
+	MyInfoUI->SetTextsCount(4);
+
 	//	스킬
 	SkillUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 200 }, { 25, 50 }));
 	//	임시 스킬
@@ -40,16 +43,9 @@ void AUIManager::BeginPlay()
 	SkillUI->CreateString("Water_Bomb");
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
+
 	//	인벤토리
-	ItemUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 300 }, { 25, 50 }));
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
-	ItemUI->CreateString("");
+	ItemUI = GetWorld()->SpawnActor<AInventory>(FTransform({ 400, 300 }, { 25, 50 }));
 	ItemInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	ItemInfoUI->CreateString("");
 
@@ -174,7 +170,6 @@ void AUIManager::Tick(float _DeltaTime)
 	// 던전레벨일때 상시 렌더링
 	if (CurLevelName == "DUNGEONLEVEL")
 	{
-		
 		int CurHp = Player->GetCurHP();
 		int MaxHp = Player->GetMaxHP();
 		TopUI["UI_LvVal10"]->SetSprite(std::format("DungeonFont_{}.png", Player->GetLevel() / 10));

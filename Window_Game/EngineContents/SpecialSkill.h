@@ -7,7 +7,6 @@ class ASpecialSkill : public AActor
 {
 public:
 	//	constrcuter, destructer
-	ASpecialSkill();
 	ASpecialSkill(std::string_view SkillName);
 	virtual ~ASpecialSkill();
 	
@@ -20,14 +19,18 @@ public:
 
 	virtual void BeginPlay()override;
 	virtual void Tick(float _DeltaTime)override;
-
-
 	bool IsAttack();
 
 protected:
 
 private:
+	std::string SkillName = "";
 	class USpriteRenderer* SpriteRenderer = nullptr;
+	class APlayer* Player = nullptr;
+	class APokemon* Target = nullptr;
+	
+	
+	
 
 
 };

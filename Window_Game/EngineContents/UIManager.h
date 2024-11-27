@@ -70,10 +70,8 @@ private:
 	class ABoxUI* SkillUI = nullptr;
 	class ABoxUI* SkillInfoUI = nullptr;
 
-	class ABoxUI* ItemUI = nullptr;
+	class AInventory* ItemUI = nullptr;
 	class ABoxUI* ItemInfoUI = nullptr;
-	int CurPage = 0;
-	int MaxPage = 3;
 
 	//	던전
 	//	상단 UI

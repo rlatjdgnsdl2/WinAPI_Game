@@ -14,11 +14,21 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName);
 	virtual void Tick(float _DeltaTime) override;
-	void SetAnim();
+	
+
 	void Idle();
+
+	void MoveStart();
 	void Move(float _DeltaTime);
+	
+
+
 	void Skill();
+
+	
 	void Hurt();
+
+
 	void Die(float _DeltaTime);
 
 
@@ -205,7 +215,7 @@ protected:
 	bool IsAttackVal{};
 	bool IsHurtVal{};
 private:
-
+	void SetAnim();
 
 
 

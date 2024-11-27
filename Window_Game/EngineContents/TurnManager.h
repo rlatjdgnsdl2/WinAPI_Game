@@ -29,14 +29,8 @@ public:
 	void SetDungeon(class ADungeon_BSP* _Dungeon) {
 		Dungeon = _Dungeon;
 	}
-	/*void SetBasicUI(class ABasicUI* _BasicUI) {
-		BasicUI = _BasicUI;
-	}*/
 	void SetUIManager(class AUIManager* _UIManager) {
 		UIManager = _UIManager;
-	}
-	void SetDungeonUI(class ADungeonUI* _DungeonUI) {
-		DungeonUI = _DungeonUI;
 	}
 	void SetPlayer(class APlayer* _Player) {
 		Player = _Player;
@@ -96,6 +90,7 @@ private:
 	//	Idle
 	void PlayerSelect(float _DeltaTime);
 	void OpenMenu();
+
 	//	Select Type
 	void SelectMove();
 	void SelectSkill();
@@ -103,13 +98,17 @@ private:
 	void Move_AISelect();
 	void Skill_AISelect();
 	//	Select Play
+	void PlayerMoveStart();
 	void PlayerMove(float _DeltaTime);
+	void PlayerMoveEnd();
 	void PlayerSkillStart();
 	void PlayerSkill(float _DeltaTime);
 	void PlayerSkillEnd();
 
 	// AI Select Play
+	void AIMoveStart();
 	void AIMove(float _DeltaTime);
+	void AIMoveEnd();
 	void AISkillStart();
 	void AISkill(float _DeltaTime);
 	void AISkillEnd();
@@ -117,7 +116,5 @@ private:
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
 	void SpawnEnemy();
-
-
 
 };

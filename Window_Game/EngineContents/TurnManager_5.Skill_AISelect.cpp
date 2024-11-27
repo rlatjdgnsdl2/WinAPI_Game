@@ -90,6 +90,6 @@ void ATurnManager::Skill_AISelect()
 	}
 
 
-	CurTurn = TurnType::AI_Move;
+	CurTurn = TurnType::AI_Move_Start;
 	return;
 }

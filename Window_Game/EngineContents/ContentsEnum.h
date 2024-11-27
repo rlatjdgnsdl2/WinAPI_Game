@@ -24,6 +24,12 @@ enum class TileType
 	WATER
 };
 
+enum class SkillScope {
+	front,
+	Shoot,
+	Room
+};
+
 
 enum class CampType
 {
@@ -80,15 +86,25 @@ enum class TurnType
 	Fade,
 	Player_Select,
 	Open_UI,
+
 	Player_Select_Move,
 	Player_Select_Skill,
+
+	Player_Move_Start,
 	Player_Move,
+	Player_Move_End,
+
 	Player_Skill_Start,
 	Player_Skill,
 	Player_Skill_End,
+
 	Move_AI_Select,
 	Skill_AI_Select,
+
+	AI_Move_Start,
 	AI_Move,
+	AI_Move_End,
+
 	AI_Skill_Start,
 	AI_Skill,
 	AI_Skill_End

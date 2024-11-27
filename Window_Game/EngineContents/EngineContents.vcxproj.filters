@@ -103,6 +103,9 @@
     <ClInclude Include="DungeonLogBox.h">
       <Filter>Global\UI\UIElement</Filter>
     </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -259,6 +262,9 @@
       <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
     <ClCompile Include="DungeonLogBox.cpp">
+      <Filter>Global\UI\UIElement</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
       <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
   </ItemGroup>

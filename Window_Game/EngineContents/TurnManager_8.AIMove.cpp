@@ -2,6 +2,16 @@
 #include "TurnManager.h"
 #include "Pokemon.h"
 
+
+
+void ATurnManager::AIMoveStart()
+{
+	for (APokemon* CurPokemon : MovePokemon) {
+		CurPokemon->MoveStart();
+	}
+	CurTurn = TurnType::AI_Move;
+}
+
 void ATurnManager::AIMove(float _DeltaTime)
 {
 	for (APokemon* CurPokemon : MovePokemon) {
@@ -16,8 +26,15 @@ void ATurnManager::AIMove(float _DeltaTime)
 		}
 	}
 	// 도착했으면 MovePokemon 초기화하고 스킬단계
+	CurTurn = TurnType::AI_Move_End;
+	return;
+}
+
+void ATurnManager::AIMoveEnd()
+{
+	for (APokemon* CurPokemon : MovePokemon) {
+		CurPokemon->Idle();
+	}
 	MovePokemon.clear();
 	CurTurn = TurnType::AI_Skill_Start;
-	return;
-
 }

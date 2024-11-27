@@ -29,6 +29,7 @@ void ABoxUI::BeginPlay()
 
 void ABoxUI::SetTextsCount(int _Count)
 {
+	TextsCount = _Count;
 	for (int i = 0; i < _Count; i++)
 	{
 		CreateString("");
@@ -81,8 +82,6 @@ void ABoxUI::SetStringColor(int Index, Color _Color)
 		Texts[Index]->SetColor(_Color);
 	}
 }
-
-
 
 void ABoxUI::ShowUI(float _DeltaTime) {
 	Box->SetActive(true);

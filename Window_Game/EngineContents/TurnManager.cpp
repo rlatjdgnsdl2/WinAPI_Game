@@ -66,6 +66,7 @@ void ATurnManager::LevelChangeStart()
 	SpawnEnemy();
 	Player->SetTargetLocation(Player->GetActorLocation());
 	CurTurn = TurnType::Fade;
+	CurDuration = 0.0f;
 }
 
 void ATurnManager::LevelChangeEnd()
@@ -106,15 +107,26 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::Open_UI:
 		OpenMenu();
 		return;
+
 	case TurnType::Player_Select_Move:
 		SelectMove();
 		return;
 	case TurnType::Player_Select_Skill:
 		SelectSkill();
 		return;
+
+		//	PlayerMove
+	case TurnType::Player_Move_Start:
+		PlayerMoveStart();
+		return;
 	case TurnType::Player_Move:
 		PlayerMove(_DeltaTime);
 		return;
+	case TurnType::Player_Move_End:
+		PlayerMoveEnd();
+		return;
+
+		//	PlayerSkill
 	case TurnType::Player_Skill_Start:
 		PlayerSkillStart();
 		return;
@@ -124,14 +136,23 @@ void ATurnManager::Tick(float _DeltaTime)
 	case TurnType::Player_Skill_End:
 		PlayerSkillEnd();
 		return;
+
+		// AISelect
 	case TurnType::Move_AI_Select:
 		Move_AISelect();
 		return;
 	case TurnType::Skill_AI_Select:
 		Skill_AISelect();
 		return;
+
+	case TurnType::AI_Move_Start:
+		AIMoveStart();
+		return;
 	case TurnType::AI_Move:
 		AIMove(_DeltaTime);
+		return;
+	case TurnType::AI_Move_End:
+		AIMoveEnd();
 		return;
 	case TurnType::AI_Skill_Start:
 		AISkillStart();

@@ -99,7 +99,7 @@ void ATurnManager::Move_AISelect()
 
 	}
 	// 다음단계
-	CurTurn = TurnType::Player_Move;
+	CurTurn = TurnType::Player_Move_Start;
 	return;
 }
 

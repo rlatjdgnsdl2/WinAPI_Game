@@ -3,6 +3,7 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include "GameDataManager.h"
+#include "Inventory.h"
 #include "BoxUI.h"
 #include "Text.h"
 
@@ -11,7 +12,6 @@ void AUIManager::OpenItem() {
 	std::list<std::string> ItemList = UGameDataManager::GetInst().GetPlayerInventory();
 	ItemInfoUI->ShowUI();
 	ItemUI->ResetTextIter();
-	//ItemUI->ShowPage(ItemList, CurPage, 8);
 	ItemUI->ShowUI();
 	CurMenu = MenuType::ShowItem;
 	return;
@@ -39,30 +39,12 @@ void AUIManager::ShowItem() {
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_LEFT))
 		{
-			ItemUI->SetStringColor(*(ItemUI->GetCurTextIter()), Color::White);
-			for (int i = 0; i < 8; i++)
-			{
-				ItemUI->PrevTextIter();
-			}
-			CurPage--;
-			if (CurPage < 0) {
-				CurPage = MaxPage;
-			}
-			//ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
+			ItemUI->MovePage(-1);
 			ItemUI->ShowUI();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
 		{
-			ItemUI->SetStringColor(*(ItemUI->GetCurTextIter()), Color::White);
-			for (int i = 0; i < 8; i++)
-			{
-				ItemUI->NextTextIter();
-			}
-			CurPage++;
-			if (CurPage > MaxPage) {
-				CurPage = 0;
-			}
-			//ItemUI->ShowPage(UGameDataManager::GetInst().GetPlayerInventory(), CurPage, 8);
+			ItemUI->MovePage(1);
 			ItemUI->ShowUI();
 		}
 		if (true == UEngineInput::GetInst().IsDown('Q')) {
