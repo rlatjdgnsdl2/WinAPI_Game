@@ -6,6 +6,7 @@
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/ImageManager.h>
 
 #include "Box.h"
 #include "Text.h"
@@ -40,6 +41,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ PlayerNames[i], SpriteRenderer });
 	}
+	
 }
 
 ACharacterSelect::~ACharacterSelect()
@@ -217,6 +219,8 @@ void ACharacterSelect::LevelChangeEnd()
 	SelectPokemon->SetString("Your Partner", Color::White,1);
 
 }
+
+
 
 
 

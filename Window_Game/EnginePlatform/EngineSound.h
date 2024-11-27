@@ -21,6 +21,18 @@ public:
 		Control->setPaused(true);
 	}
 
+	void Stop()
+	{
+		Control->stop();
+	}
+
+	void SetVolume(float _Volume)
+	{
+		_Volume = UEngineMath::Clamp(_Volume, 0.0f, 1.0f);
+
+		Control->setVolume(_Volume);
+	}
+
 	void OnOffSwtich()
 	{
 		bool Check = false;
@@ -30,21 +42,28 @@ public:
 		{
 			Control->setPaused(false);
 		}
-		else 
+		else
 		{
 			Control->setPaused(true);
 		}
 	}
-	
 
 	void Loop(int Count = -1)
 	{
 		Control->setLoopCount(Count);
 	}
 
+	unsigned int LengthMs()
+	{
+		unsigned int ResultLength = 0;
+		SoundHandle->getLength(&ResultLength, FMOD_TIMEUNIT_MS);
+		return ResultLength;
+	}
+
 private:
 	// 채널이 곧 사운드 재생방식에 대한 권한을 가집니다.
 	FMOD::Channel* Control = nullptr;
+	FMOD::Sound* SoundHandle = nullptr;;
 };
 
 // 설명 : 관리 선생님의 본스타일로 짜겠습니다.

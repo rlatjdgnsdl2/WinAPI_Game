@@ -25,6 +25,7 @@ public:
 
 
 
+
 protected:
 
 private:
@@ -36,6 +37,7 @@ private:
 	class ADungeon_BSP* Dungeon = nullptr;
 	class APlayer* Player = nullptr;
 	const FVector2D SpriteSize = { 8,8 };
+	
 	const int Width = 60;
 	const int Height = 40;
 

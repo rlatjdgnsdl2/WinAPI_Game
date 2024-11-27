@@ -44,8 +44,5 @@ private:
 	
 	class AText* ExplanationText01 = nullptr;
 	class AText* ExplanationText02 = nullptr;
-
-
-
 };
 

@@ -156,6 +156,7 @@ USoundPlayer UEngineSound::Play(std::string_view _Name)
 
 	USoundPlayer NewPlayer;
 	NewPlayer.Control = Ch;
+	NewPlayer.SoundHandle = FindSound->SoundHandle;
 	return NewPlayer;
 }
 

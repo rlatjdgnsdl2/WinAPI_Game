@@ -45,12 +45,16 @@ void ABoxUI::CreateString(const std::vector<std::string>& _StringValues, const s
 
 void ABoxUI::SetString(std::string_view _StringValue, Color _Color, int Index, float _Time)
 {
-	Texts[Index]->SetString(_StringValue, _Color, _Time);
+	if (Index < Texts.size()) {
+		Texts[Index]->SetString(_StringValue, _Color, _Time);
+	}
 }
 
 void ABoxUI::SetString(const std::vector<std::string>& _StringValues, const std::vector<Color>& _colors, int Index, float _Time)
 {
-	Texts[Index]->SetString(_StringValues, _colors, _Time);
+	if (Index < Texts.size()) {
+		Texts[Index]->SetString(_StringValues, _colors, _Time);
+	}
 }
 
 
@@ -75,9 +79,9 @@ void ABoxUI::NewMessage(const std::string_view _Message, Color _Color, float _Ti
 	}
 
 	else if (Texts.size() >= 3) {
-		SetString(Texts[1]->GetString(), _Color,0);
-		SetString(Texts[2]->GetString(), _Color,1);
-		SetString(_Message,_Color, 2, _Time);
+		SetString(Texts[1]->GetString(), _Color, 0);
+		SetString(Texts[2]->GetString(), _Color, 1);
+		SetString(_Message, _Color, 2, _Time);
 	}
 }
 
@@ -87,26 +91,40 @@ void ABoxUI::NewMessage(const std::vector<std::string>& _Message, const std::vec
 		CreateString(_Message, _colors);
 	}
 	else if (Texts.size() >= 3) {
-		
+
 		Texts[0]->SetString(Texts[1]);
 		Texts[1]->SetString(Texts[2]);
-		Texts[2]->SetString(_Message, _colors,_Time);
+		Texts[2]->SetString(_Message, _colors, _Time);
 	}
-	
+
 }
 
-void ABoxUI::NextPage(const std::list<std::string>& _List)
+void ABoxUI::ShowPage(const std::list<std::string>& _List, int _Page,int _Count)
 {
 	for (auto& Text : Texts)
 	{
 		Text->SetActive(false);
 	}
 	int Size = static_cast<int>(_List.size());
-	std::list<std::string>::const_iterator Iter = _List.begin();
-	for (size_t i = 0; i < Size; i++)
+	std::list<std::string>::const_iterator StartIter = _List.begin();
+	
+	for (int i = 0; i < (_Page)*_Count; i++)
 	{
-		SetString(*Iter,Color::White,i);
-		Iter++;
+		if (StartIter == _List.end())
+		{
+			break;
+		}
+		StartIter++;
+	}
+	for (int i = 0; i < _Count; i++)
+	{
+		if (StartIter == _List.end())
+		{
+			break;
+		}
+		Texts[i]->SetString(*StartIter);
+		Texts[i]->SetActive(true);
+		StartIter++;
 	}
 }
 

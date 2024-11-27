@@ -213,19 +213,8 @@ void ATurnManager::SpawnEnemy()
 	}
 }
 
-void ATurnManager::SetItems()
-{
-	for (int i = 0; i < 100; i++)
-	{
-		std::string ItemName = UGameDataManager::GetInst().GetRandomItem();
-		AItem* NewItem = GetWorld()->SpawnActor<AItem>(ItemName);
-		int MaxSize = static_cast<int>(Dungeon->RoomLocations.size()) - 1;
-		int Index = Random.RandomInt(0, MaxSize);
-		FVector2D RoomLocation = Dungeon->RoomLocations[Index];
-		NewItem->SetActorLocation(RoomLocation);
-		Items.push_back(NewItem);
-	}
-}
+
+
 
 
 

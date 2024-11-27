@@ -32,7 +32,7 @@ public:
 	void NewMessage(const std::string_view _Message, Color _Color = Color::White, float _Time = 0.0f);
 	void NewMessage(const std::vector<std::string>& _Message, const std::vector<Color>& _colors,float _Time=0.0f);
 
-	void NextPage(const std::list<std::string>& _List);
+	void ShowPage(const std::list<std::string>& _List,int _Page, int _Count);
 
 	std::vector<class AText*>::iterator GetCurTextIter() { 
 		return TextIter; 

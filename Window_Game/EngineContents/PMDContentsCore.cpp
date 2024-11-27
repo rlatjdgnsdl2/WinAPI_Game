@@ -46,8 +46,8 @@ void PMDContentsCore::BeginPlay()
 
 
 	//	처음 레벨 입장
-	UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
-	//UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
+	//UEngineAPICore::GetCore()->OpenLevel("TitleLevel");
+	UEngineAPICore::GetCore()->OpenLevel("CharacterSelectLevel");
 	//UEngineAPICore::GetCore()->OpenLevel("DungeonSelectLevel");
 	//UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 

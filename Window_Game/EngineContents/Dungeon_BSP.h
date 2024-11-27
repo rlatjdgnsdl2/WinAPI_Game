@@ -52,12 +52,14 @@ protected:
 
 private:
 	UEngineRandom Random;
-	RoomNode* root;
+	RoomNode* root = nullptr;
 	std::vector<Room> Rooms;
 	std::vector<FVector2D> RoomLocations;
+	FVector2D PotalLocation = FVector2D::ZERO;
+	std::vector<class AItem*> Items;
+
 	class AMiniMap* MiniMap;
 	
-	FVector2D PotalLocation;
 
 	int CurFloor=1;
 	int MaxFloor;
@@ -71,6 +73,7 @@ private:
 	void SetNaturally();
 	void SetNextPotal();
 	void SetMiniMap();
+	void SetItems();
 
 	std::map<std::string, int > TileIndexForKey;
 	std::map<std::string, std::string> MiniMapSpriteName;

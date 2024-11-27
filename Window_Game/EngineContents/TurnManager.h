@@ -83,7 +83,7 @@ private:
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
 
-	std::vector<class AItem*> Items;
+
 
 
 	float CurDuration =0.0f;
@@ -114,12 +114,9 @@ private:
 	void AISkill(float _DeltaTime);
 	void AISkillEnd();
 
-	
-	
 	//	move
 	bool InitPlayerMove(FVector2D moveVector);
 	void SpawnEnemy();
-	void SetItems();
 
 
 

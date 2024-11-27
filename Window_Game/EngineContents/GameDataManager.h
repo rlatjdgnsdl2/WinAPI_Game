@@ -119,7 +119,16 @@ public:
 	}
 	//	아이템정보
 	std::string GetItemInfo(std::string_view _ItemName) const {
+		if (false == ItemInfo.contains(_ItemName.data())) {
+			return "";
+		}
 		return ItemInfo.find(_ItemName.data())->second;
+	}
+	std::list<std::string>& GetPlayerInventory() {
+		return PlayerInventory;
+	}
+	void PushInventory(std::string_view _ItemName) {
+		PlayerInventory.push_back(_ItemName.data());
 	}
 
 	

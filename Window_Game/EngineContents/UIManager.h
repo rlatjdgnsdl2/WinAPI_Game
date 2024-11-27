@@ -72,6 +72,8 @@ private:
 
 	class ABoxUI* ItemUI = nullptr;
 	class ABoxUI* ItemInfoUI = nullptr;
+	int CurPage = 0;
+	int MaxPage = 3;
 
 	//	던전
 	//	상단 UI

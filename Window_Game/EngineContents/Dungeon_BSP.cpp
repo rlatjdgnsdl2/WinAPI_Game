@@ -56,7 +56,7 @@ void ADungeon_BSP::Generate()
 {
 	std::string CurDungeonName = UGameDataManager::GetInst().GetSelectDungeon();
 	SetName(CurDungeonName);
-	root = new RoomNode{ 5, 5, Width - 11, Height - 11 };
+	root = new RoomNode{ 5, 5, Width - 12, Height - 12 };
 	InitDungeon();
 	Split(root);
 	CreateNaturalFeatures();
@@ -64,6 +64,7 @@ void ADungeon_BSP::Generate()
 	ConnectRooms(root);
 	SetNaturally();
 	SetNextPotal();
+	SetItems();
 	SetMiniMap();
 }
 
@@ -90,6 +91,20 @@ void ADungeon_BSP::SetMiniMap()
 	}
 	MiniMap->SetDungeon(this);
 	MiniMap->SetMiniMap();
+}
+
+void ADungeon_BSP::SetItems()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		std::string ItemName = UGameDataManager::GetInst().GetRandomItem();
+		AItem* NewItem = GetWorld()->SpawnActor<AItem>(ItemName);
+		int MaxSize = static_cast<int>(RoomLocations.size()) - 1;
+		int Index = Random.RandomInt(0, MaxSize);
+		FVector2D RoomLocation = RoomLocations[Index];
+		NewItem->SetActorLocation(RoomLocation);
+		Items.push_back(NewItem);
+	}
 }
 
 

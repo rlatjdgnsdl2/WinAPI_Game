@@ -15,6 +15,9 @@ public:
 	AItem& operator=(const AItem& _Other) = delete;
 	AItem& operator=(AItem&& _Other) noexcept = delete;
 
+	virtual void BeginPlay() override;
+	virtual void Tick(float _DeltaTime) override;
+
 	
 
 
@@ -23,6 +26,7 @@ protected:
 
 private:
 	class USpriteRenderer* ItemRenderer;	
+	class APlayer* Player;
 
 };
 

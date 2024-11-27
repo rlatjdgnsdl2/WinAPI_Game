@@ -86,6 +86,7 @@ void AMiniMap::SetMiniMap()
 			}
 		}
 	}
+	// Æ÷Å»
 	FVector2D PotalTileIndex = Dungeon->GetPotalTile();
 	PotalRenderer->SetComponentLocation({ PotalTileIndex.X * SpriteSize.X, PotalTileIndex.Y * SpriteSize.Y });
 }

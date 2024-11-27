@@ -41,9 +41,14 @@ void AUIManager::BeginPlay()
 	SkillInfoUI->CreateString("");
 	//	인벤토리
 	ItemUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 300 }, { 25, 50 }));
-	ItemUI->CreateString("Apple");
-	ItemUI->CreateString("Oran");
-	ItemUI->CreateString("SkillDisk");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
+	ItemUI->CreateString("");
 	ItemInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	ItemInfoUI->CreateString("");
 
