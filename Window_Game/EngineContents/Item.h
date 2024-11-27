@@ -5,7 +5,6 @@ class AItem :public AActor
 {
 public:
 	//	constrcuter, destructer
-	AItem();
 	AItem(std::string_view _ItemName);
 	virtual ~AItem();
 
@@ -27,6 +26,5 @@ protected:
 private:
 	class USpriteRenderer* ItemRenderer;	
 	class APlayer* Player;
-
 };
 

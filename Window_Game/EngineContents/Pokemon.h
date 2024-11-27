@@ -14,21 +14,17 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName);
 	virtual void Tick(float _DeltaTime) override;
-	
 
 	void Idle();
-
 	void MoveStart();
 	void Move(float _DeltaTime);
 	
+	void SkillStart();
+	void SkillUpdate();
+	void SkillEnd();
 
 
-	void Skill();
-
-	
 	void Hurt();
-
-
 	void Die(float _DeltaTime);
 
 
@@ -116,8 +112,6 @@ public:
 	}
 
 	//	전투
-	void StartAttack();
-	void EndAttack();
 	bool IsAttack() const {
 		return IsAttackVal;
 	}
@@ -127,13 +121,13 @@ public:
 	void PlayHurtAnim();
 
 	const std::list<std::string>& GetSkillList() {
-		return SpecialSkillList;
+		return SkillList;
 	}
 	std::string GetCurSpecialSkillName() {
-		return CurSpecialSkillName;
+		return CurSkillName;
 	}
 	void SetCurSpecialSkillName(std::string_view _SpecialSkillName) {
-		CurSpecialSkillName = _SpecialSkillName;
+		CurSkillName = _SpecialSkillName;
 	}
 
 	int GetCurHP() const {
@@ -205,8 +199,10 @@ protected:
 
 	//	스킬관련
 	class ASpecialSkill* SpecialSkill = nullptr;
-	std::list<std::string> SpecialSkillList;
-	std::string CurSpecialSkillName = "";
+
+	class ASkill* Skill = nullptr;
+	std::list<std::string> SkillList;
+	std::string CurSkillName = "";
 
 	//	능력치관련
 	PokemonInfo PokemonInfo;
@@ -214,6 +210,7 @@ protected:
 
 	bool IsAttackVal{};
 	bool IsHurtVal{};
+
 private:
 	void SetAnim();
 

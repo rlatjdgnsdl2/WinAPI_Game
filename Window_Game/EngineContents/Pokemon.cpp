@@ -4,6 +4,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
+#include "Skill.h"
 
 
 
@@ -45,22 +46,54 @@ void APokemon::MoveStart()
 	SpriteRenderer->SetSpriteScale();
 }
 
-void APokemon::Skill()
+void APokemon::SkillStart()
 {
-	
+	IsAttackVal = true;
+	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
 	switch (CurSkill)
 	{
 	case SkillType::NormalAttack:
 		NormalAttack();
+		Skill = GetWorld()->SpawnActor<ASkill>("NormalAttack");
+		Skill->SetAttacker(this);
+		Skill->SetTargetLocation(GetActorLocation()+UContentsMath::DIR_To_FVector2D(Dir)*72.0f);
+		Skill->SetStartState();
 		break;
 	case SkillType::SpecialAttack:
 		SpecialAttack();
+		Skill = GetWorld()->SpawnActor<ASkill>(CurSkillName);
+		Skill->SetAttacker(this);
+		Skill->SetTargetLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
+		Skill->SetStartState();
 		break;
 	case SkillType::UseItem:
 		break;
 	default:
 		break;
 	}
+}
+
+void APokemon::SkillUpdate()
+{
+}
+
+void APokemon::NormalAttack()
+{
+	SpriteRenderer->ChangeAnimation("AttackAnim_" + std::to_string(static_cast<int>(Dir)));
+	SpriteRenderer->SetSpriteScale();
+}
+
+void APokemon::SpecialAttack()
+{
+	SpriteRenderer->ChangeAnimation("ShootAnim_" + std::to_string(static_cast<int>(Dir)));
+	SpriteRenderer->SetSpriteScale();
+}
+
+
+
+void APokemon::SkillEnd()
+{
+
 }
 
 void APokemon::Hurt()
@@ -71,7 +104,6 @@ void APokemon::Hurt()
 
 void APokemon::Die(float _DeltaTime)
 {
-	CurDuration += _DeltaTime;
 	DeadDuration += _DeltaTime;
 	SpriteRenderer->ChangeAnimation("HurtAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();

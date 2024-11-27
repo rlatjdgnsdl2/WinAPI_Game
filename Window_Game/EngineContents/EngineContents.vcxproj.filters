@@ -106,6 +106,9 @@
     <ClInclude Include="Inventory.h">
       <Filter>Global\UI\UIElement</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -267,6 +270,9 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Global\UI\UIElement</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="LevelObjects">
@@ -319,6 +325,9 @@
     </Filter>
     <Filter Include="Global\UI\UIElement">
       <UniqueIdentifier>{238624c5-9f19-45a0-956f-7165992eb62c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skill">
+      <UniqueIdentifier>{8ec61da5-148c-45d9-8b71-58c74ee27cda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

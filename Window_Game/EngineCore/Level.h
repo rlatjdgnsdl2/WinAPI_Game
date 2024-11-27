@@ -67,6 +67,8 @@ public:
 		return NewActor;
 	}
 
+
+
 	// UIÀü¿ë
 	template<typename ActorType>
 	ActorType* SpawnActor(FTransform _Trans)

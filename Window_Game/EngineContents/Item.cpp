@@ -5,12 +5,9 @@
 #include "Player.h"
 #include "GameDataManager.h"
 
-AItem::AItem() 
-{
-	
-}
 
-AItem::AItem(std::string_view _ItemName)
+
+AItem::AItem(std::string_view _ItemName) :Player(nullptr)
 {
 	SetName(_ItemName);
 	ItemRenderer = CreateDefaultSubObject<USpriteRenderer>();
