@@ -5,6 +5,7 @@
 
 #include "GameDataManager.h"
 #include "Skill.h"
+#include "SkillManager.h"
 
 
 
@@ -29,42 +30,43 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 	PokemonInfo = UGameDataManager::GetInst().GetPokemonAbility(_PokemonName);
 }
 
-void APokemon::Tick(float _DeltaTime)
-{
-	Super::Tick(_DeltaTime);
-}
+
 
 void APokemon::Idle()
 {
 	SpriteRenderer->ChangeAnimation("IdleAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
 }
-
 void APokemon::MoveStart()
 {
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
 }
-
-void APokemon::SkillStart()
+void APokemon::Move(float _DeltaTime)
+{
+	CurDuration += _DeltaTime;
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration * MoveSpeed);
+	SetActorLocation(NewLocation);
+}
+void APokemon::StartSkill()
 {
 	IsAttackVal = true;
 	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
-	switch (CurSkill)
+	switch (CurSkillType)
 	{
 	case SkillType::NormalAttack:
 		NormalAttack();
 		Skill = GetWorld()->SpawnActor<ASkill>("NormalAttack");
 		Skill->SetAttacker(this);
-		Skill->SetTargetLocation(GetActorLocation()+UContentsMath::DIR_To_FVector2D(Dir)*72.0f);
-		Skill->SetStartState();
+		Skill->SetTargetLocation(TargetPokemon->GetActorLocation());
+		
 		break;
 	case SkillType::SpecialAttack:
 		SpecialAttack();
 		Skill = GetWorld()->SpawnActor<ASkill>(CurSkillName);
 		Skill->SetAttacker(this);
 		Skill->SetTargetLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
-		Skill->SetStartState();
+		//Skill->SetStartState();
 		break;
 	case SkillType::UseItem:
 		break;
@@ -93,7 +95,7 @@ void APokemon::SpecialAttack()
 
 void APokemon::SkillEnd()
 {
-
+	ASkillManager::GetInst().GetSkillFunc(CurSkillName)(this,TargetPokemon);
 }
 
 void APokemon::Hurt()
@@ -114,11 +116,16 @@ void APokemon::Die(float _DeltaTime)
 }
 
 
-void APokemon::Move(float _DeltaTime)
+
+
+void APokemon::PlayHurtAnim()
 {
-	CurDuration += _DeltaTime;
-	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration * MoveSpeed);
-	SetActorLocation(NewLocation);
+	APokemon* TargetPokemon = GetTargetPokemon();
+	if (TargetPokemon != nullptr) {
+		DIR TargetDir = UContentsMath::ReverseDir(Dir);
+		TargetPokemon->SetDir(TargetDir);
+		TargetPokemon->Hurt();
+	}
 }
 
 

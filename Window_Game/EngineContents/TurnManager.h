@@ -2,6 +2,7 @@
 #include <EngineCore/GameMode.h>
 #include <EngineCore/PathFindAstar.h>
 #include <Enginebase/EngineRandom.h>
+#include "Pokemon.h"
 
 
 
@@ -49,6 +50,12 @@ public:
 	void PushEnemyCamp(class APokemon* _EnemyCampPokemon) {
 		EnemyCamp.push_back(_EnemyCampPokemon);
 	}
+
+	std::list<class APokemon*>& GetCompareCamp(class APokemon* _Pokemon) { 
+		std::list<class APokemon*>& CompareCamp = _Pokemon->GetCamp() == CampType::Player ? EnemyCamp : PlayerCamp;
+		return CompareCamp;
+	}
+
 	TurnType GetCurTurn() { return CurTurn; }
 
 	void ComeBackTurn() { CurTurn = PreTurn; }
@@ -76,6 +83,8 @@ private:
 
 	std::list<class APokemon*> MovePokemon;
 	std::list<class APokemon*> SkillPokemon;
+
+
 
 
 

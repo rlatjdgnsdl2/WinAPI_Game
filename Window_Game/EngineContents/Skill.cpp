@@ -21,7 +21,7 @@ void ASkill::BeginPlay()
 	Super::BeginPlay();
 	SpriteRenderer->SetSprite("Void.png");
 	FVector2D Scale = SpriteRenderer->SetSpriteScale();
-	SpriteRenderer->SetComponentLocation({ 0.0f,Scale.Y / 3.0f * -1.0f });
+	//SpriteRenderer->SetComponentLocation({ 0.0f,Scale.Y / 3.0f * -1.0f });
 	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
 	int StartMaxCount = UGameDataManager::GetInst().GetSkillAnimCount(SkillName+"_Start");
 	int EndMaxCount = UGameDataManager::GetInst().GetSkillAnimCount(SkillName+ "_End");
@@ -49,22 +49,21 @@ void ASkill::Tick(float _DeltaTime)
 		EndSkill();
 		break;
 	}
-	
 }
 
 void ASkill::SetAttacker(APokemon* _Attacker)
 {
-	Attacker = _Attacker;
-	Camp = Attacker->GetCamp();
-	Dir = Attacker->GetDir();
-	SetActorLocation(Attacker->GetActorLocation());
-	CurState = SkillState::Update;
+	SkillUser = _Attacker;
+	Target = SkillUser->GetTargetPokemon();
+	SetActorLocation(SkillUser->GetActorLocation());
+	CurState = SkillState::Start;
 }
 
 void ASkill::StartSkill()
 {
 	// 스킬시작애니메이션
 	SpriteRenderer->ChangeAnimation(SkillName + "_START");
+	CurState = SkillState::Update;
 }
 
 void ASkill::UpdateSkill(float _DeltaTime)
@@ -84,8 +83,9 @@ void ASkill::EndSkill()
 {
 	// 타겟위치에 도착했을때 애니메이션
 	SpriteRenderer->ChangeAnimation(SkillName + "_END");
-	
-	// 스킬효과는 어디서 하지?
+	if (SpriteRenderer->IsCurAnimationEnd()) {
+		IsAttackVal = false;
+	}
 }
 
 

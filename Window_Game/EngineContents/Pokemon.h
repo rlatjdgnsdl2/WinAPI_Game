@@ -13,13 +13,12 @@ public:
 	APokemon& operator=(APokemon&& _Other) noexcept = delete;
 
 	virtual void SetPokemon(std::string_view _PokemonName);
-	virtual void Tick(float _DeltaTime) override;
 
 	void Idle();
 	void MoveStart();
 	void Move(float _DeltaTime);
 	
-	void SkillStart();
+	void StartSkill();
 	void SkillUpdate();
 	void SkillEnd();
 
@@ -86,11 +85,14 @@ public:
 
 
 	//	전투관련
-	void SetSkill(SkillType _Skill) {
-		CurSkill = _Skill;
+	void SetSkillType(SkillType _Skill) {
+		CurSkillType = _Skill;
 	}
-	SkillType GetSkill() const {
-		return CurSkill;
+	SkillType GetSkillType() const {
+		return CurSkillType;
+	}
+	class ASkill* GetSkil1l() const {
+		return Skill;
 	}
 	void SetTargetPokemon(class APokemon* _TargetPokemon) {
 		TargetPokemon = _TargetPokemon;
@@ -193,7 +195,7 @@ protected:
 	FVector2D TargetLocation = FVector2D::ZERO;
 
 	//	전투관련
-	SkillType CurSkill = SkillType::None;
+	SkillType CurSkillType = SkillType::None;
 	std::vector<class APokemon*> TargetablePokemons;
 	class APokemon* TargetPokemon = nullptr;
 

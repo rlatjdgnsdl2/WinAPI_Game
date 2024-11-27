@@ -4,22 +4,29 @@
 #include "Player.h"
 #include "Pokemon.h"
 #include "UIManager.h"
+#include "Skill.h"
 
 void ATurnManager::PlayerSkillStart() {
-	Player->SkillStart();
+	Player->StartSkill();
 	CurTurn = TurnType::Player_Skill;
 }
 
 
 void ATurnManager::PlayerSkill(float _DeltaTime) {
 	//스킬이펙트모션이 끝나면 End로
-
+	ASkill* Skill = Player->GetSkil1l();
+	if (Skill->IsAttack() == false) {
+		CurTurn = TurnType::Player_Skill_End;
+		return;
+	}
 }
 
 
 
 void ATurnManager::PlayerSkillEnd() {
 	Player->SkillEnd();
+	CurTurn = TurnType::Skill_AI_Select;
+	return;
 }
 
 

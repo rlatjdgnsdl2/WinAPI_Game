@@ -109,6 +109,9 @@
     <ClInclude Include="Skill.h">
       <Filter>Skill</Filter>
     </ClInclude>
+    <ClInclude Include="SkillManager.h">
+      <Filter>ContentsCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -210,9 +213,6 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>LevelObjects\02.CharactorSelectLevel</Filter>
     </ClCompile>
-    <ClCompile Include="Pokmon_Skill.cpp">
-      <Filter>Global\00.Pokemon</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>LevelObjects\01.TitleLevel</Filter>
     </ClCompile>
@@ -272,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="Skill.cpp">
       <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillManager.cpp">
+      <Filter>ContentsCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

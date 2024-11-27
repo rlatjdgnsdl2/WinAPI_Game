@@ -1,7 +1,7 @@
 #pragma once
 #include "Pokemon.h"
 
-//	설명:
+//	설명: 적	포켓몬
 class AEnemy :public APokemon
 {
 public:
@@ -17,9 +17,9 @@ public:
 	AEnemy& operator=(AEnemy&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() override;
-
-
 	virtual void SetPokemon(std::string_view _PokemonName) override;
+
+	//	레벨은 존재하지만 레벨업은 없다.
 	void SetLevel(int _Level) {
 		Level = _Level;
 	}

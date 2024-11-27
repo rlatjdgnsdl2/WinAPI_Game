@@ -29,9 +29,7 @@ public:
 	void SetAttacker(class APokemon* _Attacker);
 	void SetTarget(class APokemon* _Target) { Target = _Target; }
 
-	void SetStartState() {
-		CurState = SkillState::Start;
-	}
+	
 	virtual void StartSkill();
 	virtual void UpdateSkill(float _DeltaTime);
 	virtual void EndSkill();
@@ -55,6 +53,14 @@ public:
 		StartLocation = GetActorLocation();
 	}
 
+	void SetSkillFunction(std::function<void()> _Function) {
+		SkillFunction = _Function;
+	}
+
+	bool IsAttack() const {
+		return IsAttackVal;
+	}
+
 
 	
 
@@ -63,17 +69,19 @@ protected:
 
 private:
 	std::string SkillName = "";
-	CampType Camp = CampType::None;
-	DIR Dir = DIR::Down;
 	SkillState CurState = SkillState::Start;
 
+	bool IsAttackVal = false;
+
 	class USpriteRenderer* SpriteRenderer = nullptr;
-	class APokemon* Attacker = nullptr;
+	class APokemon* SkillUser = nullptr;
 	class APokemon* Target = nullptr;
 
 	float CurDuration = 0.0f;
 	FVector2D StartLocation = FVector2D::ZERO;
 	FVector2D TargetLocation = FVector2D::ZERO;
+
+	std::function<void()> SkillFunction = nullptr;
 
 
 
