@@ -59,16 +59,6 @@ void APokemon::SetAnim()
 	SpriteRenderer->CreateAnimation("AttackAnim_1", GetName() + "_Attack.png", CurAnimInfo.AttackAnimCount * 7, CurAnimInfo.AttackAnimCount * 8 - 1, AttackFrame, false);
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// EndAttack bind
 	SpriteRenderer->SetAnimationEvent("AttackAnim_2", (CurAnimInfo.AttackAnimCount * 1 - 1), std::bind(&APokemon::EndAttack, this));
 	SpriteRenderer->SetAnimationEvent("AttackAnim_3", (CurAnimInfo.AttackAnimCount * 2 - 1), std::bind(&APokemon::EndAttack, this));
@@ -88,12 +78,6 @@ void APokemon::SetAnim()
 	SpriteRenderer->SetAnimationEvent("AttackAnim_4", (CurAnimInfo.AttackAnimCount * 7 - 1) - (CurAnimInfo.AttackAnimCount / 2), std::bind(&APokemon::PlayHurtAnim, this));
 	SpriteRenderer->SetAnimationEvent("AttackAnim_1", (CurAnimInfo.AttackAnimCount * 8 - 1) - (CurAnimInfo.AttackAnimCount / 2), std::bind(&APokemon::PlayHurtAnim, this));
 
-	
-	
-	
-	
-	
-	
 
 
 	//	Hurt
