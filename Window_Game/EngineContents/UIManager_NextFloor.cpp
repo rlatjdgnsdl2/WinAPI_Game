@@ -33,6 +33,7 @@ void AUIManager::ShowNextFloor() {
 	if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
 		if (Text->GetString() == "Yes") {
 			Q_NextFloorUI->HideUI();
+			Dungeon->NextFloor();
 			CurMenu = MenuType::CloseNextFloor;
 			UEngineAPICore::GetCore()->OpenLevel("DungeonLevel");
 

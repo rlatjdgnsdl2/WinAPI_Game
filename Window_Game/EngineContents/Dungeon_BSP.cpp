@@ -50,6 +50,10 @@ void ADungeon_BSP::RoomClear()
 	if (root != nullptr) {
 		delete root;
 	}
+	for (auto& Item : Items)
+	{
+		Item->Destroy();
+	}
 }
 
 void ADungeon_BSP::Generate()
