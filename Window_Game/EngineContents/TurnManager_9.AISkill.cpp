@@ -52,7 +52,7 @@ void ATurnManager::AISkillStart()
 	FIntPoint CurTile = CurPokemon->GetTile();
 	FIntPoint TargetDir = TargetTile - CurTile;
 	CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(TargetDir));
-	CurPokemon->SetSkillType(SkillType::NormalAttack);
+	CurPokemon->SetSkill(SkillType::NormalAttack);
 	CurPokemon->ResetTargetablePokemon();
 	int Damage = UContentsMath::DamageCalculation(CurPokemon->GetATK(), TargetPokemon->GetDEF());
 	UIManager->NewLogMessage(
@@ -67,7 +67,7 @@ void ATurnManager::AISkill(float _DeltaTime)
 {
 	APokemon* CurPokemon = SkillPokemon.front();
 	APokemon* TargetPokemon = CurPokemon->GetTargetPokemon();
-	CurPokemon->SkillUpdate();
+	CurPokemon->Skill();
 	if (CurPokemon->IsAttack()) {
 		return;
 	}

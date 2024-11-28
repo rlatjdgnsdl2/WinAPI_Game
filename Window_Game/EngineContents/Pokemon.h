@@ -14,16 +14,21 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName);
 
+
+
 	void Idle();
+
 	void MoveStart();
 	void Move(float _DeltaTime);
-	
-	void StartSkill();
-	void SkillUpdate();
-	void SkillEnd();
+
+
+
+	void Skill();
 
 
 	void Hurt();
+
+
 	void Die(float _DeltaTime);
 
 
@@ -54,8 +59,8 @@ public:
 	const FVector2D GetTargetLocation() const {
 		return TargetLocation;
 	}
-	const FIntPoint GetTargetTile() { 
-		return ((TargetLocation.ConvertToPoint()) / 72); 
+	const FIntPoint GetTargetTile() {
+		return ((TargetLocation.ConvertToPoint()) / 72);
 	}
 	void SetTargetLocation(const FVector2D& _TargetLocation) {
 		TargetLocation = _TargetLocation;
@@ -85,14 +90,11 @@ public:
 
 
 	//	전투관련
-	void SetSkillType(SkillType _Skill) {
-		CurSkillType = _Skill;
+	void SetSkill(SkillType _Skill) {
+		CurSkill = _Skill;
 	}
-	SkillType GetSkillType() const {
-		return CurSkillType;
-	}
-	class ASkill* GetSkil1l() const {
-		return Skill;
+	SkillType GetSkill() const {
+		return CurSkill;
 	}
 	void SetTargetPokemon(class APokemon* _TargetPokemon) {
 		TargetPokemon = _TargetPokemon;
@@ -114,6 +116,8 @@ public:
 	}
 
 	//	전투
+	void StartAttack();
+	void EndAttack();
 	bool IsAttack() const {
 		return IsAttackVal;
 	}
@@ -123,13 +127,13 @@ public:
 	void PlayHurtAnim();
 
 	const std::list<std::string>& GetSkillList() {
-		return SkillList;
+		return SpecialSkillList;
 	}
 	std::string GetCurSpecialSkillName() {
-		return CurSkillName;
+		return CurSpecialSkillName;
 	}
 	void SetCurSpecialSkillName(std::string_view _SpecialSkillName) {
-		CurSkillName = _SpecialSkillName;
+		CurSpecialSkillName = _SpecialSkillName;
 	}
 
 	int GetCurHP() const {
@@ -151,7 +155,7 @@ public:
 		return Ability.CurSPD;
 	}
 	void InitAbility(const PokemonInfo& PokemonInfo, int _Level) {
-		Ability.InitAbility(PokemonInfo,_Level);
+		Ability.InitAbility(PokemonInfo, _Level);
 	}
 
 	void SetDamage(int _Damage) {
@@ -195,16 +199,14 @@ protected:
 	FVector2D TargetLocation = FVector2D::ZERO;
 
 	//	전투관련
-	SkillType CurSkillType = SkillType::None;
+	SkillType CurSkill = SkillType::None;
 	std::vector<class APokemon*> TargetablePokemons;
 	class APokemon* TargetPokemon = nullptr;
 
 	//	스킬관련
 	class ASpecialSkill* SpecialSkill = nullptr;
-
-	class ASkill* Skill = nullptr;
-	std::list<std::string> SkillList;
-	std::string CurSkillName = "";
+	std::list<std::string> SpecialSkillList;
+	std::string CurSpecialSkillName = "";
 
 	//	능력치관련
 	PokemonInfo PokemonInfo;
@@ -212,7 +214,6 @@ protected:
 
 	bool IsAttackVal{};
 	bool IsHurtVal{};
-
 private:
 	void SetAnim();
 

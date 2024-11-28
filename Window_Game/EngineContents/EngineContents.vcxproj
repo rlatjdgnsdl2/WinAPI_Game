@@ -232,14 +232,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Skill.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="SkillManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="SpecialSkill.h">
       <SubType>
       </SubType>
@@ -378,14 +370,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pokemon_AnimSet.cpp" />
-    <ClCompile Include="Skill.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="SkillManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="SpecialSkill.cpp">
       <SubType>
       </SubType>

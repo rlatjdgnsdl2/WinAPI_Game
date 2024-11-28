@@ -4,8 +4,7 @@
 #include <EngineCore/SpriteRenderer.h>
 
 #include "GameDataManager.h"
-#include "Skill.h"
-#include "SkillManager.h"
+#include "SpecialSkill.h"
 
 
 
@@ -31,52 +30,25 @@ void APokemon::SetPokemon(std::string_view _PokemonName)
 }
 
 
-
 void APokemon::Idle()
 {
 	SpriteRenderer->ChangeAnimation("IdleAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
 }
+
 void APokemon::MoveStart()
 {
 	SpriteRenderer->ChangeAnimation("WalkAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
 }
-void APokemon::Move(float _DeltaTime)
-{
-	CurDuration += _DeltaTime;
-	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration * MoveSpeed);
-	SetActorLocation(NewLocation);
-}
-void APokemon::StartSkill()
-{
+
+void APokemon::StartAttack() {
 	IsAttackVal = true;
 	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
-	switch (CurSkillType)
-	{
-	case SkillType::NormalAttack:
-		NormalAttack();
-		Skill = GetWorld()->SpawnActor<ASkill>("NormalAttack");
-		Skill->SetAttacker(this);
-		Skill->SetTargetLocation(TargetPokemon->GetActorLocation());
-		
-		break;
-	case SkillType::SpecialAttack:
-		SpecialAttack();
-		Skill = GetWorld()->SpawnActor<ASkill>(CurSkillName);
-		Skill->SetAttacker(this);
-		Skill->SetTargetLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
-		//Skill->SetStartState();
-		break;
-	case SkillType::UseItem:
-		break;
-	default:
-		break;
-	}
 }
-
-void APokemon::SkillUpdate()
-{
+void APokemon::EndAttack() {
+	IsAttackVal = false;
+	SpriteRenderer->SetOrder(ERenderOrder::Player);
 }
 
 void APokemon::NormalAttack()
@@ -89,13 +61,36 @@ void APokemon::SpecialAttack()
 {
 	SpriteRenderer->ChangeAnimation("ShootAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
+
+	if (SpecialSkill == nullptr) {
+		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>(CurSpecialSkillName);
+		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
+		return;
+	}
+	if (false == SpecialSkill->IsAttack()) {
+		EndAttack();
+		SpecialSkill->SetActive(false);
+		SpecialSkill->Destroy();
+		SpecialSkill = nullptr;
+	};
 }
 
-
-
-void APokemon::SkillEnd()
+void APokemon::Skill()
 {
-	ASkillManager::GetInst().GetSkillFunc(CurSkillName)(this,TargetPokemon);
+
+	switch (CurSkill)
+	{
+	case SkillType::NormalAttack:
+		NormalAttack();
+		break;
+	case SkillType::SpecialAttack:
+		SpecialAttack();
+		break;
+	case SkillType::UseItem:
+		break;
+	default:
+		break;
+	}
 }
 
 void APokemon::Hurt()
@@ -116,7 +111,12 @@ void APokemon::Die(float _DeltaTime)
 }
 
 
-
+void APokemon::Move(float _DeltaTime)
+{
+	CurDuration += _DeltaTime;
+	FVector2D NewLocation = FVector2D::LerpClamp(StartLocation, TargetLocation, CurDuration * MoveSpeed);
+	SetActorLocation(NewLocation);
+}
 
 void APokemon::PlayHurtAnim()
 {

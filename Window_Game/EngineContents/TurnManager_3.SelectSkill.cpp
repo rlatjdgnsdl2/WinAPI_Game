@@ -1,21 +1,22 @@
 #include "PreCompile.h"
 #include "TurnManager.h"
-#include "SkillManager.h"
 #include "Player.h"
+#include "Dungeon_BSP.h"
 
 void ATurnManager::SelectSkill()
 {
 	//	일반공격을 선택했으면
 	if (PlayerInput == 'A') {
-		Player->SetSkillType(SkillType::NormalAttack);
+		Player->SetSkill(SkillType::NormalAttack);	
 	}
+
 	else if (PlayerInput == 'S') {
 		if (Player->GetCurSpecialSkillName() == "") {
 			CurTurn = TurnType::Player_Select;
 			return;
 		}
-		Player->SetSkillType(SkillType::SpecialAttack);
 	}
+
 	DIR CurPlayerDir = Player->GetDir();
 	FVector2D Dir = UContentsMath::DIR_To_FVector2D(CurPlayerDir);
 	FIntPoint TargetTile = Player->GetTile() + Dir.ConvertToPoint();
