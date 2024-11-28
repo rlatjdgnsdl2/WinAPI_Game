@@ -25,10 +25,13 @@ enum class TileType
 };
 
 enum class SkillScope {
+	Buff,
 	front,
 	Shoot,
 	Room
 };
+
+
 
 
 enum class CampType

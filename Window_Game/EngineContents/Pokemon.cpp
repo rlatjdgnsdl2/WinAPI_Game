@@ -67,7 +67,8 @@ void APokemon::SpecialAttack()
 		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
 		return;
 	}
-	if (false == SpecialSkill->IsAttack()) {
+	bool IsAttack = SpecialSkill->IsAttack();
+	if (!IsAttack) {
 		EndAttack();
 		SpecialSkill->SetActive(false);
 		SpecialSkill->Destroy();

@@ -38,9 +38,9 @@ void AUIManager::BeginPlay()
 	//	스킬
 	SkillUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 400, 200 }, { 25, 50 }));
 	//	임시 스킬
-	SkillUI->CreateString("FireBomb");
-	SkillUI->CreateString("LightningBomb");
-	SkillUI->CreateString("WaterBomb");
+	SkillUI->CreateString("Fire_Bomb");
+	SkillUI->CreateString("Lightning_Bomb");
+	SkillUI->CreateString("Water_Bomb");
 	SkillInfoUI = GetWorld()->SpawnActor<ABoxUI>(FTransform({ 700, 120 }, { 25, 350 }));
 	SkillInfoUI->CreateString("");
 

@@ -101,6 +101,8 @@ void ATurnManager::Tick(float _DeltaTime)
 		CurDuration = 0.0f;
 		CurTurn = TurnType::Player_Select;
 		return;
+
+
 	case TurnType::Player_Select:
 		PlayerSelect(_DeltaTime);
 		return;

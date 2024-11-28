@@ -14,21 +14,12 @@ public:
 
 	virtual void SetPokemon(std::string_view _PokemonName);
 
-
-
 	void Idle();
-
 	void MoveStart();
 	void Move(float _DeltaTime);
 
-
-
 	void Skill();
-
-
 	void Hurt();
-
-
 	void Die(float _DeltaTime);
 
 

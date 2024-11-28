@@ -6,10 +6,9 @@
 
 
 
-ASpecialSkill::ASpecialSkill(std::string_view _SkillName) :SpriteRenderer(nullptr), Player(nullptr), Target(nullptr)
+ASpecialSkill::ASpecialSkill(std::string_view SkillName) :SpriteRenderer(nullptr)
 {
 	SetName(SkillName);
-	SkillName = _SkillName;
 }
 
 ASpecialSkill::~ASpecialSkill()
@@ -30,11 +29,13 @@ void ASpecialSkill::BeginPlay()
 	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount - 1, Frame, false);
 
 
+
 }
 
 void ASpecialSkill::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	SpriteRenderer->ChangeAnimation(GetName());
 }
 
 bool ASpecialSkill::IsAttack()
