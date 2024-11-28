@@ -15,6 +15,7 @@ void ATurnManager::SelectSkill()
 			CurTurn = TurnType::Player_Select;
 			return;
 		}
+		Player->SetSkill(SkillType::SpecialAttack);
 	}
 
 	DIR CurPlayerDir = Player->GetDir();

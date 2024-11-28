@@ -92,14 +92,14 @@ void PMDContentsCore::RoadResources()
 			UEngineSound::Load(FilePath);
 		}
 	}
-	RoadSkill("FireBomb_Start", 1);
-	RoadSkill("FireBomb_End", 9);
-	RoadSkill("LightningBomb_Start", 15);
-	RoadSkill("LightningBomb_End", 15);
-	RoadSkill("WaterBomb_Start", 8);
-	RoadSkill("WaterBomb_End", 8);
-	RoadSkill("NormalAttack_Start", 1);
-	RoadSkill("NormalAttack_End", 1);
+	//RoadSkill("FireBomb_Start", 1);
+	RoadSkill("Fire_Bomb", 9);
+	RoadSkill("Lightning_Bomb", 15);
+	//RoadSkill("LightningBomb_End", 15);
+	RoadSkill("Water_Bomb", 8);
+	//RoadSkill("WaterBomb_End", 8);
+	//RoadSkill("NormalAttack_Start", 1);
+	RoadSkill("NormalAttack", 1);
 
 	//	Font
 	UImageManager::GetInst().CuttingSprite("Yellow_Text.png", 26, 4);

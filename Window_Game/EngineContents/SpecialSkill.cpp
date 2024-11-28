@@ -6,9 +6,10 @@
 
 
 
-ASpecialSkill::ASpecialSkill(std::string_view SkillName) :SpriteRenderer(nullptr), Player(nullptr), Target(nullptr)
+ASpecialSkill::ASpecialSkill(std::string_view _SkillName) :SpriteRenderer(nullptr), Player(nullptr), Target(nullptr)
 {
 	SetName(SkillName);
+	SkillName = _SkillName;
 }
 
 ASpecialSkill::~ASpecialSkill()
@@ -19,18 +20,16 @@ ASpecialSkill::~ASpecialSkill()
 void ASpecialSkill::BeginPlay()
 {
 	Super::BeginPlay();
-	SkillName = GetName();
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite(SkillName, 0);
+	SpriteRenderer->SetSprite(GetName(), 0);
 	FVector2D Scale = SpriteRenderer->SetSpriteScale();
 	SpriteRenderer->SetComponentLocation({ 0.0f,Scale.Y / 3.0f * -1.0f });
 	SpriteRenderer->SetOrder(ERenderOrder::AttacK_Player);
-	if (SkillName != "NORMAL_ATTACK") {
-		int MaxCount = UGameDataManager::GetInst().GetSkillAnimCount(SkillName);
-		float Frame = 1.0f / MaxCount;
-		SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount - 1, Frame, false);
-		SpriteRenderer->ChangeAnimation(GetName());
-	}
+	int MaxCount = UGameDataManager::GetInst().GetSkillAnimCount(GetName());
+	float Frame = 1.0f / MaxCount;
+	SpriteRenderer->CreateAnimation(GetName(), GetName(), 0, MaxCount - 1, Frame, false);
+
+
 }
 
 void ASpecialSkill::Tick(float _DeltaTime)

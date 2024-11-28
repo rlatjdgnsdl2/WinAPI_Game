@@ -7,7 +7,7 @@ class ASpecialSkill : public AActor
 {
 public:
 	//	constrcuter, destructer
-	ASpecialSkill(std::string_view SkillName);
+	ASpecialSkill(std::string_view _SkillName);
 	virtual ~ASpecialSkill();
 	
 
