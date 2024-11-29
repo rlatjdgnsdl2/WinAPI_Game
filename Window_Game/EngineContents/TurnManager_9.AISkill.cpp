@@ -54,6 +54,7 @@ void ATurnManager::AISkillStart()
 	CurPokemon->SetDir(UContentsMath::FIntPoint_To_DIR(TargetDir));
 	CurPokemon->SetSkill(SkillType::NormalAttack);
 	CurPokemon->ResetTargetablePokemon();
+	CurPokemon->StartAttack();
 	int Damage = UContentsMath::DamageCalculation(CurPokemon->GetATK(), TargetPokemon->GetDEF());
 	UIManager->NewLogMessage(
 		{ CurPokemon->GetName()," damage to ", TargetPokemon->GetName()," for " ,std::to_string(Damage) },
