@@ -21,10 +21,12 @@ void AUIManager::ShowNextFloor() {
 	AText* Text = *(A_AnswerUI->GetCurTextIter());
 	A_AnswerUI->SetStringColor(Text, Color::Yellow);
 	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+		UEngineSound::Play("DirSound.wav");
 		A_AnswerUI->SetStringColor(Text, Color::White);
 		A_AnswerUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+		UEngineSound::Play("DirSound.wav");
 		A_AnswerUI->SetStringColor(Text, Color::White);
 		A_AnswerUI->NextTextIter();
 	}

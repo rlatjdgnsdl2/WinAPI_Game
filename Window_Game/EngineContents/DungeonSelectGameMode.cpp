@@ -84,6 +84,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::GetInst().IsDown(VK_LEFT))
 	{
+		UEngineSound::Play("DirSound.wav");
 		if (DungeonMapStartIter == DungeonMaps.begin()) {
 			DungeonMapStartIter = DungeonMaps.end();
 		}
@@ -93,6 +94,7 @@ void ADungeonSelectGameMode::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
 	{
+		UEngineSound::Play("DirSound.wav");
 		DungeonMapStartIter++;
 		if (DungeonMapStartIter == DungeonMapEndIter) {
 			DungeonMapStartIter = DungeonMaps.begin();

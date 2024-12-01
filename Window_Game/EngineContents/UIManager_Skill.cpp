@@ -2,6 +2,7 @@
 #include "UIManager.h"
 
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineSound.h>
 #include "BoxUI.h"
 #include "GameDataManager.h"
 
@@ -25,11 +26,13 @@ void AUIManager::ShowSkill() {
 	SkillInfoUI->ShowUI();
 	if (true == UEngineInput::GetInst().IsDown(VK_UP))
 	{
+		UEngineSound::Play("DirSound.wav");
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 		SkillUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 	{
+		UEngineSound::Play("DirSound.wav");
 		SkillUI->SetStringColor(*(SkillUI->GetCurTextIter()), Color::White);
 		SkillUI->NextTextIter();
 	}

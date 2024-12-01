@@ -2,6 +2,7 @@
 #include "UIManager.h"
 
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineSound.h>
 #include "GameDataManager.h"
 #include "Inventory.h"
 #include "BoxUI.h"
@@ -29,21 +30,25 @@ void AUIManager::ShowItem() {
 	if (!IsAskUseItem) {
 		if (true == UEngineInput::GetInst().IsDown(VK_UP))
 		{
+			UEngineSound::Play("DirSound.wav");
 			ItemUI->SetStringColor(*(ItemUI->GetCurTextIter()), Color::White);
 			ItemUI->PrevTextIter();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_DOWN))
 		{
+			UEngineSound::Play("DirSound.wav");
 			ItemUI->SetStringColor(*(ItemUI->GetCurTextIter()), Color::White);
 			ItemUI->NextTextIter();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_LEFT))
 		{
+			UEngineSound::Play("DirSound.wav");
 			ItemUI->MovePage(-1);
 			ItemUI->ShowUI();
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_RIGHT))
 		{
+			UEngineSound::Play("DirSound.wav");
 			ItemUI->MovePage(1);
 			ItemUI->ShowUI();
 		}

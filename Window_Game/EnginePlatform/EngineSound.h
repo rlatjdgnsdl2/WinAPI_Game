@@ -3,13 +3,19 @@
 #include <map>
 
 #include "ThirdParty/FMOD/inc/fmod.hpp"
+#include "math.h"
 
 // 사운드 플레이어
 // 재생하는 사운드에 대한 볼륨및 
+// 시간에 의해서 해야하는건 못해.
 class USoundPlayer
 {
 public:
 	friend class UEngineSound;
+
+	~USoundPlayer()
+	{
+	}
 
 	void On()
 	{
@@ -24,6 +30,14 @@ public:
 	void Stop()
 	{
 		Control->stop();
+		Control = nullptr;
+	}
+
+	bool IsPlaying()
+	{
+		bool Check = true;
+		Control->isPlaying(&Check);
+		return Check;
 	}
 
 	void SetVolume(float _Volume)
@@ -48,9 +62,19 @@ public:
 		}
 	}
 
+	void SetPosition(unsigned int _Value)
+	{
+		Control->setPosition(_Value, FMOD_TIMEUNIT_MS);
+	}
+
 	void Loop(int Count = -1)
 	{
 		Control->setLoopCount(Count);
+	}
+
+	void ReStart()
+	{
+		SetPosition(0);
 	}
 
 	unsigned int LengthMs()
@@ -92,10 +116,15 @@ public:
 
 	static void Update();
 
+	static void AllSoundStop();
+	static void AllSoundOff();
+	static void AllSoundOn();
+
 protected:
 
 private:
 	static std::map<std::string, UEngineSound*> Sounds;
+	static std::list<USoundPlayer> Players;
 
 	FMOD::Sound* SoundHandle;
 

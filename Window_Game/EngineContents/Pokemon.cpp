@@ -2,8 +2,10 @@
 #include "Pokemon.h"
 
 #include <EngineCore/SpriteRenderer.h>
+#include <EnginePlatform/EngineSound.h>
 
 #include "GameDataManager.h"
+
 #include "SpecialSkill.h"
 
 
@@ -61,8 +63,10 @@ void APokemon::SpecialAttack()
 {
 	SpriteRenderer->ChangeAnimation("ShootAnim_" + std::to_string(static_cast<int>(Dir)));
 	SpriteRenderer->SetSpriteScale();
+	
 
 	if (SpecialSkill == nullptr) {
+		UEngineSound::Play("SkillSound.wav");
 		SpecialSkill = GetWorld()->SpawnActor<ASpecialSkill>(CurSpecialSkillName);
 		SpecialSkill->SetActorLocation(GetActorLocation() + UContentsMath::DIR_To_FVector2D(Dir) * 72.0f);
 		return;
@@ -71,8 +75,9 @@ void APokemon::SpecialAttack()
 	if (!IsAttack) {
 		EndAttack();
 		SpecialSkill->SetActive(false);
-		SpecialSkill->Destroy();
+		//SpecialSkill->Destroy();
 		SpecialSkill = nullptr;
+		return;
 	};
 }
 
@@ -126,6 +131,7 @@ void APokemon::PlayHurtAnim()
 		DIR TargetDir = UContentsMath::ReverseDir(Dir);
 		TargetPokemon->SetDir(TargetDir);
 		TargetPokemon->Hurt();
+		UEngineSound::Play("AttackSound.wav");
 	}
 }
 

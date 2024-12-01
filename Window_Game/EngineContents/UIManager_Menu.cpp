@@ -2,6 +2,7 @@
 #include  "UIManager.h"
 
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineSound.h>
 
 #include "BoxUI.h"
 #include "Dungeon_BSP.h"
@@ -34,10 +35,12 @@ void AUIManager::ShowMenu() {
 	AText* Text = *(MenuUI->GetCurTextIter());
 	MenuUI->SetStringColor(Text, Color::Yellow);
 	if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+		UEngineSound::Play("DirSound.wav");
 		MenuUI->SetStringColor(Text, Color::White);
 		MenuUI->PrevTextIter();
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+		UEngineSound::Play("DirSound.wav");
 		MenuUI->SetStringColor(Text, Color::White);
 		MenuUI->NextTextIter();
 	}

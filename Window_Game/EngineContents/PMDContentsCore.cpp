@@ -93,10 +93,10 @@ void PMDContentsCore::RoadResources()
 		}
 	}
 	//RoadSkill("FireBomb_Start", 1);
-	RoadSkill("Fire_Bomb", 9);
-	RoadSkill("Lightning_Bomb", 15);
+	RoadSkill("Fire_Bomb", 10);
+	RoadSkill("Lightning_Bomb", 16);
 	//RoadSkill("LightningBomb_End", 15);
-	RoadSkill("Water_Bomb", 8);
+	RoadSkill("Water_Bomb", 9);
 	//RoadSkill("WaterBomb_End", 8);
 	//RoadSkill("NormalAttack_Start", 1);
 	RoadSkill("NormalAttack", 1);

@@ -2,7 +2,9 @@
 #include "Item.h"
 
 #include <EngineCore/SpriteRenderer.h>
+#include <EnginePlatform/EngineSound.h>
 #include "Player.h"
+#include "UIManager.h"
 #include "GameDataManager.h"
 
 
@@ -37,6 +39,7 @@ void AItem::Tick(float _DeltaTime)
 		FVector2D ItemPos = GetActorLocation();
 		if (PlayerPos == ItemPos)
 		{
+			UEngineSound::Play("ItemGainSound.wav");
 			UGameDataManager::GetInst().PushInventory(GetName());
 			Destroy();
 		}

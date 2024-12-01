@@ -41,7 +41,7 @@ ACharacterSelect::ACharacterSelect()
 		SpriteRenderer->SetOrder(ERenderOrder::UI_Image);
 		PlayerCharacterImages.insert({ PlayerNames[i], SpriteRenderer });
 	}
-	
+
 }
 
 ACharacterSelect::~ACharacterSelect()
@@ -108,6 +108,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	if (IsPartnerSelect == false || IsPlayerSelect == false)
 	{
 		if (true == UEngineInput::GetInst().IsDown(VK_RIGHT)) {
+			UEngineSound::Play("DirSound.wav");
 			CurIter->second->SetSpriteScale(0.5f);
 			CurIter++;
 			if (CurIter == PlayerCharacterImages.end()) {
@@ -120,6 +121,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 		}
 
 		if (true == UEngineInput::GetInst().IsDown(VK_LEFT)) {
+			UEngineSound::Play("DirSound.wav");
 			CurIter->second->SetSpriteScale(0.5f);
 			if (CurIter == PlayerCharacterImages.begin()) {
 				CurIter = PlayerCharacterImages.end();
@@ -131,6 +133,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			return;
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_UP)) {
+			UEngineSound::Play("DirSound.wav");
 			CurIter->second->SetSpriteScale(0.5f);
 			for (int i = 0; i < 7; ++i) {
 				if (CurIter == PlayerCharacterImages.begin()) {
@@ -144,6 +147,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 			return;
 		}
 		if (true == UEngineInput::GetInst().IsDown(VK_DOWN)) {
+			UEngineSound::Play("DirSound.wav");
 			CurIter->second->SetSpriteScale(0.5f);
 			for (int i = 0; i < 7; ++i) {
 				CurIter++;
@@ -160,6 +164,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 
 	if (!IsPlayerSelect) {
 		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			UEngineSound::Play("SelectSound.wav");
 			PlayerName = CurIter->first;
 			SelectPokemon->SetString(PlayerName, Color::Green, 0);
 			SelectPokemon->ShowUI();
@@ -172,6 +177,7 @@ void ACharacterSelect::Tick(float _DeltaTime)
 	else if (IsPlayerSelect)
 	{
 		if (true == UEngineInput::GetInst().IsDown(VK_SPACE)) {
+			UEngineSound::Play("SelectSound.wav");
 			PartnerName = CurIter->first;
 			if (PlayerName == PartnerName)
 			{
@@ -206,7 +212,7 @@ void ACharacterSelect::LevelChangeStart()
 void ACharacterSelect::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
-	BGMPlayer.Off();
+	BGMPlayer.Stop();
 	IsPlayerSelect = false;
 	IsPartnerSelect = false;
 	IsNextLevel = false;
@@ -215,8 +221,8 @@ void ACharacterSelect::LevelChangeEnd()
 	PlayerName.clear();
 	PartnerName.clear();
 
-	SelectPokemon->SetString("Your Pokemon", Color::White,0);
-	SelectPokemon->SetString("Your Partner", Color::White,1);
+	SelectPokemon->SetString("Your Pokemon", Color::White, 0);
+	SelectPokemon->SetString("Your Partner", Color::White, 1);
 
 }
 
