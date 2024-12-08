@@ -23,39 +23,28 @@ public:
 	virtual bool IsDestroy() { return IsDestroyValue; }
 
 	// 객체를 파괴하는 함수, _Time 후에 파괴 (기본값 0)
-	void Destroy(float _Time = 0.0f)
-	{
+	void Destroy(float _Time = 0.0f) {
 		DeathTime = _Time;
-		if (0.0f < _Time)
-		{
-			IsDeathTimeCheck = true;
+		if (0.0f < _Time) {
+			IsDeathTimeValue = true;
 			return;
 		}
 		IsDestroyValue = true;
 	}
 
 	// 파괴될 시간이 되었는지 확인하는 함수 (매 프레임마다 호출하여 시간 경과 체크)
-	virtual void ReleaseTimeCheck(float _DeltaTime)
-	{
-		if (false == IsDeathTimeCheck)
-		{
+	virtual void ReleaseTimeCheck(float _DeltaTime) {
+		if (false == IsDeathTimeValue) {
 			return;
 		}
-
 		CurDeathTime += _DeltaTime;
-
-		if (DeathTime <= CurDeathTime)
-		{
+		if (DeathTime <= CurDeathTime) {
 			IsDestroyValue = true;
 		}
 	}
 
-	virtual void ReleaseCheck(float _DeltaTime)
-	{
-
-	}
-	virtual void SetDeathTime(float _DeathTime)
-	{
+	virtual void ReleaseCheck(float _DeltaTime) {}
+	virtual void SetDeathTime(float _DeathTime) {
 		DeathTime = _DeathTime;
 	}
 
@@ -68,7 +57,7 @@ public:
 	void DebugOff() { IsDebugValue = false; }
 	void DebugSwitch() { IsDebugValue = !IsDebugValue; }
 
-	
+
 	void TestDebugCheck()
 	{
 		if (true == TestDebug)
@@ -86,7 +75,7 @@ private:
 
 	bool IsActiveValue = true;
 	bool IsDestroyValue = false;
-	bool IsDeathTimeCheck = false;
+	bool IsDeathTimeValue = false;
 
 	float DeathTime = 0.0f;
 	float CurDeathTime = 0.0f;

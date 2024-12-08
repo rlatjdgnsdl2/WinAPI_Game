@@ -30,11 +30,9 @@ public:
 	{
 		CreateState(static_cast<int>(_Key), _UpdateFunction, _StartFunction);
 	}
-
 	void CreateState(int _Key, std::function<void(float)> _UpdateFunction, std::function<void()> _StartFunction = nullptr)
 	{
-		if (true == States.contains(_Key))
-		{
+		if (true == States.contains(_Key)){
 			MSGASSERT("이미 존재하는 스테이트를 또 만들려고 했습니다.");
 			return;
 		}
@@ -44,8 +42,7 @@ public:
 
 	void Update(float _DeltaTime)
 	{
-		if (nullptr == CurState)
-		{
+		if (nullptr == CurState){
 			MSGASSERT("상태가 지정되지 않은 스테이트머신 입니다.");
 			return;
 		}
@@ -68,8 +65,7 @@ public:
 		// 현재 상태를 새로운 상태로 변경
 		CurState = &States[_Key];
 		// 새로운 상태의 StartFunction이 존재하면 호출
-		if (nullptr != CurState->StartFunction)
-		{
+		if (nullptr != CurState->StartFunction){
 			CurState->StartFunction();
 		}
 	}

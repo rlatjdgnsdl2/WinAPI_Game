@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 
 class TimeEventFunction
 {
@@ -11,7 +10,7 @@ public:
 	bool Loop = false;
 };
 
-// 설명 :
+// 설명 : 일정시간동안 실행되는 함수, 일정시간 후에 실행되는 함수를 관리하는 클래스 ( 둘이 조합 가능 )
 class UTimeEvent
 {
 public:
@@ -25,41 +24,35 @@ public:
 	UTimeEvent& operator=(const UTimeEvent& _Other) = delete;
 	UTimeEvent& operator=(UTimeEvent&& _Other) noexcept = delete;
 
-	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, bool _Loop = false)
-	{
+	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, bool _Loop = false) {
 		Events.push_front({ _Time, _Time, _Function, _IsUpdate, _Loop });
 	}
 
-	void Update(float _DeltaTime)
-	{
+	void Update(float _DeltaTime) {
 		std::list<TimeEventFunction>::iterator StartIter = Events.begin();
 		std::list<TimeEventFunction>::iterator EndIter = Events.end();
-		for (; StartIter != EndIter; )
-		{
+		for (; StartIter != EndIter; ) {
 			TimeEventFunction& TimeEvent = *StartIter;
 			TimeEvent.Time -= _DeltaTime;
-
-			if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time)
-			{
+			// 일정시간동안 타임이벤트실행
+			if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time) {
 				TimeEvent.Event();
 			}
-
-			if (0.0f >= TimeEvent.Time)
-			{
+			//일정시간 후에 타임이벤트 실행
+			if (0.0f >= TimeEvent.Time) {
 				TimeEvent.Event();
-				if (false == TimeEvent.Loop)
-				{
+
+				if (!TimeEvent.Loop) {
+					//현재 요소 제거 후 다음요소 리턴
 					StartIter = Events.erase(StartIter);
+					continue;
 				}
-				else
-				{
-					++StartIter;
+				else {
+					//루프일경우 타임 초기화
 					TimeEvent.Time = TimeEvent.MaxTime;
 				}
 			}
-			else {
-				++StartIter;
-			}
+			++StartIter;
 		}
 	}
 

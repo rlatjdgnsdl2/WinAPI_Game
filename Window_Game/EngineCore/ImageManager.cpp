@@ -75,7 +75,7 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 		return;
 	}
 
-	if (false == EnginePath.IsExists())
+	if (false == EnginePath.IsExist())
 	{
 		MSGASSERT(std::string(Path) + "는 유효하지 않은 파일 경로 입니다.");
 		return;
@@ -116,7 +116,7 @@ void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path
 {
 	UEnginePath EnginePath = UEnginePath(_Path);
 
-	if (false == EnginePath.IsExists())
+	if (false == EnginePath.IsExist())
 	{
 		MSGASSERT(std::string(_Path) + "는 유효하지 않은 파일 경로 입니다.");
 		return;

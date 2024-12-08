@@ -63,7 +63,7 @@ void PMDContentsCore::RoadResources()
 	//	리소스 로드
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Resources"))
+		if (false == Dir.FindPath("Resources"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
@@ -79,7 +79,7 @@ void PMDContentsCore::RoadResources()
 	// 사운드 로드
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Resources"))
+		if (false == Dir.FindPath("Resources"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
@@ -229,7 +229,7 @@ void PMDContentsCore::RoadPokemon(std::string_view _PokemonName, int _Attack, in
 void PMDContentsCore::RoadSkill(std::string_view _SkillName, int size)
 {
 	UEngineDirectory Skill;
-	Skill.MoveParentToDirectory("Resources//Image//Skill");
+	Skill.FindPath("Resources//Image//Skill");
 	Skill.Append(_SkillName);
 	UImageManager::GetInst().LoadFolder(Skill.GetPathToString());
 	UGameDataManager::GetInst().InsertSkillAnimCount(_SkillName, size);

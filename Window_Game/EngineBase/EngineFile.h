@@ -7,7 +7,6 @@ const int MAXPATH = 256;
 //	설명 : File 클래스
 class UEngineFile : public UEnginePath
 {
-	// 하드코딩 
 public:
 	UEngineFile();
 	// 생성체인 -> 부모 클래스까지 
@@ -16,7 +15,6 @@ public:
 	UEngineFile(std::filesystem::path _Path);
 	~UEngineFile();
 
-	// Write
 	void Write(class UEngineSerializer& _Ser);
 	void Read(class UEngineSerializer& _Ser);
 
